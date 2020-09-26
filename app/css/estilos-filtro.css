@@ -1,0 +1,91 @@
+@charset "iso-8859-1";
+/* CSS Document */
+
+.filtro {
+	width: 730px;
+	overflow: hidden;
+	float: left;
+}
+.fila1 {
+	width: 550px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333;
+	font-size: 11px;
+	font-weight: normal;
+	text-decoration: none;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.filtro-imput {
+	overflow: hidden;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #333;
+	text-decoration: none;
+	width: 160px;
+	margin-right: 10px;
+	padding: 2px;
+}
+.filtro-select {
+	overflow: hidden;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #333;
+	text-decoration: none;
+	width: 100px;
+	margin-right: 5px;
+	padding: 2px;
+}
+.filtro-imput2 {
+	overflow: hidden;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #333;
+	text-decoration: none;
+	width: 50px;
+	margin-right: 5px;
+	padding: 2px;
+	margin-left: 5px;
+}
+.filtro-btn {
+	border: 1px solid #999;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 2px;
+	margin-left: 5px;
+	background-color: #CCC;
+}
+.filtro-imput3 {
+	overflow: hidden;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #333;
+	text-decoration: none;
+	width: 80px;
+	margin-right: 5px;
+	padding: 2px;
+	margin-left: 5px;
+}

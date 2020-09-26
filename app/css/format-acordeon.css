@@ -1,0 +1,62 @@
+@charset "iso-8859-1";
+
+#wrapper {
+	float: left;
+	}
+
+.accordionButton {
+	width: 770px;
+	float: left;
+	_float: none;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+	text-decoration: none;
+	overflow: hidden;
+	font-style: italic;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #CCC;
+	border-bottom-color: #CCC;
+	background-color: #E8E8E8;
+	padding-left: 5px;
+	}
+	
+.accordionContent {
+	width: 765px;
+	float: left;
+	_float: none;
+	padding-top: 10px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #CCC;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	overflow: hidden;
+	}
+
+	
+/***********************************************************************************************************************
+ EXTRA STYLES ADDED FOR MOUSEOVER / ACTIVE EVENTS
+************************************************************************************************************************/
+
+.on {
+	background-image: url(../../imagenes/acordeon-on.jpg);
+	background-repeat: no-repeat;
+	background-position: 650px 14px;
+	color: #000;
+	}
+	
+.over {
+	background-image: url(../../imagenes/acordeon-off.jpg);
+	background-repeat: no-repeat;
+	background-position: 650px 14px;
+	color: #000;
+	}

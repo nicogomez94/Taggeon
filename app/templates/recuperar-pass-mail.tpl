@@ -1,0 +1,52 @@
+<html><head>
+    <title>arquipick</title>
+
+    <link rel="stylesheet" href="/css/styles.css?time=160920-2005">
+    <!-- <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="/bootstrap-4.5.2-dist/css/bootstrap.min.css">
+    <link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+<body>
+
+    
+
+
+            <div id="recuperar-pass-cont">
+               <h3>Recupera tu Contrase&ntilde;a en Arquipick</h3>
+               <hr>
+               <div id="form_registro_cont" class="forms">
+                  <form id="form_recuperar_clave_mail">
+                  		<input type="hidden" name="accion" value="recuperar" />
+                        <input type="hidden" name="perfil" value="{perfil}" />
+			    				<input type="hidden" name="idUsuario" value="{idUsuario}" />
+						    	<input type="hidden" name="usuario" value="{usuario}" />
+						    	<input type="hidden" name="hash" value="{hash}" />
+						    	<input type="hidden" name="id" value="{id}" />
+                     <div>
+                        <!-- <label for="nomnbre">Ingresa tu nueva contrase&ntilde;a</label> -->
+                        <input type="password" id="rec_pass" name="password" placeholder="Ingresa tu nueva contrase&ntilde;a">
+                     </div>
+                     <div>
+                        <!-- <label for="nomnbre">Repite tu nueva contrase&ntilde;a</label> -->
+                        <input type="password" id="rec_pass" name="password2" placeholder="Repite tu nueva contrase&ntilde;a">
+                     </div>
+                     <div>
+                        <button type="submit" class="btn btn-info">Cambiar Contrase&ntilde;a</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+
+
+
+
+   <script src="/js/jquery-3.5.1.js"></script>
+   <script src="/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="/js/popper.js"></script> -->
+   <script src="/js/func.js?time=140920-1829"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>
