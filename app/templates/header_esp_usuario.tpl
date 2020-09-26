@@ -56,7 +56,7 @@
                      <i class="fas fa-user media-icon"></i>
                      <!-- <img class="mr-3" src="..." alt="Generic placeholder image"> -->
                      <div class="media-body">
-                       <h5 class="mt-0">Usuario</h5>
+                       <h5 class="mt-0">{nombre-usuario}</h5>
                        <a href="/ampliar-usuario.html">Ver Perfil{perfil}</a>
                      </div>
                    </div>
