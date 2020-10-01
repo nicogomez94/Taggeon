@@ -19,8 +19,9 @@ interface  UsuarioDao{
    public function clienteIsOwnerBeneficiario ($idCliente,$idBeneficiario);
    public function validPassOld($idUsuario,$perfil,$pass);
    public function existeemail ($email); //nueva
-	public function actualizarPerfil($id,$nombre,$apellido,$usuario,$email,$perfil); //nueva
-	public function getUsuarioByEmail($email); //nueva
+   public function getUsuarioByEmail($email); //nueva
+   public function actualizarPerfilUsuario($id,$usuario,$perfil); //nueva
+	public function actualizarPerfilDatosPersonales($id,$nombre,$apellido,$usuario,$email,$perfil); //nueva
 
 }
 ?>

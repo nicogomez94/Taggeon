@@ -23,11 +23,16 @@ if ($perfil == 'seller' || $perfil == 'picker'){
             }
             fclose($fp);
         }
-    }
+	}
+	$usuarioPerfil = $GLOBALS['sesionG']['usuario'];
+	if ($usuarioPerfil == $GLOBALS['sesionG']['email']){
+		$usuarioPerfil = $GLOBALS['sesionG']['nombre'];
+	}
+	
 	$contenidoHeader->asigna_variables(array(
 		"perfil"         => $reemplazoPerfil,
 		"foto-perfil"    => $fotoPerfil,
-		"nombre-usuario" => $GLOBALS['sesionG']['usuario']
+		"nombre-usuario" => $usuarioPerfil
 		));
 }else{
 	$contenidoHeader = new Template('header_esp');

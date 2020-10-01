@@ -314,7 +314,19 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		$usuario  = isset($_POST["nombre-usuario"]) ? $_POST["nombre-usuario"]    : '';
 		$email    = isset($_POST["contacto-mail"]) ? $_POST["contacto-mail"]      : '';
 
-		
+		$nombre   = _trim($nombre);
+		$apellido = _trim($apellido);
+		$usuario  = _trim($usuario);
+		$email    = _trim($email);
+
+
+		if ($perfil != 'seller' && $perfil != 'picker'){
+			$this->setStatus("error");
+			$this->setMsj("Perfil incorrecto."); 
+			return false;
+		}
+
+
 		$this->validarId($id);
 		if ($this->getStatus() != 'ok'){
 			return false;
@@ -335,21 +347,48 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 			return false;
 		}
 
-		if ($perfil != 'seller' && $perfil != 'picker'){
-			$this->setStatus("error");
-			$this->setMsj("Perfil incorrecto."); 
-			return false;
+		$mensajeReturn = "";
+		if ($GLOBALS['sesionG']['usuario'] != $usuario){
+			$this->getUsuarioDao()->actualizarPerfilUsuario($id,$usuario,$perfil);
+			$mensajeReturn = $this->getUsuarioDao()->getMsj();
+
+			if ($this->getUsuarioDao()->getStatus() != "ok"){
+				$this->setStatus("error");
+				$this->setMsj($mensajeReturn);
+				return false;
+			}
+		}
+		include_once($GLOBALS['configuration']['path_app_admin_objects']."sesion/sesionDaoImpl.php");
+		$sesionDao = new SesionDaoImpl();
+
+		if ($GLOBALS['sesionG']['nombre'] == $nombre && $GLOBALS['sesionG']['apellido'] == $apellido && $GLOBALS['sesionG']['email'] == $email){
+			if ($mensajeReturn != ""){
+				$mensajeReturn .= " ";
+			}
+
+
+			$sesionDao->guardarUsuario($usuario);
+
+			$this->setStatus("ok");
+			$this->setMsj($this->setMsj($this->getUsuarioDao()->getMsj()));
+			return true;
 		}
 
-		$this->getUsuarioDao()->actualizarPerfil($id,$nombre,$apellido,$usuario,$email,$perfil);
+
+		$this->getUsuarioDao()->actualizarPerfilDatosPersonales($id,$nombre,$apellido,$usuario,$email,$perfil);
 
 		if ($this->getUsuarioDao()->getStatus() != "ok"){
+			if ($mensajeReturn != ""){
+				$mensajeReturn .= " ";
+			}
+			$mensajeReturn .= $this->getUsuarioDao()->getMsj();
 			$this->setStatus("error");
-			$this->setMsj($this->getUsuarioDao()->getMsj());
+			$this->setMsj($mensajeReturn);
 			return false;
 		}else{
+			$sesionDao->guardar($nombre,$apellido,$email);
 			$this->setStatus("ok");
-			$this->setMsj(""); 
+			$this->setMsj($this->getUsuarioDao()->getMsj());
 			return true;
 		}
 	}

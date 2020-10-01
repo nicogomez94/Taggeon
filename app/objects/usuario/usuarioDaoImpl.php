@@ -143,59 +143,7 @@ SQL;
        }
    }
 
-   public function actualizarPerfil($id,$nombre,$apellido,$usuario,$email,$perfil){
-	$idBase      = Database::escape($id);
-	$nombreBase = Database::escape($nombre);
-	$apellidoBase = Database::escape($apellido);
-	$usuarioBase    = Database::escape($usuario);
-	$emailBase    = Database::escape($email);
-	$perfilBase    = Database::escape($perfil);
-	
-	$sql =<<<SQL
-		UPDATE `usuario` SET
-				 `usuario`=$usuarioBase,
-				 `usrUpdate`=$idBase
-		WHERE `id` = $idBase
-			  AND `perfil` = $perfilBase
-			  AND `eliminar` = 0 
-SQL;
-
-	if (!mysqli_query(Database::Connect(), $sql)){
-		$this->setStatus("error");
-		$this->setMsj("No se pudo actualizar el usuario.");
-   	}else{
-			$sql =<<<SQL
-			UPDATE `usuario_$perfil` SET
-					 `nombre`=$nombreBase,
-					 `apellido`=$apellidoBase,
-					 `email`=$emailBase
-			WHERE `idUsuario` = $idBase
-				  AND `eliminar` = 0 
-SQL;
-	
-		    if (!mysqli_query(Database::Connect(), $sql)){
-				$this->setStatus("error");
-				$this->setMsj("No se puede actualizar los datos del perfil del usuario.");
-				return false;
-		   }else{
-				$num_rows = Database::Connect()->affected_rows;
-				if ($num_rows > 0){
-					$this->setStatus("ok");
-					$this->setMsj("");
-					return true;
-				}
-		   }
-
-
-		 $this->setStatus("error");
-		 $this->setMsj("No se actualizaron los datos del perfil. No se encontro el usuario.");
-
-   }
-
-
-
-
-}
+ 
 
    public function validPassOld($idUsuario,$perfil,$pass){
 		$pass          = md5($GLOBALS['configuration']['clave_pass'].$pass.$perfil);
@@ -608,6 +556,69 @@ SQL;
 
 		}
 		return $ret;
+	}
+
+
+
+
+
+
+
+	public function actualizarPerfilDatosPersonales($id,$nombre,$apellido,$usuario,$email,$perfil){
+		$idBase      = Database::escape($id);
+		$nombreBase = Database::escape($nombre);
+		$apellidoBase = Database::escape($apellido);
+		$usuarioBase    = Database::escape($usuario);
+		$emailBase    = Database::escape($email);
+		$perfilBase    = Database::escape($perfil);
+		$sql =<<<SQL
+			UPDATE `usuario_$perfil` SET
+					 `nombre`=$nombreBase,
+					 `apellido`=$apellidoBase,
+					 `email`=$emailBase
+			WHERE `idUsuario` = $idBase
+				  AND `eliminar` = 0 
+	SQL;
+		
+		if (mysqli_query(Database::Connect(), $sql)){
+			$num_rows = Database::Connect()->affected_rows;
+			if ($num_rows > 0){
+				$this->setStatus("ok");
+				$this->setMsj("Los datos personales se actualizaron con éxito.");
+				return true;
+			}
+		}
+		$this->setStatus("error");
+		$this->setMsj("No se pudo actualizar los datos personales.".Database::Connect()->error);
+		return true;
+	}
+	
+	public function actualizarPerfilUsuario($id,$usuario,$perfil){
+		$idBase      = Database::escape($id);
+		$usuarioBase    = Database::escape($usuario);
+		$perfilBase    = Database::escape($perfil);
+		
+		$mensajeUsuario = '';
+		$sql =<<<SQL
+			UPDATE `usuario` SET
+				 `usuario`=$usuarioBase,
+				 `usrUpdate`=$idBase
+			WHERE `id` = $idBase
+			  AND `perfil` = $perfilBase
+			  AND `eliminar` = 0 
+	SQL;
+		if (mysqli_query(Database::Connect(), $sql)){
+			$num_rows = Database::Connect()->affected_rows;
+			if ($num_rows > 0){
+				$this->setStatus("ok");
+				$this->setMsj("El nombre de usuario se actualizó con éxito.");
+				return true;
+			}
+		}
+		$this->setStatus("error");
+		//$this->setMsj("No se pudo actualizar el usuario. $sql".Database::Connect()->error);
+		$this->setMsj("No se pudo actualizar el nombre de usuario.");
+		return false;
 	}
 
 }

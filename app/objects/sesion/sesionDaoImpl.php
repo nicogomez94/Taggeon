@@ -40,6 +40,35 @@ class  SesionDaoImpl implements SesionDao{
 	   }
    }
 
+
+   public function guardar ($nombre,$apellido,$email){
+	$hash      =  isset($_SESSION["hash"]) ? $_SESSION["hash"] : "";
+	$hash2 = (isset($_COOKIE['hash'])) ? $_COOKIE['hash'] : "";
+
+	$llave_md5 = $hash.$hash2;
+
+	$_SESSION["email"]     =  $this->cifrar($email,$llave_md5);
+	$_SESSION["apellido"]  =  $this->cifrar($apellido,$llave_md5);
+	$_SESSION["nombre"]    =  $this->cifrar($nombre,$llave_md5);
+
+	$GLOBALS['sesionG']['nombre'] =  $nombre;
+	$GLOBALS['sesionG']['apellido'] = $apellido;
+	$GLOBALS['sesionG']['email'] = $email;
+
+  }
+
+  public function guardarUsuario ($usuario){
+	$hash      =  isset($_SESSION["hash"]) ? $_SESSION["hash"] : "";
+	$hash2 = (isset($_COOKIE['hash'])) ? $_COOKIE['hash'] : "";
+
+	$llave_md5 = $hash.$hash2;
+
+	$_SESSION["usuario"]   = $this->cifrar($usuario,$llave_md5); 
+	
+	$GLOBALS['sesionG']['usuario'] = $usuario;
+
+  }
+
 	public function eliminar (){
 		setcookie("hash","");
 		//setcookie(session_name(),"");

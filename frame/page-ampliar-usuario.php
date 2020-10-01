@@ -5,24 +5,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuari
 
 if ($perfil=='picker' || $perfil == 'seller'){
     //$usuarioManager = new UsuarioManagerImpl();
-    $id        = $GLOBALS['sesionG']['id'];
-    $fotoPerfil = '';
 
-    if (file_exists("/var/www/imagen_perfil/$id")) {
-        $fp = fopen("/var/www/imagen_perfil/$id", 'r');
-        while(!feof($fp)) {
-            $fotoPerfil .= fgets($fp);
-        }
-        fclose($fp);
-    } else {
-        if (file_exists("/var/www/imagen_perfil/generica")) {
-            $fp = fopen("/var/www/imagen_perfil/generica", 'r');
-            while(!feof($fp)) {
-                $fotoPerfil .= fgets($fp);
-            }
-            fclose($fp);
-        }
-    }
     $jsonData = array(
         "usuario" => $GLOBALS['sesionG']['usuario'],
         "nombre"      => $GLOBALS['sesionG']['nombre'],
@@ -40,7 +23,7 @@ if ($perfil=='picker' || $perfil == 'seller'){
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
-            "foto-perfil" => $fotoPerfil
+            "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
     $contenidoString = $contenido->muestraDesdeVariable($htmlContent);
     //HEADER

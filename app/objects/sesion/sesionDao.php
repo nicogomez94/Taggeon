@@ -5,5 +5,8 @@ interface  SesionDao{
 	public function eliminar ();
 	public function borrarDatos ();
 	public function get ();
+	public function guardar ($nombre,$apellido,$email);
+	public function guardarUsuario ($usuario);
+
 }
 ?>

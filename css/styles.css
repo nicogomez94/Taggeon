@@ -203,6 +203,14 @@ body{
     width: 250px;
     display: none;
 }
+#dropdown-user-menu>.media>img{
+    max-width: 45%;
+    border-radius: 20px;
+}
+#dropdown-user-menu>.media>h5{
+    word-break: break-word;
+    white-space: normal;
+}
 .media-icon{
     margin-right: 10px;
     padding: 5px;
