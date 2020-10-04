@@ -88,49 +88,113 @@
 <div id="background-atras"></div>
 
 <div class="container" id="contenedor-form-subir">
-   <h1>Subir Foto</h1>
+   <h1>Subir Producto</h1>
    <hr>
    <form>
-   <div class="row">
-      <div class="col-lg-5" id="col-foto-upload">
-         <div id="contenedor-subir-foto">
-            <div id="border-inside-subir">
-               <span id="text-inside-subir"><input type="file"></span>
+      <div id="col-foto-upload">
+            <p class="label-descr">Seleccione una foto para el producto.</p>
+            <div class="row">
+               <div id="contenedor-subir-foto">
+                  <img id="img-subir" alt="imagen" width="100" height="100" />
+                  <span id="text-inside-subir"><input type="file" name="imagenes-producto" onchange="$('#img-subir').show();document.getElementById('img-subir').src = window.URL.createObjectURL(this.files[0]);"></span>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="group">      
+                     <input type="text" name="nombre-producto" required>
+                     <span class="highlight"></span>
+                     <span class="bar"></span>
+                     <label>Nombre</label>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-3">
+                  <div class="group">      
+                     <input type="text" name="precio-producto" required>
+                     <span class="highlight"></span>
+                     <span class="bar"></span>
+                     <label>Precio</label>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-12">
+                  <p class="label-descr">Descripcion del producto</p>
+                  <textarea type="text" name="descr-producto" required></textarea>
+               </div>
+            </div>
+            <br><hr>
+            <div id="ficha-tecnica">
+               <h3>Ficha Tecnica</h3><br>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <div class="group">      
+                        <input type="text" name="marca-producto" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Marca</label>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-6">
+                     <select name="categoria-producto" id="categoria-foto">
+                        <option value="categoria1">Categoria</option>
+                        <option value="categoria2">Categoria</option>
+                        <option value="categoria3">Categoria</option>
+                        <option value="categoria4">Categoria</option>
+                        <option value="categoria5">Categoria</option>
+                     </select>
+                  </div>
+                  <div class="col-lg-6">
+                     <select name="rubro-producto" id="categoria-foto">
+                        <option value="categoria1">Rubro</option>
+                        <option value="categoria2">Rubro</option>
+                        <option value="categoria3">Rubro</option>
+                        <option value="categoria4">Rubro</option>
+                        <option value="categoria5">Rubro</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-3">
+                     <select name="color-producto" id="categoria-foto">
+                        <option value="categoria1">Color</option>
+                        <option value="categoria2">Color</option>
+                        <option value="categoria3">Color</option>
+                        <option value="categoria4">Color</option>
+                        <option value="categoria5">Color</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-3">
+                     <select name="envio-producto" id="categoria-foto">
+                        <option value="categoria1">Envio</option>
+                        <option value="categoria2">Envio</option>
+                        <option value="categoria3">Envio</option>
+                        <option value="categoria4">Envio</option>
+                        <option value="categoria5">Envio</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            
+         <div>
+            <div class="row">
+               <div class="col-lg-4">
+                  <br>
+                  <input type="submit" class="btn btn-warning" value="Guardar Producto">
+               </div>
             </div>
          </div>
       </div>
-      <div class="col-lg-7" id="col-foto-info">
-         
-            <div class="group">      
-               <input type="text" name="name-post" required>
-               <span class="highlight"></span>
-               <span class="bar"></span>
-               <label>Nombre</label>
-             </div>
-             <div class="group">      
-               <input type="text" name="descr-post" required>
-               <span class="highlight"></span>
-               <span class="bar"></span>
-               <label>Descripcion</label>
-             </div>
-
-            <div>
-               <select name="categoria-foto" id="categoria-foto">
-                  <option value="categoria1">categoria</option>
-                  <option value="categoria2">categoria</option>
-                  <option value="categoria3">categoria</option>
-                  <option value="categoria4">categoria</option>
-                  <option value="categoria5">categoria</option>
-               </select>
-            </div>
-            <hr>
-            <div>
-               <input type="submit" class="btn btn-warning" value="Subir Foto">
-            </div>
-      </div>
-   </div>
    </form>
 </div>
+
+
 
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
