@@ -91,17 +91,17 @@
                <div class="row">
                   <div class="col-lg-12">
                      <div class="group">      
-                        <input type="text" name="nombre-producto" required>
+                        <input type="text" name="titulo" id="titulo-producto" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
-                        <label>Nombre</label>
+                        <label>Nombre del producto</label>
                      </div>
                   </div>
                </div>
                <div class="row">
                   <div class="col-lg-3">
                      <div class="group">      
-                        <input type="text" name="precio-producto" required>
+                        <input type="text" name="precio" id="precio-producto" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Precio</label>
@@ -111,17 +111,14 @@
                <div class="row">
                   <div class="col-lg-12">
                      <p class="label-descr">Descripcion del producto</p>
-                     <textarea type="text" name="descr-producto" required></textarea>
+                     <textarea type="text" name="descr-producto" id="descr-producto" required></textarea>
                   </div>
                </div>
                <div class="row">
                   <div class="col-lg-3">
-                     <select name="envio-producto" id="categoria-foto">
-                        <option value="categoria1">Color</option>
-                        <option value="categoria2">Color</option>
-                        <option value="categoria3">Color</option>
-                        <option value="categoria4">Color</option>
-                        <option value="categoria5">Color</option>
+                     <select name="color" id="color">
+                        <option value="color1">Color</option>
+                        <option value="color2">Color</option>
                      </select>
                   </div>
                </div>
@@ -131,7 +128,7 @@
                   <div class="row">
                      <div class="col-lg-6">
                         <div class="group">      
-                           <input type="text" name="marca-producto" required>
+                           <input type="text" name="marca" id="marca-producto" required>
                            <span class="highlight"></span>
                            <span class="bar"></span>
                            <label>Marca</label>
@@ -140,7 +137,7 @@
                   </div>
                   <div class="row">
                      <div class="col-lg-6">
-                        <select name="categoria-producto" id="categoria-foto">
+                        <select name="categoria" id="categoria-producto">
                            <option value="categoria1">Categoria</option>
                            <option value="categoria2">Categoria</option>
                            <option value="categoria3">Categoria</option>
@@ -149,23 +146,32 @@
                         </select>
                      </div>
                      <div class="col-lg-6">
-                        <select name="rubro-producto" id="categoria-foto">
-                           <option value="categoria1">Rubro</option>
-                           <option value="categoria2">Rubro</option>
-                           <option value="categoria3">Rubro</option>
-                           <option value="categoria4">Rubro</option>
-                           <option value="categoria5">Rubro</option>
+                        <select name="rubro" id="rubro-producto">
+                           <option value="rubro1">Rubro</option>
+                           <option value="rubro2">Rubro</option>
+                           <option value="rubro3">Rubro</option>
+                           <option value="rubro4">Rubro</option>
+                           <option value="rubro5">Rubro</option>
                         </select>
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-lg-3">
-                        <select name="envio-producto" id="categoria-foto">
-                           <option value="categoria1">Envio</option>
-                           <option value="categoria2">Envio</option>
-                           <option value="categoria3">Envio</option>
-                           <option value="categoria4">Envio</option>
-                           <option value="categoria5">Envio</option>
+                     <div class="col-lg-6">
+                        <select name="envio" id="envio-producto">
+                           <option value="envio1">Envio</option>
+                           <option value="envio2">Envio</option>
+                           <option value="envio3">Envio</option>
+                           <option value="envio4">Envio</option>
+                           <option value="envio5">Envio</option>
+                        </select>
+                     </div>
+                     <div class="col-lg-6">
+                        <select name="garantia" id="garantia-producto">
+                           <option value="garantia1">Garantia</option>
+                           <option value="garantia2">Garantia</option>
+                           <option value="garantia3">Garantia</option>
+                           <option value="garantia4">Garantia</option>
+                           <option value="garantia5">Garantia</option>
                         </select>
                      </div>
                   </div>

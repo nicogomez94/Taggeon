@@ -916,7 +916,6 @@ input:focus ~ .highlight {
 
 
 
-
 /*****producos listado*****/
 #listado-mis-productos{
     background-color: rgb(206, 206, 206);
@@ -927,9 +926,9 @@ input:focus ~ .highlight {
     font-size: 20px;
     position: relative;
 }
-.img-producto img{
+/* .img-producto img{
     max-width: 50%;
-}
+} */
 .titulo-producto{
     font-weight: 500;
 }
