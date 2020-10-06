@@ -416,6 +416,130 @@ $('#iniciar_sesion').submit(function (e) {
 
 /*FIN NICO*//*NICOOOO*//*NICOOOO*/
 
+/*funcion varias imagenes formulario subir*/
+// $(function() {
+//     var previewImg = function(input, insertarImgPreview) {
+
+//       if (input.files) {
+//       var cantidadArchivos = input.files.length;
+
+//          for (i = 0; i < cantidadArchivos; i++) {
+//             var reader = new FileReader();
+
+//             reader.onload = function(event) {
+//                $($.parseHTML('<img>')).attr('src', event.target.result).addClass("img-"+i).appendTo(insertarImgPreview);
+//                // console.log(newFileList)
+//             }
+//             reader.readAsDataURL(input.files[i]);
+         
+//          }
+         
+//          // var newFileList = Array.from(event.target.files);
+//          // newFileList.splice(1,1);
+
+//        }
+//     };
+
+//     $('#galeria-fotos').on('change', function() {
+//        previewImg(this, 'div.galeria');
+//     });
+
+// });
+
+
+/*FORMULARIO SUBIR PRODUCTO*/
+
+uploadHBR.init({
+    "target": "#uploads",
+    "textNew": "A&ntilde;adir",
+    "textTitle": "Haga click o draguee su imagen",
+    "textTitleRemove": "Haga click para remover imagen"
+});
+$('#reset').click(function () {
+    uploadHBR.reset('#uploads');
+});
+
+
+$('#producto-form').submit(function (e) {
+    e.preventDefault();
+    var formData = new FormData($(this)[0]);
+        
+    $.ajax({
+        url: '',
+        //type: 'post',
+        //data: $("#registro-comun").serialize(), 
+        //dataType : "json",
+        data: formData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                window.location.replace("/");
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                    $("#mensaje-sin-login").css("display","block");
+                    $("#mensaje-sin-login").html(msj);
+                //    alert(msj);
+        }
+   });
+   return false;
+});
+
+/*//FORMULARIO SUBIR PRODUCTO*/
+
+/*producto formulario*/
+// $("#producto-form").on('submit', function() {
+
+//     var reader = new FileReader();
+//     reader.onload = function(){
+        
+//         var $data = { 
+//             'file': reader.result,
+//             'accion':'guardar'
+//         };
+
+//         $.ajax({
+//             type: 'POST',
+//             url: '/app/editar_imagen_perfil.php',
+//             data: $data,
+//             dataType: "json",
+//             success: function(data, textStatus, jQxhr ) {
+//                 if (data.status == 'REDIRECT'){
+//                     window.location.replace(data.mensaje);														
+//                 }else if(data.status == 'OK'){
+//                     alert (data.mensaje);
+//                     window.location.replace("/editar-usuario.html");
+//                 }else{
+//                     alert (data.mensaje);
+//                 }
+
+//             },
+//             error: function(jqXhr, textStatus, errorThrown) {
+//                 var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+//                 alert(msj);         
+//            }
+//         });
+//     };
+//     reader.readAsDataURL($("#file2").get(0).files[0]);    
+//     return false;
+// });
+
+/*cierre drop de ampliar-producto*/
+$(".ellip").click(function(){
+    $(".acciones-producto").toggle();
+});
+
+
 });
 
 

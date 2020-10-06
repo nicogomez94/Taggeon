@@ -94,9 +94,10 @@
       <div id="col-foto-upload">
             <p class="label-descr">Seleccione una foto para el producto.</p>
             <div class="row">
-               <div id="contenedor-subir-foto">
-                  <img id="img-subir" alt="imagen" width="100" height="100" />
-                  <span id="text-inside-subir"><input type="file" name="imagenes-producto" onchange="$('#img-subir').show();document.getElementById('img-subir').src = window.URL.createObjectURL(this.files[0]);"></span>
+               <div id="contenedor-subir-foto" class="img-subir">
+                  <!-- <img id="img-subir" alt="imagen" width="100" height="100" /> -->
+                  <span id="text-inside-subir"><input multiple type="file" id="galeria-fotos"></span>
+                  <div class="galeria"></div>
                </div>
             </div>
             <div class="row">
@@ -155,17 +156,6 @@
                         <option value="categoria3">Rubro</option>
                         <option value="categoria4">Rubro</option>
                         <option value="categoria5">Rubro</option>
-                     </select>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-3">
-                     <select name="color-producto" id="categoria-foto">
-                        <option value="categoria1">Color</option>
-                        <option value="categoria2">Color</option>
-                        <option value="categoria3">Color</option>
-                        <option value="categoria4">Color</option>
-                        <option value="categoria5">Color</option>
                      </select>
                   </div>
                </div>
