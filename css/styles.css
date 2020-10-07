@@ -736,6 +736,29 @@ img{
     border: 1px solid #d3d3d3;
     margin-left: 12px;
 }
+textarea{
+    width: 100%;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+select{
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+}
+#ficha-tecnica{
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 0px #e4e4e4;
+    background-color: white;
+}
 /*para que salga bien un modal*/
 /* .modal:nth-of-type(even) {
     z-index: 1052 !important;
@@ -918,11 +941,11 @@ input:focus ~ .highlight {
 
 /*****producos listado*****/
 #listado-mis-productos{
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(247, 247, 247);
     border-radius: 10px;
     text-align: center;
     padding: 20px;
-    box-shadow: 0px 0px 5px gray;
+    box-shadow: 0px 0px 5px rgb(194, 194, 194);
     font-size: 20px;
     position: relative;
 }
@@ -932,11 +955,13 @@ input:focus ~ .highlight {
 .titulo-producto{
     font-weight: 500;
 }
-.ellip, .titulo-producto, .img-producto, .precio-producto{
-    line-height: 60px;
+.titulo-producto, .img-producto, .precio-producto{
+    line-height: 60px !important;
 }
 .ellip{
     cursor: pointer;
+    line-height: 60px !important;
+    /**fdsdfsdf*/
 }
 .acciones-producto{
     background-color: honeydew;
