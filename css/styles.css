@@ -448,9 +448,6 @@ img{
 #info-user{
     margin-top: 30px;
     padding: 15px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 #icons-upper-perfil{
     font-size: 1.5em;
@@ -952,6 +949,9 @@ input:focus ~ .highlight {
 /* .img-producto img{
     max-width: 50%;
 } */
+.producto{
+    margin-bottom: 10px;
+}
 .titulo-producto{
     font-weight: 500;
 }
