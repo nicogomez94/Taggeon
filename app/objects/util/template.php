@@ -1,7 +1,7 @@
 <?php
 class Template{
 	function Template($template_file){
-		$this->tpl_file =  $GLOBALS['configuration']['path_templates'] . $template_file . '.tpl';
+		$this->tpl_file =  $GLOBALS['configuration']['path_templates'] . $template_file . '.html';
 	}
 	function asigna_variables($vars){
 		$this->vars= (empty($this->vars)) ? $vars : array();
