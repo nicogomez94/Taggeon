@@ -465,7 +465,7 @@ $('#producto-form').submit(function (e) {
     var formData = new FormData($(this)[0]);
         
     $.ajax({
-        url: '',
+        url: '/app/producto.php',
         //type: 'post',
         //data: $("#registro-comun").serialize(), 
         //dataType : "json",

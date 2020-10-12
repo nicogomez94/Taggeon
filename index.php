@@ -10,6 +10,7 @@ $sesionManager = new SesionManagerImpl();
 $perfil = "";
 $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : ""; 
 
+
 $patron = '/(html|htm|\/)$/';
 if (preg_match($patron, $url)){
 	if ($sesionManager->validar(array('picker','seller','admin','superadmin','editor'))){
@@ -18,12 +19,22 @@ if (preg_match($patron, $url)){
 }
 $language = $GLOBALS['sesionG']['language'];
 
+
 if ($url == '/' ||$url == '/index.htm'){
 	$url = '/index.html';
 }else if ($url == '/editar-usuario-seller.html'){
 	$url = '/editar-usuario.html';
 }else if ($url == '/ampliar-usuario-seller.html'){
 	$url = '/ampliar-usuario.html';
+}else{
+	Database::Connect()->close();
+
+	if (file_exists($GLOBALS['configuration']['path_templates'].$url) ){
+		require('./frame/page-template.php');
+		Database::Connect()->close();
+		exit;
+	}
+
 }
 $urlBase = Database::escape($url);
 
