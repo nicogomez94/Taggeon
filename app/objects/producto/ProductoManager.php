@@ -84,6 +84,16 @@ class  ProductoManager
                         $this->setMsj($this->productoDao->getMsj());
                         return false;
                     }
+                    if ($this->productoDao->existeEnvio($envio) === false) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj($this->productoDao->getMsj());
+                        return false;
+                    }
+                    if ($this->productoDao->existeGarantia($garantia) === false) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj($this->productoDao->getMsj());
+                        return false;
+                    }
 
 		if ($this->productoDao->altaProducto($data) === false) {
 			$this->setStatus("ERROR");
@@ -423,7 +433,7 @@ class  ProductoManager
             }        
             private function validarEnvio($envio)
             {
-                if (! preg_match('/^\w+$/i', $envio)){
+                if (!is_numeric($envio)){
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo envio es incorrecto.");
                     return false;
@@ -434,7 +444,7 @@ class  ProductoManager
             }        
             private function validarGarantia($garantia)
             {
-                if (! preg_match('/^\w+$/i', $garantia)){
+                if (!is_numeric($garantia)){
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo garantia es incorrecto.");
                     return false;

@@ -53,7 +53,7 @@ class  ProductoDao
                 $colorDB = Database::escape($color);
 
 		$sql = <<<SQL
-			INSERT INTO producto (titulo, id_categoria, id_rubro, marca, precio, envio, garantia, descr_producto, color)  
+			INSERT INTO producto (titulo, id_categoria, id_rubro, marca, precio, id_envio, id_garantia, descr_producto, color)  
 			VALUES ($tituloDB, $categoriaDB, $rubroDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB)
 SQL;
 
@@ -311,5 +311,55 @@ SQL;
             
                     return false;
                 }
+                public function existeEnvio($id_envio)
+                {
+                    $id_envio = isset($id_envio) ?   $id_envio : '';
+                    $id_envioDB = Database::escape($id_envio);      
+            
+                    $sql = <<<SQL
+                        SELECT *FROM envio
+                        WHERE 
+                            id = $id_envioDB AND
+                            (eliminar = 0 OR eliminar is null);
+SQL;            
+
+                    $resultado=mysqli_query(Database::Connect(), $sql);
+                    $row_cnt = mysqli_num_rows($resultado);
+                    if ($row_cnt == 1){
+                        $this->setStatus("OK");
+                        return true;
+                    }
+                    
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo envio es incorrecto.");
+                    return false;
+
+                }
+
+                public function existeGarantia($id_garantia)
+                {
+                    $id_garantia = isset($id_garantia) ?   $id_garantia : '';
+                    $id_garantiaDB = Database::escape($id_garantia);      
+            
+                    $sql = <<<SQL
+                        SELECT *FROM garantia
+                        WHERE 
+                            id = $id_garantiaDB AND
+                            (eliminar = 0 OR eliminar is null);
+SQL;            
+
+                    $resultado=mysqli_query(Database::Connect(), $sql);
+                    $row_cnt = mysqli_num_rows($resultado);
+                    if ($row_cnt == 1){
+                        $this->setStatus("OK");
+                        return true;
+                    }
+                    
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo garantia es incorrecto.");
+                    return false;
+
+                }
+
 
 }
