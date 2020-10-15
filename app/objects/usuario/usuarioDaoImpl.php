@@ -74,15 +74,20 @@ SQL;
    public function getUsuarioByEmail ($email){
 	$emailquote = database::escape($email);
 	$sql =<<<sql
-	select `usuario`.id, `usuario`.usuario, `usuario`.perfil, `usuario_picker`.id as id_picker,`usuario_picker`.email as email_picker,
-	`usuario_seller`.id as id_seller,`usuario_seller`.email as email_seller 
-	 FROM  `usuario` RIGHT join `usuario_picker` ON  `usuario`.id = `usuario_picker`.`idUsuario` 
-	 LEFT JOIN `usuario_seller` ON  `usuario`.id = `usuario_seller`.`idUsuario`
-	 
-	 where 
-		 `usuario`.`eliminar`   = 0  AND
-		 (`usuario_picker`.email = $emailquote OR `usuario_seller`.email = $emailquote)
-	 LIMIT 1
+SELECT `usuario`.usuario
+FROM `usuario`
+WHERE 
+     `usuario`.`eliminar`   = 0 AND 
+     `usuario`.id IN (
+     	        SELECT  `usuario_picker`.idUsuario
+		FROM    `usuario_picker`
+		WHERE `usuario_picker`.`eliminar` = 0 AND `usuario_picker`.email = $emailquote
+		UNION
+		SELECT `usuario_seller`.idUsuario
+		FROM `usuario_seller`
+		WHERE `usuario_seller`.`eliminar` = 0 AND `usuario_seller`.email = $emailquote
+     )
+LIMIT 1
 sql;
 
 	$resultado=Database::Connect()->query($sql);
@@ -423,15 +428,19 @@ SQL;
    public function existeEmail ($email){
 	$emailquote = database::escape($email);
 	$sql =<<<sql
-	select `usuario`.id, `usuario`.usuario, `usuario`.perfil, `usuario_picker`.id as id_picker,`usuario_picker`.email as email_picker,
-	`usuario_seller`.id as id_seller,`usuario_seller`.email as email_seller 
-	 FROM  `usuario` RIGHT join `usuario_picker` ON  `usuario`.id = `usuario_picker`.`idUsuario` 
-	 LEFT JOIN `usuario_seller` ON  `usuario`.id = `usuario_seller`.`idUsuario`
-	 
-	 where 
-		 `usuario`.`eliminar`   = 0  AND
-		 (`usuario_picker`.email = $emailquote OR `usuario_seller`.email = $emailquote)
-	 LIMIT 1
+		select `usuario_seller`.id as id_usuario,`usuario`.usuario,
+                               `usuario`.`perfil`, `usuario`.`id`
+                from `usuario_seller`, `usuario`
+                where
+                                   `usuario`.`id` = `usuario_seller`.`idusuario` and
+                                    `usuario_seller`.email = $emailquote 
+		UNION
+                select `usuario_picker`.id as id_usuario,`usuario`.usuario,
+                               `usuario`.`perfil`, `usuario`.`id`
+               from `usuario_picker`, `usuario`
+               where
+                                   `usuario`.`id` = `usuario_picker`.`idusuario` and
+                                  `usuario_picker`.email = $emailquote        
 sql;
 
 	$resultado=Database::Connect()->query($sql);
@@ -442,23 +451,23 @@ sql;
 		if (empty($id)){
 			$id = "";
 		}
-		$list[] = $id;
 
 		$perfil = $rowEmp['perfil'];
 		if (empty($perfil)){
 		  $perfil = "";
-	   }
+	   	}
 		
 		$usuario = $rowEmp['usuario'];
 	  	if (empty($usuario)){
 			$usuario = "";
 	  	}
-		$list[] = $usuario;
 		
-		$idUsuario = $rowEmp['id_'.$perfil];
+		$idUsuario = $rowEmp['id_usuario'];
 	  	if (empty($idUsuario)){
 			$idUsuario = "";
 	 	}
+		$list[] = $id;
+		$list[] = $usuario;
 		$list[] = $idUsuario;
 
 		$list[] = $email;
