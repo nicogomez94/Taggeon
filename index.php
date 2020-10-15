@@ -28,8 +28,15 @@ if ($url == '/' ||$url == '/index.htm'){
 	$url = '/ampliar-usuario.html';
 }else{
 	Database::Connect()->close();
-
-	if (file_exists($GLOBALS['configuration']['path_templates'].$url) ){
+	$nameTemplate = preg_replace ("/^\//", "", $url);
+	$nameTemplate = preg_replace ("/\.html?$/i", "", $nameTemplate);
+	
+	$nameTemplateSesion = $GLOBALS['configuration']['path_app_frame'].$nameTemplate.".php";  
+	if (file_exists($nameTemplateSesion) ){
+		require("./frame/{$nameTemplate}.php");
+		Database::Connect()->close();
+		exit;
+	}else if (file_exists($GLOBALS['configuration']['path_templates'].$url) ){
 		require('./frame/page-template.php');
 		Database::Connect()->close();
 		exit;
