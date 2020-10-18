@@ -448,18 +448,6 @@ $('#iniciar_sesion').submit(function (e) {
 
 
 /*FORMULARIO SUBIR PRODUCTO*/
-
-uploadHBR.init({
-    "target": "#uploads",
-    "textNew": "A&ntilde;adir",
-    "textTitle": "Haga click o draguee su imagen",
-    "textTitleRemove": "Haga click para remover imagen"
-});
-$('#reset').click(function () {
-    uploadHBR.reset('#uploads');
-});
-
-
 $('#producto-form').submit(function (e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);

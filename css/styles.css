@@ -841,7 +841,7 @@ select{
 input 				{
   font-size:18px;
   padding:10px 10px 10px 5px;
-  display:block;
+  /* display:block; */
   /* width:300px; */
   width: 90%;
   border:none;
@@ -855,8 +855,8 @@ label 				 {
   color:#999; 
   font-size:18px;
   font-weight:normal;
-  position:absolute;
-  pointer-events:none;
+  /* position:absolute; */
+  /* pointer-events:none; */
   left:5px;
   top:10px;
   transition:0.2s ease all; 
@@ -957,6 +957,11 @@ input:focus ~ .highlight {
 }
 .titulo-producto, .img-producto, .precio-producto{
     line-height: 60px !important;
+}
+.img-producto-container{
+    min-width: 70px;
+    max-width: 70px;
+    height: 60px;
 }
 .ellip{
     cursor: pointer;

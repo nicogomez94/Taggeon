@@ -198,6 +198,20 @@
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=140920-1829"></script>
+   <!-- script para la seleccion de fotos -->
+   <script>
+      $(document).ready(function(){
+         uploadHBR.init({
+             "target": "#uploads",
+             "textNew": "A&ntilde;adir",
+             "textTitle": "Haga click o draguee su imagen",
+             "textTitleRemove": "Haga click para remover imagen"
+         });
+         $('#reset').click(function () {
+             uploadHBR.reset('#uploads');
+         });
+      });
+   </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>
