@@ -30,7 +30,7 @@ if ($url == '/' || $url == '/index.htm'){
 	$nameTemplate = preg_replace ("/^\//", "", $url);
 	$nameTemplate = preg_replace ("/\.html?$/i", "", $nameTemplate);
 	
-	$nameTemplateSesion = $GLOBALS['configuration']['path_app_frame'].$nameTemplate.".php";  
+	$nameTemplateSesion = $GLOBALS['configuration']['path_app_frame'].$nameTemplate.".php"; 
 	if (file_exists($nameTemplateSesion) ){
 		require("./frame/{$nameTemplate}.php");
 		Database::Connect()->close();
