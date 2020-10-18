@@ -20,14 +20,13 @@ if (preg_match($patron, $url)){
 $language = $GLOBALS['sesionG']['language'];
 
 
-if ($url == '/' ||$url == '/index.htm'){
+if ($url == '/' || $url == '/index.htm'){
 	$url = '/index.html';
-}else if ($url == '/editar-usuario-seller.html'){
+}else if ($url == '/editar-usuario-seller.html' || $url == '/editar-usuario.html'){
 	$url = '/editar-usuario.html';
-}else if ($url == '/ampliar-usuario-seller.html'){
+}else if ($url == '/ampliar-usuario-seller.html' || $url == '/ampliar-usuario.html'){
 	$url = '/ampliar-usuario.html';
 }else{
-	Database::Connect()->close();
 	$nameTemplate = preg_replace ("/^\//", "", $url);
 	$nameTemplate = preg_replace ("/\.html?$/i", "", $nameTemplate);
 	
