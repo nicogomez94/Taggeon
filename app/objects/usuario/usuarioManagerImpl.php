@@ -299,16 +299,13 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 
 	public function actualizarPerfil(){
 		$perfil    = $GLOBALS['sesionG']['perfil'];
-		$idUsuario = "";
-		$id = "";
-
-		if ($perfil == "picker" || $perfil == "seller"){
-			$id        = $GLOBALS['sesionG']['idUsuario'];
-		}else{
-			$id        = isset($_POST["id"]) ? $_POST["id"] : '';
-			$perfil    = isset($_POST["perfil"]) ? $_POST["perfil"] : '';
+		if ($perfil != 'seller' && $perfil != 'picker'){
+			$this->setStatus("error");
+			$this->setMsj("Perfil incorrecto."); 
+			return false;
 		}
 
+		$id        = $GLOBALS['sesionG']['idUsuario'];
 		$nombre   = isset($_POST["nombre-editar"]) ? $_POST["nombre-editar"]      : '';
 		$apellido = isset($_POST["apellido-editar"]) ? $_POST["apellido-editar"]  : '';
 		$usuario  = isset($_POST["nombre-usuario"]) ? $_POST["nombre-usuario"]    : '';
@@ -320,12 +317,17 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		$email    = _trim($email);
 
 
-		if ($perfil != 'seller' && $perfil != 'picker'){
+		if ($GLOBALS['sesionG']['nombre'] == $nombre && $GLOBALS['sesionG']['apellido'] == $apellido && $GLOBALS['sesionG']['email'] == $email && $GLOBALS['sesionG']['usuario'] == $usuario){
 			$this->setStatus("error");
-			$this->setMsj("Perfil incorrecto."); 
+			$this->setMsj("La solicitud se proceso con éxito."); 
 			return false;
+			
 		}
 
+		$this->validarUsuario($usuario);
+		if ($this->getStatus() != 'ok'){
+			return $usuario;
+		}
 
 		$this->validarId($id);
 		if ($this->getStatus() != 'ok'){
@@ -347,8 +349,27 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 			return false;
 		}
 
+
+		if ($GLOBALS['sesionG']['email'] != $email){
+			$list = $this->getUsuarioDao()->existeEmail($email);
+			$result = count($list);
+			if ($result>0){
+				$this->setStatus("error");
+				$this->setMsj("El email no esta disponible.");
+				return false;
+			}
+		}
+
+		include_once($GLOBALS['configuration']['path_app_admin_objects']."sesion/sesionDaoImpl.php");
+		$sesionDao = new SesionDaoImpl();
 		$mensajeReturn = "";
 		if ($GLOBALS['sesionG']['usuario'] != $usuario){
+			if ($this->getUsuarioDao()->existeUsuario($usuario)){
+				$this->setStatus("error");
+				$this->setMsj("El usuario no esta disponible.");
+				return false;
+			}
+
 			$this->getUsuarioDao()->actualizarPerfilUsuario($id,$usuario,$perfil);
 			$mensajeReturn = $this->getUsuarioDao()->getMsj();
 
@@ -356,22 +377,14 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 				$this->setStatus("error");
 				$this->setMsj($mensajeReturn);
 				return false;
+			}else{
+				$sesionDao->guardarUsuario($usuario);
+				if ($GLOBALS['sesionG']['nombre'] == $nombre && $GLOBALS['sesionG']['apellido'] == $apellido && $GLOBALS['sesionG']['email'] == $email){
+					$this->setStatus("ok");
+					$this->setMsj($mensajeReturn);
+					return true;
+				}
 			}
-		}
-		include_once($GLOBALS['configuration']['path_app_admin_objects']."sesion/sesionDaoImpl.php");
-		$sesionDao = new SesionDaoImpl();
-
-		if ($GLOBALS['sesionG']['nombre'] == $nombre && $GLOBALS['sesionG']['apellido'] == $apellido && $GLOBALS['sesionG']['email'] == $email){
-			if ($mensajeReturn != ""){
-				$mensajeReturn .= " ";
-			}
-
-
-			$sesionDao->guardarUsuario($usuario);
-
-			$this->setStatus("ok");
-			$this->setMsj($this->setMsj($this->getUsuarioDao()->getMsj()));
-			return true;
 		}
 
 

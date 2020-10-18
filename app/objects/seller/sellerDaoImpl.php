@@ -446,13 +446,17 @@ SQL;
 	public function existeemail ($email){
 		$emailquote = database::escape($email);
 		$sql =<<<sql
+			select `usuario_picker`.id,`usuario_picker`.email 
+			from `usuario_picker`, `usuario` 
+			where 
+			   `usuario`.`id` = `usuario_picker`.`idusuario` and
+			   `usuario_picker`.email = $emailquote
+			UNION
 			select `usuario_seller`.id,`usuario_seller`.email 
 			from `usuario_seller`, `usuario` 
-			where `usuario`.`eliminar` = 0               and
-					`usuario`.`perfil` in ('seller')         and
-				   `usuario`.`id` = `usuario_seller`.`idusuario` and
-					`usuario_seller`.email = $emailquote
-			limit 1
+			where 
+			   `usuario`.`id` = `usuario_seller`.`idusuario` and
+			   `usuario_seller`.email = $emailquote
 sql;
 
 		$resultado=Database::Connect()->query($sql);
