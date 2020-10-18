@@ -3,7 +3,6 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.ph
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
 if ($perfil=='picker' || $perfil == 'seller' || $perfil == ''){
-
 	$contenido = new Template($nameTemplate);
 
     $contenidoString = $contenido->muestra();
