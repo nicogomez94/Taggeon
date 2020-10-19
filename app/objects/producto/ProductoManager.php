@@ -465,5 +465,22 @@ class  ProductoManager
                 $this->setStatus("OK");
                 $this->setMsj("");
                 return true;
-            }
+			}
+			
+
+			public function getListCategoria()
+			{
+				$this->productoDao = new ProductoDao();
+				return $this->productoDao->getListCategoria();
+			}
+			public function getListRubro()
+			{
+				$this->productoDao = new ProductoDao();
+				return $this->productoDao->getListRubro();
+			}
+			public function getListProducto()
+			{
+				$this->productoDao = new ProductoDao();
+				return $this->productoDao->getListProducto();
+			}
 }

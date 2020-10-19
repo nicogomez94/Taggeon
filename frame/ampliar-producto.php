@@ -1,16 +1,20 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 
 if ($perfil=='seller'){
 
-//if ($perfil=='picker' || $perfil == 'seller' || $perfil == ''){
+    $productoManager = new ProductoManager();
+
 
     $jsonData = array(
         "usuario" => $GLOBALS['sesionG']['usuario'],
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
+        "categoria" => $productoManager->getListCategoria(),
+        "rubro"     => $productoManager->getListRubro(),
+        "productos"     => $productoManager->getListProducto()
         
     );
     $jsonData = json_encode($jsonData);
