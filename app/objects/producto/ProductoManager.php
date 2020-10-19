@@ -84,16 +84,7 @@ class  ProductoManager
                         $this->setMsj($this->productoDao->getMsj());
                         return false;
                     }
-                    if ($this->productoDao->existeEnvio($envio) === false) {
-                        $this->setStatus("ERROR");
-                        $this->setMsj($this->productoDao->getMsj());
-                        return false;
-                    }
-                    if ($this->productoDao->existeGarantia($garantia) === false) {
-                        $this->setStatus("ERROR");
-                        $this->setMsj($this->productoDao->getMsj());
-                        return false;
-                    }
+
 
 		if ($this->productoDao->altaProducto($data) === false) {
 			$this->setStatus("ERROR");

@@ -27,11 +27,19 @@ if ($perfil == 'seller' || $perfil == 'picker'){
 	$usuarioPerfil = $GLOBALS['sesionG']['usuario'];
 	if ($usuarioPerfil == $GLOBALS['sesionG']['email']){
 		$usuarioPerfil = $GLOBALS['sesionG']['nombre'];
-	}
+    }
+ 
+    $menu = '';
+    if ($perfil == 'seller'){
+        $menu = <<<STR
+        <a href="/ampliar-producto.html">Mis Productos</a><br>
+STR;
+    }
 	
 	$contenidoHeader->asigna_variables(array(
 		"perfil"         => $reemplazoPerfil,
 		"foto-perfil"    => $fotoPerfil,
+		"menu"           => $menu,
 		"nombre-usuario" => $usuarioPerfil
 		));
 }else{

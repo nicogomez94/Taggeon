@@ -15,6 +15,13 @@ if ($perfil=='picker' || $perfil == 'seller'){
     );
     $jsonData = json_encode($jsonData);
     //$urlEditar = ($perfil == 'seller') ? "/editar-usuario-seller.html": '/editar-usuario.html';
+    
+    $menuperfil = '';
+    if ($perfil == 'seller'){
+        $menuperfil = <<<STR
+ <a class="nav-item nav-link" href="/ampliar-producto.html">Mis Productos</a>
+STR;
+    }
 	$contenido = new Template(" ");
 	$contenido->asigna_variables(array(
             "json" => $jsonData,
@@ -23,6 +30,7 @@ if ($perfil=='picker' || $perfil == 'seller'){
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
+            "menuperfil" => $menuperfil,
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
     $contenidoString = $contenido->muestraDesdeVariable($htmlContent);

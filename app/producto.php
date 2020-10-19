@@ -1,15 +1,15 @@
 <?php
 include 'objects/util/configuration.php';
-#include_once("objects/sesion/sesionManagerImpl.php");
+include_once("objects/sesion/sesionManagerImpl.php");
 include_once("objects/util/database.php");
 include_once("objects/producto/ProductoManager.php");
 $statusRet  = 'ERROR';
 $mensajeRet = 'ERROR';
-#$sesionManager = new SesionManagerImpl();
+$sesionManager = new SesionManagerImpl();
 $objPrincipalManager = new ProductoManager();
 //se definio superadminadmin para que no pueda entrar nadie. El dia de manana se ve si se habilita o no esta pantalla
 #if ($sesionManager->validarPublic(array('anonymous'))){
-#if ($sesionManager->validar(array('seller','picker'))){
+if ($sesionManager->validar(array('seller'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
     if (preg_match('/^(alta|editar|listar|get|eliminar)$/i', $var_accion)) {
@@ -39,10 +39,10 @@ if (sizeof($_POST) > 0) {
     $statusRet  = 'ERROR';
     $mensajeRet = "Error post.";
 }
-#}else{
-#	$statusRet  = 'ERROR';
-#	$mensajeRet = $sesionManager->getMsj();
-#}
+}else{
+	$statusRet  = 'ERROR';
+	$mensajeRet = $sesionManager->getMsj();
+}
 
 $objRet = array(
     "status"  => $statusRet,

@@ -51,10 +51,11 @@ class  ProductoDao
                 $descr_productoDB = Database::escape($descr_producto);        
                 $color = isset($data["color"]) ? $data["color"] : '';
                 $colorDB = Database::escape($color);
-
+                $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+                $usuarioAltaDB = Database::escape($usuarioAlta);
 		$sql = <<<SQL
-			INSERT INTO producto (titulo, id_categoria, id_rubro, marca, precio, id_envio, id_garantia, descr_producto, color)  
-			VALUES ($tituloDB, $categoriaDB, $rubroDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB)
+			INSERT INTO producto (titulo, id_rubro, marca, precio, envio, garantia, descr_producto, color,usuario_alta)  
+			VALUES ($tituloDB, $rubroDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
