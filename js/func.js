@@ -483,6 +483,28 @@ $('#producto-form').submit(function (e) {
    return false;
 });
 
+
+var sizeCat = jsonData.categoria.length;
+
+for(var i=0; i<sizeCat; i++){
+    var nombre_cat = jsonData.categoria[i].nombre;
+    var id_cat = jsonData.categoria[i].id;
+
+    var html_cat = '<option value="'+id_cat+'">'+nombre_cat+'</option>';
+    $("#categoria-producto").append(html_cat);
+}
+
+var sizeRubro = jsonData.rubro.length;
+
+for(var i=0; i<sizeRubro; i++){
+    var nombre_rubro = jsonData.rubro[i].nombre;
+    var id_rubro = jsonData.rubro[i].id;
+
+    var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
+    $("#rubro-producto").append(html_rubro);
+}
+// rubro-producto
+
 /*//FORMULARIO SUBIR PRODUCTO*/
 
 /*producto formulario*/
