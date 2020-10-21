@@ -938,6 +938,9 @@ input:focus ~ .highlight {
 
 /*****producos listado*****/
 #listado-mis-productos{
+
+}
+.producto{
     background-color: rgb(247, 247, 247);
     border-radius: 10px;
     text-align: center;

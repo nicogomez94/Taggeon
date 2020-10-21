@@ -483,27 +483,65 @@ $('#producto-form').submit(function (e) {
    return false;
 });
 
+/****formu-subir***/
 
 var sizeCat = jsonData.categoria.length;
 
-for(var i=0; i<sizeCat; i++){
-    var nombre_cat = jsonData.categoria[i].nombre;
-    var id_cat = jsonData.categoria[i].id;
-
-    var html_cat = '<option value="'+id_cat+'">'+nombre_cat+'</option>';
-    $("#categoria-producto").append(html_cat);
+if(sizeCat>0){
+    for(var i=0; i<sizeCat; i++){
+        var nombre_cat = jsonData.categoria[i].nombre;
+        var id_cat = jsonData.categoria[i].id;
+    
+        var html_cat = '<option value="'+id_cat+'">'+nombre_cat+'</option>';
+        $("#categoria-producto").append(html_cat);
+    }
 }
+
 
 var sizeRubro = jsonData.rubro.length;
 
-for(var i=0; i<sizeRubro; i++){
-    var nombre_rubro = jsonData.rubro[i].nombre;
-    var id_rubro = jsonData.rubro[i].id;
-
-    var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
-    $("#rubro-producto").append(html_rubro);
+if(sizeRubro>0){
+    for(var i=0; i<sizeRubro; i++){
+        var nombre_rubro = jsonData.rubro[i].nombre;
+        var id_rubro = jsonData.rubro[i].id;
+    
+        var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
+        $("#rubro-producto").append(html_rubro);
+    }
 }
-// rubro-producto
+
+/***ampliar producto***/ 
+
+var sizeProductos = jsonData.productos.length;
+
+if(sizeProductos>0){
+    for(var i=0; i<sizeProductos; i++){
+        var nombre_prod = jsonData.productos[i].titulo;
+        var precio_prod = jsonData.productos[i].precio;
+        var id_prod = jsonData.productos[i].id;
+
+        var listadoProducto = 
+            '<div class="row producto">'+
+                '<div class="col-lg-3">'+
+                    '<div class="img-producto-container">'+
+                        '<img class="img-producto" src="../../img/furniposta.jpg" alt="">'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-lg-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                '<div class="col-lg-3"><span class="precio-producto">'+precio_prod+'</span></div>'+
+                '<div class="col-lg-3 text-right"><i class="fas fa-ellipsis-v ellip"></i></div>'+
+                '<div class="acciones-producto">'+
+                    '<ul>'+
+                        '<li><a href="/app/producto.php?id='+id_prod+'">Eliminar producto</a></li>'+
+                        '<li><a href="/app/producto.php?id='+id_prod+'">Modificar</a></li>'+
+                    '</ul>'+
+                '</div>'+
+            '</div>';
+
+        $("#listado-mis-productos").append(listadoProducto);
+    }
+}
+
 
 /*//FORMULARIO SUBIR PRODUCTO*/
 
