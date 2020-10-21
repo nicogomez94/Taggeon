@@ -801,7 +801,7 @@ select{
 }
 #contenedor-subir-foto{
     margin: 15px;
-    padding: 10px;
+    padding: 25px 10px 0 10px;
     background-color: #e7e7e7;
     border-radius: 10px;
     height: 100%;
@@ -985,19 +985,26 @@ input:focus ~ .highlight {
 }
 
 
-[draggable]{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;-khtml-user-drag:element;-webkit-user-drag:element}
+[draggable]{
+    -moz-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;
+    -khtml-user-drag:element;
+    -webkit-user-drag:element
+}
 .column{
     padding: 10px;
 }
 .hidden{
     visibility: hidden;
+    /* display: none; */
 }
 .uploadArea{
     border:dashed #c7c7c7;
     text-align:center;
     /* line-height:30px;
     font-size:18px; */
-    margin-bottom:20px !important;
     cursor:pointer;
     max-width:130px;
     /* padding: 10px; */
@@ -1009,18 +1016,33 @@ input:focus ~ .highlight {
     padding-top:15px!important
 }
 .uploadArea input[type='file']{
-    height:30px;
+    height:0px;/*para que no ocupe espacio al pedo arriba*/
+    margin-top: -15px;/*para que no ocupe espacio al pedo arriba*/
     color:transparent
 }
 .uploadArea i{
-    font-size:25px;padding-top:15px
+    font-size:25px;
+    padding-top:15px
+}
+.image-preview{
+    /* min-width: 70px;
+    max-width: 70px;
+    height: 60px; */
 }
 .image-preview img{
     padding-top:0px!important;
-    width:130px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-
+    /* width:130px; */
+    /* border-radius: 10px; */
+    /* margin-bottom: 10px; */
+    /* max-height: 130px; */
+    max-height: 130px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 70px;
+    max-width: 70px;
+    height: 60px;
+    margin: 10px;
 }
 .image-preview .remove{
     /* text-align: right; */
