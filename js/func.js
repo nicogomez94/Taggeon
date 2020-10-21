@@ -491,26 +491,43 @@ if(sizeCat>0){
     for(var i=0; i<sizeCat; i++){
         var nombre_cat = jsonData.categoria[i].nombre;
         var id_cat = jsonData.categoria[i].id;
+        var id_cat_rubro = jsonData.rubro[i].id_categoria;
     
-        var html_cat = '<option value="'+id_cat+'">'+nombre_cat+'</option>';
+        var html_cat = '<option class="option-cat" value="'+id_cat+'">'+nombre_cat+'</option>';
         $("#categoria-producto").append(html_cat);
+
+        var sizeRubro = jsonData.rubro.length;
+        
+        if(sizeRubro>0 && id_cat==id_cat_rubro){
+            for(var i=0; i<sizeRubro; i++){
+                var nombre_rubro = jsonData.rubro[i].nombre;
+                var id_rubro = jsonData.rubro[i].id;
+                
+                var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
+                $("#rubro-producto").append(html_rubro);
+            }
+        }
+
     }
 }
 
 
-var sizeRubro = jsonData.rubro.length;
 
-if(sizeRubro>0){
-    for(var i=0; i<sizeRubro; i++){
-        var nombre_rubro = jsonData.rubro[i].nombre;
-        var id_rubro = jsonData.rubro[i].id;
-    
-        var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
-        $("#rubro-producto").append(html_rubro);
-    }
-}
+// var sizeRubro = jsonData.rubro.length;
+
+// if(sizeRubro>0){
+//     for(var i=0; i<sizeRubro; i++){
+//         var nombre_rubro = jsonData.rubro[i].nombre;
+//         var id_rubro = jsonData.rubro[i].id;
+        
+//         var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
+//         $("#rubro-producto").append(html_rubro);
+//     }
+// }
 
 /***ampliar producto***/ 
+
+
 
 var sizeProductos = jsonData.productos.length;
 
@@ -529,8 +546,8 @@ if(sizeProductos>0){
                 '</div>'+
                 '<div class="col-lg-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
                 '<div class="col-lg-3"><span class="precio-producto">'+precio_prod+'</span></div>'+
-                '<div class="col-lg-3 text-right"><i class="fas fa-ellipsis-v ellip"></i></div>'+
-                '<div class="acciones-producto">'+
+                '<div class="col-lg-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                '<div class="acciones-producto acciones-producto'+i+'">'+
                     '<ul>'+
                         '<li><a href="/app/producto.php?id='+id_prod+'">Eliminar producto</a></li>'+
                         '<li><a href="/app/producto.php?id='+id_prod+'">Modificar</a></li>'+
@@ -539,10 +556,20 @@ if(sizeProductos>0){
             '</div>';
 
         $("#listado-mis-productos").append(listadoProducto);
+
     }
 }
 
 
+$(function() {
+    $(".ellip").on("click", function() {
+      
+        var $this = $(this);
+        var title = $this.data('title');
+      
+        $(".acciones-producto"+title).toggle();
+    });
+});
 /*//FORMULARIO SUBIR PRODUCTO*/
 
 /*producto formulario*/
@@ -583,9 +610,7 @@ if(sizeProductos>0){
 // });
 
 /*cierre drop de ampliar-producto*/
-$(".ellip").click(function(){
-    $(".acciones-producto").toggle();
-});
+
 
 
 });

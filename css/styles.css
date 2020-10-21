@@ -863,6 +863,18 @@ label 				 {
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
 }
+.label-text-subir-producto{
+    color:#999; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
 
 /* active state */
 input:focus ~ label, input:valid ~ label 		{
