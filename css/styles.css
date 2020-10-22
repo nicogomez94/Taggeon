@@ -789,6 +789,7 @@ select{
     border-radius: 20px;
     background-color: rgb(243, 243, 243);
     border-left: 6px solid black;
+    margin-bottom: 50px;
 }
 #col-foto-upload, #col-foto-info{
     padding: 20px;
@@ -950,7 +951,7 @@ input:focus ~ .highlight {
 
 /*****producos listado*****/
 #listado-mis-productos{
-
+    margin-bottom: 50px;
 }
 .producto{
     background-color: rgb(247, 247, 247);
@@ -984,18 +985,16 @@ input:focus ~ .highlight {
     /**fdsdfsdf*/
 }
 .acciones-producto{
-    background-color: honeydew;
+    background-color: #fff;
     position: absolute;
     /* bottom: 0; */
     right: 0;
-    top: -100px;
+    top: -30px;
     padding: 10px;
     display: none;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0px 0px 5px gray;
-}
-.acciones-producto ul{
-    list-style-type: none;
+    font-size: small;
     text-align: left;
 }
 

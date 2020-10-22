@@ -463,10 +463,49 @@ $('#producto-form').submit(function (e) {
         contentType: false,
         dataType: "json",
         success: function( data, textStatus, jQxhr ){
-            if (data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);														
+            if (data.status == 'ERROR'){
+                alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 window.location.replace("/");
+            }else if(data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                    $("#mensaje-sin-login").css("display","block");
+                    $("#mensaje-sin-login").html(msj);
+                //    alert(msj);
+        }
+   });
+   return false;
+});
+
+$('#producto-form').submit(function (e) {
+    e.preventDefault();
+    var formData = new FormData($(this)[0]);
+        
+    $.ajax({
+        url: '/app/producto.php',
+        //type: 'post',
+        //data: $("#registro-comun").serialize(), 
+        //dataType : "json",
+        data: formData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'ERROR'){
+                alert(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                window.location.replace("/");
+            }else if(data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
@@ -541,17 +580,15 @@ if(sizeProductos>0){
             '<div class="row producto">'+
                 '<div class="col-lg-3">'+
                     '<div class="img-producto-container">'+
-                        '<img class="img-producto" src="../../img/furniposta.jpg" alt="">'+
+                        '<img class="img-producto" src="../../img/default.png" alt="">'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-lg-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-3"><span class="precio-producto">'+precio_prod+'</span></div>'+
+                '<div class="col-lg-3"><span class="precio-producto">$ '+precio_prod+'</span></div>'+
                 '<div class="col-lg-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-                '<div class="acciones-producto acciones-producto'+i+'">'+
-                    '<ul>'+
-                        '<li><a href="/app/producto.php?id='+id_prod+'">Eliminar producto</a></li>'+
-                        '<li><a href="/app/producto.php?id='+id_prod+'">Modificar</a></li>'+
-                    '</ul>'+
+                '<div class="acciones-producto acciones-producto-'+i+'">'+
+                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
+                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
 
@@ -560,16 +597,126 @@ if(sizeProductos>0){
     }
 }
 
-
 $(function() {
     $(".ellip").on("click", function() {
       
         var $this = $(this);
         var title = $this.data('title');
       
-        $(".acciones-producto"+title).toggle();
+        $(".acciones-producto-"+title).toggle(function(){
+            $(document).click(function (e) {
+                if (!$(e.target).is(".acciones-producto-"+title)) {
+                    if ($(".acciones-producto-"+title).is(':visible')) {
+                        $(".acciones-producto-"+title).toggle();
+                    }
+                }
+            });
+        });
+
+        
     });
 });
+
+
+/*********eliminar producto******/
+
+$(".eliminar-producto").on("click", function() {  
+
+    var $this = $(this);
+    var id_producto = $this.data('title');
+
+    $.post('/app/producto.php', {accion: "eliminar", id: id_producto})
+        .done(function(data){
+            if (data.status == 'ERROR'){
+                alert(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                window.location.replace("/");
+            }else if(data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        })
+        .fail(function(xhr, textStatus, errorThrown) {
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            $("#mensaje-sin-login").css("display","block");
+            $("#mensaje-sin-login").html(msj);
+    });
+    /*
+    $.ajax({
+        url: '/app/producto.php',
+        data: formData,
+        type: 'POST',
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'ERROR'){
+                alert(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                window.location.replace("/");
+            }else if(data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                    $("#mensaje-sin-login").css("display","block");
+                    $("#mensaje-sin-login").html(msj);
+                //    alert(msj);
+        }
+    });*/
+    return false;
+
+});
+
+
+/**FUNC PARA EDITAR PRODUCTO*/ 
+var sizeDataProducto = jsonData.productos.length;
+
+if(sizeDataProducto>0){
+    for(var i=0; i<sizeDataProducto; i++){
+        
+        var id_prod = jsonData.productos[i].id;
+        var nombre_prod = jsonData.productos[i].titulo;
+        var marca_prod = jsonData.productos[i].marca;
+        var precio_prod = jsonData.productos[i].precio;
+        var envio_prod = jsonData.productos[i].envio;
+        var garantia_prod = jsonData.productos[i].garantia;
+        var descr_prod = jsonData.productos[i].descr_producto;
+        var nombre_cat = jsonData.categoria[i].nombre;
+        var id_cat = jsonData.categoria[i].id;
+        var id_cat_rubro = jsonData.rubro[i].id_categoria;
+
+        $("#titulo-producto").val(nombre_prod);
+        $("#precio-producto").val(precio_prod);
+        $("#descr-producto").val(descr_prod);
+        $("#marca-producto").val(marca_prod);
+        $("#envio-producto").val(envio_prod);
+        $("#garantia-producto").val(garantia_prod);
+
+        
+        var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
+        $("#categoria-producto").append(html_cat);
+
+        var sizeRubro = jsonData.rubro.length;
+        
+        if(sizeRubro>0 && id_cat==id_cat_rubro){
+            for(var i=0; i<sizeRubro; i++){
+                var nombre_rubro = jsonData.rubro[i].nombre;
+                var id_rubro = jsonData.rubro[i].id;
+                
+                var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
+                $("#rubro-producto").val(nombre_rubro);
+            }
+        }
+
+    }
+}
+
 /*//FORMULARIO SUBIR PRODUCTO*/
 
 /*producto formulario*/
