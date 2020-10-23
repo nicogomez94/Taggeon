@@ -117,36 +117,52 @@ SQL;
     {
         $id = isset($data["id"]) ? $data["id"] : '';
         $idDB = Database::escape($id);
-
-        $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
-        $tituloDB = Database::escape($titulo);
-        $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-        $categoriaDB = Database::escape($categoria);
-        $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
-        $rubroDB = Database::escape($rubro);
-        $marca = isset($data["marca"]) ? $data["marca"] : '';
-        $marcaDB = Database::escape($marca);
-        $precio = isset($data["precio"]) ? $data["precio"] : '';
-        $precioDB = Database::escape($precio);
-        $envio = isset($data["envio"]) ? $data["envio"] : '';
-        $envioDB = Database::escape($envio);
-        $garantia = isset($data["garantia"]) ? $data["garantia"] : '';
-        $garantiaDB = Database::escape($garantia);
-        $descr_producto = isset($data["descr_producto"]) ? $data["descr_producto"] : '';
-        $descr_productoDB = Database::escape($descr_producto);
-        $color = isset($data["color"]) ? $data["color"] : '';
-        $colorDB = Database::escape($color);
+        $usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
 
         $sql = <<<SQL
-
-	SQL;
+UPDATE
+    `producto`
+SET
+    `usuario_editar` = $usuarioDB,
+    `eliminar` = 1
+WHERE
+`id` = $idDB AND
+`usuario_alta` = $usuarioDB
+SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
             $this->setStatus("ERROR");
             $this->setMsj("$sql" . Database::Connect()->error);
         } else {
-            $id = mysqli_insert_id(Database::Connect());
-            $this->setMsj($id);
+            $this->setStatus("OK");
+            return true;
+        }
+
+        return false;
+    }
+
+    public function eliminarProductoFoto(array $data)
+    {
+        $id = isset($data["id"]) ? $data["id"] : '';
+        $idDB = Database::escape($id);
+        $usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
+        $sql = <<<SQL
+UPDATE
+    `producto_foto`
+SET
+    `usuario_editar` = $usuarioDB,
+    `eliminar` = 1
+WHERE
+`id_producto` = $idDB AND
+`usuario_alta` = $usuarioDB
+SQL;
+
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
             $this->setStatus("OK");
             return true;
         }

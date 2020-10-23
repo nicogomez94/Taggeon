@@ -179,42 +179,7 @@ class  ProductoManager
 			return false;
 		}
 		
-		            $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
-		            if ($this->validarTitulo($titulo) === false){
-			            return false;
-		            }
-		            $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-		            if ($this->validarCategoria($categoria) === false){
-			            return false;
-		            }
-		            $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
-		            if ($this->validarRubro($rubro) === false){
-			            return false;
-		            }
-		            $marca = isset($data["marca"]) ? $data["marca"] : '';
-		            if ($this->validarMarca($marca) === false){
-			            return false;
-		            }
-		            $precio = isset($data["precio"]) ? $data["precio"] : '';
-		            if ($this->validarPrecio($precio) === false){
-			            return false;
-		            }
-		            $envio = isset($data["envio"]) ? $data["envio"] : '';
-		            if ($this->validarEnvio($envio) === false){
-			            return false;
-		            }
-		            $garantia = isset($data["garantia"]) ? $data["garantia"] : '';
-		            if ($this->validarGarantia($garantia) === false){
-			            return false;
-		            }
-		            $descr_producto = isset($data["descr_producto"]) ? $data["descr_producto"] : '';
-		            if ($this->validarDescr_producto($descr_producto) === false){
-			            return false;
-		            }
-		            $color = isset($data["color"]) ? $data["color"] : '';
-		            if ($this->validarColor($color) === false){
-			            return false;
-		            }
+		        
 		$this->productoDao = new ProductoDao();
 
 
@@ -222,8 +187,13 @@ class  ProductoManager
 			$this->setStatus("ERROR");
 			$this->setMsj($this->productoDao->getMsj());
 		} else {
-			$this->setStatus("OK");
-			$this->setMsj($this->productoDao->getMsj());
+			if ($this->productoDao->eliminarProductoFoto($data) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+			} else {
+				$this->setStatus("OK");
+				$this->setMsj($this->productoDao->getMsj());
+			}
 		}
 	}
 

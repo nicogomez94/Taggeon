@@ -264,12 +264,12 @@ form div{
 .content-col-div > div{
     padding: 1em 1em 1em 1em;
 }
-img{
+/* img{
     width: 100%;
     height: auto;
     object-fit: cover;
-    /* border-radius: 5px 5px 0 0; */
-}
+    /* border-radius: 5px 5px 0 0;
+}*/
 .small-text-form{
     font-size: 12px;
     color: grey;
@@ -776,7 +776,7 @@ select{
 
 #background-atras{
     background-color: rgb(214, 214, 214);
-    height: 40%;
+    height: 33%;
     width: 100%;
     position: absolute;
     top: 0;
@@ -962,9 +962,11 @@ input:focus ~ .highlight {
     font-size: 20px;
     position: relative;
 }
-/* .img-producto img{
-    max-width: 50%;
-} */
+.img-producto{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
 .producto{
     margin-bottom: 10px;
 }
@@ -978,6 +980,15 @@ input:focus ~ .highlight {
     min-width: 70px;
     max-width: 70px;
     height: 60px;
+}
+.header-productos {
+    border-bottom: 1px solid #b9b9b9;
+    box-shadow: none;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+.titulo-header-producto{
+
 }
 .ellip{
     cursor: pointer;
@@ -1057,6 +1068,7 @@ input:focus ~ .highlight {
     max-width: 70px;
     height: 60px;
     margin: 10px;
+    z-index: 998;
 }
 .image-preview .remove{
     /* text-align: right; */
@@ -1070,6 +1082,7 @@ input:focus ~ .highlight {
     opacity: .4;
     /* height: 25px; */
     padding: 5px;
+    z-index: 999;
 }
 .image-preview .remove i{
     font-size:22px;

@@ -503,7 +503,7 @@ $('#producto-form').submit(function (e) {
             if (data.status == 'ERROR'){
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                window.location.replace("/");
+                window.location.replace("/ampliar-producto.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
             }else{
@@ -578,14 +578,14 @@ if(sizeProductos>0){
 
         var listadoProducto = 
             '<div class="row producto">'+
-                '<div class="col-lg-3">'+
+                '<div class="col-lg-3 col-md-3 col-sm-3">'+
                     '<div class="img-producto-container">'+
                         '<img class="img-producto" src="../../img/default.png" alt="">'+
                     '</div>'+
                 '</div>'+
-                '<div class="col-lg-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-3"><span class="precio-producto">$ '+precio_prod+'</span></div>'+
-                '<div class="col-lg-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                 '<div class="acciones-producto acciones-producto-'+i+'">'+
                     '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
                     '<div class="modificar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
@@ -613,7 +613,7 @@ $(function() {
             });
         });
 
-        
+
     });
 });
 
@@ -630,7 +630,7 @@ $(".eliminar-producto").on("click", function() {
             if (data.status == 'ERROR'){
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                window.location.replace("/");
+                window.location.replace("/ampliar-producto.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
             }else{
