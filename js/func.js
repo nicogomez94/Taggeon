@@ -626,24 +626,35 @@ $(".eliminar-producto").on("click", function() {
     var id_producto = $this.data('title');
 
     $.post('/app/producto.php', {accion: "eliminar", id: id_producto})
-        .done(function(data){
-            if (data.status == 'ERROR'){
+        .done(function(data) {
+            var jsonp = JSON.parse(data)
+            if (jsonp.status == 'ERROR'){
                 alert(data.mensaje);														
-            }else if(data.status == 'OK' || data.status == 'ok'){
+            }else if(jsonp.status == 'OK' || jsonp.status == 'ok'){
                 window.location.replace("/ampliar-producto.html");
-            }else if(data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);
+            }else if(jsonp.status == 'REDIRECT'){
+                window.location.replace(jsonp.mensaje);
             }else{
                 $("#mensaje-sin-login").css("display","block");
-                $("#mensaje-sin-login").html(data.mensaje);
+                $("#mensaje-sin-login").html(jsonp.mensaje);
                 //alert (data.mensaje);
             }
         })
-        .fail(function(xhr, textStatus, errorThrown) {
+        .fail(function() {
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
             $("#mensaje-sin-login").css("display","block");
             $("#mensaje-sin-login").html(msj);
-    });
+        }); 
+    /*console.log("se mando el post")
+        .done(function(data){
+            
+        })
+        .fail(function(xhr, textStatus, errorThrown) {
+            console.log("entro al fail")
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            $("#mensaje-sin-login").css("display","block");
+            $("#mensaje-sin-login").html(msj);
+        });*/
     /*
     $.ajax({
         url: '/app/producto.php',
@@ -671,6 +682,24 @@ $(".eliminar-producto").on("click", function() {
     });*/
     return false;
 
+});
+
+/*filtro/buscador por titulo*/
+$("#buscador-titulo").click(function(){
+
+    var value = $("#buscador-titulo-input").val().toLowerCase();
+    if(value != ''){
+        var search = $(jsonData.productos).filter(function (i,n){
+            return n.titulo===value
+        });
+    
+        for (var i=0;i<search.length;i++){
+            console.log(search[i].titulo);
+        }
+    }else{
+        //
+    }
+    
 });
 
 
@@ -717,46 +746,7 @@ if(sizeDataProducto>0){
     }
 }
 
-/*//FORMULARIO SUBIR PRODUCTO*/
 
-/*producto formulario*/
-// $("#producto-form").on('submit', function() {
-
-//     var reader = new FileReader();
-//     reader.onload = function(){
-        
-//         var $data = { 
-//             'file': reader.result,
-//             'accion':'guardar'
-//         };
-
-//         $.ajax({
-//             type: 'POST',
-//             url: '/app/editar_imagen_perfil.php',
-//             data: $data,
-//             dataType: "json",
-//             success: function(data, textStatus, jQxhr ) {
-//                 if (data.status == 'REDIRECT'){
-//                     window.location.replace(data.mensaje);														
-//                 }else if(data.status == 'OK'){
-//                     alert (data.mensaje);
-//                     window.location.replace("/editar-usuario.html");
-//                 }else{
-//                     alert (data.mensaje);
-//                 }
-
-//             },
-//             error: function(jqXhr, textStatus, errorThrown) {
-//                 var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-//                 alert(msj);         
-//            }
-//         });
-//     };
-//     reader.readAsDataURL($("#file2").get(0).files[0]);    
-//     return false;
-// });
-
-/*cierre drop de ampliar-producto*/
 
 
 
