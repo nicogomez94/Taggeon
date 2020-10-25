@@ -19,6 +19,9 @@ $(document).ready(function() {
         interval: 20001111
     })
 
+    //para que lo inconos de filtro no show
+    $(".icon-sort").hide();
+
     // $("#dropdown-user-menu").hide();
     $("#drop").click(function(){
         $("#dropdown-user-menu").toggle();
@@ -662,7 +665,7 @@ $("#buscador-titulo").click(function(){
                 return n.titulo
             }
         });
-        
+
         $(".producto:not(.header-productos)").hide();
 
         // if(cant_elem==cant_json)
@@ -698,6 +701,10 @@ $("#buscador-titulo").click(function(){
     }
     
 });
+
+
+/**SORT BY NOMBRE*/
+
 
 
 /**FUNC PARA EDITAR PRODUCTO*/ 
@@ -806,6 +813,47 @@ function actualizarPantallaEditarUsuario () {
             
 }
 
+function sort(){
+
+    //para que aparezcan los iconitos cuando tocas
+    $(".icon-sort").show();
+
+    var json_prod = jsonData.productos;
+
+    var sort_nombre = json_prod.sort(function (a, b) {
+        // console.log(a.titulo.localeCompare(b.titulo));
+        return a.titulo.localeCompare(b.titulo);
+    });
+
+    $(".producto:not(.header-productos)").hide();
+    
+    for (var i=0;i<sort_nombre.length;i++){
+        
+        var nombre_prod = sort_nombre[i].titulo;
+        var precio_prod = sort_nombre[i].precio;
+        var id_prod = sort_nombre[i].id;
+
+        var listadoProducto = 
+        '<div class="row producto">'+
+            '<div class="col-lg-3 col-md-3 col-sm-3">'+
+                '<div class="img-producto-container">'+
+                    '<img class="img-producto" src="../../img/default.png" alt="">'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+            '<div class="col-lg-3 col-md-3 col-sm-3 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+            '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+            '<div class="acciones-producto acciones-producto-'+i+'">'+
+                '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
+                '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+            '</div>'+
+        '</div>';
+
+        $("#listado-mis-productos").append(listadoProducto);
+    }
+
+
+}
 
 
       
