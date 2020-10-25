@@ -471,7 +471,7 @@ $('#producto-form').submit(function (e) {
             if (data.status == 'ERROR'){
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                window.location.replace("/");
+                window.location.replace("/ampliar-producto.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
             }else{
@@ -566,26 +566,30 @@ if(sizeProductos>0){
     }
 }
 
-$(function() {
-    $(".ellip").on("click", function() {
-      
+/**apertura y cierre las opciones*/ 
+$(function(){
+    $(".ellip").on("click", function(e) {
+        e.stopPropagation();
+        e.preventDefault();
         var $this = $(this);
         var title = $this.data('title');
-      
-        $(".acciones-producto-"+title).toggle(function(){
-            $(document).click(function (e) {
-                if (!$(e.target).is(".acciones-producto-"+title)) {
-                    if ($(".acciones-producto-"+title).is(':visible')) {
-                        $(".acciones-producto-"+title).toggle();
-                    }
-                }
-            });
-        });
+        
+        $(".acciones-producto-"+title).toggle();
+        console.log("ENTRO A .ELLIP")
+    });
 
+    $('body').click(function (e) {
+        console.log("entro a 'body'")
+        $(".acciones-producto").hide();
+    });
 
+    $(".acciones-producto").click(function(e) {
+        e.stopPropagation();
     });
 });
 
+
+    
 
 /*********eliminar producto******/
 
@@ -598,7 +602,7 @@ $(".eliminar-producto").on("click", function() {
         .done(function(data) {
             var jsonp = JSON.parse(data)
             if (jsonp.status == 'ERROR'){
-                alert(data.mensaje);														
+                alert(jsonp.mensaje);														
             }else if(jsonp.status == 'OK' || jsonp.status == 'ok'){
                 window.location.replace("/ampliar-producto.html");
             }else if(jsonp.status == 'REDIRECT'){
@@ -619,8 +623,8 @@ $(".eliminar-producto").on("click", function() {
 
 });
 
-/*********modificar producto******/
 
+/*********modificar producto******/
 $(".modificar-producto").on("click", function() {  
 
     var $this = $(this);
@@ -628,11 +632,11 @@ $(".modificar-producto").on("click", function() {
 
     $.get('/app/producto.php', {accion: "editar", id: id_producto})
         .done(function(data) {
-            var jsonp = JSON.parse(data)
+            var jsonp = JSON.parse(data);
             if (jsonp.status == 'ERROR'){
-                alert(data.mensaje);														
+                alert("mensaje --> "+jsonp.mensaje);														
             }else if(jsonp.status == 'OK' || jsonp.status == 'ok'){
-                window.location.replace("/ampliar-producto.html");
+                window.location.replace("/editar-producto.html");
             }else if(jsonp.status == 'REDIRECT'){
                 window.location.replace(jsonp.mensaje);
             }else{
@@ -707,7 +711,7 @@ $("#buscador-titulo").click(function(){
 
 
 
-/**FUNC PARA EDITAR PRODUCTO*/ 
+/**FUNC PARA MODIFICAR PRODUCTO*/ 
 
 if(jsonData.productos.length>0){
     for(var i=0; i<jsonData.productos.length; i++){
@@ -813,6 +817,8 @@ function actualizarPantallaEditarUsuario () {
             
 }
 
+
+/**ordernar por nombre,etc**/
 function sort(){
 
     //para que aparezcan los iconitos cuando tocas
