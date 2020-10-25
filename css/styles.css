@@ -1099,6 +1099,13 @@ input:focus ~ .highlight {
 .no-padding{
     padding:0px!important
 }
+.fa-stack{
+    cursor: pointer;
+}
+#buscador-titulo-input{
+    margin-top: 10px;
+    width: 30%;
+}
 
 
 @media only screen and (min-width:280px) and (max-width:350px){

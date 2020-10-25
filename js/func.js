@@ -554,7 +554,7 @@ if(sizeProductos>0){
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                 '<div class="acciones-producto acciones-producto-'+i+'">'+
                     '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?accion=editar&id=int"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
 
@@ -652,16 +652,49 @@ $(".modificar-producto").on("click", function() {
 $("#buscador-titulo").click(function(){
 
     var value = $("#buscador-titulo-input").val().toLowerCase();
+    var cant_elem= $(".producto:not('.header-productos')").length;//sin header-prod
+    var cant_json = jsonData.productos.length;
+
     if(value != ''){
         var search = $(jsonData.productos).filter(function (i,n){
-            return n.titulo===value
+            // return n.titulo===value
+            if(n.titulo.indexOf(value) > -1){
+                return n.titulo
+            }
         });
-    
+        
+        $(".producto:not(.header-productos)").hide();
+
+        // if(cant_elem==cant_json)
         for (var i=0;i<search.length;i++){
-            console.log(search[i].titulo);
+            
+
+            var nombre_prod = search[i].titulo;
+            var precio_prod = search[i].precio;
+            var id_prod = search[i].id;
+
+            var listadoProducto = 
+            '<div class="row producto">'+
+                '<div class="col-lg-3 col-md-3 col-sm-3">'+
+                    '<div class="img-producto-container">'+
+                        '<img class="img-producto" src="../../img/default.png" alt="">'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                '<div class="acciones-producto acciones-producto-'+i+'">'+
+                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
+                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+                '</div>'+
+            '</div>';
+
+                $("#listado-mis-productos").append(listadoProducto);
         }
+            
+        
     }else{
-        //
+        $(".producto:not(.header-productos)").toggle();
     }
     
 });
@@ -679,32 +712,32 @@ if(jsonData.productos.length>0){
         var envio_prod = jsonData.productos[i].envio;
         var garantia_prod = jsonData.productos[i].garantia;
         var descr_prod = jsonData.productos[i].descr_producto;
-        // var nombre_cat = jsonData.categoria[i].nombre;
-        // var id_cat = jsonData.categoria[i].id;
-        // var id_cat_rubro = jsonData.rubro[i].id_categoria;
+        var nombre_cat = jsonData.categoria[i].nombre;
+        var id_cat = jsonData.categoria[i].id;
+        var id_cat_rubro = jsonData.rubro[i].id_categoria;
 
         $("#titulo-producto").val(nombre_prod);
         $("#precio-producto").val(precio_prod);
-        // $("#descr-producto").val(descr_prod);
-        // $("#marca-producto").val(marca_prod);
-        // $("#envio-producto").val(envio_prod);
-        // $("#garantia-producto").val(garantia_prod);
+        $("#descr-producto").val(descr_prod);
+        $("#marca-producto").val(marca_prod);
+        $("#envio-producto").val(envio_prod);
+        $("#garantia-producto").val(garantia_prod);
 
         
-        // var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
-        // $("#categoria-producto").append(html_cat);
+        var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
+        $("#categoria-producto").append(html_cat);
 
-        // var sizeRubro = jsonData.rubro.length;
+        var sizeRubro = jsonData.rubro.length;
         
-        // if(sizeRubro>0 && id_cat==id_cat_rubro){
-        //     for(var i=0; i<sizeRubro; i++){
-        //         var nombre_rubro = jsonData.rubro[i].nombre;
-        //         var id_rubro = jsonData.rubro[i].id;
+        if(sizeRubro>0 && id_cat==id_cat_rubro){
+            for(var i=0; i<sizeRubro; i++){
+                var nombre_rubro = jsonData.rubro[i].nombre;
+                var id_rubro = jsonData.rubro[i].id;
                 
-        //         var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
-        //         $("#rubro-producto").val(nombre_rubro);
-        //     }
-        // }
+                var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
+                $("#rubro-producto").val(nombre_rubro);
+            }
+        }
 
     }
 }
