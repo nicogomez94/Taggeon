@@ -544,27 +544,51 @@ if(sizeProductos>0){
         var nombre_prod = jsonData.productos[i].titulo;
         var precio_prod = jsonData.productos[i].precio;
         var id_prod = jsonData.productos[i].id;
+        var stock_prod = jsonData.productos[i].envio;
+        var foto_prod = jsonData.productos[i].foto;
+
 
         var listadoProducto = 
             '<div class="row producto">'+
-                '<div class="col-lg-3 col-md-3 col-sm-3">'+
-                    '<div class="img-producto-container">'+
-                        '<img class="img-producto" src="../../img/default.png" alt="">'+
-                    '</div>'+
-                '</div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                 '<div class="acciones-producto acciones-producto-'+i+'">'+
                     '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
                     '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
+            
+            $.get('/app/producto.php?accion=foto&foto='+foto_prod)
+                .done(function(data) {
+                    var jsond = JSON.parse(data);
+                    if (jsond.status == 'ERROR'){
+                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt="">');
+                        console.log("success pero error --> "+data);													
+                    }else{
+                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt="">');
+                        console.log("success posta --> "+data);	
+                    }
+                })
+                .fail(function(data) {
+                    $(".img-producto-container-"+i).html('<img class="img-producto" src="" alt=""></img>');
+                    console.log("fail --> "+data);
+                }); 
+
 
         $("#listado-mis-productos").append(listadoProducto);
 
     }
 }
+
+//get image
+$(function(){
+
+    
+});
+
 
 /**apertura y cierre las opciones*/ 
 $(function(){
@@ -575,7 +599,7 @@ $(function(){
         var title = $this.data('title');
         
         $(".acciones-producto-"+title).toggle();
-        console.log("ENTRO A .ELLIP")
+        console.log("ENTRO A .ELLIP"+title)
     });
 
     // $('body').click(function (e) {
@@ -648,22 +672,37 @@ $("#buscador-titulo").click(function(){
             var nombre_prod = search[i].titulo;
             var precio_prod = search[i].precio;
             var id_prod = search[i].id;
+            var stock_prod = search[i].envio;
+            var foto_prod = search[i].foto;
 
             var listadoProducto = 
             '<div class="row producto">'+
-                '<div class="col-lg-3 col-md-3 col-sm-3">'+
-                    '<div class="img-producto-container">'+
-                        '<img class="img-producto" src="../../img/default.png" alt="">'+
-                    '</div>'+
-                '</div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                 '<div class="acciones-producto acciones-producto-'+i+'">'+
                     '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
+            
+            $.get('/app/producto.php', {accion: "foto", foto: foto_prod})
+                .done(function(data) {
+                    var jsond = JSON.parse(data);
+                    if (jsond.status == 'ERROR'){
+                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
+                        console.log("success pero error --> "+data);													
+                    }else{
+                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
+                        console.log("success posta --> "+data);	
+                    }
+                })
+                .fail(function(data) {
+                    $(".img-producto-container-"+i).html('<img class="img-producto" src="" alt=""></img>');
+                    console.log("fail --> "+data);
+                }); 
 
                 $("#listado-mis-productos").append(listadoProducto);
         }
@@ -814,22 +853,37 @@ function sortProducto(sortParam){
         var nombre_prod = sort_nombre[i].titulo;
         var precio_prod = sort_nombre[i].precio;
         var id_prod = sort_nombre[i].id;
+        var stock_prod = sort_nombre[i].envio;
+        var foto_prod = sort_nombre[i].foto;
 
         var listadoProducto = 
-        '<div class="row producto">'+
-            '<div class="col-lg-3 col-md-3 col-sm-3">'+
-                '<div class="img-producto-container">'+
-                    '<img class="img-producto" src="../../img/default.png" alt="">'+
+            '<div class="row producto">'+
+                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                '<div class="acciones-producto acciones-producto-'+i+'">'+
+                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
+                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
-            '</div>'+
-            '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-            '<div class="col-lg-3 col-md-3 col-sm-3 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
-            '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-            '<div class="acciones-producto acciones-producto-'+i+'">'+
-                '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
-            '</div>'+
-        '</div>';
+            '</div>';
+            
+            $.get('/app/producto.php', {accion: "foto", foto: foto_prod})
+                .done(function(data) {
+                    var jsond = JSON.parse(data);
+                    if (jsond.status == 'ERROR'){
+                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
+                        console.log("success pero error --> "+data);													
+                    }else{
+                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
+                        console.log("success posta --> "+data);
+                    }
+                })
+                .fail(function(data) {
+                    $(".img-producto-container-"+i).html('<img class="img-producto" src="" alt=""></img>');
+                    console.log("fail --> "+data);
+                }); 
 
         $("#listado-mis-productos").append(listadoProducto);
     }

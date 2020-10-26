@@ -986,7 +986,7 @@ input:focus ~ .highlight {
 .titulo-producto{
     font-weight: 500;
 }
-.titulo-producto, .img-producto, .precio-producto{
+.titulo-producto, .img-producto, .precio-producto, .stock-producto{
     line-height: 60px !important;
 }
 .img-producto-container{

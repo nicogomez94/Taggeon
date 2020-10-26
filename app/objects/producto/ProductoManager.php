@@ -36,7 +36,7 @@ class  ProductoManager
 		$var_accion = isset($data["accion"]) ? $data["accion"] : '';
 		if ($var_accion == 'editar') {
 			$id = isset($data["id"]) ? $data["id"] : '';
-			if ($this->validarId($id) === false) {
+			if ($this->existeId($id) === false) {
 				return false;
 			}
 		}
@@ -316,5 +316,37 @@ class  ProductoManager
 	public function getListProducto()
 	{
 		return $this->productoDao->getListProducto();
+	}
+
+	private function existeId($id)
+	{
+		$id = isset($id) ? $id : '';
+		if ($this->validarId($id) === false) {
+			return false;
+		}
+		if ($this->productoDao->existeId($id) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		}
+		return true;
+	}
+
+	public function getProducto(array $data)
+	{
+
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->existeId($id) === false) {
+			return [];
+		}
+	
+		$producto = $this->productoDao->getProducto($id);
+		if ($this->productoDao->getStatus() != 'ok') {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return [];
+		}
+		$this->setStatus("ok");
+		return $producto;
 	}
 }
