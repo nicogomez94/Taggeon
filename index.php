@@ -11,7 +11,7 @@ $perfil = "";
 $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : ""; 
 
 
-$patron = '/(html|htm|\/)$/';
+$patron = '/(html|htm|\/|\.html\?.+)$/';
 if (preg_match($patron, $url)){
 	if ($sesionManager->validar(array('picker','seller','admin','superadmin','editor'))){
 		$perfil = $GLOBALS['sesionG']['perfil'];
@@ -28,14 +28,14 @@ if ($url == '/' || $url == '/index.htm'){
 	$url = '/ampliar-usuario.html';
 }else{
 	$nameTemplate = preg_replace ("/^\//", "", $url);
-	$nameTemplate = preg_replace ("/\.html?$/i", "", $nameTemplate);
-	
+	$nameTemplate = preg_replace ("/\.html.*$/i", "", $nameTemplate);
 	$nameTemplateSesion = $GLOBALS['configuration']['path_app_frame'].$nameTemplate.".php"; 
 	if (file_exists($nameTemplateSesion) ){
 		require("./frame/{$nameTemplate}.php");
 		Database::Connect()->close();
 		exit;
-	}else if (file_exists($GLOBALS['configuration']['path_templates'].$url) ){
+	}else if (file_exists($GLOBALS['configuration']['path_templates']."/{$nameTemplate}.html") ){
+
 		require('./frame/page-template.php');
 		Database::Connect()->close();
 		exit;

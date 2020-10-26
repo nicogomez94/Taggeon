@@ -294,7 +294,7 @@ class  ProductoManager
 	}
 	private function validarColor($color)
 	{
-		if (!preg_match('/^\w+$/i', $color)) {
+		if (!preg_match('/^color-\w+$/i', $color)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("El campo color es incorrecto.");
 			return false;

@@ -367,27 +367,34 @@ sql;
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
         SELECT
-        `id`,
-        `titulo`,
-        `id_rubro`,
-        `marca`,
-        `precio`,
-        `envio`,
-        `garantia`,
-        `descr_producto`,
-        `color`,
-        `usuario_alta`,
-        `usuario_editar`,
-        `fecha_alta`,
-        `fecha_update`,
-        `eliminar`
+        `producto`.`id`,
+        `producto`.`titulo`,
+        `producto`.`id_rubro`,
+        `producto`.`marca`,
+        `producto`.`precio`,
+        `producto`.`envio`,
+        `producto`.`garantia`,
+        `producto`.`descr_producto`,
+        `producto`.`color`,
+        min(producto_foto.id) as foto
     FROM
         `producto`
+    LEFT JOIN
+        producto_foto
+    ON
+        `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
     WHERE
-         eliminar=0 OR eliminar is null AND usuario_alta= $usuarioAltaDB
-
+        (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) AND `producto`.usuario_alta = $usuarioAltaDB
+    group by         `producto`.`id`,
+    `producto`.`titulo`,
+    `producto`.`id_rubro`,
+    `producto`.`marca`,
+    `producto`.`precio`,
+    `producto`.`envio`,
+    `producto`.`garantia`,
+    `producto`.`descr_producto`,
+    `producto`.`color`
 sql;
-
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
