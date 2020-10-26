@@ -676,10 +676,6 @@ $("#buscador-titulo").click(function(){
 });
 
 
-/**SORT BY NOMBRE*/
-
-
-
 /**FUNC PARA MODIFICAR PRODUCTO*/ 
 
 if(jsonData.productos.length>0){
@@ -788,17 +784,28 @@ function actualizarPantallaEditarUsuario () {
 
 
 /**ordernar por nombre,etc**/
-function sort(){
-
+function sortProducto(sortParam){
+    
     //para que aparezcan los iconitos cuando tocas
     $(".icon-sort").show();
 
-    var json_prod = jsonData.productos;
+    var json_prod;
+    var sort_nombre;
 
-    var sort_nombre = json_prod.sort(function (a, b) {
-        // console.log(a.titulo.localeCompare(b.titulo));
-        return a.titulo.localeCompare(b.titulo);
-    });
+    if(sortParam=='titulo'){
+        json_prod = jsonData.productos;
+        sort_nombre = json_prod.sort(function (a, b) {
+            console.log("dentro titulo")
+            return a.titulo.localeCompare(b.titulo);
+        });
+    }else if(sortParam=='precio'){
+        json_prod = jsonData.productos;
+        sort_nombre = json_prod.sort(function (a, b) {
+            console.log("dentro precio")
+            return a.precio.localeCompare(b.precio);
+        });
+    }
+    
 
     $(".producto:not(.header-productos)").hide();
     
