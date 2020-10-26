@@ -19,10 +19,6 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->modificarProducto($_POST);
         } else if ($var_accion == 'eliminar') {
             $objPrincipalManager->eliminarProducto($_POST);
-        } else if ($var_accion == 'listar') {
-            $objPrincipalManager->listarProducto($_POST);
-        } else if ($var_accion == 'get') {
-            $objPrincipalManager->getProducto($_POST);
         }
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';

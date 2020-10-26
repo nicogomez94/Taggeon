@@ -35,14 +35,16 @@ class  ProductoDao
 
         $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
         $tituloDB = Database::escape($titulo);
-        $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-        $categoriaDB = Database::escape($categoria);
+        //$categoria = isset($data["categoria"]) ? $data["categoria"] : '';
+        //$categoriaDB = Database::escape($categoria);
         $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
         $rubroDB = Database::escape($rubro);
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';
         $precioDB = Database::escape($precio);
+        $stock = isset($data["stock"]) ? $data["stock"] : '';
+        $stockDB = Database::escape($stock);
         $envio = isset($data["envio"]) ? $data["envio"] : '';
         $envioDB = Database::escape($envio);
         $garantia = isset($data["garantia"]) ? $data["garantia"] : '';
@@ -54,8 +56,8 @@ class  ProductoDao
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<SQL
-			INSERT INTO producto (titulo, id_rubro, marca, precio, envio, garantia, descr_producto, color,usuario_alta)  
-			VALUES ($tituloDB, $rubroDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB,$usuarioAltaDB)
+			INSERT INTO producto (titulo, id_rubro, marca, precio, envio, garantia, descr_producto, color,usuario_alta,stock)  
+			VALUES ($tituloDB, $rubroDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB,$usuarioAltaDB,$stockDB)
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
@@ -76,17 +78,21 @@ SQL;
     {
         $id = isset($data["id"]) ? $data["id"] : '';
         $idDB = Database::escape($id);
+        $usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
 
         $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
         $tituloDB = Database::escape($titulo);
-        $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-        $categoriaDB = Database::escape($categoria);
+        //$categoria = isset($data["categoria"]) ? $data["categoria"] : '';
+        //$categoriaDB = Database::escape($categoria);
         $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
         $rubroDB = Database::escape($rubro);
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';
         $precioDB = Database::escape($precio);
+        $stock = isset($data["stock"]) ? $data["stock"] : '';
+        $stockDB = Database::escape($stock);
         $envio = isset($data["envio"]) ? $data["envio"] : '';
         $envioDB = Database::escape($envio);
         $garantia = isset($data["garantia"]) ? $data["garantia"] : '';
@@ -96,21 +102,36 @@ SQL;
         $color = isset($data["color"]) ? $data["color"] : '';
         $colorDB = Database::escape($color);
 
-        $sql = <<<SQL
 
-	SQL;
+        $sql = <<<SQL
+UPDATE
+    `producto`
+SET
+    `titulo` = $tituloDB,
+    `id_rubro` = $rubroDB,
+    `marca` = $marcaDB,
+    `precio` = $precioDB,
+    `envio` = $envioDB,
+    `garantia` = $garantiaDB,
+    `descr_producto` = $descr_productoDB,
+    `color` = $colorDB,
+    `usuario_editar` = $usuarioDB,
+    `stock` = $stockDB
+    WHERE
+`id` = $idDB AND
+`usuario_alta` = $usuarioDB
+SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
             $this->setStatus("ERROR");
             $this->setMsj("$sql" . Database::Connect()->error);
         } else {
-            $id = mysqli_insert_id(Database::Connect());
-            $this->setMsj($id);
             $this->setStatus("OK");
             return true;
         }
 
         return false;
+
     }
 
     public function eliminarProducto(array $data)
