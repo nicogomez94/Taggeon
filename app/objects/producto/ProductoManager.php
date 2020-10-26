@@ -349,4 +349,11 @@ class  ProductoManager
 		$this->setStatus("ok");
 		return $producto;
 	}
+	public function getFoto(array $data)
+	{
+
+		$id = isset($data["foto"]) ? $data["foto"] : '';
+	
+		return $this->productoDao->getFoto($id);
+	}
 }

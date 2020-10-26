@@ -487,5 +487,28 @@ sql;
         $this->setStatus("ok");
         return $list;
     }
+    public function getFoto($id)
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $id = isset($id) ?   $id : '';
+        $idDB = Database::escape($id);
+        $sql = <<<sql
+        SELECT
+         producto_foto.foto
+    FROM
+        producto_foto
+    WHERE
+        producto_foto.id=$idDB AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+	AND producto_foto.usuario_alta = $usuarioAltaDB
+sql;
+        $resultado = Database::Connect()->query($sql);
+
+	$foto = '';
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $foto = $rowEmp['foto'];
+        }
+        return $foto;
+    }
 
 }

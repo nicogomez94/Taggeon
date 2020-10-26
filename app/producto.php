@@ -12,7 +12,7 @@ $objPrincipalManager = new ProductoManager();
 if ($sesionManager->validar(array('seller'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|foto)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarProducto($_POST);
         } else if ($var_accion == 'editar') {
@@ -32,8 +32,18 @@ if (sizeof($_POST) > 0) {
         $mensajeRet = "Acción incorrecta.";
     }
 } else {
-    $statusRet  = 'ERROR';
-    $mensajeRet = "Error post.";
+    $var_accion = (isset($_GET['accion']))  ? $_GET['accion'] : "ninguna";
+    if (preg_match('/^(foto)$/i', $var_accion)) {
+        if ($var_accion == 'foto') {
+            $foto = $objPrincipalManager->getFoto($_GET);
+	    Database::Connect()->close();
+	    echo $foto;
+	    exit;
+        } 
+    }else{
+    	$statusRet  = 'ERROR';
+    	$mensajeRet = "Error post.";
+    }
 }
 }else{
 	$statusRet  = 'ERROR';
