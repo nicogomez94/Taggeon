@@ -93,11 +93,8 @@ class  ProductoManager
 			$idProducto = $this->productoDao->getMsj();
 
 			
-                foreach ($_POST["foto"] as $valor) {
+                foreach ($_POST["base"] as $valor) {
                     $valor = isset($valor) ?  $valor : '';
-		            if ($this->validarFoto( $valor) === false){
-			            return false;
-		            }
                     $dataFoto = array(
                         "id_producto" => $idProducto,
                         "foto"        => $valor
@@ -369,17 +366,7 @@ class  ProductoManager
                 $this->setMsj("");
                 return true;
             }        
-            private function validarFoto($foto)
-            {
-                if (! preg_match('/^\w+$/i', $foto)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo foto es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }                
+         
  
             private function validarPrecio($precio)
             {

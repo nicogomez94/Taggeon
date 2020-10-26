@@ -170,89 +170,7 @@ SQL;
         return false;
     }
 
-    public function getProducto(array $data)
-    {
-        $id = isset($data["id"]) ? $data["id"] : '';
-        $idDB = Database::escape($id);
-
-        $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
-        $tituloDB = Database::escape($titulo);
-        $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-        $categoriaDB = Database::escape($categoria);
-        $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
-        $rubroDB = Database::escape($rubro);
-        $marca = isset($data["marca"]) ? $data["marca"] : '';
-        $marcaDB = Database::escape($marca);
-        $precio = isset($data["precio"]) ? $data["precio"] : '';
-        $precioDB = Database::escape($precio);
-        $envio = isset($data["envio"]) ? $data["envio"] : '';
-        $envioDB = Database::escape($envio);
-        $garantia = isset($data["garantia"]) ? $data["garantia"] : '';
-        $garantiaDB = Database::escape($garantia);
-        $descr_producto = isset($data["descr_producto"]) ? $data["descr_producto"] : '';
-        $descr_productoDB = Database::escape($descr_producto);
-        $color = isset($data["color"]) ? $data["color"] : '';
-        $colorDB = Database::escape($color);
-
-        $sql = <<<SQL
-
-	SQL;
-
-        if (!mysqli_query(Database::Connect(), $sql)) {
-            $this->setStatus("ERROR");
-            $this->setMsj("$sql" . Database::Connect()->error);
-        } else {
-            $id = mysqli_insert_id(Database::Connect());
-            $this->setMsj($id);
-            $this->setStatus("OK");
-            return true;
-        }
-
-        return false;
-    }
-
-    public function listarProducto(array $data)
-    {
-        $id = isset($data["id"]) ? $data["id"] : '';
-        $idDB = Database::escape($id);
-
-        $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
-        $tituloDB = Database::escape($titulo);
-        $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-        $categoriaDB = Database::escape($categoria);
-        $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
-        $rubroDB = Database::escape($rubro);
-        $marca = isset($data["marca"]) ? $data["marca"] : '';
-        $marcaDB = Database::escape($marca);
-        $precio = isset($data["precio"]) ? $data["precio"] : '';
-        $precioDB = Database::escape($precio);
-        $envio = isset($data["envio"]) ? $data["envio"] : '';
-        $envioDB = Database::escape($envio);
-        $garantia = isset($data["garantia"]) ? $data["garantia"] : '';
-        $garantiaDB = Database::escape($garantia);
-        $descr_producto = isset($data["descr_producto"]) ? $data["descr_producto"] : '';
-        $descr_productoDB = Database::escape($descr_producto);
-        $color = isset($data["color"]) ? $data["color"] : '';
-        $colorDB = Database::escape($color);
-
-        $sql = <<<SQL
-
-	SQL;
-
-        if (!mysqli_query(Database::Connect(), $sql)) {
-            $this->setStatus("ERROR");
-            $this->setMsj("$sql" . Database::Connect()->error);
-        } else {
-            $id = mysqli_insert_id(Database::Connect());
-            $this->setMsj($id);
-            $this->setStatus("OK");
-            return true;
-        }
-
-        return false;
-    }
-
-
+  
     public function existeCategoria($id_categoria)
     {
         $id_categoria = isset($id_categoria) ?   $id_categoria : '';
@@ -309,14 +227,17 @@ SQL;
         $foto = isset($data["foto"]) ?  $data["foto"] : '';
         $fotoDB = Database::escape($foto);
 
+        $usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
+
         $sql = <<<SQL
-                        INSERT INTO producto_foto (id_producto,foto) 
-                        VALUES ($id_productoDB,$fotoDB)
+                        INSERT INTO producto_foto (id_producto,foto,usuario_alta) 
+                        VALUES ($id_productoDB,$fotoDB,$usuarioDB)
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
             $this->setStatus("ERROR");
-            $this->setMsj("$sql" . Database::Connect()->error);
+            $this->setMsj(Database::Connect()->error);
         } else {
             $id = mysqli_insert_id(Database::Connect());
             $this->setMsj($id);
@@ -326,6 +247,7 @@ SQL;
 
         return false;
     }
+    
     public function existeEnvio($id_envio)
     {
         $id_envio = isset($id_envio) ?   $id_envio : '';
