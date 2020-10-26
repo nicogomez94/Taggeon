@@ -557,7 +557,7 @@ if(sizeProductos>0){
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                 '<div class="acciones-producto acciones-producto-'+i+'">'+
                     '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
 
@@ -623,37 +623,6 @@ $(".eliminar-producto").on("click", function() {
 
 });
 
-
-/*********modificar producto******/
-$(".modificar-producto").on("click", function() {  
-
-    var $this = $(this);
-    var id_producto = $this.data('title');
-
-    $.get('/app/producto.php', {accion: "editar", id: id_producto})
-        .done(function(data) {
-            var jsonp = JSON.parse(data);
-            if (jsonp.status == 'ERROR'){
-                alert("mensaje --> "+jsonp.mensaje);														
-            }else if(jsonp.status == 'OK' || jsonp.status == 'ok'){
-                window.location.replace("/editar-producto.html");
-            }else if(jsonp.status == 'REDIRECT'){
-                window.location.replace(jsonp.mensaje);
-            }else{
-                $("#mensaje-sin-login").css("display","block");
-                $("#mensaje-sin-login").html(jsonp.mensaje);
-                //alert (data.mensaje);
-            }
-        })
-        .fail(function() {
-            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-            $("#mensaje-sin-login").css("display","block");
-            $("#mensaje-sin-login").html(msj);
-        }); 
-
-    return false;
-
-});
 
 /*filtro/buscador por titulo*/
 $("#buscador-titulo").click(function(){
