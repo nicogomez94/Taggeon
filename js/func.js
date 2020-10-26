@@ -578,10 +578,10 @@ $(function(){
         console.log("ENTRO A .ELLIP")
     });
 
-    $('body').click(function (e) {
-        console.log("entro a 'body'")
-        $(".acciones-producto").hide();
-    });
+    // $('body').click(function (e) {
+    //     console.log("entro a 'body'")
+    //     $(".acciones-producto").hide();
+    // });
 
     $(".acciones-producto").click(function(e) {
         e.stopPropagation();
