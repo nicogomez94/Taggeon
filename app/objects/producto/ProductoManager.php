@@ -134,20 +134,21 @@ class  ProductoManager
 
 	public function importarProducto(array $data)
 	{
-		if ($this->validarProducto($data) === false) {
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->existeId($id) === false) {
+			return false;
+		}
+	
+		$file = isset($_POST["file"]) ? $_POST["file"] : '';
+		if ($file == ''){
+			$this->setStatus("error");
+			$this->setMsj("Se importaron 0 registros de 0.");
 			return false;
 		}
 
-
-		if ($this->productoDao->Producto($data) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->productoDao->getMsj());
-			return false;
-		} else {
-			$this->setStatus("OK");
-			$this->setMsj($this->productoDao->getMsj());
-			return true;
-		}
+		$fp = fopen("/var/www/html/producto/$id", 'w');
+		fwrite($fp, $file);
+		fclose($fp);
 	}
 	public function modificarProducto(array $data)
 	{
