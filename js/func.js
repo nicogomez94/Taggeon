@@ -674,7 +674,6 @@ $("#buscador-titulo").click(function(){
             var appendMatcheo = $(".titulo-producto:contains("+value+")").parent().parent().show();
         }
         // $("#listado-mis-productos").append(appendMatcheo);
-            
         
     }else{
         $(".titulo-producto").parent().parent().show();

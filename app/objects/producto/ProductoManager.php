@@ -132,6 +132,23 @@ class  ProductoManager
 		}
 	}
 
+	public function importarProducto(array $data)
+	{
+		if ($this->validarProducto($data) === false) {
+			return false;
+		}
+
+
+		if ($this->productoDao->Producto($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->productoDao->getMsj());
+			return true;
+		}
+	}
 	public function modificarProducto(array $data)
 	{
 		if ($this->validarProducto($data) === false) {

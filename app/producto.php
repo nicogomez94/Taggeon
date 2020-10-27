@@ -12,11 +12,13 @@ $objPrincipalManager = new ProductoManager();
 if ($sesionManager->validar(array('seller'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar|foto)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|importar)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarProducto($_POST);
         } else if ($var_accion == 'editar') {
             $objPrincipalManager->modificarProducto($_POST);
+        } else if ($var_accion == 'importar') {
+            $objPrincipalManager->importarProducto($_POST);
         } else if ($var_accion == 'eliminar') {
             $objPrincipalManager->eliminarProducto($_POST);
         }
