@@ -141,7 +141,9 @@ class  ProductoManager
 			$this->setMsj("Se importaron 0 registros de 0.");
 			return false;
 		}else{
-			print "$file";
+			$this->setStatus("error");
+			$this->setMsj($file);
+			return true;
 		}
 
 	}
