@@ -135,7 +135,7 @@ class  ProductoManager
 	public function importarProducto(array $data)
 	{
 	
-		$file = isset($_POST["file"]) ? $_POST["file"] : '';
+		$file = isset($data["file"]) ? $data["file"] : '';
 		if ($file == ''){
 			$this->setStatus("error");
 			$this->setMsj("Se importaron 0 registros de 0.");
@@ -143,7 +143,7 @@ class  ProductoManager
 		}else{
 			$this->setStatus("error");
 			$this->setMsj($file);
-			$this->setMsj(base64_decode($file));
+			//$this->setMsj(base64_decode($file));
 			return true;
 		}
 
