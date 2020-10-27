@@ -668,43 +668,52 @@ $("#buscador-titulo").click(function(){
             }
         });
 
-        $(".producto:not(.header-productos)").hide();
-
-        // if(cant_elem==cant_json)
-        for (var i=0;i<search.length;i++){
-            
-
-            var nombre_prod = search[i].titulo;
-            var precio_prod = search[i].precio;
-            var id_prod = search[i].id;
-            var stock_prod = search[i].stock;
-            var foto_prod = search[i].foto;
-
-            console.log(search)
-
-            
-            // var listadoProducto = 
-            // '<div class="row producto">'+
-            //     '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
-            //     '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-            //     '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
-            //     '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-            //     '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-            //     '<div class="acciones-producto acciones-producto-'+i+'">'+
-            //         '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-            //         '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
-            //     '</div>'+
-            // '</div>';
-            
-
-            // $("#listado-mis-productos").append(listadoProducto);
-        }
+        var appendMatcheo = $(".titulo-producto:contains("+nombre_prod+")").parent().parent();
+        var hideMatcheo = $(".titulo-producto:not(:contains("+value+"))").parent().parent().hide();
+        $("#listado-mis-productos").append(appendMatcheo);
             
         
     }else{
         $(".producto:not(.header-productos)").toggle();
     }
     
+});
+
+/*IMPORTAR CSv**/
+$("#subir-csv").on('submit', function() {
+
+    var reader = new FileReader();
+    reader.onload = function(){
+        
+        var dataImport = { 
+            'file': reader.result,
+            'accion':'importar'
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/app/editar_imagen_perfil.php',
+            data: dataImport,
+            dataType: "json",
+            success: function(data, textStatus, jQxhr ) {
+                if (data.status == 'REDIRECT'){
+                    window.location.replace(data.mensaje);														
+                }else if(data.status == 'OK'){
+                    alert (data.mensaje);
+                    // window.location.replace("/ampliar-usuario.html");
+                }else{
+                    alert (data.mensaje);
+                }
+
+            },
+            error: function(jqXhr, textStatus, errorThrown) {
+                var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                alert(msj);         
+           }
+        });
+    };
+    reader.readAsDataURL($("#file-csv").get(0).files[0]);    
+    return false;
 });
 
 
@@ -751,6 +760,7 @@ if(jsonData.productos.length>0){
 
     }
 }
+
 
 
 
@@ -816,29 +826,36 @@ function actualizarPantallaEditarUsuario () {
             
 }
 
-function sortProducto(param){
+function sortProducto(paramTitulo, paramSort){
 
     $(".icon-sort").show();
     
     var ordenar = function(a, b) {
-        if(param=='titulo-producto'){//para letras
-            $(".titulo-producto").addClass("asc");
+        if(paramTitulo=='titulo-producto'){//para letras   
             return a.innerHTML.toLowerCase().localeCompare(b.innerHTML.toLowerCase());
-        }else if(param=='precio-producto' || param=='stock-producto'){ //para nros
-            $(".precio-producto").addClass("asc");
+        }else if(paramTitulo=='precio-producto' || paramTitulo=='stock-producto'){ //para nros
             return a.innerHTML.toLowerCase() - b.innerHTML.toLowerCase();
         }
     }
-    var tituloTieneClass = $(".titulo-producto").hasClass("asc");
-    var precioTieneClass = $(".precio-producto").hasClass("asc");
 
-    if(tituloTieneClass == true || precioTieneClass == true){
-        var lista = $("."+param).get();
+
+    var order = $("."+paramSort).data('order');
+    console.log(order)
+
+    if(order == "asc"){
+        // console.log("adentro order asc")
+        var lista = $("."+paramTitulo).get();
         lista.reverse(ordenar);
-        $(".titulo-producto").removeClass("asc");
+
+        $("."+paramSort).data('order', "desc");
+        $(".icon-sort").html('<i class="fas fa-sort-down"></i>');
     }else{
-        var lista = $("."+param).get();
+        // console.log("adentro else")
+        var lista = $("."+paramTitulo).get();
         lista.sort(ordenar);
+
+        $("."+paramSort).data('order', "asc");
+        $(".icon-sort").html('<i class="fas fa-sort-up"></i>');
     }
     
 
