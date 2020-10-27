@@ -142,9 +142,33 @@ class  ProductoManager
 		if ($this->productoDao->editarProducto($data) === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj($this->productoDao->getMsj());
+			return false;
 		} else {
-			$this->setStatus("OK");
-			$this->setMsj($this->productoDao->getMsj());
+			if ($this->productoDao->eliminarProductoFoto($data) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj("No se actualizaron las fotos");
+				return false;
+			} else {
+				$idProducto = isset($data["id"]) ? $data["id"] : '';
+				foreach ($_POST["base"] as $valor) {
+					$valor = isset($valor) ?  $valor : '';
+					$dataFoto = array(
+						"id_producto" => $idProducto,
+						"foto"        => $valor
+					);
+
+					if ($this->productoDao->altaFoto($dataFoto) === false) {
+						$this->setStatus("ERROR");
+						$this->setMsj($this->productoDao->getMsj());
+						return false;
+					}
+				}
+				$this->setStatus("OK");
+				$this->setMsj($this->productoDao->getMsj());
+				return true;
+			}
+
+
 		}
 	}
 
@@ -159,13 +183,16 @@ class  ProductoManager
 		if ($this->productoDao->eliminarProducto($data) === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj($this->productoDao->getMsj());
+			return false;
 		} else {
 			if ($this->productoDao->eliminarProductoFoto($data) === false) {
 				$this->setStatus("ERROR");
 				$this->setMsj($this->productoDao->getMsj());
+				return false;
 			} else {
 				$this->setStatus("OK");
 				$this->setMsj($this->productoDao->getMsj());
+				return 'ok';
 			}
 		}
 	}
