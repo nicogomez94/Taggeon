@@ -537,6 +537,8 @@ if(sizeCat>0){
 
 
 
+
+
 var sizeProductos = jsonData.productos.length;
 
 if(sizeProductos>0){
@@ -544,13 +546,13 @@ if(sizeProductos>0){
         var nombre_prod = jsonData.productos[i].titulo;
         var precio_prod = jsonData.productos[i].precio;
         var id_prod = jsonData.productos[i].id;
-        var stock_prod = jsonData.productos[i].envio;
+        var stock_prod = jsonData.productos[i].stock;
         var foto_prod = jsonData.productos[i].foto;
 
 
         var listadoProducto = 
             '<div class="row producto">'+
-                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"></div></div>'+
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
                 '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
                 '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
@@ -560,34 +562,37 @@ if(sizeProductos>0){
                     '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
-            
-            $.get('/app/producto.php?accion=foto&foto='+foto_prod)
-                .done(function(data) {
-                    var jsond = JSON.parse(data);
-                    if (jsond.status == 'ERROR'){
-                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt="">');
-                        console.log("success pero error --> "+data);													
-                    }else{
-                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt="">');
-                        console.log("success posta --> "+data);	
-                    }
-                })
-                .fail(function(data) {
-                    $(".img-producto-container-"+i).html('<img class="img-producto" src="" alt=""></img>');
-                    console.log("fail --> "+data);
-                }); 
 
+            correrAjax(i,foto_prod); 
 
         $("#listado-mis-productos").append(listadoProducto);
 
     }
 }
 
-//get image
-$(function(){
 
-    
-});
+function correrAjax(param,foto_prod_param){
+    $.get('/app/producto.php' , {accion : "foto", foto : foto_prod_param})
+    .done(function(data) {
+        console.log(foto_prod_param)
+        // var jsond = JSON.parse(data);
+        if (data.status == 'ERROR'){
+            $(".img-producto-container-"+param).html('<img class="img-producto" src="../../img/default.png" alt="">');
+            // console.log("success pero error --> ");													
+        }else{
+            $(".img-producto-container-"+param).html('<img class="img-producto" src="'+data+'" alt="">');
+            // console.log(data);
+        }
+    })
+    .fail(function(data) {
+        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
+        console.log("fail --> "+param);
+    }); 
+}
+//get image
+// $(function(){
+
+
 
 
 /**apertura y cierre las opciones*/ 
@@ -672,7 +677,7 @@ $("#buscador-titulo").click(function(){
             var nombre_prod = search[i].titulo;
             var precio_prod = search[i].precio;
             var id_prod = search[i].id;
-            var stock_prod = search[i].envio;
+            var stock_prod = search[i].stock;
             var foto_prod = search[i].foto;
 
             var listadoProducto = 
@@ -688,21 +693,6 @@ $("#buscador-titulo").click(function(){
                 '</div>'+
             '</div>';
             
-            $.get('/app/producto.php', {accion: "foto", foto: foto_prod})
-                .done(function(data) {
-                    var jsond = JSON.parse(data);
-                    if (jsond.status == 'ERROR'){
-                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
-                        console.log("success pero error --> "+data);													
-                    }else{
-                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
-                        console.log("success posta --> "+data);	
-                    }
-                })
-                .fail(function(data) {
-                    $(".img-producto-container-"+i).html('<img class="img-producto" src="" alt=""></img>');
-                    console.log("fail --> "+data);
-                }); 
 
                 $("#listado-mis-productos").append(listadoProducto);
         }
@@ -715,7 +705,7 @@ $("#buscador-titulo").click(function(){
 });
 
 
-/**FUNC PARA MODIFICAR PRODUCTO*/ 
+/**FUNC PARA EDITAR/MODIFICAR PRODUCTO*/ 
 
 if(jsonData.productos.length>0){
     for(var i=0; i<jsonData.productos.length; i++){
@@ -728,11 +718,13 @@ if(jsonData.productos.length>0){
         var garantia_prod = jsonData.productos[i].garantia;
         var descr_prod = jsonData.productos[i].descr_producto;
         var nombre_cat = jsonData.categoria[i].nombre;
+        var stock_prod = jsonData.productos[i].stock;
         var id_cat = jsonData.categoria[i].id;
         var id_cat_rubro = jsonData.rubro[i].id_categoria;
 
         $("#titulo-producto").val(nombre_prod);
         $("#precio-producto").val(precio_prod);
+        $("#stock-producto").val(stock_prod);
         $("#descr-producto").val(descr_prod);
         $("#marca-producto").val(marca_prod);
         $("#envio-producto").val(envio_prod);
@@ -868,22 +860,6 @@ function sortProducto(sortParam){
                     '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
-            
-            $.get('/app/producto.php', {accion: "foto", foto: foto_prod})
-                .done(function(data) {
-                    var jsond = JSON.parse(data);
-                    if (jsond.status == 'ERROR'){
-                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
-                        console.log("success pero error --> "+data);													
-                    }else{
-                        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
-                        console.log("success posta --> "+data);
-                    }
-                })
-                .fail(function(data) {
-                    $(".img-producto-container-"+i).html('<img class="img-producto" src="" alt=""></img>');
-                    console.log("fail --> "+data);
-                }); 
 
         $("#listado-mis-productos").append(listadoProducto);
     }
