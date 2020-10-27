@@ -554,7 +554,7 @@ if(sizeProductos>0){
             '<div class="row producto">'+
                 '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"></div></div>'+
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">'+precio_prod+'</span></div>'+
                 '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
                 '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                 '<div class="acciones-producto acciones-producto-'+i+'">'+
@@ -563,14 +563,14 @@ if(sizeProductos>0){
                 '</div>'+
             '</div>';
 
-            correrAjax(i,foto_prod); 
+            // correrAjax(i,foto_prod); 
 
         $("#listado-mis-productos").append(listadoProducto);
 
     }
 }
 
-
+/*
 function correrAjax(param,foto_prod_param){
     $.get('/app/producto.php' , {accion : "foto", foto : foto_prod_param})
     .done(function(data) {
@@ -588,7 +588,7 @@ function correrAjax(param,foto_prod_param){
         $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
         console.log("fail --> "+param);
     }); 
-}
+}*/
 //get image
 // $(function(){
 
@@ -680,21 +680,24 @@ $("#buscador-titulo").click(function(){
             var stock_prod = search[i].stock;
             var foto_prod = search[i].foto;
 
-            var listadoProducto = 
-            '<div class="row producto">'+
-                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-                '<div class="acciones-producto acciones-producto-'+i+'">'+
-                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
-                '</div>'+
-            '</div>';
+            console.log(search)
+
+            
+            // var listadoProducto = 
+            // '<div class="row producto">'+
+            //     '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
+            //     '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+            //     '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
+            //     '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
+            //     '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+            //     '<div class="acciones-producto acciones-producto-'+i+'">'+
+            //         '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
+            //         '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+            //     '</div>'+
+            // '</div>';
             
 
-                $("#listado-mis-productos").append(listadoProducto);
+            // $("#listado-mis-productos").append(listadoProducto);
         }
             
         
@@ -813,58 +816,35 @@ function actualizarPantallaEditarUsuario () {
             
 }
 
+function sortProducto(param){
 
-/**ordernar por nombre,etc**/
-function sortProducto(sortParam){
-    
-    //para que aparezcan los iconitos cuando tocas
     $(".icon-sort").show();
+    
+    var ordenar = function(a, b) {
+        if(param=='titulo-producto'){//para letras
+            $(".titulo-producto").addClass("asc");
+            return a.innerHTML.toLowerCase().localeCompare(b.innerHTML.toLowerCase());
+        }else if(param=='precio-producto' || param=='stock-producto'){ //para nros
+            $(".precio-producto").addClass("asc");
+            return a.innerHTML.toLowerCase() - b.innerHTML.toLowerCase();
+        }
+    }
+    var tituloTieneClass = $(".titulo-producto").hasClass("asc");
+    var precioTieneClass = $(".precio-producto").hasClass("asc");
 
-    var json_prod;
-    var sort_nombre;
-
-    if(sortParam=='titulo'){
-        json_prod = jsonData.productos;
-        sort_nombre = json_prod.sort(function (a, b) {
-            console.log("dentro titulo")
-            return a.titulo.localeCompare(b.titulo);
-        });
-    }else if(sortParam=='precio'){
-        json_prod = jsonData.productos;
-        sort_nombre = json_prod.sort(function (a, b) {
-            console.log("dentro precio")
-            return a.precio.localeCompare(b.precio);
-        });
+    if(tituloTieneClass == true || precioTieneClass == true){
+        var lista = $("."+param).get();
+        lista.reverse(ordenar);
+        $(".titulo-producto").removeClass("asc");
+    }else{
+        var lista = $("."+param).get();
+        lista.sort(ordenar);
     }
     
 
-    $(".producto:not(.header-productos)").hide();
-    
-    for (var i=0;i<sort_nombre.length;i++){
-        
-        var nombre_prod = sort_nombre[i].titulo;
-        var precio_prod = sort_nombre[i].precio;
-        var id_prod = sort_nombre[i].id;
-        var stock_prod = sort_nombre[i].envio;
-        var foto_prod = sort_nombre[i].foto;
-
-        var listadoProducto = 
-            '<div class="row producto">'+
-                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'"></div></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">$ '+precio_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-                '<div class="acciones-producto acciones-producto-'+i+'">'+
-                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
-                '</div>'+
-            '</div>';
-
-        $("#listado-mis-productos").append(listadoProducto);
+    for (var i=0; i<lista.length; i++) {
+        $('#listado-mis-productos').append(lista[i].parentNode.parentNode);
     }
-
-
 }
 
 
