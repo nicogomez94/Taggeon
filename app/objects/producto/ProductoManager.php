@@ -144,11 +144,10 @@ class  ProductoManager
 			$this->setStatus("error");
 			$this->setMsj("Se importaron 0 registros de 0.");
 			return false;
+		}else{
+			print "$file";
 		}
 
-		$fp = fopen("/var/www/html/producto/$id", 'w');
-		fwrite($fp, $file);
-		fclose($fp);
 	}
 	public function modificarProducto(array $data)
 	{
