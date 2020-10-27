@@ -1008,6 +1008,10 @@ input:focus ~ .highlight {
     line-height: 60px !important;
     /**fdsdfsdf*/
 }
+.html-nada{
+    text-align: center;
+    font-weight: 500;
+}
 .acciones-producto{
     background-color: #fff;
     position: absolute;

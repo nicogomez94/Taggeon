@@ -661,20 +661,23 @@ $("#buscador-titulo").click(function(){
     var cant_json = jsonData.productos.length;
 
     if(value != ''){
-        var search = $(jsonData.productos).filter(function (i,n){
-            // return n.titulo===value
-            if(n.titulo.indexOf(value) > -1){
-                return n.titulo
-            }
-        });
 
-        var appendMatcheo = $(".titulo-producto:contains("+nombre_prod+")").parent().parent();
-        var hideMatcheo = $(".titulo-producto:not(:contains("+value+"))").parent().parent().hide();
-        $("#listado-mis-productos").append(appendMatcheo);
+        var len = $(".titulo-producto").length;
+
+        if(len==0){
+            console.log("adentro if")
+            var html_nada = '<div class="html-nada">No se han encontrado resultados.</div>';
+            $("#listado-mis-productos").html(html_nada);
+        }else{
+            console.log("adentro else")
+            var hideMatcheo = $(".titulo-producto:not(:contains("+value+"))").parent().parent().hide();
+            var appendMatcheo = $(".titulo-producto:contains("+value+")").parent().parent().show();
+        }
+        // $("#listado-mis-productos").append(appendMatcheo);
             
         
     }else{
-        $(".producto:not(.header-productos)").toggle();
+        $(".titulo-producto").parent().parent().show();
     }
     
 });
