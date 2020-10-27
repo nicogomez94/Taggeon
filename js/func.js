@@ -692,7 +692,7 @@ $("#subir-csv").on('submit', function() {
 
         $.ajax({
             type: 'POST',
-            url: '/app/editar_imagen_perfil.php',
+            url: '/app/producto.php',
             data: dataImport,
             dataType: "json",
             success: function(data, textStatus, jQxhr ) {
