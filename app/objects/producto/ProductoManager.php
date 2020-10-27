@@ -142,7 +142,7 @@ class  ProductoManager
 			return false;
 		}else{
 			$this->setStatus("error");
-			$this->setMsj($file);
+			$this->setMsj(base64_decode($file));
 			return true;
 		}
 
