@@ -134,10 +134,6 @@ class  ProductoManager
 
 	public function importarProducto(array $data)
 	{
-		$id = isset($data["id"]) ? $data["id"] : '';
-		if ($this->existeId($id) === false) {
-			return false;
-		}
 	
 		$file = isset($_POST["file"]) ? $_POST["file"] : '';
 		if ($file == ''){
