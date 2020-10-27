@@ -376,6 +376,7 @@ sql;
         `producto`.`garantia`,
         `producto`.`descr_producto`,
         `producto`.`color`,
+        `producto`.`stock`,
         min(producto_foto.id) as foto
     FROM
         `producto`
@@ -393,7 +394,8 @@ sql;
     `producto`.`envio`,
     `producto`.`garantia`,
     `producto`.`descr_producto`,
-    `producto`.`color`
+    `producto`.`color`,
+    `producto`.`stock`
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -450,6 +452,7 @@ SQL;
         `producto`.`garantia`,
         `producto`.`descr_producto`,
         `producto`.`color`,
+        `producto`.`stock`,
        GROUP_CONCAT(producto_foto.id) as foto
 
     FROM
@@ -469,7 +472,8 @@ SQL;
     `producto`.`envio`,
     `producto`.`garantia`,
     `producto`.`descr_producto`,
-    `producto`.`color`
+    `producto`.`color`,
+    `producto`.`stock`
 sql;
         $resultado = Database::Connect()->query($sql);
         $row_cnt = mysqli_num_rows($resultado);
