@@ -44,6 +44,9 @@
     .modal{
         font-size: smaller;
     }
+    .img-perfil-media{
+        width: 75px !important;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
@@ -91,6 +94,9 @@
     }
     .modal{
         font-size: smaller;
+    }
+    .img-perfil-media{
+        width: 75px !important;
     }
 }
 
@@ -487,6 +493,12 @@ form div{
 }
 #menu-perfil{
     font-weight: 500 !important;
+    margin-bottom: 100px;
+}
+#inside-nav{
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
 }
 .active-custom{
     /* padding: 20px;

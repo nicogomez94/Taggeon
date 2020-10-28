@@ -519,28 +519,46 @@ if(sizeCat>0){
     }
 }
 
-
-
-// var sizeRubro = jsonData.rubro.length;
-
-// if(sizeRubro>0){
-//     for(var i=0; i<sizeRubro; i++){
-//         var nombre_rubro = jsonData.rubro[i].nombre;
-//         var id_rubro = jsonData.rubro[i].id;
-        
-//         var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
-//         $("#rubro-producto").append(html_rubro);
-//     }
-// }
-
 /***ampliar producto***/ 
 
 
-
+function correrAjaxImg(index,foto_prod_param,location){
+    $.get('/app/producto.php' , {accion : "foto", foto : foto_prod_param})
+    .done(function(data) {
+        // console.log(index)
+        // console.log(data)
+        // var jsond = JSON.parse(data);
+        if(location == 'ampliarUsuario'){
+            console.log('ampliarUsuario')
+            console.log(index)
+            if (data.status == 'ERROR'){
+                console.log(index)
+                $(".img-producto-container-"+index).html('<img class="img-producto" src="../../img/default.png" alt="">');
+                // console.log("success pero error --> ");													
+            }else{
+                $(".img-producto-container-"+index).html('<img class="img-producto" src="'+data+'" alt="">');
+                // console.log(data);
+            }
+        }else{
+            /*// console.log(index+"  "+foto_prod_param+"  "+location)
+            console.log('editarUsuario')
+            console.log(index)
+            console.log(foto_prod_param)*/
+            $("#new"+index).addClass('hidden');
+            $("#prev"+index).removeClass('hidden');
+            $("#prev"+index).html('<img class="img-responsive" src="'+data+'">');
+        }
+        
+    })
+    .fail(function(data) {
+        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
+        console.log("fail --> "+param);
+    }); 
+}
 
 
 var sizeProductos = jsonData.productos.length;
-
+console.log("ampliar ->"+test12)
 if(sizeProductos>0){
     for(var i=0; i<sizeProductos; i++){
         var nombre_prod = jsonData.productos[i].titulo;
@@ -552,43 +570,26 @@ if(sizeProductos>0){
 
         var listadoProducto = 
             '<div class="row producto">'+
-                '<div class="col-lg-2 col-md-2 col-sm-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"></div></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="precio-producto">'+precio_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"></div></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">'+precio_prod+'</span></div>'+
+                '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
+                '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                 '<div class="acciones-producto acciones-producto-'+i+'">'+
                     '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
                     '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                 '</div>'+
             '</div>';
 
-            // correrAjax(i,foto_prod); 
+            correrAjaxImg(i,foto_prod,'ampliarUsuario');
 
         $("#listado-mis-productos").append(listadoProducto);
 
     }
 }
 
-/*
-function correrAjax(param,foto_prod_param){
-    $.get('/app/producto.php' , {accion : "foto", foto : foto_prod_param})
-    .done(function(data) {
-        console.log(foto_prod_param)
-        // var jsond = JSON.parse(data);
-        if (data.status == 'ERROR'){
-            $(".img-producto-container-"+param).html('<img class="img-producto" src="../../img/default.png" alt="">');
-            // console.log("success pero error --> ");													
-        }else{
-            $(".img-producto-container-"+param).html('<img class="img-producto" src="'+data+'" alt="">');
-            // console.log(data);
-        }
-    })
-    .fail(function(data) {
-        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
-        console.log("fail --> "+param);
-    }); 
-}*/
+
+
 //get image
 // $(function(){
 
@@ -603,21 +604,25 @@ $(function(){
         var $this = $(this);
         var title = $this.data('title');
         
-        $(".acciones-producto-"+title).toggle();
+        $(".acciones-producto-"+title).show();
+        $(".acciones-producto:not(.acciones-producto-"+title+")").hide();
+        
+        // pasarTitle(title)
         console.log("ENTRO A .ELLIP"+title)
     });
-
-    // $('body').click(function (e) {
-    //     console.log("entro a 'body'")
-    //     $(".acciones-producto").hide();
-    // });
-
-    $(".acciones-producto").click(function(e) {
-        e.stopPropagation();
+    $(document).click(function () {
+        $(".acciones-producto").hide();
     });
 });
+/*
 
-
+function pasarTitle(titleParam){
+    $(document).click(function (e) {
+        console.log("entro a 'body'")
+        e.stopPropagation();
+        $(".acciones-producto.acciones-producto"+titleParam).hide();
+    });
+}*/
     
 
 /*********eliminar producto******/
@@ -720,10 +725,12 @@ $("#subir-csv").on('submit', function() {
 
 
 /**FUNC PARA EDITAR/MODIFICAR PRODUCTO*/ 
+var test12 = jsonData.productos.length;
+console.log("editar"+test12)
 
-if(jsonData.productos.length>0){
-    for(var i=0; i<jsonData.productos.length; i++){
-
+if(test12>0){
+    for(var i=0; i<test12; i++){
+        
         var id_prod = jsonData.productos[i].id;
         var nombre_prod = jsonData.productos[i].titulo;
         var marca_prod = jsonData.productos[i].marca;
@@ -731,11 +738,13 @@ if(jsonData.productos.length>0){
         var envio_prod = jsonData.productos[i].envio;
         var garantia_prod = jsonData.productos[i].garantia;
         var descr_prod = jsonData.productos[i].descr_producto;
+        var foto_prod_editar = jsonData.productos[i].foto;
+        // console.log(foto_prod_editar)
         var nombre_cat = jsonData.categoria[i].nombre;
         var stock_prod = jsonData.productos[i].stock;
         var id_cat = jsonData.categoria[i].id;
         var id_cat_rubro = jsonData.rubro[i].id_categoria;
-
+        // correrAjaxImg(i,foto_prod_editar,'editarUsuario');
         $("#titulo-producto").val(nombre_prod);
         $("#precio-producto").val(precio_prod);
         $("#stock-producto").val(stock_prod);
@@ -744,19 +753,23 @@ if(jsonData.productos.length>0){
         $("#envio-producto").val(envio_prod);
         $("#garantia-producto").val(garantia_prod);
 
+        // console.log("editar i--> "+i);
+        //fotos
         
+
         var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
         $("#categoria-producto").append(html_cat);
 
         var sizeRubro = jsonData.rubro.length;
         
         if(sizeRubro>0 && id_cat==id_cat_rubro){
+            // console.log("entro al if")
             for(var i=0; i<sizeRubro; i++){
                 var nombre_rubro = jsonData.rubro[i].nombre;
                 var id_rubro = jsonData.rubro[i].id;
-                
+
                 var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
-                $("#rubro-producto").val(nombre_rubro);
+                $("#rubro-producto").append(html_rubro);
             }
         }
 

@@ -82,9 +82,6 @@ class  ProductoManager
 			return false;
 		}
 
-
-
-
 		if ($this->productoDao->existeCategoria($categoria) === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj($this->productoDao->getMsj());
@@ -141,9 +138,35 @@ class  ProductoManager
 			$this->setMsj("Se importaron 0 registros de 0.");
 			return false;
 		}else{
-			$this->setStatus("error");
-			$this->setMsj($file);
-			//$this->setMsj(base64_decode($file));
+			$var = file_get_contents($file);
+			$data = str_getcsv($var, "\n"); //parse the rows
+			$var = '';
+			$fila = 0;
+			$filaImportadas = 0;
+			foreach($data as &$row) {
+				$fila++;
+				$datacol = str_getcsv($row, ";"); //parse the items in rows
+		                $dataNew["titulo"] = isset($datacol[0]) ? $datacol[0] : '';
+				$dataNew["precio"] = isset($datacol[1]) ? $datacol[1] : '';;
+				$dataNew["stock"] = isset($datacol[2]) ? $datacol[2] : '';
+				$dataNew["color"] = isset($datacol[3]) ?  $datacol[3] : '';
+				$dataNew["marca"] = isset($datacol[4]) ? $datacol[4] : '';
+				$dataNew["envio"] = isset($datacol[5]) ?  $datacol[5] : '';
+				$dataNew["garantia"] = isset($datacol[6]) ?  $datacol[6] : '';
+				$dataNew["descr_producto"] = isset($datacol[7]) ?  $datacol[7] : '';
+
+				$dataNew["categoria"] = '1';
+				$dataNew["rubro"] = '1';
+ 				$this->agregarProducto($dataNew);
+				if ($this->getStatus() != 'OK') {
+				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error: ".$this->getMsj());
+			            return false;
+				}
+				$filaImportadas++;
+			 }
+
+			$this->setStatus("OK");
+			$this->setMsj("Se importaron $filaImportadas registros de $fila.");
 			return true;
 		}
 
@@ -326,7 +349,7 @@ class  ProductoManager
 	}
 	private function validarDescr_producto($descr_producto)
 	{
-		if (!preg_match('/^\w+$/i', $descr_producto)) {
+		if (!preg_match('/^.+$/i', $descr_producto)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("El campo descr_producto es incorrecto.");
 			return false;
@@ -337,7 +360,7 @@ class  ProductoManager
 	}
 	private function validarColor($color)
 	{
-		if (!preg_match('/^color-\w+$/i', $color)) {
+		if (!preg_match('/^.+$/i', $color)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("El campo color es incorrecto.");
 			return false;
