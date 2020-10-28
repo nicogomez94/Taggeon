@@ -540,10 +540,12 @@ function correrAjaxImg(index,foto_prod_param,location){
                 // console.log(data);
             }
         }else{
-            /*// console.log(index+"  "+foto_prod_param+"  "+location)
+            /*// console.log(index+"  "+foto_prod_param+"  "+location)*/
             console.log('editarUsuario')
             console.log(index)
-            console.log(foto_prod_param)*/
+            console.log(foto_prod_param)
+            var fotos = foto_prod_param.split(",");
+
             $("#new"+index).addClass('hidden');
             $("#prev"+index).removeClass('hidden');
             $("#prev"+index).html('<img class="img-responsive" src="'+data+'">');
@@ -558,7 +560,7 @@ function correrAjaxImg(index,foto_prod_param,location){
 
 
 var sizeProductos = jsonData.productos.length;
-console.log("ampliar ->"+test12)
+
 if(sizeProductos>0){
     for(var i=0; i<sizeProductos; i++){
         var nombre_prod = jsonData.productos[i].titulo;
@@ -607,8 +609,6 @@ $(function(){
         $(".acciones-producto-"+title).show();
         $(".acciones-producto:not(.acciones-producto-"+title+")").hide();
         
-        // pasarTitle(title)
-        console.log("ENTRO A .ELLIP"+title)
     });
     $(document).click(function () {
         $(".acciones-producto").hide();
@@ -670,11 +670,9 @@ $("#buscador-titulo").click(function(){
         var len = $(".titulo-producto").length;
 
         if(len==0){
-            console.log("adentro if")
             var html_nada = '<div class="html-nada">No se han encontrado resultados.</div>';
             $("#listado-mis-productos").html(html_nada);
         }else{
-            console.log("adentro else")
             var hideMatcheo = $(".titulo-producto:not(:contains("+value+"))").parent().parent().hide();
             var appendMatcheo = $(".titulo-producto:contains("+value+")").parent().parent().show();
         }
@@ -726,11 +724,10 @@ $("#subir-csv").on('submit', function() {
 
 /**FUNC PARA EDITAR/MODIFICAR PRODUCTO*/ 
 var test12 = jsonData.productos.length;
-console.log("editar"+test12)
 
 if(test12>0){
     for(var i=0; i<test12; i++){
-        
+
         var id_prod = jsonData.productos[i].id;
         var nombre_prod = jsonData.productos[i].titulo;
         var marca_prod = jsonData.productos[i].marca;
@@ -744,7 +741,7 @@ if(test12>0){
         var stock_prod = jsonData.productos[i].stock;
         var id_cat = jsonData.categoria[i].id;
         var id_cat_rubro = jsonData.rubro[i].id_categoria;
-        // correrAjaxImg(i,foto_prod_editar,'editarUsuario');
+        correrAjaxImg(i,foto_prod_editar,'editarUsuario');
         $("#titulo-producto").val(nombre_prod);
         $("#precio-producto").val(precio_prod);
         $("#stock-producto").val(stock_prod);
@@ -855,7 +852,6 @@ function sortProducto(paramTitulo, paramSort){
 
 
     var order = $("."+paramSort).data('order');
-    console.log(order)
 
     if(order == "asc"){
         // console.log("adentro order asc")

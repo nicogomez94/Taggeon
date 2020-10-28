@@ -146,6 +146,13 @@ class  ProductoManager
 			foreach($data as &$row) {
 				$fila++;
 				$datacol = str_getcsv($row, ";"); //parse the items in rows
+				if (count($datacol) != 8){
+				    $this->setStatus("error");
+				    $filaSiguiente = $filaImportadas + 1;
+				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción");
+			      	    return false;
+
+				}
 		                $dataNew["titulo"] = isset($datacol[0]) ? $datacol[0] : '';
 				$dataNew["precio"] = isset($datacol[1]) ? $datacol[1] : '';;
 				$dataNew["stock"] = isset($datacol[2]) ? $datacol[2] : '';
@@ -259,7 +266,7 @@ class  ProductoManager
 
 	private function validarTitulo($titulo)
 	{
-		if (!preg_match('/^\w+$/i', $titulo)) {
+		if (!preg_match('/^.+$/i', $titulo)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("El campo titulo es incorrecto.");
 			return false;
@@ -292,7 +299,7 @@ class  ProductoManager
 	}
 	private function validarMarca($marca)
 	{
-		if (!preg_match('/^\w+$/i', $marca)) {
+		if (!preg_match('/^.+$/i', $marca)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("El campo marca es incorrecto.");
 			return false;
@@ -381,7 +388,8 @@ class  ProductoManager
 	}
 	public function getListProducto()
 	{
-		return $this->productoDao->getListProducto();
+		$ret =  $this->productoDao->getListProducto();
+		return $ret;
 	}
 
 	private function existeId($id)
