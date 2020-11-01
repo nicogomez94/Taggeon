@@ -1,6 +1,14 @@
 $(document).ready(function() {
-  //  actualizarPantallaEditarUsuario();
 
+    //icono gif de carga
+    $(document).on({
+        ajaxStart: function(){
+            $("body").addClass("loading"); 
+        },
+        ajaxStop: function(){ 
+            $("body").removeClass("loading"); 
+        }    
+    });
     //***23/9 15:40 */
     /*funcion para bloquear los botones cuando no estan siendo cambiados*/
     $(".data-datos-editar input").focus(function(e){
@@ -419,36 +427,6 @@ $('#iniciar_sesion').submit(function (e) {
 
 /*FIN NICO*//*NICOOOO*//*NICOOOO*/
 
-/*funcion varias imagenes formulario subir*/
-// $(function() {
-//     var previewImg = function(input, insertarImgPreview) {
-
-//       if (input.files) {
-//       var cantidadArchivos = input.files.length;
-
-//          for (i = 0; i < cantidadArchivos; i++) {
-//             var reader = new FileReader();
-
-//             reader.onload = function(event) {
-//                $($.parseHTML('<img>')).attr('src', event.target.result).addClass("img-"+i).appendTo(insertarImgPreview);
-//                // console.log(newFileList)
-//             }
-//             reader.readAsDataURL(input.files[i]);
-         
-//          }
-         
-//          // var newFileList = Array.from(event.target.files);
-//          // newFileList.splice(1,1);
-
-//        }
-//     };
-
-//     $('#galeria-fotos').on('change', function() {
-//        previewImg(this, 'div.galeria');
-//     });
-
-// });
-
 
 /*FORMULARIO SUBIR PRODUCTO*/
 $('#producto-form').submit(function (e) {
@@ -471,6 +449,7 @@ $('#producto-form').submit(function (e) {
             if (data.status == 'ERROR'){
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
+                $("body").addClass("loading"); 
                 window.location.replace("/ampliar-producto.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
@@ -519,36 +498,25 @@ if(sizeCat>0){
     }
 }
 
-/***ampliar producto***/ 
-
 
 function correrAjaxImg(index,foto_prod_param,location){
     $.get('/app/producto.php' , {accion : "foto", foto : foto_prod_param})
     .done(function(data) {
-        // console.log(index)
-        // console.log(data)
-        // var jsond = JSON.parse(data);
         if(location == 'ampliarUsuario'){
-            console.log('ampliarUsuario')
-            console.log(index)
             if (data.status == 'ERROR'){
                 console.log(index)
-                $(".img-producto-container-"+index).html('<img class="img-producto" src="../../img/default.png" alt="">');
-                // console.log("success pero error --> ");													
+                $(".img-producto-container-"+index).html('<img class="img-producto" src="../../img/default.png" alt="">');												
             }else{
-                $(".img-producto-container-"+index).html('<img class="img-producto" src="'+data+'" alt="">');
-                // console.log(data);
+                $(".img-producto-container-"+index).html('<img class="img-producto" src="'+data+'" onerror="arreglarImg('+index+')" alt="">');
             }
         }else{
-            /*// console.log(index+"  "+foto_prod_param+"  "+location)*/
-            console.log('editarUsuario')
-            console.log(index)
-            console.log(foto_prod_param)
-            var fotos = foto_prod_param.split(",");
+            var html_editar = 
+            '<div class="remove" title="Haga click aqui para remover la foto" data-index="'+index+'"><i class="fa fa-times"></i></div>'+
+            '<img class="img-responsive" src="'+data+'">';
 
-            $("#new"+index).addClass('hidden');
-            $("#prev"+index).removeClass('hidden');
-            $("#prev"+index).html('<img class="img-responsive" src="'+data+'">');
+            $("#new_"+index).addClass('hidden');
+            $("#prev_"+index).removeClass('hidden');
+            $("#prev_"+index).html(html_editar);
         }
         
     })
@@ -559,44 +527,89 @@ function correrAjaxImg(index,foto_prod_param,location){
 }
 
 
+/***ampliar producto***/ 
 var sizeProductos = jsonData.productos.length;
 
 if(sizeProductos>0){
-    for(var i=0; i<sizeProductos; i++){
-        var nombre_prod = jsonData.productos[i].titulo;
-        var precio_prod = jsonData.productos[i].precio;
-        var id_prod = jsonData.productos[i].id;
-        var stock_prod = jsonData.productos[i].stock;
-        var foto_prod = jsonData.productos[i].foto;
+    if(window.location.pathname == '/ampliar-producto.html'){
+        for(var i=0; i<sizeProductos; i++){
+            var nombre_prod = jsonData.productos[i].titulo;
+            var precio_prod = jsonData.productos[i].precio;
+            var id_prod = jsonData.productos[i].id;
+            var stock_prod = jsonData.productos[i].stock;
+            var foto_prod = jsonData.productos[i].foto;
+    
+    
+            var listadoProducto = 
+                '<div class="row producto">'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"></div></div>'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">'+precio_prod+'</span></div>'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                    '<div class="acciones-producto acciones-producto-'+i+'">'+
+                        '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
+                        '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+                    '</div>'+
+                '</div>';
+    
+                correrAjaxImg(i,foto_prod,'ampliarUsuario');
+    
+            $("#listado-mis-productos").append(listadoProducto);
+    
+        }
+    }else if(window.location.pathname == '/editar-producto.html'){
+        for(var i=0; i<sizeProductos; i++){
 
-
-        var listadoProducto = 
-            '<div class="row producto">'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"></div></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">'+precio_prod+'</span></div>'+
-                '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-                '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-                '<div class="acciones-producto acciones-producto-'+i+'">'+
-                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
-                '</div>'+
-            '</div>';
-
-            correrAjaxImg(i,foto_prod,'ampliarUsuario');
-
-        $("#listado-mis-productos").append(listadoProducto);
-
+            var id_prod = jsonData.productos[i].id;
+            var nombre_prod = jsonData.productos[i].titulo;
+            var marca_prod = jsonData.productos[i].marca;
+            var precio_prod = jsonData.productos[i].precio;
+            var envio_prod = jsonData.productos[i].envio;
+            var garantia_prod = jsonData.productos[i].garantia;
+            var descr_prod = jsonData.productos[i].descr_producto;
+            var foto_prod_editar = jsonData.productos[i].foto;
+            var color_prod = jsonData.productos[i].color;
+            var nombre_cat = jsonData.categoria[i].nombre;
+            var stock_prod = jsonData.productos[i].stock;
+            var id_cat = jsonData.categoria[i].id;
+            var id_cat_rubro = jsonData.rubro[i].id_categoria;
+    
+            var fotosArray = foto_prod_editar.split(",");
+            var fotosArrayIndex = fotosArray[i];
+    
+            console.log(fotosArrayIndex)
+            correrAjaxImg(i, fotosArrayIndex,'editarUsuario');
+            $("#titulo-producto").val(nombre_prod);
+            $("#precio-producto").val(precio_prod);
+            $("#stock-producto").val(stock_prod);
+            $("#color").val(color_prod);
+            $("#descr-producto").val(descr_prod);
+            $("#marca-producto").val(marca_prod);
+            $("#envio-producto").val(envio_prod);
+            $("#garantia-producto").val(garantia_prod);
+            
+    
+            var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
+            $("#categoria-producto").append(html_cat);
+    
+            var sizeRubro = jsonData.rubro.length;
+            
+            if(sizeRubro>0 && id_cat==id_cat_rubro){
+                // console.log("entro al if")
+                for(var i=0; i<sizeRubro; i++){
+                    var nombre_rubro = jsonData.rubro[i].nombre;
+                    var id_rubro = jsonData.rubro[i].id;
+    
+                    var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
+                    $("#rubro-producto").append(html_rubro);
+                }
+            }
+    
+        }
     }
+    
 }
-
-
-
-//get image
-// $(function(){
-
-
-
 
 /**apertura y cierre las opciones*/ 
 $(function(){
@@ -614,19 +627,10 @@ $(function(){
         $(".acciones-producto").hide();
     });
 });
-/*
 
-function pasarTitle(titleParam){
-    $(document).click(function (e) {
-        console.log("entro a 'body'")
-        e.stopPropagation();
-        $(".acciones-producto.acciones-producto"+titleParam).hide();
-    });
-}*/
     
 
 /*********eliminar producto******/
-
 $(".eliminar-producto").on("click", function() {  
 
     var $this = $(this);
@@ -658,12 +662,16 @@ $(".eliminar-producto").on("click", function() {
 });
 
 
+
+
 /*filtro/buscador por titulo*/
 $("#buscador-titulo").click(function(){
 
-    var value = $("#buscador-titulo-input").val().toLowerCase();
+    var value = $("#buscador-titulo-input").val();
     var cant_elem= $(".producto:not('.header-productos')").length;//sin header-prod
     var cant_json = jsonData.productos.length;
+
+    console.log(cant_elem)
 
     if(value != ''){
 
@@ -684,6 +692,29 @@ $("#buscador-titulo").click(function(){
     
 });
 
+/*cruz para limpiar buscador*/
+$(function(){
+    $(".limpiar-buscador").hide();
+
+    var buscador = $("#buscador-titulo-input");
+    var limpiar = $(".limpiar-buscador");
+
+    buscador.keyup(function(){
+        limpiar.show();
+
+        if(buscador.val()==""){
+            limpiar.hide();
+        }
+    });
+
+    limpiar.click(function(){
+        $(".titulo-producto").parent().parent().show();
+        limpiar.hide();
+        buscador.val("");
+    });
+});
+
+
 /*IMPORTAR CSv**/
 $("#subir-csv").on('submit', function() {
 
@@ -700,14 +731,22 @@ $("#subir-csv").on('submit', function() {
             url: '/app/producto.php',
             data: dataImport,
             dataType: "json",
+            async: true,//por la warning
             success: function(data, textStatus, jQxhr ) {
                 if (data.status == 'REDIRECT'){
                     window.location.replace(data.mensaje);														
                 }else if(data.status == 'OK'){
-                    alert (data.mensaje);
-                    // window.location.replace("/ampliar-usuario.html");
+                    var html_result = '<div id="result-importar-ok">'+data.mensaje+'</div>';
+                    $("#result-importar").html(html_result);
+                    $(".fa-times-circle").click(function(){
+                        window.location.replace("/ampliar-producto.html");	
+                    });
                 }else{
-                    alert (data.mensaje);
+                    var html_result = '<div id="result-importar-alt">'+data.mensaje+'</div>';
+                    $("#result-importar").html(html_result);
+                    $(".fa-times-circle").click(function(){
+                        window.location.replace("/ampliar-producto.html");	
+                    });
                 }
 
             },
@@ -722,62 +761,11 @@ $("#subir-csv").on('submit', function() {
 });
 
 
-/**FUNC PARA EDITAR/MODIFICAR PRODUCTO*/ 
-var test12 = jsonData.productos.length;
-
-if(test12>0){
-    for(var i=0; i<test12; i++){
-
-        var id_prod = jsonData.productos[i].id;
-        var nombre_prod = jsonData.productos[i].titulo;
-        var marca_prod = jsonData.productos[i].marca;
-        var precio_prod = jsonData.productos[i].precio;
-        var envio_prod = jsonData.productos[i].envio;
-        var garantia_prod = jsonData.productos[i].garantia;
-        var descr_prod = jsonData.productos[i].descr_producto;
-        var foto_prod_editar = jsonData.productos[i].foto;
-        // console.log(foto_prod_editar)
-        var nombre_cat = jsonData.categoria[i].nombre;
-        var stock_prod = jsonData.productos[i].stock;
-        var id_cat = jsonData.categoria[i].id;
-        var id_cat_rubro = jsonData.rubro[i].id_categoria;
-        correrAjaxImg(i,foto_prod_editar,'editarUsuario');
-        $("#titulo-producto").val(nombre_prod);
-        $("#precio-producto").val(precio_prod);
-        $("#stock-producto").val(stock_prod);
-        $("#descr-producto").val(descr_prod);
-        $("#marca-producto").val(marca_prod);
-        $("#envio-producto").val(envio_prod);
-        $("#garantia-producto").val(garantia_prod);
-
-        // console.log("editar i--> "+i);
-        //fotos
-        
-
-        var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
-        $("#categoria-producto").append(html_cat);
-
-        var sizeRubro = jsonData.rubro.length;
-        
-        if(sizeRubro>0 && id_cat==id_cat_rubro){
-            // console.log("entro al if")
-            for(var i=0; i<sizeRubro; i++){
-                var nombre_rubro = jsonData.rubro[i].nombre;
-                var id_rubro = jsonData.rubro[i].id;
-
-                var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
-                $("#rubro-producto").append(html_rubro);
-            }
-        }
-
-    }
-}
 
 
-
-
-
-
+/***fin document.ready***//***fin document.ready***/
+/***fin document.ready***//***fin document.ready***/
+/***fin document.ready***//***fin document.ready***/
 });
 
 
@@ -814,7 +802,6 @@ if (slider){
         var x = e.pageX - slider.offsetLeft;
         var walk = (x - startX) * 3; //scroll-fast
         slider.scrollLeft = scrollLeft - walk;
-        // console.log(walk);
     });
 }
     
@@ -854,14 +841,12 @@ function sortProducto(paramTitulo, paramSort){
     var order = $("."+paramSort).data('order');
 
     if(order == "asc"){
-        // console.log("adentro order asc")
         var lista = $("."+paramTitulo).get();
         lista.reverse(ordenar);
 
         $("."+paramSort).data('order', "desc");
         $(".icon-sort").html('<i class="fas fa-sort-down"></i>');
     }else{
-        // console.log("adentro else")
         var lista = $("."+paramTitulo).get();
         lista.sort(ordenar);
 
@@ -875,7 +860,9 @@ function sortProducto(paramTitulo, paramSort){
     }
 }
 
-
+function arreglarImg(indexParam){
+    $(".img-producto-container-"+indexParam).children().attr("src","../../img/default.png");
+}
       
 
 

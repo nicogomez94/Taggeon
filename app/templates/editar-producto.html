@@ -3,8 +3,8 @@
       <h1>Editar Producto</h1>
       <hr>
       <form id="producto-form">
-         <input type="hidden" name="accion" value="editar">
-	 <input type="hidden" name="id" value="{id}">
+         <input type="hidden" name="accion" value="editar" autocomplete="on">
+	      <input type="hidden" name="id" value="{id}" autocomplete="on">
          <div id="col-foto-upload">
                <!-- <p class="label-descr">Seleccione al menos una foto para el producto.</p> -->
                <div class="row">
@@ -17,7 +17,7 @@
                <div class="row">
                   <div class="col-lg-12">
                      <div class="group">      
-                        <input type="text" name="titulo" id="titulo-producto" required>
+                        <input type="text" name="titulo" id="titulo-producto" required autocomplete="on">
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="label-text-subir-producto">Nombre del producto</label>
@@ -27,7 +27,7 @@
                <div class="row">
                   <div class="col-lg-3">
                      <div class="group">      
-                        <input type="number" name="precio" id="precio-producto" required>
+                        <input type="number" name="precio" id="precio-producto" required autocomplete="on">
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="label-text-subir-producto">Precio</label>
@@ -37,7 +37,7 @@
                <div class="row">
                   <div class="col-lg-3">
                      <div class="group">      
-                        <input type="number" name="stock" id="stock-producto" required>
+                        <input type="number" name="stock" id="stock-producto" required autocomplete="on">
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="label-text-subir-producto">Stock</label>
@@ -47,7 +47,7 @@
                <div class="row">
                   <div class="col-lg-12">
                      <p class="label-descr">Descripcion del producto</p>
-                     <textarea type="text" name="descr_producto" id="descr-producto" required></textarea>
+                     <textarea type="text" name="descr_producto" id="descr-producto" required autocomplete="on"></textarea>
                   </div>
                </div>
                <div class="row">
@@ -68,7 +68,7 @@
                   <div class="row">
                      <div class="col-lg-6">
                         <div class="group">      
-                           <input type="text" name="marca" id="marca-producto" required>
+                           <input type="text" name="marca" id="marca-producto" required autocomplete="on">
                            <span class="highlight"></span>
                            <span class="bar"></span>
                            <label class="label-text-subir-producto">Marca</label>
@@ -119,7 +119,6 @@
 
    <script>
       var jsonData = {json};
-      // var jsonData = {"usuario":"pepe86@gmail.com","nombre":"Nicolas","apellido":"Gomez","contacto":"pepe86@gmail.com","categoria":[{"0":"1","1":"test","id":"1","nombre":"test"}],"rubro":[{"0":"1","1":"test","2":"1","id":"1","nombre":"test","id_categoria":"1"}],"productos":[{"0":"4","1":"productoi1","2":"1","3":"ADIDAS","4":"3123","5":"1","6":"0","7":"testetsetetsteet","8":"color2","9":"371","10":null,"11":"2020-10-21 03:33:45","12":null,"13":null,"id":"4","titulo":"productoi1","id_rubro":"1","marca":"ADIDAS","precio":"3123","envio":"1","garantia":"0","descr_producto":"testetsetetsteet","color":"color2","usuario_alta":"371","usuario_editar":null,"fecha_alta":"2020-10-21 03:33:45","fecha_update":null,"eliminar":null}]};
       
    </script>
    
@@ -130,7 +129,7 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=271020-1600"></script>
+   <script src="js/func.js?time=011120-0038"></script>
    <!-- script para la seleccion de fotos -->
    <script>
       $(document).ready(function(){
