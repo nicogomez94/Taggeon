@@ -740,8 +740,6 @@ $("#subir-csv").on('submit', function() {
     return false;
 });
 
-/**/ */
-$()
 
 
 /***fin document.ready***//***fin document.ready***/
