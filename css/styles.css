@@ -556,9 +556,10 @@ form div{
     text-align: left;
 }
 .limpiar-buscador{
-    cursor: pointer;
-    color: #999;
+    vertical-align: text-bottom;
+    margin-left: -30px;
 }
+
 
 
 
@@ -1247,3 +1248,40 @@ input:focus ~ .highlight {
    .link-class:hover{
     background-color:#f1f1f1;
    } */
+
+
+   
+/**PUBLICACION***********/
+.contenedor-mis-public{
+    margin-top: -40px;
+}
+.publicacion {
+    width: 170px;
+    border-radius: 10px;
+    margin: 20px;
+    cursor: pointer;
+    display: inline-block;
+    /* box-shadow: 1px 1px 1px grey; */
+}
+.imagen-public img {
+    /* max-width: 100%; */
+    width: 200px;
+    height: 120px;
+    border-radius: 10px;
+    /* width: 100%; */
+    object-fit: cover;
+}
+.titulo-public, .fecha-public{
+    padding-left: 5px;
+}
+.titulo-public{
+    font-weight: 500;
+    padding-top: 5px;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+}
+.fecha-public{
+    color: #999;
+    font-size: smaller;
+}

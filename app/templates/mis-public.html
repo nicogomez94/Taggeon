@@ -35,34 +35,10 @@
 <!-- PRODUCTO -->
 
 
-<div class="container contenedor-productos">
-   <h1>Mis Productos</h1>
-   <hr>
+<div class="container contenedor-mis-public">
+
    <div class="filtros">
-      <div id="edit-btn">
-         <div class="botonera-editar">
-            <span><a href="#">Importar Productos</a></span>
-         </div>
-      </div>
-      <div class="overlay">
-         <div class="lightBox">
-            <div>
-               <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-               <h3>Importar Archivo CSV</h3>
-               <hr>
-               <form id="subir-csv">
-                  <input type="file" id="file-csv" name="file-csv"><br><br>
-                  <div>
-                     <button type="submit" class="btn btn-warning">Importar Productos</button>
-                  </div>
-               </form>
-               <hr>
-               <div id="result-importar"></div>
-            </div>
-         </div>
-      </div>
-      <hr>
-      <a href="/formu-subir.html" class="btn btn-warning">Nuevo producto</a>
+      <a href="/formu-subir.html" class="btn btn-warning">Ordenar</a>
       <span>
          <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
          <i class="fas fa-times-circle limpiar-buscador"></i>
@@ -70,43 +46,46 @@
       
       <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
    </div>
-      <div id="listado-mis-productos" style="margin-top: 50px">
-         <div class="header-productos producto row">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
-               <!-- <span class="titulo-header-producto">Imagen</span> -->
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-               <span class="titulo-header-producto">
-                  <span class="fa-stack icon-sort" style="width: 1em;vertical-align: sub;">
-                     <i class="fas fa-sort-down"></i>
-                  </span>
-                  <span class="sort-nombre" data-order="desc" onclick="sortProducto('titulo-producto','sort-nombre')">Nombre</span>
-               </span>
-            </div>
 
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <span class="titulo-header-producto">
-                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
-                     <i class="fas fa-sort-down"></i>
-                  </span>
-                  <span class="sort-precio" data-order="desc" onclick="sortProducto('precio-producto','sort-precio')">Precio</span>
-               </span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <span class="titulo-header-producto">
-                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
-                     <i class="fas fa-sort-down"></i>
-                  </span>
-                  <span class="sort-stock" data-order="desc" onclick="sortProducto('stock-producto','sort-stock')">Stock</span>
-               </span>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
-               <span class="titulo-header-producto">
-                  <!-- Opciones -->
-               </span>
-            </div>
-         </div>
-      </div>
+   <!--  -->
+   <hr><br>
+
+   <div class="publicacion">
+      <div class="imagen-public"><img src="../../img/furrr.jpg" alt="test"></div>
+      <div class="titulo-public">titulomuylargooooooooooooooooooooooooooooooooo</div>
+      <div class="fecha-public">17 ago.</div>
+   </div>
+   <div class="publicacion">
+      <div class="imagen-public"><img src="../../img/arrrttee.jpg" alt="test"></div>
+      <div class="titulo-public">publicacion de prueba</div>
+      <div class="fecha-public">17 ago.</div>
+   </div>
+   <div class="publicacion">
+      <div class="imagen-public"><img src="../../img/dfgd.JPG" alt="test"></div>
+      <div class="titulo-public">publicacion de prueba</div>
+      <div class="fecha-public">17 ago.</div>
+   </div>
+   <div class="publicacion">
+      <div class="imagen-public"><img src="../../img/moda.jpg" alt="test"></div>
+      <div class="titulo-public">publicacion de prueba</div>
+      <div class="fecha-public">17 ago.</div>
+   </div>
+   <div class="publicacion">
+      <div class="imagen-public"><img src="../../img/arrrttee.jpg" alt="test"></div>
+      <div class="titulo-public">publicacion de prueba</div>
+      <div class="fecha-public">17 ago.</div>
+   </div>
+   <div class="publicacion">
+      <div class="imagen-public"><img src="../../img/dfgd.JPG" alt="test"></div>
+      <div class="titulo-public">publicacion de prueba</div>
+      <div class="fecha-public">17 ago.</div>
+   </div>
+   <div class="publicacion">
+      <div class="imagen-public"><img src="../../img/moda.jpg" alt="test"></div>
+      <div class="titulo-public">publicacion de prueba</div>
+      <div class="fecha-public">17 ago.</div>
+   </div>
+      
 </div>
 <!-- <div id="info-user" class="container">
    <div id="icons-upper-perfil">
