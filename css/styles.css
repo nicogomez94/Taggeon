@@ -1285,3 +1285,48 @@ input:focus ~ .highlight {
     color: #999;
     font-size: smaller;
 }
+
+
+/********ampliar*******/
+.public-ampliar{
+    /* border: 1px solid #b9b9b9; */
+    box-shadow: 3px 3px 0px 0px #d0d0d0;
+    border: 1px solid #ececec;
+    border-right: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: #f4f5ff;
+}
+.fixed-col-der{
+    position: fixed !Important;
+    /* left: 880px; */
+    top: 130px;
+    width: 30%;
+    padding: 20px;
+}
+/* .public-ampliar div{
+    display: inline-block;
+} */
+.header-public, .info-public{
+    padding: 10px;
+}
+.info-public{
+    font-size: 1.5em;
+}
+.title-public{
+    margin-left: 5px;
+}
+.img-perfil-public img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.bodyimg-public img{
+    max-width: 100%;
+}
+.opciones-public{
+    float: right;
+    cursor: pointer;
+}
