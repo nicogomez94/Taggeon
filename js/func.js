@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
     //icono gif de carga
     $(document).on({
         ajaxStart: function(){
@@ -9,7 +11,6 @@ $(document).ready(function() {
             $("body").removeClass("loading"); 
         }    
     });
-    //***23/9 15:40 */
     /*funcion para bloquear los botones cuando no estan siendo cambiados*/
     $(".data-datos-editar input").focus(function(e){
         e.preventDefault();
@@ -38,6 +39,15 @@ $(document).ready(function() {
     $("#drop-bottom").click(function(){
         $("#dropdown-user-menu-bottom").toggle();
     });
+
+    /*slick carrusel productos en ampliar publicaciones*/
+    $('.items-carrusel').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            speed: 100
+      });
 
 /*riki*/
 $( "#reset-form-editar" ).click(function() {
@@ -745,6 +755,12 @@ $("#subir-csv").on('submit', function() {
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
+/*test slick*/
+
+
+
+      
+
 });
 
 

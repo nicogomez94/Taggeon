@@ -1307,11 +1307,12 @@ input:focus ~ .highlight {
 /* .public-ampliar div{
     display: inline-block;
 } */
-.header-public, .info-public{
+.header-public{
     padding: 10px;
 }
 .info-public{
     font-size: 1.5em;
+    padding: 15px;
 }
 .title-public{
     margin-left: 5px;
@@ -1323,10 +1324,83 @@ input:focus ~ .highlight {
     object-fit: cover;
     cursor: pointer;
 }
-.bodyimg-public img{
+.bodyimg-public-container img{
     max-width: 100%;
 }
 .opciones-public{
     float: right;
     cursor: pointer;
 }
+.info-titulo-public{
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.info-tipo-public{
+    font-size: 0.6em;
+}
+.info-descr-public{
+    font-size: 0.6em;
+    color: grey;
+}
+.tag-container{
+    position: absolute;
+    left: 360px;
+    top: 400px;/*demo*/
+}
+.tagg{
+    font-size: 1.5em;
+    position: absolute;
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    animation-name: tag-animacion;
+    animation-duration: 1s;
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: .2s ease-out;
+}
+.tagg:hover{
+    box-shadow: 0 0 5px 0px white;
+    background-color: rgba(201, 201, 201,.3);
+}
+.social-public{
+    float: right;
+}
+.social-public span{
+    cursor: pointer;
+}
+.productos-titulo-public{
+    font-size: 0.3em;
+}
+
+
+
+
+/*animaciones*/
+@keyframes tag-animacion {
+    0%   {
+        transform: rotate(0deg);
+        transform-origin: left top;
+        background-color: rgba(139, 139, 139,.7);
+    }
+    25%  {
+        transform: rotate(8deg);
+        transform-origin: left top;
+        background-color: rgba(201, 201, 201,.5);
+    }
+    50%  {
+        transform: rotate(0deg);
+        transform-origin: left top;
+        background-color: rgba(201, 201, 201,.2);
+    }
+    75%  {
+        transform: rotate(8deg);
+        transform-origin: left top;
+        background-color: transparent;
+    }
+    100% {
+        transform: initial;
+        transform-origin: left top;
+    }
+  }
