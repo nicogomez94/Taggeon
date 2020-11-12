@@ -43,10 +43,8 @@ $(document).ready(function() {
     /*slick carrusel productos en ampliar publicaciones*/
     $('.items-carrusel').slick({
             infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            speed: 100
+            slidesToShow: 3,
+            slidesToScroll: 3,
       });
 
 /*riki*/

@@ -10,6 +10,89 @@
 <!-- PRODUCTO -->
 
 
+
+
+
+<!-- MODALES -->
+<div class="modal fade" id="modal-producto-0" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
+         <div class="modal-body">
+            <div class="row">
+               <div class="col-lg-7">
+                  <div><img style="width: 100%;" src="../../img/arrrrte.jpg" alt=""></div>
+                  <hr>
+                  <div>
+                     <table class="tg" style="table-layout: fixed; width: 282px">
+                        <colgroup>
+                        <col style="width: 153px">
+                        <col style="width: 129px">
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <td class="tg-9f3l">ID Producto</td>
+                            <td class="tg-wo29">121212</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-9f3l">Marca</td>
+                            <td class="tg-wo29">Adidas</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-9f3l">Color</td>
+                            <td class="tg-wo29">Azul</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-9f3l">Categoria</td>
+                            <td class="tg-wo29">Arte</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-9f3l">Rubro</td>
+                            <td class="tg-z6p2">Arte</td>
+                          </tr>
+                        </tbody>
+                        </table>
+                  </div></div>
+               <div class="col-lg-5 col-datos-producto">
+                  <div>
+                     <h2>Obra de arte</h2>
+                     <p style="font-size: 0.8em; color: grey; font-style: italic">Por: titulo</p>
+                  </div>
+                  <hr>
+                  <div>
+                     <div class="precio-producto-modal"><span>$42000</span></div>
+                     <div class="shipment-modal-producto">
+                        <i class="fas fa-truck-loading"></i> Shipment dentro de las 5 dias habiles
+                     </div>
+                     <hr>
+                     <div class="stock-boton-modal">
+                        <span>
+                           Cantidad&nbsp;
+                           <select name="" id="">
+                              <option value="1">1</option>
+                           </select>
+                        </span>&nbsp;
+                        <span><a href="#" class="btn btn-warning">Añadir a Carrito</a></span>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="descripcion-modal-producto">
+                     <strong>Descripcion:</strong> 
+                     <div>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quos et, totam porro alias maxime reprehenderit nam laborum corrupti. Vero deleniti minima provident architecto quos, dignissimos delectus laborum saepe. Et.
+                     </div>
+                  </div>
+                  <hr>
+                  
+                  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- MODALES -->
+
 <div class="container contenedor-ampliar-public">
 
    <div class="container">
@@ -27,7 +110,7 @@
                   <div class="bodyimg-public-container">
                      <div><img src="../../img/arrrrte.jpg" alt=""></div>
                      <div class="tag-container">
-                        <div class="tagg"><span><i class="fas fa-tags"></i></span></div>
+                        <div class="tagg"><span><i data-toggle="modal" data-target="#modal-producto-0" class="fas fa-tags"></i></span></div>
                      </div>
                   </div>               
                   <div class="info-public">
@@ -43,10 +126,22 @@
                      </div>
                      <hr>
                      <div class="productos-public">
-                        <div class="productos-titulo-public">Productos en esta publicacion:</div>
-                        <div class="items-carrusel">
-                           <div><img src="../../img/furrr.jpg" width="100" height="100" alt=""></div>
-                         </div>                               
+                        <div class="productos-titulo-public">Productos en esta publicacion:</div><br>
+                        <!-- <div style="background-color: blueviolet; width: 50%;">
+                           <div class="items-carrusel">
+                              <div><img src="../../img/arrrrte.jpg" width="100" height="100" alt=""></div>
+                              <div><img src="../../img/furniposta.jpg" width="100" height="100" alt=""></div>
+                              <div><img src="../../img/furrri.jpg" width="100" height="100" alt=""></div>
+                              <div><img src="../../img/gaming.jpg" width="100" height="100" alt=""></div>
+                           </div>
+                        </div>                                -->
+                        <div>
+                           <img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">
+                           <img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">
+                           <img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">
+                           <img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">
+                        </div>
+
                         <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                            <div class="carousel-inner">
                              <div class="carousel-item active">
@@ -83,7 +178,29 @@
                </div>
                <hr>
                <div>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, optio repudiandae sint nulla suscipit tenetur quia fugit reiciendis repellat placeat esse, voluptatem repellendus illo nisi aut quos consectetur. Velit, ut?
+                  <h5>Sugerencias para ti</h5>
+                  <br>
+                  <div class="media media-sugeridos">
+                     <img class="mr-3" src="../../img/furrr.jpg" alt="Generic placeholder image">
+                     <div class="media-body">
+                       <h6 class="mt-0">Nombre Prueba</h6>
+                       <span>Sugerido por yyy</span>
+                     </div>
+                   </div>
+                   <div class="media media-sugeridos">
+                     <img class="mr-3" src="../../img/furrr.jpg" alt="Generic placeholder image">
+                     <div class="media-body">
+                       <h6 class="mt-0">Nombre Prueba</h6>
+                       <span>Sugerido por yyy</span>
+                     </div>
+                   </div>
+                   <div class="media media-sugeridos">
+                     <img class="mr-3" src="../../img/furrr.jpg" alt="Generic placeholder image">
+                     <div class="media-body">
+                       <h6 class="mt-0">Nombre Prueba</h6>
+                       <span>Sugerido por yyy</span>
+                     </div>
+                   </div>
                </div>
             </div>
          </div>
@@ -133,16 +250,16 @@
 <!-- -->
 
 <script>
-   var jsonData = {json};
+   // var jsonData = {json};
 </script>
 
 
-
    <script src="js/jquery-3.5.1.js"></script>
+   <script type="text/javascript" src="../../js/slick/slick/slick.min.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script type="text/javascript" src="../../js/slick/slick/slick.min.js"></script>
    <script src="js/func.js?time=091120-1404"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-
+   
+    
 </body></html>
