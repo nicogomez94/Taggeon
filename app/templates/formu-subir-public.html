@@ -1,0 +1,82 @@
+
+   <div class="container" id="contenedor-form-subir">
+      <h1>Subir Publicacion</h1>
+      <hr>
+      <form id="publicacion-form">
+         <input type="hidden" name="accion" value="alta">
+         <div id="col-foto-upload">
+               <p class="label-descr">Seleccione al menos una foto para el publicacion.</p>
+               <div class="row">
+                  <div id="contenedor-subir-foto" class="img-subir">
+                     <!-- <img id="img-subir" alt="imagen" width="100" height="100" /> -->
+                     <!-- <span id="text-inside-subir"><input multiple type="file" id="galeria-fotos"></span> -->
+                     <div id="uploads"><!-- Upload Content --></div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="group">      
+                        <input type="text" name="titulo" id="titulo-publicacion" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="label-text-subir-publicacion">Nombre del publicacion</label>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12">
+                     <p class="label-descr">Descripcion de la publicacion</p>
+                     <textarea type="text" name="descr_publicacion" id="descr-publicacion" required></textarea>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-3">
+                     <select name="color" id="color">
+                        <option value="" selected disabled hidden required>Elija una categoria</option>
+                        <option value="color-negro">-</option>
+                     </select>
+                  </div>
+               </div>
+               <br><hr>
+               
+            <div>
+               <div class="row">
+                  <div class="col-lg-4">
+                     <br>
+                     <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+
+   <script>
+      var jsonData = {json};
+   </script>
+   
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+   <script src="/js/uploadHBR.min.js"></script>
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+   <script src="js/func.js?time=011120-0119"></script>
+   <!-- script para la seleccion de fotos -->
+   <script>
+      $(document).ready(function(){
+         uploadHBR.init({
+             "target": "#uploads",
+             "textNew": "A&ntilde;adir",
+             "textTitle": "Haga click o draguee su imagen",
+             "textTitleRemove": "Haga click para remover imagen"
+         });
+         $('#reset').click(function () {
+             uploadHBR.reset('#uploads');
+         });
+      });
+   </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>
