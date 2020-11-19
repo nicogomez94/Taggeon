@@ -40,6 +40,16 @@ $(document).ready(function() {
         $("#dropdown-user-menu-bottom").toggle();
     });
 
+    /*PUBLICACIONES*/
+    /*eliminar foto img-pins*/
+    $("#eliminar-img-flotante").click(function(){
+        $("#imagen-pins").val('');
+        $("#eliminar-img-flotante").hide();
+        $("#img-subir-pins").show();
+        $("#output-imgpins").attr("src","");
+        $("#output-imgpins").hide();
+    });
+
     /*slick carrusel productos en ampliar publicaciones*/
     // $('.items-carrusel').slick({
     //         infinite: true,
@@ -749,13 +759,9 @@ $("#subir-csv").on('submit', function() {
 });
 
 
-
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
-/*test slick*/
-
-
 
       
 
@@ -887,8 +893,11 @@ function correrAjaxImg(index,foto_prod_param,location){
 function cargarImgPines(event){
     var reader = new FileReader();
     reader.onload = function(){
-        var output = document.getElementById('output');
+        var output = document.getElementById('output-imgpins');
         output.src = reader.result;
+        $("#img-subir-pins").hide();
+        $("#output-imgpins").show();
+        $("#eliminar-img-flotante").show();
     };
     reader.readAsDataURL(event.target.files[0]);
 }
