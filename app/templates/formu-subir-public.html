@@ -7,10 +7,11 @@
          <div id="col-foto-upload">
                <p class="label-descr">Seleccione al menos una foto para el publicacion.</p>
                <div class="row">
-                  <div id="contenedor-subir-foto" class="img-subir">
+                  <div id="contenedor-subir-foto" class="img-subir img-subir-pins">
                      <!-- <img id="img-subir" alt="imagen" width="100" height="100" /> -->
                      <!-- <span id="text-inside-subir"><input multiple type="file" id="galeria-fotos"></span> -->
-                     <div id="uploads"><!-- Upload Content --></div>
+                     <input type="file" name="imagen-pins" id="imagen-pins" onchange="cargarImgPines(event)">
+                     <img id="output"/>
                   </div>
                </div>
                <div class="row">
@@ -52,7 +53,7 @@
    </div>
 
    <script>
-      var jsonData = {json};
+      // var jsonData = {json};
    </script>
    
 

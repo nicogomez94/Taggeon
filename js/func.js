@@ -41,11 +41,11 @@ $(document).ready(function() {
     });
 
     /*slick carrusel productos en ampliar publicaciones*/
-    $('.items-carrusel').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-      });
+    // $('.items-carrusel').slick({
+    //         infinite: true,
+    //         slidesToShow: 3,
+    //         slidesToScroll: 3,
+    //   });
 
 /*riki*/
 $( "#reset-form-editar" ).click(function() {
@@ -884,6 +884,13 @@ function correrAjaxImg(index,foto_prod_param,location){
     }); 
 }
 
-
+function cargarImgPines(event){
+    var reader = new FileReader();
+    reader.onload = function(){
+        var output = document.getElementById('output');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
 
 
