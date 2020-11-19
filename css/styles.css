@@ -1524,3 +1524,9 @@ input:focus ~ .highlight {
     box-shadow: 0 0 5px rgb(121, 121, 121);
     color: #848484;
 }
+.anadir-prod-img-container{
+    width: 90vw;
+}
+#imagen-productos-pin{
+    width: 100%;
+}

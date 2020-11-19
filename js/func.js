@@ -427,6 +427,20 @@ $('#iniciar_sesion').submit(function (e) {
         });
     });
 
+    /**modal casero editar para ediat foto con pins/productos*/
+    $('#anadir-productos-btn').click(function(e) {
+        e.preventDefault();
+
+        var src_output = $("#output-imgpins").attr("src");
+        $("#imagen-productos-pin").attr("src",src_output);
+
+        $(".overlay").show();
+    
+        $('#cerrar-light').click(function() {
+          $('.overlay').css("display", "none");
+        });
+    });
+
 
     /*funciones para que se cierre el otro modal atras del otro*/
     $("#recuperaPass").on('show.bs.modal', function (e) {

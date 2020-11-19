@@ -1,11 +1,22 @@
 
+   <div class="modal fade show" id="modal-pin" tabindex="-1" role="dialog" aria-labelledby="" aria-modal="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
+				<div class="modal-body">
+               <h1>test</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+   
    <div class="container" id="contenedor-form-subir">
       <h1>Subir Publicacion</h1>
       <hr>
       <form id="publicacion-form">
          <input type="hidden" name="accion" value="alta">
          <div id="col-foto-upload">
-               <p class="label-descr">Seleccione al menos una foto para el publicacion.</p>
+               <!-- <p class="label-descr">Seleccione al menos una foto para el publicacion.</p> -->
                <div class="row">
                   <div id="img-subir-pins" class="img-subir">
                      <div id="mensaje-flotante-imgsp">
@@ -18,6 +29,22 @@
                      <img id="output-imgpins"/>
                      <div id="eliminar-img-flotante">
                         <i class="fas fa-trash-alt"></i>
+                     </div>
+                     <div class="anadir-productos">
+                        <hr>
+                        <a href="#" id="anadir-productos-btn" data-toggle="modal" data-target="modal-pin" class="btn btn-warning">Añadir productos</a>
+                        <div class="overlay">
+                           <div class="lightBox">
+                              <div class="anadir-prod-img-container">
+                                 <p>Seleccione una seccion de la imagen para añadir un pin</p>
+                                 <hr>
+                                 <img id="imagen-productos-pin" src="">
+                                 <hr>
+                                 <a href="" class="btn btn-warning">Limpiar Pines</a>
+                                 <a href="" class="btn btn-success">Guardar Pines</a>
+                              </div>
+                           </div>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -58,6 +85,9 @@
          </div>
       </form>
    </div>
+   
+
+
 
    <script>
       // var jsonData = {json};
