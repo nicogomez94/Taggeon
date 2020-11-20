@@ -10,6 +10,8 @@
 		</div>
 	</div>
    
+<div class="overlay-prod"></div>
+
    <div class="container" id="contenedor-form-subir">
       <h1>Subir Publicacion</h1>
       <hr>
@@ -26,19 +28,21 @@
                      <input type="file" name="imagen-pins" id="imagen-pins" onchange="cargarImgPines(event)">
                   </div>
                   <div id="output-container">
-                     <img id="output-imgpins"/>
+                     <!--  -->
+                     <div id="map"></div>
+                     <!--  -->
                      <div id="eliminar-img-flotante">
                         <i class="fas fa-trash-alt"></i>
                      </div>
                      <div class="anadir-productos">
                         <hr>
-                        <a href="#" id="anadir-productos-btn" data-toggle="modal" data-target="modal-pin" class="btn btn-warning">Añadir productos</a>
+                        <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
                         <div class="overlay">
                            <div class="lightBox">
                               <div class="anadir-prod-img-container">
                                  <p>Seleccione una seccion de la imagen para añadir un pin</p>
                                  <hr>
-                                 <img id="imagen-productos-pin" src="">
+                                 <div id="map"></div>
                                  <hr>
                                  <a href="" class="btn btn-warning">Limpiar Pines</a>
                                  <a href="" class="btn btn-success">Guardar Pines</a>
@@ -101,19 +105,9 @@
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=011120-0119"></script>
    <!-- script para la seleccion de fotos -->
-   <script>
-      $(document).ready(function(){
-         uploadHBR.init({
-             "target": "#uploads",
-             "textNew": "A&ntilde;adir",
-             "textTitle": "Haga click o draguee su imagen",
-             "textTitleRemove": "Haga click para remover imagen"
-         });
-         $('#reset').click(function () {
-             uploadHBR.reset('#uploads');
-         });
-      });
-   </script>
+   
+   <!--  -->
+      <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
+      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-
 </body></html>

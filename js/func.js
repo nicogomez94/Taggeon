@@ -431,14 +431,31 @@ $('#iniciar_sesion').submit(function (e) {
     $('#anadir-productos-btn').click(function(e) {
         e.preventDefault();
 
-        var src_output = $("#output-imgpins").attr("src");
-        $("#imagen-productos-pin").attr("src",src_output);
+        // var src_output = $("#output-imgpins").attr("src");
+      /*  $("#imagen-productos-pin").attr("src",src_output);*/
 
-        $(".overlay").show();
+        $(".overlay-prod").show();
+
+            $(".overlay-prod").show();
+            // $("#output-imgpins").hide();
+            
+            // var imgbase64 = $("#map").css("background-image");
+            // // 
+            // // imgbase64.split('url("').pop();
+            // imgbase64.substring('url("'.length)
+            // console.log(imgbase64)
+            
+            $('#map').dropPin('dropMulti',{
+               fixedHeight:413,
+               fixedWidth:700,
+               cursor: 'crosshair',
+               pinclass: 'qtipinfo',
+               pin: '../../img/1248820.svg'
+            });
     
-        $('#cerrar-light').click(function() {
+        /*/$('#cerrar-light').click(function() {
           $('.overlay').css("display", "none");
-        });
+        });*/
     });
 
 
@@ -907,13 +924,17 @@ function correrAjaxImg(index,foto_prod_param,location){
 function cargarImgPines(event){
     var reader = new FileReader();
     reader.onload = function(){
-        var output = document.getElementById('output-imgpins');
-        output.src = reader.result;
+        // var output = document.getElementById('output-imgpins');
+        // output.src = reader.result;
         $("#img-subir-pins").hide();
-        $("#output-imgpins").show();
+        // $("#output-imgpins").show();
+        $("#map").css("background-image","url('"+reader.result+"')");
+        $("#map").css("width","100%");
+        $("#map").css("height","100px");
         $("#eliminar-img-flotante").show();
     };
     reader.readAsDataURL(event.target.files[0]);
+
 }
 
 

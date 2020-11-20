@@ -7,12 +7,14 @@
 
 	$.fn.dropPin = function(method) {
 
+		var test = $("#map").css("background-image");
+
 		var defaults = {
 		fixedHeight: 500,
 		fixedWidth: 500,
 		dropPinPath: '/js/dropPin/',
 		pin: 'dropPin/defaultpin@2x.png',
-		backgroundImage: 'dropPin/access-map.png',
+		backgroundImage: test,
 		backgroundColor: '#9999CC',
 		xoffset : 10,
 		yoffset : 30, //need to change this to work out icon heigh/width then subtract margin from it
@@ -74,7 +76,7 @@
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
 
-			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : "url('"+options.backgroundImage+"')",'height' : options.fixedHeight , 'width' : options.fixedWidth});
+			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
 			thisObj.on(options.userevent, function (ev) {
 
