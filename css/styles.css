@@ -1498,7 +1498,7 @@ input:focus ~ .highlight {
 #output-container{
     width: 100%;
     position: relative;
-    z-index: 999;
+    z-index: 998;
 }
 #output-imgpins{
     width: 100%;
@@ -1540,10 +1540,32 @@ input:focus ~ .highlight {
     text-align: center;
     top: 0;
     left: 0;
-    z-index: 998;
+    z-index: 997;
 }
 #map{
+    z-index: 998;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.pin{
+    cursor: pointer !important;
+}
+.popup-prod-overlay{
+    display: none;
+    position: absolute;
+    /*width: 700px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
+    /*height: 413px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 999;
+}
+.popup-prod-cont{
+    position: absolute;
+    background-color: rgb(255 255 255);
+    color: rgb(0 0 0);
+    padding: 10px;
+    width: 285px;
+    box-shadow: 0 0 6px #d4d4d4;
 }
 /*******************/
 .test1{

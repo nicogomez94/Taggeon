@@ -446,12 +446,13 @@ $('#iniciar_sesion').submit(function (e) {
             // console.log(imgbase64)
             
             $('#map').dropPin('dropMulti',{
-               fixedHeight:413,
-               fixedWidth:700,
                cursor: 'crosshair',
                pinclass: 'qtipinfo',
                pin: '../../img/1248820.svg'
             });
+
+            
+
     
         /*/$('#cerrar-light').click(function() {
           $('.overlay').css("display", "none");
@@ -930,7 +931,7 @@ function cargarImgPines(event){
         // $("#output-imgpins").show();
         $("#map").css("background-image","url('"+reader.result+"')");
         $("#map").css("width","100%");
-        $("#map").css("height","100px");
+        $("#map").css("height","300px");
         $("#eliminar-img-flotante").show();
     };
     reader.readAsDataURL(event.target.files[0]);
