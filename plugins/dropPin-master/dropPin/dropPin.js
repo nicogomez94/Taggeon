@@ -15,7 +15,7 @@
 		dropPinPath: '/js/dropPin/',
 		pin: 'dropPin/defaultpin@2x.png',
 		backgroundImage: test,
-		backgroundColor: '#9999CC',
+		backgroundColor: 'transparent',
 		xoffset : 10,
 		yoffset : 30, //need to change this to work out icon heigh/width then subtract margin from it
 		cursor: 'crosshair',
@@ -75,6 +75,11 @@
 
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
+			console.log(typeof options)
+			console.log(options)
+			console.log("-------------")
+			console.log(typeof thisObj)
+			console.log(thisObj)
 
 			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
@@ -142,14 +147,21 @@
 					hiddenProd.val("idProducto");
 					hiddenProd.appendTo(thisObj);
 				});
-
 				$(".salir-popup").click(function(){
 					$(".popup-prod-overlay").hide();
 					$(".pin-id-"+x+y).remove();
 					hiddenCtl.remove();
 					// hiddenProd.remove();
 				});
+				
 			});
+			/*$(".salir-popup").on(options.userevent, function (ev) {
+				console.log("inside salir poop")
+				var namespace = {};
+				namespace.this = {};
+				delete namespace.this;
+			});*/
+			
 
 		},
 		showPin: function(options) {
