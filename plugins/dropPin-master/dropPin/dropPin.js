@@ -89,7 +89,10 @@
 				
 				var xval = (x - options.xoffset);
 				var yval = (y - options.yoffset);
-				var imgC = $('<img class="pin '+yval+xval+'">');
+				/*console.log(xval)
+				console.log(yval)
+				console.log(yval+xval)*/
+				var imgC = $('<img class="pin '+yval+"-"+xval+'">');
 				imgC.css('top', yval+'px');
 				imgC.css('left', xval+'px');
 				imgC.css('z-index', i);
@@ -102,11 +105,11 @@
 				$(options.hiddenYid).val(yval);
 
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="hiddenpin" class="pin '+yval+xval+'">');
+				var hiddenCtl= $('<input type="hidden" name="hiddenpin-pinposition" class="pin '+yval+"-"+xval+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
-		        hiddenCtl.val(x + "#" + y);
+		        hiddenCtl.val(yval+"-"+xval);
 				hiddenCtl.appendTo(thisObj);
 				
 				// muestro popup para producto

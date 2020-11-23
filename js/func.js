@@ -433,32 +433,42 @@ $('#iniciar_sesion').submit(function (e) {
 
         // var src_output = $("#output-imgpins").attr("src");
       /*  $("#imagen-productos-pin").attr("src",src_output);*/
-
+        $("#map").css("pointer-events","all");
+        $("#terminar-productos-btn").show();
+        $("#limpiar-productos-btn").show();
+        $("#anadir-productos-btn").hide();
+        
         $(".overlay-prod").show();
+        $("#eliminar-img-flotante").hide();
+        
+        $('#map').dropPin('dropMulti',{
+            cursor: 'crosshair',
+            pinclass: 'qtipinfo',
+            pin: '../../img/1248820.svg'
+        });
 
-            $(".overlay-prod").show();
-            // $("#output-imgpins").hide();
-            
-            // var imgbase64 = $("#map").css("background-image");
-            // // 
-            // // imgbase64.split('url("').pop();
-            // imgbase64.substring('url("'.length)
-            // console.log(imgbase64)
-            
-            $('#map').dropPin('dropMulti',{
-               cursor: 'crosshair',
-               pinclass: 'qtipinfo',
-               pin: '../../img/1248820.svg'
-            });
-
-            
-
-    
-        /*/$('#cerrar-light').click(function() {
-          $('.overlay').css("display", "none");
-        });*/
     });
 
+    /*cerrar modo edicion de pines*/
+    $("#terminar-productos-btn").click(function(){
+        $(".overlay-prod").hide();
+        $("#limpiar-productos-btn").hide();
+        $("#terminar-productos-btn").hide();
+        $("#anadir-productos-btn").show();
+        $("#map").css("pointer-events","none");
+    });
+
+    /*SHOW PINES*/
+    $("#map-show").dropPin('showPins',{
+        cursor: 'pointer',
+        pinclass: 'qtipinfo',
+        pinDataSet: {"markers": 
+                        [
+                            {"id":1,"title":"map pin 1","xcoord":"420","ycoord":"120"},
+                            {"id":2,"title":"map pin 2","xcoord":"429","ycoord":"129"},
+                            {"id":2,"title":"map pin 3","xcoord":"329","ycoord":"329"}
+                    ]}		}
+    });
 
     /*funciones para que se cierre el otro modal atras del otro*/
     $("#recuperaPass").on('show.bs.modal', function (e) {
@@ -524,13 +534,19 @@ $('#subir-publicacion-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
     var formData = new FormData($(this)[0]);
-    console.log(formData)
+    
+    /*var pin_position = $(".hiddenpin-pinposition");
+    var pin_producto = $(".hiddenpin-producto");
+    var dataPines = {
+        "nombre" : "tato",
+        "nombre" : "ta22to",
+        "nombre" : "tat32132312o"
+    }
+    var dataPines_json = JSON.stringify(dataPines);
+    formData.append("dataPines",dataPines);*/
         
     $.ajax({
-        url: '/app/producto.php',
-        //type: 'post',
-        //data: $("#registro-comun").serialize(), 
-        //dataType : "json",
+        url: '/app/publicaciones.php',
         data: formData,
         type: 'POST',
         processData: false,
@@ -976,6 +992,8 @@ function cargarImgPines(event){
         $("#map").css("width","100%");
         $("#map").css("height","300px");
         $("#eliminar-img-flotante").show();
+        $("#anadir-productos-btn").show();
+
     };
     reader.readAsDataURL(event.target.files[0]);
 

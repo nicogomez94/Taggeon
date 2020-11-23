@@ -1,7 +1,7 @@
-#map,#map2 {	
+#map,#map2,#map-show {	
     position: relative;    
 }
-#map img#mapclick,#map2 img#mapclick{
+#map img#mapclick,#map2 img#mapclick,#map-show img#mapclick{
 	position: absolute;	
 	z-index: 5555;	
 }

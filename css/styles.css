@@ -1519,11 +1519,15 @@ input:focus ~ .highlight {
     cursor: pointer;
     background-color: white;
     color: gray;
+    z-index: 999;
 }
 #eliminar-img-flotante:hover{
     background-color: rgb(220 220 220);
     box-shadow: 0 0 5px rgb(121, 121, 121);
     color: #848484;
+}
+#anadir-productos-btn, #limpiar-productos-btn, #terminar-productos-btn{
+    display: none;
 }
 .anadir-prod-img-container{
     width: 90vw;
@@ -1542,11 +1546,12 @@ input:focus ~ .highlight {
     left: 0;
     z-index: 997;
 }
-#map{
+#map, #map-show{
     z-index: 998;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    pointer-events: none;
 }
 .pin{
     cursor: pointer !important;

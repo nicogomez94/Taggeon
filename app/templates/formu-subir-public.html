@@ -30,37 +30,25 @@
                      <input type="file" name="imagen-pins" id="imagen-pins" onchange="cargarImgPines(event)">
                   </div>
                   <div id="output-container">
+                     <div id="eliminar-img-flotante">
+                        <i class="fas fa-trash-alt"></i>
+                     </div>
                      <!--  -->
                      <div class="popup-prod-overlay">
                         <div class="popup-prod-cont">
                            <div class="salir-popup"><a href="#">X</a></div>
-                           
                         </div>
                      </div>
+                     <!--  -->
                      <div id="map">
                         
                      </div>
                      <!--  -->
-                     
-                     <!--  -->
-                     <div id="eliminar-img-flotante">
-                        <i class="fas fa-trash-alt"></i>
-                     </div>
                      <div class="anadir-productos">
                         <hr>
                         <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
-                        <div class="overlay">
-                           <div class="lightBox">
-                              <div class="anadir-prod-img-container">
-                                 <p>Seleccione una seccion de la imagen para añadir un pin</p>
-                                 <hr>
-                                 <div id="map"></div>
-                                 <hr>
-                                 <a href="" class="btn btn-warning">Limpiar Pines</a>
-                                 <a href="" class="btn btn-success">Guardar Pines</a>
-                              </div>
-                           </div>
-                        </div>
+                        <a href="#" id="terminar-productos-btn" class="btn btn-success">Terminar Edicion</a>
+                        <a href="#" id="limpiar-productos-btn" class="btn btn-danger">Limpiar Pines</a>
                      </div>
                   </div>
                </div>
@@ -82,9 +70,9 @@
                </div>
                <div class="row">
                   <div class="col-lg-3">
-                     <select name="color" id="color">
+                     <select name="cat-publicacion" id="cat-publicacion">
                         <option value="" selected disabled hidden required>Elija una categoria</option>
-                        <option value="color-negro">-</option>
+                        <option value="cat-public">-</option>
                      </select>
                   </div>
                </div>
@@ -115,12 +103,12 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=221120-2354"></script>
+   <script src="js/func.js?time=231120-1333"></script>
    <!-- script para la seleccion de fotos -->
    
    <!--  -->
       <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
-      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-0031"></script>
+      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-1333"></script>
       <script>
          $(document).ready(function(){
             var sizeProd = jsonData.productos.length;
