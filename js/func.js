@@ -40,12 +40,22 @@ $(document).ready(function() {
         $("#dropdown-user-menu-bottom").toggle();
     });
 
+    /*PUBLICACIONES*/
+    /*eliminar foto img-pins*/
+    $("#eliminar-img-flotante").click(function(){
+        $("#imagen-pins").val('');
+        $("#eliminar-img-flotante").hide();
+        $("#img-subir-pins").show();
+        $("#output-imgpins").attr("src","");
+        $("#output-imgpins").hide();
+    });
+
     /*slick carrusel productos en ampliar publicaciones*/
-    $('.items-carrusel').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-      });
+    // $('.items-carrusel').slick({
+    //         infinite: true,
+    //         slidesToShow: 3,
+    //         slidesToScroll: 3,
+    //   });
 
 /*riki*/
 $( "#reset-form-editar" ).click(function() {
@@ -417,6 +427,48 @@ $('#iniciar_sesion').submit(function (e) {
         });
     });
 
+    /**modal casero editar para ediat foto con pins/productos*/
+    $('#anadir-productos-btn').click(function(e) {
+        e.preventDefault();
+
+        // var src_output = $("#output-imgpins").attr("src");
+      /*  $("#imagen-productos-pin").attr("src",src_output);*/
+        $("#map").css("pointer-events","all");
+        $("#terminar-productos-btn").show();
+        $("#limpiar-productos-btn").show();
+        $("#anadir-productos-btn").hide();
+        
+        $(".overlay-prod").show();
+        $("#eliminar-img-flotante").hide();
+        
+        $('#map').dropPin('dropMulti',{
+            cursor: 'crosshair',
+            pinclass: 'qtipinfo',
+            pin: '../../img/1248820.svg'
+        });
+
+    });
+
+    /*cerrar modo edicion de pines*/
+    $("#terminar-productos-btn").click(function(){
+        $(".overlay-prod").hide();
+        $("#limpiar-productos-btn").hide();
+        $("#terminar-productos-btn").hide();
+        $("#anadir-productos-btn").show();
+        $("#map").css("pointer-events","none");
+    });
+
+    /*SHOW PINES*/
+    $("#map-show").dropPin('showPins',{
+        cursor: 'pointer',
+        pinclass: 'qtipinfo',
+        pinDataSet: {"markers": 
+                        [
+                            {"id":1,"title":"map pin 1","xcoord":"420","ycoord":"120"},
+                            {"id":2,"title":"map pin 2","xcoord":"429","ycoord":"129"},
+                            {"id":2,"title":"map pin 3","xcoord":"329","ycoord":"329"}
+                    ]}		}
+    });
 
     /*funciones para que se cierre el otro modal atras del otro*/
     $("#recuperaPass").on('show.bs.modal', function (e) {
@@ -477,6 +529,53 @@ $('#producto-form').submit(function (e) {
    return false;
 });
 
+/*FORMULARIO SUBIR PUBLICACION*/
+$('#subir-publicacion-form').submit(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var formData = new FormData($(this)[0]);
+    
+    /*var pin_position = $(".hiddenpin-pinposition");
+    var pin_producto = $(".hiddenpin-producto");
+    var dataPines = {
+        "nombre" : "tato",
+        "nombre" : "ta22to",
+        "nombre" : "tat32132312o"
+    }
+    var dataPines_json = JSON.stringify(dataPines);
+    formData.append("dataPines",dataPines);*/
+        
+    $.ajax({
+        url: '/app/publicaciones.php',
+        data: formData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'ERROR'){
+                alert(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                $("body").addClass("loading"); 
+                window.location.replace("/ampliar-producto.html");
+            }else if(data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                    $("#mensaje-sin-login").css("display","block");
+                    $("#mensaje-sin-login").html(msj);
+                //    alert(msj);
+        }
+   });
+   return false;
+});
 
 /****formu-subir***/
 
@@ -750,12 +849,10 @@ $("#subir-csv").on('submit', function() {
 
 
 
-/***fin document.ready***//***fin document.ready***/
-/***fin document.ready***//***fin document.ready***/
-/***fin document.ready***//***fin document.ready***/
-/*test slick*/
 
-
+/***fin document.ready***//***fin document.ready***/
+/***fin document.ready***//***fin document.ready***/
+/***fin document.ready***//***fin document.ready***/
 
       
 
@@ -884,6 +981,22 @@ function correrAjaxImg(index,foto_prod_param,location){
     }); 
 }
 
+function cargarImgPines(event){
+    var reader = new FileReader();
+    reader.onload = function(){
+        // var output = document.getElementById('output-imgpins');
+        // output.src = reader.result;
+        $("#img-subir-pins").hide();
+        // $("#output-imgpins").show();
+        $("#map").css("background-image","url('"+reader.result+"')");
+        $("#map").css("width","100%");
+        $("#map").css("height","300px");
+        $("#eliminar-img-flotante").show();
+        $("#anadir-productos-btn").show();
 
+    };
+    reader.readAsDataURL(event.target.files[0]);
+
+}
 
 
