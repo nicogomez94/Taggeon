@@ -1554,8 +1554,8 @@ input:focus ~ .highlight {
 .popup-prod-overlay{
     display: none;
     position: absolute;
-    /*width: 700px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
-    /*height: 413px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
+    width: 700px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
+    height: 413px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 999;
 }

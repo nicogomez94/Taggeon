@@ -75,11 +75,6 @@
 
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
-			console.log(typeof options)
-			console.log(options)
-			console.log("-------------")
-			console.log(typeof thisObj)
-			console.log(thisObj)
 
 			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
@@ -94,7 +89,7 @@
 				
 				var xval = (x - options.xoffset);
 				var yval = (y - options.yoffset);
-				var imgC = $('<img class="pin pin-id-'+x+y+'">');
+				var imgC = $('<img class="pin '+yval+xval+'">');
 				imgC.css('top', yval+'px');
 				imgC.css('left', xval+'px');
 				imgC.css('z-index', i);
@@ -107,7 +102,7 @@
 				$(options.hiddenYid).val(yval);
 
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="hiddenpin" class="pin">');
+				var hiddenCtl= $('<input type="hidden" name="hiddenpin" class="pin '+yval+xval+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -120,12 +115,7 @@
 				var popup_prod = $(".popup-producto");
 				var yval_pop = yval+20;
 				var xval_pop = xval+20;
-				
-				/*console.log("xval"+xval)
-				console.log("yval"+yval)
-				
-				console.log("xval"+xval_pop)
-				console.log("yval"+yval_pop)*/
+			
 				
 				popup_overlay.show(0,function(){
 					popup_cont.css({
@@ -137,30 +127,32 @@
 						'left': xval_pop+'px'
 					});
 				});
-
-				$(".popup-producto-1").click(function(){
-					$(".popup-prod-overlay").hide();
-					// var html_input_prod = 
-					// añadir hidden productto
-					var hiddenProd= $('<input type="hidden" name="hiddenpin" class="pin producto">');
-					 // var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
-					hiddenProd.val("idProducto");
-					hiddenProd.appendTo(thisObj);
-				});
-				$(".salir-popup").click(function(){
-					$(".popup-prod-overlay").hide();
-					$(".pin-id-"+x+y).remove();
-					hiddenCtl.remove();
-					// hiddenProd.remove();
-				});
 				
 			});
-			/*$(".salir-popup").on(options.userevent, function (ev) {
-				console.log("inside salir poop")
-				var namespace = {};
-				namespace.this = {};
-				delete namespace.this;
-			});*/
+			$(".popup-prod-cont").on("click", ".nombre-producto", function(){
+				
+				$(".popup-prod-overlay").hide();
+				// var segunda_clase = $(this).attr('class').split(' ')[1];
+				var id_producto = $(this).attr('class').split(' ')[1];
+				
+				var hiddenProd= $('<input type="hidden" name="hiddenpin-producto" class="pin pin-popup-producto">');
+				hiddenProd.val(id_producto);
+				hiddenProd.appendTo(thisObj);
+			});
+			$(".popup-prod-cont").on("click",".salir-popup", function(){
+
+				var box_y = $(this).parent().css("top").split('px')[0];
+				var box_x = $(this).parent().css("left").split('px')[0];
+
+				var box_y_new = box_y - 20;
+				var box_x_new = box_x - 20;
+
+				var pin_a_borrar = $("#map").find("."+box_y_new+box_x_new);
+
+				pin_a_borrar.remove();
+				$(".popup-prod-overlay").hide();
+
+			});
 			
 
 		},

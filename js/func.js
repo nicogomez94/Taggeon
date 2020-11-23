@@ -519,6 +519,47 @@ $('#producto-form').submit(function (e) {
    return false;
 });
 
+/*FORMULARIO SUBIR PUBLICACION*/
+$('#subir-publicacion-form').submit(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var formData = new FormData($(this)[0]);
+    console.log(formData)
+        
+    $.ajax({
+        url: '/app/producto.php',
+        //type: 'post',
+        //data: $("#registro-comun").serialize(), 
+        //dataType : "json",
+        data: formData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'ERROR'){
+                alert(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                $("body").addClass("loading"); 
+                window.location.replace("/ampliar-producto.html");
+            }else if(data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                    $("#mensaje-sin-login").css("display","block");
+                    $("#mensaje-sin-login").html(msj);
+                //    alert(msj);
+        }
+   });
+   return false;
+});
 
 /****formu-subir***/
 
@@ -789,6 +830,8 @@ $("#subir-csv").on('submit', function() {
     reader.readAsDataURL($("#file-csv").get(0).files[0]);    
     return false;
 });
+
+
 
 
 /***fin document.ready***//***fin document.ready***/
