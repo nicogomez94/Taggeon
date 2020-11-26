@@ -39,10 +39,12 @@ class  PublicacionDao
                 $publicacion_categoriaDB = Database::escape($publicacion_categoria);        
                 $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
                 $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
-
+		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        
 		$sql = <<<SQL
-			INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion)  
-			VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB)
+			INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta)  
+			VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -63,6 +65,11 @@ SQL;
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';
 		$idDB = Database::escape($id);
+		$usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
+
+		
+
 		        
                 $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
                 $publicacion_nombreDB = Database::escape($publicacion_nombre);        
@@ -70,22 +77,27 @@ SQL;
                 $publicacion_categoriaDB = Database::escape($publicacion_categoria);        
                 $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
                 $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
+        $sql = <<<SQL
+			UPDATE
+			    `publicacion`
+			SET
+			    `usuario_editar` = $usuarioDB,
+			    WHERE
+					`id` = $idDB AND
+					`usuario_alta` = $usuarioDB
+SQL;
 
-		$sql = <<<SQL
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $this->setStatus("OK");
+            return true;
+        }
 
-	SQL;
+        return false;
 
-		if (!mysqli_query(Database::Connect(), $sql)) {
-			$this->setStatus("ERROR");
-			$this->setMsj("$sql" . Database::Connect()->error);
-		} else {
-			$id = mysqli_insert_id(Database::Connect());
-			$this->setMsj($id);
-			$this->setStatus("OK");
-			return true;
-		}
 
-		return false;
 	}
 
 	public function eliminarPublicacion(array $data)
@@ -174,6 +186,33 @@ SQL;
 
 		return false;
 	}
+
+	public function existeId($id)
+    {
+        $id = isset($id) ?   $id : '';
+        $idDB = Database::escape($id);
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        
+        $sql = <<<SQL
+                        SELECT * FROM publicacion
+                        WHERE 
+                            id = $idDB AND
+                            (eliminar = 0 OR eliminar is null) AND
+                            usuario_alta = $usuarioAltaDB
+SQL;
+
+        $resultado = mysqli_query(Database::Connect(), $sql);
+        $row_cnt = mysqli_num_rows($resultado);
+        if ($row_cnt == 1) {
+            $this->setStatus("OK");
+            return true;
+        }
+
+        $this->setStatus("ERROR");
+        $this->setMsj("No se puede editar. Motivo: No existe o no tiene permisos.");
+        return false;
+    }
 
 	
                 public function existePublicacion_categoria($id_publicacion_categoria)

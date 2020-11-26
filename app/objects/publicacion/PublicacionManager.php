@@ -8,6 +8,7 @@ class  PublicacionManager
 
 	public function __construct()
 	{
+		$this->publicacionDao = new PublicacionDao();
 	}
 
 	public function getStatus()
@@ -30,9 +31,14 @@ class  PublicacionManager
 		$this->msj = $msj;
 	}
 
-
-	public function agregarPublicacion(array $data)
-	{
+	private function validarPublicacion(array $data) {
+		$var_accion = isset($data["accion"]) ? $data["accion"] : '';
+		if ($var_accion == 'editar') {
+			$id = isset($data["id"]) ? $data["id"] : '';
+			if ($this->existeId($id) === false) {
+				return false;
+			}
+		}
 		
 		            $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
 		            if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
@@ -47,14 +53,24 @@ class  PublicacionManager
 			            return false;
 		            }
 		
-		$this->publicacionDao = new PublicacionDao();
-
-		
                     if ($this->publicacionDao->existePublicacion_categoria($publicacion_categoria) === false) {
                         $this->setStatus("ERROR");
                         $this->setMsj($this->publicacionDao->getMsj());
                         return false;
                     }
+
+		return false;
+	}
+
+
+
+	public function agregarPublicacion(array $data)
+	{
+
+		if ($this->validarPublicacion($data) === false) {
+			return false;
+		}
+
 
 		if ($this->publicacionDao->altaPublicacion($data) === false) {
 			$this->setStatus("ERROR");
@@ -69,7 +85,7 @@ class  PublicacionManager
 			            return false;
 		            }
                     $dataPublicacion_foto = array(
-                        "id_publicacion" => $idProducto,
+                        "id_publicacion" => $idPublicacion,
                         "publicacion_foto"        => $valor
                     );
 
@@ -88,25 +104,9 @@ class  PublicacionManager
 
 	public function modificarPublicacion(array $data)
 	{
-		$id = isset($data["id"]) ? $data["id"] : '';
-		if ($this->validarId($id) === false){
+		if ($this->validarPublicacion($data) === false) {
 			return false;
 		}
-
-		
-		            $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-		            if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
-			            return false;
-		            }
-		            $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-		            if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
-			            return false;
-		            }
-		            $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-		            if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
-			            return false;
-		            }
-		$this->publicacionDao = new PublicacionDao();
 
 
 		if ($this->publicacionDao->editarPublicacion($data) === false) {
@@ -124,19 +124,6 @@ class  PublicacionManager
 		if ($this->validarId($id) === false){
 			return false;
 		}
-		
-		            $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-		            if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
-			            return false;
-		            }
-		            $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-		            if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
-			            return false;
-		            }
-		            $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-		            if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
-			            return false;
-		            }
 		$this->publicacionDao = new PublicacionDao();
 
 
@@ -228,6 +215,23 @@ class  PublicacionManager
 		}
 		return false;
 	}
+
+	private function existeId($id)
+	{
+		$id = isset($id) ? $id : '';
+		if ($this->validarId($id) === false) {
+			return false;
+		}
+		if ($this->productoDao->existeId($id) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		}
+		return true;
+	}
+
+	
+
 	        
             private function validarPublicacion_nombre($publicacion_nombre)
             {
