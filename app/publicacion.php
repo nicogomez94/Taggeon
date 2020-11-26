@@ -19,10 +19,6 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->modificarPublicacion($_POST);
         } else if ($var_accion == 'eliminar') {
             $objPrincipalManager->eliminarPublicacion($_POST);
-        } else if ($var_accion == 'listar') {
-            $objPrincipalManager->listarPublicacion($_POST);
-        } else if ($var_accion == 'get') {
-            $objPrincipalManager->getPublicacion($_POST);
         }
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';

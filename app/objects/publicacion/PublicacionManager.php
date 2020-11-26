@@ -136,68 +136,6 @@ class  PublicacionManager
 		}
 	}
 
-	public function getPublicacion(array $data)
-	{
-		$id = isset($data["id"]) ? $data["id"] : '';
-		if ($this->validarId($id) === false){
-			return false;
-		}
-				
-		            $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-		            if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
-			            return false;
-		            }
-		            $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-		            if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
-			            return false;
-		            }
-		            $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-		            if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
-			            return false;
-		            }
-				$this->publicacionDao = new PublicacionDao();
-
-
-				if ($this->publicacionDao->getPublicacion($data) === false) {
-					$this->setStatus("ERROR");
-					$this->setMsj($this->publicacionDao->getMsj());
-				} else {
-					$this->setStatus("OK");
-					$this->setMsj($this->publicacionDao->getMsj());
-				}
-	}
-
-	public function listarPublicacion(array $data)
-	{
-		$id = isset($data["id"]) ? $data["id"] : '';
-		if ($this->validarId($id) === false){
-			return false;
-		}
-				
-		            $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-		            if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
-			            return false;
-		            }
-		            $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-		            if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
-			            return false;
-		            }
-		            $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-		            if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
-			            return false;
-		            }
-				$this->publicacionDao = new PublicacionDao();
-
-
-				if ($this->publicacionDao->listarPublicacion($data) === false) {
-					$this->setStatus("ERROR");
-					$this->setMsj($this->publicacionDao->getMsj());
-				} else {
-					$this->setStatus("OK");
-					$this->setMsj($this->publicacionDao->getMsj());
-				}
-	}
-
 	private function validarId ($param){
 		$this->setStatus("error");
 		$this->setMsj("");

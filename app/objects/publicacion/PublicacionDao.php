@@ -128,64 +128,6 @@ SQL;
         return false;
     }
 
-	public function getPublicacion(array $data)
-	{
-		$id = isset($data["id"]) ? $data["id"] : '';
-		$idDB = Database::escape($id);
-		            
-        $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
-        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
-        $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-        $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
-
-		$sql = <<<SQL
-
-	SQL;
-
-		if (!mysqli_query(Database::Connect(), $sql)) {
-			$this->setStatus("ERROR");
-			$this->setMsj("$sql" . Database::Connect()->error);
-		} else {
-			$id = mysqli_insert_id(Database::Connect());
-			$this->setMsj($id);
-			$this->setStatus("OK");
-			return true;
-		}
-
-		return false;
-	}
-
-	public function listarPublicacion(array $data)
-	{
-		$id = isset($data["id"]) ? $data["id"] : '';
-		$idDB = Database::escape($id);
-		            
-        $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
-        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
-        $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-        $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
-
-		$sql = <<<SQL
-
-	SQL;
-
-		if (!mysqli_query(Database::Connect(), $sql)) {
-			$this->setStatus("ERROR");
-			$this->setMsj("$sql" . Database::Connect()->error);
-		} else {
-			$id = mysqli_insert_id(Database::Connect());
-			$this->setMsj($id);
-			$this->setStatus("OK");
-			return true;
-		}
-
-		return false;
-	}
-
 	public function existeId($id)
     {
         $id = isset($id) ?   $id : '';
