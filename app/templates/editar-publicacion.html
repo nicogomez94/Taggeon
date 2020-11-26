@@ -18,7 +18,7 @@
                         </div>
                      </div>
                      <!--  -->
-                     <div id="map">
+                     <div id="map-show">
                         
                      </div>
                      <!--  -->
@@ -86,6 +86,20 @@
       <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-1458"></script>
       <script>
          $(document).ready(function(){
+
+            $("#map-show").dropPin('showPins',{
+               cursor: 'pointer',
+               pinclass: 'qtipinfo',
+		         pin: '../../img/1248820.svg',
+               pinDataSet: {"markers": 
+                                 [
+                                    {"id":1,"title":"map pin 1","xcoord":"420","ycoord":"120"},
+                                    {"id":2,"title":"map pin 2","xcoord":"429","ycoord":"129"},
+                                    {"id":2,"title":"map pin 3","xcoord":"329","ycoord":"329"}
+                                 ]
+                           }
+            });
+            /*
             var sizeProd = jsonData.productos.length;
 
 				if(sizeProd>0){
@@ -97,8 +111,8 @@
                            '</div>';
 						$(".popup-prod-cont").append(html);
 					}
-				}
-         })
+				}*/
+         });
       </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 </body></html>

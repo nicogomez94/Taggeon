@@ -459,17 +459,7 @@ $('#iniciar_sesion').submit(function (e) {
     });
 
     /*SHOW PINES*/
-    /*$("#map-show").dropPin('showPins',{
-        cursor: 'pointer',
-        pinclass: 'qtipinfo',
-        pinDataSet: {"markers": 
-                        [
-                            {"id":1,"title":"map pin 1","xcoord":"420","ycoord":"120"},
-                            {"id":2,"title":"map pin 2","xcoord":"429","ycoord":"129"},
-                            {"id":2,"title":"map pin 3","xcoord":"329","ycoord":"329"}
-                        ]
-                    }
-    });*/
+    /**/
 
     /*funciones para que se cierre el otro modal atras del otro*/
     $("#recuperaPass").on('show.bs.modal', function (e) {
