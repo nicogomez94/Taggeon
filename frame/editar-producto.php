@@ -23,7 +23,6 @@ if ($perfil == 'seller') {
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $productoManager->getListCategoria(),
-        "rubro"     => $productoManager->getListRubro(),
         "productos" => $producto
     );
 

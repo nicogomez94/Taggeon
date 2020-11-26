@@ -11,7 +11,7 @@ if ($perfil == 'seller'){
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email']
-        #"categoria" => $publicacionManager->getListCategoria(),
+        "categoria" => $publicacionManager->getListCategoria(),
         #"rubro"     => $publicacionManager->getListRubro()
     );
     $jsonData = json_encode($jsonData);
