@@ -254,7 +254,7 @@ SQL;
                 LEFT JOIN
                     publicacion_publicacion_foto
                 ON
-                    `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND (publicacion_foto.eliminar = 0 OR publicacion_foto.eliminar IS NULL)
+                    `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND (publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL)
                 WHERE
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
@@ -298,6 +298,35 @@ SQL;
                     }
                     return $list;
                 }
-                
+                public function getListPublicacion()
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+        SELECT
+        `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+        `publicacion_descripcion`,
+        min(publicacion_publicacion_foto.id) as foto
+    FROM
+        `publicacion`
+    LEFT JOIN
+        publicacion_publicacion_foto
+    ON
+        `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND (publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL)
+    WHERE
+        (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
+    group by         
+    `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+    `publicacion_descripcion`
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+    }
+
 
 }

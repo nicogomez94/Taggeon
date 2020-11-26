@@ -263,4 +263,11 @@ class  PublicacionManager
 			{
 				return $this->publicacionDao->getListCategoria();
 			}
+
+			public function getListPublicacion()
+			{
+				$ret =  $this->publicacionDao->getListPublicacion();
+				return $ret;
+			}
+		
 }
