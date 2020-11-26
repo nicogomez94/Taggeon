@@ -537,7 +537,7 @@ $('#subir-publicacion-form').submit(function (e) {
     formData.append("dataPines",dataPines);*/
         
     $.ajax({
-        url: '/app/publicaciones.php',
+        url: '/app/publicacion.php',
         data: formData,
         type: 'POST',
         processData: false,
@@ -567,6 +567,54 @@ $('#subir-publicacion-form').submit(function (e) {
    });
    return false;
 });
+
+$('#editar-publicacion-form').submit(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var formData = new FormData($(this)[0]);
+    
+    /*var pin_position = $(".hiddenpin-pinposition");
+    var pin_producto = $(".hiddenpin-producto");
+    var dataPines = {
+        "nombre" : "tato",
+        "nombre" : "ta22to",
+        "nombre" : "tat32132312o"
+    }
+    var dataPines_json = JSON.stringify(dataPines);
+    formData.append("dataPines",dataPines);*/
+        
+    $.ajax({
+        url: '/app/publicacion.php',
+        data: formData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'ERROR'){
+                alert(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                $("body").addClass("loading"); 
+                window.location.replace("/ampliar-producto.html");
+            }else if(data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                    $("#mensaje-sin-login").css("display","block");
+                    $("#mensaje-sin-login").html(msj);
+                //    alert(msj);
+        }
+   });
+   return false;
+});
+
 
 /****formu-subir***/
 
