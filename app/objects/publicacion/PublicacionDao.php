@@ -194,7 +194,7 @@ SQL;
                 `usuario_editar` = $usuarioDB,
                 `eliminar` = 1
             WHERE
-            `id_producto` = $idDB AND
+            `id_publicacion` = $idDB AND
             `usuario_alta` = $usuarioDB
             SQL;
             
@@ -234,5 +234,70 @@ SQL;
             
                     return false;
                 }
+
+
+
+                public function getPublicacion($id)
+                {
+                    $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+                    $usuarioAltaDB = Database::escape($usuarioAlta);
+                    $id = isset($id) ?   $id : '';
+                    $idDB = Database::escape($id);
+                    $sql = <<<sql
+                    SELECT
+                    `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+                    `publicacion_descripcion`,
+                   GROUP_CONCAT(publicacion_publicacion_foto.id) as foto
+            
+                FROM
+                    `publicacion`
+                LEFT JOIN
+                    publicacion_publicacion_foto
+                ON
+                    `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND (publicacion_foto.eliminar = 0 OR publicacion_foto.eliminar IS NULL)
+                WHERE
+                publicacion.id=$idDB AND 
+                    (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
+                group by         
+                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`
+            sql;
+                    $resultado = Database::Connect()->query($sql);
+                    $row_cnt = mysqli_num_rows($resultado);
+                    $list = array();
+                    if ($row_cnt <= 0) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj("No se encontró la publicación o no tiene permisos para editar.");
+                        return $list;
+                    }
+            
+            
+                    while ($rowEmp = mysqli_fetch_array($resultado)) {
+                        $list[] = $rowEmp;
+                    }
+                    $this->setStatus("ok");
+                    return $list;
+                }
+
+                public function getListCategoria()
+                {
+                    $sql = <<<sql
+                                SELECT
+                                `id`,
+                                `nombre`
+                            FROM
+                                `publicacion_categoria`
+                            WHERE
+                                eliminar=0 OR eliminar is null
+            sql;
+            
+                    $resultado = Database::Connect()->query($sql);
+                    $list = array();
+            
+                    while ($rowEmp = mysqli_fetch_array($resultado)) {
+                        $list[] = $rowEmp;
+                    }
+                    return $list;
+                }
+                
 
 }

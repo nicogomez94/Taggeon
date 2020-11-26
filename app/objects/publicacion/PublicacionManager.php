@@ -185,9 +185,9 @@ class  PublicacionManager
 		if ($this->validarId($id) === false) {
 			return false;
 		}
-		if ($this->productoDao->existeId($id) === false) {
+		if ($this->publicacionDao->existeId($id) === false) {
 			$this->setStatus("ERROR");
-			$this->setMsj($this->productoDao->getMsj());
+			$this->setMsj($this->publicacionDao->getMsj());
 			return false;
 		}
 		return true;
@@ -239,5 +239,28 @@ class  PublicacionManager
                 $this->setStatus("OK");
                 $this->setMsj("");
                 return true;
-            }
+			}
+			
+			public function getPublicacion(array $data)
+			{
+		
+				$id = isset($data["id"]) ? $data["id"] : '';
+				if ($this->existeId($id) === false) {
+					return [];
+				}
+			
+				$publicacion = $this->publicacionDao->getPublicacion($id);
+				if ($this->publicacionDao->getStatus() != 'ok') {
+					$this->setStatus("ERROR");
+					$this->setMsj($this->publicacionDao->getMsj());
+					return [];
+				}
+				$this->setStatus("ok");
+				return $publicacion;
+			}
+
+			public function getListCategoria()
+			{
+				return $this->publicacionDao->getListCategoria();
+			}
 }
