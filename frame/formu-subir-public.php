@@ -1,6 +1,6 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/PublicacionManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 
 
 if ($perfil == 'seller'){
