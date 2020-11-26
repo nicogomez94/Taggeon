@@ -32,11 +32,11 @@ class  PublicacionDao
 
 	public function altaPublicacion(array $data)
 	{
-            
+
         $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
+        $publicacion_nombreDB = Database::escape($publicacion_nombre);
         $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
+        $publicacion_categoriaDB = Database::escape($publicacion_categoria);
         $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
@@ -67,11 +67,11 @@ SQL;
 		$idDB = Database::escape($id);
 		$usuario = $GLOBALS['sesionG']['idUsuario'];
         $usuarioDB = Database::escape($usuario);
-            
+
         $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
+        $publicacion_nombreDB = Database::escape($publicacion_nombre);
         $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
+        $publicacion_categoriaDB = Database::escape($publicacion_categoria);
         $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 
@@ -154,7 +154,7 @@ SQL;
         $this->setMsj("No se puede editar. Motivo: No existe o no tiene permisos.");
         return false;
     }
-
+	#FUNCIONESDAOELIMINARHIJOS#
 	
                 public function existePublicacion_categoria($id_publicacion_categoria)
                 {
@@ -181,6 +181,34 @@ SQL;
 
                 }
 
+                public function eliminarPublicacion_foto(array $data)
+                {
+                    $id = isset($data["id"]) ? $data["id"] : '';
+                    $idDB = Database::escape($id);
+                    $usuario = $GLOBALS['sesionG']['idUsuario'];
+                    $usuarioDB = Database::escape($usuario);
+                    $sql = <<<SQL
+            UPDATE
+                `publicacion_publicacion_foto`
+            SET
+                `usuario_editar` = $usuarioDB,
+                `eliminar` = 1
+            WHERE
+            `id_producto` = $idDB AND
+            `usuario_alta` = $usuarioDB
+            SQL;
+            
+                    if (!mysqli_query(Database::Connect(), $sql)) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj("$sql" . Database::Connect()->error);
+                    } else {
+                        $this->setStatus("OK");
+                        return true;
+                    }
+            
+                    return false;
+                }
+            
                 public function altaPublicacion_foto(array $data)
                 {
                     $id_publicacion = isset($data["id_publicacion"]) ?   $data["id_publicacion"] : '';

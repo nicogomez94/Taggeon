@@ -39,25 +39,25 @@ class  PublicacionManager
 				return false;
 			}
 		}
-		
-		            $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-		            if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
-			            return false;
-		            }
-		            $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-		            if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
-			            return false;
-		            }
-		            $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-		            if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
-			            return false;
-		            }
-		
-                    if ($this->publicacionDao->existePublicacion_categoria($publicacion_categoria) === false) {
-                        $this->setStatus("ERROR");
-                        $this->setMsj($this->publicacionDao->getMsj());
-                        return false;
-                    }
+
+	    $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
+	    if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
+	     return false;
+	    }
+	    $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
+	    if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
+	     return false;
+	    }
+	    $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
+	    if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
+	     return false;
+	    }
+
+        if ($this->publicacionDao->existePublicacion_categoria($publicacion_categoria) === false) {
+            $this->setStatus("ERROR");
+            $this->setMsj($this->publicacionDao->getMsj());
+            return false;
+        }
 
 		return false;
 	}
@@ -113,8 +113,29 @@ class  PublicacionManager
 			$this->setStatus("ERROR");
 			$this->setMsj($this->publicacionDao->getMsj());
 		} else {
+                if ($this->publicacionDao->eliminarPublicacion_foto($data) === false) {
+                    $this->setStatus("ERROR");
+                    $this->setMsj("No se pudo eactualizar Publicacion_foto");
+                    return false;
+                } else {
+                    $idPublicacion = isset($data["id"]) ? $data["id"] : '';
+                    foreach ($_POST["publicacion_foto"] as $valor) {
+                        $valor = isset($valor) ?  $valor : '';
+                        $dataPublicacion_foto = array(
+                            "id_publicacion" => $idPublicacion,
+                            "publicacion_foto"        => $valor
+                        );
+    
+                        if ($this->publicacionDao->altaPublicacion_foto($dataPublicacion_foto) === false) {
+                            $this->setStatus("ERROR");
+                            $this->setMsj($this->publicacionDao->getMsj());
+                            return false;
+                        }
+                    }
+                }
 			$this->setStatus("OK");
 			$this->setMsj($this->publicacionDao->getMsj());
+			return true;
 		}
 	}
 
@@ -124,13 +145,17 @@ class  PublicacionManager
 		if ($this->validarId($id) === false){
 			return false;
 		}
-		$this->publicacionDao = new PublicacionDao();
 
 
 		if ($this->publicacionDao->eliminarPublicacion($data) === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj($this->publicacionDao->getMsj());
 		} else {
+                if ($this->publicacionDao->eliminarPublicacion_foto($data) === false) {
+                    $this->setStatus("ERROR");
+                    $this->setMsj($this->publicacionDao->getMsj());
+                    return false;
+                } 
 			$this->setStatus("OK");
 			$this->setMsj($this->publicacionDao->getMsj());
 		}
