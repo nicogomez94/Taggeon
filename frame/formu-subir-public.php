@@ -10,7 +10,7 @@ if ($perfil == 'seller'){
         "usuario" => $GLOBALS['sesionG']['usuario'],
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
-        "contacto" => $GLOBALS['sesionG']['email']
+        "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $publicacionManager->getListCategoria(),
         #"rubro"     => $publicacionManager->getListRubro()
     );
