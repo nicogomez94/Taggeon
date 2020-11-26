@@ -32,13 +32,13 @@ class  PublicacionDao
 
 	public function altaPublicacion(array $data)
 	{
-		        
-                $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-                $publicacion_nombreDB = Database::escape($publicacion_nombre);        
-                $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-                $publicacion_categoriaDB = Database::escape($publicacion_categoria);        
-                $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-                $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
+            
+        $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
+        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
+        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
+        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
+        $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
+        $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
@@ -67,21 +67,20 @@ SQL;
 		$idDB = Database::escape($id);
 		$usuario = $GLOBALS['sesionG']['idUsuario'];
         $usuarioDB = Database::escape($usuario);
+            
+        $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
+        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
+        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
+        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
+        $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
+        $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 
-		
-
-		        
-                $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-                $publicacion_nombreDB = Database::escape($publicacion_nombre);        
-                $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-                $publicacion_categoriaDB = Database::escape($publicacion_categoria);        
-                $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-                $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
         $sql = <<<SQL
 			UPDATE
 			    `publicacion`
 			SET
 			    `usuario_editar` = $usuarioDB,
+`publicacion_nombre` = $publicacion_nombreDB, id_`publicacion_categoria` = $publicacion_categoriaDB, `publicacion_descripcion` = $publicacion_descripcionDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB
@@ -101,45 +100,45 @@ SQL;
 	}
 
 	public function eliminarPublicacion(array $data)
-	{
-		$id = isset($data["id"]) ? $data["id"] : '';
-		$idDB = Database::escape($id);
-		        
-                $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-                $publicacion_nombreDB = Database::escape($publicacion_nombre);        
-                $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-                $publicacion_categoriaDB = Database::escape($publicacion_categoria);        
-                $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-                $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
+    {
+        $id = isset($data["id"]) ? $data["id"] : '';
+        $idDB = Database::escape($id);
+        $usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
 
-		$sql = <<<SQL
+        $sql = <<<SQL
+UPDATE
+    `publicacion`
+SET
+    `usuario_editar` = $usuarioDB,
+    `eliminar` = 1
+WHERE
+`id` = $idDB AND
+`usuario_alta` = $usuarioDB
+SQL;
 
-	SQL;
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $this->setStatus("OK");
+            return true;
+        }
 
-		if (!mysqli_query(Database::Connect(), $sql)) {
-			$this->setStatus("ERROR");
-			$this->setMsj("$sql" . Database::Connect()->error);
-		} else {
-			$id = mysqli_insert_id(Database::Connect());
-			$this->setMsj($id);
-			$this->setStatus("OK");
-			return true;
-		}
-
-		return false;
-	}
+        return false;
+    }
 
 	public function getPublicacion(array $data)
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';
 		$idDB = Database::escape($id);
-		        
-                $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-                $publicacion_nombreDB = Database::escape($publicacion_nombre);        
-                $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-                $publicacion_categoriaDB = Database::escape($publicacion_categoria);        
-                $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-                $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
+		            
+        $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
+        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
+        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
+        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
+        $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
+        $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 
 		$sql = <<<SQL
 
@@ -162,13 +161,13 @@ SQL;
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';
 		$idDB = Database::escape($id);
-		        
-                $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
-                $publicacion_nombreDB = Database::escape($publicacion_nombre);        
-                $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-                $publicacion_categoriaDB = Database::escape($publicacion_categoria);        
-                $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
-                $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
+		            
+        $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
+        $publicacion_nombreDB = Database::escape($publicacion_nombre);            
+        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
+        $publicacion_categoriaDB = Database::escape($publicacion_categoria);            
+        $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
+        $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 
 		$sql = <<<SQL
 
