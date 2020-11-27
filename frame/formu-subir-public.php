@@ -27,7 +27,6 @@ if ($perfil == 'seller'){
             "url_editar" => "/editar-usuario.html",
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
-    echo ($GLOBALS['sesionG']['nombre']." ".$GLOBALS['sesionG']['apellido']);
     $contenidoString = $contenido->muestra();
     //HEADER
     echo $contenidoStringHeader;

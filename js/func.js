@@ -40,6 +40,10 @@ $(document).ready(function() {
         $("#dropdown-user-menu-bottom").toggle();
     });
 
+    $(".cerrar-galeria-banner").click(function(){
+        $("#carouselExampleIndicators").hide();
+    });
+
     /*PUBLICACIONES*/
     /*eliminar foto img-pins*/
     $("#eliminar-img-flotante").click(function(){

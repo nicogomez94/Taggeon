@@ -133,11 +133,12 @@
 
          if(sizePublic>0){
             for(var i=0; i<sizePublic; i++){
-
-               var id_public = jsonData.publicaciones[i].nombre;
-               var nombre_public = jsonData.publicaciones[i].nombre;
-               var fecha_public = jsonData.publicaciones[i].fecha;
-               var imagen_public = jsonData.publicaciones[i].imagen;
+               
+               var id_public = jsonData.publicaciones[i].id;
+               var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
+               var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
+               var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
+               var imagen_public = jsonData.publicaciones[i].foto;
       
                var html_public = '<div class="publicacion">'+
                                     '<img class="imagen-public" src="'+imagen_public+'">'+
