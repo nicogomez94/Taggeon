@@ -38,53 +38,42 @@
 <div class="container contenedor-mis-public">
 
    <div class="filtros">
+      <!--
       <a href="/formu-subir.html" class="btn btn-warning">Ordenar</a>
       <span>
          <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
          <i class="fas fa-times-circle limpiar-buscador"></i>
       </span>
       
-      <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
+      <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>-->
+
+      <a href="/formu-subir-public.html" class="btn btn-warning">Subir Publicaci&oacute;n</a>
+
    </div>
 
    <!--  -->
    <hr><br>
+   
 
-   <div class="publicacion">
-      <div class="imagen-public"><img src="../../img/furrr.jpg" alt="test"></div>
-      <div class="titulo-public">titulomuylargooooooooooooooooooooooooooooooooo</div>
-      <div class="fecha-public">17 ago.</div>
-   </div>
-   <div class="publicacion">
-      <div class="imagen-public"><img src="../../img/arrrttee.jpg" alt="test"></div>
-      <div class="titulo-public">publicacion de prueba</div>
-      <div class="fecha-public">17 ago.</div>
-   </div>
-   <div class="publicacion">
-      <div class="imagen-public"><img src="../../img/dfgd.JPG" alt="test"></div>
-      <div class="titulo-public">publicacion de prueba</div>
-      <div class="fecha-public">17 ago.</div>
-   </div>
-   <div class="publicacion">
-      <div class="imagen-public"><img src="../../img/moda.jpg" alt="test"></div>
-      <div class="titulo-public">publicacion de prueba</div>
-      <div class="fecha-public">17 ago.</div>
-   </div>
-   <div class="publicacion">
-      <div class="imagen-public"><img src="../../img/arrrttee.jpg" alt="test"></div>
-      <div class="titulo-public">publicacion de prueba</div>
-      <div class="fecha-public">17 ago.</div>
-   </div>
-   <div class="publicacion">
-      <div class="imagen-public"><img src="../../img/dfgd.JPG" alt="test"></div>
-      <div class="titulo-public">publicacion de prueba</div>
-      <div class="fecha-public">17 ago.</div>
-   </div>
-   <div class="publicacion">
-      <div class="imagen-public"><img src="../../img/moda.jpg" alt="test"></div>
-      <div class="titulo-public">publicacion de prueba</div>
-      <div class="fecha-public">17 ago.</div>
-   </div>
+      <div class="publicacion">
+         <img class="imagen-public" src="../../img/furrr.jpg">
+         <div class="overlay-public">
+            <div class="text-overlay">
+               <div>
+                  <span>Nombre Public</span>
+               </div>
+               <div>
+                  <span class="text-overlay-link"><a href="#"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a></span>&nbsp;
+                  <span class="text-overlay-link"><a href="#"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>
+               </div>
+
+            </div>
+         </div>
+      </div>
+
+
+
+
       
 </div>
 <!-- <div id="info-user" class="container">
@@ -137,6 +126,40 @@
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=031120-1749"></script>
+   <script>
+      $(document).ready(function(){
+
+         var sizePublic = jsonData.publicaciones.length;
+
+         if(sizePublic>0){
+            for(var i=0; i<sizePublic; i++){
+
+               var id_public = jsonData.publicaciones[i].nombre;
+               var nombre_public = jsonData.publicaciones[i].nombre;
+               var fecha_public = jsonData.publicaciones[i].fecha;
+               var imagen_public = jsonData.publicaciones[i].imagen;
+      
+               var html_public = '<div class="publicacion">'+
+                                    '<img class="imagen-public" src="'+imagen_public+'">'+
+                                    '<div class="overlay-public">'+
+                                       '<div class="text-overlay">'+
+                                          '<div>'+
+                                             '<span>'+nombre_public+'</span>'+
+                                          '</div>'+
+                                          '<div>'+
+                                             '<span class="text-overlay-link"><a href="/ampliar-publicacion.html?id='+id_public+'&accion=ampliar"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a></span>&nbsp;'+
+                                             '<span class="text-overlay-link"><a href="/editar-publicacion.html?id='+id_public+'&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>'+
+                                          '</div>'+
+                                       '</div>'+
+                                    '</div>'+
+                                 '</div>'
+                                 
+               $("#contenedor-mis-public").append(html_public);
+
+            }
+         }
+      });
+   </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>

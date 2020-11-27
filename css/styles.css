@@ -1271,34 +1271,57 @@ input:focus ~ .highlight {
     margin-top: -40px;
 }
 .publicacion {
-    width: 170px;
+    width: 327px;
     border-radius: 10px;
     margin: 20px;
     cursor: pointer;
     display: inline-block;
-    /* box-shadow: 1px 1px 1px grey; */
+    position: relative;
+    /* box-shadow: 1px 1px 1px grey;*/
 }
-.imagen-public img {
-    /* max-width: 100%; */
-    width: 200px;
-    height: 120px;
+.imagen-public{
+    max-width: 100%;
+    /* width: 200px;*/
+    height: 250px;
     border-radius: 10px;
     /* width: 100%; */
     object-fit: cover;
 }
-.titulo-public, .fecha-public{
-    padding-left: 5px;
+.publicacion:hover .overlay-public {
+     opacity: 1;
 }
-.titulo-public{
-    font-weight: 500;
-    padding-top: 5px;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    overflow: hidden;
+.overlay-public {
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .1s ease-in;
+    background-color: rgba(0,0,0,.6);
 }
-.fecha-public{
-    color: #999;
-    font-size: smaller;
+.text-overlay{
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: black;
+    padding: 20px;
+    border-radius: 10px;
+}
+.text-overlay a:link{
+    color: #fff !important;
+}
+.text-overlay-link:hover{
+    color: rgb(209, 209, 209) !important;
 }
 
 

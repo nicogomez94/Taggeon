@@ -549,7 +549,7 @@ $('#subir-publicacion-form').submit(function (e) {
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 $("body").addClass("loading"); 
-                window.location.replace("/ampliar-producto.html");
+                window.location.replace("/mis-publicaciones.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
             }else{
@@ -572,19 +572,9 @@ $('#editar-publicacion-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
     var formData = new FormData($(this)[0]);
-    
-    /*var pin_position = $(".hiddenpin-pinposition");
-    var pin_producto = $(".hiddenpin-producto");
-    var dataPines = {
-        "nombre" : "tato",
-        "nombre" : "ta22to",
-        "nombre" : "tat32132312o"
-    }
-    var dataPines_json = JSON.stringify(dataPines);
-    formData.append("dataPines",dataPines);*/
         
     $.ajax({
-        url: '/app/publicacion.php',
+        url: '/app/editar-publicacion.php',
         data: formData,
         type: 'POST',
         processData: false,
@@ -596,7 +586,7 @@ $('#editar-publicacion-form').submit(function (e) {
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 $("body").addClass("loading"); 
-                window.location.replace("/ampliar-producto.html");
+                window.location.replace("/mis-publicaciones.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
             }else{
@@ -617,7 +607,6 @@ $('#editar-publicacion-form').submit(function (e) {
 
 
 /****formu-subir***/
-
 var sizeCat = jsonData.categoria.length;
 
 if(sizeCat>0){

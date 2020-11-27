@@ -33,6 +33,7 @@ if ($perfil == 'seller' || $perfil == 'picker'){
     if ($perfil == 'seller'){
         $menu = <<<STR
         <a href="/ampliar-producto.html">Mis Productos</a><br>
+        <a href="/mis-publicaciones.html">Mis Publicaciones</a><br>
 STR;
     }
 	
