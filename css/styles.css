@@ -1272,7 +1272,6 @@ input:focus ~ .highlight {
 }
 .publicacion {
     width: 327px;
-    border-radius: 10px;
     margin: 20px;
     cursor: pointer;
     display: inline-block;
@@ -1283,7 +1282,6 @@ input:focus ~ .highlight {
     max-width: 100%;
     /* width: 200px;*/
     height: 250px;
-    border-radius: 10px;
     /* width: 100%; */
     object-fit: cover;
 }
@@ -1317,7 +1315,7 @@ input:focus ~ .highlight {
     padding: 20px;
     border-radius: 10px;
 }
-.text-overlay a:link{
+.text-overlay a:link, .text-overlay a:visited{
     color: #fff !important;
 }
 .text-overlay-link:hover{
