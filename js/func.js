@@ -613,14 +613,14 @@ if(sizeCat>0){
     for(var i=0; i<sizeCat; i++){
         var nombre_cat = jsonData.categoria[i].nombre;
         var id_cat = jsonData.categoria[i].id;
-        var id_cat_rubro = jsonData.rubro[i].id_categoria;
+        /*var id_cat_rubro = jsonData.rubro[i].id_categoria;*/
     
         var html_cat = '<option class="option-cat" value="'+id_cat+'">'+nombre_cat+'</option>';
         $("#categoria-producto").append(html_cat);
 
-        var sizeRubro = jsonData.rubro.length;
+        /*var sizeRubro = jsonData.rubro.length;*/
         
-        if(sizeRubro>0 && id_cat==id_cat_rubro){
+        /*if(sizeRubro>0 && id_cat==id_cat_rubro){
             for(var i=0; i<sizeRubro; i++){
                 var nombre_rubro = jsonData.rubro[i].nombre;
                 var id_rubro = jsonData.rubro[i].id;
@@ -628,7 +628,7 @@ if(sizeCat>0){
                 var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
                 $("#rubro-producto").append(html_rubro);
             }
-        }
+        }*/
 
     }
 }
