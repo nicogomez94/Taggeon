@@ -535,7 +535,7 @@ $('#subir-publicacion-form').submit(function (e) {
     //appendeo la imagen sacada del map. ya la inicio el onchange
     var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
     var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
-    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal
+    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villero mal
     formData.append("foto_base64",sc_url_imagen_642);
     formData.delete("publicacion_foto");
         

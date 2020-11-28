@@ -21,7 +21,7 @@ if ($perfil=='seller'){
     if ($perfil == 'seller'){
 
         $menuperfil = <<<STR
-        <a class="nav-item nav-link" href="/ampliar-publicacion.html">Mis Publicacions</a>
+        <a class="nav-item nav-link" href="/ampliar-publicacion.html">Mis Publicaciones</a>
 STR;
     }
     $contenido = new Template($nameTemplate);
