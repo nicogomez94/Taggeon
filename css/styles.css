@@ -39,10 +39,16 @@
         margin: 10px;
     }
     .navbar-brand-container{
-        width: 25% !important;
+        width: 10% !important;
     }
     #form-buscar{
-        width: 70% !important;
+        width: 80% !important;
+    }
+    .subir-publicacion-responsive{
+        width: 10% !important;
+    }
+    #subir-publicacion{
+        margin-left: 8px;
     }
     .modal h1{
         font-size: 1.5rem;
@@ -62,14 +68,32 @@
     .subir-publicacion-responsive{
         display: block !important;
     }
+    .nombre-brand{
+        display: none;
+    }
+    .cerrar-galeria-banner{
+        display: none;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
+    .navbar-brand-container{
+        width: 10% !important;
+    }
+    #form-buscar{
+        width: 80% !important;
+    }
+    .subir-publicacion-responsive{
+        width: 10% !important;
+    }
+    #subir-publicacion{
+        margin-left: 15px;
+    }
     .item{
         width: 45vw !important;
     }
     .titulo-col{
-        padding: 10px !important;
+        padding: 5px 10vw 5px 10vw !important;
     }
     #collapsibleNavbar{
         background-color: white;
@@ -85,7 +109,7 @@
     #dropdown-user-menu-responsive{
         display: block !important;
     }
-    #ver-perfil{
+    .ver-perfil{
         display: none;
     }
     #navbar-bottom-responsive{
@@ -104,13 +128,6 @@
     #menu-perfil>.navbar>.navbar-nav>.nav-item{
         margin: 10px;
     }
-    .navbar-brand-container{
-        width: 0% !important;
-        margin-left: 10px;
-    }
-    #form-buscar{
-        width: 65% !important;
-    }
     .modal h1{
         font-size: 1.5rem;
     }
@@ -123,7 +140,9 @@
     .subir-publicacion-responsive{
         display: block !important;
     }
-
+    .nombre-brand{
+        display: none;
+    }
 }
 
 @media (max-width: 991px){
@@ -213,6 +232,9 @@ body{
     cursor: pointer;
     z-index: 999;
     padding: 10px;
+}
+.ver-perfil{
+    padding: 11px !important;
 }
 #flotante-subir:hover{ 
     background-color: rgb(216, 216, 216);
@@ -470,10 +492,10 @@ form div{
     /* height: 100%; */
     position: relative;
     overflow-x: scroll;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     white-space: nowrap;
     transition: all 0.2s;
-    transform: scale(0.992);/*LO QUE HACE EL EFECTO DE ESCALA MAS GRANDE*/
+    transform: scale(0.996);/*LO QUE HACE EL EFECTO DE ESCALA MAS GRANDE*/
     will-change: transform;
     cursor: pointer;
 }
