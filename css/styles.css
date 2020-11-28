@@ -1,4 +1,4 @@
-
+/*color principal #cebd8b*/
 
 @media screen and (max-width: 576px) {
     .titulo-col{
@@ -154,7 +154,12 @@
     }
 }
 /*  */
-
+.btn-warning {
+    color: #000 !important;
+    background-color: #cebd8b !important;
+    border-color: #cebd8b !important;;
+    /*font-weight: 500 !important;*/
+}
 .overlay-loading{
     display: none;
     position: fixed;
@@ -240,7 +245,7 @@ body{
 
 }
 #navbar-principal{
-    z-index: 997;
+    z-index: 999;/*estaba 997*/
     background-color: #fff;
     box-shadow: 0px 1px 7px #cecece;
 }
@@ -939,6 +944,7 @@ select{
     background-color: rgb(243, 243, 243);
     border-left: 6px solid black;
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 #col-foto-upload, #col-foto-info{
     padding: 20px;
@@ -1665,9 +1671,9 @@ input:focus ~ .highlight {
 .popup-prod-overlay{
     display: none;
     position: absolute;
-    width: 700px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
-    height: 413px;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
-    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
+    height: 100%;/*DINAMIZAR DESPUES-TIENE QUE SER IFGUAL QUE MAP*/
+    /*background-color: rgba(0, 0, 0, 0.7);*/
     z-index: 999;
 }
 .popup-prod-cont{
@@ -1680,6 +1686,15 @@ input:focus ~ .highlight {
 }
 .popup-producto{
     cursor: pointer;
+}
+.salir-popup{
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    top: 0;
+}
+.nombre-producto:hover{
+    font-weight: 600;
 }
 /*******************/
 .test1{

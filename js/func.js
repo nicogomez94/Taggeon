@@ -52,6 +52,11 @@ $(document).ready(function() {
         $("#img-subir-pins").show();
         $("#output-imgpins").attr("src","");
         $("#output-imgpins").hide();
+        $("#map").css({
+            "background-image" : "none",
+            "width" : "unset",
+            "height": "unset"
+        });
     });
 
     /*slick carrusel productos en ampliar publicaciones*/
@@ -448,7 +453,7 @@ $('#iniciar_sesion').submit(function (e) {
         $('#map').dropPin('dropMulti',{
             cursor: 'crosshair',
             pinclass: 'qtipinfo',
-            pin: '../../img/1248820.svg'
+            pin: '../../img/tag-solid.svg'
         });
 
     });
@@ -535,9 +540,9 @@ $('#subir-publicacion-form').submit(function (e) {
     //appendeo la imagen sacada del map. ya la inicio el onchange
     var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
     var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
-    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villero mal
+    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal
     formData.append("foto_base64",sc_url_imagen_642);
-    formData.delete("publicacion_foto");
+    formData.delete("publicacion_foto");//villa tambien
         
     $.ajax({
         url: '/app/publicacion.php',
@@ -575,9 +580,16 @@ $('#editar-publicacion-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
     var formData = new FormData($(this)[0]);
-        
+    
+    //appendeo la imagen sacada del map. ya la inicio el onchange
+    var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
+    var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
+    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal
+    formData.append("foto_base64",sc_url_imagen_642);
+    formData.delete("publicacion_foto");//villa tambien
+
     $.ajax({
-        url: '/app/editar-publicacion.php',
+        url: '/app/publicacion.php',
         data: formData,
         type: 'POST',
         processData: false,

@@ -1,18 +1,4 @@
-
-   <div class="modal fade show" id="modal-pin" tabindex="-1" role="dialog" aria-labelledby="" aria-modal="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
-				<div class="modal-body">
-               <h1>test</h1>
-				</div>
-			</div>
-		</div>
-   </div>
-   
-
 <div class="overlay-prod"></div>
-
 
    <div class="container" id="contenedor-form-subir">
       <h1>Subir Publicacion</h1>
@@ -36,7 +22,10 @@
                      <!--  -->
                      <div class="popup-prod-overlay">
                         <div class="popup-prod-cont">
-                           <div class="salir-popup"><a href="#">X</a></div>
+                           <div class="salir-popup"><a href="#"><i class="fas fa-times-circle"></i></a></div>
+                           <h6>Elija un producto:</h6>
+                           <hr>
+                           <!-- <select class="lista-prod"></select> -->
                         </div>
                      </div>
                      <!--  -->
@@ -70,6 +59,7 @@
                </div>
                <div class="row">
                   <div class="col-lg-3">
+                     <p class="label-descr">Categor&iacute;a de la publicacion</p>
                      <select name="publicacion_categoria" id="publicacion_categoria">
                         <option value="" selected disabled hidden required>Elija una categoria</option>
                      </select>
@@ -93,7 +83,10 @@
 
 
    <script>
-	   var jsonData = {json}
+      var jsonData = {json}
+      var jsonTestProd = {
+         "productos":[{"0":"60","id":"60","1":"lisoform1","titulo":"lisoform1","2":"1","id_rubro":"1","3":"dfgs","marca":"dfgs","4":"8","precio":"8","5":"0","envio":"0","6":"1","garantia":"1","7":"ggf","descr_producto":"ggf","8":"color-rojo","color":"color-rojo","9":"34","stock":"34","10":"181","foto":"181"},{"0":"67","id":"67","1":"test","titulo":"test","2":"1","id_rubro":"1","3":"sdfsd","marca":"sdfsd","4":"2312","precio":"2312","5":"1","envio":"1","6":"0","garantia":"0","7":"fdsf","descr_producto":"fdsf","8":"color-rojo","color":"color-rojo","9":"23","stock":"23","10":"175","foto":"175"},{"0":"71","id":"71","1":"bmw","titulo":"bmw","2":"1","id_rubro":"1","3":"bmw","marca":"bmw","4":"123","precio":"123","5":"1","envio":"1","6":"0","garantia":"0","7":"bmnz","descr_producto":"bmnz","8":"color-rojo","color":"color-rojo","9":"1","stock":"1","10":"199","foto":"199"},{"0":"75","id":"75","1":"dfgfg","titulo":"dfgfg","2":"1","id_rubro":"1","3":"dsfsd","marca":"dsfsd","4":"23","precio":"23","5":"0","envio":"0","6":"1","garantia":"1","7":"fsdf","descr_producto":"fsdf","8":"color-rojo","color":"color-rojo","9":"1","stock":"1","10":"217","foto":"217"}]
+      }
    </script>
    
 
@@ -127,15 +120,17 @@
                }
             }
             
-            var sizeProd = jsonData.productos.length;
+            /*hardcodeadoooo*/
+            var sizeProd = jsonTestProd.productos.length;
 
 				if(sizeProd>0){
 					for(var i=0; i<sizeProd; i++){
-						var id_prod = jsonData.productos[i].id;
-						var nombre_prod = jsonData.productos[i].titulo;
+						var id_prod = jsonTestProd.productos[i].id;
+						var nombre_prod = jsonTestProd.productos[i].titulo;
 						var html ='<div class="popup-producto popup-producto-'+i+'">'+
                               '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span>'+
                            '</div>';
+                  // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
 						$(".popup-prod-cont").append(html);
 					}
             }

@@ -3,10 +3,19 @@
       <h1>Editar Publicacion</h1>
       <hr>
       <form id="editar-publicacion-form">
-         <input type="hidden" name="accion" value="alta">
+         <!--  -->
+         <input type="hidden" name="accion" value="editar">
+         <!--  -->
          <div id="col-foto-upload">
-               <p class="label-descr">Seleccione al menos una foto para el publicacion.</p>
+               <p class="label-descr">Estas en modo edicion de la publicacion</p>
                <div class="row">
+                  <div id="img-subir-pins" class="img-subir">
+                     <div id="mensaje-flotante-imgsp">
+                        <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
+                        <div>Arrastra una imagen, o haz click para subir</div>
+                     </div>
+                     <input type="file" name="publicacion_foto" id="imagen-pins" onchange="cargarImgPines(event)">
+                  </div>
                   <div id="output-container">
                      <div id="eliminar-img-flotante">
                         <i class="fas fa-trash-alt"></i>
@@ -18,7 +27,7 @@
                         </div>
                      </div>
                      <!--  -->
-                     <div id="map-show">
+                     <div id="map">
                         
                      </div>
                      <!--  -->
@@ -33,7 +42,7 @@
                <div class="row">
                   <div class="col-lg-12">
                      <div class="group">      
-                        <input type="text" name="publicacion_nombre" id="titulo-publicacion" required>
+                        <input type="text" name="publicacion_nombre" id="publicacion_nombre" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="label-text-subir-publicacion">Nombre del publicacion</label>
@@ -43,14 +52,14 @@
                <div class="row">
                   <div class="col-lg-12">
                      <p class="label-descr">Descripcion de la publicacion</p>
-                     <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
+                     <textarea type="text" name="publicacion_descripcion" id="publicacion_descripcion" required></textarea>
                   </div>
                </div>
                <div class="row">
                   <div class="col-lg-3">
+                     <p class="label-descr">Categor&iacute;a de la publicacion</p>
                      <select name="publicacion_categoria" id="publicacion_categoria">
                         <option value="" selected disabled hidden required>Elija una categoria</option>
-                        <option value="cat-test">test</option>
                      </select>
                   </div>
                </div>
@@ -86,8 +95,8 @@
       <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-1458"></script>
       <script>
          $(document).ready(function(){
-
-            $("#map-show").dropPin('showPins',{
+            
+            /*$("#map-show").dropPin('showPins',{
                cursor: 'pointer',
                pinclass: 'qtipinfo',
 		         pin: '../../img/1248820.svg',
@@ -98,33 +107,57 @@
                                     {"id":2,"title":"map pin 3","xcoord":"329","ycoord":"329"}
                                  ]
                            }
-            });
-            var sizePublic = jsonData.publicaciones.length;
+            });*/
+            
 
+            //CATEGORIA
+            var catPublicSize = jsonData.categoria.length;
+            console.log(catPublicSize);
+
+            if(catPublicSize>0){
+               for(var i=0; i<catPublicSize; i++){
+
+                  var nombre_categoria_public = jsonData.categoria[i].nombre;
+                  var id_categoria_public = jsonData.categoria[i].id;
+                  
+                  var cat_html = '<option value="'+id_categoria_public+'">'+nombre_categoria_public+'</option>'
+
+                  $("#publicacion_categoria").append(cat_html);
+
+               }
+            }
+
+            /*A EDITAR*/
+            var sizePublic = jsonData.publicaciones.length;
                if(sizePublic>0){
                   for(var i=0; i<sizePublic; i++){
+                     var id_public = jsonData.publicaciones[i].id;
+                     var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
+                     var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
+                     var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
+                     var imagen_id = jsonData.publicaciones[i].foto;
+                     var foto_src = '/publicaciones_img/'+imagen_id;
 
-                     var id_public = jsonData.publicaciones[i].nombre;
-                     var nombre_public = jsonData.publicaciones[i].nombre;
-                     var fecha_public = jsonData.publicaciones[i].fecha;
-                     var imagen_public = jsonData.publicaciones[i].imagen;
-            
-                     var html_public = '<div class="publicacion">'+
-                                          '<img class="imagen-public" src="'+imagen_public+'">'+
-                                          '<div class="overlay-public">'+
-                                             '<div class="text-overlay">'+
-                                                '<div>'+
-                                                   '<span>'+nombre_public+'</span>'+
-                                                '</div>'+
-                                                '<div>'+
-                                                   '<span class="text-overlay-link"><a href="/ampliar-publicacion.html?id='+id_public+'&accion=ampliar"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a></span>&nbsp;'+
-                                                   '<span class="text-overlay-link"><a href="/editar-publicacion.html?id='+id_public+'&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>'+
-                                                '</div>'+
-                                             '</div>'+
-                                          '</div>'+
-                                       '</div>'
-                                       
-                     $("#contenedor-mis-public").append(html_public);
+                     $("#publicacion_nombre").val(nombre_public);
+                     $("#publicacion_descripcion").val(descr_public);
+                     $("#publicacion_categoria").val(nombre_public);
+
+                     //para que ya apareza la foto en map
+                     $.get(foto_src, function(responseText){
+                        var response_error = "<h1>P&aacute;gina no encontrada.</h1><p>P&aacute;gina no encontrada.</p>";
+
+                        if(responseText == response_error){
+                           $(".imagen-public-"+imagen_id).attr("src", "");
+                        }else{
+                           $("#img-subir-pins").hide();
+                           $("#map").css("background-image","url('"+responseText+"')");
+                           $("#map").css("width","100%");
+                           $("#map").css("height","300px");
+                           $("#eliminar-img-flotante").show();
+                           $("#anadir-productos-btn").show();
+                        }
+                        
+                     });
 
                   }
                }
