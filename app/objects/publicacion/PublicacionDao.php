@@ -227,6 +227,10 @@ SQL;
                         $this->setMsj("$sql" . Database::Connect()->error);
                     } else {
                         $id = mysqli_insert_id(Database::Connect());
+                                        $fp = fopen("/var/www/html/publicaciones_img/$id", 'w');
+                                        fwrite($fp, $publicacion_foto);
+                                        fclose($fp);
+
                         $this->setMsj($id);
                         $this->setStatus("OK");
                         return true;

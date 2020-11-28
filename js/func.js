@@ -487,6 +487,7 @@ $('#iniciar_sesion').submit(function (e) {
 $('#producto-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
+    var formDataImg = reader.readAsDataURL($("#file2").get(0).files[0]); 
     var formData = new FormData($(this)[0]);
         
     $.ajax({
@@ -528,17 +529,15 @@ $('#producto-form').submit(function (e) {
 $('#subir-publicacion-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
+
     var formData = new FormData($(this)[0]);
     
-    /*var pin_position = $(".hiddenpin-pinposition");
-    var pin_producto = $(".hiddenpin-producto");
-    var dataPines = {
-        "nombre" : "tato",
-        "nombre" : "ta22to",
-        "nombre" : "tat32132312o"
-    }
-    var dataPines_json = JSON.stringify(dataPines);
-    formData.append("dataPines",dataPines);*/
+    //appendeo la imagen sacada del map. ya la inicio el onchange
+    var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
+    var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
+    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal
+    formData.append("foto_base64",sc_url_imagen_642);
+    formData.delete("publicacion_foto");
         
     $.ajax({
         url: '/app/publicacion.php',

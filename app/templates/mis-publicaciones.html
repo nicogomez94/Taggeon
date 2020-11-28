@@ -128,20 +128,35 @@
    <script src="js/func.js?time=031120-1749"></script>
    <script>
       $(document).ready(function(){
-
          var sizePublic = jsonData.publicaciones.length;
 
          if(sizePublic>0){
             for(var i=0; i<sizePublic; i++){
-               
                var id_public = jsonData.publicaciones[i].id;
                var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
                var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
                var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
-               var imagen_public = jsonData.publicaciones[i].foto;
+               var imagen_id = jsonData.publicaciones[i].foto;
+
+               var foto_src = '/publicaciones_img/'+imagen_id;
+
+               /*$.get(foto_src, function(responseText){
+                  var response_error = "<h1>P&aacute;gina no encontrada.</h1><p>P&aacute;gina no encontrada.</p>";
+
+                  if(responseText == response_error){
+                     console.log("no se encontro imagen");
+                     $(".imagen-public-"+imagen_id).attr("src", "");
+                  }else{
+                     console.log(responseText)
+                     $(".imagen-public-"+imagen_id).attr("src", responseText);
+                  }
+                  //$(".imagen-public-"+imagen_id).attr("src") = 
+                  
+               });*/
+               
       
                var html_public = '<div class="publicacion">'+
-                                    '<img class="imagen-public" src="'+imagen_public+'">'+
+                                    '<img class="imagen-public imagen-public-'+imagen_id+'">'+
                                     '<div class="overlay-public">'+
                                        '<div class="text-overlay">'+
                                           '<div>'+
@@ -156,7 +171,27 @@
                                     '</div>'+
                                  '</div>'
                                  
-               $("#contenedor-mis-public").append(html_public);
+               $(".contenedor-mis-public").append(html_public);
+
+
+
+               var rawFile = new XMLHttpRequest();
+                  rawFile.open("GET", foto_src, false);
+                  rawFile.onreadystatechange = function ()
+                  {
+                     if(rawFile.readyState === 4)
+                     {
+                           if(rawFile.status === 200 || rawFile.status == 0)
+                           {
+                              var response_error = "<h1>P&aacute;gina no encontrada.</h1><p>P&aacute;gina no encontrada.</p>";
+                              var str_base64 = rawFile.responseText;
+                              
+                              $(".imagen-public-"+imagen_id).attr("src", str_base64);
+                           
+                           }
+                     }
+                  }
+                  rawFile.send(null);
 
             }
          }

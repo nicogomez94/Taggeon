@@ -282,7 +282,7 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 			$this->setMsj("No se pudo actualizar la foto.");
 			return false;
 		}
-		$fp = fopen("/var/www/imagen_perfil/$id", 'w');
+		$fp = fopen("/var/www/imagen_perfil/$idUsuario", 'w');
 		fwrite($fp, $foto);
 		fclose($fp);
 

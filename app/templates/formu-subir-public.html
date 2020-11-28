@@ -117,9 +117,10 @@
             if(catPublicSize>0){
                for(var i=0; i<catPublicSize; i++){
 
-                  var categoria_public = jsonData.categoria[i].nombre;
-                  console.log(categoria_public)
-                  var cat_html = '<option value="'+categoria_public+'">'+categoria_public+'</option>'
+                  var nombre_categoria_public = jsonData.categoria[i].nombre;
+                  var id_categoria_public = jsonData.categoria[i].id;
+                  
+                  var cat_html = '<option value="'+id_categoria_public+'">'+nombre_categoria_public+'</option>'
 
                   $("#publicacion_categoria").append(cat_html);
 

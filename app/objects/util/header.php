@@ -6,7 +6,7 @@ $perfil   = isset($perfil) ? $perfil : '';
 if ($perfil == 'seller' || $perfil == 'picker'){
 	$contenidoHeader = new Template('header_esp_usuario');
 	$reemplazoPerfil = ($perfil == 'seller') ? ' Seller' : '';
-	$id        = $GLOBALS['sesionG']['id'];
+	$id        = $GLOBALS['sesionG']['idUsuario'];
     $fotoPerfil = '';
 
     if (file_exists("/var/www/imagen_perfil/$id")) {

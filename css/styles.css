@@ -2,10 +2,10 @@
 
 @media screen and (max-width: 576px) {
     .titulo-col{
-        padding: 10px !important;
+        padding: 5px 10vw 5px 10vw !important;
     }
     .item{
-        width: 40vw !important;
+        width: 45vw !important;
     }
     #collapsibleNavbar{
         background-color: white;
@@ -42,7 +42,7 @@
         width: 25% !important;
     }
     #form-buscar{
-        width: 55% !important;
+        width: 70% !important;
     }
     .modal h1{
         font-size: 1.5rem;
@@ -56,12 +56,17 @@
     #carouselExampleIndicators{
         display: none;
     }
-
+    .content-col-div img{
+        max-width: 100%;
+    }
+    .subir-publicacion-responsive{
+        display: block !important;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
     .item{
-        width: 40vw !important;
+        width: 45vw !important;
     }
     .titulo-col{
         padding: 10px !important;
@@ -100,10 +105,11 @@
         margin: 10px;
     }
     .navbar-brand-container{
-        width: 25% !important;
+        width: 0% !important;
+        margin-left: 10px;
     }
     #form-buscar{
-        width: 75% !important;
+        width: 65% !important;
     }
     .modal h1{
         font-size: 1.5rem;
@@ -113,6 +119,9 @@
     }
     .img-perfil-media{
         width: 75px !important;
+    }
+    .subir-publicacion-responsive{
+        display: block !important;
     }
 
 }
@@ -138,6 +147,12 @@
 @media (min-width: 1200px) {
 }
 
+/**/
+@media screen and (max-width: 400px) {
+    .titulo-col{
+        padding: 5px 7vw 5px 7vw !important;
+    }
+}
 /*  */
 
 .overlay-loading{
@@ -177,6 +192,42 @@ body{
 }
 [role="main"] {
     padding-top: 48px;
+}
+.subir-publicacion-responsive{
+    display: none;
+}
+#flotante-subir{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 15px;
+    border-radius: 50%;
+    color: black;
+    box-shadow: 0 0 1px 1px #dddddd;
+    background-color: white;
+    cursor: pointer;
+    z-index: 999;
+    padding: 10px;
+}
+#flotante-subir:hover{ 
+    background-color: rgb(216, 216, 216);
+    box-shadow: none;
+}
+#flotante-subir a.link, #flotante-subir a:visited{
+    color: black !important;
+}
+#subir-publicacion{
+    padding: 5px;
+    margin-right: 5px;
+}
+#subir-publicacion i{
+    padding: 5px;
+    color: grey;
+    background: #f1f1f1;
+    border-radius: 50%;
+}
+#subir-publicacion a.link, #subir-publicacion a:visited{
+    color: grey;
 }
 .navbar-brand-container{
     text-align: center;
@@ -263,6 +314,21 @@ body{
 #dropdown-user-menu-responsive{
     display: none;
 }
+.cerrar-galeria-banner {
+    position: absolute;
+    color: rgba(255,255,255,0.8);
+    right: 0;
+    top: 0;
+    z-index: 999;
+    margin: 10px;
+    font-size: x-large;
+    cursor: pointer;
+}
+.img-perfil-usuario-drop{
+    max-width: 100%;
+    box-shadow: 0 0 1px 2px #b7b7b7;
+    border-radius: 50%;
+}    
 
 
 .modal-body{
@@ -336,11 +402,15 @@ form div{
     background-color: rgb(226, 226, 226);
 }
 .nav-item-icon{
-    padding: 11px; /*para que encaje en el "renglon"*/
+    /* padding: 11px; */
     /* border-radius: 50%; */
     color: grey;
     cursor: pointer;
     background-color: rgb(231, 231, 231);
+}
+#dropdown-user-menu-cont{
+    width: 35px;
+    margin-left: 10px;
 }
 .content-col-div img{
     box-shadow: 3px 3px 0px 0px #d0d0d0;
@@ -367,9 +437,10 @@ form div{
     border-radius: 50px;
     font-weight: normal;
     box-shadow: 3px 3px 0px 0px #d6d6d6;
-    background-color: #eeeeee;
-    /*
-    background-image: url(&quot;data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.33' fill-rule='evenodd'/%3E%3C/svg%3E&quot;);*/
+    background-color: #efefef;
+    background-image: url("data:image/svg+xml,%3Csvg width='32' height='26' viewBox='0 0 32 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 0v3.994C14 7.864 10.858 11 7 11c-3.866 0-7-3.138-7-7.006V0h2v4.005C2 6.765 4.24 9 7 9c2.756 0 5-2.236 5-4.995V0h2zm0 26v-5.994C14 16.138 10.866 13 7 13c-3.858 0-7 3.137-7 7.006V26h2v-6.005C2 17.235 4.244 15 7 15c2.76 0 5 2.236 5 4.995V26h2zm2-18.994C16 3.136 19.142 0 23 0c3.866 0 7 3.138 7 7.006v9.988C30 20.864 26.858 24 23 24c-3.866 0-7-3.138-7-7.006V7.006zm2-.01C18 4.235 20.244 2 23 2c2.76 0 5 2.236 5 4.995v10.01C28 19.765 25.756 22 23 22c-2.76 0-5-2.236-5-4.995V6.995z' fill='%23eeedf0' fill-opacity='0.7' fill-rule='evenodd'/%3E%3C/svg%3E");
+    /*background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h16v2h-6v6h6v8H8v-6H2v6H0V0zm4 4h2v2H4V4zm8 8h2v2h-2v-2zm-8 0h2v2H4v-2zm8-8h2v2h-2V4z' fill='%23ebeaec' fill-opacity='0.66' fill-rule='evenodd'/%3E%3C/svg%3E");*/
+    /*background-image: url("data:image/svg+xml,%3Csvg width='32' height='64' viewBox='0 0 32 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 28h20V16h-4v8H4V4h28v28h-4V8H8v12h4v-8h12v20H0v-4zm12 8h20v4H16v24H0v-4h12V36zm16 12h-4v12h8v4H20V44h12v12h-4v-8zM0 36h8v20H0v-4h4V40H0v-4z' fill='%23e0ecff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");*/
 }
 .carousel-inner{
     height: 250px !important;/*provisorio*/
@@ -397,7 +468,7 @@ form div{
     overflow-y: scroll;
     white-space: nowrap;
     transition: all 0.2s;
-    transform: scale(0.98);
+    transform: scale(0.992);/*LO QUE HACE EL EFECTO DE ESCALA MAS GRANDE*/
     will-change: transform;
     cursor: pointer;
 }
@@ -780,7 +851,7 @@ form div{
 }
 
 .navbar-bottom-col{
-    width: 33.33333333333333%;/*me hincho bootstrap*/
+    width: 50%;/*me hincho bootstrap*/
     text-align: center;
 }
 .navbar-bottom-col-sl{

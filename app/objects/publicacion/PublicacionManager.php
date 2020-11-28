@@ -57,9 +57,13 @@ class  PublicacionManager
             $this->setStatus("ERROR");
             $this->setMsj($this->publicacionDao->getMsj());
             return false;
-        }
+       	}
 
-		return false;
+	    $publicacion_foto = isset($data["foto_base64"]) ? $data["foto_base64"] : '';
+	    if ($this->validarPublicacion_foto($publicacion_foto) === false){
+	      return false;
+	    }
+
 	}
 
 
@@ -79,11 +83,7 @@ class  PublicacionManager
 			$idPublicacion = $this->publicacionDao->getMsj();
 
 			
-                foreach ($_POST["publicacion_foto"] as $valor) {
-                    $valor = isset($valor) ?  $valor : '';
-		            if ($this->validarPublicacion_foto( $valor) === false){
-			            return false;
-		            }
+	            $valor = isset($data["foto_base64"]) ? $data["foto_base64"] : '';
                     $dataPublicacion_foto = array(
                         "id_publicacion" => $idPublicacion,
                         "publicacion_foto"        => $valor
@@ -94,8 +94,6 @@ class  PublicacionManager
                         $this->setMsj($this->publicacionDao->getMsj());
                         return false;
                     }
-                }
-                
 			
 			$this->setStatus("OK");
 			$this->setMsj($idPublicacion);
@@ -119,8 +117,7 @@ class  PublicacionManager
                     return false;
                 } else {
                     $idPublicacion = isset($data["id"]) ? $data["id"] : '';
-                    foreach ($_POST["publicacion_foto"] as $valor) {
-                        $valor = isset($valor) ?  $valor : '';
+	            $valor = isset($data["foto_base64"]) ? $data["foto_base64"] : '';
                         $dataPublicacion_foto = array(
                             "id_publicacion" => $idPublicacion,
                             "publicacion_foto"        => $valor
@@ -131,7 +128,6 @@ class  PublicacionManager
                             $this->setMsj($this->publicacionDao->getMsj());
                             return false;
                         }
-                    }
                 }
 			$this->setStatus("OK");
 			$this->setMsj($this->publicacionDao->getMsj());
@@ -198,9 +194,9 @@ class  PublicacionManager
 	        
             private function validarPublicacion_nombre($publicacion_nombre)
             {
-                if (! preg_match('/^\w+$/i', $publicacion_nombre)){
+                if (! preg_match('/^.+$/i', $publicacion_nombre)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo publicacion_nombre es incorrecto.");
+                    $this->setMsj("El nombre de la publicacón es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");
@@ -211,7 +207,7 @@ class  PublicacionManager
             {
                 if (!is_numeric($publicacion_categoria)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo publicacion_categoria es incorrecto.");
+                    $this->setMsj("El campo categoria  $publicacion_categoria es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");
@@ -220,9 +216,9 @@ class  PublicacionManager
             }        
             private function validarPublicacion_foto($publicacion_foto)
             {
-                if (! preg_match('/^\w+$/i', $publicacion_foto)){
+                if (! preg_match('/^data.*$/i', $publicacion_foto)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo publicacion_foto es incorrecto.");
+                    $this->setMsj("La foto es incorrecta.");
                     return false;
                 }
                 $this->setStatus("OK");
@@ -231,9 +227,9 @@ class  PublicacionManager
             }        
             private function validarPublicacion_descripcion($publicacion_descripcion)
             {
-                if (! preg_match('/^\w+$/i', $publicacion_descripcion)){
+                if (! preg_match('/^.+$/i', $publicacion_descripcion)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo publicacion_descripcion es incorrecto.");
+                    $this->setMsj("El campo publicación es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");

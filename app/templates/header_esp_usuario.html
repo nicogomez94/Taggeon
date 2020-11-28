@@ -12,17 +12,29 @@
 
 </head>
 <body>
+<!--
+   <div id="flotante-subir">
+      <span><a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a></span>
+   </div>
+-->
 
     <nav id="navbar-principal" class="navbar navbar-expand-md fixed-top">
       <div class="navbar-brand-container">
          <a class="navbar-brand" href="/">
-            <i class="fab fa-affiliatetheme"></i>
-            <span> Arquipick</span>
+            <i class="fab fa-affiliatetheme logo-brand"></i>
+            <span class="nombre-brand"> Arquipick</span>
          </a>
       </div>
       <!---->
       <input id="form-buscar" class="form-control search" type="text" placeholder="Buscar" aria-label="Buscar">
       <!---->
+      <!--  -->
+      <div class="subir-publicacion-responsive">
+         <div id="subir-publicacion">
+             <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
+         </div>
+      </div>
+      <!--  -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
          <ul class="navbar-nav px-3" id="items-navbar-derecha">
             <li class="nav-item text-nowrap">
@@ -33,10 +45,12 @@
                      <i class="fas fa-user"></i>
                   </div> -->
             </li>
-            <li id="dropdown-user-menu-cont" class="nav-item text-nowrap" style="margin-left:10px">
-                  <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter2">
-                     Registrarse
-                  </button> -->
+            <li class="nav-item text-nowrap subir-publicacion-container">
+               <div id="subir-publicacion">
+                   <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
+               </div>
+            </li>
+            <li id="dropdown-user-menu-cont" class="nav-item text-nowrap">
                   <div id="drop" class="nav-item-icon">
                      <img class="img-perfil-usuario-drop" src="{foto-perfil}" alt="img-perfil"> 
                   </div>
@@ -96,12 +110,13 @@
                      <a href="/app/logout.php">Cerrar Sesi&oacute;n</a>
                </div>
          </div>
+         <!--
          <div class="navbar-bottom-col">
                <a href="#">
                   <div><i class="fas fa-plus"></i></div>
                   <div>Subir</div>
                </a>
-            </div>
+            </div>-->
       </nav>
 	
 	<!-- Modal INICIO DE SESION -->
