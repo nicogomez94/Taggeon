@@ -53,7 +53,7 @@ class  PublicacionManager
 	     return false;
 	    }
 	    $pid = isset($data["data_pines"]) ? $data["data_pines"] : '';
-	    if ($this->validarPublicacion_pid($data_pines) === false){
+	    if ($this->validarPublicacion_pid($pid) === false){
 	     return false;
 	    }
 

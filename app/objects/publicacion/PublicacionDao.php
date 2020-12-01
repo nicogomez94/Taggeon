@@ -41,12 +41,12 @@ class  PublicacionDao
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
-        $publicacion_pid = isset($data["publicacion_pid"]) ? $data["publicacion_pid"] : '';
+        $publicacion_pid = isset($data["data_pines"]) ? $data["data_pines"] : '';
         $publicacion_pidDB = Database::escape($publicacion_pid);
         
 		$sql = <<<SQL
-			INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta,pid)  
-			VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion,$publicacion_pidDB)
+INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta,pid)  
+VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -76,7 +76,7 @@ SQL;
         $publicacion_categoriaDB = Database::escape($publicacion_categoria);
         $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
-        $publicacion_pid = isset($data["publicacion_pid"]) ? $data["publicacion_pid"] : '';
+	$publicacion_pid = isset($data["data_pines"]) ? $data["data_pines"] : '';
         $publicacion_pidDB = Database::escape($publicacion_pid);
 
         $sql = <<<SQL
