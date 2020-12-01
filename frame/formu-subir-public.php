@@ -1,9 +1,12 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+
 
 
 if ($perfil == 'seller'){
+    $productoManager = new ProductoManager();
     $publicacionManager = new PublicacionManager();
 
     $jsonData = array(
@@ -13,6 +16,9 @@ if ($perfil == 'seller'){
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $publicacionManager->getListCategoria(),
         #"rubro"     => $publicacionManager->getListRubro()
+        "categoria_producto" => $productoManager->getListCategoria(),
+        "rubro_producto"     => $productoManager->getListRubro(),
+        "productos"     => $productoManager->getListProducto()
     );
     $jsonData = json_encode($jsonData);
     //$urlEditar = ($perfil == 'seller') ? "/editar-usuario-seller.html": '/editar-usuario.html';

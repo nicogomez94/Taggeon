@@ -1,10 +1,11 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects'] . "util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects'] . "publicacion/PublicacionManager.php");
-
+include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 
 if ($perfil == 'seller') {
     $publicacionManager = new PublicacionManager();
+    $productoManager = new ProductoManager();
 
     $publicacion =  $publicacionManager->getPublicacion($_GET);
     if ($publicacionManager->getStatus() != "ok"){
@@ -23,7 +24,10 @@ if ($perfil == 'seller') {
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
         "categoria"     => $publicacionManager->getListCategoria(),
-        "publicaciones" => $publicacion
+        "publicaciones" => $publicacion,
+        "categoria_producto" => $productoManager->getListCategoria(),
+        "rubro_producto"     => $productoManager->getListRubro(),
+        "productos"     => $productoManager->getListProducto()
     );
 
 
