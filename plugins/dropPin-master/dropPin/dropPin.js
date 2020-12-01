@@ -105,7 +105,7 @@
 				$(options.hiddenYid).val(yval);
 
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="hiddenpin-pinposition" class="pin '+yval+"-"+xval+'">');
+				var hiddenCtl= $('<input type="hidden" name="hiddenpin-pinposition-'+yval+'" class="pin '+yval+"-"+xval+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -138,7 +138,7 @@
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
 				var id_producto = $(this).attr('class').split(' ')[1];
 				
-				var hiddenProd= $('<input type="hidden" name="hiddenpin-producto" class="pin pin-popup-producto">');
+				var hiddenProd= $('<input type="hidden" name="hiddenpin-producto-'+yval+'" class="pin pin-popup-producto">');
 				hiddenProd.val(id_producto);
 				hiddenProd.appendTo(thisObj);
 			});

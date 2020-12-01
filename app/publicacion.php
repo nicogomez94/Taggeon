@@ -17,8 +17,6 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->agregarPublicacion($_POST);
         } else if ($var_accion == 'editar') {
             $objPrincipalManager->modificarPublicacion($_POST);
-        } else if ($var_accion == 'eliminar') {
-            $objPrincipalManager->eliminarPublicacion($_POST);
         }
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';
@@ -32,8 +30,21 @@ if (sizeof($_POST) > 0) {
         $mensajeRet = "Acción incorrecta.";
     }
 } else {
-    $statusRet  = 'ERROR';
-    $mensajeRet = "Error post.";
+    $var_accion = (isset($_GET['accion']))  ? $_GET['accion'] : "ninguna";
+    if ($var_accion == 'eliminar') {
+    	$objPrincipalManager->eliminarPublicacion($_GET);
+        if ($objPrincipalManager->getStatus() == 'OK') {
+            $statusRet  = 'OK';
+            $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+        } else {
+            $statusRet  = 'ERROR';
+            $mensajeRet = $objPrincipalManager->getMsj();
+        }
+
+    }else{
+    	$statusRet  = 'ERROR';
+    	$mensajeRet = "Error post.";
+    }
 }
 }else{
 	$statusRet  = 'ERROR';

@@ -5,7 +5,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
 
 if ($perfil == 'seller') {
     $publicacionManager = new PublicacionManager();
-    $productoManager = new ProductoManager();
+
 
     $publicacion =  $publicacionManager->getPublicacion($_GET);
     if ($publicacionManager->getStatus() != "ok"){
@@ -17,6 +17,7 @@ if ($perfil == 'seller') {
         Database::Connect()->close();
         exit;
     }
+    $productoManager = new ProductoManager();
 
     $jsonData = array(
         "usuario"       => $GLOBALS['sesionG']['usuario'],

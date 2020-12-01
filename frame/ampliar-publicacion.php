@@ -1,29 +1,28 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+
 
 if ($perfil=='seller'){
 
     $publicacionManager = new PublicacionManager();
-
+    $productoManager = new ProductoManager();
 
     $jsonData = array(
-        "usuario" => $GLOBALS['sesionG']['usuario'],
-        "nombre"      => $GLOBALS['sesionG']['nombre'],
-        "apellido"    => $GLOBALS['sesionG']['apellido'],
-        "contacto" => $GLOBALS['sesionG']['email'],
-        "categoria" => $publicacionManager->getListCategoria(),
-        "publicaciones"     => $publicacionManager->getListPublicacion()
-        
+        "usuario"       => $GLOBALS['sesionG']['usuario'],
+        "nombre"        => $GLOBALS['sesionG']['nombre'],
+        "apellido"      => $GLOBALS['sesionG']['apellido'],
+        "contacto"      => $GLOBALS['sesionG']['email'],
+        "categoria"     => $publicacionManager->getListCategoria(),
+        "publicaciones"     => $publicacionManager->getListPublicacion(),
+        "categoria_producto" => $productoManager->getListCategoria(),
+        "rubro_producto"     => $productoManager->getListRubro(),
+        "productos"     => $productoManager->getListProducto()
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';
-    if ($perfil == 'seller'){
-
-        $menuperfil = <<<STR
-        <a class="nav-item nav-link" href="/ampliar-publicacion.html">Mis Publicaciones</a>
-STR;
-    }
+    $idEditar = isset($_GET["id"]) ? $_GET["id"] : '';
     $contenido = new Template($nameTemplate);
 	$contenido->asigna_variables(array(
             "json" => $jsonData,
@@ -32,7 +31,7 @@ STR;
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
-            "menuperfil" => $menuperfil,
+	    "id"          => $idEditar,
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
     $contenidoString = $contenido->muestra();

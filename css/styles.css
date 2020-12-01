@@ -284,7 +284,7 @@ body{
     margin-right: 5px;
 }
 #subir-publicacion i{
-    padding: 5px;
+    padding: 12px;
     color: grey;
     background: #f1f1f1;
     border-radius: 50%;
@@ -476,6 +476,7 @@ form div{
 #dropdown-user-menu-cont{
     width: 35px;
     margin-left: 10px;
+    margin-top: 2px;
 }
 .content-col-div img{
     max-width: 100%;
@@ -1450,7 +1451,7 @@ input:focus ~ .highlight {
     bottom: 5%;
     left: 5%;
     text-align: center;
-    background: #000000d4;
+    background: #00000099;
     padding: 20px;
     border-radius: 10px;
 }
