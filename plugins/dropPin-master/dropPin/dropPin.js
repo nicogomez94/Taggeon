@@ -80,6 +80,9 @@
 			var i = 10;
 			thisObj.on(options.userevent, function (ev) {
 
+				/*var test12 = $(this).attr("class");
+				console.log(test12);*/
+
 				i = i + 10;
 				var $img = $(thisObj);
 				var offset = $img.offset();
@@ -105,7 +108,7 @@
 				$(options.hiddenYid).val(yval);
 
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="hiddenpin-pinposition-'+yval+'" class="pin '+yval+"-"+xval+'">');
+				var hiddenCtl= $('<input type="hidden" name="'+yval+'" class="pin '+yval+' '+yval+"-"+xval+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -131,14 +134,22 @@
 					});
 				});
 				
+				var click_protector = '<div class="click-protector click-protector-'+yval+"-"+xval+'"><div class="salir-popup-single"><a href="#"><i class="fas fa-times-circle"></i></a></div></div>';
+				$(".click-protector-cont").append(click_protector);
+				$(".click-protector-"+yval+"-"+xval).css("top",yval);
+				$(".click-protector-"+yval+"-"+xval).css("left",xval);
 			});
 			$(".popup-prod-cont").on("click", ".nombre-producto", function(){
 				
 				$(".popup-prod-overlay").hide();
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
 				var id_producto = $(this).attr('class').split(' ')[1];
+				var box_y_prod = $(this).parent().parent().css("top").split('px')[0];
+				var box_y_prod_posta = box_y_prod - 20
+				var name_producto = $("."+box_y_prod_posta).attr("class").split(' ')[1];
+				console.log(name_producto)
 				
-				var hiddenProd= $('<input type="hidden" name="hiddenpin-producto-'+yval+'" class="pin pin-popup-producto">');
+				var hiddenProd= $('<input type="hidden" name="'+name_producto+'" class="pin pin-popup-producto">');
 				hiddenProd.val(id_producto);
 				hiddenProd.appendTo(thisObj);
 			});
@@ -156,6 +167,14 @@
 				$(".popup-prod-overlay").hide();
 
 			});
+			// $(".click-protector-cont").on("click",".click-protector", function(){
+			// 	// var nombre_producto_single = $(this).attr("class");
+			// 	var html_prod = ''+
+			// 						// '<h6>'+nombre_producto_single+'</h6>'+
+			// 	  // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+			// 	$(this).html(html_prod);
+			// });
+
 			
 
 		},

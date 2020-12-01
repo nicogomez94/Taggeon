@@ -1767,10 +1767,26 @@ input:focus ~ .highlight {
     width: 285px;
     box-shadow: 0 0 6px #d4d4d4;
 }
+.popup-single-cont{
+    position: absolute;
+    background-color: rgb(255 255 255);
+    color: rgb(0 0 0);
+    box-shadow: 0 0 6px #d4d4d4;
+}
+.click-protector{
+    position: absolute;
+    background-color: rgb(255 255 255);
+    padding: 25px;
+    z-index: 999;
+    background: #dc8383a6;
+    margin-left: -13px;
+    margin-top: -3px;
+    cursor: pointer;
+}
 .popup-producto{
     cursor: pointer;
 }
-.salir-popup{
+.salir-popup, .salir-popup-single{
     position: absolute;
     right: 0;
     margin: 10px;
