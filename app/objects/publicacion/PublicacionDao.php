@@ -41,10 +41,12 @@ class  PublicacionDao
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+        $publicacion_pid = isset($data["publicacion_pid"]) ? $data["publicacion_pid"] : '';
+        $publicacion_pidDB = Database::escape($publicacion_pid);
         
 		$sql = <<<SQL
-			INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta)  
-			VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB)
+			INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta,pid)  
+			VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion,$publicacion_pidDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -74,12 +76,14 @@ SQL;
         $publicacion_categoriaDB = Database::escape($publicacion_categoria);
         $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
+        $publicacion_pid = isset($data["publicacion_pid"]) ? $data["publicacion_pid"] : '';
+        $publicacion_pidDB = Database::escape($publicacion_pid);
 
         $sql = <<<SQL
 			UPDATE
 			    `publicacion`
 			SET
-			    `usuario_editar` = $usuarioDB,
+			    `usuario_editar` = $usuarioDB, pid=$publicacion_pidDB,
 `publicacion_nombre` = $publicacion_nombreDB, id_`publicacion_categoria` = $publicacion_categoriaDB, `publicacion_descripcion` = $publicacion_descripcionDB
 			    WHERE
 					`id` = $idDB AND
@@ -250,7 +254,7 @@ SQL;
                     $sql = <<<sql
                     SELECT
                     `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
-                    `publicacion_descripcion`,
+                    `publicacion_descripcion`,pid,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto
             
                 FROM
@@ -263,7 +267,7 @@ SQL;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`
+                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid
             sql;
                     $resultado = Database::Connect()->query($sql);
                     $row_cnt = mysqli_num_rows($resultado);
@@ -309,7 +313,7 @@ SQL;
         $sql = <<<sql
         SELECT
         `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
-        `publicacion_descripcion`,
+	`publicacion_descripcion`,pid,
         min(publicacion_publicacion_foto.id) as foto
     FROM
         `publicacion`
@@ -321,7 +325,7 @@ SQL;
         (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
     group by         
     `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
-    `publicacion_descripcion`
+    `publicacion_descripcion`,pid
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();

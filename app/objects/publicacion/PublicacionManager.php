@@ -52,6 +52,10 @@ class  PublicacionManager
 	    if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
 	     return false;
 	    }
+	    $pid = isset($data["data_pines"]) ? $data["data_pines"] : '';
+	    if ($this->validarPublicacion_pid($data_pines) === false){
+	     return false;
+	    }
 
         if ($this->publicacionDao->existePublicacion_categoria($publicacion_categoria) === false) {
             $this->setStatus("ERROR");
@@ -225,6 +229,12 @@ class  PublicacionManager
                 $this->setMsj("");
                 return true;
             }        
+            private function validarPublicacion_pid($publicacion_descripcion)
+            {
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
+			}
             private function validarPublicacion_descripcion($publicacion_descripcion)
             {
                 if (! preg_match('/^.+$/i', $publicacion_descripcion)){
