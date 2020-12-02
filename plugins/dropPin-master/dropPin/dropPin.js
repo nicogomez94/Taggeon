@@ -156,24 +156,28 @@
 			$(".popup-prod-cont").on("click",".salir-popup", function(){
 
 				var box_y = $(this).parent().css("top").split('px')[0];
+				//console.log($(this).parent())
 				var box_x = $(this).parent().css("left").split('px')[0];
 
 				var box_y_new = box_y - 20;
 				var box_x_new = box_x - 20;
 
-				var pin_a_borrar = $("#map").find("."+box_y_new+box_x_new);
-
+				var pin_a_borrar = $("#map").find("."+box_y_new+"-"+box_x_new);
+				//console.log(pin_a_borrar)
 				pin_a_borrar.remove();
 				$(".popup-prod-overlay").hide();
 
 			});
-			// $(".click-protector-cont").on("click",".click-protector", function(){
-			// 	// var nombre_producto_single = $(this).attr("class");
-			// 	var html_prod = ''+
-			// 						// '<h6>'+nombre_producto_single+'</h6>'+
-			// 	  // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-			// 	$(this).html(html_prod);
-			// });
+			$(".click-protector-cont").on("click",".click-protector", function(){
+
+				var box_yc = $(this).css("top").split('px')[0];
+				var box_xc = $(this).css("left").split('px')[0];
+
+				var pin_a_borrar = $("#map").find("."+box_yc+"-"+box_xc);
+				pin_a_borrar.remove();
+				$(".click-protector-cont").hide();
+
+			});
 
 			
 
