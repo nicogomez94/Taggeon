@@ -168,14 +168,11 @@ if(sizePublic>0){
                         '<div class="productos-public">'+
                            '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
                               '<div class="productos-titulo-public-gallery">'+
-                                 '<img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
-                                 '<img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
-                                 '<img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
-                                 '<img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
+                                 //'<img src="../../img/arrrrte.jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
+                              '</div>'+
                            '</div>'+
-                           '</div>'+
-                           '</div>'+
-                        '</div>'
+                        '</div>'+
+                     '</div>'
                         
       $(".insert-public").append(html_public);
 
@@ -211,25 +208,25 @@ if(sizePublic>0){
       ///DIBUJO PINES
       var producto_parse = JSON.parse(producto);
       var producto_parse_size = producto_parse.length
-      for(var i=0; i<producto_parse_size; i++){
-         var id_prod = producto_parse[i].name;
-         var coords = producto_parse[i].value;
+      for(var x=0; x<producto_parse_size; x++){
+         var id_prod = producto_parse[x].name;
+         var coords = producto_parse[x].value;
          var ycoord = coords.split("-")[0];
          var xcoord = coords.split("-")[1];
 
-         var check_json = Object.values(jsonTestProd.productos)[i].id;
+         var check_json = Object.values(jsonTestProd.productos)[x].id;
          if(check_json == id_prod){
-            var test = Object.values(jsonTestProd.productos)[i];
+            var test = Object.values(jsonTestProd.productos)[x];
 
-            var nombre_prod = jsonTestProd.productos[i].titulo;
-            var precio_prod = jsonTestProd.productos[i].precio;
-            var marca_prod = jsonTestProd.productos[i].marca;
-            var color_prod = jsonTestProd.productos[i].color;
-            var descr_prod = jsonTestProd.productos[i].descr_producto;
-            var id_prod_json = jsonTestProd.productos[i].id;
-            var stock_prod = jsonTestProd.productos[i].stock;
-            var foto_prod = jsonTestProd.productos[i].foto;
-            var id_cat = jsonData.categoria[i].id;
+            var nombre_prod = jsonTestProd.productos[x].titulo;
+            var precio_prod = jsonTestProd.productos[x].precio;
+            var marca_prod = jsonTestProd.productos[x].marca;
+            var color_prod = jsonTestProd.productos[x].color;
+            var descr_prod = jsonTestProd.productos[x].descr_producto;
+            var id_prod_json = jsonTestProd.productos[x].id;
+            var stock_prod = jsonTestProd.productos[x].stock;
+            var foto_prod = jsonTestProd.productos[x].foto;
+            var id_cat = jsonData.categoria[x].id;
             var nombre_completo = jsonData.nombre+""+jsonData.apellido;
 
                  var modal_html =  
@@ -310,7 +307,12 @@ if(sizePublic>0){
                   '</div>';
 
                   $("body").append(modal_html)
-         }
+
+                  var prod_gallery = '<img src="" alt=""';
+                     
+                  $(".productos-titulo-public-gallery").append(prod_gallery);
+
+         }//fin prod
 
          var tag_html = '<div class="tagg" style="top:'+ycoord+'; left: '+xcoord+'"><span><i data-toggle="modal" data-target="#modal-producto-'+id_prod+'" class="fas fa-tags"></i></span></div>';
 

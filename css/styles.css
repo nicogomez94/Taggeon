@@ -1463,6 +1463,9 @@ input:focus ~ .highlight {
 }
 .productos-titulo-public-gallery img{
     margin-left: 10px;
+    width: 100px; 
+    height: 100px; 
+    cursor: pointer;
 }
 
 
