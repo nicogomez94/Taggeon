@@ -10,7 +10,7 @@
 		var test = $("#map").css("background-image");
 
 		var defaults = {
-		fixedHeight: 300,
+		fixedHeight: 'auto',
 		fixedWidth: '100%',
 		dropPinPath: '/js/dropPin/',
 		pin: 'dropPin/defaultpin@2x.png',
@@ -92,10 +92,9 @@
 				
 				var xval = (x - options.xoffset);
 				var yval = (y - options.yoffset);
-				/*console.log(xval)
-				console.log(yval)
-				console.log(yval+xval)*/
-				var imgC = $('<img class="pin '+yval+"-"+xval+'">');
+
+				// var imgC = $('<img class="pin '+yval+"-"+xval+'">');
+				var imgC = $('<img class="pin">');
 				imgC.css('top', yval+'px');
 				imgC.css('left', xval+'px');
 				imgC.css('z-index', i);
@@ -108,7 +107,7 @@
 				$(options.hiddenYid).val(yval);
 
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="'+yval+'" class="pin '+yval+' '+yval+"-"+xval+'">');
+				var hiddenCtl= $('<input type="hidden" name="coords" class="pin '+yval+' '+yval+"-"+xval+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -121,7 +120,6 @@
 				var popup_prod = $(".popup-producto");
 				var yval_pop = yval+20;
 				var xval_pop = xval+20;
-			
 				
 				popup_overlay.show(0,function(){
 					popup_cont.css({
@@ -134,51 +132,74 @@
 					});
 				});
 				
-				var click_protector = '<div class="click-protector click-protector-'+yval+"-"+xval+'"><div class="salir-popup-single"><a href="#"><i class="fas fa-times-circle"></i></a></div></div>';
-				$(".click-protector-cont").append(click_protector);
-				$(".click-protector-"+yval+"-"+xval).css("top",yval);
-				$(".click-protector-"+yval+"-"+xval).css("left",xval);
+				
+
 			});
+			//genera producto y futuro click protector
 			$(".popup-prod-cont").on("click", ".nombre-producto", function(){
 				
 				$(".popup-prod-overlay").hide();
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
 				var id_producto = $(this).attr('class').split(' ')[1];
 				var box_y_prod = $(this).parent().parent().css("top").split('px')[0];
-				var box_y_prod_posta = box_y_prod - 20
-				var name_producto = $("."+box_y_prod_posta).attr("class").split(' ')[1];
-				console.log(name_producto)
+				var box_x_prod = $(this).parent().parent().css("left").split('px')[0];
+
+				var box_y_prod_posta = box_y_prod - 20;
+				var box_x_prod_posta = box_x_prod - 20;
+
+				/*console.log(box_y_prod_posta);
+				console.log(box_x_prod_posta);*/
+
+				// var name_producto = $("."+box_y_prod_posta).attr("class").split(' ')[1];
 				
-				var hiddenProd= $('<input type="hidden" name="'+name_producto+'" class="pin pin-popup-producto">');
-				hiddenProd.val(id_producto);
-				hiddenProd.appendTo(thisObj);
+				var hiddenProd= $('<input type="hidden" name="id_producto" class="pin pin-popup-producto">');
+				var pin_a_namear = $("#map").find("."+box_y_prod_posta+"-"+box_x_prod_posta);//1 porque hay 2
+				console.log(pin_a_namear);
+				pin_a_namear.attr("name",id_producto);
+				// hiddenProd.appendTo(thisObj);
+
+				//div para evitar poner otros pines cerca
+				var click_protector = '<div class="click-protector click-protector-'+box_y_prod_posta+"-"+box_x_prod_posta+'">'+
+											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
+
+				$(".click-protector-cont").append(click_protector);
+				$(".click-protector-"+box_y_prod_posta+"-"+box_x_prod_posta).css("top",box_y_prod_posta);
+				$(".click-protector-"+box_y_prod_posta+"-"+box_x_prod_posta).css("left",box_x_prod_posta);
+				$(".click-protector-"+box_y_prod_posta+"-"+box_x_prod_posta+" .salir-popup-single").css("display","none");
+
 			});
+			//para salir de la sel de productos y eliminar pin
 			$(".popup-prod-cont").on("click",".salir-popup", function(){
 
 				var box_y = $(this).parent().css("top").split('px')[0];
-				//console.log($(this).parent())
 				var box_x = $(this).parent().css("left").split('px')[0];
 
 				var box_y_new = box_y - 20;
 				var box_x_new = box_x - 20;
 
 				var pin_a_borrar = $("#map").find("."+box_y_new+"-"+box_x_new);
-				//console.log(pin_a_borrar)
+
 				pin_a_borrar.remove();
 				$(".popup-prod-overlay").hide();
 
 			});
-			$(".click-protector-cont").on("click",".click-protector", function(){
+			//para borrar el single pin
+			$(".click-protector-cont").on("click",".salir-popup-single", function(){
 
-				var box_yc = $(this).css("top").split('px')[0];
-				var box_xc = $(this).css("left").split('px')[0];
+				var box_yc = $(this).parent().css("top").split('px')[0];
+				var box_xc = $(this).parent().css("left").split('px')[0];
 
 				var pin_a_borrar = $("#map").find("."+box_yc+"-"+box_xc);
 				pin_a_borrar.remove();
-				$(".click-protector-cont").hide();
+				$(this).parent().remove();
 
 			});
+			//click para que aparezca la cruz
+			$(".click-protector-cont").on('click', '.click-protector', function() {
 
+				$(this).find(".salir-popup-single").show();
+			
+			});
 			
 
 		},

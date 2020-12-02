@@ -14,83 +14,7 @@
 
 
 <!-- MODALES -->
-<div class="modal fade" id="modal-producto-0" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
-         <div class="modal-body">
-            <div class="row">
-               <div class="col-lg-7">
-                  <div><img style="width: 100%;" src="../../img/arrrrte.jpg" alt=""></div>
-                  <hr>
-                  <div>
-                     <table class="tg" style="table-layout: fixed; width: 282px">
-                        <colgroup>
-                        <col style="width: 153px">
-                        <col style="width: 129px">
-                        </colgroup>
-                        <tbody>
-                          <tr>
-                            <td class="tg-9f3l">ID Producto</td>
-                            <td class="tg-wo29">121212</td>
-                          </tr>
-                          <tr>
-                            <td class="tg-9f3l">Marca</td>
-                            <td class="tg-wo29">Adidas</td>
-                          </tr>
-                          <tr>
-                            <td class="tg-9f3l">Color</td>
-                            <td class="tg-wo29">Azul</td>
-                          </tr>
-                          <tr>
-                            <td class="tg-9f3l">Categoria</td>
-                            <td class="tg-wo29">Arte</td>
-                          </tr>
-                          <tr>
-                            <td class="tg-9f3l">Rubro</td>
-                            <td class="tg-z6p2">Arte</td>
-                          </tr>
-                        </tbody>
-                        </table>
-                  </div></div>
-               <div class="col-lg-5 col-datos-producto">
-                  <div>
-                     <h2>Obra de arte</h2>
-                     <p style="font-size: 0.8em; color: grey; font-style: italic">Por: titulo</p>
-                  </div>
-                  <hr>
-                  <div>
-                     <div class="precio-producto-modal"><span>$42000</span></div>
-                     <div class="shipment-modal-producto">
-                        <i class="fas fa-truck-loading"></i> Shipment dentro de las 5 dias habiles
-                     </div>
-                     <hr>
-                     <div class="stock-boton-modal">
-                        <span>
-                           Cantidad&nbsp;
-                           <select name="" id="">
-                              <option value="1">1</option>
-                           </select>
-                        </span>&nbsp;
-                        <span><a href="#" class="btn btn-warning">Añadir a Carrito</a></span>
-                     </div>
-                  </div>
-                  <hr>
-                  <div class="descripcion-modal-producto">
-                     <strong>Descripcion:</strong> 
-                     <div>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quos et, totam porro alias maxime reprehenderit nam laborum corrupti. Vero deleniti minima provident architecto quos, dignissimos delectus laborum saepe. Et.
-                     </div>
-                  </div>
-                  <hr>
-                  
-                  
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+
 <!-- MODALES -->
 
 <div class="container contenedor-ampliar-public">
@@ -185,6 +109,9 @@
 
 <script>
    var jsonData = {json};
+   var jsonTestProd = {
+         "productos":[{"0":"60","id":"60","1":"lisoform1","titulo":"lisoform1","2":"1","id_rubro":"1","3":"dfgs","marca":"dfgs","4":"8","precio":"8","5":"0","envio":"0","6":"1","garantia":"1","7":"ggf","descr_producto":"ggf","8":"color-rojo","color":"color-rojo","9":"34","stock":"34","10":"181","foto":"181"},{"0":"67","id":"67","1":"test","titulo":"test","2":"1","id_rubro":"1","3":"sdfsd","marca":"sdfsd","4":"2312","precio":"2312","5":"1","envio":"1","6":"0","garantia":"0","7":"fdsf","descr_producto":"fdsf","8":"color-rojo","color":"color-rojo","9":"23","stock":"23","10":"175","foto":"175"},{"0":"71","id":"71","1":"bmw","titulo":"bmw","2":"1","id_rubro":"1","3":"bmw","marca":"bmw","4":"123","precio":"123","5":"1","envio":"1","6":"0","garantia":"0","7":"bmnz","descr_producto":"bmnz","8":"color-rojo","color":"color-rojo","9":"1","stock":"1","10":"199","foto":"199"},{"0":"75","id":"75","1":"dfgfg","titulo":"dfgfg","2":"1","id_rubro":"1","3":"dsfsd","marca":"dsfsd","4":"23","precio":"23","5":"0","envio":"0","6":"1","garantia":"1","7":"fsdf","descr_producto":"fsdf","8":"color-rojo","color":"color-rojo","9":"1","stock":"1","10":"217","foto":"217"}]
+      }
 </script>
 
 
@@ -207,6 +134,8 @@ if(sizePublic>0){
       var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
       var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
       var imagen_id = jsonData.publicaciones[i].foto;
+      var producto = jsonData.publicaciones[i].pid;
+      
       var foto_src = '/publicaciones_img/'+imagen_id;
 
    
@@ -220,10 +149,8 @@ if(sizePublic>0){
                            '</div>'+
                         '<div class="bodyimg-public-container">'+
                            //'<div><img src="../../img/arrrrte.jpg" alt=""></div>'+
-                           '<div><img class="imagen-public-'+imagen_id+'" src="" alt=""></div>'+
+                              '<img class="imagen-public-'+imagen_id+'" src="" alt="">'+
                               '<div class="tag-container">'+
-                              '<div class="tagg"><span><i data-toggle="modal" data-target="#modal-producto-0" class="fas fa-tags"></i></span></div>'+
-                           '</div>'+
                         '</div>'+
                         '<div class="info-public">'+
                            '<div class="social-public">'+
@@ -279,6 +206,118 @@ if(sizePublic>0){
       }
       rawFile.send(null);
       //
+
+      ///DIBUJO PINES
+      var producto_parse = JSON.parse(producto);
+      var producto_parse_size = producto_parse.length
+      for(var i=0; i<producto_parse_size; i++){
+         var id_prod = producto_parse[i].name;
+         var coords = producto_parse[i].value;
+         console.log(coords);
+         console.log(id_prod);
+         var ycoord = coords.split("-")[0];
+         var xcoord = coords.split("-")[1];
+
+         var check_json = Object.values(jsonTestProd.productos)[i].id;
+         if(check_json == id_prod){
+            var test = Object.values(jsonTestProd.productos)[i];
+
+            var nombre_prod = jsonTestProd.productos[i].titulo;
+            var precio_prod = jsonTestProd.productos[i].precio;
+            var marca_prod = jsonTestProd.productos[i].marca;
+            var color_prod = jsonTestProd.productos[i].color;
+            var descr_prod = jsonTestProd.productos[i].descr_producto;
+            var id_prod_json = jsonTestProd.productos[i].id;
+            var stock_prod = jsonTestProd.productos[i].stock;
+            var foto_prod = jsonTestProd.productos[i].foto;
+            var id_cat = jsonData.categoria[i].id;
+            var nombre_completo = jsonData.nombre+""+jsonData.apellido;
+
+                 var modal_html =  
+                  '<div class="modal fade" id="modal-producto-'+id_prod+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
+                  '<div class="modal-dialog modal-dialog-centered modal-lg" role="document">'+
+                  '<div class="modal-content">'+
+                  '<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->'+
+                  '<div class="modal-body">'+
+                  '<div class="row">'+
+                  '<div class="col-lg-7">'+
+                     '<div><img style="width: 100%;" src="'+imagen_id+'" alt=""></div>'+
+                  '<hr>'+
+                  '<div>'+
+                  '<table class="tg" style="table-layout: fixed; width: 282px">'+
+                  '<colgroup>'+
+                  '<col style="width: 153px">'+
+                  '<col style="width: 129px">'+
+                  '</colgroup>'+
+                  '<tbody>'+
+                  '<tr>'+
+                     '<td class="tg-9f3l">ID Producto</td>'+
+                     '<td class="tg-wo29">'+id_prod_json+'</td>'+
+                     '</tr>'+
+                     '<tr>'+
+                     '<td class="tg-9f3l">Marca</td>'+
+                     '<td class="tg-wo29">'+marca_prod+'</td>'+
+                     '</tr>'+
+                     '<tr>'+
+                     '<td class="tg-9f3l">Color</td>'+
+                     '<td class="tg-wo29">'+color_prod+'</td>'+
+                     '</tr>'+
+                     '<tr>'+
+                     '<td class="tg-9f3l">Categoria</td>'+
+                     '<td class="tg-wo29">'+id_cat+'</td>'+
+                     '</tr>'+
+                     '<tr>'+
+                     '<td class="tg-9f3l">Rubro</td>'+
+                     '<td class="tg-z6p2">'+id_cat+'</td>'+//hardcodeado
+                  '</tr>'+
+                  '</tbody>'+
+                  '</table>'+
+                  '</div></div>'+
+                  '<div class="col-lg-5 col-datos-producto">'+
+                  '<div>'+
+                     '<h2>'+nombre_prod+'</h2>'+
+                     '<p style="font-size: 0.8em; color: grey; font-style: italic">Por: '+nombre_completo+'</p>'+
+                  '</div>'+
+                  '<hr>'+
+                  '<div>'+
+                  '<div class="precio-producto-modal"><span>'+precio_prod+'</span></div>'+
+                  '<div class="shipment-modal-producto">'+
+                  '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 dias habiles'+//hardcodeado
+                  '</div>'+
+                  '<hr>'+
+                  '<div class="stock-boton-modal">'+
+                  '<span>'+
+                  'Cantidad&nbsp;'+
+                  '<select name="" id="">'+
+                  '<option value="1">1</option>'+//hardcodeado
+                  '</select>'+
+                  '</span>&nbsp;'+
+                  '<span><a href="#" class="btn btn-warning">Añadir a Carrito</a></span>'+
+                  '</div>'+
+                  '</div>'+
+                  '<hr>'+
+                  '<div class="descripcion-modal-producto">'+
+                  '<strong>Descripcion:</strong>'+
+                  '<div>'+descr_prod+'</div>'+
+                  '</div>'+
+                  '<hr>'+
+                  ''+
+                  ''+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>';
+
+                  $("body").append(modal_html)
+         }
+
+         var tag_html = '<div class="tagg" style="top:'+ycoord+'; left: '+xcoord+'"><span><i data-toggle="modal" data-target="#modal-producto-'+id_prod+'" class="fas fa-tags"></i></span></div>';
+
+         $(".tag-container").append(tag_html)
+         
+      }
 
    }
 }

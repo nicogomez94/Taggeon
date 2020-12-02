@@ -57,6 +57,7 @@ $(document).ready(function() {
             "width" : "unset",
             "height": "unset"
         });
+        $(".img-pines-amapear").hide();
     });
 
     /*slick carrusel productos en ampliar publicaciones*/
@@ -492,6 +493,7 @@ $('#iniciar_sesion').submit(function (e) {
 $('#producto-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
+    var reader = new FileReader();
     var formDataImg = reader.readAsDataURL($("#file2").get(0).files[0]); 
     var formData = new FormData($(this)[0]);
         
@@ -538,15 +540,16 @@ $('#subir-publicacion-form').submit(function (e) {
     var formData = new FormData($(this)[0]);
     
     //appendeo la imagen sacada del map. ya la inicio el onchange
-    var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
+    /*var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
     var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
-    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal
+    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal*/
+    var url_imagen_64 = $(".img-pines-amapear").attr("src")
 
     var pin_object = $(".pin").serializeArray();
     var pin_object_str = JSON.stringify(pin_object)
-    console.log(pin_object_str)
+    //console.log(pin_object_str)
 
-    formData.append("foto_base64",sc_url_imagen_642);
+    formData.append("foto_base64",url_imagen_64);
     formData.append("data_pines",pin_object_str);
     formData.delete("publicacion_foto");
         
@@ -1037,9 +1040,11 @@ function cargarImgPines(event){
         // output.src = reader.result;
         $("#img-subir-pins").hide();
         // $("#output-imgpins").show();
-        $("#map").css("background-image","url('"+reader.result+"')");
+        $(".img-pines-amapear").show();
+        // $("#map").css("background-image","url('"+reader.result+"')");
+        $(".img-pines-amapear").attr("src",reader.result);
         $("#map").css("width","100%");
-        $("#map").css("height","300px");
+        // $("#map").css("height","100%");
         $("#eliminar-img-flotante").show();
         $("#anadir-productos-btn").show();
 
