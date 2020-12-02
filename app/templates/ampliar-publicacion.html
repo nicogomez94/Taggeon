@@ -116,7 +116,7 @@
 
 
    <script src="js/jquery-3.5.1.js"></script>
-   <script type="text/javascript" src="../../js/slick/slick/slick.min.js"></script>
+   <!-- <script type="text/javascript" src="../../js/slick/slick/slick.min.js"></script> -->
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=091120-1404"></script>
@@ -130,6 +130,7 @@ if(sizePublic>0){
    for(var i=0; i<sizePublic; i++){
       
       var id_public = jsonData.publicaciones[i].id;
+      console.log(id_public)
       var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
       var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
       var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
@@ -213,8 +214,6 @@ if(sizePublic>0){
       for(var i=0; i<producto_parse_size; i++){
          var id_prod = producto_parse[i].name;
          var coords = producto_parse[i].value;
-         console.log(coords);
-         console.log(id_prod);
          var ycoord = coords.split("-")[0];
          var xcoord = coords.split("-")[1];
 
