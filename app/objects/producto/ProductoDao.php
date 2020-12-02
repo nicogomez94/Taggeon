@@ -246,7 +246,7 @@ SQL;
         $id_productoDB = Database::escape($id_producto);
 
         $foto = isset($data["foto"]) ?  $data["foto"] : '';
-        $fotoDB = Database::escape($foto);
+        $fotoDB = Database::escape("/productos_img/");
 
         $usuario = $GLOBALS['sesionG']['idUsuario'];
         $usuarioDB = Database::escape($usuario);
@@ -261,6 +261,9 @@ SQL;
             $this->setMsj(Database::Connect()->error);
         } else {
             $id = mysqli_insert_id(Database::Connect());
+            $fp = fopen("/var/www/html/productos_img/$id", 'w');
+            fwrite($fp, $fotoDB);
+            fclose($fp);
             $this->setMsj($id);
             $this->setStatus("OK");
             return true;

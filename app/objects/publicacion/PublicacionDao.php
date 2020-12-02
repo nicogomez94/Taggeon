@@ -219,7 +219,7 @@ SQL;
                     $id_publicacionDB = Database::escape($id_publicacion);      
             
                     $publicacion_foto = isset($data["publicacion_foto"]) ?  $data["publicacion_foto"] : '';
-                    $publicacion_fotoDB = Database::escape($publicacion_foto);      
+                    $publicacion_fotoDB = Database::escape("/publicaciones_img/");      
 
                     $sql = <<<SQL
                         INSERT INTO publicacion_publicacion_foto (id_publicacion,publicacion_foto) 
@@ -231,9 +231,9 @@ SQL;
                         $this->setMsj("$sql" . Database::Connect()->error);
                     } else {
                         $id = mysqli_insert_id(Database::Connect());
-                                        $fp = fopen("/var/www/html/publicaciones_img/$id", 'w');
-                                        fwrite($fp, $publicacion_foto);
-                                        fclose($fp);
+                        $fp = fopen("/var/www/html/publicaciones_img/$id", 'w');
+                        fwrite($fp, $publicacion_foto);
+                        fclose($fp);
 
                         $this->setMsj($id);
                         $this->setStatus("OK");
