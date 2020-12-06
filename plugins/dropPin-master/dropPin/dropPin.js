@@ -107,7 +107,7 @@
 				$(options.hiddenYid).val(yval);
 
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="coords" class="pin '+yval+' '+yval+"-"+xval+'">');
+				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+' '+yval+"-"+xval+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -143,16 +143,27 @@
 				var id_producto = $(this).attr('class').split(' ')[1];
 				var box_y_prod = $(this).parent().parent().css("top").split('px')[0];
 				var box_x_prod = $(this).parent().parent().css("left").split('px')[0];
+				
 
 				var box_y_prod_posta = box_y_prod - 20;
 				var box_x_prod_posta = box_x_prod - 20;
 
+				console.log(box_y_prod_posta)
+				console.log(box_x_prod_posta)
 				/*console.log(box_y_prod_posta);
 				console.log(box_x_prod_posta);*/
 
 				// var name_producto = $("."+box_y_prod_posta).attr("class").split(' ')[1];
-				
-				var hiddenProd= $('<input type="hidden" name="id_producto" class="pin pin-popup-producto">');
+				var boxy_split_length = box_y_prod_posta.split("/\./g");
+				var boxx_split_length = box_x_prod_posta.split("/\./g");
+				console.log(boxy_split_length)
+				console.log(boxx_split_length)
+				/*if(boxy_split_length>0){
+					box_y_prod_posta.replace(/\./g,",");
+				}else if(boxx_split_length>0){
+					box_x_prod_posta.replace(/\./g,",");
+				}*/
+				//var hiddenProd= $('<input type="hidden" name="id_producto" class="pin pin-popup-producto">');
 				var pin_a_namear = $("#map").find("."+box_y_prod_posta+"-"+box_x_prod_posta);//1 porque hay 2
 				console.log(pin_a_namear);
 				pin_a_namear.attr("name",id_producto);

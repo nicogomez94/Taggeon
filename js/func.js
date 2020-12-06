@@ -493,8 +493,8 @@ $('#iniciar_sesion').submit(function (e) {
 $('#producto-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
-    var reader = new FileReader();
-    var formDataImg = reader.readAsDataURL($("#file2").get(0).files[0]); 
+
+    
     var formData = new FormData($(this)[0]);
         
     $.ajax({
