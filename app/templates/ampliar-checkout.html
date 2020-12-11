@@ -1,0 +1,98 @@
+
+   <div class="container" id="contenedor-form-subir">
+      <h1>Checkout</h1>
+      <hr><br>
+      <form id="editar-publicacion-form">
+         <!--  -->
+         <!-- <input type="hidden" name="accion" value="editar"> -->
+         <!--  -->
+         <div class="row">
+            <div class="col-lg-6 datos-envio-checkout">
+               <h4>Datos de env&iacute;o</h4>
+               <hr>
+                  <div class="group group-form-checkout">      
+                     <input type="text" name="co_nombre_completo" id="co_nombre_completo" required>
+                     <span class="highlight"></span>
+                     <span class="bar"></span>
+                     <!-- BORRAR STYLE -->
+                     <label class="label-text-subir-producto" style="padding-left: 15px;">Nombre y apellido</label>
+                  </div>
+                  <div class="group group-form-checkout">      
+                     <input type="text" name="co_cp" id="co_cp" required>
+                     <span class="highlight"></span>
+                     <span class="bar"></span>
+                     <!-- BORRAR STYLE -->
+                     <label class="label-text-subir-producto" style="padding-left: 15px;">Codigo Postal</label>
+                  </div>
+                  <div class="group group-form-checkout">      
+                     <input type="text" name="co_ciudad" id="co_ciudad" required>
+                     <span class="highlight"></span>
+                     <span class="bar"></span>
+                     <!-- BORRAR STYLE -->
+                     <label class="label-text-subir-producto" style="padding-left: 15px;">Ciudad/Localidad</label>
+                  </div>
+                  <div class="group group-form-checkout">      
+                     <input type="text" name="co_email" id="co_email" required>
+                     <span class="highlight"></span>
+                     <span class="bar"></span>
+                     <!-- BORRAR STYLE -->
+                     <label class="label-text-subir-producto" style="padding-left: 15px;">Email</label>
+                  </div>
+                  <div class="group group-form-checkout">      
+                     <p class="label-descr">Notas (opcional)</p>
+                     <textarea type="text" name="co_notas" id="co_notas" autocomplete="on"></textarea>
+                  </div>
+            </div>
+            <div class="col-lg-6 totales-checkout">
+               <h4>Totales</h4>
+               <hr>
+               <div class="row datos-num-checkout">
+                  <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
+                  <div class="col-lg-6 text-right"><span class="subtotal-cant">$32132,00</span></div>
+               </div>
+               <div class="row datos-num-checkout">
+                  <div class="col-lg-6"><span class="total-titulo">Total</span></div>
+                  <div class="col-lg-6 text-right"><span class="total-cant">$32132,00</span></div>
+               </div>
+               <!--
+               <div class="row datos-num-checkout">
+                  <input type="checkbox" name="opcion1" required="" style="width: 44px;">
+                  <span class="opciones-checkout" style="line-height: 12px;">Opcion 1</span>
+               </div>
+               <div class="row datos-num-checkout">
+                  <input type="checkbox" name="opcion2" required="" style="width: 44px;">
+                  <span class="opciones-checkout" style="line-height: 12px;">Opcion 2</span>
+               </div>
+               -->
+               <div class="boton-checkout-carrito">
+                  <a href="#" class="btn btn-warning">Crear Orden de compra</a>
+               </div>
+            </div>
+         </div>
+         
+      </form>
+   </div>
+
+   <script>
+      var jsonData = {json};
+   </script>
+   
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+   <script src="js/func.js?time=231120-1458"></script>
+   <!-- script para la seleccion de fotos -->
+   
+   <!--  -->
+      <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
+      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-1458"></script>
+      <script>
+         $(document).ready(function(){
+            
+         });
+      </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+</body></html>
