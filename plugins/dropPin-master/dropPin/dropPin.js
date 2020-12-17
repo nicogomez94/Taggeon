@@ -80,9 +80,6 @@
 			var i = 10;
 			thisObj.on(options.userevent, function (ev) {
 
-				/*var test12 = $(this).attr("class");
-				console.log(test12);*/
-
 				i = i + 10;
 				var $img = $(thisObj);
 				var offset = $img.offset();
@@ -105,18 +102,6 @@
 				//console.log(ev.target);
 				$(options.hiddenXid).val(xval);
 				$(options.hiddenYid).val(yval);
-
-				//XVAL le saco  el punto
-				//var xval_eval = xval.toString().includes(".");
-				/*if(xval_eval == true){
-					var xval_class_fixed = parseInt(xval).toFixed(3);//para evitar que haga decimales de mas
-					var xval_class_posta = xval_class_fixed.toString().replace(".","-");
-					//////////////
-					console.log("xval_class_fixed-->"+xval_class_fixed)
-					
-					console.log("xval_class_posta-->"+xval_class_posta)
-					///////////
-				}*/
 				
 				// add hidden fields - can use these to save to database
 				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'">');
@@ -160,41 +145,10 @@
 				var box_y_prod_posta = box_y_prod - 20;
 				var box_x_prod_posta = box_x_prod - 20;
 
-				console.log(box_y_prod_posta)
-				console.log(box_x_prod_posta)
-				/*console.log(box_y_prod_posta);
-				console.log(box_x_prod_posta);*/
-				/*var bypp_inc = box_y_prod_posta.toString().includes(".");
-				var bxpp_inc = box_x_prod_posta.toString().includes(".");*/
-				/*console.log("bypp_inc"+bypp_inc)
-				console.log("bxpp_inc"+bxpp_inc)*/
-				// var name_producto = $("."+box_y_prod_posta).attr("class").split(' ')[1];
-				//si viene con punto se lo reemplazo por coma porque sino pincha
-				/*if(bypp_inc == true){
-					var box_y_prod_posta_class = box_y_prod_posta.toString().replace(".","-");
-					console.log("nueva string-->"+box_y_prod_posta)
-				}else if(bxpp_inc == true){
-					var box_x_prod_posta_class = box_x_prod_posta.toString().replace(".","-");
-					console.log("nueva string-->"+box_x_prod_posta)
-				}*/
-				//var boxy_split_length = box_y_prod_posta.split("\\.");
-				//var boxx_split_length = box_x_prod_posta.split("\\.");
 
-				// console.log(boxy_split_length)
-				// console.log(boxx_split_length)
-				/*if(boxy_split_length>0){
-					box_y_prod_posta.replace(/\./g,",");
-				}else if(boxx_split_length>0){
-					box_x_prod_posta.replace(/\./g,",");
-				}*/
-				//var hiddenProd= $('<input type="hidden" name="id_producto" class="pin pin-popup-producto">');
 				var pin_a_namear = $("#map").find("."+box_y_prod_posta+"-"+box_x_prod_posta);//1 porque hay 2
-				//console.log(pin_a_namear);
 				pin_a_namear.attr("name",id_producto);
-				// hiddenProd.appendTo(thisObj);
 
-				//div para evitar poner otros pines cerca
-				//OJO --> no se bien porque el boxyy no toima nunca con punto por eso lo dejo asi box_y_prod_posta SIN CLASS AL FINAL
 				var click_protector = '<div class="click-protector '+box_y_prod_posta+"-"+box_x_prod_posta+'">'+
 											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
 
