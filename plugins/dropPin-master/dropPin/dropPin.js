@@ -89,12 +89,12 @@
 				var x = ev.pageX - offset.left;
 				var y = ev.pageY - offset.top;
 
-				
-				var xval = (x - options.xoffset);
-				var yval = (y - options.yoffset);
+				//parseado por mi par que x no hinchee
+				var xval = parseInt(x - options.xoffset);
+				var yval = parseInt(y - options.yoffset);
 
 				// var imgC = $('<img class="pin '+yval+"-"+xval+'">');
-				var imgC = $('<img class="pin">');
+				var imgC = $('<img class="pin '+yval+"-"+xval+'">');
 				imgC.css('top', yval+'px');
 				imgC.css('left', xval+'px');
 				imgC.css('z-index', i);
@@ -106,8 +106,20 @@
 				$(options.hiddenXid).val(xval);
 				$(options.hiddenYid).val(yval);
 
+				//XVAL le saco  el punto
+				//var xval_eval = xval.toString().includes(".");
+				/*if(xval_eval == true){
+					var xval_class_fixed = parseInt(xval).toFixed(3);//para evitar que haga decimales de mas
+					var xval_class_posta = xval_class_fixed.toString().replace(".","-");
+					//////////////
+					console.log("xval_class_fixed-->"+xval_class_fixed)
+					
+					console.log("xval_class_posta-->"+xval_class_posta)
+					///////////
+				}*/
+				
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+' '+yval+"-"+xval+'">');
+				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -152,19 +164,19 @@
 				console.log(box_x_prod_posta)
 				/*console.log(box_y_prod_posta);
 				console.log(box_x_prod_posta);*/
-				var bypp_inc = box_y_prod_posta.toString().includes(".");
-				var bxpp_inc = box_x_prod_posta.toString().includes(".");
+				/*var bypp_inc = box_y_prod_posta.toString().includes(".");
+				var bxpp_inc = box_x_prod_posta.toString().includes(".");*/
 				/*console.log("bypp_inc"+bypp_inc)
 				console.log("bxpp_inc"+bxpp_inc)*/
 				// var name_producto = $("."+box_y_prod_posta).attr("class").split(' ')[1];
 				//si viene con punto se lo reemplazo por coma porque sino pincha
-				if(bypp_inc == true){
+				/*if(bypp_inc == true){
 					var box_y_prod_posta_class = box_y_prod_posta.toString().replace(".","-");
 					console.log("nueva string-->"+box_y_prod_posta)
 				}else if(bxpp_inc == true){
 					var box_x_prod_posta_class = box_x_prod_posta.toString().replace(".","-");
 					console.log("nueva string-->"+box_x_prod_posta)
-				}
+				}*/
 				//var boxy_split_length = box_y_prod_posta.split("\\.");
 				//var boxx_split_length = box_x_prod_posta.split("\\.");
 
@@ -183,13 +195,13 @@
 
 				//div para evitar poner otros pines cerca
 				//OJO --> no se bien porque el boxyy no toima nunca con punto por eso lo dejo asi box_y_prod_posta SIN CLASS AL FINAL
-				var click_protector = '<div class="click-protector click-protector-'+box_y_prod_posta+"-"+box_x_prod_posta_class+'">'+
+				var click_protector = '<div class="click-protector '+box_y_prod_posta+"-"+box_x_prod_posta+'">'+
 											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
 
 				$(".click-protector-cont").append(click_protector);
-				$(".click-protector-"+box_y_prod_posta+"-"+box_x_prod_posta_class).css("top",box_y_prod_posta);
-				$(".click-protector-"+box_y_prod_posta+"-"+box_x_prod_posta_class).css("left",box_x_prod_posta);
-				$(".click-protector-"+box_y_prod_posta+"-"+box_x_prod_posta_class+" .salir-popup-single").css("display","none");
+				$("."+box_y_prod_posta+"-"+box_x_prod_posta).css("top",box_y_prod_posta);
+				$("."+box_y_prod_posta+"-"+box_x_prod_posta).css("left",box_x_prod_posta);
+				$("."+box_y_prod_posta+"-"+box_x_prod_posta+" .salir-popup-single").css("display","none");
 
 			});
 			//para salir de la sel de productos y eliminar pin
@@ -210,19 +222,18 @@
 			//para borrar el single pin
 			$(".click-protector-cont").on("click",".salir-popup-single", function(){
 
-				var box_yc = $(this).parent().css("top").split('px')[0];
-				var box_xc = $(this).parent().css("left").split('px')[0];
-
-				var pin_a_borrar = $("#map").find("."+box_yc+"-"+box_xc);
+				var class_parent = $(this).parent().attr("class").split(" ")[1];
+				console.log(class_parent)
+				//var box_xc = $(this).parent().css("left").split('px')[0]
+				var pin_a_borrar = $("#map").find("."+class_parent);
+				console.log(pin_a_borrar)
 				pin_a_borrar.remove();
 				$(this).parent().remove();
 
 			});
 			//click para que aparezca la cruz
 			$(".click-protector-cont").on('click', '.click-protector', function() {
-
 				$(this).find(".salir-popup-single").show();
-			
 			});
 			
 
