@@ -111,7 +111,7 @@ if(sizePublic>0){
                            '<hr>'+
                         '<div class="productos-public">'+
                            '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
-                              '<div class="productos-titulo-public-gallery-'+i+'">'+
+                              '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
                                  //'<img data-toggle="modal" data-target="#modal-producto-1" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
                               '</div>'+
                            '</div>'+
@@ -174,8 +174,9 @@ if(sizePublic>0){
 
          if(id_prod == obj.id){
 
-         var arr2 = jsonData.productos;
-         var index = arr2.findIndex(o => o.id === id_prod);
+            //le saco el index el producto correspondiente
+            var arr2 = jsonData.productos;
+            var index = arr2.findIndex(o => o.id === id_prod);
             //var test = Object.values(jsonData.productos)[x];
 
             var nombre_prod = jsonData.productos[index].titulo;
@@ -269,26 +270,48 @@ if(sizePublic>0){
                   $("body").append(modal_html)
 
                   ////////////////////////////////IMGPROD
-                  var foto_prod_src = '/productos_img/'+foto_prod;
+                  /*var foto_prod_src = '/productos_img/'+foto_prod;
 
                   var rawFileProd = new XMLHttpRequest();
-                  rawFileProd.open("GET", foto_src, false);
+                  rawFileProd.open("GET", foto_prod_src, false);
                   rawFileProd.onreadystatechange = function ()
                   {
                      if(rawFileProd.readyState === 4)
                      {
-                           if(rawFileProd.status === 200 || rawFileProd.status == 0)
-                           {
-                              var img_src = rawFile.responseText;
-                              var prod_gallery = '<img src="'+img_src+'">';
-                              $(".productos-titulo-public-gallery").append(prod_gallery);
-                           }
+                        if(rawFileProd.status === 200 || rawFileProd.status == 0)
+                        {
+                           var str_base64_prod = rawFile.responseText;
+                           var prod_gallery = '<img src="'+str_base64_prod+'">';
+                           $(".productos-titulo-public-gallery-"+index).append(prod_gallery);
+                        }
                      }
                   }
-                  rawFileProd.send(null);
+                  rawFileProd.send(null);*/
+                  /*var foto_prod_src = '/productos_img/'+foto_prod;
+                  var rawFileProd = new XMLHttpRequest();
+                  rawFileProd.open("GET", foto_prod_src, false);
+                  rawFileProd.onreadystatechange = function ()
+                  {
+                     console.log("andetro1")
+                     if(rawFileProd.readyState === 4)
+                     {
+                        console.log("andetro2")
+                        if(rawFileProd.status === 200 || rawFileProd.status == 0)
+                        {
+                           console.log("andetroi raawwaaw")
+                           var str_base64_prod = rawFileProd.responseText;
+                           console.log(rawFileProd.responseText)
+                           
+                           var prod_gallery = '<img src="'+str_base64_prod+'">';
+                           console.log(prod_gallery)
+                           $(".productos-titulo-public-gallery-0").append(prod_gallery);
+                        }
+                     }
+                  }
+                  rawFileProd.send(null)*/
                   ////////////////////////////////IMGPROD
-
-                      
+                  /*var prod_gallery
+                  $(".productos-titulo-public-gallery-"+i).append(productos_gallery)*/
 
          }//fin prod
          var tag_html = '<div class="tagg" style="top:'+ycoord+'; left: '+xcoord+'">'+
@@ -301,8 +324,8 @@ if(sizePublic>0){
    }
 }
 
-
-
+   var hardcodeado_img = '<img src="/productos_img/sdfs.jpg">'
+   $(".productos-titulo-public-gallery").append(hardcodeado_img)
 
 });
 </script>
