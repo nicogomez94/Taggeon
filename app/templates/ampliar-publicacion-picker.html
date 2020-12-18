@@ -112,15 +112,13 @@ if(sizePublic>0){
                         '<div class="productos-public">'+
                            '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
                               '<div class="productos-titulo-public-gallery-'+i+'">'+
-                                 //'<img data-toggle="modal" data-target="#modal-producto-1" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
+                                 '<img data-toggle="modal" data-target="#modal-producto-1" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
                               '</div>'+
                            '</div>'+
                         '</div>'+
                      '</div>'
                         
       $(".insert-public").append(html_public);
-
-      
 
       //imgperfil sacada del menu top
       var img_perfil = $(".img-perfil-usuario-drop").attr("src");
@@ -153,26 +151,16 @@ if(sizePublic>0){
 
       ///DIBUJO PINES
       var producto_parse = JSON.parse(producto);
-      var producto_parse_size = producto_parse.length;
-      // console.log(producto_parse)
-      // console.log(producto_parse_size)
-      //cuando vuelve, vuevle a ser 0
+      var producto_parse_size = producto_parse.length
       for(var x=0; x<producto_parse_size; x++){
          var id_prod = producto_parse[x].name;
          var coords = producto_parse[x].value;
          var ycoord = coords.split("-")[0];
          var xcoord = coords.split("-")[1];
-         //console.log(id_prod)
-         //console.log(coords)
-         //console.log("---")
-         //console.log("para el prod "+x+"ycoord"+ycoord)
-         //console.log("para el prod "+x+"xcoord"+xcoord)
 
-         //checkeo si es el mismo id de tag y prod
-         var arr = jsonData.productos;
-         var obj = arr.find(o => o.id === id_prod);
-
-         if(id_prod == obj.id){
+         var check_json = Object.values(jsonData.productos)[x].id;
+         console.log(check_json)
+         if(check_json == id_prod){
             //var test = Object.values(jsonData.productos)[x];
 
             var nombre_prod = jsonData.productos[x].titulo;
@@ -183,6 +171,7 @@ if(sizePublic>0){
             var id_prod_json = jsonData.productos[x].id;
             var stock_prod = jsonData.productos[x].stock;
             var foto_prod = jsonData.productos[x].foto;
+            console.log(foto_prod)
             var id_cat = jsonData.categoria[x].id;
             var nombre_completo = jsonData.nombre+""+jsonData.apellido;
 
@@ -276,6 +265,7 @@ if(sizePublic>0){
                      {
                            if(rawFileProd.status === 200 || rawFileProd.status == 0)
                            {
+                              console.log("adentro foto")
                               var img_src = rawFile.responseText;
                               var prod_gallery = '<img src="'+img_src+'">';
                               $(".productos-titulo-public-gallery").append(prod_gallery);
@@ -285,13 +275,13 @@ if(sizePublic>0){
                   rawFileProd.send(null);
                   ////////////////////////////////IMGPROD
 
-                  var tag_html = '<div class="tagg" style="top:'+ycoord+'; left: '+xcoord+'">'+
-                        '<span><i data-toggle="modal" data-target="#modal-producto-'+id_prod+'" class="fas fa-tags"></i></span></div>';
-                  $(".tag-container-"+x).append(tag_html);    
+                  
 
          }//fin prod
 
-         
+         var tag_html = '<div class="tagg" style="top:'+ycoord+'; left: '+xcoord+'"><span><i data-toggle="modal" data-target="#modal-producto-'+id_prod+'" class="fas fa-tags"></i></span></div>';
+
+         $(".tag-container").append(tag_html)
          
       }
 
