@@ -1,3 +1,8 @@
+
+
+<!-- or the reference on CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
 <div class="overlay-loading"></div>
 
 <div class="container contenedor-ampliar-public">
@@ -62,12 +67,17 @@
 
    <script src="js/jquery-3.5.1.js"></script>
    <!-- <script type="text/javascript" src="../../js/slick/slick/slick.min.js"></script> -->
+
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=091120-1404"></script>
+   <!-- <script src="/plugins/splide-2.4.21/src/js/splide.js"></script> -->
+   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 <script>
 $(document).ready(function(){
+
 
 var sizePublic = jsonData.publicaciones.length;
 
@@ -112,6 +122,18 @@ if(sizePublic>0){
                         '<div class="productos-public">'+
                            '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
                               '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
+                                 '<div class="splide">'+
+                                    '<div class="splide__track">'+
+                                       '<ul class="splide__list">'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfsdf.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
+                                       '</ul>'+
+                                    '</div>'+
+                                 '</div>'+
                                  //'<img data-toggle="modal" data-target="#modal-producto-1" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" style="width: 100px; height: 100px; margin-right: 5px 10px 5px 5px; cursor: pointer;" alt="">'+
                               '</div>'+
                            '</div>'+
@@ -324,10 +346,17 @@ if(sizePublic>0){
    }
 }
 
-   var hardcodeado_img = '<img src="/productos_img/sdfs.jpg">'
-   $(".productos-titulo-public-gallery").append(hardcodeado_img)
+   /*var hardcodeado_img = '<img src="/productos_img/sdfs.jpg">'
+   $(".productos-titulo-public-gallery").append(hardcodeado_img)*/
 
+   new Splide( '.splide', {
+      perPage: 5,
+	   rewind : true,
+      /*'cover'      : true,
+		'heightRatio': 0.5,*/
+   } ).mount();
+   
 });
 </script>
-    
+
 </body></html>

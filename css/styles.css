@@ -1490,6 +1490,25 @@ input:focus ~ .highlight {
     margin-top: 20px;
     margin-bottom: 20px;
     background: #f4f5ff;
+    width: 750px;
+}
+.splide__slide img {
+	width : 100%;
+	height: auto;
+}
+.splide__arrow--prev{
+    left: 0 !important;
+}
+.splide__arrow--next{
+    right: 0 !important;
+}
+.splide__arrow{
+    height: 1.5em !important;
+    width: 1.5em !important;
+}
+.splide__arrow svg{
+    height: 0.8em !important;
+    width: 0.8em !important;
 }
 .fixed-col-der{
     position: fixed !Important;
