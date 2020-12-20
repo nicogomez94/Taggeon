@@ -1494,7 +1494,8 @@ input:focus ~ .highlight {
 }
 .splide__slide img {
 	width : 88px;
-	height: auto;
+    height: auto;
+    cursor: pointer;
 }
 .splide__arrow--prev{
     left: 0 !important;
