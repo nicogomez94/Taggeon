@@ -1054,3 +1054,31 @@ function cargarImgPines(event){
 }
 
 
+function getImagen(pathFoto,tipo,id_imagen){
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", pathFoto, false);
+    rawFile.onreadystatechange = function ()
+    {
+       if(rawFile.readyState === 4)
+       {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                if(tipo == "publicacion"){
+                    //var response_error = "<h1>P&aacute;gina no encontrada.</h1><p>P&aacute;gina no encontrada.</p>";
+                    var str_base64 = rawFile.responseText;
+                    $(".imagen-public-"+id_imagen).attr("src", str_base64);
+
+                }else if(tipo == "subir"){
+                    console.log("subir")
+                    /*var str_base64_prod = rawFileProd.responseText;
+                    
+                    var prod_gallery = '<img src="'+str_base64_prod+'">';
+                    $(".productos-titulo-public-gallery-0").append(prod_gallery);*/
+                }
+            }
+       }
+    }
+    rawFile.send(null);
+}
+
+

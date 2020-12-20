@@ -1807,7 +1807,7 @@ input:focus ~ .highlight {
     background-color: rgb(255 255 255);
     color: rgb(0 0 0);
     padding: 10px;
-    width: 285px;
+    width: 40vw;
     box-shadow: 0 0 6px #d4d4d4;
 }
 .popup-single-cont{
