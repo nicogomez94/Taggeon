@@ -1474,10 +1474,10 @@ input:focus ~ .highlight {
     color: rgb(196, 196, 196) !important;
 }
 .productos-titulo-public-gallery img{
-    margin-left: 10px;
-    width: 100px; 
-    height: 100px; 
-    cursor: pointer;
+    /*margin-left: 10px;*/
+    /*width: 88px; 
+    /*height: 100px; 
+    cursor: pointer;*/
 }
 
 
@@ -1490,10 +1490,10 @@ input:focus ~ .highlight {
     margin-top: 20px;
     margin-bottom: 20px;
     background: #f4f5ff;
-    width: 750px;
+    width: 100%;
 }
 .splide__slide img {
-	width : 100%;
+	width : 88px;
 	height: auto;
 }
 .splide__arrow--prev{
@@ -1526,6 +1526,7 @@ input:focus ~ .highlight {
 .info-public{
     font-size: 1.5em;
     padding: 15px;
+    max-width: 100%;
 }
 .title-public{
     margin-left: 5px;
@@ -1835,6 +1836,9 @@ input:focus ~ .highlight {
 }
 .nombre-producto:hover{
     font-weight: 600;
+}
+.productos-public{
+    display: none;
 }
 /*******************/
 .pattern1{

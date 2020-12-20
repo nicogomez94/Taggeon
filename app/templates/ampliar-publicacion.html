@@ -102,7 +102,7 @@ if(sizePublic>0){
                               '<span class="title-public"></span>'+
                               '<span class="opciones-public"><i class="fas fa-cog"></i></span>'+
                            '</div>'+
-                        '<div class="bodyimg-public-container">'+
+                        '<div class="bodyimg-public-container bodyimg-public-container-'+i+'">'+
                            //'<div><img src="../../img/arrrrte.jpg" alt=""></div>'+
                               '<img class="imagen-public-'+imagen_id+'" src="" alt="">'+
                               '<div class="tag-container tag-container-'+i+'">'+
@@ -119,15 +119,38 @@ if(sizePublic>0){
                            '<div class="info-descr-public">'+descr_public+'</div>'+
                         '</div>'+
                            '<hr>'+
-                        '<div class="productos-public">'+
+                        '<div class="productos-public productos-public-'+i+'">'+
                            '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
                               '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
-                                 '<div class="splide">'+
+                                 '<div class="splide splide-prod-'+i+'">'+
                                     '<div class="splide__track">'+
                                        '<ul class="splide__list">'+
                                           '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
                                           '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
                                           '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfsdf.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
+                                       '</ul>'+
+                                    '</div>'+
+                                 '</div>'+
+                                 /**/
+                           '<hr><div class="productos-titulo-public">Productos relacionados:</div><br>'+
+                                 '<div class="splide splide-prod-tag-'+i+'">'+
+                                    '<div class="splide__track">'+
+                                       '<ul class="splide__list">'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfsdf.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfsdf.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+                                          '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
                                           '<li class="splide__slide"><img src="/productos_img/sdfsdf.jpg"></li>'+
                                           '<li class="splide__slide"><img src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
                                           '<li class="splide__slide"><img src="/productos_img/sdfs.jpg"></li>'+
@@ -336,25 +359,36 @@ if(sizePublic>0){
                   $(".productos-titulo-public-gallery-"+i).append(productos_gallery)*/
 
          }//fin prod
-         var tag_html = '<div class="tagg" style="top:'+ycoord+'; left: '+xcoord+'">'+
-                        '<span><i data-toggle="modal" data-target="#modal-producto-'+id_prod+'" class="fas fa-tags"></i></span></div>';
-                  $(".tag-container-"+i).append(tag_html);
-         
+         var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+
+                        '<span><i class="fas fa-tags"></i></span></div>';
+
+         $(".tag-container-"+i).append(tag_html);
+         $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
+            var prod_public = $(this).parent().parent().find(".productos-public");
+            prod_public.toggle(100);
+            //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
+         });
+
+      
          
       }
-
+      //productos relacionados
+      new Splide( '.splide-prod-'+i, {
+         perPage: 6,/*medio extraño*/
+         rewind : true,
+      }).mount();
+      //productos en esta public
+      new Splide( '.splide-prod-tag-'+i, {
+         perPage: 6,
+         rewind : true,
+      } ).mount();
    }
 }
 
    /*var hardcodeado_img = '<img src="/productos_img/sdfs.jpg">'
    $(".productos-titulo-public-gallery").append(hardcodeado_img)*/
 
-   new Splide( '.splide', {
-      perPage: 5,
-	   rewind : true,
-      /*'cover'      : true,
-		'heightRatio': 0.5,*/
-   } ).mount();
+   
    
 });
 </script>
