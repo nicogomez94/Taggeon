@@ -1793,6 +1793,8 @@ input:focus ~ .highlight {
 }
 .pin{
     cursor: pointer !important;
+    -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 0px 0px 4px rgba(0, 0, 0));
 }
 .popup-prod-overlay{
     display: none;
@@ -1808,7 +1810,7 @@ input:focus ~ .highlight {
     color: rgb(0 0 0);
     padding: 10px;
     width: 40vw;
-    box-shadow: 0 0 6px #d4d4d4;
+    box-shadow: 0 0 6px 1px #757575;
 }
 .popup-single-cont{
     position: absolute;
@@ -1829,17 +1831,31 @@ input:focus ~ .highlight {
 .popup-producto{
     cursor: pointer;
 }
-.salir-popup, .salir-popup-single{
+.salir-popup{
     position: absolute;
-    right: 0;
-    margin: 10px;
-    top: 0;
+    right: 10px;
+    margin: 0px;
+    top: -30px;
+}
+.salir-popup-single{
+    position: absolute;
+    right: 10px;
+    margin: 0px;
+    top: 0px;
+}
+.fa-times{
+    color: #c9c9c9 !important;
+    font-size: 20px;
 }
 .nombre-producto:hover{
     font-weight: 600;
 }
 .productos-public{
     display: none;
+}
+.busq-prod-subir-public{
+    width: 100% !important;
+    margin-top: 0 !important;
 }
 /*******************/
 .pattern1{

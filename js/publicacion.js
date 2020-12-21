@@ -221,6 +221,12 @@ $(document).ready(function(){
                             '<span><i class="fas fa-tags"></i></span></div>';
              
              $(".tag-container-"+i).append(tag_html);
+             $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
+                var prod_public = $(this).parent().parent().find(".productos-public");
+                prod_public.toggle(100);
+                //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
+             });
+    
           
              
           }
@@ -241,4 +247,4 @@ $(document).ready(function(){
     }
 
        
-});//fin ready
+});
