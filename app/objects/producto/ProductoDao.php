@@ -262,7 +262,7 @@ SQL;
         } else {
             $id = mysqli_insert_id(Database::Connect());
             $fp = fopen("/var/www/html/productos_img/$id", 'w');
-            fwrite($fp, $fotoDB);
+            fwrite($fp, $foto);
             fclose($fp);
             $this->setMsj($id);
             $this->setStatus("OK");
