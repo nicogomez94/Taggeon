@@ -36,6 +36,11 @@ if ($perfil == 'seller' || $perfil == 'picker'){
         <a href="/mis-publicaciones.html">Mis Publicaciones</a><br>
 STR;
     }
+    if ($perfil == 'picker'){
+        $menu = <<<STR
+        <a href="/mis-publicaciones.html">Mis Publicaciones</a><br>
+STR;
+    }
 	
 	$contenidoHeader->asigna_variables(array(
 		"perfil"         => $reemplazoPerfil,

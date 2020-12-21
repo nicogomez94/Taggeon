@@ -43,19 +43,19 @@ $(document).ready(function(){
                             '<div class="productos-public productos-public-'+i+'">'+
                                '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
-                                     '<div class="splide splide-prod-tag-'+i+'">'+
+                                     '<div class="splide1 splide-prod-tag-'+i+'">'+
                                         '<div class="splide__track">'+
-                                           '<ul class="splide__list"></ul>'+
+                                           '<ul class="splide__list__'+i+'"></ul>'+
                                         '</div>'+
                                      '</div>'+
                                      /**/
-                               '<hr><div class="productos-titulo-public">Productos relacionados:</div><br>'+
-                                     '<div class="splide splide-prod-'+i+'">'+
+                               /*'<hr><div class="productos-titulo-public">Productos relacionados:</div><br>'+
+                                     '<div class="splide2 splide-prod-'+i+'">'+
                                         '<div class="splide__track">'+
                                            '<ul class="splide__list"></ul>'+
                                         '</div>'+
                                      '</div>'+
-                                  '</div>'+
+                                  '</div>'+*/
                                '</div>'+
                             '</div>'+
                          '</div>'
@@ -180,14 +180,15 @@ $(document).ready(function(){
                                 '</div></div></div></div></div></div>';
             
                             $("body").append(modal_html);
-                    
+                        
+                                //dibujo splide
+                        
+                        //$(".test-"+id_prod).attr("src","/productos-img/sdfs.jpg");
+                        
                     }//fin if prod
-
-                //dibujo splide
-                var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="/productos_img/sdfs.jpg"></li>';
-                $(".splide__list").append(splide_fotos);
-                $(".test-"+id_prod).attr("src","/productos-img/sdfs.jpg");
                 
+                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="/productos_img/sdfs.jpg"></li>';
+                    $(".splide__list__"+i).append(splide_fotos);
                 //dibujo tags
                 var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+
                             '<span><i class="fas fa-tags"></i></span></div>';
@@ -203,21 +204,24 @@ $(document).ready(function(){
           
              
             }//fin for prdo
-        //productos en esta public
-        new Splide( '.splide-prod-tag-'+i, {
-            perPage: 6,/*medio extraño*/
-            rewind : true,
-            pagination: false
-        } ).mount();
-        //productos relacionados
-        new Splide( '.splide-prod-'+i, {
-            perPage: 6,/*medio extraño*/
-            rewind : true,
-            pagination: false
-        }).mount();
+            
+        
           
        }
+       
     }
 
-       
+    //productos en esta public
+    new Splide( '.splide1', {
+        perPage: 6,
+        rewind : true,
+        pagination: false
+    } ).mount();
+    //productos relacionados
+    /*new Splide( '.splide2', {
+        perPage: 6,/*medio extraño
+        rewind : true,
+        pagination: false
+    }).mount();*/
+
 });

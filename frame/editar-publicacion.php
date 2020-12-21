@@ -20,6 +20,7 @@ if ($perfil == 'seller' || $perfil=='picker') {
     $productoManager = new ProductoManager();
 
     $jsonData = array(
+	"perfil"        => $perfil,
         "usuario"       => $GLOBALS['sesionG']['usuario'],
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],

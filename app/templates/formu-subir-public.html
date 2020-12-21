@@ -162,62 +162,53 @@
             }
             
             $("#buscador-titulo-input").keyup(function(){
-            var search = $(this).val();
+               var search = $(this).val();
 
-            if(search != ""){
-            
-               var sizeProd = jsonData.productos.length;
+               if(search != ""){
+               
+                  var sizeProd = jsonData.productos.length;
 
-               if(sizeProd>0){
-                  for(var i=0; i<sizeProd; i++){
-                     var id_prod = jsonData.productos[i].id;
-                     var nombre_prod = jsonData.productos[i].titulo;
-                     var html ='<div class="popup-producto popup-producto-'+i+'">'+
-                                 '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span>'+
-                              '</div>';
-                     // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-                     $(".popup-prod-cont").append(html);
-                  }
-               }
-               /*
-                  var data_json = {
-                     "input": search, 
-                     "accion": "busqueda"
-                  }
+                  /*if(sizeProd>0){
+                     for(var i=0; i<sizeProd; i++){
+                        var id_prod = jsonData.productos[i].id;
+                        var nombre_prod = jsonData.productos[i].titulo;
+                        var html ='<div class="popup-producto popup-producto-'+i+'">'+
+                                    '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span>'+
+                                 '</div>';
+                        // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                        $(".popup-prod-cont").append(html);
+                     }
+                  }*/
+                  
+                     var data_json = {
+                        "input": search, 
+                        "accion": "busqueda"
+                     }
 
 
-                  $.ajax({
-                     url: '/app/producto.php',
-                     type: 'post',
-                     data: data_json,
-                     dataType: 'json',
-                     success:function(response){
-                     
-                        var len = response.length;
-                        $("#searchResult").empty();
-                        for( var i = 0; i<len; i++){
-                              var id = response[i]['id'];
-                              var name = response[i]['name'];
+                     $.ajax({
+                        url: '',
+                        type: 'post',
+                        data: data_json,
+                        dataType: 'json',
+                        success:function(response){
+                        
+                           var len = response.length;
+                           alert("ok")
 
-                              $("#searchResult").append("<li value='"+id+"'>"+name+"</li>");
+                        },
+                        error:function(response){
+                        
+                           alert("error"+response)
 
                         }
-
-                        // binding click event to li
-                        $("#searchResult li").bind("click",function(){
-                              setText(this);
-                        });
-
-                     }
-                  });*/
-
-               
+                     });
 
             }
 
-    });
+         });
 
-         })
+      });
       </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 </body></html>
