@@ -5,7 +5,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
 
 
 
-if ($perfil == 'seller'){
+if ($perfil == 'seller' || $perfil =='picker'){
     $productoManager = new ProductoManager();
     $publicacionManager = new PublicacionManager();
 

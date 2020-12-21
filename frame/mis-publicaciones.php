@@ -2,7 +2,7 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 
-if ($perfil=='seller'){
+if ($perfil=='seller' || $perfil=='picker'){
 
     $publicacionManager = new PublicacionManager();
 
