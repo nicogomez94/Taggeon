@@ -129,80 +129,72 @@
       <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=161220-2358"></script>
       <script>
          $(document).ready(function(){
-            /*CATEGORIA*/
-            var catPublicSize = jsonData.categoria.length;
-            //console.log(catPublicSize);
-
-            if(catPublicSize>0){
-               for(var i=0; i<catPublicSize; i++){
-
-                  var nombre_categoria_public = jsonData.categoria[i].nombre;
-                  var id_categoria_public = jsonData.categoria[i].id;
-                  
-                  var cat_html = '<option value="'+id_categoria_public+'">'+nombre_categoria_public+'</option>'
-
-                  $("#publicacion_categoria").append(cat_html);
-
-               }
-            }
             
-            /*hardcodeadoooo*/
-            var sizeProd = jsonData.productos.length;
-
-				if(sizeProd>0){
-					for(var i=0; i<sizeProd; i++){
-						var id_prod = jsonData.productos[i].id;
-						var nombre_prod = jsonData.productos[i].titulo;
-						var html ='<div class="popup-producto popup-producto-'+i+'">'+
-                              '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span>'+
-                           '</div>';
-                  // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-						$(".popup-prod-cont").append(html);
-					}
-            }
-            
+         
             $("#buscador-titulo-input").keyup(function(){
                var search = $(this).val();
 
                if(search != ""){
-               
-                  var sizeProd = jsonData.productos.length;
-
-                  /*if(sizeProd>0){
-                     for(var i=0; i<sizeProd; i++){
-                        var id_prod = jsonData.productos[i].id;
-                        var nombre_prod = jsonData.productos[i].titulo;
-                        var html ='<div class="popup-producto popup-producto-'+i+'">'+
-                                    '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span>'+
-                                 '</div>';
-                        // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-                        $(".popup-prod-cont").append(html);
-                     }
-                  }*/
-                  
+                  if(jsonData.perfil == "picker"){
+                        var sizeProd = jsonData.productos.length;
+                     
                      var data_json = {
                         "input": search, 
-                        "accion": "busqueda"
+                        "accion": "search",
+                        "perfil": jsonData.perfil
                      }
 
-
                      $.ajax({
-                        url: '',
+                        url: '/app/producto.php',
                         type: 'post',
                         data: data_json,
                         dataType: 'json',
                         success:function(response){
                         
-                           var len = response.length;
-                           alert("ok")
+                           console.log(response)
 
                         },
                         error:function(response){
                         
-                           alert("error"+response)
-
+                           console.log(response)
                         }
                      });
+                  }else{
+                     //PARA SELLER
+
+                     var catPublicSize = jsonData.categoria.length;
+                     //console.log(catPublicSize);
+
+                     if(catPublicSize>0){
+                        for(var i=0; i<catPublicSize; i++){
+
+                           var nombre_categoria_public = jsonData.categoria[i].nombre;
+                           var id_categoria_public = jsonData.categoria[i].id;
+                           
+                           var cat_html = '<option value="'+id_categoria_public+'">'+nombre_categoria_public+'</option>'
+
+                           $("#publicacion_categoria").append(cat_html);
+
+                        }
+                     }
+                     
+                     /*hardcodeadoooo*/
+                     var sizeProd = jsonData.productos.length;
+
+                     if(sizeProd>0){
+                        for(var i=0; i<sizeProd; i++){
+                           var id_prod = jsonData.productos[i].id;
+                           var nombre_prod = jsonData.productos[i].titulo;
+                           var html ='<div class="popup-producto popup-producto-'+i+'">'+
+                                       '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span>'+
+                                    '</div>';
+                           // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                           $(".popup-prod-cont").append(html);
+                        }
+                     }
+                  }
+               
+                  
 
             }
 

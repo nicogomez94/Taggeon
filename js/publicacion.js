@@ -43,19 +43,35 @@ $(document).ready(function(){
                             '<div class="productos-public productos-public-'+i+'">'+
                                '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
-                                     '<div class="splide1 splide-prod-tag-'+i+'">'+
+                                     '<div class="splide splide-prod-tag-'+i+'">'+
                                         '<div class="splide__track">'+
-                                           '<ul class="splide__list__'+i+'"></ul>'+
+                                           '<ul class="splide__list splide__list__'+i+'"></ul>'+
                                         '</div>'+
                                      '</div>'+
                                      /**/
-                               /*'<hr><div class="productos-titulo-public">Productos relacionados:</div><br>'+
-                                     '<div class="splide2 splide-prod-'+i+'">'+
+                               '<hr><div class="productos-titulo-public">Productos relacionados:</div><br>'+
+                                     '<div class="splide splide-prod-'+i+'">'+
                                         '<div class="splide__track">'+
-                                           '<ul class="splide__list"></ul>'+
+                                           '<ul class="splide__list">'+
+                                           '<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
+'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
+                                           '</ul>'+
                                         '</div>'+
                                      '</div>'+
-                                  '</div>'+*/
+                                  '</div>'+
                                '</div>'+
                             '</div>'+
                          '</div>'
@@ -108,7 +124,8 @@ $(document).ready(function(){
                         var id_cat = jsonData.categoria[index].id;
                         var nombre_completo = jsonData.nombre+""+jsonData.apellido;
                         //onsole.log(getImagen(foto_src))
-                        var img_base_prod = getImagen(foto_src);
+                        var foto_src_prod = '/productos_img/'+id_prod_json;
+                        var img_base_prod = getImagen(foto_src_prod);
                             var modal_html =  
                                 '<div class="modal fade" id="modal-producto-'+index+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
                                 '<div class="modal-dialog modal-dialog-centered modal-lg" role="document">'+
@@ -187,7 +204,7 @@ $(document).ready(function(){
                         
                     }//fin if prod
                 
-                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="/productos_img/sdfs.jpg"></li>';
+                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="/productos-img/sdfs.jpg"></li>';
                     $(".splide__list__"+i).append(splide_fotos);
                 //dibujo tags
                 var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+
@@ -205,18 +222,23 @@ $(document).ready(function(){
              
             }//fin for prdo
             
-        
+            //productos en esta public
+            new Splide( '.splide-prod-tag-'+i, {
+                perPage: 6,
+                rewind : true,
+                pagination: false
+            } ).mount();
+            new Splide( '.splide-prod-'+i, {
+                perPage: 6,
+                rewind : true,
+                pagination: false
+            } ).mount();
           
-       }
+        }
        
     }
 
-    //productos en esta public
-    new Splide( '.splide1', {
-        perPage: 6,
-        rewind : true,
-        pagination: false
-    } ).mount();
+    
     //productos relacionados
     /*new Splide( '.splide2', {
         perPage: 6,/*medio extraño
