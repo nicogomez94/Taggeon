@@ -1851,7 +1851,7 @@ input:focus ~ .highlight {
     font-weight: 600;
 }
 .productos-public{
-    /*display: none;*/
+    display: none;
 }
 .busq-prod-subir-public{
     width: 90% !important;/*para que no se salga la cruz*/
