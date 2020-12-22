@@ -243,7 +243,41 @@ class  ProductoManager
 		}
 	}
 
+	public function searchProductoSeller(array $data)
+	{
+		$input = isset($data["input"]) ? $data["input"] : '';
+		if ($this->validarInputSearch($input) === false) {
+			return false;
+		}
 
+		if ($this->productoDao->searchProductosSeller($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->productoDao->getMsj());
+			return 'ok';
+		}
+	}
+
+	public function searchProductoPicker(array $data)
+	{
+		$input = isset($data["input"]) ? $data["input"] : '';
+		if ($this->validarInputSearch($input) === false) {
+			return false;
+		}
+
+		if ($this->productoDao->searchProductosPicker($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->productoDao->getMsj());
+			return 'ok';
+		}
+	}
 
 	private function validarId($param)
 	{
@@ -262,6 +296,18 @@ class  ProductoManager
 			}
 		}
 		return false;
+	}
+
+	private function validarInputSearch($input)
+	{
+		if (!preg_match('/^.+$/i', $input)) {
+			$this->setStatus("ERROR");
+			$this->setMsj("El campo input es incorrecto.");
+			return false;
+		}
+		$this->setStatus("OK");
+		$this->setMsj("");
+		return true;
 	}
 
 	private function validarTitulo($titulo)
