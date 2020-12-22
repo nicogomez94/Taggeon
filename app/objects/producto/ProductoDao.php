@@ -409,7 +409,7 @@ sql;
         return $list;
     }
 
-    public function searchProductosPicker()
+    public function searchProductosPicker($data)
     {
         
         $input = isset($data["input"]) ? $data["input"] : '';
@@ -436,7 +436,7 @@ sql;
         `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
     WHERE
         (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) 
-        AND titulo COLLATE UTF8_GENERAL_CI LIKE $inputDB
+        AND titulo  LIKE $inputDB
     group by         `producto`.`id`,
     `producto`.`titulo`,
     `producto`.`id_rubro`,
@@ -448,7 +448,6 @@ sql;
     `producto`.`color`,
     `producto`.`stock`
 sql;
-
         if (!mysqli_query(Database::Connect(), $sql)) {
             $this->setStatus("ERROR");
             $this->setMsj("$sql" . Database::Connect()->error);
@@ -472,7 +471,7 @@ sql;
 
 
 
-    public function searchProductosSeller()
+    public function searchProductosSeller($data)
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -501,7 +500,7 @@ sql;
         `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
     WHERE
         (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) AND `producto`.usuario_alta = $usuarioAltaDB
-        AND titulo COLLATE UTF8_GENERAL_CI LIKE $inputDB
+        AND titulo LIKE $inputDB
     group by         `producto`.`id`,
     `producto`.`titulo`,
     `producto`.`id_rubro`,
