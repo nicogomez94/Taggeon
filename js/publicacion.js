@@ -124,7 +124,7 @@ $(document).ready(function(){
                         var id_cat = jsonData.categoria[index].id;
                         var nombre_completo = jsonData.nombre+""+jsonData.apellido;
                         //onsole.log(getImagen(foto_src))
-                        var foto_src_prod = '/productos_img/'+id_prod_json;
+                        var foto_src_prod = '/productos_img/'+foto_prod;
                         var img_base_prod = getImagen(foto_src_prod);
                             var modal_html =  
                                 '<div class="modal fade" id="modal-producto-'+index+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
@@ -200,13 +200,12 @@ $(document).ready(function(){
                         
                                 //dibujo splide
                         
-                        //$(".test-"+id_prod).attr("src","/productos-img/sdfs.jpg");
-                        
                     }//fin if prod
                 
-                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="/productos-img/sdfs.jpg"></li>';
+                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';
                     $(".splide__list__"+i).append(splide_fotos);
-                //dibujo tags
+                
+                    //dibujo tags
                 var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+
                             '<span><i class="fas fa-tags"></i></span></div>';
                 
