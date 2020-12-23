@@ -8,7 +8,7 @@ if ($perfil=='seller' || $perfil='picker'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
-
+    $cat = (isset($_POST['cat']))  ? $_POST['cat'] : "";
     $jsonData = array(
 	"perfil"        => $perfil,
         "usuario"       => $GLOBALS['sesionG']['usuario'],
@@ -19,7 +19,8 @@ if ($perfil=='seller' || $perfil='picker'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "productos"     => $productoManager->getListProducto()
+	"productos"     => $productoManager->getListProducto(),
+	"cat"           => $cat
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';
