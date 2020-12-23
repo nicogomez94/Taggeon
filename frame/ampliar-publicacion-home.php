@@ -8,7 +8,7 @@ if ($perfil=='seller' || $perfil='picker'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
-    $cat = (isset($_POST['cat']))  ? $_POST['cat'] : "";
+    $cat = (isset($_GET['cat']))  ? $_GET['cat'] : "";
     $jsonData = array(
 	"perfil"        => $perfil,
         "usuario"       => $GLOBALS['sesionG']['usuario'],
