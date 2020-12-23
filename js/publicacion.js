@@ -204,8 +204,7 @@ $(document).ready(function(){
                 
                     var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';
                     $(".splide__list__"+i).append(splide_fotos);
-                
-                    //dibujo tags
+                //dibujo tags
                 var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+
                             '<span><i class="fas fa-tags"></i></span></div>';
                 
@@ -233,6 +232,11 @@ $(document).ready(function(){
                 pagination: false
             } ).mount();
           
+        }//fin for principal
+        
+        var vieneDeHome = "test";
+        if(vieneDeHome == "test"){
+            
         }
        
     }

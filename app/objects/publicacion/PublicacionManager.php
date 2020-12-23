@@ -275,5 +275,10 @@ class  PublicacionManager
 				$ret =  $this->publicacionDao->getListPublicacion();
 				return $ret;
 			}
+			public function getListPublicacionIndex()
+			{
+				$ret =  $this->publicacionDao->getListPublicacionIndex();
+				return $ret;
+			}
 		
 }
