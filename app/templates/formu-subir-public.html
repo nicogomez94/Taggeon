@@ -113,12 +113,12 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=161220-2358"></script>
+   <script src="js/func.js?time=221220-2304"></script>
    <!-- script para la seleccion de fotos -->
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <!--  -->
       <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
-      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=161220-2358"></script>
+      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=221220-2304"></script>
       <script>
          $(document).ready(function(){
             
@@ -150,18 +150,21 @@
 
                               var id_prod = response.mensaje[i].id;
                               var nombre_prod = response.mensaje[i].titulo;
+                              var foto_prod = response.mensaje[i].foto;
+                              var foto_src = '/productos_img/'+foto_prod;
+                              var imagen_prod = getImagen(foto_src);
 
                               /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
 
                               var html = '<li class="splide__slide">'+
-                                          '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="/productos_img/sdfs.jpg">'+
-                                          '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span></li></div>';
+                                          '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+imagen_prod+'">'+
+                                          '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
                               // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
                               $(".splide__list").append(html);
 
                            }
                            new Splide( '.splide', {
-                                 perPage: 6,
+                                 perPage: 5,
                                  rewind : true,
                                  pagination: false
                               } ).mount();

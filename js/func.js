@@ -1056,7 +1056,6 @@ function cargarImgPines(event){
 
 function getImagen(pathFoto){
     var rawFile = new XMLHttpRequest();
-    console.log(pathFoto)
     rawFile.open("GET", pathFoto, false);
     rawFile.send(null);    
     if(rawFile.responseText != ""){

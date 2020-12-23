@@ -16,8 +16,8 @@
 		pin: 'dropPin/defaultpin@2x.png',
 		backgroundImage: test,
 		backgroundColor: 'transparent',
-		xoffset : 10,
-		yoffset : 30, //need to change this to work out icon heigh/width then subtract margin from it
+		xoffset : 0,
+		yoffset : 0, //need to change this to work out icon heigh/width then subtract margin from it
 		cursor: 'crosshair',
 		pinclass: '',
 		userevent: 'click',
@@ -138,8 +138,8 @@
 				$(".popup-prod-overlay").hide();
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
 				var id_producto = $(this).attr('class').split(' ')[1];
-				var box_y_prod = $(this).parent().parent().css("top").split('px')[0];
-				var box_x_prod = $(this).parent().parent().css("left").split('px')[0];
+				var box_y_prod = $(this).parent().parent().parent().parent().parent().css("top").split('px')[0];
+				var box_x_prod = $(this).parent().parent().parent().parent().parent().css("left").split('px')[0];
 				
 
 				var box_y_prod_posta = box_y_prod - 20;

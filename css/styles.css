@@ -1585,6 +1585,7 @@ input:focus ~ .highlight {
 }
 .img-pines-amapear{
     max-width: 100%;
+    box-shadow: 0px 0px 10px 0px #2d2d2d;
 }
 .social-public{
     float: right;
@@ -1846,9 +1847,6 @@ input:focus ~ .highlight {
 .fa-times{
     color: #c9c9c9 !important;
     font-size: 20px;
-}
-.nombre-producto:hover{
-    font-weight: 600;
 }
 .productos-public{
     display: none;
