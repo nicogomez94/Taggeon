@@ -900,13 +900,14 @@ $("#subir-csv").on('submit', function() {
 });
 
 ///eliminar de carrito
-$(".cerrar-prod-carrito").on('click', function() {
+$(".fa-times-circle").on('click', function() {
 
     var dataEliminar = {
         "cantidad":"0",
         "accion":"alta",
         "id":"1"
     }
+    console.log("atroden")
         
     $.ajax({
         url: '/app/carrito.php',
