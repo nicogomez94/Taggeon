@@ -33,33 +33,18 @@ class  CarritoDao
 	public function altaCarrito(array $data)
 	{
 
-        $tipo = isset($data["tipo"]) ? $data["tipo"] : '';
-        $tipoDB = Database::escape($tipo);
-        $subtotal = isset($data["subtotal"]) ? $data["subtotal"] : '';
-        $subtotalDB = Database::escape($subtotal);
-        $total = isset($data["total"]) ? $data["total"] : '';
-        $totalDB = Database::escape($total);
-        $envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
-        $envio_nombre_apellidoDB = Database::escape($envio_nombre_apellido);
-        $envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
-        $envio_codigo_postalDB = Database::escape($envio_codigo_postal);
-        $envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
-        $envio_ciudad_localidadDB = Database::escape($envio_ciudad_localidad);
-        $email = isset($data["email"]) ? $data["email"] : '';
-        $emailDB = Database::escape($email);
-        $notas = isset($data["notas"]) ? $data["notas"] : '';
-        $notasDB = Database::escape($notas);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO carrito (id_tipo, subtotal, total, envio_nombre_apellido, envio_codigo_postal, envio_ciudad_localidad, email, notas,usuario_alta)  
-			VALUES ($tipoDB, $subtotalDB, $totalDB, $envio_nombre_apellidoDB, $envio_codigo_postalDB, $envio_ciudad_localidadDB, $emailDB, $notasDB,$usuarioAltaDB)
+			INSERT INTO carrito (usuario_alta)  
+			VALUES ($usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
 			$this->setStatus("ERROR");
-			$this->setMsj("$sql" . Database::Connect()->error);
+            $this->setMsj("$sql" . Database::Connect()->error);
+            return false;
 		} else {
 			$id = mysqli_insert_id(Database::Connect());
 			$this->setMsj($id);
@@ -68,7 +53,33 @@ SQL;
 		}
 
 		return false;
-	}
+    }
+    
+	public function getIdCarrito()
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+		SELECT
+		*
+    	FROM
+        `carrito`
+    	WHERE
+        `carrito`.usuario_alta = $usuarioAltaDB AND
+        (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
+        (estado is null OR estado <= 0 )
+        LIMIT 1
+sql;
+        $resultado = Database::Connect()->query($sql);
+
+        $id_carrito = 0;
+        if ($rowEmp = mysqli_fetch_array($resultado)){
+            $id_carrito = isset($rowEmp["id"]) ? $rowEmp["id"] : 0;
+        }
+
+
+        return $id_carrito;
+    }
 
 
 	public function editarCarrito(array $data)
@@ -278,8 +289,10 @@ SQL;
 
                 public function eliminarDetalle(array $data)
                 {
-                    $id = isset($data["id"]) ? $data["id"] : '';
+                    $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
                     $idDB = Database::escape($id);
+                    $id_producto = isset($data["id_producto"]) ? $data["id_producto"] : '';
+                    $idProductoDB = Database::escape($id_producto);
                     $usuario = $GLOBALS['sesionG']['idUsuario'];
                     $usuarioDB = Database::escape($usuario);
                     $sql = <<<SQL
@@ -289,13 +302,17 @@ SQL;
                 `usuario_editar` = $usuarioDB,
                 `eliminar` = 1
             WHERE
-            `id_producto` = $idDB AND
+            `id` = $idDB AND
+            `id_producto` = $idProductoDB AND
             `usuario_alta` = $usuarioDB
             SQL;
             
                     if (!mysqli_query(Database::Connect(), $sql)) {
                         $this->setStatus("ERROR");
                         $this->setMsj("$sql" . Database::Connect()->error);
+                        return false;
+
+                        
                     } else {
                         $this->setStatus("OK");
                         return true;
@@ -308,13 +325,31 @@ SQL;
                 {
                     $id_carrito = isset($data["id_carrito"]) ?   $data["id_carrito"] : '';
                     $id_carritoDB = Database::escape($id_carrito);      
-            
-                    $detalle = isset($data["detalle"]) ?  $data["detalle"] : '';
-                    $detalleDB = Database::escape($detalle);      
+
+                    $id_producto = isset($data["id_producto"]) ? $data["id_producto"] : '';
+                    $idProductoDB = Database::escape($id_producto);
+
+                    $usuario = $GLOBALS['sesionG']['idUsuario'];
+                    $usuarioDB = Database::escape($usuario);
+
+                    $nombre_producto = isset($data["nombre_producto"]) ?  $data["nombre_producto"] : '';
+                    $nombreProductoDB = Database::escape($nombre_producto);      
+
+                    $precio = isset($data["precio"]) ?  $data["precio"] : '';
+                    $precioDB = Database::escape($precio);      
+
+
+                    $cantidad = isset($data["cantidad"]) ?  $data["cantidad"] : '';
+                    $cantidadDB = Database::escape($cantidad);      
+
+
+                    $total = isset($data["total"]) ?  $data["total"] : '';
+                    $totalDB = Database::escape($total);      
+
 
                     $sql = <<<SQL
-                        INSERT INTO carrito_detalle (id_carrito,detalle) 
-                        VALUES ($id_carritoDB,$detalleDB)
+                        INSERT INTO carrito_detalle (id_carrito,id_producto,usuario_alta,cantidad,precio,total,nombre_producto) 
+                        VALUES ($id_carritoDB,$idProductoDB,$usuarioDB,$cantidadDB,$precioDB,$totalDB,$nombreProductoDB)
 SQL;
             
                     if (!mysqli_query(Database::Connect(), $sql)) {

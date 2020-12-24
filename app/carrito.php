@@ -4,7 +4,8 @@ include_once("objects/sesion/sesionManagerImpl.php");
 include_once("objects/util/database.php");
 include_once("objects/carrito/CarritoManager.php");
 $statusRet  = 'ERROR';
-$mensajeRet = 'ERROR';
+$mensajeRet = 'ERROR'; 
+ 
 $sesionManager = new SesionManagerImpl();
 $objPrincipalManager = new CarritoManager();
 //se definio superadminadmin para que no pueda entrar nadie. El dia de manana se ve si se habilita o no esta pantalla

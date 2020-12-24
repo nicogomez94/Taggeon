@@ -562,6 +562,87 @@ SQL;
         return false;
     }
 
+    public function existeIdCarrito($id)
+    {
+        $id = isset($id) ?   $id : '';
+        $idDB = Database::escape($id);
+        
+        $sql = <<<SQL
+                        SELECT * FROM producto
+                        WHERE 
+                            id = $idDB
+SQL;
+
+        $resultado = mysqli_query(Database::Connect(), $sql);
+        $row_cnt = mysqli_num_rows($resultado);
+        if ($row_cnt == 1) {
+            $this->setStatus("OK");
+            return true;
+        }
+
+        $this->setStatus("ERROR");
+        $this->setMsj("EL producto no existe.");
+        return false;
+    }
+
+
+    public function getProductoCarrito($id)
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $id = isset($id) ?   $id : '';
+        $idDB = Database::escape($id);
+        $sql = <<<sql
+        SELECT
+        `producto`.`id`,
+        `producto`.`titulo`,
+        `producto`.`id_rubro`,
+        `producto`.`marca`,
+        `producto`.`precio`,
+        `producto`.`envio`,
+        `producto`.`garantia`,
+        `producto`.`descr_producto`,
+        `producto`.`color`,
+        `producto`.`stock`,
+       GROUP_CONCAT(producto_foto.id) as foto
+
+    FROM
+        `producto`
+    LEFT JOIN
+        producto_foto
+    ON
+        `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+    WHERE
+	producto.id=$idDB AND 
+        (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL)
+    group by         `producto`.`id`,
+    `producto`.`titulo`,
+    `producto`.`id_rubro`,
+    `producto`.`marca`,
+    `producto`.`precio`,
+    `producto`.`envio`,
+    `producto`.`garantia`,
+    `producto`.`descr_producto`,
+    `producto`.`color`,
+    `producto`.`stock`
+    LIMIT 1
+sql;
+
+
+
+        $resultado = Database::Connect()->query($sql);
+
+        $row_cnt = mysqli_num_rows($resultado);
+        if ($row_cnt <= 0) {
+            $this->setStatus("ERROR");
+            $this->setMsj("No se encontró el producto.");
+            return [];
+        }
+
+        $rowEmp = mysqli_fetch_array($resultado);
+        $this->setStatus("ok");
+        return $rowEmp;
+    }
     public function getProducto($id)
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];

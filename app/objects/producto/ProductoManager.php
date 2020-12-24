@@ -438,7 +438,7 @@ class  ProductoManager
 		return $ret;
 	}
 
-	private function existeId($id)
+	public function existeId($id)
 	{
 		$id = isset($id) ? $id : '';
 		if ($this->validarId($id) === false) {
@@ -451,6 +451,39 @@ class  ProductoManager
 		}
 		return true;
 	}
+	
+	public function existeIdCarrito($id)
+	{
+		$id = isset($id) ? $id : '';
+		if ($this->validarId($id) === false) {
+			return false;
+		}
+		if ($this->productoDao->existeIdCarrito($id) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		}
+		return true;
+	}
+
+	public function getProductoCarrito(array $data)
+	{
+
+		$id = isset($data["id_producto"]) ? $data["id_producto"] : '';
+		if ($this->existeIdCarrito($id) === false) {
+			return [];
+		}
+	
+		$producto = $this->productoDao->getProductoCarrito($id);
+		if ($this->productoDao->getStatus() != 'ok') {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return [];
+		}
+		$this->setStatus("ok");
+		return $producto;
+	}
+	
 
 	public function getProducto(array $data)
 	{
@@ -469,6 +502,7 @@ class  ProductoManager
 		$this->setStatus("ok");
 		return $producto;
 	}
+
 	public function getFoto(array $data)
 	{
 
