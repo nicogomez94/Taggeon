@@ -899,7 +899,42 @@ $("#subir-csv").on('submit', function() {
     return false;
 });
 
+///eliminar de carrito
+$(".cerrar-prod-carrito").on('click', function() {
 
+    var dataEliminar = {
+        "cantidad":"0",
+        "accion":"eliminar",
+        "id":"1"
+    }
+        
+    $.ajax({
+        url: '/app/carrito.php',
+        data: dataEliminar,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'REDIRECT'){
+                alert("REDIRECT-->"+data.mensaje);
+                window.location.replace(data.mensaje);														
+            }else if(data.status == 'OK'){
+                alert("OK-->"+data.mensaje);
+                window.location.replace("/ampliar-carrito.html");
+            }else{
+                alert("ELSE-->"+data.mensaje);
+            }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert("ERROR AJAX--> "+response);
+            alert(data.mensaje);
+        }
+   });
+   return false;
+
+});
 
 
 /***fin document.ready***//***fin document.ready***/

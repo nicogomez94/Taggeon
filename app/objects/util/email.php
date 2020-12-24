@@ -56,7 +56,6 @@ class Email{
 			$mail->Subject = $GLOBALS['configuration_email']['subject_alta_usuario'];
 
 			//$mail->AddAddress("rikizito@gmail.com","TEST");
-			//$mail->AddAddress("alexisg@goigni.com","Alexis");
 
 			//$mail->AddAddress("rikizito@gmail.com",$usuario);
 			$mail->AddAddress($para,$para);
@@ -130,7 +129,6 @@ class Email{
 			$mail->Subject = $GLOBALS['configuration_email']['subject_recuperar_clave'];
 
 			//$mail->AddAddress("rikizito@gmail.com","TEST");
-			//$mail->AddAddress("alexisg@goigni.com","Alexis");
 
 			//$mail->AddAddress("rikizito@gmail.com",$usuario);
 			$mail->AddAddress($para,$usuario);
@@ -204,7 +202,6 @@ class Email{
 			$mail->Subject = $GLOBALS['configuration_email']['subject_envio_pin'];
 
 			//$mail->AddAddress("rikizito@gmail.com","TEST");
-			//$mail->AddAddress("alexisg@goigni.com","Alexis");
 
 			//$mail->AddAddress("rikizito@gmail.com",$usuario);
 			$mail->AddAddress($para,$usuario);
@@ -251,7 +248,6 @@ class Email{
 			$mail->Subject = $GLOBALS['configuration_email']['subject_transaccion_exitosa'];
 
 			//$mail->AddAddress("rikizito@gmail.com","TEST");
-			//$mail->AddAddress("alexisg@goigni.com","Alexis");
 
 			//$mail->AddAddress("rikizito@gmail.com",$usuario);
 			$mail->AddAddress($para,$usuario);
@@ -291,6 +287,62 @@ class Email{
 			//mail($para, $asunto, utf8_decode($mensaje), $header);
 			mail($para, $asunto, utf8_encode($mensaje), $header);
 	}
+
+
+
+	public function enviarEmailCarrito($mensaje,$para){
+		logEmailGral("Envio enviarEmailAltaUsuario\nmensajeTexto: $mensaje\nusuario $para\n");
+		if ($this->getEnviar() == true){
+			$this->setEnviar(false);
+
+			require("class.phpmailer.php"); //Importamos la función PHP class.phpmailer
+			$mail = new PHPMailer();
+
+			$mail->IsSMTP();
+			//$mail->SMTPDebug = 2;  // debugging: 1 = errors and messages, 2 = messages only
+			$mail->SMTPAuth = true;  // authentication enabled
+			$mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for GMail
+			$mail->SMTPAutoTLS = false;
+			$mail->Host = $GLOBALS['configuration_email']['host']; 
+
+			$mail->Port = 587;
+			$mail->Username = $GLOBALS['configuration_email']['user'];
+			$mail->Password = $GLOBALS['configuration_email']['pass'];
+			
+			$mail->From = $GLOBALS['configuration_email']['from'];
+			$mail->FromName = $GLOBALS['configuration_email']['from_name'];
+			$mail->Subject = $GLOBALS['configuration_email']['subject_alta_usuario'];
+
+			//$mail->AddAddress("rikizito@gmail.com","TEST");
+			//$mail->AddAddress("rikizito@gmail.com",$usuario);
+			$mail->AddAddress($para,$para);
+
+			$mail->WordWrap = 50;
+
+			$mail->IsHTML(true);
+			$mail->Body = $mensaje;
+
+			// Notificamos al usuario del estado del mensaje
+
+			if(!$mail->Send()){
+				$this->setStatus("error");
+				$this->setMsj(getMsjConf('392')." Err: ".$mail->ErrorInfo);
+				logEmailGral("Respuesta ERROR => Envio enviarEmailCarrito\nmensajeTexto: $mensaje\nusuario $para\nDetalle Respuesta: " . getMsjConf('392') . " Err: ".$mail->ErrorInfo . "\n");
+			}else{
+				logEmailGral("Respuesta OK => Envio enviarEmailCarrito\nmensajeTexto: $mensaje\nusuario $para\nDetalle Respuesta:\n");
+			}		
+
+			//Para enviar msj de texto solo
+			//$this->setEnviar(true); $this->setStatus("");
+			//$this->enviarEmailRecuperar($mensajeTexto,$para);
+		}else{
+			logEmailGral("Respuesta ERROR => Envio enviarEmailCarrito\nmensajeTexto: $mensaje\nusuario $para\nDetalle Respuesta: " . getMsjConf('342') . "\n");
+			$this->setStatus("error");
+			$this->setMsj(getMsjConf('342'));
+		}
+	}
+
+
 };
 
 ?>

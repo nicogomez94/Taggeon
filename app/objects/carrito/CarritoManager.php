@@ -34,56 +34,6 @@ class  CarritoManager
 		$this->msj = $msj;
 	}
 
-	private function validarCarrito(array $data) {
-		$var_accion = isset($data["accion"]) ? $data["accion"] : '';
-		if ($var_accion == 'editar') {
-			$id = isset($data["id"]) ? $data["id"] : '';
-			if ($this->existeId($id) === false) {
-				return false;
-			}
-		}
-
-	    $tipo = isset($data["tipo"]) ? $data["tipo"] : '';
-	    if ($this->validarTipo($tipo) === false){
-	     return false;
-	    }
-	    $subtotal = isset($data["subtotal"]) ? $data["subtotal"] : '';
-	    if ($this->validarSubtotal($subtotal) === false){
-	     return false;
-	    }
-	    $total = isset($data["total"]) ? $data["total"] : '';
-	    if ($this->validarTotal($total) === false){
-	     return false;
-	    }
-	    $envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
-	    if ($this->validarEnvio_nombre_apellido($envio_nombre_apellido) === false){
-	     return false;
-	    }
-	    $envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
-	    if ($this->validarEnvio_codigo_postal($envio_codigo_postal) === false){
-	     return false;
-	    }
-	    $envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
-	    if ($this->validarEnvio_ciudad_localidad($envio_ciudad_localidad) === false){
-	     return false;
-	    }
-	    $email = isset($data["email"]) ? $data["email"] : '';
-	    if ($this->validarEmail($email) === false){
-	     return false;
-	    }
-	    $notas = isset($data["notas"]) ? $data["notas"] : '';
-	    if ($this->validarNotas($notas) === false){
-	     return false;
-	    }
-
-        if ($this->carritoDao->existeTipo($tipo) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->carritoDao->getMsj());
-            return false;
-        }
-
-	}
-
 	public function agregarCarrito(array $data)
 	{
 
@@ -167,81 +117,6 @@ class  CarritoManager
 		$this->setMsj($data["id_carrito"]);
 	}
 
-	public function guardarCarrito(array $data)
-	{
-
-		if ($this->validarCarrito($data) === false) {
-			return false;
-		}
-
-
-		if ($this->carritoDao->altaCarrito($data) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->carritoDao->getMsj());
-		} else {
-			$idCarrito = $this->carritoDao->getMsj();
-
-			
-                foreach ($_POST["detalle"] as $valor) {
-                    $valor = isset($valor) ?  $valor : '';
-		            if ($this->validarDetalle( $valor) === false){
-			            return false;
-		            }
-                    $dataDetalle = array(
-                        "id_carrito" => $idCarrito,
-                        "detalle"        => $valor
-                    );
-
-                    if ( $this->carritoDao->altaDetalle($dataDetalle) === false) {
-                        $this->setStatus("ERROR");
-                        $this->setMsj($this->carritoDao->getMsj());
-                        return false;
-                    }
-                }
-                
-			
-			$this->setStatus("OK");
-			$this->setMsj($idCarrito);
-		}
-	}
-
-	public function modificarCarrito(array $data)
-	{
-		if ($this->validarCarrito($data) === false) {
-			return false;
-		}
-
-
-		if ($this->carritoDao->editarCarrito($data) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->carritoDao->getMsj());
-		} else {
-                if ($this->carritoDao->eliminarDetalle($data) === false) {
-                    $this->setStatus("ERROR");
-                    $this->setMsj("No se pudo eactualizar Detalle");
-                    return false;
-                } else {
-                    $idCarrito = isset($data["id"]) ? $data["id"] : '';
-                    foreach ($_POST["detalle"] as $valor) {
-                        $valor = isset($valor) ?  $valor : '';
-                        $dataDetalle = array(
-                            "id_carrito" => $idCarrito,
-                            "detalle"        => $valor
-                        );
-    
-                        if ($this->carritoDao->altaDetalle($dataDetalle) === false) {
-                            $this->setStatus("ERROR");
-                            $this->setMsj($this->carritoDao->getMsj());
-                            return false;
-                        }
-                    }
-                }
-			$this->setStatus("OK");
-			$this->setMsj($this->carritoDao->getMsj());
-			return true;
-		}
-	}
-
 	public function eliminarCarrito(array $data)
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';
@@ -263,6 +138,52 @@ class  CarritoManager
 			$this->setMsj($this->carritoDao->getMsj());
 		}
 	}
+
+
+	public function finalizarCarrito(array $data)
+	{
+		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
+
+		if (!is_numeric($data["id_carrito"])){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id de carrito es incorrecto.");
+			return false;
+		}
+
+		if ($data["id_carrito"] <= 0){
+			$this->setStatus("ERROR");
+			$this->setMsj("No se encontro el carrito.");
+			return false;
+ 		}
+
+		$idCarrito = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarId($idCarrito) === false){
+			return false;
+		}
+
+		if ($data["id_carrito"] != $idCarrito){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id ". $idCarrito ."de carrito  es incorrecto.");
+			return false;
+		}
+
+		$data["estado"] = 1;
+
+		if ($this->carritoDao->cambiarEstadoCarrito($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->carritoDao->getMsj());
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->carritoDao->getMsj());
+			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
+			$objEmail = new Email();
+			$objEmail->setEnviar(true);
+			$objEmail->enviarEmailCarrito('Se creo la orden '.$idCarrito,$GLOBALS['sesionG']['email']);
+		}
+	}
+
+
+
 
 	private function validarId ($param){
 		$this->setStatus("error");
@@ -288,24 +209,6 @@ class  CarritoManager
 		return true;
 	}
 
-	public function getCarrito(array $data)
-	{
-
-		$id = isset($data["id_carrito"]) ? $data["id"] : '';
-		if ($this->existeId($id) === false) {
-			return [];
-		}
-	
-		$carrito = $this->carritoDao->getCarrito($id);
-		if ($this->carritoDao->getStatus() != 'ok') {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->carritoDao->getMsj());
-			return [];
-		}
-		$this->setStatus("ok");
-		return $carrito;
-	}
-
 	public function getListCarrito()
 	{
 		$ret =  $this->carritoDao->getListCarrito();
@@ -313,11 +216,7 @@ class  CarritoManager
 	}
 
 
-                public function getListTipo()
-                {
-                    return $this->claseDao->getListTipo();
-                }                
-
+          
         
             private function validarCantidad($cant)
             {

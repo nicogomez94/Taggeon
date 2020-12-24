@@ -5,7 +5,7 @@ include_once("objects/util/database.php");
 include_once("objects/carrito/CarritoManager.php");
 $statusRet  = 'ERROR';
 $mensajeRet = 'ERROR'; 
- 
+
 $sesionManager = new SesionManagerImpl();
 $objPrincipalManager = new CarritoManager();
 //se definio superadminadmin para que no pueda entrar nadie. El dia de manana se ve si se habilita o no esta pantalla
@@ -13,9 +13,11 @@ $objPrincipalManager = new CarritoManager();
 if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarCarrito($_POST);
+        } else if ($var_accion == 'finalizar') {
+            $objPrincipalManager->finalizarCarrito($_POST);
         } else if ($var_accion == 'editar') {
             $objPrincipalManager->modificarCarrito($_POST);
         } else if ($var_accion == 'eliminar') {
