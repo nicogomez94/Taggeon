@@ -25,7 +25,7 @@ if ($perfil == 'seller' || $perfil == 'picker'){
         }
 	}
 	$usuarioPerfil = $GLOBALS['sesionG']['usuario'];
-	if ($usuarioPerfil == $GLOBALS['sesi)onG']['email']{
+	if ($usuarioPerfil == $GLOBALS['sesionG']['email']){
 		$usuarioPerfil = $GLOBALS['sesionG']['nombre'];
     }
  

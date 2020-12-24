@@ -904,7 +904,7 @@ $(".cerrar-prod-carrito").on('click', function() {
 
     var dataEliminar = {
         "cantidad":"0",
-        "accion":"eliminar",
+        "accion":"alta",
         "id":"1"
     }
         
