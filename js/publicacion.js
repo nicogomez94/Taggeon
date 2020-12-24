@@ -178,15 +178,23 @@ $(document).ready(function(){
                                 '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 dias habiles'+//hardcodeado
                                 '</div>'+
                                 '<hr>'+
-                                '<div class="stock-boton-modal">'+
-                                '<span>'+
-                                'Cantidad&nbsp;'+
-                                '<select name="" id="">'+
-                                '<option value="1">1</option>'+//hardcodeado
-                                '</select>'+
-                                '</span>&nbsp;'+
-                                '<span><a href="#" class="btn btn-warning">Añadir a Carrito</a></span>'+
-                                '</div>'+
+                                '<div class="stock-boton-modal"><form class="form-carrito">'+
+                                    '<span>'+
+                                        'Cantidad&nbsp;'+
+                                        '<select name="cantidad">'+
+                                            '<option value="1">1</option>'+//hardcodeado
+                                            '<option value="2">2</option>'+//hardcodeado
+                                            '<option value="3">3</option>'+//hardcodeado
+                                            '<option value="4">4</option>'+//hardcodeado
+                                            '<option value="5">5</option>'+//hardcodeado
+                                            '<option value="6">6</option>'+//hardcodeado
+                                            '<option value="7">7</option>'+//hardcodeado
+                                        '</select>'+
+                                        '<input type="hidden" name="accion" value="alta">'+
+                                        '<input type="hidden" name="id" value="'+id_prod_json+'">'+
+                                    '</span>&nbsp;'+
+                                    '<span><button type="submit" class="btn btn-warning">Añadir a Carrito</button></span>'+
+                                '</form></div>'+
                                 '</div>'+
                                 '<hr>'+
                                 '<div class="descripcion-modal-producto">'+
@@ -236,7 +244,7 @@ $(document).ready(function(){
         
         var vieneDeHome = "test";
         if(vieneDeHome == "test"){
-            
+
         }
        
     }
@@ -247,6 +255,42 @@ $(document).ready(function(){
         perPage: 6,/*medio extraño
         rewind : true,
         pagination: false
+
+
+        
     }).mount();*/
+
+    $(".form-carrito").on('submit', function() {
+
+        var formData = new FormData($(this)[0]);
+        console.log(formData)
+            
+        $.ajax({
+            url: '/app/carrito.php',
+            data: formData,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            async: false,
+            success: function( data, textStatus, jQxhr ){
+                if (data.status == 'REDIRECT'){
+                    alert("REDIRECT-->"+data.mensaje);
+                    window.location.replace(data.mensaje);														
+                }else if(data.status == 'OK'){
+                    alert("OK-->"+data.mensaje);
+                    window.location.replace("/ampliar-carrito.html");
+                }else{
+                    alert("ELSE-->"+data.mensaje);
+                }
+            },
+            error: function( data, jqXhr, textStatus, errorThrown ){
+                alert("ERROR"+response);
+                alert(data.mensaje);
+            }
+       });
+       return false;
+
+    });
 
 });

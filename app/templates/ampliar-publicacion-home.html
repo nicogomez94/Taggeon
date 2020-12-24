@@ -1,68 +1,77 @@
-
-
+<!-- flecha flotante atras -->
+<div class="flecha-atras-public"><i class="fas fa-arrow-left"></i></div>
 <!-- or the reference on CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 
 <div class="overlay-loading"></div>
 
-<div class="container contenedor-ampliar-public">
+<div class="contenedor-ampliar-public">
 
-   <div class="container">
+   <div>
       <!--  -->
-      <div class="flecha-atras-public"><i class="fas fa-arrow-left"></i></div>
-      <div class="cat_public_top">
-         <div class="row">
-            <div class="col-lg-8">
-               <div class="globo-cat">Nombre Cat</div>
-            </div>
-            <div class="col-lg-4"></div>
-         </div>
-      </div>
+      
+
       <div class="prev-cat"><i class="fas fa-chevron-left"></i></div>
       <div class="next-cat"><i class="fas fa-chevron-right"></i></div>
       <!--  -->
-      <div class="row">
-         <div class="col-lg-8">
+      <div class="row justify-content-center" style="margin-top: 20px; ">
+         <div class="col-lg-3" style="position: relative;">
+            <div class="fixed-grid-lr">
+               <div class="prev-cat"><i class="fas fa-chevron-left"></i></div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+               </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-6">
+            <div class="globo-cat">Nombre Cat</div>
             <div class="row insert-public">
                
             </div>
          </div>
-         <div class="col-lg-4">
-            <div class="fixed-col-der">
-               <div class="header-public header-public-fixed">
-                  <span class="img-perfil-public">
-                     <img src="../../img/furrr.jpg" alt="">
-                  </span>
-                  <span class="title-public">NombreTest</span>
+         <div class="col-lg-3" style="position: relative;">
+            <div class="fixed-grid-lr">
+               <div class="row test-row">
+                  <div class="next-cat"><i class="fas fa-chevron-right"></i></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
                </div>
-               <hr>
-               <div>
-                  <h5>Sugerencias para ti</h5>
-                  <br>
-                  <div class="media media-sugeridos">
-                     <img class="mr-3 test-suggest" src="../../img/furrr.jpg" alt="Generic placeholder image">
-                     <div class="media-body">
-                       <h6 class="mt-0">Ricardo Alberto</h6>
-                       <span>Sugerido porque te gusta</span>
-                     </div>
-                   </div>
-                   <div class="media media-sugeridos">
-                     <img class="mr-3 test-suggest" src="../../img/furrr.jpg" alt="Generic placeholder image">
-                     <div class="media-body">
-                       <h6 class="mt-0">Caro Iaco</h6>
-                       <span>Sugerido porque te gusta</span>
-                     </div>
-                   </div>
-                   <div class="media media-sugeridos">
-                     <img class="mr-3 test-suggest" src="../../img/furrr.jpg" alt="Generic placeholder image">
-                     <div class="media-body">
-                       <h6 class="mt-0">Gonzalo Delafare</h6>
-                       <span>Sugerido porque te gusta ...</span>
-                     </div>
-                   </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                </div>
+               <div class="row test-row">
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno"></div></div>
                </div>
             </div>
          </div>
+         <!-- probar sacandoles los amrigns a los rows -->
       </div>
    </div>
    
@@ -87,5 +96,12 @@
    <script src="js/func.js?time=221220-1647"></script>
    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
    <script src="js/publicacion.js?time=221220-1647"></script>
+   <script>
+      $(document).ready(function(){
+         $("body").css("background-color","#e4e4e4");
 
+         var parentwidth = $(".parent").width();      
+         $(".child").toggleClass("fixed").width(parentwidth);    
+      });
+   </script>
 </body></html>

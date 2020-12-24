@@ -82,8 +82,45 @@ class  CarritoManager
 	}
 
 
-
 	public function agregarCarrito(array $data)
+	{
+
+		if ($this->validarCarrito($data) === false) {
+			return false;
+		}
+
+
+		if ($this->carritoDao->altaCarrito($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->carritoDao->getMsj());
+		} else {
+			$idCarrito = $this->carritoDao->getMsj();
+
+			
+                foreach ($_POST["detalle"] as $valor) {
+                    $valor = isset($valor) ?  $valor : '';
+		            if ($this->validarDetalle( $valor) === false){
+			            return false;
+		            }
+                    $dataDetalle = array(
+                        "id_carrito" => $idCarrito,
+                        "detalle"        => $valor
+                    );
+
+                    if ( $this->carritoDao->altaDetalle($dataDetalle) === false) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj($this->carritoDao->getMsj());
+                        return false;
+                    }
+                }
+                
+			
+			$this->setStatus("OK");
+			$this->setMsj($idCarrito);
+		}
+	}
+
+	public function guardarCarrito(array $data)
 	{
 
 		if ($this->validarCarrito($data) === false) {

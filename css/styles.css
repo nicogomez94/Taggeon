@@ -1481,7 +1481,7 @@ input:focus ~ .highlight {
 }
 .fixed-grid-lr{
     position: fixed;
-    width: 21%;
+    width: 300px;
 }
 .row.test-row {
     padding: 13px 13px 13px 20px;
@@ -1501,6 +1501,36 @@ input:focus ~ .highlight {
     /* margin-left: 10px; */
     /* margin: 11px; */
 }
+.globo-cat{
+    text-align: center;
+    padding: 10px;
+    color: #656565;
+    position: relative;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-radius: 20px;
+    background: whitesmoke;
+    box-shadow: 3px 3px 0px 0px #d0d0d0;
+}
+/*  */
+.parent {
+    width: 20%;
+    background-color: red;
+  
+    min-height: 2130px;
+}
+.child {
+    position: relative;
+    background-color: green;
+}
+
+.fixed {
+    position: fixed;
+}
+  
+
+  /*  */
+
 
 /********ampliar*******/
 .public-ampliar{
@@ -1638,15 +1668,19 @@ input:focus ~ .highlight {
     top: 10;
     left: 10;
 }
-.prev-cat{
+.prev-cat,.next-cat{
     position: fixed;
+    z-index: 999;
     top: 50%;
-    left: 50%;
+    color: #fff;
+    font-size: 40px;
+    text-shadow: 0px 0px 3px #585858;
+}
+.prev-cat{
+    left: 285px;
 }
 .next-cat{
-    position: fixed;
-    top: 50%;
-    left: 50%;
+    right: 285px;
 }
 
 /*MODAL PRODCUTO*/
