@@ -127,7 +127,7 @@ class  CarritoManager
 			return false;
 		}
 		$data["precio"]          = isset($dataProducto["precio"]) ? $dataProducto["precio"] : 0;
-		$data["nombre_producto"] = isset($dataProducto["nombre_producto"]) ? $dataProducto["nombre_producto"] : '';
+		$data["nombre_producto"] = isset($dataProducto["titulo"]) ? $dataProducto["titulo"] : '';
 		
 	    $data["cantidad"] = isset($data["cantidad"]) ? $data["cantidad"] : 0;
 	    if ($this->validarCantidad($data["cantidad"]) === false){
@@ -308,7 +308,7 @@ class  CarritoManager
 
 	public function getListCarrito()
 	{
-		$ret =  $this->publicacionDao->getListCarrito();
+		$ret =  $this->carritoDao->getListCarrito();
 		return $ret;
 	}
 

@@ -194,9 +194,15 @@ SQL;
         SELECT
 		*
     	FROM
-		`carrito`
+        `carrito`
+        LEFT JOIN
+        carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
+        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL) 
 		WHERE
-        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND `carrito`.usuario_alta = $usuarioAltaDB
+        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND 
+        `carrito`.usuario_alta = $usuarioAltaDB                AND
+        (estado is null OR estado <= 0 )
+
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -302,7 +308,7 @@ SQL;
                 `usuario_editar` = $usuarioDB,
                 `eliminar` = 1
             WHERE
-            `id` = $idDB AND
+            `id_carrito` = $idDB AND
             `id_producto` = $idProductoDB AND
             `usuario_alta` = $usuarioDB
             SQL;
@@ -333,6 +339,7 @@ SQL;
                     $usuarioDB = Database::escape($usuario);
 
                     $nombre_producto = isset($data["nombre_producto"]) ?  $data["nombre_producto"] : '';
+                    echo $nombreProductoDB;
                     $nombreProductoDB = Database::escape($nombre_producto);      
 
                     $precio = isset($data["precio"]) ?  $data["precio"] : '';

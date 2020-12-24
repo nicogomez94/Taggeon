@@ -2,12 +2,14 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
 
 
 if ($perfil=='seller'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
+    $carritoManager = new CarritoManager();
 
     $jsonData = array(
         "usuario"       => $GLOBALS['sesionG']['usuario'],
@@ -18,7 +20,8 @@ if ($perfil=='seller'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "productos"     => $productoManager->getListProducto()
+        "carrito"     => $carritoManager->getListCarrito()
+        
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';
