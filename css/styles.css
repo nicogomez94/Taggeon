@@ -1677,10 +1677,21 @@ input:focus ~ .highlight {
     text-shadow: 0px 0px 3px #585858;
 }
 .prev-cat{
-    left: 285px;
+    /* left: 285px; */
+    left: 20%;  
 }
 .next-cat{
-    right: 285px;
+    /* right: 285px; */
+    right: 20%; 
+}
+.up_relleno {
+    height: 20px;
+    background: gainsboro;
+    /* margin-bottom: 10px; */
+    border-radius: 10px;
+}
+.span-arriba{
+    height: 20px;
 }
 
 /*MODAL PRODCUTO*/

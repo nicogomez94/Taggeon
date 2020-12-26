@@ -899,6 +899,41 @@ $("#subir-csv").on('submit', function() {
     return false;
 });
 
+///////////////////carrito
+
+///crear orden de compra carrito
+$(".boton-checkout-carrito").on('click', function() {
+    $(".form-orden-compra").submit(function(){
+        var formData = new FormData($(this)[0]);
+            
+        $.ajax({
+            url: '/app/carrito.php',
+            data: formData,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            async: false,
+            success: function( data, textStatus, jQxhr ){
+                if (data.status == 'REDIRECT'){
+                    alert("REDIRECT-->"+data.mensaje);
+                    window.location.replace(data.mensaje);														
+                }else if(data.status == 'OK'){
+                    alert("OK-->"+data.mensaje);
+                    window.location.replace("/ampliar-carrito.html");
+                }else{
+                    alert("ELSE-->"+data.mensaje);
+                }
+            },
+            error: function( data, jqXhr, textStatus, errorThrown ){
+                alert("ERROR"+response);
+                alert(data.mensaje);
+            }
+       });
+       return false;
+    })
+});
+
 ///eliminar de carrito
 $(".fa-times-circle").on('click', function() {
 
@@ -936,6 +971,9 @@ $(".fa-times-circle").on('click', function() {
    return false;
 
 });
+
+
+
 
 
 /***fin document.ready***//***fin document.ready***/

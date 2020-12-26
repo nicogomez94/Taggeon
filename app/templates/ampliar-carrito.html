@@ -4,7 +4,7 @@
    <div class="inner-carrito">
       <h1>Carrito</h1>
       <hr>
-      <div id="listado-mis-productos" style="margin-top: 50px">
+      <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
          <div class="header-productos producto row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
                <!-- <span class="titulo-header-producto">Imagen</span> -->
@@ -17,7 +17,7 @@
                   <span class="sort-nombre"></span>Nombre</span>
                </span>
             </div>
-
+            
             <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                <span class="titulo-header-producto">
                   <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
@@ -43,67 +43,9 @@
                </span>
             </div>
          </div>
+         <form method="POST" class="form-orden-compra"></form>
          <!-- producto hardcodeado -->
-         <div class="row producto">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt=""></div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-               <span class="titulo-producto">Bacha de baño</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <span class="precio-producto">122</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <input type="number" name="precio" id="precio-producto" class="num-corto-form" required="" autocomplete="on" value="5">
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-               <span class="precio-producto">122</span>
-               <div class="cerrar-prod-carrito">
-                  <i data-title="0" class="fas fa-times-circle ellip ml-5"></i>
-               </div>
-            </div>
-         </div>
-         <div class="row producto">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt=""></div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-               <span class="titulo-producto">Bacha de baño</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <span class="precio-producto">122</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <input type="number" name="precio" id="precio-producto" class="num-corto-form" required="" autocomplete="on" value="5">
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-               <span class="precio-producto">122</span>
-               <div class="cerrar-prod-carrito">
-                  <i data-title="0" class="fas fa-times-circle ellip ml-5"></i>
-               </div>
-            </div>
-         </div>
-         <div class="row producto">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt=""></div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-               <span class="titulo-producto">Bacha de baño</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <span class="precio-producto">122</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <input type="number" name="precio" id="precio-producto" class="num-corto-form" required="" autocomplete="on" value="5">
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-               <span class="precio-producto">122</span>
-               <div class="cerrar-prod-carrito">
-                  <i data-title="0" class="fas fa-times-circle ellip ml-5"></i>
-               </div>
-            </div>
-         </div>
+
          <!-- /producto hardcodeado -->
       </div>
    </div>
@@ -141,11 +83,54 @@
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=241220-0951"></script>
-   <script>
-      $(document).ready(function(){
+<script>
+$(document).ready(function(){
+   var sizeCarrito = jsonData.carrito.length;
 
-      });
-   </script>
+   if(sizeCarrito>0){
+      for(var i=0; i<sizeCarrito; i++){
+         
+         var id_carrito = jsonData.carrito[i].id_carrito;
+         var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
+         var precio_prod_carrito = jsonData.carrito[i].precio;
+         var total_prod_carrito = jsonData.carrito[i].total;
+         var prod_id = jsonData.carrito[i].id_producto;
+         var cantidad = jsonData.carrito[i].cantidad;
+         var producto = jsonData.carrito[i].pid;
+         var foto_src = '/productos_img/'+prod_id;
+         var img_prod_carrito = getImagen(foto_src);
+
+         var carrito_html = '<div class="row producto">'+
+                           '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
+                           '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+img_prod_carrito+'" alt="'+img_prod_carrito+'"></div>'+
+                           '</div>'+
+                           '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
+                           '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
+                           '<input type="hidden" name="nombre_producto" value="'+nombre_prod_carrito+'">'+
+                           '<input type="hidden" name="id_producto" value="'+prod_id+'">'+
+                           '</div>'+
+                           '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                           '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
+                           '<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
+                           '</div>'+
+                           '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                           '<input type="number" name="cantidad" id="precio-producto" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
+                           '</div>'+
+                           '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
+                           '<span class="precio-producto">'+total_prod_carrito+'</span>'+
+                           '<input type="hidden" name="total" value="'+precio_prod_carrito+'">'+
+                           '<div class="cerrar-prod-carrito">'+
+                           '<i data-title="0" class="fas fa-times-circle ellip ml-5"></i>'+
+                           '</div>'+
+                           '</div>'+
+                           '</div>';
+
+                           $(".form-orden-compra").append(carrito_html);
+
+      }
+   }
+});
+</script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>
