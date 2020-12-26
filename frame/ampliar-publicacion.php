@@ -19,7 +19,7 @@ if ($perfil=='seller' || $perfil='picker'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "productos"     => $productoManager->getListProducto()
+        "productos"     => $productoManager->getListProductoIndex()
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';
