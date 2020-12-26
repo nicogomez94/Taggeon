@@ -11,10 +11,16 @@ $(document).ready(function(){
             var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
             var imagen_id = jsonData.publicaciones[i].foto;
             var producto = jsonData.publicaciones[i].pid;
+            var cat_ampliar_home = jsonData.cat;
             
             var foto_src = '/publicaciones_img/'+imagen_id;
             var img_base_public = getImagen(foto_src);
-        
+            
+            //si viene esta cat ya se que es de home
+            if(/*parseInt(cat_ampliar_home) > 0 && */cat_ampliar_home == id_public_cat){
+                
+            
+
             var html_public = '<div class="public-ampliar public-actual test2">'+
                                '<div class="header-public">'+
                                   '<span class="img-perfil-public">'+
@@ -225,7 +231,7 @@ $(document).ready(function(){
                     //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
                 });
           
-             
+            
             }//fin for prdo
             
             //productos en esta public
@@ -239,13 +245,9 @@ $(document).ready(function(){
                 rewind : true,
                 pagination: false
             } ).mount();
-          
-        }//fin for principal
-        
-        var vieneDeHome = "test";
-        if(vieneDeHome == "test"){
-
         }
+        }//fin for principal
+
        
     }
 

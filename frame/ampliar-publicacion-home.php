@@ -16,7 +16,7 @@ if ($perfil=='seller' || $perfil='picker'){
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
         "categoria"     => $publicacionManager->getListCategoria(),
-        "publicaciones"     => $publicacionManager->getListPublicacion(),
+        "publicaciones"     => $publicacionManager->getListPublicacionIndex(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
 	"productos"     => $productoManager->getListProducto(),

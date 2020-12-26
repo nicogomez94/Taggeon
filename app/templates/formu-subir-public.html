@@ -123,6 +123,21 @@
       <script>
          $(document).ready(function(){
             
+            var catPublicSize = jsonData.categoria.length;
+            //console.log(catPublicSize);
+
+            if(catPublicSize>0){
+               for(var i=0; i<catPublicSize; i++){
+
+                  var nombre_categoria_public = jsonData.categoria[i].nombre;
+                  var id_categoria_public = jsonData.categoria[i].id;
+                  
+                  var cat_html = '<option value="'+id_categoria_public+'">'+nombre_categoria_public+'</option>'
+
+                  $("#publicacion_categoria").append(cat_html);
+
+               }
+            }
          
             $("#buscador-titulo-input").keyup(function(){
                var search = $(this).val();
@@ -183,22 +198,6 @@
                      });
                   }else{
                      //PARA SELLER
-
-                     var catPublicSize = jsonData.categoria.length;
-                     //console.log(catPublicSize);
-
-                     if(catPublicSize>0){
-                        for(var i=0; i<catPublicSize; i++){
-
-                           var nombre_categoria_public = jsonData.categoria[i].nombre;
-                           var id_categoria_public = jsonData.categoria[i].id;
-                           
-                           var cat_html = '<option value="'+id_categoria_public+'">'+nombre_categoria_public+'</option>'
-
-                           $("#publicacion_categoria").append(cat_html);
-
-                        }
-                     }
                      
                      /*hardcodeadoooo*/
                      var sizeProd = jsonData.productos.length;
