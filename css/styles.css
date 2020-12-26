@@ -1664,9 +1664,24 @@ input:focus ~ .highlight {
     border: 0px solid #fff
 }
 .flecha-atras-public{
-    position: absolute;
-    top: 10;
-    left: 10;
+    position: fixed;
+    top: 90px;
+    left: 17px;
+    z-index: 999;
+    font-size: x-large;
+    background-color: rgb(0 0 0 / 40%);
+    padding: 10px 11px 10px 11px;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px #191919;
+}
+.flecha-atras-public a:link, .flecha-atras-public a:visited{
+    color: white !important;
+}
+.flecha-atras-public:hover{
+    box-shadow: none;
+    background-color: rgb(0 0 0 / 60%);
 }
 .prev-cat,.next-cat{
     position: fixed;
@@ -1674,6 +1689,7 @@ input:focus ~ .highlight {
     top: 50%;
     color: #fff;
     font-size: 40px;
+    cursor: pointer;
     text-shadow: 0px 0px 3px #585858;
 }
 .prev-cat{
@@ -1930,6 +1946,9 @@ input:focus ~ .highlight {
     font-size: 20px;
 }
 .productos-public{
+    display: none;
+}
+.splide-related{
     display: none;
 }
 .busq-prod-subir-public{

@@ -18,7 +18,8 @@ $(document).ready(function(){
             
             //si viene esta cat ya se que es de home
             if(/*parseInt(cat_ampliar_home) > 0 && */cat_ampliar_home == id_public_cat){
-                
+                console.log(cat_ampliar_home)
+                console.log(id_public_cat)
             
 
             var html_public = '<div class="public-ampliar public-actual test2">'+
@@ -56,7 +57,7 @@ $(document).ready(function(){
                                      '</div>'+
                                      /**/
                                '<hr><div class="productos-titulo-public">Productos relacionados:</div><br>'+
-                                     '<div class="splide splide-prod-'+i+'">'+
+                                     '<div class="splide splide-related splide-prod-'+i+'">'+
                                         '<div class="splide__track">'+
                                            '<ul class="splide__list">'+
                                            '<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
@@ -133,7 +134,7 @@ $(document).ready(function(){
                         var foto_src_prod = '/productos_img/'+foto_prod;
                         var img_base_prod = getImagen(foto_src_prod);
                             var modal_html =  
-                                '<div class="modal fade" id="modal-producto-'+index+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
+                                '<div class="modal fade" id="modal-producto-'+id_prod+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
                                 '<div class="modal-dialog modal-dialog-centered modal-lg" role="document">'+
                                 '<div class="modal-content">'+
                                 '<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->'+
@@ -216,7 +217,7 @@ $(document).ready(function(){
                         
                     }//fin if prod
                 
-                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';
+                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+img_base_prod+'"></li>';
                     $(".splide__list__"+i).append(splide_fotos);
                 //dibujo tags
                 var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+
@@ -225,6 +226,11 @@ $(document).ready(function(){
                 $(".tag-container-"+i).append(tag_html);
 
                 //click en tag
+                $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
+                    var prod_public = $(this).parent().parent().find(".productos-public");
+                    prod_public.toggle(100);
+                    //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
+                });
                 $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
                     var prod_public = $(this).parent().parent().find(".productos-public");
                     prod_public.toggle(100);
