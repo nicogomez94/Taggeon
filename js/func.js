@@ -665,11 +665,12 @@ if(typeof jsonData.productos != "undefined"){
                 var id_prod = jsonData.productos[i].id;
                 var stock_prod = jsonData.productos[i].stock;
                 var foto_prod = jsonData.productos[i].foto;
-        
+                var foto_src = '/productos_img/'+foto_prod;
+                var img_base_public = getImagen(foto_src);
         
                 var listadoProducto = 
                     '<div class="row producto">'+
-                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"></div></div>'+
+                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+img_base_public+'"></div></div>'+
                         '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
                         '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">'+precio_prod+'</span></div>'+
                         '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+

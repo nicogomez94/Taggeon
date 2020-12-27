@@ -43,7 +43,9 @@
                </span>
             </div>
          </div>
-         <form id="form-orden-compra"></form>
+         <form id="form-orden-compra">
+            <input type="hidden" id="id_carrito" name="id_carrito" value="">
+         </form>
          <!-- producto hardcodeado -->
 
          <!-- /producto hardcodeado -->
@@ -100,7 +102,8 @@ $(document).ready(function(){
             var producto = jsonData.carrito[i].pid;
             var subtotal = jsonData.carrito[i].subtotal;
             var total = jsonData.carrito[i].total;
-            var foto_src = '/productos_img/'+prod_id;
+            var foto_id = jsonData.carrito[i].foto;
+            var foto_src = '/productos_img/'+foto_id;
             var img_prod_carrito = getImagen(foto_src);
 
             var prods_carrito_html = '<div class="row producto">'+
@@ -109,19 +112,19 @@ $(document).ready(function(){
                               '</div>'+
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
                               '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
-                              '<input type="hidden" name="nombre_producto" value="'+nombre_prod_carrito+'">'+
-                              '<input type="hidden" name="id_producto" value="'+prod_id+'">'+
+                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
+                              //'<input type="hidden" name="id_producto" value="'+prod_id+'">'+
                               '</div>'+
                               '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
                               '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
-                              '<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
+                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
                               '</div>'+
                               '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
-                              '<input type="number" name="cantidad" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
+                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
                               '</div>'+
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
                               '<span class="precio-producto">'+total_prod_carrito+'</span>'+
-                              '<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
+                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
                               '<div class="cerrar-prod-carrito">'+
                               '<i class="fas fa-times-circle ellip ml-5"></i>'+
                               '</div>'+
@@ -129,8 +132,9 @@ $(document).ready(function(){
                               '</div>';
 
                   $("#form-orden-compra").append(prods_carrito_html);
-                  $(".subtotal-cant").html("$"+total)
-                  $(".total-cant").html("$"+total)
+                  $(".subtotal-cant").html("$"+total);
+                  $(".total-cant").html("$"+total);
+                  $("#id_carrito").val(id_carrito);
 
             }
       }
@@ -173,18 +177,18 @@ $(document).ready(function(){
             alert(data.mensaje);
          }
       });
-      //return false;
+      return false;
 
    });
 
 
    ///crear orden de compra carrito
    $(".boton-checkout-carrito").click(function(){
-      
+
       $("#form-orden-compra").on('submit', function(e){
          e.preventDefault();
          var formData = new FormData($(this)[0]);
-         formData.append("accion","alta");
+         formData.append("accion","finalizar");
          
          $.ajax({
                url: '/app/carrito.php',
@@ -200,7 +204,7 @@ $(document).ready(function(){
                      window.location.replace(data.mensaje);														
                   }else if(data.status == 'OK'){
                      alert("OK-->"+data.mensaje);
-                     window.location.replace("/ampliar-carrito.html");
+                     window.location.replace("/ampliar-checkout.html");
                   }else{
                      alert("ELSE-->"+data.mensaje);
                   }
@@ -210,7 +214,7 @@ $(document).ready(function(){
                   alert(data.mensaje);
                }
          });
-         //return false;
+         return false;
       });
    });
 

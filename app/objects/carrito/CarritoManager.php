@@ -147,6 +147,7 @@ class  CarritoManager
 
 	public function finalizarCarrito(array $data)
 	{
+		$idCarrito = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
 		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
 
 		if (!is_numeric($data["id_carrito"])){
@@ -161,7 +162,6 @@ class  CarritoManager
 			return false;
  		}
 
-		$idCarrito = isset($data["id"]) ? $data["id"] : '';
 		if ($this->validarId($idCarrito) === false){
 			return false;
 		}

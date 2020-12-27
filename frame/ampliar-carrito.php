@@ -5,7 +5,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
 
 
-if ($perfil=='seller'){
+if ($perfil=='seller' || $perfil=='picker'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();

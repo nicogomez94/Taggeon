@@ -3,11 +3,11 @@ include_once("template.php");
 include_once("configuration.php");
 $perfil   = isset($perfil) ? $perfil : '';
 
+    $fotoPerfil = '';
 if ($perfil == 'seller' || $perfil == 'picker'){
 	$contenidoHeader = new Template('header_esp_usuario');
 	$reemplazoPerfil = ($perfil == 'seller') ? ' Seller' : '';
 	$id        = $GLOBALS['sesionG']['idUsuario'];
-    $fotoPerfil = '';
 
     if (file_exists("/var/www/imagen_perfil/$id")) {
         $fp = fopen("/var/www/imagen_perfil/$id", 'r');
