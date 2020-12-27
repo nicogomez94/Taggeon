@@ -85,6 +85,11 @@ class  CarritoManager
 		}
 
 		if (is_numeric($data["cantidad"]) && $data["cantidad"] <= 0){
+			if ($this->carritoDao->eliminarDetalle($data) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj("No se pudo actualizar el carrito. Comuniquese con el administrador");
+				return false;
+			} 
 			$this->setStatus("OK");
 			$this->setMsj($data["id_producto"]);
 			return true;
