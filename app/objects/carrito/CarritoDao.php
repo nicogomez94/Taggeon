@@ -142,18 +142,25 @@ SQL;
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
-        SELECT
-		*
-    	FROM
+SELECT
+                carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+        FROM
         `carrito`
         LEFT JOIN
         carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
-        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL) 
-		WHERE
-        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND 
+        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
+            LEFT JOIN
+        producto_foto
+    ON
+        `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+        
+        
+                WHERE
+        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
         `carrito`.usuario_alta = $usuarioAltaDB                AND
         (estado is null OR estado <= 0 )
-
+        GROUP BY
+        carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
