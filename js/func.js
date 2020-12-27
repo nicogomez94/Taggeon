@@ -3,14 +3,7 @@ $(document).ready(function() {
 
 
     //icono gif de carga
-    $(document).on({
-        ajaxStart: function(){
-            $("body").addClass("loading"); 
-        },
-        ajaxStop: function(){ 
-            $("body").removeClass("loading"); 
-        }    
-    });
+    
     /*funcion para bloquear los botones cuando no estan siendo cambiados*/
     $(".data-datos-editar input").focus(function(e){
         e.preventDefault();
@@ -901,52 +894,14 @@ $("#subir-csv").on('submit', function() {
 
 ///////////////////carrito
 
-///crear orden de compra carrito
-$(".boton-checkout-carrito").on('click', function() {
-    $(".form-orden-compra").submit(function(){
-        var formData = new FormData($(this)[0]);
-            
-        $.ajax({
-            url: '/app/carrito.php',
-            data: formData,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            dataType: "json",
-            async: false,
-            success: function( data, textStatus, jQxhr ){
-                if (data.status == 'REDIRECT'){
-                    alert("REDIRECT-->"+data.mensaje);
-                    window.location.replace(data.mensaje);														
-                }else if(data.status == 'OK'){
-                    alert("OK-->"+data.mensaje);
-                    window.location.replace("/ampliar-carrito.html");
-                }else{
-                    alert("ELSE-->"+data.mensaje);
-                }
-            },
-            error: function( data, jqXhr, textStatus, errorThrown ){
-                alert("ERROR"+response);
-                alert(data.mensaje);
-            }
-       });
-       return false;
-    })
-});
+$(".form-carrito").on('submit', function() {
 
-///eliminar de carrito
-$(".fa-times-circle").on('click', function() {
-
-    var dataEliminar = {
-        "cantidad":"0",
-        "accion":"alta",
-        "id":"1"
-    }
-    console.log("atroden")
+    var formData = new FormData($(this)[0]);
+    console.log(formData)
         
     $.ajax({
         url: '/app/carrito.php',
-        data: dataEliminar,
+        data: formData,
         type: 'POST',
         processData: false,
         contentType: false,
@@ -954,18 +909,18 @@ $(".fa-times-circle").on('click', function() {
         async: false,
         success: function( data, textStatus, jQxhr ){
             if (data.status == 'REDIRECT'){
-                alert("REDIRECT-->"+data.mensaje);
+                console.log("REDIRECT-->"+data.mensaje);
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert("OK-->"+data.mensaje);
+                console.log("OK-->"+data.mensaje);
                 window.location.replace("/ampliar-carrito.html");
             }else{
                 alert("ELSE-->"+data.mensaje);
             }
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
-            alert("ERROR AJAX--> "+response);
-            alert(data.mensaje);
+            alert("ERROR"+response);
+            console.log(data.mensaje);
         }
    });
    return false;
@@ -976,11 +931,19 @@ $(".fa-times-circle").on('click', function() {
 
 
 
+
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 
-      
+$(document).on({
+    ajaxStart: function(){
+       $("body").addClass("loading"); 
+    },
+    ajaxStop: function(){ 
+       $("body").removeClass("loading"); 
+    }    
+ });
 
 });
 
@@ -1130,8 +1093,14 @@ function cargarImgPines(event){
 
 function getImagen(pathFoto){
     var rawFile = new XMLHttpRequest();
+    rawFile.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            //$("body").removeClass("loading"); 
+            //$("body").addClass("loading");
+        }
+    };
     rawFile.open("GET", pathFoto, false);
-    rawFile.send(null);    
+    rawFile.send();    
     if(rawFile.responseText != ""){
         return rawFile.responseText;
     }else{

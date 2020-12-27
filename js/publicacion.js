@@ -56,7 +56,7 @@ $(document).ready(function(){
                                         '</div>'+
                                      '</div>'+
                                      /**/
-                               '<hr><div class="productos-titulo-public">Productos relacionados:</div><br>'+
+                               '<hr><div class="productos-titulo-public prod-relacionados">Productos relacionados:</div><br>'+
                                      '<div class="splide splide-related splide-prod-'+i+'">'+
                                         '<div class="splide__track">'+
                                            '<ul class="splide__list">'+
@@ -180,7 +180,7 @@ $(document).ready(function(){
                                 '</div>'+
                                 '<hr>'+
                                 '<div>'+
-                                '<div class="precio-producto-modal"><span>'+precio_prod+'</span></div>'+
+                                '<div class="precio-producto-modal"><span>$. '+precio_prod+'</span></div>'+
                                 '<div class="shipment-modal-producto">'+
                                 '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 dias habiles'+//hardcodeado
                                 '</div>'+
@@ -231,11 +231,6 @@ $(document).ready(function(){
                     prod_public.toggle(100);
                     //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
                 });
-                $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
-                    var prod_public = $(this).parent().parent().find(".productos-public");
-                    prod_public.toggle(100);
-                    //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
-                });
           
             
             }//fin for prdo
@@ -256,49 +251,5 @@ $(document).ready(function(){
 
        
     }
-
-    
-    //productos relacionados
-    /*new Splide( '.splide2', {
-        perPage: 6,/*medio extraño
-        rewind : true,
-        pagination: false
-
-
-        
-    }).mount();*/
-
-    $(".form-carrito").on('submit', function() {
-
-        var formData = new FormData($(this)[0]);
-        console.log(formData)
-            
-        $.ajax({
-            url: '/app/carrito.php',
-            data: formData,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            dataType: "json",
-            async: false,
-            success: function( data, textStatus, jQxhr ){
-                if (data.status == 'REDIRECT'){
-                    alert("REDIRECT-->"+data.mensaje);
-                    window.location.replace(data.mensaje);														
-                }else if(data.status == 'OK'){
-                    alert("OK-->"+data.mensaje);
-                    window.location.replace("/ampliar-carrito.html");
-                }else{
-                    alert("ELSE-->"+data.mensaje);
-                }
-            },
-            error: function( data, jqXhr, textStatus, errorThrown ){
-                alert("ERROR"+response);
-                alert(data.mensaje);
-            }
-       });
-       return false;
-
-    });
 
 });

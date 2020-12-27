@@ -437,6 +437,11 @@ class  ProductoManager
 		$ret =  $this->productoDao->getListProducto();
 		return $ret;
 	}
+	public function getListProductoIndex()
+	{
+		$ret =  $this->productoDao->getListProductoIndex();
+		return $ret;
+	}
 
 	public function existeId($id)
 	{
