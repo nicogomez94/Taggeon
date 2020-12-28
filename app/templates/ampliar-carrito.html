@@ -43,9 +43,7 @@
                </span>
             </div>
          </div>
-         <form id="form-orden-compra">
-            <input type="hidden" id="id_carrito" name="id_carrito" value="">
-         </form>
+         <input type="hidden" id="id_carrito" name="id_carrito" value="">
          <!-- producto hardcodeado -->
 
          <!-- /producto hardcodeado -->
@@ -68,7 +66,7 @@
          </div>
          <br>
          <div>
-            <button type="submit" form="form-orden-compra" href="#" class="boton-checkout-carrito btn btn-warning">Crear Orden de compra</button type="submit" form="FORMID" value="Submit">
+            <button class="boton-checkout-carrito btn btn-warning">Crear Orden de compra</button>
          </div>
       </div>
    </div>
@@ -84,9 +82,10 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=241220-0951"></script>
+
 <script>
 $(document).ready(function(){
+
    var sizeCarrito = jsonData.carrito.length;
 
    if(sizeCarrito>0){
@@ -113,7 +112,6 @@ $(document).ready(function(){
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
                               '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
                               //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
-                              //'<input type="hidden" name="id_producto" value="'+prod_id+'">'+
                               '</div>'+
                               '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
                               '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
@@ -126,101 +124,25 @@ $(document).ready(function(){
                               '<span class="precio-producto">'+total_prod_carrito+'</span>'+
                               //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
                               '<div class="cerrar-prod-carrito">'+
+                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
                               '<i class="fas fa-times-circle ellip ml-5"></i>'+
                               '</div>'+
                               '</div>'+
                               '</div>';
 
-                  $("#form-orden-compra").append(prods_carrito_html);
+                  $("#listado-mis-productos").append(prods_carrito_html);
                   $(".subtotal-cant").html("$"+total);
                   $(".total-cant").html("$"+total);
                   $("#id_carrito").val(id_carrito);
 
             }
       }
+
       
-   //}else{
-   //    $(".form-orden-compra").html("<h1> No hay productos a&ntilde;adidos al carrito.</h1>");
-   // }
-
-
-   ///eliminar de carrito
-   $(".producto").on("click", ".precio-producto", function(){
-
-      var dataEliminar = {
-         "cantidad":"0",
-         "accion":"alta",
-         "id":"9"
-      }
-         
-      $.ajax({
-         url: '/app/carrito.php',
-         data: JSON.stringify(dataEliminar),
-         type: 'POST',
-         processData: false,
-         contentType: false,
-         dataType: "json",
-         async: false,
-         success: function( data, textStatus, jQxhr ){
-            if (data.status == 'REDIRECT'){
-               alert("REDIRECT-->"+data.mensaje);
-               window.location.replace(data.mensaje);														
-            }else if(data.status == 'OK'){
-               alert("OK-->"+data.mensaje);
-               window.location.replace("/ampliar-carrito.html");
-            }else{
-               alert("ELSE-->"+data.mensaje);
-            }
-         },
-         error: function( data, jqXhr, textStatus, errorThrown ){
-            alert("ERROR AJAX--> "+response);
-            alert(data.mensaje);
-         }
-      });
-      return false;
-
-   });
-
-
-   ///crear orden de compra carrito
-   $(".boton-checkout-carrito").click(function(){
-
-      $("#form-orden-compra").on('submit', function(e){
-         e.preventDefault();
-         var formData = new FormData($(this)[0]);
-         formData.append("accion","finalizar");
-         
-         $.ajax({
-               url: '/app/carrito.php',
-               data: formData,
-               type: 'POST',
-               processData: false,
-               contentType: false,
-               dataType: "json",
-               async: false,
-               success: function( data, textStatus, jQxhr ){
-                  if (data.status == 'REDIRECT'){
-                     alert("REDIRECT-->"+data.mensaje);
-                     window.location.replace(data.mensaje);														
-                  }else if(data.status == 'OK'){
-                     alert("OK-->"+data.mensaje);
-                     window.location.replace("/ampliar-checkout.html");
-                  }else{
-                     alert("ELSE-->"+data.mensaje);
-                  }
-               },
-               error: function( data, jqXhr, textStatus, errorThrown ){
-                  alert("ERROR"+response);
-                  alert(data.mensaje);
-               }
-         });
-         return false;
-      });
-   });
-
 });
 </script>
-
+   <script src="js/func.js?time=271220-2243"></script>
+   <script src="js/publicacion.js?time=271220-2243"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>

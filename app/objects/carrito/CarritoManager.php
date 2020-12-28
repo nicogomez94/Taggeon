@@ -220,6 +220,11 @@ class  CarritoManager
 		return $ret;
 	}
 
+	public function getListCarrito2()
+	{
+		$ret =  $this->carritoDao->getListCarrito2();
+		return $ret;
+	}
 
           
         

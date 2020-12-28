@@ -2,7 +2,7 @@
    <div class="container" id="contenedor-form-subir">
       <h1>Checkout</h1>
       <hr><br>
-      <form id="editar-publicacion-form">
+      <form id="finalizar-orden">
          <!--  -->
          <!-- <input type="hidden" name="accion" value="editar"> -->
          <!--  -->
@@ -64,9 +64,11 @@
                   <span class="opciones-checkout" style="line-height: 12px;">Opcion 2</span>
                </div>
                -->
-               <div class="boton-checkout-carrito">
-                  <a href="#" class="btn btn-warning">Crear Orden de compra</a>
+               <div>
+                  <button type="submit" href="#" class="btn btn-warning">Finalizar Orden de Compra</button>
                </div>
+               <input type="hidden" value="finalizar2" name="accion">
+               <!-- <input type="hidden" value="" name="id_carrito"> -->
             </div>
          </div>
          
@@ -83,16 +85,13 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=231120-1458"></script>
+   <script src="js/func.js?time=281220-1409"></script>
+   <script src="js/publicacion.js?time=281220-1409"></script>
    <!-- script para la seleccion de fotos -->
    
    <!--  -->
       <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
       <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-1458"></script>
-      <script>
-         $(document).ready(function(){
-            
-         });
-      </script>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 </body></html>

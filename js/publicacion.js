@@ -185,10 +185,10 @@ $(document).ready(function(){
                                 '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 dias habiles'+//hardcodeado
                                 '</div>'+
                                 '<hr>'+
-                                '<div class="stock-boton-modal"><form class="form-carrito">'+
+                                '<div class="stock-boton-modal">'+
                                     '<span>'+
                                         'Cantidad&nbsp;'+
-                                        '<select name="cantidad">'+
+                                        '<select class="cantidad_value" name="cantidad">'+
                                             '<option value="1">1</option>'+//hardcodeado
                                             '<option value="2">2</option>'+//hardcodeado
                                             '<option value="3">3</option>'+//hardcodeado
@@ -197,11 +197,10 @@ $(document).ready(function(){
                                             '<option value="6">6</option>'+//hardcodeado
                                             '<option value="7">7</option>'+//hardcodeado
                                         '</select>'+
-                                        '<input type="hidden" name="accion" value="alta">'+
-                                        '<input type="hidden" name="id" value="'+id_prod_json+'">'+
+                                        '<input type="hidden" class="id_prod_carrito" name="id" value="'+id_prod_json+'">'+
                                     '</span>&nbsp;'+
-                                    '<span><button type="submit" class="btn btn-warning">Añadir a Carrito</button></span>'+
-                                '</form></div>'+
+                                    '<span><button class="btn btn-warning btn-carrito">Añadir a Carrito</button></span>'+
+                                '</div>'+
                                 '</div>'+
                                 '<hr>'+
                                 '<div class="descripcion-modal-producto">'+
@@ -252,4 +251,179 @@ $(document).ready(function(){
        
     }
 
+
+
+////////////////CARRITO
+
+//AÑADIR AL CARRITO
+$(".modal").on("click", ".btn-carrito", function(){
+
+    var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
+    var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
+
+    var dataCarr = new FormData();
+    dataCarr.append("accion","alta");
+    dataCarr.append("id",id_value);
+    dataCarr.append("cantidad",cantidad_value);
+
+    $.ajax({
+        url: '/app/carrito.php',
+        data: dataCarr,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        //async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == 'REDIRECT'){
+              console.log("REDIRECT-->"+dataM);
+              window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              console.log("OK-->"+dataJ);
+              window.location.replace("/ampliar-carrito.html");
+           }else{
+              console.log("ELSE-->"+dataJ);
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert("ERROR"+response);
+            console.log(dat);
+        }
+   });
+   return false;
+
 });
+
+ 
+
+ ///crear orden de compra carrito
+ $(".boton-checkout-carrito").click(function(){
+
+    var id_carrito = jsonData.carrito[0].id_carrito;
+
+    var dataCheckout = new FormData();
+    dataCheckout.append("accion","finalizar");
+    dataCheckout.append("id_carrito",id_carrito);
+
+    $.ajax({
+        url: '/app/carrito.php',
+        data: dataCheckout,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        //async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == 'REDIRECT'){
+              console.log("REDIRECT-->"+dataM);
+              window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              console.log("OK-->"+dataJ);
+              window.location.replace("/ampliar-checkout.html");
+           }else{
+              console.log("ELSE-->"+dataJ);
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert("ERROR"+response);
+            alert(data);
+        }
+    });
+    return false;
+});
+
+
+///finalizar orden
+$("#finalizar-orden").submit(function(){
+
+    var id_carrito = jsonData.carrito[0].id_carrito;
+
+    var dataForden = new FormData($(this)[0]);
+    dataForden.append("id_carrito",id_carrito);
+
+    $.ajax({
+        url: '/app/carrito.php',
+        data: dataForden,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == 'REDIRECT'){
+              console.log("REDIRECT-->"+dataM);
+              //window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              alert("OK-->"+dataJ);
+              //window.location.replace("/ampliar-checkout.html");
+           }else{
+              alert("ELSE-->"+dataJ);
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert("ERROR"+response);
+            alert(data);
+        }
+    });
+    return false;
+});
+
+
+
+///eliminar de carrito
+$(".fa-times-circle").bind("click", function(e){
+    e.preventDefault();
+    var id_prod = $(this).parent().find("input.prod-id").val();
+    var id_carrito = jsonData.carrito[0].id_carrito;
+
+    var dataEliminar = new FormData();
+    dataEliminar.append("cantidad","0");
+    dataEliminar.append("accion","alta");
+    dataEliminar.append("id",id_prod);
+    dataEliminar.append("id_carrito",id_carrito);
+       
+    $.ajax({
+       url: '/app/carrito.php',
+       data: dataEliminar,
+       type: 'POST',
+       processData: false,
+       contentType: false,
+       //async: false,
+       success: function( data, textStatus, jQxhr ){
+           var dataJ = JSON.parse(data).status;
+           var dataM = JSON.parse(data).mensaje;
+          if (dataJ == 'REDIRECT'){
+             console.log("REDIRECT-->"+dataM);
+             window.location.replace(dataM);														
+          }else if(dataJ == 'OK'){
+             console.log("OK-->"+dataJ);
+             window.location.replace("/ampliar-carrito.html");
+          }else{
+             console.log("ELSE-->"+dataJ);
+             //window.location.replace("/ampliar-carrito.html");
+          }
+       },
+       error: function( data, jqXhr, textStatus, errorThrown ){
+          console.log("ERROR AJAX--> "+response);
+          console.log(data);
+       }
+    });
+    return false;
+
+});
+
+
+
+
+//FIN READY
+});//FIN READY
+//FIN READY
