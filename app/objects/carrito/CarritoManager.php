@@ -144,6 +144,47 @@ class  CarritoManager
 		}
 	}
 
+	public function finalizarCarrito2(array $data)
+	{
+		$idCarrito = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+		$data["id_carrito"] = $this->carritoDao->getIdCarrito2();
+
+		if (!is_numeric($data["id_carrito"])){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id de carrito es incorrecto.");
+			return false;
+		}
+
+		if ($data["id_carrito"] <= 0){
+			$this->setStatus("ERROR");
+			$this->setMsj("No se encontro el carrito.");
+			return false;
+ 		}
+
+		if ($this->validarId($idCarrito) === false){
+			return false;
+		}
+
+		if ($data["id_carrito"] != $idCarrito){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id ". $idCarrito ."de carrito  es incorrecto.");
+			return false;
+		}
+
+		$data["estado"] = 2;
+
+		if ($this->carritoDao->cambiarEstadoCarrito($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->carritoDao->getMsj());
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->carritoDao->getMsj());
+			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
+			$objEmail = new Email();
+			$objEmail->setEnviar(true);
+			$objEmail->enviarEmailCarrito('Se creo la orden '.$idCarrito,$GLOBALS['sesionG']['email']);
+		}
+	}
 
 	public function finalizarCarrito(array $data)
 	{
@@ -180,10 +221,6 @@ class  CarritoManager
 		} else {
 			$this->setStatus("OK");
 			$this->setMsj($this->carritoDao->getMsj());
-			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
-			$objEmail = new Email();
-			$objEmail->setEnviar(true);
-			$objEmail->enviarEmailCarrito('Se creo la orden '.$idCarrito,$GLOBALS['sesionG']['email']);
 		}
 	}
 

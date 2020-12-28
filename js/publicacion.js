@@ -363,7 +363,7 @@ $("#finalizar-orden").submit(function(){
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               alert("OK-->"+dataJ);
-              //window.location.replace("/ampliar-checkout.html");
+              window.location.replace("/");
            }else{
               alert("ELSE-->"+dataJ);
               //window.location.replace("/ampliar-carrito.html");
