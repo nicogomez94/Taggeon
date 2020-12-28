@@ -306,6 +306,51 @@ SQL;
                     return false;
                 }
 
+                public function cambiarEstadoCarrito2(array $data)
+    {
+        $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+        $idDB = Database::escape($id);
+		$usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
+
+        $envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
+        $envio_nombre_apellidoDB = Database::escape($envio_nombre_apellido);
+        $envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
+        $envio_codigo_postalDB = Database::escape($envio_codigo_postal);
+        $envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
+        $envio_ciudad_localidadDB = Database::escape($envio_ciudad_localidad);
+        $email = isset($data["email"]) ? $data["email"] : '';
+        $emailDB = Database::escape($email);
+        $notas = isset($data["notas"]) ? $data["notas"] : '';
+        $notasDB = Database::escape($notas);
+
+        $sql = <<<SQL
+			UPDATE
+			    `carrito`
+			SET
+			    `usuario_editar` = $usuarioDB,
+`envio_nombre_apellido` = $envio_nombre_apellidoDB, `envio_codigo_postal` = $envio_codigo_postalDB, `envio_ciudad_localidad` = $envio_ciudad_localidadDB, `email` = $emailDB, `notas` = $notasDB
+WHERE
+`id` = $idDB AND
+`usuario_alta` = $usuarioDB
+SQL;
+
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $this->setStatus("OK");
+            return true;
+        }
+
+        return false;
+
+
+
+
+
+
+    }
                 public function cambiarEstadoCarrito(array $data)
     {
         $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
