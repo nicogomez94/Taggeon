@@ -27,7 +27,7 @@ if (sizeof($_POST) > 0) {
         }
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';
-            $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+            $mensajeRet = "La solicitud se proceso con éxito";
         } else {
             $statusRet  = 'ERROR';
             $mensajeRet = $objPrincipalManager->getMsj();
