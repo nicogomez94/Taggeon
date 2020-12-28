@@ -193,7 +193,7 @@ class  CarritoManager
 
         $bodymail = <<<SQL
 Hola $envio_nombre_apellido, se creo la orden $id.\n
-Datos del envio: ($envio_codigo_postal) $envio_ciudad_localidad.\n
+Datos del envio: codigo postal $envio_codigo_postal. Localidad: $envio_ciudad_localidad.\n
 Notas: $notas
 SQL;
 			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
