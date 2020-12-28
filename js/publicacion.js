@@ -281,10 +281,10 @@ $(".modal").on("click", ".btn-carrito", function(){
               console.log("REDIRECT-->"+dataM);
               window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              console.log("OK-->"+dataJ);
+              console.log("OK-->"+dataJ+"/"+dataM);
               window.location.replace("/ampliar-carrito.html");
            }else{
-              console.log("ELSE-->"+dataJ);
+              console.log("ELSE-->"+dataJ+"/"+dataM);
               //window.location.replace("/ampliar-carrito.html");
            }
         },
@@ -323,10 +323,10 @@ $(".modal").on("click", ".btn-carrito", function(){
               console.log("REDIRECT-->"+dataM);
               window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              console.log("OK-->"+dataJ);
+              console.log("OK-->"+dataJ+"/"+dataM);
               window.location.replace("/ampliar-checkout.html");
            }else{
-              console.log("ELSE-->"+dataJ);
+              console.log("ELSE-->"+dataJ+"/"+dataM);
               //window.location.replace("/ampliar-carrito.html");
            }
         },
@@ -362,10 +362,10 @@ $("#finalizar-orden").submit(function(){
               console.log("REDIRECT-->"+dataM);
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              alert("OK-->"+dataJ);
+              alert("OK-->"+dataJ+"/"+dataM);
               window.location.replace("/");
            }else{
-              alert("ELSE-->"+dataJ);
+              alert("ELSE-->"+dataJ+"/"+dataM);
               //window.location.replace("/ampliar-carrito.html");
            }
         },
@@ -405,10 +405,10 @@ $(".fa-times-circle").bind("click", function(e){
              console.log("REDIRECT-->"+dataM);
              window.location.replace(dataM);														
           }else if(dataJ == 'OK'){
-             console.log("OK-->"+dataJ);
+             console.log("OK-->"+dataJ+"/"+dataM);
              window.location.replace("/ampliar-carrito.html");
           }else{
-             console.log("ELSE-->"+dataJ);
+             console.log("ELSE-->"+dataJ+"/"+dataM);
              //window.location.replace("/ampliar-carrito.html");
           }
        },

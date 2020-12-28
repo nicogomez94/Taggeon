@@ -17,3 +17,153 @@ Respuesta OK => Envio enviarEmailCarrito
 mensajeTexto: Se creo la orden 2
 usuario nicoseller2@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:20:50
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Vel quo rem cupidita, se creo la orden 3.
+Datos del envio: (12) Eveniet quis iusto .
+Notas: Earum omnis est cul
+usuario nywefubyb@mailinator.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:20:51
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Vel quo rem cupidita, se creo la orden 3.
+Datos del envio: (12) Eveniet quis iusto .
+Notas: Earum omnis est cul
+usuario nywefubyb@mailinator.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36201.231.120.31
+Fecha 28/12/2020  18:22:35
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola dfsdf, se creo la orden 10.
+Datos del envio: (1416) CABA.
+Notas: ADSASD
+usuario nicolasgomez94@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36201.231.120.31
+Fecha 28/12/2020  18:22:36
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola dfsdf, se creo la orden 10.
+Datos del envio: (1416) CABA.
+Notas: ADSASD
+usuario nicolasgomez94@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:23:24
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Alias itaque at aut , se creo la orden 3.
+Datos del envio: (16) Hic quibusdam evenie.
+Notas: Odio consequatur mo
+usuario licrzito@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:23:25
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Alias itaque at aut , se creo la orden 3.
+Datos del envio: (16) Hic quibusdam evenie.
+Notas: Odio consequatur mo
+usuario licrzito@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:27:09
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Velit eligendi repre, se creo la orden 3.
+
+Datos del envio: (6) Consequatur Ea in m.
+
+Notas: Cumque omnis lorem b
+usuario licrzito@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:27:10
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Velit eligendi repre, se creo la orden 3.
+
+Datos del envio: (6) Consequatur Ea in m.
+
+Notas: Cumque omnis lorem b
+usuario licrzito@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:29:01
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Vel soluta ullam ut , se creo la orden 3.
+
+Datos del envio: codigo postal 65. Localidad: Architecto facilis q.
+
+Notas: Sit ducimus et eli
+usuario licrzito@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  18:29:02
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Vel soluta ullam ut , se creo la orden 3.
+
+Datos del envio: codigo postal 65. Localidad: Architecto facilis q.
+
+Notas: Sit ducimus et eli
+usuario licrzito@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36201.231.120.31
+Fecha 28/12/2020  19:28:07
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola fter, se creo la orden 10.
+
+Datos del envio: codigo postal 234. Localidad: dsfds.
+
+Notas: sdfdsfd
+usuario nicolasgomez94@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36201.231.120.31
+Fecha 28/12/2020  19:28:08
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola fter, se creo la orden 10.
+
+Datos del envio: codigo postal 234. Localidad: dsfds.
+
+Notas: sdfdsfd
+usuario nicolasgomez94@gmail.com
+Detalle Respuesta:

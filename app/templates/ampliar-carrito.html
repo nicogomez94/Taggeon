@@ -50,7 +50,7 @@
       </div>
    </div>
 </div>
-<div class="container">
+<div class="container totales-cont">
    <div class="row">
       <div class="col-6 col-lg-6"></div>
       <div class="col-6 col-lg-6 totales-carrito">
@@ -136,6 +136,9 @@ $(document).ready(function(){
                   $("#id_carrito").val(id_carrito);
 
             }
+      }else{
+         $(".totales-cont").hide();
+         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
       }
 
       

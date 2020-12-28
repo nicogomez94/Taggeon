@@ -16,25 +16,34 @@ $(document).ready(function(){
             var img_base_public = getImagen(foto_src);
 
             if(id_public_cat == "17" ){
-                var public_html = '<div><div class="content-col-div"><div class="overlay-public">'+
-                '<div class="text-overlay">'+
-                '<span class="text-overlay-link">'+
-                    '<a href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a>'+
-                '</span>'+
-                '&nbsp;&nbsp;'+
-                '<span class="text-overlay-link">'+
-                    '<a href="#"><i class="fas fa-heart"></i></a>'+
-                '</span>'+
-                '</div>'+
-                '</div>'+
-                '<img src="'+img_base_public+'"></img></div></div>';
+                var public_html = 
+                '<div>'+
+                    '<div class="content-col-div">'+
+                        '<div class="overlay-public">'+
+                            '<div class="text-overlay">'+
+                                '<span class="text-overlay-link">'+
+                                    '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                '</span>'+
+                                '&nbsp;&nbsp;'+
+                                '<span class="text-overlay-link">'+
+                                    '<a href="#"><i class="fas fa-heart"></i></a>'+
+                                '</span>'+
+                            '</div>'+
+                        '</div>'+
+                    '<img src="'+img_base_public+'"></img>'+
+                    '</div>'+
+                '</div>';
 
                 $(".item1").append(public_html)
+                $(".content-col-div").on("click",".overlay-public",function(){
+                    window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
+                });
             }
             
-
-            
+                        
         }
     }
+
+
 
 });
