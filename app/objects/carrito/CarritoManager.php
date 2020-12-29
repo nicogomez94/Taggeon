@@ -144,6 +144,64 @@ class  CarritoManager
 		}
 	}
 
+	public function finalizarCarrito2(array $data)
+	{
+	        if ($this->validarCarrito($data) === false) {
+			return false;
+		}
+		$idCarrito = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+		$data["id_carrito"] = $this->carritoDao->getIdCarrito2();
+
+		if (!is_numeric($data["id_carrito"])){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id de carrito es incorrecto.");
+			return false;
+		}
+
+		if ($data["id_carrito"] <= 0){
+			$this->setStatus("ERROR");
+			$this->setMsj("No se encontro el carrito.");
+			return false;
+ 		}
+
+		if ($this->validarId($idCarrito) === false){
+			return false;
+		}
+
+		if ($data["id_carrito"] != $idCarrito){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id ". $idCarrito ."de carrito  es incorrecto.");
+			return false;
+		}
+
+		$data["estado"] = 2;
+
+		if ($this->carritoDao->cambiarEstadoCarrito2($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->carritoDao->getMsj());
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->carritoDao->getMsj());
+
+                        $email = isset($data["email"]) ? $data["email"] : '';
+                        $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+			$envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
+			$envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
+			$envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
+			$email = isset($data["email"]) ? $data["email"] : '';
+			$notas = isset($data["notas"]) ? $data["notas"] : '';
+
+        $bodymail = <<<SQL
+Hola $envio_nombre_apellido, se creo la orden $id.\n
+Datos del envio: codigo postal $envio_codigo_postal. Localidad: $envio_ciudad_localidad.\n
+Notas: $notas
+SQL;
+			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
+			$objEmail = new Email();
+			$objEmail->setEnviar(true);
+			$objEmail->enviarEmailCarrito($bodymail,$email);
+		}
+	}
 
 	public function finalizarCarrito(array $data)
 	{
@@ -180,10 +238,6 @@ class  CarritoManager
 		} else {
 			$this->setStatus("OK");
 			$this->setMsj($this->carritoDao->getMsj());
-			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
-			$objEmail = new Email();
-			$objEmail->setEnviar(true);
-			$objEmail->enviarEmailCarrito('Se creo la orden '.$idCarrito,$GLOBALS['sesionG']['email']);
 		}
 	}
 
@@ -220,6 +274,11 @@ class  CarritoManager
 		return $ret;
 	}
 
+	public function getListCarrito2()
+	{
+		$ret =  $this->carritoDao->getListCarrito2();
+		return $ret;
+	}
 
           
         
@@ -260,7 +319,7 @@ class  CarritoManager
             }        
             private function validarEnvio_nombre_apellido($envio_nombre_apellido)
             {
-                if (! preg_match('/^\w+$/i', $envio_nombre_apellido)){
+                if (! preg_match('/^.+$/i', $envio_nombre_apellido)){
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo envio_nombre_apellido es incorrecto.");
                     return false;
@@ -271,7 +330,7 @@ class  CarritoManager
             }        
             private function validarEnvio_codigo_postal($envio_codigo_postal)
             {
-                if (! preg_match('/^\w+$/i', $envio_codigo_postal)){
+                if (! preg_match('/^.+$/i', $envio_codigo_postal)){
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo envio_codigo_postal es incorrecto.");
                     return false;
@@ -282,21 +341,37 @@ class  CarritoManager
             }        
             private function validarEnvio_ciudad_localidad($envio_ciudad_localidad)
             {
-                $this->setStatus("ERROR");
-                $this->setMsj("El campo envio_ciudad_localidad es incorrecto.");
-                return false;
+                if (! preg_match('/^.+$/i', $envio_ciudad_localidad)){
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo envio_ciudad_localidad es incorrecto.");
+                    return false;
+                }
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
             }        
             private function validarEmail($email)
             {
-                $this->setStatus("ERROR");
-                $this->setMsj("El campo email es incorrecto.");
-                return false;
+		$patron = '/^[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/';
+		if (!preg_match($patron, $email)){
+		    $this->setStatus("ERROR");
+		    $this->setMsj("El campo email es incorrecto.");
+		    return false;
+		}
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
             }        
             private function validarNotas($notas)
             {
-                $this->setStatus("ERROR");
-                $this->setMsj("El campo notas es incorrecto.");
-                return false;
+                if (! preg_match('/^.+$/i', $notas)){
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo notas es incorrecto.");
+                    return false;
+                }
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
             }        
             private function validarDetalle($detalle)
             {
@@ -309,4 +384,32 @@ class  CarritoManager
                 $this->setMsj("");
                 return true;
             }
+
+private function validarCarrito(array $data) {
+	    $envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
+	    if ($this->validarEnvio_nombre_apellido($envio_nombre_apellido) === false){
+	     return false;
+	    }
+	    $envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
+	    if ($this->validarEnvio_codigo_postal($envio_codigo_postal) === false){
+	     return false;
+	    }
+	    $envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
+	    if ($this->validarEnvio_ciudad_localidad($envio_ciudad_localidad) === false){
+	     return false;
+	    }
+	    $email = isset($data["email"]) ? $data["email"] : '';
+	    if ($this->validarEmail($email) === false){
+	     return false;
+	    }
+	    $notas = isset($data["notas"]) ? $data["notas"] : '';
+	    if ($this->validarNotas($notas) === false){
+	     return false;
+	    }
+
+
+}
+
+
+
 }

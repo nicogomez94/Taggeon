@@ -2,7 +2,7 @@
    <div class="container" id="contenedor-form-subir">
       <h1>Checkout</h1>
       <hr><br>
-      <form id="editar-publicacion-form">
+      <form id="finalizar-orden">
          <!--  -->
          <!-- <input type="hidden" name="accion" value="editar"> -->
          <!--  -->
@@ -11,28 +11,28 @@
                <h4>Datos de env&iacute;o</h4>
                <hr>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="co_nombre_completo" id="co_nombre_completo" required>
+                     <input type="text" name="envio_nombre_apellido" id="envio_nombre_apellido" required>
                      <span class="highlight"></span>
                      <span class="bar"></span>
                      <!-- BORRAR STYLE -->
                      <label class="label-text-subir-producto" style="padding-left: 15px;">Nombre y apellido</label>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="co_cp" id="co_cp" required>
+                     <input type="number" name="envio_codigo_postal" id="envio_codigo_postal" required>
                      <span class="highlight"></span>
                      <span class="bar"></span>
                      <!-- BORRAR STYLE -->
                      <label class="label-text-subir-producto" style="padding-left: 15px;">Codigo Postal</label>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="co_ciudad" id="co_ciudad" required>
+                     <input type="text" name="envio_ciudad_localidad" id="envio_ciudad_localidad" required>
                      <span class="highlight"></span>
                      <span class="bar"></span>
                      <!-- BORRAR STYLE -->
                      <label class="label-text-subir-producto" style="padding-left: 15px;">Ciudad/Localidad</label>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="co_email" id="co_email" required>
+                     <input type="text" name="email" id="email" required>
                      <span class="highlight"></span>
                      <span class="bar"></span>
                      <!-- BORRAR STYLE -->
@@ -40,7 +40,7 @@
                   </div>
                   <div class="group group-form-checkout">      
                      <p class="label-descr">Notas (opcional)</p>
-                     <textarea type="text" name="co_notas" id="co_notas" autocomplete="on"></textarea>
+                     <textarea type="text" name="notas" id="notas" autocomplete="on"></textarea>
                   </div>
             </div>
             <div class="col-lg-6 totales-checkout">
@@ -64,9 +64,11 @@
                   <span class="opciones-checkout" style="line-height: 12px;">Opcion 2</span>
                </div>
                -->
-               <div class="boton-checkout-carrito">
-                  <a href="#" class="btn btn-warning">Crear Orden de compra</a>
+               <div>
+                  <button type="submit" href="#" class="btn btn-warning">Finalizar Orden de Compra</button>
                </div>
+               <input type="hidden" value="finalizar2" name="accion">
+               <!-- <input type="hidden" value="" name="id_carrito"> -->
             </div>
          </div>
          
@@ -83,16 +85,27 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=231120-1458"></script>
+   <script src="js/func.js?time=281220-1409"></script>
+   <script src="js/publicacion.js?time=281220-1409"></script>
    <!-- script para la seleccion de fotos -->
-   
+   <script>
+      $(document).ready(function(){
+         var sizeCarrito = jsonData.carrito.length;
+         if(sizeCarrito>0){
+         // if($(".form-orden-compra").html().length > 0){
+            for(var i=0; i<sizeCarrito; i++){
+                  var subtotal = jsonData.carrito[i].subtotal;
+                  var total = jsonData.carrito[i].total;
+                  
+                  $(".subtotal-cant").html("$"+total);
+                  $(".total-cant").html("$"+total);
+            }
+         }
+      })
+   </script>
    <!--  -->
       <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
       <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-1458"></script>
-      <script>
-         $(document).ready(function(){
-            
-         });
-      </script>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 </body></html>

@@ -3,7 +3,14 @@ $(document).ready(function() {
 
 
     //icono gif de carga
-    
+    $(document).on({
+        ajaxStart: function(){
+           $("body").addClass("loading"); 
+        },
+        ajaxStop: function(){ 
+           $("body").removeClass("loading"); 
+        }    
+     });
     /*funcion para bloquear los botones cuando no estan siendo cambiados*/
     $(".data-datos-editar input").focus(function(e){
         e.preventDefault();
@@ -893,40 +900,6 @@ $("#subir-csv").on('submit', function() {
     return false;
 });
 
-///////////////////carrito
-
-$(".form-carrito").on('submit', function() {
-
-    var formData = new FormData($(this)[0]);
-    console.log(formData)
-        
-    $.ajax({
-        url: '/app/carrito.php',
-        data: formData,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        dataType: "json",
-        async: false,
-        success: function( data, textStatus, jQxhr ){
-            if (data.status == 'REDIRECT'){
-                console.log("REDIRECT-->"+data.mensaje);
-                window.location.replace(data.mensaje);														
-            }else if(data.status == 'OK'){
-                console.log("OK-->"+data.mensaje);
-                window.location.replace("/ampliar-carrito.html");
-            }else{
-                alert("ELSE-->"+data.mensaje);
-            }
-        },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-            alert("ERROR"+response);
-            console.log(data.mensaje);
-        }
-   });
-   return false;
-
-});
 
 
 
@@ -937,14 +910,7 @@ $(".form-carrito").on('submit', function() {
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 
-$(document).on({
-    ajaxStart: function(){
-       $("body").addClass("loading"); 
-    },
-    ajaxStop: function(){ 
-       $("body").removeClass("loading"); 
-    }    
- });
+
 
 });
 
@@ -1107,6 +1073,13 @@ function getImagen(pathFoto){
     }else{
         return "";
     }
+/*
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+          console.log(evt.target.result);
+        };
+        reader.readAsDataURL(pathFoto);*/
+      
 }
 
 

@@ -311,7 +311,7 @@ class Email{
 			
 			$mail->From = $GLOBALS['configuration_email']['from'];
 			$mail->FromName = $GLOBALS['configuration_email']['from_name'];
-			$mail->Subject = $GLOBALS['configuration_email']['subject_alta_usuario'];
+			$mail->Subject = "Finalizar orden de compra";
 
 			//$mail->AddAddress("rikizito@gmail.com","TEST");
 			//$mail->AddAddress("rikizito@gmail.com",$usuario);

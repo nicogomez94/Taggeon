@@ -13,9 +13,11 @@ $objPrincipalManager = new CarritoManager();
 if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar|finalizar2)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarCarrito($_POST);
+        } else if ($var_accion == 'finalizar2') {
+            $objPrincipalManager->finalizarCarrito2($_POST);
         } else if ($var_accion == 'finalizar') {
             $objPrincipalManager->finalizarCarrito($_POST);
         } else if ($var_accion == 'editar') {
@@ -25,7 +27,7 @@ if (sizeof($_POST) > 0) {
         }
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';
-            $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+            $mensajeRet = "La solicitud se proceso con éxito";
         } else {
             $statusRet  = 'ERROR';
             $mensajeRet = $objPrincipalManager->getMsj();

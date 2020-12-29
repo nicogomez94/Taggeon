@@ -54,6 +54,31 @@ SQL;
 
 		return false;
     }
+	public function getIdCarrito2()
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+		SELECT
+		*
+    	FROM
+        `carrito`
+    	WHERE
+        `carrito`.usuario_alta = $usuarioAltaDB AND
+        (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
+	estado = 1
+        LIMIT 1
+sql;
+        $resultado = Database::Connect()->query($sql);
+
+        $id_carrito = 0;
+        if ($rowEmp = mysqli_fetch_array($resultado)){
+            $id_carrito = isset($rowEmp["id"]) ? $rowEmp["id"] : 0;
+        }
+
+
+        return $id_carrito;
+    }
     
 	public function getIdCarrito()
     {
@@ -136,7 +161,40 @@ SQL;
         $this->setMsj("No se puede editar. Motivo: No existe o no tiene permisos.");
         return false;
 	}
-	
+
+	public function getListCarrito2()	
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+SELECT
+                carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+        FROM
+        `carrito`
+        LEFT JOIN
+        carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
+        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
+            LEFT JOIN
+        producto_foto
+    ON
+        `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+        
+        
+                WHERE
+        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
+        `carrito`.usuario_alta = $usuarioAltaDB                AND
+        estado = 1 
+        GROUP BY
+        carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
 	public function getListCarrito()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
@@ -248,6 +306,51 @@ SQL;
                     return false;
                 }
 
+                public function cambiarEstadoCarrito2(array $data)
+    {
+        $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+        $idDB = Database::escape($id);
+		$usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
+
+        $envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
+        $envio_nombre_apellidoDB = Database::escape($envio_nombre_apellido);
+        $envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
+        $envio_codigo_postalDB = Database::escape($envio_codigo_postal);
+        $envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
+        $envio_ciudad_localidadDB = Database::escape($envio_ciudad_localidad);
+        $email = isset($data["email"]) ? $data["email"] : '';
+        $emailDB = Database::escape($email);
+        $notas = isset($data["notas"]) ? $data["notas"] : '';
+        $notasDB = Database::escape($notas);
+
+        $sql = <<<SQL
+			UPDATE
+			    `carrito`
+			SET
+			    `usuario_editar` = $usuarioDB,
+`envio_nombre_apellido` = $envio_nombre_apellidoDB, `envio_codigo_postal` = $envio_codigo_postalDB, `envio_ciudad_localidad` = $envio_ciudad_localidadDB, `email` = $emailDB, `notas` = $notasDB
+WHERE
+`id` = $idDB AND
+`usuario_alta` = $usuarioDB
+SQL;
+
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $this->setStatus("OK");
+            return true;
+        }
+
+        return false;
+
+
+
+
+
+
+    }
                 public function cambiarEstadoCarrito(array $data)
     {
         $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';

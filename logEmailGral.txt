@@ -1,0 +1,19 @@
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  17:40:17
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se creo la orden 2
+usuario nicoseller2@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36190.245.40.126
+Fecha 28/12/2020  17:40:18
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Se creo la orden 2
+usuario nicoseller2@gmail.com
+Detalle Respuesta:
