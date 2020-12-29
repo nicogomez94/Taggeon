@@ -87,8 +87,10 @@
 $(document).ready(function(){
 
    var sizeCarrito = jsonData.carrito.length;
+   var carritoTotalNull = jsonData.carrito[0].cantidad;
+   var carritoTotalNull = jsonData.carrito[0].precio;
 
-   if(sizeCarrito>0){
+   if(sizeCarrito>0 && carritoTotalNull != null && carritoTotalNull != null){
       // if($(".form-orden-compra").html().length > 0){
          for(var i=0; i<sizeCarrito; i++){
          
@@ -138,6 +140,7 @@ $(document).ready(function(){
             }
       }else{
          $(".totales-cont").hide();
+         $(".producto:not(.header-productos)").hide();
          $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
       }
 

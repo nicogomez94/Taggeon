@@ -438,12 +438,13 @@ form div{
     border-radius: 10px;
     margin-bottom: 1em;
     font-weight: bold;
+    width: 100%;
     color: #666;
     position: relative;
     padding: 5px;
 }
 .content-col-div > div{
-    padding: 1em 1em 1em 1em;
+    /*padding: 1em 1em 1em 1em;*test*/
 }
 /* img{
     width: 100%;
@@ -2065,3 +2066,77 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     padding-left: 20px;
     padding-right: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*******TEST*/
+/* ::: HOLDER, card1, FACES */
+    .holder {
+        /* display: inline-block; */
+        width: 100%;
+        height: 44%;
+        position: relative;
+        /* perspective: 700px;*/
+    }
+    .card1, .front, .back{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transition: all .7s;
+        transform-style: preserve-3d;
+        backface-visibility: visible;
+    }
+
+    /* ::: FACES */
+    .front{background: tomato;}
+    .back{background:  slategray;}
+    .back img{
+        box-shadow: none;
+    }
+
+    /* ::: SETUP FACES */
+    .flipH .back{transform: rotateY(-180deg);}
+    .flipV .back{transform: rotateX(180deg);}
+
+    /* ::: HOVER EFFECTS (Remove Automated for this to work) */
+    .flipH:hover .card1{ transform: rotateY(180deg); }
+    .flipV:hover .card1{ transform: rotateX(-180deg); }
+
+    /* ::: AUTOMATED EFFECTS */
+    .flipH .card1{
+        animation-duration: 5s;
+        animation-timing-function: ease-in-out;
+        animation-delay: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: none;
+        animation-play-state: running;
+        animation-name: flipH;
+    }
+    .flipV .card1{
+        animation: flipV 1s 0s infinite alternate ease-in-out;
+    }
+    @keyframes flipH {
+        0% { transform: rotateY(0deg); }
+        30% { transform: rotateY(-180deg); }
+    }
+    @-webkit-keyframes flipH {
+        0% { transform: rotateY(0deg); }
+        30% { transform: rotateY(-180deg); }
+    }
+    @keyframes flipV {
+        0% { transform: rotateX(0deg); }
+        100% { transform: rotateX(-180deg); }
+    }
+    @-webkit-keyframes flipV {
+        0% { transform: rotateX(0deg); }
+        100% { transform: rotateX(-180deg); }
+    }

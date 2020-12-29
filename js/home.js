@@ -19,6 +19,12 @@ $(document).ready(function(){
                 var public_html = 
                 '<div>'+
                     '<div class="content-col-div">'+
+'<div class="holder flipH">'+
+'<div class="card1">'+
+'<div class="front"><img src="//i.stack.imgur.com/1ZIkv.jpg?s=64&g=1"></div>'+
+'<div class="back"><img src="//i.stack.imgur.com/776st.jpg?s=64&g=1"></div>'+
+'</div>'+
+'</div>'+
                         '<div class="overlay-public">'+
                             '<div class="text-overlay">'+
                                 '<span class="text-overlay-link">'+
