@@ -1,5 +1,5 @@
 <?php
-include_once("/var/www/html/app/objects/util/configuration.php");
+include_once("/var/www/configuration_pass.php");
 
 function getBienvenida (){
 	$perfil =  $GLOBALS['sesionG']['perfil'];

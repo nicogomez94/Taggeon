@@ -1,6 +1,7 @@
 <?php
 
-include_once("/www/techno-solis.com.ar/htdocs/app/objects/util/configuration.php");
+include_once("/var/www/html/app/objects/util/configuration.php");
+
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/template.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."sesion/sesionManagerImpl.php");
 
