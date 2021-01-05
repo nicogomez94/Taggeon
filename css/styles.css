@@ -2033,7 +2033,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 
 /**CARRITO************/
-.inner-carrito{
+.inner-carrito, .inner-compras{
     margin-top: 50px;
 }
 .cerrar-prod-carrito{
@@ -2055,7 +2055,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .boton-checkout-carrito .btn-warning{
     width: 100%;
 }
-.totales-carrito{
+.totales-carrito, .totales-compra{
     padding: 15px;
     background: rgb(240, 240, 240);
 }
@@ -2068,8 +2068,13 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 
 
-
-
+/* compras */
+.totales-cont{
+    margin-top: 10px;
+}
+.inner-compras>.row>.col-lg-6{
+    padding: 30px;
+}
 
 
 

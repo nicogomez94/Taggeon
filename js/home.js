@@ -32,7 +32,7 @@ if(sizePublic>0){
             var imagen_id = jsonData.publicaciones[i].foto || '';
             var producto = jsonData.publicaciones[i].pid || 0;
             var foto_src = '/publicaciones_img/'+imagen_id || 0;
-            var img_base_public = getImagen(foto_src);
+            //var img_base_public = getImagen(foto_src);
 
             if(id_public_cat == json_cat){
 
@@ -50,7 +50,7 @@ if(sizePublic>0){
                                     '</span>'+
                                 '</div>'+
                             '</div>'+
-                        '<img src="'+img_base_public+'"></img>'+
+                        //'<img src="'+img_base_public+'"></img>'+
                         '</div>'+
                     '</div>';
 
