@@ -2084,7 +2084,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         width: 100%;
         height: 44%;
         position: relative;
-        /* perspective: 700px;*/
+        perspective: 700px;
     }
     .card1, .front, .back{
         position: absolute;
@@ -2114,10 +2114,10 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     .flipH .card1{
         animation-duration: 5s;
         animation-timing-function: ease-in-out;
-        animation-delay: 1s;
+        animation-delay: 5s;
         animation-iteration-count: infinite;
-        animation-direction: alternate;
-        animation-fill-mode: none;
+        animation-direction: normal;
+        animation-fill-mode: both;
         animation-play-state: running;
         animation-name: flipH;
     }
@@ -2125,13 +2125,15 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         animation: flipV 1s 0s infinite alternate ease-in-out;
     }
     @keyframes flipH {
+        0% {  transform: rotateY(-180deg);}
+        50% { transform: none; }
+        75% { transform: none; }
+        100% { transform: none;}
+    }
+    /*@-webkit-keyframes flipH {
         0% { transform: rotateY(0deg); }
         30% { transform: rotateY(-180deg); }
-    }
-    @-webkit-keyframes flipH {
-        0% { transform: rotateY(0deg); }
-        30% { transform: rotateY(-180deg); }
-    }
+    }*/
     @keyframes flipV {
         0% { transform: rotateX(0deg); }
         100% { transform: rotateX(-180deg); }

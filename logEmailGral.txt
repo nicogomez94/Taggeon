@@ -167,3 +167,49 @@ Datos del envio: codigo postal 234. Localidad: dsfds.
 Notas: sdfdsfd
 usuario nicolasgomez94@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36201.231.120.31
+Fecha 29/12/2020  21:54:36
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola dfsdf, se creo la orden 10.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: bvccbv
+usuario nicolasgomez94@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36201.231.120.31
+Fecha 29/12/2020  21:54:37
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola dfsdf, se creo la orden 10.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: bvccbv
+usuario nicolasgomez94@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.3624.232.143.238
+Fecha 01/01/2021  20:14:00
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario test@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.3624.232.143.238
+Fecha 01/01/2021  20:14:02
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario test@gmail.com
+Detalle Respuesta:
