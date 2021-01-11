@@ -6,7 +6,7 @@ if(sizePublic>0){
 
     var public_cat_size = jsonData.categoria.length;
 
-    //recorre todas las cat y lrimero dibujo el item de cat
+    //recorre todas las cat y primero dibujo el item de cat
     for(var i=0; i<public_cat_size; i++){
 
 
@@ -23,18 +23,18 @@ if(sizePublic>0){
         
         //recorre solo si la json_cat es igual a la de puid_public_catblic
 
-        for(var i=0; i<sizePublic; i++){
+        for(var x=0; x<sizePublic; x++){
 
-            var id_public = jsonData.publicaciones[i].id || '';
-            var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria || 0;
-            var nombre_public = jsonData.publicaciones[i].publicacion_nombre || '';
-            var descr_public = jsonData.publicaciones[i].publicacion_descripcion || '';
-            var imagen_id = jsonData.publicaciones[i].foto || '';
-            var producto = jsonData.publicaciones[i].pid || 0;
+            var id_public = jsonData.publicaciones[x].id || '';
+            var id_public_cat = jsonData.publicaciones[x].id_publicacion_categoria || 0;
+            var nombre_public = jsonData.publicaciones[x].publicacion_nombre || '';
+            var descr_public = jsonData.publicaciones[x].publicacion_descripcion || '';
+            var imagen_id = jsonData.publicaciones[x].foto || '';
+            var producto = jsonData.publicaciones[x].pid || 0;
             var foto_src = '/publicaciones_img/'+imagen_id || 0;
             //var img_base_public = getImagen(foto_src);
 
-            if(id_public_cat == json_cat){
+            if(json_cat == id_public_cat){
 
                 var public_html = 
                     '<div>'+
@@ -51,6 +51,7 @@ if(sizePublic>0){
                                 '</div>'+
                             '</div>'+
                         //'<img src="'+img_base_public+'"></img>'+
+                        //'<img src="https://www.caracteristicas.co/wp-content/uploads/2019/02/arquitectura-5-e1586622216558.jpg"></img>'+
                         '</div>'+
                     '</div>';
 
