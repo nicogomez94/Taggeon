@@ -327,6 +327,12 @@ SQL;
 		return $ret;
 	}
 
+	public function getListCompras()
+	{
+		$ret =  $this->carritoDao->getListCompras();
+		return $ret;
+	}
+
           
         
             private function validarCantidad($cant)
