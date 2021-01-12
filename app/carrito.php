@@ -20,8 +20,6 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->finalizarCarrito2($_POST);
         } else if ($var_accion == 'finalizar') {
             $objPrincipalManager->finalizarCarrito($_POST);
-        } else if ($var_accion == 'editar') {
-            $objPrincipalManager->modificarCarrito($_POST);
         } else if ($var_accion == 'eliminar') {
             $objPrincipalManager->eliminarCarrito($_POST);
         }

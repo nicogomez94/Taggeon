@@ -252,7 +252,43 @@ SQL;
 		}
 	}
 
+	public function finalizarCompra(array $data)
+	{
+		$idCarrito = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
 
+		if (!is_numeric($data["id_carrito"])){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id de carrito es incorrecto.");
+			return false;
+		}
+
+		if ($data["id_carrito"] <= 0){
+			$this->setStatus("ERROR");
+			$this->setMsj("No se encontro el carrito.");
+			return false;
+ 		}
+
+		if ($this->validarId($idCarrito) === false){
+			return false;
+		}
+
+		if ($data["id_carrito"] != $idCarrito){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id ". $idCarrito ."de carrito  es incorrecto.");
+			return false;
+		}
+
+		$data["estado"] = 3;
+
+		if ($this->carritoDao->cambiarEstadoCarrito($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->carritoDao->getMsj());
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->carritoDao->getMsj());
+		}
+	}
 
 
 	private function validarId ($param){
