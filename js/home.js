@@ -50,8 +50,8 @@ if(sizePublic>0){
                                     '</span>'+
                                 '</div>'+
                             '</div>'+
-                        //'<img src="'+img_base_public+'"></img>'+
-                        //'<img src="https://www.caracteristicas.co/wp-content/uploads/2019/02/arquitectura-5-e1586622216558.jpg"></img>'+
+                        //'<img src="'+img_base_public+'">'+
+                        '<img src="https://www.caracteristicas.co/wp-content/uploads/2019/02/arquitectura-5-e1586622216558.jpg">'+
                         '</div>'+
                     '</div>';
 
