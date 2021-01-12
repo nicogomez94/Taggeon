@@ -327,13 +327,30 @@ SQL;
 		return $ret;
 	}
 
-	public function getListCompras()
+	public function getListCompras(array $data)
 	{
-		$ret =  $this->carritoDao->getListCompras();
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($id != ''){
+			if ($this->validarId($id) === false){
+				return [];
+			}
+		}
+
+		$ret =  $this->carritoDao->getListCompras($data);
 		return $ret;
 	}
 
-          
+	public function getAmpliarCompra(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarId($id) === false){
+			return false;
+		}
+
+		$ret =  $this->carritoDao->getAmpliarCompra($data);
+		return $ret;
+	}
+
         
             private function validarCantidad($cant)
             {

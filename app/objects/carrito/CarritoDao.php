@@ -161,30 +161,26 @@ SQL;
         $this->setMsj("No se puede editar. Motivo: No existe o no tiene permisos.");
         return false;
     }
-    public function getListCompras()	
+    public function getListCompras(array $data)	
     {
+        $id = isset($data["id"]) ? $data["id"] : '';
+        $where = '';
+        if ($id != ''){
+            $idDB = Database::escape($id);
+            $where = "c.id = $idDB AND";
+        }
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
-SELECT
-                carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
-        FROM
-        `carrito`
-        LEFT JOIN
-        carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
-        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
-            LEFT JOIN
-        producto_foto
-    ON
-        `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+        select * from usuario_seller u,producto p,carrito_detalle cd,carrito c 
+        WHERE
+        u.idUsuario = p.usuario_alta AND
+        p.id        = cd.id_producto AND
+        cd.id_carrito = c.id         AND
+        (c.eliminar = 0 OR c.eliminar IS NULL) AND
         
-        
-                WHERE
-        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
-        `carrito`.usuario_alta = $usuarioAltaDB                AND
-        estado = 3
-        GROUP BY
-        carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+        c.usuario_alta = $usuarioAltaDB AND $where
+        c.estado = 3
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();

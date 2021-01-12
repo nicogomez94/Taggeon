@@ -20,7 +20,7 @@ if ($perfil=='seller' || $perfil=='picker'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "compras"     => $carritoManager->getListCompras()
+        "compras"     => $carritoManager->getListCompras(array())
         
     );
     $jsonData = json_encode($jsonData);
@@ -34,7 +34,7 @@ if ($perfil=='seller' || $perfil=='picker'){
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
-	    "id"          => $idEditar,
+	        "id"          => $idEditar,
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
     $contenidoString = $contenido->muestra();
