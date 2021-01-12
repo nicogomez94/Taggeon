@@ -199,7 +199,18 @@ SQL;
 			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
 			$objEmail = new Email();
 			$objEmail->setEnviar(true);
-			$objEmail->enviarEmailCarrito($bodymail,$email);
+			#$objEmail->enviarEmailCarrito($bodymail,$email);
+
+
+			$contenido = new Template("compras-mail");
+
+			$contenido->asigna_variables(array(
+					"fecha"   => date('d/m/Y', time())
+			));
+			$contenidoString = $contenido->muestra();
+			$usuario = $GLOBALS['sesionG']['usuario'];
+			$objEmail->enviarEmailCarritoHtml($bodymail,$contenidoString,$email,$usuario);
+
 		}
 	}
 

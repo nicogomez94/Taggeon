@@ -158,6 +158,61 @@ class Email{
 		}
 	}
 	
+	public function enviarEmailCarritoHtml($mensajeTexto,$body,$para,$usuario){
+		logEmailGral("Envio enviarEmailCarritoHtml\nmensajeTexto: $mensajeTexto\nbody: $body\nusuario $usuario\n");
+		if ($this->getEnviar() == true){
+			$this->setEnviar(false);
+
+			require("class.phpmailer.php"); //Importamos la función PHP class.phpmailer
+			$mail = new PHPMailer();
+
+			$mail->IsSMTP();
+			//$mail->SMTPDebug = 2;  // debugging: 1 = errors and messages, 2 = messages only
+			$mail->SMTPAuth = true;  // authentication enabled
+			$mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for GMail
+			$mail->SMTPAutoTLS = false;
+			$mail->Host = $GLOBALS['configuration_email']['host']; 
+
+			$mail->Port = 587;
+			$mail->Username = $GLOBALS['configuration_email']['user'];
+			$mail->Password = $GLOBALS['configuration_email']['pass'];
+			
+			$mail->From = $GLOBALS['configuration_email']['from'];
+			$mail->FromName = $GLOBALS['configuration_email']['from_name'];
+			$mail->Subject = $GLOBALS['configuration_email']['subject_recuperar_clave'];
+
+			//$mail->AddAddress("rikizito@gmail.com","TEST");
+
+			//$mail->AddAddress("rikizito@gmail.com",$usuario);
+			$mail->AddAddress($para,$usuario);
+
+			$mail->WordWrap = 50;
+
+			$mail->IsHTML(true);
+			$mail->Body = $body;
+
+			// Notificamos al usuario del estado del mensaje
+
+			if(!$mail->Send()){
+				$this->setStatus("error");
+				$this->setMsj("Error send ".$mail->ErrorInfo);
+				logEmailGral("Respuesta ERROR => Envio enviarEmailRecuperarHtml\nmensajeTexto: $mensajeTexto\nbody: $body\nusuario $usuario\nDetalle Respuesta:  Err: ".$mail->ErrorInfo . "\n");
+			}else{
+				logEmailGral("Respuesta OK => Envio enviarEmailCarritoHtml\nmensajeTexto: $mensajeTexto\nbody: $body\nusuario $usuario\nDetalle Respuesta:\n");
+			}		
+
+			//Para enviar msj de texto solo
+			//$this->setEnviar(true); $this->setStatus("");
+			//$this->enviarEmailRecuperar($mensajeTexto,$para);
+		}else{
+			logEmailGral("Respuesta ERROR => Envio enviarEmailCarritoHtml\nmensajeTexto: $mensajeTexto\nbody: $body\nusuario $usuario\nDetalle Respuesta: " . getMsjConf('342') . "\n");
+			$this->setStatus("error");
+			$this->setMsj("Error send mail enviarEmailCarritoHtml.");
+		}
+	}
+	
+
+
 	public function enviarEmailErrorSilverpop($mensaje){
 		logEmailGral("Envio enviarEmailErrorSilverpop\nmensaje: $mensaje\n");
 		$para = $GLOBALS['configuration_email']['para_error_silverpop_alta_cliente']; 
