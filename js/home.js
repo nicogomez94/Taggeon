@@ -38,7 +38,7 @@ if(sizePublic>0){
 
                 var public_html = 
                     '<div>'+
-                        '<div class="content-col-div">'+
+                        '<div class="content-col-div content-col-div-'+id_public+'">'+
                             '<div class="overlay-public">'+
                                 '<div class="text-overlay">'+
                                     '<span class="text-overlay-link">'+
@@ -56,10 +56,12 @@ if(sizePublic>0){
                     '</div>';
 
                 $(".item-cat-"+json_cat).append(public_html)
-                /*$(".content-col-div").on("click",".overlay-public",function(){
-                    window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
-                });*/
+                
             }
+            $(".content-col-div-"+id_public).on("click",".overlay-public",function(){
+                console.log("pepe")
+                window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
+            });
         }
         
     }

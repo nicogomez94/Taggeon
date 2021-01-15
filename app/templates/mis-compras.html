@@ -5,31 +5,6 @@
       <h1>Detalle de Compras/Ordenes</h1>
       <hr>
 
-         <!-- compras hardcodeado -->
-         <div class="row producto compra text-left">
-            <div class="col-lg-4">
-               <div class="media">
-                  <img class="mr-3 img-compra-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">
-                  <div class="media-body">
-                     <h5 class="mt-0">Bacha Marmol Beige</h5>
-                     <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 col-vendedor">
-               <div class="media">
-                  <img style="border-radius: 50%;" class="mr-3 img-compra-lista" src="https://pbs.twimg.com/profile_images/595999703965278208/j10-AYp5_400x400.png" alt="img">
-                  <div class="media-body">
-                     <h5 class="mt-0">Vendedor</h5>
-                     <span class="label-compra-vendedor">Blaistein S.A</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 text-right">
-               <span class="ver-detalle-compra-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="#">Ver Detalle</a></span>
-               <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->
-            </div>
-         </div>
          <!--  -->
          <div class="row producto compra text-left">
             <div class="col-lg-4">
@@ -99,69 +74,61 @@
 <script>
 $(document).ready(function(){
 
-   var sizeCarrito = jsonData.carrito.length;
-   var carritoTotalNull = jsonData.carrito[0].cantidad;
-   var carritoTotalNull = jsonData.carrito[0].precio;
+   var sizeCompras = jsonData.Compras.length;
 
-   if(sizeCarrito>0 && carritoTotalNull != null && carritoTotalNull != null){
+   if(sizeCompras>0){
       // if($(".form-orden-compra").html().length > 0){
-         for(var i=0; i<sizeCarrito; i++){
+         for(var i=0; i<sizeCompras; i++){
          
-            var id_carrito = jsonData.carrito[i].id_carrito;
-            var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
-            var precio_prod_carrito = jsonData.carrito[i].precio;
-            var total_prod_carrito = jsonData.carrito[i].total;
-            var prod_id = jsonData.carrito[i].id_producto;
-            var cantidad = jsonData.carrito[i].cantidad;
-            var producto = jsonData.carrito[i].pid;
-            var subtotal = jsonData.carrito[i].subtotal;
-            var total = jsonData.carrito[i].total;
-            var foto_id = jsonData.carrito[i].foto;
+            var id_compras = jsonData.compras[i].id_compras;
+            var nombre_prod_compras = jsonData.compras[i].nombre_producto;
+            var precio_prod_compras = jsonData.compras[i].precio;
+            var total_prod_compras = jsonData.compras[i].total;
+            var prod_id = jsonData.compras[i].id_producto;
+            var cantidad = jsonData.compras[i].cantidad;
+            var producto = jsonData.compras[i].pid;
+            var subtotal = jsonData.compras[i].subtotal;
+            var total = jsonData.compras[i].total;
+            var foto_id = jsonData.compras[i].foto;
             var foto_src = '/productos_img/'+foto_id;
-            var img_prod_carrito = getImagen(foto_src);
+            var img_prod_compras = getImagen(foto_src);
 
-            var prods_carrito_html = '<div class="row producto">'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
-                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+img_prod_carrito+'" alt="img"></div>'+
-                              '</div>'+
-                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
-                              '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
-                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
-                              '</div>'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
-                              '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
-                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
-                              '</div>'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
-                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
-                              '</div>'+
-                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
-                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
-                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
-                              '<div class="cerrar-prod-carrito">'+
-                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
-                              '<i class="fas fa-times-circle ellip ml-5"></i>'+
-                              '</div>'+
-                              '</div>'+
-                              '</div>';
+            var compras_html = 
+                  '<div class="row producto compra text-left">'+
+                  '   <div class="col-lg-4">'+
+                  '      <div class="media">'+
+                  '         <img class="mr-3 img-compra-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">'+
+                  '         <div class="media-body">'+
+                  '            <h5 class="mt-0">Bacha Marmol Beige</h5>'+
+                  '            <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  '+
+                  '         </div>'+
+                  '      </div>'+
+                  '   </div>'+
+                  '   <div class="col-lg-4 col-vendedor">'+
+                  '      <div class="media">'+
+                  '         <img style="border-radius: 50%;" class="mr-3 img-compra-lista" src="https://pbs.twimg.com/profile_images/595999703965278208/j10-AYp5_400x400.png" alt="img">'+
+                  '         <div class="media-body">'+
+                  '            <h5 class="mt-0">Vendedor</h5>'+
+                  '            <span class="label-compra-vendedor">Blaistein S.A</span>'+
+                  '         </div>'+
+                  '      </div>'+
+                  '   </div>'+
+                  '   <div class="col-lg-4 text-right">'+
+                  '      <span class="ver-detalle-compra-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="#">Ver Detalle</a></span>'+
+                  '      <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->'+
+                  '   </div>'+
+                  '</div>'+
 
-                  $("#listado-mis-productos").append(prods_carrito_html);
-                  $(".subtotal-cant").html("$"+total);
-                  $(".total-cant").html("$"+total);
-                  $("#id_carrito").val(id_carrito);
+                  $(".inner-compras").append(compras_html);
 
             }
       }else{
-         $(".totales-cont").hide();
-         $(".producto:not(.header-productos)").hide();
-         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
+         $(".inner-compras").append('<h3 class="text-center"><i> El compras est&aacute; vac&iacute;o.<i></h3>')
       }
 
       
 });
 </script>
    <script src="js/func.js?time=271220-2243"></script>
-   <!-- <script src="js/publicacion.js?time=271220-2243"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>
