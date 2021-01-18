@@ -179,7 +179,7 @@ class Email{
 			
 			$mail->From = $GLOBALS['configuration_email']['from'];
 			$mail->FromName = $GLOBALS['configuration_email']['from_name'];
-			$mail->Subject = $GLOBALS['configuration_email']['subject_recuperar_clave'];
+			$mail->Subject = "Finalizar orden de compra";
 
 			//$mail->AddAddress("rikizito@gmail.com","TEST");
 
