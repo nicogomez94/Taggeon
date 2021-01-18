@@ -34,11 +34,15 @@ if ($perfil == 'seller' || $perfil == 'picker'){
         $menu = <<<STR
         <a href="/ampliar-producto.html">Mis Productos</a><br>
         <a href="/mis-publicaciones.html">Mis Publicaciones</a><br>
+        <a href="/mis-compras.html">Mis Compras</a><br>
+        <a href="/mis-ventas.html">Mis Ventas</a><br>
 STR;
     }
     if ($perfil == 'picker'){
         $menu = <<<STR
         <a href="/mis-publicaciones.html">Mis Publicaciones</a><br>
+        <a href="/mis-compras.html">Mis Compras</a><br>
+
 STR;
     }
 	
