@@ -363,7 +363,7 @@ $("#finalizar-orden").submit(function(){
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               alert("OK-->"+dataJ+"/"+dataM);
-              window.location.replace("/");
+              window.location.replace("/cobrar-compra.html?id="+id_carrito);
            }else{
               alert("ELSE-->"+dataJ+"/"+dataM);
               //window.location.replace("/ampliar-carrito.html");
@@ -377,6 +377,43 @@ $("#finalizar-orden").submit(function(){
     return false;
 });
 
+///finalizar orden
+$("#realizar-compra").submit(function(){
+
+   var id_carrito = jsonData.carrito[0].id_carrito;
+
+   var dataForden = new FormData($(this)[0]);
+   dataForden.append("id_carrito",id_carrito);
+
+   $.ajax({
+       url: '/app/carrito.php',
+       data: dataForden,
+       type: 'POST',
+       processData: false,
+       contentType: false,
+       //dataType: "json",
+       async: false,
+       success: function( data, textStatus, jQxhr ){
+           var dataJ = JSON.parse(data).status;
+           var dataM = JSON.parse(data).mensaje;
+          if (dataJ == 'REDIRECT'){
+             console.log("REDIRECT-->"+dataM);
+             //window.location.replace(dataM);														
+          }else if(dataJ == 'OK'){
+             alert("OK-->"+dataJ+"/"+dataM);
+             window.location.replace("/cobrar-compra.html?id="+id_carrito);
+          }else{
+             alert("ELSE-->"+dataJ+"/"+dataM);
+             //window.location.replace("/ampliar-carrito.html");
+          }
+       },
+       error: function( data, jqXhr, textStatus, errorThrown ){
+           alert("ERROR"+response);
+           alert(data);
+       }
+   });
+   return false;
+});
 
 
 ///eliminar de carrito

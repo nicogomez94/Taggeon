@@ -1513,7 +1513,7 @@ input:focus ~ .highlight {
 }
 .fixed-grid-lr{
     position: fixed;
-    width: 300px;
+    width: 24%;
 }
 .row.test-row {
     padding: 13px 13px 13px 20px;

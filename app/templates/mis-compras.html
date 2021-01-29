@@ -74,7 +74,7 @@
 <script>
 $(document).ready(function(){
 
-   var sizeCompras = jsonData.Compras.length;
+   var sizeCompras = jsonData.compras.length;
 
    if(sizeCompras>0){
       // if($(".form-orden-compra").html().length > 0){
@@ -123,7 +123,7 @@ $(document).ready(function(){
 
             }
       }else{
-         $(".inner-compras").append('<h3 class="text-center"><i> El compras est&aacute; vac&iacute;o.<i></h3>')
+         $(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>')
       }
 
       
