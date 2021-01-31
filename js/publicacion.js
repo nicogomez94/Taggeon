@@ -12,9 +12,7 @@ $(document).ready(function(){
             var imagen_id = jsonData.publicaciones[i].foto;
             var producto = jsonData.publicaciones[i].pid;
             var cat_ampliar_home = jsonData.cat;
-            
-            var foto_src = '/publicaciones_img/'+imagen_id;
-            var img_base_public = getImagen(foto_src);
+            var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             
             //si viene esta cat ya se que es de home
             if(/*parseInt(cat_ampliar_home) > 0 && */cat_ampliar_home == id_public_cat){
@@ -32,7 +30,7 @@ $(document).ready(function(){
                                '</div>'+
                             '<div class="bodyimg-public-container bodyimg-public-container-'+i+'">'+
                                //'<div><img src="../../img/arrrrte.jpg" alt=""></div>'+
-                                  '<img class="imagen-public-'+imagen_id+'" src="'+img_base_public+'" alt="">'+
+                                  '<img class="imagen-public-'+imagen_id+'" src="'+foto_src+'" alt="">'+
                                   '<div class="tag-container tag-container-'+i+'">'+
                             '</div>'+
                             '<div class="info-public">'+

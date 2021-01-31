@@ -31,8 +31,7 @@ if(sizePublic>0){
             var descr_public = jsonData.publicaciones[x].publicacion_descripcion || '';
             var imagen_id = jsonData.publicaciones[x].foto || '';
             var producto = jsonData.publicaciones[x].pid || 0;
-            var foto_src = '/publicaciones_img/'+imagen_id || 0;
-            //var img_base_public = getImagen(foto_src);
+            var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
 
             if(json_cat == id_public_cat){
 
@@ -50,8 +49,7 @@ if(sizePublic>0){
                                     '</span>'+
                                 '</div>'+
                             '</div>'+
-                        //'<img src="'+img_base_public+'">'+
-                        '<img src="https://www.caracteristicas.co/wp-content/uploads/2019/02/arquitectura-5-e1586622216558.jpg">'+
+                        '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
                         '</div>'+
                     '</div>';
 
