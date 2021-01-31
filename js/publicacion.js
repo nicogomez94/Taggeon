@@ -14,11 +14,26 @@ $(document).ready(function(){
             var cat_ampliar_home = jsonData.cat;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             
-            //si viene esta cat ya se que es de home
-            if(/*parseInt(cat_ampliar_home) > 0 && */cat_ampliar_home == id_public_cat){
-                console.log(cat_ampliar_home)
-                console.log(id_public_cat)
-            
+
+            if(cat_ampliar_home == id_public_cat){
+               
+               var arrCat = jsonData.categoria;
+               
+               //dibujo la cat arriba de todo
+               var objCat = arrCat.find(o => o.id === cat_ampliar_home);
+               $(".globo-cat").html(objCat.nombre);
+
+               //link NEXT cat
+               var cat_ampliar_home_next = parseInt(cat_ampliar_home) + 1;
+               var objCatNext = arrCat.find(o => o.id === cat_ampliar_home_next.toString());
+               $(".next-cat a").attr("href",'/ampliar-publicacion-home.html?id=88&accion=ampliar&cat='+objCatNext.id);
+
+               //link PREV cat
+               var cat_ampliar_home_prev = parseInt(cat_ampliar_home) - 1;
+               var objCatPrev = arrCat.find(o => o.id === cat_ampliar_home_prev.toString());
+               $(".prev-cat a").attr("href",'/ampliar-publicacion-home.html?id=88&accion=ampliar&cat='+objCatPrev.id);
+               
+
 
             var html_public = '<div class="public-ampliar public-actual test2">'+
                                '<div class="header-public">'+

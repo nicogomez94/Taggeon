@@ -1058,28 +1058,3 @@ function cargarImgPines(event){
 }
 
 
-function getImagen(pathFoto){
-    var rawFile = new XMLHttpRequest();
-    rawFile.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
-            //$("body").removeClass("loading"); 
-            //$("body").addClass("loading");
-        }
-    };
-    rawFile.open("GET", pathFoto, false);
-    rawFile.send();    
-    if(rawFile.responseText != ""){
-        return rawFile.responseText;
-    }else{
-        return "";
-    }
-/*
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-          console.log(evt.target.result);
-        };
-        reader.readAsDataURL(pathFoto);*/
-      
-}
-
-
