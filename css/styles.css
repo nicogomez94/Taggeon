@@ -1715,6 +1715,9 @@ input:focus ~ .highlight {
     box-shadow: none;
     background-color: rgb(0 0 0 / 60%);
 }
+.prev-cat a:link, .next-cat a:link{
+    color: #F8F8F8 !important;
+}
 .prev-cat,.next-cat{
     position: fixed;
     z-index: 999;

@@ -173,8 +173,7 @@ if(sizeVentas>0){
          var subtotal = jsonData.ventas[i].subtotal;
          var total = jsonData.ventas[i].total;
          var foto_id = jsonData.ventas[i].foto;
-         var foto_src = '/productos_img/'+foto_id;
-         var img_prod_ventas = getImagen(foto_src);
+         var foto_src = '/productos_img/'+foto_id+'.png';
 
          var ventas_html = 
                '<div class="row producto venta text-left">'+

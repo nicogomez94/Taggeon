@@ -28,7 +28,7 @@
                            <!-- <h6>Elija un producto:</h6> -->
                            <div class="filtros">
                                  <span>
-                                    <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en su lista">
+                                    <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
                                     <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
                                  </span>
                                  <br>
@@ -167,13 +167,12 @@
                               var id_prod = response.mensaje[i].id;
                               var nombre_prod = response.mensaje[i].titulo;
                               var foto_prod = response.mensaje[i].foto;
-                              var foto_src = '/productos_img/'+foto_prod;
-                              var imagen_prod = getImagen(foto_src);
+                              var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
 
                               /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
 
                               var html = '<li class="splide__slide">'+
-                                          '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+imagen_prod+'">'+
+                                          '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
                                           '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
                               // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
                               $(".splide__list").append(html);
@@ -198,7 +197,7 @@
                      });
                   }else{
                      //PARA SELLER
-                     
+                     console.log()
                      /*hardcodeadoooo*/
                      var sizeProd = jsonData.productos.length;
 

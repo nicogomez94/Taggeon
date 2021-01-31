@@ -143,9 +143,8 @@ $(document).ready(function(){
                         var foto_prod = jsonData.productos[index].foto;
                         var id_cat = jsonData.categoria[index].id;
                         var nombre_completo = jsonData.nombre+""+jsonData.apellido;
-                        //onsole.log(getImagen(foto_src))
-                        var foto_src_prod = '/productos_img/'+foto_prod;
-                        var img_base_prod = getImagen(foto_src_prod);
+                        var foto_src_prod = '/productos_img/'+foto_prod+'.png';
+
                             var modal_html =  
                                 '<div class="modal fade" id="modal-producto-'+id_prod+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
                                 '<div class="modal-dialog modal-dialog-centered modal-lg" role="document">'+
@@ -154,7 +153,7 @@ $(document).ready(function(){
                                 '<div class="modal-body">'+
                                 '<div class="row">'+
                                 '<div class="col-lg-7">'+
-                                    '<div class="img-modal-prod"><img style="width: 100%;" src="'+img_base_prod+'" alt=""></div>'+
+                                    '<div class="img-modal-prod"><img style="width: 100%;" src="'+foto_src_prod+'" alt="foto_src_prod"></div>'+
                                 '<hr>'+
                                 '<div>'+
                                 '<table class="tg" style="table-layout: fixed; width: 282px">'+
