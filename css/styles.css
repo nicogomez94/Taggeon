@@ -1501,9 +1501,17 @@ input:focus ~ .highlight {
 }
 .text-overlay a:link, .text-overlay a:visited{
     color: #fff !important;
+    z-index: 999;
 }
 .text-overlay-link a:hover{
     color: rgb(196, 196, 196) !important;
+}
+.link-ampliar-home{
+    height: 100%; 
+    width: 100%; 
+    z-index: 998; 
+    background: transparent; 
+    position: absolute;
 }
 .productos-titulo-public-gallery img{
     /*margin-left: 10px;*/
@@ -1715,6 +1723,9 @@ input:focus ~ .highlight {
     box-shadow: none;
     background-color: rgb(0 0 0 / 60%);
 }
+.prev-cat a:link, .prev-cat a:visited, .next-cat a:link, .next-cat a:visited{
+    color: #F8F8F8 !important;
+}
 .prev-cat,.next-cat{
     position: fixed;
     z-index: 999;
@@ -1737,6 +1748,29 @@ input:focus ~ .highlight {
     background: gainsboro;
     /* margin-bottom: 10px; */
     border-radius: 10px;
+    text-align: center;
+}
+.inside_up_relleno{
+    text-align: center;
+    color: rgb(156, 156, 156);
+    font-size: 12px;
+    font-weight: 100;
+}
+.relleno-izq{
+    background: rgb(228,228,228);
+    background: linear-gradient(90deg, rgba(228,228,228,1) 0%, rgba(197,197,197,1) 100%);
+}
+.relleno-der{
+    background: rgb(228,228,228);
+    background: linear-gradient(267deg, rgba(228,228,228,1) 0%, rgba(197,197,197,1) 100%);
+}
+.up_relleno_1_izq{
+    background: rgb(228,228,228);
+    background: linear-gradient(90deg, rgba(228,228,228,1) 0%, rgba(220,220,220,1) 100%);
+}
+.up_relleno_2_der{
+    background: rgb(228,228,228);
+    background: linear-gradient(267deg, rgba(228,228,228,1) 0%, rgba(220,220,220,1) 100%);
 }
 .span-arriba{
     height: 20px;

@@ -158,12 +158,11 @@ $(document).ready(function(){
             var subtotal = jsonData.carrito[i].subtotal;
             var total = jsonData.carrito[i].total;
             var foto_id = jsonData.carrito[i].foto;
-            var foto_src = '/productos_img/'+foto_id;
-            var img_prod_carrito = getImagen(foto_src);
+            var foto_src = '/productos_img/'+foto_id+'.png' || 0;//viene siempre png?
 
             var prods_carrito_html = '<div class="row producto">'+
                               '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
-                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+img_prod_carrito+'" alt="img"></div>'+
+                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+foto_src+'" alt="img"></div>'+
                               '</div>'+
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
                               '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+

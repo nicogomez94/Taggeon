@@ -672,14 +672,13 @@ if(typeof jsonData.productos != "undefined"){
                 var id_prod = jsonData.productos[i].id;
                 var stock_prod = jsonData.productos[i].stock;
                 var foto_prod = jsonData.productos[i].foto;
-                var foto_src = '/productos_img/'+foto_prod;
-                var img_base_public = getImagen(foto_src);
+                var foto_src = '/productos_img/'+foto_prod+'.png';
         
                 var listadoProducto = 
                     '<div class="row producto">'+
-                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+img_base_public+'"></div></div>'+
+                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+foto_src+'"></div></div>'+
                         '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">'+precio_prod+'</span></div>'+
+                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">$. '+precio_prod+'</span></div>'+
                         '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
                         '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                         '<div class="acciones-producto acciones-producto-'+i+'">'+
@@ -1055,31 +1054,6 @@ function cargarImgPines(event){
     };
     reader.readAsDataURL(event.target.files[0]);
 
-}
-
-
-function getImagen(pathFoto){
-    var rawFile = new XMLHttpRequest();
-    rawFile.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
-            //$("body").removeClass("loading"); 
-            //$("body").addClass("loading");
-        }
-    };
-    rawFile.open("GET", pathFoto, false);
-    rawFile.send();    
-    if(rawFile.responseText != ""){
-        return rawFile.responseText;
-    }else{
-        return "";
-    }
-/*
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-          console.log(evt.target.result);
-        };
-        reader.readAsDataURL(pathFoto);*/
-      
 }
 
 

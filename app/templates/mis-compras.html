@@ -90,8 +90,7 @@ $(document).ready(function(){
             var subtotal = jsonData.compras[i].subtotal;
             var total = jsonData.compras[i].total;
             var foto_id = jsonData.compras[i].foto;
-            var foto_src = '/productos_img/'+foto_id;
-            var img_prod_compras = getImagen(foto_src);
+            var foto_src = '/productos_img/'+foto_id+'.png' || 0;//viene siempre png?
 
             var compras_html = 
                   '<div class="row producto compra text-left">'+
