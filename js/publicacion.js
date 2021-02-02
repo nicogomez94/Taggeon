@@ -12,13 +12,12 @@ $(document).ready(function(){
             var imagen_id = jsonData.publicaciones[i].foto;
             var producto = jsonData.publicaciones[i].pid;
             var cat_ampliar_home = jsonData.cat;
+            var arrCat = jsonData.categoria;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             
 
             if(cat_ampliar_home == id_public_cat){
-               
-               var arrCat = jsonData.categoria;
-               
+
                //dibujo la cat arriba de todo
                var objCat = arrCat.find(o => o.id === cat_ampliar_home);
                $(".globo-cat").html(objCat.nombre);
@@ -26,12 +25,20 @@ $(document).ready(function(){
                //link NEXT cat
                var cat_ampliar_home_next = parseInt(cat_ampliar_home) + 1;
                var objCatNext = arrCat.find(o => o.id === cat_ampliar_home_next.toString());
-               $(".next-cat a").attr("href",'/ampliar-publicacion-home.html?id=88&accion=ampliar&cat='+objCatNext.id);
+               var objCatNextId = objCatNext.id || 0;
+               $(".next-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatNextId);
+               
 
                //link PREV cat
                var cat_ampliar_home_prev = parseInt(cat_ampliar_home) - 1;
                var objCatPrev = arrCat.find(o => o.id === cat_ampliar_home_prev.toString());
-               $(".prev-cat a").attr("href",'/ampliar-publicacion-home.html?id=88&accion=ampliar&cat='+objCatPrev.id);
+               var objCatPrevId = objCatPrev.id || 0;
+               $(".prev-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatPrevId);
+
+               console.log($(".up_relleno_2_izq"))
+               //rellenos costados
+               $(".up_relleno_1_der").html('<span class="inside_up_relleno">'+objCatNext.nombre+'</span>');
+               $(".up_relleno_2_izq").html('<span class="inside_up_relleno">'+objCatPrev.nombre+'</span>');
                
 
 
@@ -70,32 +77,21 @@ $(document).ready(function(){
                                      '</div>'+
                                      /**/
                                '<hr><div class="productos-titulo-public prod-relacionados">Productos relacionados:</div><br>'+
-                                     '<div class="splide splide-related splide-prod-'+i+'">'+
-                                        '<div class="splide__track">'+
-                                           '<ul class="splide__list">'+
-                                           '<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/D_NQ_NP_685438-MLA31115404061_062019-O.jpg"></li>'+
-'<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfsdf.jpg"></li>'+
-                                           '</ul>'+
-                                        '</div>'+
-                                     '</div>'+
-                                  '</div>'+
-                               '</div>'+
-                            '</div>'+
-                         '</div>'
-                            
+                                       '<div class="splide splide-related splide-prod-'+i+'">'+
+                                          '<div class="splide__track">'+
+                                             '<ul class="splide__list splide_list_related"></ul>'+
+                                          '</div>'+
+                                       '</div>'+
+                                    '</div>'+
+                                 '</div>'+
+                              '</div>'+
+                           '</div>'
+                  
+                  for(var i=0; i<sizePublic; i++){
+                     var html_related = '<li class="splide__slide"><img data-toggle="modal" src="/productos_img/sdfs.jpg"></li>';
+                  }
+
+                           
             $(".insert-public").append(html_public);
         
             
@@ -228,7 +224,7 @@ $(document).ready(function(){
                         
                     }//fin if prod
                 
-                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+img_base_prod+'"></li>';
+                    var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
                     $(".splide__list__"+i).append(splide_fotos);
                 //dibujo tags
                 var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+

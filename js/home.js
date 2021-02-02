@@ -37,8 +37,9 @@ if(sizePublic>0){
 
                 var public_html = 
                     '<div>'+
-                        '<div class="content-col-div content-col-div-'+id_public+'">'+
+                        '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                             '<div class="overlay-public">'+
+                            '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
                                 '<div class="text-overlay">'+
                                     '<span class="text-overlay-link">'+
                                         '<a href="#"><i class="fas fa-share-alt"></i></a>'+
@@ -48,7 +49,7 @@ if(sizePublic>0){
                                         '<a href="#"><i class="fas fa-heart"></i></a>'+
                                     '</span>'+
                                 '</div>'+
-                            '</div>'+
+                            '</div></a>'+
                         '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
                         '</div>'+
                     '</div>';
@@ -56,10 +57,9 @@ if(sizePublic>0){
                 $(".item-cat-"+json_cat).append(public_html)
                 
             }
-            $(".content-col-div-"+id_public).on("click",".overlay-public",function(){
-                console.log("pepe")
+            /*$(".content-col-div-"+id_public).on("click",".overlay-public",function(){
                 window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
-            });
+            });*/
         }
         
     }
