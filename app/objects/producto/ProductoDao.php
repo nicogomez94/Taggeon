@@ -268,10 +268,11 @@ SQL;
 
             
             $base_to_php = explode(',', $foto);
-            $data = base64_decode($base_to_php[1]);
-            $filepath = "/var/www/html/productos_img/$id.png";
-            file_put_contents($filepath,$data);
-
+            if (count($base_to_php) == 2){
+                $data = base64_decode($base_to_php[1]);
+                $filepath = "/var/www/html/productos_img/$id.png";
+                file_put_contents($filepath,$data);
+            }
 
 
 
