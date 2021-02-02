@@ -110,7 +110,8 @@ class  ProductoManager
 
 
 			foreach ($_POST["base"] as $valor) {
-				$valor = isset($valor) ?  $valor : continue;
+				if(!isset($valor)){continue;}
+				$valor = isset($valor) ?  $valor : '';
 				$dataFoto = array(
 					"id_producto" => $idProducto,
 					"foto"        => $valor
@@ -197,8 +198,9 @@ class  ProductoManager
 			} else {
 				$idProducto = isset($data["id"]) ? $data["id"] : '';
 				foreach ($_POST["base"] as $valor) {
+					if(!isset($valor)){continue;}
 					
-					$valor = isset($valor) ?  $valor : continue;
+					$valor = isset($valor) ?  $valor : '';
 					$dataFoto = array(
 						"id_producto" => $idProducto,
 						"foto"        => $valor
