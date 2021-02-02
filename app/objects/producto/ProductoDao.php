@@ -261,9 +261,20 @@ SQL;
             $this->setMsj(Database::Connect()->error);
         } else {
             $id = mysqli_insert_id(Database::Connect());
-            $fp = fopen("/var/www/html/productos_img/$id", 'w');
-            fwrite($fp, $foto);
-            fclose($fp);
+           
+            //$fp = fopen("/var/www/html/productos_img/$id", 'w');
+            //fwrite($fp, $foto);
+            //fclose($fp);
+
+            
+            $base_to_php = explode(',', $foto);
+            $data = base64_decode($base_to_php[1]);
+            $filepath = "/var/www/html/productos_img/$id.png";
+            file_put_contents($filepath,$data);
+
+
+
+
             $this->setMsj($id);
             $this->setStatus("OK");
             return true;
