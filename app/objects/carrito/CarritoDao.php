@@ -163,7 +163,7 @@ SQL;
     }
     public function getListCompras(array $data)	
     {
-        $id = isset($data["id"]) ? $data["id"] : '';
+        $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
         $where = '';
         if ($id != ''){
             $idDB = Database::escape($id);

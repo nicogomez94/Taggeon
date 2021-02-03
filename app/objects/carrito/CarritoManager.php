@@ -342,12 +342,12 @@ SQL;
 
 	public function getAmpliarCompra(array $data)
 	{
-		$id = isset($data["id"]) ? $data["id"] : '';
+		$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
 		if ($this->validarId($id) === false){
 			return false;
 		}
 
-		$ret =  $this->carritoDao->getAmpliarCompra($data);
+		$ret =  $this->carritoDao->getListCompras($data);
 		return $ret;
 	}
 
