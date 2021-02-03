@@ -54,6 +54,32 @@ SQL;
 
 		return false;
     }
+    public function getIdCarrito3()
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+		SELECT
+		*
+    	FROM
+        `carrito`
+    	WHERE
+        `carrito`.usuario_alta = $usuarioAltaDB AND
+        (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
+        estado = 2
+        ORDER BY id desc
+        LIMIT 1
+sql;
+        $resultado = Database::Connect()->query($sql);
+
+        $id_carrito = 0;
+        if ($rowEmp = mysqli_fetch_array($resultado)){
+            $id_carrito = isset($rowEmp["id"]) ? $rowEmp["id"] : 0;
+        }
+
+
+        return $id_carrito;
+    }
 	public function getIdCarrito2()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
@@ -340,7 +366,42 @@ SQL;
             
                     return false;
                 }
-
+                public function cambiarEstadoCarrito3(array $data)
+                {
+                    $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+                    $idDB = Database::escape($id);
+                    $usuario = $GLOBALS['sesionG']['idUsuario'];
+                    $usuarioDB = Database::escape($usuario);
+                    $estado = isset($data["estado"]) ? $data["estado"] : '';
+                    $estadoDB = Database::escape($estado);
+            
+            
+                    $sql = <<<SQL
+                        UPDATE
+                            `carrito`
+                        SET
+                            `usuario_editar` = $usuarioDB,`estado` = $estadoDB
+            WHERE
+            `id` = $idDB AND
+            `usuario_alta` = $usuarioDB
+            SQL;
+            
+                    if (!mysqli_query(Database::Connect(), $sql)) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj("$sql" . Database::Connect()->error);
+                    } else {
+                        $this->setStatus("OK");
+                        return true;
+                    }
+            
+                    return false;
+            
+            
+            
+            
+            
+            
+                }
                 public function cambiarEstadoCarrito2(array $data)
     {
         $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';

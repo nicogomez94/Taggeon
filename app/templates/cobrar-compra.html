@@ -1,10 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
-    <title></title>
+
     <!-- <style>
         body{
             background-color: rgb(216, 216, 216);
@@ -90,11 +84,11 @@
             </div>
         </div>
         <div class="mail-body" style="padding: 20px;background-color: rgb(239 239 239);">
-            <h4>Pepe, Revisa los datos antes de confirmar la compra</h4>
+            <h4><span class="nombre-comprador"></span>, Revisa los datos antes de confirmar la compra</h4>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, debitis eveniet cumque incidunt, ab nulla quasi necessitatibus laudantium voluptatum perspiciatis quis modi qui ducimus dolores quisquam accusantium, expedita natus magnam?</p>
             <div class="adress" style="margin-top: 20px;">
                 <span><b>Direccion de entrega</b></span><br>
-                <span style="color: grey">Galicia 1207, 120 ba etc</span>
+                <span clas="dir-entrega" style="color: grey">Galicia 1207, 120 ba etc</span>
             </div>
             <div class="fecha" style="margin-top: 20px;">
                 <span><b>Fecha de entrega</b></span><br>
@@ -102,31 +96,10 @@
             </div>
             <div class="lista-productos" style="margin-top: 20px;">
                 <span><b>Productos en la orden</b></span><br>
-                <div class="producto" style="box-shadow: 0px 0px 1px grey;padding: 10px;margin-top: 10px;">
-                    <div class="cols-prod" style="width: 32%;display: inline-block;">
-                        <img class="mr-3 img-compra-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">
-                    </div>
-                    <div class="cols-prod" style="text-align: left;font-weight: 500;width: 32%;display: inline-block;">
-                        Bacha Marmol Beige
-                    </div>
-                    <div class="cols-prod" style="text-align: right;width: 32%;display: inline-block;">
-                        $. 1200
-                    </div>
-                </div>
-                <div class="producto" style="box-shadow: 0px 0px 1px grey;padding: 10px;margin-top: 10px;">
-                    <div class="cols-prod" style="width: 32%;display: inline-block;">
-                        <img class="img-compra-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">
-                    </div>
-                    <div class="cols-prod" style="text-align: left;font-weight: 500;width: 32%;display: inline-block;">
-                        Bacha Marmol Beige
-                    </div>
-                    <div class="cols-prod" style="text-align: right;width: 32%;display: inline-block;">
-                        $. 1200
-                    </div>
-                </div>
+                
             </div>
             <div class="totales" style="text-align: right; padding: 10px;">
-                <b>Total: </b>$. 2400
+                <b>Total: </b><span class="totales-num"></span>
             </div>
             <hr>
             <button id="realizar-compra" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">Realizar Compra</button>
@@ -137,6 +110,44 @@
     <script>
         var jsonData = {json};
      </script>
+
+<script src="js/jquery-3.5.1.js"></script>
+<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+<!-- <script src="js/popper.js"></script> -->
+
+<script>
+$(document).ready(function(){
+
+    var sizeCompras = jsonData.compras.length;
+
+    if(sizeCompras>0){
+        for(var i=0; i<sizeCompras; i++){
+            var nombre_producto = jsonData.compras[i].nombre_producto;
+            var precio_producto = jsonData.compras[i].precio;
+            var direccion = jsonData.compras[i].envio_nombre_apellido;
+            var localidad = jsonData.compras[i].envio_ciudad_localidad;
+            var name_comprador = jsonData.compras[i].nombre;
+            //var imagen_id = jsonData.compras[i].precio_producto;
+            //var foto_src = '/productos_img/'+imagen_id+'.png' || 0;
+
+            var compras_html = 
+            '<div class="producto" style="box-shadow: 0px 0px 1px grey;padding: 10px;margin-top: 10px;">'+
+                '<div class="cols-prod" style="width: 32%;display: inline-block;">'+
+                    '<img class="mr-3 img-compra-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">'+
+                '</div>'+
+                '<div class="cols-prod" style="text-align: left;font-weight: 500;width: 32%;display: inline-block;">'+nombre_producto+'</div>'+
+                '<div class="cols-prod" style="text-align: right;width: 32%;display: inline-block;">$. '+precio_producto+'</div>'+
+            '</div>';
+            
+            $(".nombre-comprador").html(name_comprador);
+            $(".dir-entrega").html(direccion+", "+localidad)
+            $(".totales-num").html('$. '+precio_producto);//hard
+            $('.lista-productos').append(compras_html);
+    }
+}
+
+});
+</script>
 
 </body>
 </html>

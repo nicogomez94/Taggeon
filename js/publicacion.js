@@ -409,10 +409,11 @@ $("#finalizar-orden").submit(function(){
 ///realizar/finalizar compra
 $("#realizar-compra").submit(function(){
 
-   var id_carrito = jsonData.carrito[0].id_carrito;
+   var id_carrito = jsonData.compras[0].id_carrito;
 
    var dataForden = new FormData($(this)[0]);
    dataForden.append("id_carrito",id_carrito);
+   dataForden.append("accion","pago");
 
    $.ajax({
        url: '/app/carrito.php',
@@ -430,7 +431,7 @@ $("#realizar-compra").submit(function(){
              //window.location.replace(dataM);														
           }else if(dataJ == 'OK'){
              alert("OK-->"+dataJ+"/"+dataM);
-             window.location.replace("/");
+             //window.location.replace("/");
           }else{
              alert("ELSE-->"+dataJ+"/"+dataM);
              //window.location.replace("/ampliar-carrito.html");

@@ -12,10 +12,13 @@ $objPrincipalManager = new CarritoManager();
 #if ($sesionManager->validarPublic(array('anonymous'))){
 if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
+    
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar|finalizar2)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar|pago|finalizar2)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarCarrito($_POST);
+        } else if ($var_accion == 'pago') {
+            $objPrincipalManager->finalizarPago($_POST);
         } else if ($var_accion == 'finalizar2') {
             $objPrincipalManager->finalizarCarrito2($_POST);
         } else if ($var_accion == 'finalizar') {
