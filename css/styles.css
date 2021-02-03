@@ -1197,7 +1197,7 @@ input:focus ~ .highlight {
 .compra{
     font-size: 15px;
 }
-.img-compra-lista{
+.img-compra-lista, .img-venta-lista{
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -1209,7 +1209,7 @@ input:focus ~ .highlight {
     width: 60px; 
     object-fit: contain;
 }
-.estado-pedido-compra-label{
+.estado-pedido-compra-label, .estado-pedido-venta-label{
     color: #999;
 }
 .producto{

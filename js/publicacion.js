@@ -427,11 +427,13 @@ $("#realizar-compra").submit(function(){
            var dataJ = JSON.parse(data).status;
            var dataM = JSON.parse(data).mensaje;
           if (dataJ == 'REDIRECT'){
-             console.log("REDIRECT-->"+dataM);
+            alert("redirrect") 
+            console.log("REDIRECT-->"+dataM);
+             
              //window.location.replace(dataM);														
           }else if(dataJ == 'OK'){
              alert("OK-->"+dataJ+"/"+dataM);
-             //window.location.replace("/");
+             window.location.replace("/mis-compras.html");
           }else{
              alert("ELSE-->"+dataJ+"/"+dataM);
              //window.location.replace("/ampliar-carrito.html");

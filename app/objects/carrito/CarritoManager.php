@@ -378,7 +378,7 @@ SQL;
 				return [];
 			}
 		}
-
+		$data["estado"] = 3;
 		$ret =  $this->carritoDao->getListCompras($data);
 		return $ret;
 	}
@@ -389,6 +389,19 @@ SQL;
 		if ($this->validarId($id) === false){
 			return false;
 		}
+		$data["estado"] = 2;
+
+		$ret =  $this->carritoDao->getListCompras($data);
+		return $ret;
+	}
+
+	public function getAmpliarCompraFinalizada(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarId($id) === false){
+			return false;
+		}
+		$data["estado"] = 3;
 
 		$ret =  $this->carritoDao->getListCompras($data);
 		return $ret;

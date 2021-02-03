@@ -192,12 +192,16 @@ SQL;
     {
         $id = isset($data["id"]) ? $data["id"] : '';
         $where = '';
+        $estado = isset($data["estado"]) ? $data["estado"] : '';
+        $estadoDB = Database::escape($estado);
+
+        $where = "c.estado = $estadoDB";
+
         if ($id != ''){
             $idDB = Database::escape($id);
-            $where = "c.estado = 2 AND c.id = $idDB";
-        }else{
-            $where = "c.estado = 3";
+            $where .= " AND c.id = $idDB";
         }
+
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql

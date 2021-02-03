@@ -65,9 +65,12 @@
 
 
 
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <!-- <script src="js/popper.js"></script> -->
+<script src="js/jquery-3.5.1.js"></script>
+<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+<script src="js/func.js?time=221220-1647"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+   <script src="js/publicacion.js?time=03022021-1656"></script>
+<!-- <script src="js/popper.js"></script> -->
 
 <script>
 $(document).ready(function(){
@@ -75,29 +78,27 @@ $(document).ready(function(){
    var sizeCompras = jsonData.compras.length;
 
    if(sizeCompras>0){
+      console.log("andentro if")
       // if($(".form-orden-compra").html().length > 0){
          for(var i=0; i<sizeCompras; i++){
          
-            var id_compras = jsonData.compras[i].id_compras;
-            var nombre_prod_compras = jsonData.compras[i].nombre_producto;
-            var precio_prod_compras = jsonData.compras[i].precio;
-            var total_prod_compras = jsonData.compras[i].total;
-            var prod_id = jsonData.compras[i].id_producto;
-            var cantidad = jsonData.compras[i].cantidad;
-            var producto = jsonData.compras[i].pid;
-            var subtotal = jsonData.compras[i].subtotal;
-            var total = jsonData.compras[i].total;
-            var foto_id = jsonData.compras[i].foto;
-            var foto_src = '/productos_img/'+foto_id+'.png' || 0;//viene siempre png?
+            var nombre_producto = jsonData.compras[i].nombre_producto;
+            var precio_producto = jsonData.compras[i].precio;
+            var id = jsonData.compras[i].id;
+            var direccion = jsonData.compras[i].envio_nombre_apellido;
+            var localidad = jsonData.compras[i].envio_ciudad_localidad;
+            var id_carrito = jsonData.compras[i].id_carrito;
+            var name_comprador = jsonData.compras[i].nombre;
+            var foto_src = '/productos_img/'+id+'.png' || 0;//viene siempre png?
 
             var compras_html = 
                   '<div class="row producto compra text-left">'+
                   '   <div class="col-lg-4">'+
                   '      <div class="media">'+
-                  '         <img class="mr-3 img-compra-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">'+
+                  '         <img class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
                   '         <div class="media-body">'+
-                  '            <h5 class="mt-0">Bacha Marmol Beige</h5>'+
-                  '            <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  '+
+                  '            <h5 class="mt-0">'+nombre_producto+'</h5>'+
+                  '            <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  '+//hard
                   '         </div>'+
                   '      </div>'+
                   '   </div>'+
@@ -106,20 +107,21 @@ $(document).ready(function(){
                   '         <img style="border-radius: 50%;" class="mr-3 img-compra-lista" src="https://pbs.twimg.com/profile_images/595999703965278208/j10-AYp5_400x400.png" alt="img">'+
                   '         <div class="media-body">'+
                   '            <h5 class="mt-0">Vendedor</h5>'+
-                  '            <span class="label-compra-vendedor">Blaistein S.A</span>'+
+                  '            <span class="label-compra-vendedor">Blaistein S.A</span>'+//hard
                   '         </div>'+
                   '      </div>'+
                   '   </div>'+
                   '   <div class="col-lg-4 text-right">'+
-                  '      <span class="ver-detalle-compra-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="#">Ver Detalle</a></span>'+
+                  '      <span class="ver-detalle-compra-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="/ampliar-compras.html?id='+id_carrito+'">Ver Detalle</a></span>'+
                   '      <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->'+
                   '   </div>'+
-                  '</div>'+
+                  '</div>';
 
                   $(".inner-compras").append(compras_html);
 
             }
       }else{
+         console.log("afueroo if")
          $(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>')
       }
 
