@@ -213,3 +213,989 @@ Respuesta OK => Envio enviarEmailAltaUsuario
 mensajeTexto: Se dio de alta
 usuario test@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36186.141.201.114
+Fecha 03/02/2021  09:07:42
+---------------------------------
+Envio enviarEmailCarritoHtml
+mensajeTexto: Hola Laudantium adipisci, se creo la orden 3.
+
+Datos del envio: codigo postal 91. Localidad: Doloremque eum quia .
+
+Notas: Quisquam a aut iure 
+body: <div class="overlay-loading"></div>
+
+<div class="container container-compras">
+   <div class="inner-compras">
+      <h1>Detalle de Compras/Ordenes</h1>
+      <hr>
+      <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
+         <div class="header-productos producto row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
+               <!-- <span class="titulo-header-producto">Imagen</span> -->
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em;vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-nombre"></span>Nombre</span>
+               </span>
+            </div>
+            
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-precio">Precio</span>
+               </span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Cantidad</span>
+               </span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Total</span>
+               </span>
+            </div>
+         </div>
+         <div class="row producto">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <div class="img-producto-container-0" data-title="289">
+                  <img class="img-producto" src=""></div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">Ibanez ib10</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="precio-producto">43234</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="stock-producto">11</span>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                  <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+               </div>
+               <div class="acciones-producto acciones-producto-0" style="display: none;">
+                  <div class="eliminar-producto" data-title="87">
+                     <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                  </div>
+                  <div class="modificar-producto" data-title="87">
+                     <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                  </div>
+               </div>
+            </div>
+            <!--  -->
+            <div class="row producto">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                  <div class="img-producto-container-0" data-title="289">
+                     <img class="img-producto" src=""></div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                     <span class="titulo-producto">Ibanez ib10</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="precio-producto">43234</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="stock-producto">11</span>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                     <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                  </div>
+                  <div class="acciones-producto acciones-producto-0" style="display: none;">
+                     <div class="eliminar-producto" data-title="87">
+                        <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                     </div>
+                     <div class="modificar-producto" data-title="87">
+                        <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                     </div>
+                  </div>
+               </div>
+               <!--  -->
+               <div class="row producto">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                     <div class="img-producto-container-0" data-title="289">
+                        <img class="img-producto" src=""></div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                        <span class="titulo-producto">Ibanez ib10</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="precio-producto">43234</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="stock-producto">11</span>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                        <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                     </div>
+                     <div class="acciones-producto acciones-producto-0" style="display: none;">
+                        <div class="eliminar-producto" data-title="87">
+                           <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                        </div>
+                        <div class="modificar-producto" data-title="87">
+                           <a href="/editar-p   roducto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                        </div>
+                     </div>
+                  </div>
+         <!-- producto hardcodeado -->
+
+         <!-- /producto hardcodeado -->
+      </div>
+   </div>
+</div>
+<div class="container totales-cont">
+   <div class="row">
+      <div class="col-6 col-lg-6"></div>
+      <div class="col-6 col-lg-6 totales-carrito">
+         <h4>Totales</h4>
+         <hr>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
+            <div class="col-lg-6 text-right"><span class="subtotal-cant"></span></div>
+         </div>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="total-titulo">Total</span></div>
+            <div class="col-lg-6 text-right"><span class="total-cant"></span></div>
+         </div>
+         <br>
+         <div>
+            <button class="boton-checkout-carrito btn btn-warning">Crear Orden de compra</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<script>
+   var jsonData = {json};
+</script>
+
+
+
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+
+<script>
+$(document).ready(function(){
+
+   var sizeCarrito = jsonData.carrito.length;
+   var carritoTotalNull = jsonData.carrito[0].cantidad;
+   var carritoTotalNull = jsonData.carrito[0].precio;
+
+   if(sizeCarrito>0 && carritoTotalNull != null && carritoTotalNull != null){
+      // if($(".form-orden-compra").html().length > 0){
+         for(var i=0; i<sizeCarrito; i++){
+         
+            var id_carrito = jsonData.carrito[i].id_carrito;
+            var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
+            var precio_prod_carrito = jsonData.carrito[i].precio;
+            var total_prod_carrito = jsonData.carrito[i].total;
+            var prod_id = jsonData.carrito[i].id_producto;
+            var cantidad = jsonData.carrito[i].cantidad;
+            var producto = jsonData.carrito[i].pid;
+            var subtotal = jsonData.carrito[i].subtotal;
+            var total = jsonData.carrito[i].total;
+            var foto_id = jsonData.carrito[i].foto;
+            var foto_src = '/productos_img/'+foto_prod+'.png';
+
+            var prods_carrito_html = '<div class="row producto">'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
+                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+foto_src+'" alt="img"></div>'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
+                              '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
+                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
+                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
+                              '<div class="cerrar-prod-carrito">'+
+                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
+                              '<i class="fas fa-times-circle ellip ml-5"></i>'+
+                              '</div>'+
+                              '</div>'+
+                              '</div>';
+
+                  $("#listado-mis-productos").append(prods_carrito_html);
+                  $(".subtotal-cant").html("$"+total);
+                  $(".total-cant").html("$"+total);
+                  $("#id_carrito").val(id_carrito);
+
+            }
+      }else{
+         $(".totales-cont").hide();
+         $(".producto:not(.header-productos)").hide();
+         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
+      }
+
+      
+});
+</script>
+   <script src="js/func.js?time=271220-2243"></script>
+   <script src="js/publicacion.js?time=271220-2243"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>
+
+usuario nicoseller2@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36186.141.201.114
+Fecha 03/02/2021  09:07:44
+---------------------------------
+Respuesta OK => Envio enviarEmailCarritoHtml
+mensajeTexto: Hola Laudantium adipisci, se creo la orden 3.
+
+Datos del envio: codigo postal 91. Localidad: Doloremque eum quia .
+
+Notas: Quisquam a aut iure 
+body: <div class="overlay-loading"></div>
+
+<div class="container container-compras">
+   <div class="inner-compras">
+      <h1>Detalle de Compras/Ordenes</h1>
+      <hr>
+      <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
+         <div class="header-productos producto row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
+               <!-- <span class="titulo-header-producto">Imagen</span> -->
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em;vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-nombre"></span>Nombre</span>
+               </span>
+            </div>
+            
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-precio">Precio</span>
+               </span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Cantidad</span>
+               </span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Total</span>
+               </span>
+            </div>
+         </div>
+         <div class="row producto">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <div class="img-producto-container-0" data-title="289">
+                  <img class="img-producto" src=""></div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">Ibanez ib10</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="precio-producto">43234</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="stock-producto">11</span>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                  <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+               </div>
+               <div class="acciones-producto acciones-producto-0" style="display: none;">
+                  <div class="eliminar-producto" data-title="87">
+                     <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                  </div>
+                  <div class="modificar-producto" data-title="87">
+                     <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                  </div>
+               </div>
+            </div>
+            <!--  -->
+            <div class="row producto">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                  <div class="img-producto-container-0" data-title="289">
+                     <img class="img-producto" src=""></div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                     <span class="titulo-producto">Ibanez ib10</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="precio-producto">43234</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="stock-producto">11</span>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                     <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                  </div>
+                  <div class="acciones-producto acciones-producto-0" style="display: none;">
+                     <div class="eliminar-producto" data-title="87">
+                        <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                     </div>
+                     <div class="modificar-producto" data-title="87">
+                        <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                     </div>
+                  </div>
+               </div>
+               <!--  -->
+               <div class="row producto">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                     <div class="img-producto-container-0" data-title="289">
+                        <img class="img-producto" src=""></div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                        <span class="titulo-producto">Ibanez ib10</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="precio-producto">43234</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="stock-producto">11</span>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                        <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                     </div>
+                     <div class="acciones-producto acciones-producto-0" style="display: none;">
+                        <div class="eliminar-producto" data-title="87">
+                           <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                        </div>
+                        <div class="modificar-producto" data-title="87">
+                           <a href="/editar-p   roducto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                        </div>
+                     </div>
+                  </div>
+         <!-- producto hardcodeado -->
+
+         <!-- /producto hardcodeado -->
+      </div>
+   </div>
+</div>
+<div class="container totales-cont">
+   <div class="row">
+      <div class="col-6 col-lg-6"></div>
+      <div class="col-6 col-lg-6 totales-carrito">
+         <h4>Totales</h4>
+         <hr>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
+            <div class="col-lg-6 text-right"><span class="subtotal-cant"></span></div>
+         </div>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="total-titulo">Total</span></div>
+            <div class="col-lg-6 text-right"><span class="total-cant"></span></div>
+         </div>
+         <br>
+         <div>
+            <button class="boton-checkout-carrito btn btn-warning">Crear Orden de compra</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<script>
+   var jsonData = {json};
+</script>
+
+
+
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+
+<script>
+$(document).ready(function(){
+
+   var sizeCarrito = jsonData.carrito.length;
+   var carritoTotalNull = jsonData.carrito[0].cantidad;
+   var carritoTotalNull = jsonData.carrito[0].precio;
+
+   if(sizeCarrito>0 && carritoTotalNull != null && carritoTotalNull != null){
+      // if($(".form-orden-compra").html().length > 0){
+         for(var i=0; i<sizeCarrito; i++){
+         
+            var id_carrito = jsonData.carrito[i].id_carrito;
+            var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
+            var precio_prod_carrito = jsonData.carrito[i].precio;
+            var total_prod_carrito = jsonData.carrito[i].total;
+            var prod_id = jsonData.carrito[i].id_producto;
+            var cantidad = jsonData.carrito[i].cantidad;
+            var producto = jsonData.carrito[i].pid;
+            var subtotal = jsonData.carrito[i].subtotal;
+            var total = jsonData.carrito[i].total;
+            var foto_id = jsonData.carrito[i].foto;
+            var foto_src = '/productos_img/'+foto_prod+'.png';
+
+            var prods_carrito_html = '<div class="row producto">'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
+                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+foto_src+'" alt="img"></div>'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
+                              '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
+                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
+                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
+                              '<div class="cerrar-prod-carrito">'+
+                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
+                              '<i class="fas fa-times-circle ellip ml-5"></i>'+
+                              '</div>'+
+                              '</div>'+
+                              '</div>';
+
+                  $("#listado-mis-productos").append(prods_carrito_html);
+                  $(".subtotal-cant").html("$"+total);
+                  $(".total-cant").html("$"+total);
+                  $("#id_carrito").val(id_carrito);
+
+            }
+      }else{
+         $(".totales-cont").hide();
+         $(".producto:not(.header-productos)").hide();
+         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
+      }
+
+      
+});
+</script>
+   <script src="js/func.js?time=271220-2243"></script>
+   <script src="js/publicacion.js?time=271220-2243"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>
+
+usuario nicoseller2@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36186.141.201.114
+Fecha 03/02/2021  09:30:51
+---------------------------------
+Envio enviarEmailCarritoHtml
+mensajeTexto: Hola Ut doloribus quam om, se creo la orden 3.
+
+Datos del envio: codigo postal 13. Localidad: Voluptate consectetu.
+
+Notas: Autem nisi sint et e
+body: <div class="overlay-loading"></div>
+
+<div class="container container-compras">
+   <div class="inner-compras">
+      <h1>Detalle de Compras/Ordenes</h1>
+      <hr>
+      <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
+         <div class="header-productos producto row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
+               <!-- <span class="titulo-header-producto">Imagen</span> -->
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em;vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-nombre"></span>Nombre</span>
+               </span>
+            </div>
+            
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-precio">Precio</span>
+               </span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Cantidad</span>
+               </span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Total</span>
+               </span>
+            </div>
+         </div>
+         <div class="row producto">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <div class="img-producto-container-0" data-title="289">
+                  <img class="img-producto" src=""></div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">Ibanez ib10</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="precio-producto">43234</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="stock-producto">11</span>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                  <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+               </div>
+               <div class="acciones-producto acciones-producto-0" style="display: none;">
+                  <div class="eliminar-producto" data-title="87">
+                     <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                  </div>
+                  <div class="modificar-producto" data-title="87">
+                     <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                  </div>
+               </div>
+            </div>
+            <!--  -->
+            <div class="row producto">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                  <div class="img-producto-container-0" data-title="289">
+                     <img class="img-producto" src=""></div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                     <span class="titulo-producto">Ibanez ib10</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="precio-producto">43234</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="stock-producto">11</span>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                     <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                  </div>
+                  <div class="acciones-producto acciones-producto-0" style="display: none;">
+                     <div class="eliminar-producto" data-title="87">
+                        <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                     </div>
+                     <div class="modificar-producto" data-title="87">
+                        <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                     </div>
+                  </div>
+               </div>
+               <!--  -->
+               <div class="row producto">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                     <div class="img-producto-container-0" data-title="289">
+                        <img class="img-producto" src=""></div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                        <span class="titulo-producto">Ibanez ib10</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="precio-producto">43234</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="stock-producto">11</span>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                        <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                     </div>
+                     <div class="acciones-producto acciones-producto-0" style="display: none;">
+                        <div class="eliminar-producto" data-title="87">
+                           <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                        </div>
+                        <div class="modificar-producto" data-title="87">
+                           <a href="/editar-p   roducto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                        </div>
+                     </div>
+                  </div>
+         <!-- producto hardcodeado -->
+
+         <!-- /producto hardcodeado -->
+      </div>
+   </div>
+</div>
+<div class="container totales-cont">
+   <div class="row">
+      <div class="col-6 col-lg-6"></div>
+      <div class="col-6 col-lg-6 totales-carrito">
+         <h4>Totales</h4>
+         <hr>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
+            <div class="col-lg-6 text-right"><span class="subtotal-cant"></span></div>
+         </div>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="total-titulo">Total</span></div>
+            <div class="col-lg-6 text-right"><span class="total-cant"></span></div>
+         </div>
+         <br>
+         <div>
+            <button class="boton-checkout-carrito btn btn-warning">Crear Orden de compra</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<script>
+   var jsonData = {json};
+</script>
+
+
+
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+
+<script>
+$(document).ready(function(){
+
+   var sizeCarrito = jsonData.carrito.length;
+   var carritoTotalNull = jsonData.carrito[0].cantidad;
+   var carritoTotalNull = jsonData.carrito[0].precio;
+
+   if(sizeCarrito>0 && carritoTotalNull != null && carritoTotalNull != null){
+      // if($(".form-orden-compra").html().length > 0){
+         for(var i=0; i<sizeCarrito; i++){
+         
+            var id_carrito = jsonData.carrito[i].id_carrito;
+            var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
+            var precio_prod_carrito = jsonData.carrito[i].precio;
+            var total_prod_carrito = jsonData.carrito[i].total;
+            var prod_id = jsonData.carrito[i].id_producto;
+            var cantidad = jsonData.carrito[i].cantidad;
+            var producto = jsonData.carrito[i].pid;
+            var subtotal = jsonData.carrito[i].subtotal;
+            var total = jsonData.carrito[i].total;
+            var foto_id = jsonData.carrito[i].foto;
+            var foto_src = '/productos_img/'+foto_prod+'.png';
+
+            var prods_carrito_html = '<div class="row producto">'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
+                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+foto_src+'" alt="img"></div>'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
+                              '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
+                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
+                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
+                              '<div class="cerrar-prod-carrito">'+
+                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
+                              '<i class="fas fa-times-circle ellip ml-5"></i>'+
+                              '</div>'+
+                              '</div>'+
+                              '</div>';
+
+                  $("#listado-mis-productos").append(prods_carrito_html);
+                  $(".subtotal-cant").html("$"+total);
+                  $(".total-cant").html("$"+total);
+                  $("#id_carrito").val(id_carrito);
+
+            }
+      }else{
+         $(".totales-cont").hide();
+         $(".producto:not(.header-productos)").hide();
+         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
+      }
+
+      
+});
+</script>
+   <script src="js/func.js?time=271220-2243"></script>
+   <script src="js/publicacion.js?time=271220-2243"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>
+
+usuario nicoseller2@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36186.141.201.114
+Fecha 03/02/2021  09:30:52
+---------------------------------
+Respuesta OK => Envio enviarEmailCarritoHtml
+mensajeTexto: Hola Ut doloribus quam om, se creo la orden 3.
+
+Datos del envio: codigo postal 13. Localidad: Voluptate consectetu.
+
+Notas: Autem nisi sint et e
+body: <div class="overlay-loading"></div>
+
+<div class="container container-compras">
+   <div class="inner-compras">
+      <h1>Detalle de Compras/Ordenes</h1>
+      <hr>
+      <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
+         <div class="header-productos producto row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
+               <!-- <span class="titulo-header-producto">Imagen</span> -->
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em;vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-nombre"></span>Nombre</span>
+               </span>
+            </div>
+            
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-precio">Precio</span>
+               </span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Cantidad</span>
+               </span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+               <span class="titulo-header-producto">
+                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
+                     <i class="fas fa-sort-down"></i>
+                  </span>
+                  <span class="sort-stock">Total</span>
+               </span>
+            </div>
+         </div>
+         <div class="row producto">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <div class="img-producto-container-0" data-title="289">
+                  <img class="img-producto" src=""></div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">Ibanez ib10</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="precio-producto">43234</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="stock-producto">11</span>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                  <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+               </div>
+               <div class="acciones-producto acciones-producto-0" style="display: none;">
+                  <div class="eliminar-producto" data-title="87">
+                     <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                  </div>
+                  <div class="modificar-producto" data-title="87">
+                     <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                  </div>
+               </div>
+            </div>
+            <!--  -->
+            <div class="row producto">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                  <div class="img-producto-container-0" data-title="289">
+                     <img class="img-producto" src=""></div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                     <span class="titulo-producto">Ibanez ib10</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="precio-producto">43234</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="stock-producto">11</span>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                     <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                  </div>
+                  <div class="acciones-producto acciones-producto-0" style="display: none;">
+                     <div class="eliminar-producto" data-title="87">
+                        <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                     </div>
+                     <div class="modificar-producto" data-title="87">
+                        <a href="/editar-producto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                     </div>
+                  </div>
+               </div>
+               <!--  -->
+               <div class="row producto">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                     <div class="img-producto-container-0" data-title="289">
+                        <img class="img-producto" src=""></div>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                        <span class="titulo-producto">Ibanez ib10</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="precio-producto">43234</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <span class="stock-producto">11</span>
+                     </div>
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
+                        <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
+                     </div>
+                     <div class="acciones-producto acciones-producto-0" style="display: none;">
+                        <div class="eliminar-producto" data-title="87">
+                           <a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a>
+                        </div>
+                        <div class="modificar-producto" data-title="87">
+                           <a href="/editar-p   roducto.html?id=87&amp;accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a>
+                        </div>
+                     </div>
+                  </div>
+         <!-- producto hardcodeado -->
+
+         <!-- /producto hardcodeado -->
+      </div>
+   </div>
+</div>
+<div class="container totales-cont">
+   <div class="row">
+      <div class="col-6 col-lg-6"></div>
+      <div class="col-6 col-lg-6 totales-carrito">
+         <h4>Totales</h4>
+         <hr>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
+            <div class="col-lg-6 text-right"><span class="subtotal-cant"></span></div>
+         </div>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="total-titulo">Total</span></div>
+            <div class="col-lg-6 text-right"><span class="total-cant"></span></div>
+         </div>
+         <br>
+         <div>
+            <button class="boton-checkout-carrito btn btn-warning">Crear Orden de compra</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<script>
+   var jsonData = {json};
+</script>
+
+
+
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+
+<script>
+$(document).ready(function(){
+
+   var sizeCarrito = jsonData.carrito.length;
+   var carritoTotalNull = jsonData.carrito[0].cantidad;
+   var carritoTotalNull = jsonData.carrito[0].precio;
+
+   if(sizeCarrito>0 && carritoTotalNull != null && carritoTotalNull != null){
+      // if($(".form-orden-compra").html().length > 0){
+         for(var i=0; i<sizeCarrito; i++){
+         
+            var id_carrito = jsonData.carrito[i].id_carrito;
+            var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
+            var precio_prod_carrito = jsonData.carrito[i].precio;
+            var total_prod_carrito = jsonData.carrito[i].total;
+            var prod_id = jsonData.carrito[i].id_producto;
+            var cantidad = jsonData.carrito[i].cantidad;
+            var producto = jsonData.carrito[i].pid;
+            var subtotal = jsonData.carrito[i].subtotal;
+            var total = jsonData.carrito[i].total;
+            var foto_id = jsonData.carrito[i].foto;
+            var foto_src = '/productos_img/'+foto_prod+'.png';
+
+            var prods_carrito_html = '<div class="row producto">'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
+                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+foto_src+'" alt="img"></div>'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
+                              '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
+                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
+                              '</div>'+
+                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
+                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
+                              '</div>'+
+                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
+                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
+                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
+                              '<div class="cerrar-prod-carrito">'+
+                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
+                              '<i class="fas fa-times-circle ellip ml-5"></i>'+
+                              '</div>'+
+                              '</div>'+
+                              '</div>';
+
+                  $("#listado-mis-productos").append(prods_carrito_html);
+                  $(".subtotal-cant").html("$"+total);
+                  $(".total-cant").html("$"+total);
+                  $("#id_carrito").val(id_carrito);
+
+            }
+      }else{
+         $(".totales-cont").hide();
+         $(".producto:not(.header-productos)").hide();
+         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
+      }
+
+      
+});
+</script>
+   <script src="js/func.js?time=271220-2243"></script>
+   <script src="js/publicacion.js?time=271220-2243"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>
+
+usuario nicoseller2@gmail.com
+Detalle Respuesta:
