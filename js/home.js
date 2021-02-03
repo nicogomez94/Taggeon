@@ -12,15 +12,21 @@ if(sizePublic>0){
 
         var json_cat = jsonData.categoria[i].id || 0;
         var json_cat_nombre = jsonData.categoria[i].nombre || "";
+        
 
         var item_html = '<div class="item item-cat-'+json_cat+'">'+
                             '<div class="titulo-col-cont">'+
-                                '<div class="titulo-col pattern2"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
+                                '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
                             '</div>'
                         '</div>'
         
         $(".items").append(item_html);
         
+        //numero random pattern por ahora
+        var random = Math.floor(Math.random() * 7);
+        if (random == 0) {random=random+1}
+        $(".random-p-"+i).addClass("pattern"+random);
+
         //recorre solo si la json_cat es igual a la de puid_public_catblic
 
         for(var x=0; x<sizePublic; x++){

@@ -45,7 +45,7 @@
             </div>
          </div>
          <div class="col-lg-6">
-            <div class="globo-cat pattern1"></div>
+            <div class="globo-cat"></div>
             <div class="row insert-public">
                
             </div>
@@ -110,6 +110,10 @@
          var parentwidth = $(".parent").width();      
          $(".child").toggleClass("fixed").width(parentwidth);    
          //$("body").addClass("loading");
+
+         //numero random pattern por ahora
+         var random = Math.floor(Math.random() * 7);
+         $(".globo-cat").addClass("pattern"+random);
          
       });
 
