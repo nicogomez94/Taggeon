@@ -687,7 +687,6 @@ if(typeof jsonData.productos != "undefined"){
                         '</div>'+
                     '</div>';
         
-                    //correrAjaxImg(i,foto_prod,'ampliarUsuario');
         
                 $("#listado-mis-productos").append(listadoProducto);
         
@@ -713,7 +712,6 @@ if(typeof jsonData.productos != "undefined"){
                 var fotosArrayIndex = fotosArray[i];
         
                 console.log(fotosArrayIndex)
-                //correrAjaxImg(i, fotosArrayIndex,'editarUsuario');
                 $("#titulo-producto").val(nombre_prod);
                 $("#precio-producto").val(precio_prod);
                 $("#stock-producto").val(stock_prod);
@@ -1005,36 +1003,6 @@ function sortProducto(paramTitulo, paramSort){
     }
 }
 
-function arreglarImg(indexParam){
-    $(".img-producto-container-"+indexParam).children().attr("src","../../img/default.png");
-}
-      
-function correrAjaxImg(index,foto_prod_param,location){
-    $.get('/app/producto.php' , {accion : "foto", foto : foto_prod_param})
-    .done(function(data) {
-        if(location == 'ampliarUsuario'){
-            if (data.status == 'ERROR'){
-                console.log(index)
-                $(".img-producto-container-"+index).html('<img class="img-producto" src="../../img/default.png" alt="">');												
-            }else{
-                $(".img-producto-container-"+index).html('<img class="img-producto" src="'+data+'" onerror="arreglarImg('+index+')" alt="">');
-            }
-        }else{
-            var html_editar = 
-            '<div class="remove" title="Haga click aqui para remover la foto" data-index="'+index+'"><i class="fa fa-times"></i></div>'+
-            '<img class="img-responsive" src="'+data+'">';
-
-            $("#new_"+index).addClass('hidden');
-            $("#prev_"+index).removeClass('hidden');
-            $("#prev_"+index).html(html_editar);
-        }
-        
-    })
-    .fail(function(data) {
-        $(".img-producto-container-"+i).html('<img class="img-producto" src="../../img/default.png" alt=""></img>');
-        console.log("fail --> "+param);
-    }); 
-}
 
 function cargarImgPines(event){
     var reader = new FileReader();
