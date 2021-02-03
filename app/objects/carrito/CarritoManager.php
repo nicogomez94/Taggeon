@@ -170,7 +170,7 @@ class  CarritoManager
 
 		if ($data["id_carrito"] != $idCarrito){
 			$this->setStatus("ERROR");
-			$this->setMsj("El id ". $idCarrito ."de carrito  es incorrecto.");
+			$this->setMsj("El id ". $idCarrito ." de carrito  es incorrecto.");
 			return false;
 		}
 
@@ -342,7 +342,7 @@ SQL;
 
 	public function getAmpliarCompra(array $data)
 	{
-		$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+		$id = isset($data["id"]) ? $data["id"] : '';
 		if ($this->validarId($id) === false){
 			return false;
 		}

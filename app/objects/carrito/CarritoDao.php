@@ -66,7 +66,8 @@ SQL;
     	WHERE
         `carrito`.usuario_alta = $usuarioAltaDB AND
         (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
-	estado = 1
+        estado = 1
+        ORDER BY id desc
         LIMIT 1
 sql;
         $resultado = Database::Connect()->query($sql);
@@ -163,11 +164,13 @@ SQL;
     }
     public function getListCompras(array $data)	
     {
-        $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+        $id = isset($data["id"]) ? $data["id"] : '';
         $where = '';
         if ($id != ''){
             $idDB = Database::escape($id);
-            $where = "c.id = $idDB AND";
+            $where = "c.estado = 2 AND c.id = $idDB";
+        }else{
+            $where = "c.estado = 3";
         }
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -178,10 +181,9 @@ SQL;
         p.id        = cd.id_producto AND
         cd.id_carrito = c.id         AND
         (c.eliminar = 0 OR c.eliminar IS NULL) AND
-        
         c.usuario_alta = $usuarioAltaDB AND $where
-        c.estado = 3
 sql;
+//echo $sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
@@ -196,9 +198,9 @@ sql;
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
-SELECT
+        SELECT
                 carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
-        FROM
+        FROM    
         `carrito`
         LEFT JOIN
         carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
@@ -215,7 +217,10 @@ SELECT
         estado = 1 
         GROUP BY
         carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+        order by id_carrito desc limit 1
 sql;
+//echo $sql;
+
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
@@ -249,6 +254,7 @@ SELECT
         GROUP BY
         carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
 sql;
+
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
@@ -352,12 +358,15 @@ SQL;
         $emailDB = Database::escape($email);
         $notas = isset($data["notas"]) ? $data["notas"] : '';
         $notasDB = Database::escape($notas);
+        $estado = isset($data["estado"]) ? $data["estado"] : '';
+        $estadoDB = Database::escape($estado);
+
 
         $sql = <<<SQL
 			UPDATE
 			    `carrito`
 			SET
-			    `usuario_editar` = $usuarioDB,
+			    `usuario_editar` = $usuarioDB,`estado` = $estadoDB,
 `envio_nombre_apellido` = $envio_nombre_apellidoDB, `envio_codigo_postal` = $envio_codigo_postalDB, `envio_ciudad_localidad` = $envio_ciudad_localidadDB, `email` = $emailDB, `notas` = $notasDB
 WHERE
 `id` = $idDB AND

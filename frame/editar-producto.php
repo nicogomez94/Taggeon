@@ -38,7 +38,7 @@ if ($perfil == 'seller') {
         "apellido" => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "url_editar" => "/editar-usuario.html",
-	"id"          => $idEditar,
+	    "id"          => $idEditar,
         "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
     ));
     $contenidoString = $contenido->muestra();

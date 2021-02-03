@@ -392,7 +392,7 @@ $("#finalizar-orden").submit(function(){
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               alert("OK-->"+dataJ+"/"+dataM);
-              window.location.replace("/cobrar-compra.html");
+              window.location.replace("/cobrar-compra.html?id="+id_carrito);
            }else{
               alert("ELSE-->"+dataJ+"/"+dataM);
               //window.location.replace("/ampliar-carrito.html");
