@@ -60,6 +60,8 @@ class  ProductoManager
 		$precio = isset($data["precio"]) ? $data["precio"] : '';
 		if ($this->validarPrecio($precio) === false) {
 			return false;
+
+			
 		}
 		$stock = isset($data["stock"]) ? $data["stock"] : '';
 		if ($this->validarStock($stock) === false) {

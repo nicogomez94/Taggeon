@@ -89,7 +89,8 @@ $(document).ready(function(){
             var localidad = jsonData.compras[i].envio_ciudad_localidad;
             var id_carrito = jsonData.compras[i].id_carrito;
             var name_comprador = jsonData.compras[i].nombre;
-            var foto_src = '/productos_img/'+id+'.png' || 0;//viene siempre png?
+            var imagen_id = jsonData.compras[i].foto_id;
+            var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
 
             var compras_html = 
                   '<div class="row producto compra text-left">'+

@@ -134,8 +134,8 @@ $(document).ready(function(){
             var direccion = jsonData.compras[i].envio_nombre_apellido;
             var localidad = jsonData.compras[i].envio_ciudad_localidad;
             var name_comprador = jsonData.compras[i].nombre;
-            var imagen_id = jsonData.compras[i].id;
-            var foto_src = '/productos_img/'+imagen_id+'.png' || 0;
+            var imagen_id = jsonData.compras[i].foto_id;
+            var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
 
             var compras_html = 
             '<div class="producto" style="box-shadow: 0px 0px 1px grey;padding: 10px;margin-top: 10px;">'+
@@ -150,8 +150,8 @@ $(document).ready(function(){
             $(".dir-entrega").html(direccion+", "+localidad)
             $(".totales-num").html('$. '+precio_producto);//hard
             $('.lista-productos').append(compras_html);
+        }
     }
-}
 
 });
 </script>

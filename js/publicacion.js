@@ -116,6 +116,7 @@ $(document).ready(function(){
 
             for(var x=0; x<producto_parse_size; x++){
                var id_prod = producto_parse[x].name;
+               console.log("id_prod -->"+id_prod)
                var coords = producto_parse[x].value;
                var ycoord = coords.split("-")[0];
                var xcoord = coords.split("-")[1];
@@ -135,7 +136,7 @@ $(document).ready(function(){
                      var arr2 = jsonData.productos;
                      var index = arr2.findIndex(o => o.id === id_prod);
                      //var test = Object.values(jsonData.productos)[x];
-         
+                     console.log("index--> "+index)
                      var nombre_prod = jsonData.productos[index].titulo;
                      var precio_prod = jsonData.productos[index].precio;
                      var marca_prod = jsonData.productos[index].marca;
@@ -144,7 +145,6 @@ $(document).ready(function(){
                      var id_prod_json = jsonData.productos[index].id;
                      var stock_prod = jsonData.productos[index].stock;
                      var foto_prod = jsonData.productos[index].foto;
-                     var id_cat = jsonData.categoria[index].id;
                      var nombre_completo = jsonData.nombre+""+jsonData.apellido;
                      var foto_src_prod = '/productos_img/'+foto_prod+'.png';
 
@@ -179,11 +179,11 @@ $(document).ready(function(){
                                  '</tr>'+
                                  '<tr>'+
                                  '<td class="tg-9f3l">Categoria</td>'+
-                                 '<td class="tg-wo29">'+id_cat+'</td>'+
+                                 '<td class="tg-wo29">21</td>'+//hardcodeado
                                  '</tr>'+
                                  '<tr>'+
                                  '<td class="tg-9f3l">Rubro</td>'+
-                                 '<td class="tg-z6p2">'+id_cat+'</td>'+//hardcodeado
+                                 '<td class="tg-z6p2">15</td>'+//hardcodeado
                               '</tr>'+
                               '</tbody>'+
                               '</table>'+
@@ -240,7 +240,6 @@ $(document).ready(function(){
 
                   //related (por ahora traigo todos los prod)
                   for(var y=0; y<allprod.length; y++){
-                     console.log("dentro for")
                      var foto_prod_rel = jsonData.productos[y].foto;
                      var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
                      var html_related = '<li class="splide__slide"><img data-toggle="modal" src="'+foto_src_prod_rel+'"></li>';

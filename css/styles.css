@@ -561,9 +561,9 @@ form div{
     overflow-x: scroll;
     /* overflow-y: scroll; */
     white-space: nowrap;
-    transition: all 0.2s;
-    transform: scale(0.996);/*LO QUE HACE EL EFECTO DE ESCALA MAS GRANDE*/
-    will-change: transform;
+    /*transition: all 0.2s;*/
+    /*transform: scale(0.996);/*LO QUE HACE EL EFECTO DE ESCALA MAS GRANDE
+    will-change: transform;*/
     cursor: pointer;
 }
 .item {

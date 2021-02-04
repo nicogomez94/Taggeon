@@ -2,7 +2,7 @@
 
 <div class="container container-compras">
    <div class="inner-compras">
-      <h2>Compra #1000001411718687 - 4 de enero</h2>
+      <h2 class="num-fecha-compra"></h2>
       <hr>
       <div class="row">
          <div class="col-lg-6">
@@ -11,10 +11,10 @@
                <div class="row">
                   <div class="col-12 col-lg-12 totales-compra">
                      <div class="media">
-                        <img class="mr-3 img-compra-lista" src="https://www.ferrum.com/siteimages/lineas/A_CuartoDeBa%C3%B1o_BariDeColgar.jpg" alt="img">
+                        <img class="mr-3 img-compra-lista" src="" alt="img">
                         <div class="media-body">
-                           <h5 class="mt-0">Aplique baño blanco</h5>
-                           <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-entregado"><i class="fas fa-truck-loading"></i>&nbsp;Entregado</span></div>  
+                           <h5 class="mt-0 titulo-prod"></h5>
+                           <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En Preparaci&oacute;n</span></div>  
                         </div>
                      </div>
                   </div>
@@ -31,7 +31,7 @@
                      </div>
                      <div class="row datos-num-checkout">
                         <div class="col-lg-6"><span class="total-titulo">Env&iacute;o</span></div>
-                        <div class="col-lg-6 text-right"><span class="total-cant">$. 239</span></div>
+                        <div class="col-lg-6 text-right"><span class="total-cant">$. -</span></div>
                      </div>
                      <hr>
                      <div class="row datos-num-checkout">
@@ -115,27 +115,24 @@ $(document).ready(function(){
 
    if(sizeCompras>0){
       for(var i=0; i<sizeCompras; i++){
-         var nombre_producto = jsonData.compras[i].nombre_producto;
-         var precio_producto = jsonData.compras[i].precio;
-         var direccion = jsonData.compras[i].envio_nombre_apellido;
-         var localidad = jsonData.compras[i].envio_ciudad_localidad;
-         var name_comprador = jsonData.compras[i].nombre;
-         var imagen_id = jsonData.compras[i].id;
+         var nombre_producto = jsonData.compras[i].nombre_producto || "";
+         var precio_producto = jsonData.compras[i].precio || 0;
+         var id_producto = jsonData.compras[i].id_producto || 0;
+         var id_carrito = jsonData.compras[i].id_carrito || 0;
+         var direccion = jsonData.compras[i].envio_nombre_apellido || "";
+         var localidad = jsonData.compras[i].envio_ciudad_localidad || "";
+         var name_comprador = jsonData.compras[i].nombre || "";
+         var imagen_id = jsonData.compras[i].foto_id || 0;
          var foto_src = '/productos_img/'+imagen_id+'.png' || 0;
-
-         var compras_html = 
-         '<div class="producto" style="box-shadow: 0px 0px 1px grey;padding: 10px;margin-top: 10px;">'+
-               '<div class="cols-prod" style="width: 32%;display: inline-block;">'+
-                  '<img class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
-               '</div>'+
-               '<div class="cols-prod" style="text-align: left;font-weight: 500;width: 32%;display: inline-block;">'+nombre_producto+'</div>'+
-               '<div class="cols-prod" style="text-align: right;width: 32%;display: inline-block;">$. '+precio_producto+'</div>'+
-         '</div>';
          
+         $(".num-fecha-compra").html('Compra #'+id_carrito+id_producto)//faltaria fecha
+         $(".titulo-prod").html(nombre_producto)
+         $(".subtotal-cant").html("$. "+precio_producto)
          $(".nombre-comprador").html(name_comprador);
          $(".dir-entrega").html(direccion+", "+localidad)
          $(".totales-num").html('$. '+precio_producto);//hard
-         $('.lista-productos').append(compras_html);
+         $(".img-compra-lista").attr('src',foto_src);
+
       }
    }
       

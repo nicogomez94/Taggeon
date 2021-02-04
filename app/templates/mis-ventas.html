@@ -39,7 +39,7 @@
 
 
 <script>
-   //var jsonData = {json};
+   var jsonData = {json};
 </script>
 
 
@@ -50,117 +50,34 @@
 
 <script>
 $(document).ready(function(){
-/*
-   var sizeCarrito = jsonData.carrito.length;
-   var carritoTotalNull = jsonData.carrito[0].cantidad;
-   var carritoTotalNull = jsonData.carrito[0].precio;
 
-   if(sizeCarrito>0 && carritoTotalNull != null && carritoTotalNull != null){
-      // if($(".form-orden-venta").html().length > 0){
-         for(var i=0; i<sizeCarrito; i++){
-         
-            var id_carrito = jsonData.carrito[i].id_carrito;
-            var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
-            var precio_prod_carrito = jsonData.carrito[i].precio;
-            var total_prod_carrito = jsonData.carrito[i].total;
-            var prod_id = jsonData.carrito[i].id_producto;
-            var cantidad = jsonData.carrito[i].cantidad;
-            var producto = jsonData.carrito[i].pid;
-            var subtotal = jsonData.carrito[i].subtotal;
-            var total = jsonData.carrito[i].total;
-            var foto_id = jsonData.carrito[i].foto;
-            var foto_src = '/productos_img/'+foto_id;
-            var img_prod_carrito = getImagen(foto_src);
+   var sizeVentas = jsonData.ventas.length;
 
-            var prods_carrito_html = '<div class="row producto">'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
-                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+img_prod_carrito+'" alt="img"></div>'+
-                              '</div>'+
-                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
-                              '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
-                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
-                              '</div>'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
-                              '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
-                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
-                              '</div>'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
-                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
-                              '</div>'+
-                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
-                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
-                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
-                              '<div class="cerrar-prod-carrito">'+
-                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
-                              '<i class="fas fa-times-circle ellip ml-5"></i>'+
-                              '</div>'+
-                              '</div>'+
-                              '</div>';
+    if(sizeVentas>0){
+        for(var i=0; i<sizeVentas; i++){
+            var nombre_producto = jsonData.ventas[i].nombre_producto;
+            var precio_producto = jsonData.ventas[i].precio;
+            var direccion = jsonData.ventas[i].envio_nombre_apellido;
+            var localidad = jsonData.ventas[i].envio_ciudad_localidad;
+            var name_vendedor = jsonData.ventas[i].nombre;
+            var imagen_id = jsonData.ventas[i].foto_id;
+            var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
 
-                  $("#listado-mis-productos").append(prods_carrito_html);
-                  $(".subtotal-cant").html("$"+total);
-                  $(".total-cant").html("$"+total);
-                  $("#id_carrito").val(id_carrito);
-
-            }
-      }else{
-         $(".totales-cont").hide();
-         $(".producto:not(.header-productos)").hide();
-         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
-      }
-*/
-/*
-var sizeVentas = jsonData.ventas.length;
-
-if(sizeVentas>0){
-   // if($(".form-orden-venta").html().length > 0){
-      for(var i=0; i<sizeVentas; i++){
-      
-         var id_ventas = jsonData.ventas[i].id_ventas;
-         var nombre_prod_ventas = jsonData.ventas[i].nombre_producto;
-         var precio_prod_ventas = jsonData.ventas[i].precio;
-         var total_prod_ventas = jsonData.ventas[i].total;
-         var prod_id = jsonData.ventas[i].id_producto;
-         var cantidad = jsonData.ventas[i].cantidad;
-         var producto = jsonData.ventas[i].pid;
-         var subtotal = jsonData.ventas[i].subtotal;
-         var total = jsonData.ventas[i].total;
-         var foto_id = jsonData.ventas[i].foto;
-         var foto_src = '/productos_img/'+foto_id+'.png';
-
-         var ventas_html = 
-               '<div class="row producto venta text-left">'+
-               '   <div class="col-lg-4">'+
-               '      <div class="media">'+
-               '         <img class="mr-3 img-venta-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">'+
-               '         <div class="media-body">'+
-               '            <h5 class="mt-0">Bacha Marmol Beige</h5>'+
-               '            <div><span class="estado-pedido-venta-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-venta estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  '+
-               '         </div>'+
-               '      </div>'+
-               '   </div>'+
-               '   <div class="col-lg-4 col-vendedor">'+
-               '      <div class="media">'+
-               '         <img style="border-radius: 50%;" class="mr-3 img-venta-lista" src="https://pbs.twimg.com/profile_images/595999703965278208/j10-AYp5_400x400.png" alt="img">'+
-               '         <div class="media-body">'+
-               '            <h5 class="mt-0">Vendedor</h5>'+
-               '            <span class="label-venta-vendedor">Blaistein S.A</span>'+
-               '         </div>'+
-               '      </div>'+
-               '   </div>'+
-               '   <div class="col-lg-4 text-right">'+
-               '      <span class="ver-detalle-venta-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="#">Ver Detalle</a></span>'+
-               '      <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->'+
-               '   </div>'+
-               '</div>'+
-
-               $(".inner-ventas").append(ventas_html);
-
-         }
-   }else{
-      $(".inner-ventas").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>')
-   }
-*/
+            var ventas_html = 
+            '<div class="producto" style="box-shadow: 0px 0px 1px grey;padding: 10px;margin-top: 10px;">'+
+                '<div class="cols-prod" style="width: 32%;display: inline-block;">'+
+                    '<img class="mr-3 img-venta-lista" src="'+foto_src+'" alt="img">'+
+                '</div>'+
+                '<div class="cols-prod" style="text-align: left;font-weight: 500;width: 32%;display: inline-block;">'+nombre_producto+'</div>'+
+                '<div class="cols-prod" style="text-align: right;width: 32%;display: inline-block;">$. '+precio_producto+'</div>'+
+            '</div>';
+            
+            $(".nombre-vendedor").html(name_vendedor);
+            $(".dir-entrega").html(direccion+", "+localidad)
+            $(".totales-num").html('$. '+precio_producto);//hard
+            $('.lista-productos').append(ventas_html);
+        }
+    }
       
 });
 </script>

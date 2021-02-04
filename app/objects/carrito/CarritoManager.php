@@ -407,6 +407,20 @@ SQL;
 		return $ret;
 	}
 
+	public function getListVentas(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($id != ''){
+			if ($this->validarId($id) === false){
+				return [];
+			}
+		}
+		$data["estado"] = 3;
+		$ret =  $this->carritoDao->getListVentas($data);
+		return $ret;
+	}
+
+
         
             private function validarCantidad($cant)
             {

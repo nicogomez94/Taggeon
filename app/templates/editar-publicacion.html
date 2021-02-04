@@ -138,28 +138,23 @@
                      var imagen_id = jsonData.publicaciones[i].foto;
                      var foto_src = '/publicaciones_img/'+imagen_id;
 
-                     $("#publicacion_nombre").val(nombre_public);
-                     $("#publicacion_descripcion").val(descr_public);
-                     $("#publicacion_categoria").val(nombre_public);
+                        $("#publicacion_nombre").val(nombre_public);
+                        $("#publicacion_descripcion").val(descr_public);
+                        $("#publicacion_categoria").val(nombre_public);
 
-                     //para que ya apareza la foto en map
-                     $.get(foto_src, function(responseText){
-                        var response_error = "<h1>P&aacute;gina no encontrada.</h1><p>P&aacute;gina no encontrada.</p>";
-
-                        if(responseText == response_error){
-                           $(".imagen-public-"+imagen_id).attr("src", "");
-                        }else{
+                        //para que ya apareza la foto en map
+                        //$(".imagen-public-"+imagen_id).attr("src", foto_src);
+                        
                            $("#img-subir-pins").hide();
-                           $("#map").css("background-image","url('"+responseText+"')");
+                           $("#map").css("background-image","url('.."+foto_src+"')");
                            $("#map").css("width","100%");
                            $("#map").css("height","300px");
                            $("#eliminar-img-flotante").show();
                            $("#anadir-productos-btn").show();
-                        }
-                        
-                     });
 
                   }
+               }else{
+                  alert("ERROR: no se ha encontrado la publicacion")
                }
          });
       </script>

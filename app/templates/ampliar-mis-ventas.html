@@ -1,7 +1,7 @@
 <div class="overlay-loading"></div>
 
-<div class="container container-compras">
-   <div class="inner-compras">
+<div class="container container-ventas">
+   <div class="inner-ventas">
       <h2>Venta #1000001411718687 - 4 de enero</h2>
       <hr>
       <div class="row">
@@ -9,12 +9,12 @@
             <h4>Detalles de producto</h4>
             <div class="totales-cont">
                <div class="row">
-                  <div class="col-12 col-lg-12 totales-compra">
+                  <div class="col-12 col-lg-12 totales-venta">
                      <div class="media">
-                        <img class="mr-3 img-compra-lista" src="https://www.ferrum.com/siteimages/lineas/A_CuartoDeBa%C3%B1o_BariDeColgar.jpg" alt="img">
+                        <img class="mr-3 img-venta-lista" src="https://www.ferrum.com/siteimages/lineas/A_CuartoDeBa%C3%B1o_BariDeColgar.jpg" alt="img">
                         <div class="media-body">
                            <h5 class="mt-0">Aplique baño blanco</h5>
-                           <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-entregado"><i class="fas fa-truck-loading"></i>&nbsp;Entregado</span></div>  
+                           <div><span class="estado-pedido-venta-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-venta estado-entregado"><i class="fas fa-truck-loading"></i>&nbsp;Entregado</span></div>  
                         </div>
                      </div>
                   </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="totales-cont">
                <div class="row">
-                  <div class="col-12 col-lg-12 totales-compra">
+                  <div class="col-12 col-lg-12 totales-venta">
                      <h4>Totales</h4>
                      <hr>
                      <div class="row datos-num-checkout">
@@ -48,7 +48,7 @@
             <h4>Resumen de Venta</h4>
             <div class="totales-cont">
                <div class="row">
-                  <div class="col-12 col-lg-12 totales-compra">
+                  <div class="col-12 col-lg-12 totales-venta">
                      <div class="media">
                         <i class="fas fa-user-alt icono-media"></i>
                         <div class="media-body">
@@ -66,7 +66,7 @@
             </div>
             <div class="totales-cont">
                <div class="row">
-                  <div class="col-12 col-lg-12 totales-compra">
+                  <div class="col-12 col-lg-12 totales-venta">
                      <div class="media">
                         <i class="fas fa-truck-loading icono-media"></i>
                         <div class="media-body">
@@ -119,8 +119,56 @@
 <script>
 $(document).ready(function(){
 
+var sizeVentas = jsonData.ventas.length;
 
-      
+   if(sizeVentas>0){
+      console.log("andentro if")
+      // if($(".form-orden-compra").html().length > 0){
+         for(var i=0; i<sizeVentas; i++){
+         
+            var nombre_producto = jsonData.ventas[i].nombre_producto;
+            var precio_producto = jsonData.ventas[i].precio;
+            var id = jsonData.ventas[i].id;
+            var direccion = jsonData.ventas[i].envio_nombre_apellido;
+            var localidad = jsonData.ventas[i].envio_ciudad_localidad;
+            var id_carrito = jsonData.ventas[i].id_carrito;
+            var name_vendedor = jsonData.ventas[i].nombre;
+            var imagen_id = jsonData.ventas[i].foto_id;
+            var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
+
+            var ventas_html = 
+                  '<div class="row producto venta text-left">'+
+                  '   <div class="col-lg-4">'+
+                  '      <div class="media">'+
+                  '         <img class="mr-3 img-venta-lista" src="'+foto_src+'" alt="img">'+
+                  '         <div class="media-body">'+
+                  '            <h5 class="mt-0">'+nombre_producto+'</h5>'+
+                  '            <div><span class="estado-pedido-venta-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-venta estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  '+//hard
+                  '         </div>'+
+                  '      </div>'+
+                  '   </div>'+
+                  '   <div class="col-lg-4 col-vendedor">'+
+                  '      <div class="media">'+
+                  '         <img style="border-radius: 50%;" class="mr-3 img-venta-lista" src="https://pbs.twimg.com/profile_images/595999703965278208/j10-AYp5_400x400.png" alt="img">'+
+                  '         <div class="media-body">'+
+                  '            <h5 class="mt-0">Vendedor</h5>'+
+                  '            <span class="label-venta-vendedor">Blaistein S.A</span>'+//hard
+                  '         </div>'+
+                  '      </div>'+
+                  '   </div>'+
+                  '   <div class="col-lg-4 text-right">'+
+                  '      <span class="ver-detalle-venta-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="/ampliar-mis-ventas.html?id='+id_carrito+'">Ver Detalle</a></span>'+
+                  '      <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->'+
+                  '   </div>'+
+                  '</div>';
+
+                  $(".inner-ventas").append(ventas_html);
+
+            }
+   }else{
+      $(".inner-ventas").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>')
+   }
+   
 });
 </script>
    <script src="js/func.js?time=271220-2243"></script>

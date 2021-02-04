@@ -120,6 +120,7 @@ sql;
         `carrito`.usuario_alta = $usuarioAltaDB AND
         (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
         (estado is null OR estado <= 0 )
+        ORDER BY id desc
         LIMIT 1
 sql;
         $resultado = Database::Connect()->query($sql);
@@ -188,6 +189,8 @@ SQL;
         $this->setMsj("No se puede editar. Motivo: No existe o no tiene permisos.");
         return false;
     }
+
+
     public function getListCompras(array $data)	
     {
         $id = isset($data["id"]) ? $data["id"] : '';
@@ -195,29 +198,107 @@ SQL;
         $estado = isset($data["estado"]) ? $data["estado"] : '';
         $estadoDB = Database::escape($estado);
 
-        $where = "c.estado = $estadoDB";
+        $where = "carrito.estado = $estadoDB";
 
         if ($id != ''){
             $idDB = Database::escape($id);
-            $where .= " AND c.id = $idDB";
+            $where .= " AND carrito.id = $idDB";
         }
 
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+
         $sql = <<<sql
-        select * from usuario_seller u,producto p,carrito_detalle cd,carrito c 
-        WHERE
-        u.idUsuario = p.usuario_alta AND
-        p.id        = cd.id_producto AND
-        cd.id_carrito = c.id         AND
-        (c.eliminar = 0 OR c.eliminar IS NULL) AND
-        c.usuario_alta = $usuarioAltaDB AND $where
-sql;
+        SELECT
+                        carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+                FROM
+                `carrito`
+                LEFT JOIN
+                carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
+                (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
+                    LEFT JOIN
+                producto_foto
+            ON
+                `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+                
+                
+                        WHERE
+                (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
+                `carrito`.usuario_alta = $usuarioAltaDB                AND
+                $where
+                GROUP BY
+                carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+        sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
         while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $nombreFile = isset($data["foto_id"]) ? $data["foto_id"] : '-';
+
+            if (file_exists('/var/www/html/productos_img/'.$nombreFile.'.jpg')) {
+                $rowEmp['existe_foto'] =1;
+            }else{
+                $rowEmp['existe_foto'] = 0;
+            }
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
+public function getListVentas(array $data)	
+    {
+        $id = isset($data["id"]) ? $data["id"] : '';
+        $where = '';
+        $estado = isset($data["estado"]) ? $data["estado"] : '';
+        $estadoDB = Database::escape($estado);
+
+        $where = "carrito.estado = $estadoDB";
+
+        if ($id != ''){
+            $idDB = Database::escape($id);
+            $where .= " AND carrito.id = $idDB";
+        }
+
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+
+        $sql = <<<sql
+        SELECT
+                 carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+                FROM
+                `carrito`
+                LEFT JOIN
+                carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
+                (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
+                LEFT JOIN
+                    producto
+            ON 
+            `carrito_detalle`.id_producto = producto.id
+                LEFT JOIN
+                producto_foto
+            ON
+                `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+                
+                
+            WHERE
+                (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
+                producto.usuario_alta = $usuarioAltaDB                AND
+                $where
+                GROUP BY
+                carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+        sql;
+//echo $sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $nombreFile = isset($data["foto_id"]) ? $data["foto_id"] : '-';
+
+            if (file_exists('/var/www/html/productos_img/'.$nombreFile.'.jpg')) {
+                $rowEmp['existe_foto'] =1;
+            }else{
+                $rowEmp['existe_foto'] = 0;
+            }
             $list[] = $rowEmp;
         }
         return $list;
@@ -225,7 +306,6 @@ sql;
 
 	public function getListCarrito2()	
     {
-        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
         SELECT
