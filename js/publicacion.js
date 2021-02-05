@@ -14,7 +14,7 @@ $(document).ready(function(){
             var cat_ampliar_home = jsonData.cat || 0;
             var arrCat = jsonData.categoria || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
-            if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat//si viene por mis-public lo igualo asi no putea
+            //if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat//si viene por mis-public lo igualo asi no putea
 
             if(cat_ampliar_home == id_public_cat){
 
@@ -337,6 +337,7 @@ $(".modal").on("click", ".btn-carrito", function(){
               window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               console.log("OK-->"+dataJ+"/"+dataM);
+              alert("ok")
               window.location.replace("/ampliar-checkout.html");
            }else{
               console.log("ELSE-->"+dataJ+"/"+dataM);
