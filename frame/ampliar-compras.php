@@ -21,8 +21,7 @@ if ($perfil=='seller' || $perfil=='picker'){
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
         "compras"     => $carritoManager->getAmpliarCompraFinalizada($_GET),
-        "ventas"     => $carritoManager->getListVentas($_GET),
-        "comprador"    => $carritoManager->getMsj()
+        "vendedor"    => $carritoManager->getMsj()
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';

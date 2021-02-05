@@ -20,8 +20,8 @@ if ($perfil=='seller'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "compras"     => $carritoManager->getAmpliarCompraFinalizada($_GET),
-        "vendedor"    => $carritoManager->getMsj()
+        "ventas"     => $carritoManager->getListVentas($_GET),
+        "comprador"    => $carritoManager->getMsj()
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';
