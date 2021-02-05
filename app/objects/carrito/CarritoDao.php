@@ -440,6 +440,7 @@ sql;
 
 	public function getListCarrito2()	
     {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
         SELECT
