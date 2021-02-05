@@ -5,7 +5,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
 
 
-if ($perfil=='seller' || $perfil=='picker'){
+if ($perfil=='seller'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
@@ -20,7 +20,9 @@ if ($perfil=='seller' || $perfil=='picker'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "ventas"     => $carritoManager->getListVentas(array())
+        "ventas"     => $carritoManager->getListVentas(array()),
+        "comprador"    => $carritoManager->getMsj()
+
         
     );
     $jsonData = json_encode($jsonData);

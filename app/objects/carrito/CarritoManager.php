@@ -380,6 +380,7 @@ SQL;
 		}
 		$data["estado"] = 3;
 		$ret =  $this->carritoDao->getListCompras($data);
+		$this->setMsj($this->carritoDao->getMsj());
 		return $ret;
 	}
 
@@ -392,6 +393,8 @@ SQL;
 		$data["estado"] = 2;
 
 		$ret =  $this->carritoDao->getListCompras($data);
+		$this->setMsj($this->carritoDao->getMsj());
+
 		return $ret;
 	}
 
@@ -404,6 +407,8 @@ SQL;
 		$data["estado"] = 3;
 
 		$ret =  $this->carritoDao->getListCompras($data);
+		$this->setMsj($this->carritoDao->getMsj());
+
 		return $ret;
 	}
 
@@ -417,6 +422,7 @@ SQL;
 		}
 		$data["estado"] = 3;
 		$ret =  $this->carritoDao->getListVentas($data);
+		$this->setMsj($this->carritoDao->getMsj());
 		return $ret;
 	}
 

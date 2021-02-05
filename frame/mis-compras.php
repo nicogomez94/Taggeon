@@ -20,7 +20,8 @@ if ($perfil=='seller' || $perfil=='picker'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "compras"     => $carritoManager->getListCompras(array())
+        "compras"     => $carritoManager->getListCompras(array()),
+        "vendedor"    => $carritoManager->getMsj()
         
     );
     $jsonData = json_encode($jsonData);
