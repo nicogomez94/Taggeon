@@ -31,7 +31,7 @@
                      </div>
                      <div class="row datos-num-checkout">
                         <div class="col-lg-6"><span class="total-titulo">Env&iacute;o</span></div>
-                        <div class="col-lg-6 text-right"><span class="total-cant">$. 0.00</span></div>
+                        <div class="col-lg-6 text-right"><span class="total-envio">$. 0.00</span></div>
                      </div>
                      <hr>
                      <div class="row datos-num-checkout">
@@ -129,19 +129,22 @@ var sizeVentas = jsonData.ventas.length;
             var precio_producto = jsonData.ventas[i].precio || 0;
             var id_producto = jsonData.ventas[i].id_producto || 0;
             var id_carrito = jsonData.ventas[i].id_carrito || 0;
+            var total = jsonData.ventas[i].total || 0;
             var direccion = jsonData.ventas[i].envio_nombre_apellido || "";
             var localidad = jsonData.ventas[i].envio_ciudad_localidad || "";
             var name_vendedor = jsonData.ventas[i].nombre || "";
             var imagen_id = jsonData.ventas[i].foto_id || 0;
             var foto_src = '/productos_img/'+imagen_id+'.png' || 0;
             
-            $(".num-fecha-venta").html('Compra #'+id_carrito+id_producto)//faltaria fecha
+            $(".num-fecha-venta").html('Venta #'+id_carrito+id_producto)//faltaria fecha
             $(".titulo-prod").html(nombre_producto)
             $(".subtotal-cant").html("$. "+precio_producto)
             $(".nombre-vendedor").html(name_vendedor);
             $(".dir-entrega").html(direccion+", "+localidad)
-            $(".totales-num").html('$. '+precio_producto);//hard
+            $(".totales-num").html('$. '+precio_producto);
             $(".img-venta-lista").attr('src',foto_src);
+            $(".total-cant").html('$. '+total);
+            $(".total-envio").html('$.  -');
             
 
          }

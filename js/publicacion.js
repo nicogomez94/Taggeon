@@ -337,7 +337,6 @@ $(".modal").on("click", ".btn-carrito", function(){
               window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               console.log("OK-->"+dataJ+"/"+dataM);
-              alert("ok")
               window.location.replace("/ampliar-checkout.html");
            }else{
               console.log("ELSE-->"+dataJ+"/"+dataM);

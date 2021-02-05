@@ -210,7 +210,8 @@ SQL;
 
         $sql = <<<sql
         SELECT
-            producto.usuario_alta as vendedor,carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+		envio_direccion,envio_numero,
+            `envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`,producto.usuario_alta as vendedor,carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
         FROM
                 `carrito`
                 LEFT JOIN
@@ -231,8 +232,9 @@ SQL;
                 `carrito`.usuario_alta = $usuarioAltaDB                AND
                 $where
                 GROUP BY
-                producto.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
-        sql;
+		envio_direccion,envio_numero,
+`envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, producto.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -319,7 +321,8 @@ public function getListVentas(array $data)
 
         $sql = <<<sql
         SELECT
-            carrito.usuario_alta as comprador,carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+		envio_direccion,envio_numero,
+`envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, carrito.usuario_alta as comprador,carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
         FROM
                 `carrito`
                 LEFT JOIN
@@ -340,8 +343,9 @@ public function getListVentas(array $data)
                 producto.usuario_alta = $usuarioAltaDB                AND
                 $where
                 GROUP BY
-                carrito.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
-        sql;
+		envio_direccion,envio_numero,
+`envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, carrito.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -638,10 +642,9 @@ SQL;
         $emailDB = Database::escape($email);
         $notas = isset($data["notas"]) ? $data["notas"] : '';
         $notasDB = Database::escape($notas);
-        $estado = isset($data["estado"]) ? $data["estado"] : '';
-        $estadoDB = Database::escape($estado);
-
-
+                    $estado = isset($data["estado"]) ? $data["estado"] : '';
+                    $estadoDB = Database::escape($estado);
+            
         $sql = <<<SQL
 			UPDATE
 			    `carrito`

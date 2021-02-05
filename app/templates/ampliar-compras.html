@@ -31,7 +31,7 @@
                      </div>
                      <div class="row datos-num-checkout">
                         <div class="col-lg-6"><span class="total-titulo">Env&iacute;o</span></div>
-                        <div class="col-lg-6 text-right"><span class="total-cant">$. -</span></div>
+                        <div class="col-lg-6 text-right"><span class="total-envio">$. -</span></div>
                      </div>
                      <hr>
                      <div class="row datos-num-checkout">
@@ -122,6 +122,7 @@ $(document).ready(function(){
          var direccion = jsonData.compras[i].envio_nombre_apellido || "";
          var localidad = jsonData.compras[i].envio_ciudad_localidad || "";
          var name_comprador = jsonData.compras[i].nombre || "";
+         var total = jsonData.compras[i].total || 0;
          var imagen_id = jsonData.compras[i].foto_id || 0;
          var foto_src = '/productos_img/'+imagen_id+'.png' || 0;
          
@@ -132,6 +133,8 @@ $(document).ready(function(){
          $(".dir-entrega").html(direccion+", "+localidad)
          $(".totales-num").html('$. '+precio_producto);//hard
          $(".img-compra-lista").attr('src',foto_src);
+         $(".total-cant").html('$. '+total);
+         $(".total-envio").html('$. -');
 
       }
    }
