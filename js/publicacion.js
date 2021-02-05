@@ -5,33 +5,34 @@ $(document).ready(function(){
     if(sizePublic>0){
         for(var i=0; i<sizePublic; i++){
           
-            var id_public = jsonData.publicaciones[i].id;
-            var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
-            var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
-            var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
-            var imagen_id = jsonData.publicaciones[i].foto;
-            var producto = jsonData.publicaciones[i].pid;
-            var cat_ampliar_home = jsonData.cat;
-            var arrCat = jsonData.categoria;
+            var id_public = jsonData.publicaciones[i].id || 0;
+            var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria || "";
+            var nombre_public = jsonData.publicaciones[i].publicacion_nombre || "";
+            var descr_public = jsonData.publicaciones[i].publicacion_descripcion || "";
+            var imagen_id = jsonData.publicaciones[i].foto || 0;
+            var producto = jsonData.publicaciones[i].pid || 0;
+            var cat_ampliar_home = jsonData.cat || 0;
+            var arrCat = jsonData.categoria || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
-            
+            if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat//si viene por mis-public lo igualo asi no putea
 
             if(cat_ampliar_home == id_public_cat){
 
                //dibujo la cat arriba de todo
-               var objCat = arrCat.find(o => o.id === cat_ampliar_home);
-               $(".globo-cat").html(objCat.nombre);
+               var objCat = arrCat.find(o => o.id === cat_ampliar_home) || "";
+               var nameCat = objCat.nombre || "";
+               $(".globo-cat").html(nameCat);
 
                //link NEXT cat
                var cat_ampliar_home_next = parseInt(cat_ampliar_home) + 1;
-               var objCatNext = arrCat.find(o => o.id === cat_ampliar_home_next.toString());
+               var objCatNext = arrCat.find(o => o.id === cat_ampliar_home_next.toString()) || 0;
                var objCatNextId = objCatNext.id || 0;
                $(".next-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatNextId);
                
 
                //link PREV cat
                var cat_ampliar_home_prev = parseInt(cat_ampliar_home) - 1;
-               var objCatPrev = arrCat.find(o => o.id === cat_ampliar_home_prev.toString());
+               var objCatPrev = arrCat.find(o => o.id === cat_ampliar_home_prev.toString()) || 0;
                var objCatPrevId = objCatPrev.id || 0;
                $(".prev-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatPrevId);
 
@@ -85,17 +86,6 @@ $(document).ready(function(){
                                  '</div>'+
                               '</div>'+
                            '</div>'
-                  
-                  //dibujo splide con relacionados
-                  /*for(var i=0; i<sizePublic; i++){
-
-                     console.log("adentro for prod related")
-                     
-                        
-
-                     
-                  
-                  }*/
 
                            
             $(".insert-public").append(html_public);
@@ -226,14 +216,9 @@ $(document).ready(function(){
                               '</div></div></div></div></div></div>';
          
                            $("body").append(modal_html);
+
                      
-                              //dibujo splide
-                     
-                  }/*else if(cat_actual_prod == "1"){
-                     console.log("andreon if")
-                     
-                     
-                  }*///fin ifs prod
+                  }
                 
                   var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
                   $(".splide__list__"+i).append(splide_fotos);
@@ -277,7 +262,7 @@ $(document).ready(function(){
         }//fin for principal
 
        
-    }
+   }
 
 
 

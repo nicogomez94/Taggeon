@@ -7,73 +7,93 @@
          <input type="hidden" name="accion" value="editar">
          <!--  -->
          <div id="col-foto-upload">
-               <p class="label-descr">Estas en modo edicion de la publicacion</p>
-               <div class="row">
-                  <div id="img-subir-pins" class="img-subir">
-                     <div id="mensaje-flotante-imgsp">
-                        <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
-                        <div>Arrastra una imagen, o haz click para subir</div>
-                     </div>
-                     <input type="file" name="publicacion_foto" id="imagen-pins" onchange="cargarImgPines(event)">
+            <!-- <p class="label-descr">Seleccione al menos una foto para el publicacion.</p> -->
+            <div class="row">
+               <div id="img-subir-pins" class="img-subir">
+                  <div id="mensaje-flotante-imgsp">
+                     <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
+                     <div>Arrastra una imagen, o haz click para subir</div>
                   </div>
-                  <div id="output-container">
-                     <div id="eliminar-img-flotante">
-                        <i class="fas fa-trash-alt"></i>
-                     </div>
-                     <!--  -->
-                     <div class="popup-prod-overlay">
-                        <div class="popup-prod-cont">
-                           <div class="salir-popup"><a href="#">X</a></div>
+                  <input type="file" name="publicacion_foto" id="imagen-pins" onchange="cargarImgPines(event)">
+               </div>
+               <div id="output-container">
+                  <div id="eliminar-img-flotante">
+                     <i class="fas fa-trash-alt"></i>
+                  </div>
+                  <!--  -->
+                  <div class="popup-prod-overlay">
+                     <div class="popup-prod-cont">
+                        <div class="salir-popup"><a href="#"><i class="fas fa-times"></i></a></div>
+                        <!-- <h6>Elija un producto:</h6> -->
+                        <div class="filtros">
+                              <span>
+                                 <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
+                                 <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
+                              </span>
+                              <br>
+                              <!-- <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a> -->
                         </div>
-                     </div>
-                     <!--  -->
-                     <div id="map">
-                        
-                     </div>
-                     <!--  -->
-                     <div class="anadir-productos">
-                        <hr>
-                        <a href="#" id="anadir-productos-btn" class="btn btn-warning">Editar productos</a>
-                        <a href="#" id="terminar-productos-btn" class="btn btn-success">Terminar Edicion</a>
-                        <a href="#" id="limpiar-productos-btn" class="btn btn-danger">Limpiar Pines</a>
+                        <div class="popup-producto">
+                           <div class="splide">
+                              <div class="splide__track">
+                                 <ul class="splide__list"></ul>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="popup-prod-cont-galeria"></div> -->
+                        <!-- <select class="lista-prod"></select> -->
                      </div>
                   </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-12">
-                     <div class="group">      
-                        <input type="text" name="publicacion_nombre" id="publicacion_nombre" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="label-text-subir-publicacion">Nombre del publicacion</label>
-                     </div>
+                  <div class="click-protector-cont"></div>
+                  <!--  -->
+                  <div id="map">
+                     <img class="img-pines-amapear" src="">
                   </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-12">
-                     <p class="label-descr">Descripcion de la publicacion</p>
-                     <textarea type="text" name="publicacion_descripcion" id="publicacion_descripcion" required></textarea>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-lg-3">
-                     <p class="label-descr">Categor&iacute;a de la publicacion</p>
-                     <select name="publicacion_categoria" id="publicacion_categoria">
-                        <option value="" selected disabled hidden required>Elija una categoria</option>
-                     </select>
-                  </div>
-               </div>
-               <br><hr>
-               
-            <div>
-               <div class="row">
-                  <div class="col-lg-4">
-                     <br>
-                     <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+                  <!--  -->
+                  <div class="anadir-productos">
+                     <hr>
+                     <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
+                     <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
+                     <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a>
                   </div>
                </div>
             </div>
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="group">      
+                     <input type="text" name="publicacion_nombre" id="titulo-publicacion" required>
+                     <span class="highlight"></span>
+                     <span class="bar"></span>
+                     <label class="label-text-subir-publicacion">Nombre del publicacion</label>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-12">
+                  <p class="label-descr">Descripcion de la publicacion</p>
+                  <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-3">
+                  <p class="label-descr">Categor&iacute;a de la publicacion</p>
+                  <select name="publicacion_categoria" id="publicacion_categoria">
+                     <option value="" selected disabled hidden required>Elija una categoria</option>
+                     <option value="14">Herramientas y Construcci&oacute;n</option>
+                  </select>
+               </div>
+            </div>
+            <br><hr>
+            
+         <div>
+            <div class="row">
+               <div class="col-lg-4">
+                  <br>
+                  <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+               </div>
+            </div>
          </div>
+      </div>
       </form>
    </div>
 
@@ -96,19 +116,6 @@
       <script>
          $(document).ready(function(){
             
-            /*$("#map-show").dropPin('showPins',{
-               cursor: 'pointer',
-               pinclass: 'qtipinfo',
-		         pin: '../../img/1248820.svg',
-               pinDataSet: {"markers": 
-                                 [
-                                    {"id":1,"title":"map pin 1","xcoord":"420","ycoord":"120"},
-                                    {"id":2,"title":"map pin 2","xcoord":"429","ycoord":"129"},
-                                    {"id":2,"title":"map pin 3","xcoord":"329","ycoord":"329"}
-                                 ]
-                           }
-            });*/
-            
 
             //CATEGORIA
             var catPublicSize = jsonData.categoria.length;
@@ -127,6 +134,10 @@
                }
             }
 
+
+
+            /*$("#publicacion_categoria").val('17').attr("selected", true)​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​;*/
+
             /*A EDITAR*/
             var sizePublic = jsonData.publicaciones.length;
                if(sizePublic>0){
@@ -136,22 +147,30 @@
                      var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
                      var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
                      var imagen_id = jsonData.publicaciones[i].foto;
-                     var foto_src = '/publicaciones_img/'+imagen_id;
+                     var foto_src = '/publicaciones_img/'+imagen_id+'.png';
 
                         $("#publicacion_nombre").val(nombre_public);
                         $("#publicacion_descripcion").val(descr_public);
                         $("#publicacion_categoria").val(nombre_public);
 
-                        //para que ya apareza la foto en map
-                        //$(".imagen-public-"+imagen_id).attr("src", foto_src);
-                        
-                           $("#img-subir-pins").hide();
-                           $("#map").css("background-image","url('.."+foto_src+"')");
-                           $("#map").css("width","100%");
-                           $("#map").css("height","300px");
-                           $("#eliminar-img-flotante").show();
-                           $("#anadir-productos-btn").show();
+                        $("#img-subir-pins").hide();
+                        $(".img-pines-amapear").attr("src",foto_src);
+                        $("#map").css("width","100%");
+                        $("#eliminar-img-flotante").show();
+                        $("#anadir-productos-btn").show();
 
+                  }
+                  var select = document.getElementById('publicacion_categoria');
+                  var option;
+                  var cat_selected = jsonData.publicaciones[0].id_publicacion_categoria || 0;
+
+                  for (var i=0; i<select.options.length; i++) {
+                     option = select.options[i];
+
+                     if (option.value == cat_selected) {
+                        console.log(option)
+                        option.setAttribute('selected', true);
+                     } 
                   }
                }else{
                   alert("ERROR: no se ha encontrado la publicacion")

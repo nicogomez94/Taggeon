@@ -443,9 +443,6 @@ form div{
     position: relative;
     padding: 5px;
 }
-.content-col-div > div{
-    /*padding: 1em 1em 1em 1em;*test*/
-}
 /* img{
     width: 100%;
     height: auto;
@@ -698,12 +695,6 @@ form div{
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
-}
-.active-custom{
-    /* padding: 20px;
-    color: white !important;
-    background-color: black;
-    border-radius: 20px; */
 }
 #contenido-perfil{
     text-align: center;
@@ -1038,9 +1029,6 @@ select{
 #col-foto-upload, #col-foto-info{
     padding: 20px;
 }
-#col-foto-upload{
-    /* text-align: center; */
-}
 #col-foto-info{
     text-align: left;
 }
@@ -1185,7 +1173,7 @@ input:focus ~ .highlight {
 #listado-mis-productos{
     margin-bottom: 50px;
 }
-.producto, .compra{
+.producto, .compra, .venta{
     background-color: rgb(247, 247, 247);
     border-radius: 10px;
     text-align: center;
@@ -1194,7 +1182,7 @@ input:focus ~ .highlight {
     font-size: 20px;
     position: relative;
 }
-.compra{
+.compra, .venta{
     font-size: 15px;
 }
 .img-compra-lista, .img-venta-lista{
@@ -1251,9 +1239,6 @@ input:focus ~ .highlight {
     box-shadow: none;
     padding-bottom: 10px;
     margin-bottom: 40px;
-}
-.titulo-header-producto{
-
 }
 .ellip{
     cursor: pointer;
@@ -1317,11 +1302,6 @@ input:focus ~ .highlight {
 .uploadArea i{
     font-size:25px;
     padding-top:15px
-}
-.image-preview{
-    /* min-width: 70px;
-    max-width: 70px;
-    height: 60px; */
 }
 .image-preview img{
     padding-top:0px!important;
@@ -1515,12 +1495,6 @@ input:focus ~ .highlight {
     background: transparent; 
     position: absolute;
 }
-.productos-titulo-public-gallery img{
-    /*margin-left: 10px;*/
-    /*width: 88px; 
-    /*height: 100px; 
-    cursor: pointer;*/
-}
 .fixed-grid-lr{
     position: fixed;
     width: 24%;
@@ -1584,6 +1558,9 @@ input:focus ~ .highlight {
     margin-bottom: 20px;
     background: #f4f5ff;
     width: 100%;
+}
+.splide{
+    padding-left: 40px;
 }
 .splide__slide img {
 	width : 88px;
@@ -2015,9 +1992,6 @@ input:focus ~ .highlight {
 }
 .productos-public{
     display: none;
-}
-.splide-related{
-    /* display: none; */
 }
 .busq-prod-subir-public{
     width: 90% !important;/*para que no se salga la cruz*/
