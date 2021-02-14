@@ -88,11 +88,11 @@
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, debitis eveniet cumque incidunt, ab nulla quasi necessitatibus laudantium voluptatum perspiciatis quis modi qui ducimus dolores quisquam accusantium, expedita natus magnam?</p>
             <div class="adress" style="margin-top: 20px;">
                 <span><b>Direccion de entrega</b></span><br>
-                <span clas="dir-entrega" style="color: grey">Galicia 1207, 120 ba etc</span>
+                <span clas="dir-entrega" style="color: grey">Galicia 1207</span>
             </div>
             <div class="fecha" style="margin-top: 20px;">
                 <span><b>Fecha de entrega</b></span><br>
-                <span style="color: grey">16 Dic 2021 - 18:00</span>
+                <span style="color: grey">16 Dic 2021 - 18:00 (aprox.)</span>
             </div>
             <div class="lista-productos" style="margin-top: 20px;">
                 <span><b>Productos en la orden</b></span><br>
@@ -133,7 +133,7 @@ $(document).ready(function(){
             var precio_producto = jsonData.compras[i].precio;
             var direccion = jsonData.compras[i].envio_nombre_apellido;
             var localidad = jsonData.compras[i].envio_ciudad_localidad;
-            var name_comprador = jsonData.compras[i].nombre;
+            var name_comprador = jsonData.compras[i].envio_nombre_apellido;
             var imagen_id = jsonData.compras[i].foto_id;
             var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
 

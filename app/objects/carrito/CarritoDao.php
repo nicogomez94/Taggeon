@@ -644,7 +644,6 @@ SQL;
         $notasDB = Database::escape($notas);
                     $estado = isset($data["estado"]) ? $data["estado"] : '';
                     $estadoDB = Database::escape($estado);
-            
         $sql = <<<SQL
 			UPDATE
 			    `carrito`

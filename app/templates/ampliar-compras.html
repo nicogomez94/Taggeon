@@ -55,7 +55,7 @@
                            <h5 class="mt-0">Datos Personales</h5>
                            <hr>
                            <div class="texto-detalles-pedido">
-                              <div>Notas: <span></span>"Entre: Paysandu Y Fragata Sarmiento"</div>
+                              <div>Notas: <span class="notas"></span></div>
                               <div>Galicia 1207 (1416), Capital Federal</div>
                               <div>Nicolás Gómez 1552291994</div>
                            </div>
@@ -125,6 +125,7 @@ $(document).ready(function(){
          var total = jsonData.compras[i].total || 0;
          var imagen_id = jsonData.compras[i].foto_id || 0;
          var foto_src = '/productos_img/'+imagen_id+'.png' || 0;
+         var notas = jsonData.compras[i].notas || "";
          
          $(".num-fecha-compra").html('Compra #'+id_carrito+id_producto)//faltaria fecha
          $(".titulo-prod").html(nombre_producto)
@@ -135,6 +136,7 @@ $(document).ready(function(){
          $(".img-compra-lista").attr('src',foto_src);
          $(".total-cant").html('$. '+total);
          $(".total-envio").html('$. -');
+         $(".notas").html(notas);
 
       }
    }
