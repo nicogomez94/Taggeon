@@ -1,11 +1,10 @@
+<div class="overlay-prod"></div>
 
    <div class="container" id="contenedor-form-subir">
       <h1>Editar Publicacion</h1>
       <hr>
       <form id="editar-publicacion-form">
-         <!--  -->
          <input type="hidden" name="accion" value="editar">
-         <!--  -->
          <div id="col-foto-upload">
             <!-- <p class="label-descr">Seleccione al menos una foto para el publicacion.</p> -->
             <div class="row">
@@ -52,9 +51,9 @@
                   <!--  -->
                   <div class="anadir-productos">
                      <hr>
-                     <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
+                     <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir/Editar productos</a>
                      <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
-                     <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a>
+                     <!-- <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
                   </div>
                </div>
             </div>
@@ -119,7 +118,6 @@
 
             //CATEGORIA
             var catPublicSize = jsonData.categoria.length;
-            console.log(catPublicSize);
 
             if(catPublicSize>0){
                for(var i=0; i<catPublicSize; i++){
@@ -134,11 +132,6 @@
                }
             }
 
-
-
-            /*$("#publicacion_categoria").val('17').attr("selected", true)​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​;*/
-
-            /*A EDITAR*/
             var sizePublic = jsonData.publicaciones.length;
                if(sizePublic>0){
                   for(var i=0; i<sizePublic; i++){
@@ -148,6 +141,34 @@
                      var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
                      var imagen_id = jsonData.publicaciones[i].foto;
                      var foto_src = '/publicaciones_img/'+imagen_id+'.png';
+                     var tags = jsonData.publicaciones[i].pid;
+                     
+                        
+                    
+
+                     ///DIBUJO PINES
+                     var producto_parse = JSON.parse(tags);
+                     var producto_parse_size = producto_parse.length;
+                     //console.log(tags)
+                     var test = {"markers":producto_parse};
+                     console.log(test)
+                        $('#map').dropPin('showPins',{
+                           cursor: 'crosshair',
+                           pinclass: 'qtipinfo',
+                           pin: '../../img/tag-solid.svg',
+                           pinDataSet: {"markers":producto_parse}
+                        });
+
+                     /*for(var x=0; x<producto_parse_size; x++){
+                        var id_prod = producto_parse[x].name;
+                        var coords = producto_parse[x].value;
+                        var ycoord = coords.split("-")[0];
+                        var xcoord = coords.split("-")[1];
+                        var allprod = jsonData.productos || [];
+
+                        
+
+                     }*/
 
                         $("#publicacion_nombre").val(nombre_public);
                         $("#publicacion_descripcion").val(descr_public);
@@ -168,7 +189,6 @@
                      option = select.options[i];
 
                      if (option.value == cat_selected) {
-                        console.log(option)
                         option.setAttribute('selected', true);
                      } 
                   }

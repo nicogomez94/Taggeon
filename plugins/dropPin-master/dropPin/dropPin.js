@@ -221,11 +221,18 @@
 			{
 				var dataPin = options.pinDataSet.markers[i];
 
-				var imgC = $('<img rel="/map-content.php?id='+dataPin.id+'" class="pin '+options.pinclass+'" style="top:'+dataPin.ycoord+'px;left:'+dataPin.xcoord+'px;">');
+				var id_prod = dataPin.name;
+				var coords = dataPin.value;
+				var ycoord = coords.split("-")[0];
+				var xcoord = coords.split("-")[1];
+
+				var imgC = $('<img class="pin '+id_prod+'" style="top:'+ycoord+'px;left:'+xcoord+'px;">');
 				imgC.attr('src',  options.pin);
 				imgC.attr('title',  dataPin.title);
 
+				
 				imgC.appendTo(this);
+				
 			}
 
 		}
