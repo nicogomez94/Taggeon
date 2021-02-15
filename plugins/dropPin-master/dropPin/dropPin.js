@@ -229,10 +229,16 @@
 				var imgC = $('<img class="pin '+id_prod+'" style="top:'+ycoord+'px;left:'+xcoord+'px;">');
 				imgC.attr('src',  options.pin);
 				imgC.attr('title',  dataPin.title);
-
-				
 				imgC.appendTo(this);
 				
+				var click_protector = '<div class="click-protector '+coords+'">'+
+											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
+
+				$(".click-protector-cont").append(click_protector);
+				$("."+ycoord+"-"+xcoord).css("top",ycoord);
+				$("."+ycoord+"-"+xcoord).css("left",xcoord);
+				$("."+ycoord+"-"+xcoord+" .salir-popup-single").css("display","none");
+
 			}
 
 		}
