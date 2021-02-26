@@ -1,6 +1,6 @@
 <div class="overlay-prod"></div>
-
-   <div class="container" id="contenedor-form-subir">
+<div class="row">
+   <div class="container col-lg-8 col-md-12 col-sm-12 col-12" id="contenedor-form-subir" >
       <h1>Editar Publicacion</h1>
       <hr>
       <form id="editar-publicacion-form">
@@ -95,6 +95,7 @@
       </div>
       </form>
    </div>
+</div>
 
    <script>
       var jsonData = {json};
@@ -176,7 +177,9 @@
 
                         $("#img-subir-pins").hide();
                         $(".img-pines-amapear").attr("src",foto_src);
-                        $("#map").css("width","100%");
+                        // $("#map").css("width","100%");
+                        $("#map").css("width","700px");
+                        $("#map").css("margin","auto");//para que este centrado
                         $("#eliminar-img-flotante").show();
                         $("#anadir-productos-btn").show();
 
