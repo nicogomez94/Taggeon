@@ -158,14 +158,6 @@
     }
 }
 
-@media (min-width: 992px) {
-
-}
-
-
-@media (min-width: 1200px) {
-}
-
 /**/
 @media screen and (max-width: 400px) {
     .titulo-col{
@@ -1495,8 +1487,8 @@ input:focus ~ .highlight {
     position: absolute;
 }
 .fixed-grid-lr{
-    /*position: fixed;
-    width: 24%;*/
+    position: fixed;
+    width: 24%;
 }
 .row.test-row {
     /* padding: 13px 13px 13px 20px; */
@@ -1710,17 +1702,18 @@ input:focus ~ .highlight {
     z-index: 999;
     top: 50%;
     color: #fff;
-    font-size: 40px;
+    font-size: 30px;
     cursor: pointer;
     text-shadow: 0px 0px 3px #585858;
 }
 .prev-cat{
-    /* left: 285px; */
-    left: 20%;  
+    left: 24.5%;
+    top: 11.5%;
 }
 .next-cat{
     /* right: 285px; */
-    right: 20%; 
+    right: 24.6%;
+    top: 11.5%;
 }
 .up_relleno {
     height: 20px;
@@ -2301,4 +2294,26 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .col-home-centro{
     /* width: 700px; */
     width: 50%;
+    flex-grow: 0;
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    .responsive{
+        display: none;
+    }
+    .fixed-grid-lr {
+        position: fixed;
+        width: 18%;
+    }
+    .col-home-centro{
+        width: 70%;
+    }
+}
+@media (max-width: 768px){
+    .col-home-izq, .col-home-der {
+        visibility: hidden;
+    }
+    .col-home-centro{
+        width: 90%;
+    }
 }
