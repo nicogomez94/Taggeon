@@ -702,4 +702,36 @@ SQL;
         return false;
     }
 
+    public function cambiarEstadoCarritoMayor3(array $data)
+    {
+        $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+        $idDB = Database::escape($id);
+        $estado = isset($data["estado"]) ? $data["estado"] : '';
+        $estadoDB = Database::escape($estado);
+        $usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioDB = Database::escape($usuario);
+
+        $sql = <<<SQL
+UPDATE
+    `carrito`
+SET
+    `usuario_editar` = $usuarioDB,
+    `estado` = $estadoDB
+WHERE
+`id` = $idDB AND
+`usuario_alta` = $usuarioDB AND
+`estado` > 2
+SQL;
+
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $this->setStatus("OK");
+            return true;
+        }
+
+        return false;
+    }
+
 }

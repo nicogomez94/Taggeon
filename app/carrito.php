@@ -14,9 +14,13 @@ if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar|pago|finalizar2)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar|pago|finalizar2|finalizar4|finalizar5)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarCarrito($_POST);
+        } else if ($var_accion == 'finalizar5') {
+            $objPrincipalManager->cambiarEstadoMayor3($_POST,5);
+        } else if ($var_accion == 'finalizar4') {
+            $objPrincipalManager->cambiarEstadoMayor3($_POST,4);
         } else if ($var_accion == 'pago') {
             $objPrincipalManager->finalizarPago($_POST);
         } else if ($var_accion == 'finalizar2') {

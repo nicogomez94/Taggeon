@@ -333,6 +333,36 @@ SQL;
 		}
 	}
 
+	public function cambiarEstadoMayor3(array $data,$estado)
+	{
+		$data["id_carrito"] = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+
+		if (!is_numeric($data["id_carrito"])){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id de carrito es incorrecto.");
+			return false;
+		}
+
+		if ($data["id_carrito"] <= 0){
+			$this->setStatus("ERROR");
+			$this->setMsj("No se encontro el carrito.");
+			return false;
+ 		}
+
+		if ($this->validarId($idCarrito) === false){
+			return false;
+		}
+		$data["estado"] = $estado;
+
+		if ($this->carritoDao->cambiarEstadoCarritoMayor3($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->carritoDao->getMsj());
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->carritoDao->getMsj());
+		}
+	}
+
 
 	private function validarId ($param){
 		$this->setStatus("error");
