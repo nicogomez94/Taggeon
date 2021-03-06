@@ -21,7 +21,7 @@ $(document).ready(function(){
                //dibujo la cat arriba de todo
                var objCat = arrCat.find(o => o.id === cat_ampliar_home) || "";
                var nameCat = objCat.nombre || "";
-               $(".globo-cat").html(nameCat);
+               $(".title-cat").html(nameCat);
 
                //link NEXT cat
                var cat_ampliar_home_next = parseInt(cat_ampliar_home) + 1;
