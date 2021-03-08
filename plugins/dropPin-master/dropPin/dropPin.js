@@ -86,9 +86,16 @@
 				var x = ev.pageX - offset.left;
 				var y = ev.pageY - offset.top;
 
+
 				//parseado por mi par que x no hinchee
 				var xval = parseInt(x - options.xoffset);
 				var yval = parseInt(y - options.yoffset);
+
+				//para pasarlo a porcentaje -funca
+				//var position = $(thisObj).position();
+				//var xval = xval/$(window).width() * 100;
+				//var yval = yval/$(window).height() *100;
+				
 
 				// var imgC = $('<img class="pin '+yval+"-"+xval+'">');
 				var imgC = $('<img class="pin '+yval+"-"+xval+'">');
