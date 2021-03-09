@@ -1649,7 +1649,7 @@ input:focus ~ .highlight {
     margin-right: 5px;
 }
 .productos-titulo-public{
-    font-size: 0.6em;
+    font-size: 1em;
 }
 .items-carrusel {
     width: 90%;
@@ -2045,6 +2045,9 @@ input:focus ~ .highlight {
 }
 .productos-public{
     display: none;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d6d6d6;
 }
 .busq-prod-subir-public{
     width: 90% !important;/*para que no se salga la cruz*/

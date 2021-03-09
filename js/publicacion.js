@@ -53,22 +53,15 @@ $(document).ready(function(){
                             '<div class="bodyimg-public-container bodyimg-public-container-'+i+'">'+
                                //'<div><img src="../../img/arrrrte.jpg" alt=""></div>'+
                                   '<img class="imagen-public-'+imagen_id+'" src="'+foto_src+'" alt="">'+
-                                  '<div class="tag-container tag-container-'+i+'">'+
-                            '</div>'+
-                            '<div class="info-public">'+
-                               '<div class="social-public">'+
-                                     '<span><i class="fas fa-heart"></i></span>'+
-                                     '<span><i class="fas fa-comment-dots"></i></span>'+
-                                     '<span><i class="fas fa-paper-plane"></i></span>'+
-                               '</div>'+
-                            '<div class="datos-public">'+
-                               '<div class="info-titulo-public">'+nombre_public+'</div>'+
-                               '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
-                               '<div class="info-descr-public">'+descr_public+'</div>'+
-                            '</div>'+
-                               '<hr>'+
-                            '<div class="productos-public productos-public-'+i+'">'+
-                               '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
+                                  '<div class="tag-container tag-container-'+i+'"></div>'+
+
+                              // '<hr>'+
+                            
+                              '</div>'+
+
+
+                              '<div class="productos-public productos-public-'+i+'">'+
+                               '<div class="productos-titulo-public">Productos en esta publicacion:</div>'+
                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
                                      '<div class="splide splide-prod-tag-'+i+'">'+
                                         '<div class="splide__track">'+
@@ -84,6 +77,18 @@ $(document).ready(function(){
                                        '</div>'+
                                     '</div>'+
                                  '</div>'+
+
+
+                              '<div class="info-public">'+
+                                 '<div class="social-public">'+
+                                       '<span><i class="fas fa-heart"></i></span>'+
+                                       '<span><i class="fas fa-comment-dots"></i></span>'+
+                                       '<span><i class="fas fa-paper-plane"></i></span>'+
+                                 '</div>'+
+                                 '<div class="datos-public">'+
+                                 '<div class="info-titulo-public">'+nombre_public+'</div>'+
+                                 '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
+                                 '<div class="info-descr-public">'+descr_public+'</div>'+
                               '</div>'+
                            '</div>'
 
@@ -232,14 +237,15 @@ $(document).ready(function(){
                   }
             
                   //dibujo tags
-                  var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'; left: '+xcoord+'">'+
+                  var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'%; left: '+xcoord+'%">'+
                               '<span><i class="fas fa-tags"></i></span></div>';
                   
                   $(".tag-container-"+i).append(tag_html);
 
                   //click en tag
                   $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
-                     var prod_public = $(this).parent().parent().find(".productos-public");
+                     var prod_public = $(this).parent().parent().parent().find(".productos-public");
+                     console.log($(this).parent().parent().parent())
                      prod_public.toggle(100);
                      //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
                   });
