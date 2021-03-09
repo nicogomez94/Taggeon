@@ -2011,10 +2011,18 @@ input:focus ~ .highlight {
     background-color: rgb(255 255 255);
     padding: 25px;
     z-index: 999;
-    background: transparent;
+    background: #7070702c;
     margin-left: -13px;
-    margin-top: -3px;
+    margin-top: -13px;
     cursor: pointer;
+}
+.click-protector-cont{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.contenedor-content{
+    position: relative;
 }
 .popup-producto{
     cursor: pointer;
