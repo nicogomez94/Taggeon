@@ -88,7 +88,7 @@ $(document).ready(function(){
                                  '<div class="datos-public">'+
                                  '<div class="info-titulo-public">'+nombre_public+'</div>'+
                                  '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
-                                 '<div class="info-descr-public">'+descr_public+'</div>'+
+                                 '<div class="info-descr-public">'+descr_public+'</div><hr>'+
                               '</div>'+
                            '</div>'
 

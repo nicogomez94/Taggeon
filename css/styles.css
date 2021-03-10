@@ -2011,7 +2011,7 @@ input:focus ~ .highlight {
     background-color: rgb(255 255 255);
     padding: 25px;
     z-index: 999;
-    background: #7070702c;
+    background: transparent;
     margin-left: -13px;
     margin-top: -13px;
     cursor: pointer;
