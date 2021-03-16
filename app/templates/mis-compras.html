@@ -2,8 +2,8 @@
 
 <div class="container container-compras">
    <div class="bc-container">
-      <span class="bc-origin">Compras</span>
-      <span class="bc-separador">></span>
+      <span class="bc-origin">Mi Perfil</span>
+      <span class="bc-separador"><i class="fas fa-angle-right"></i></span>
       <span class="bc-child">Mis Compras</span>
    </div>
    <div class="inner-compras container-sorteable">
@@ -18,7 +18,7 @@
          &nbsp;&nbsp;
          <span>
             <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
-            <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
+            <i class="fas fa-times limpiar-buscador" style="display: none;"></i>
          </span>
          
          <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
@@ -91,27 +91,9 @@
    <script src="js/publicacion.js?time=03022021-1656"></script>
 <!-- <script src="js/popper.js"></script> -->
 
-   <script src="js/func.js?time=150321-2139"></script>
+   <script src="js/func.js?time=160321-1633"></script>
    <script>
       $(document).ready(function(){
-
-      
-         //ordenar
-         $("#ordenar").change(function(){
-            $("select option:selected").each(function() {
-               var curr = $(this).val();
-               var path = window.location.pathname.split("/")[1];
-               console.log("ad 1")
-               if(curr == "recientes"){
-                  console.log("ad 2")
-                  sortProducto('recientes','sort-nombre',path);
-               }else if(curr == "titulo"){
-                  console.log("ad 3")
-                  sortProducto('titulo-producto','sort-nombre',path);
-               }
-            
-            });
-         });
       
          var sizeCompras = jsonData.compras.length;
       

@@ -806,28 +806,50 @@ $("#buscador-titulo").click(function(){
 
     var value = $("#buscador-titulo-input").val();
     var cant_elem= $(".producto:not('.header-productos')").length;//sin header-prod
-    var cant_json = jsonData.productos.length;
-
-    console.log(cant_elem)
+    //var cant_json = jsonData.productos.length;
+    var path = window.location.pathname;
 
     if(value != ''){
 
         var len = $(".titulo-producto").length;
 
+        var hideMatcheo = $(".titulo-producto:not(:contains("+value+"))").parent().parent();
+        var appendMatcheo = $(".titulo-producto:contains("+value+")").parent().parent();
+
         if(len==0){
             var html_nada = '<div class="html-nada">No se han encontrado resultados.</div>';
             $("#listado-mis-productos").html(html_nada);
+        }else if(path=="/ampliar-producto.html"){
+            hideMatcheo.hide();
+            appendMatcheo.show();
         }else{
-            var hideMatcheo = $(".titulo-producto:not(:contains("+value+"))").parent().parent().hide();
-            var appendMatcheo = $(".titulo-producto:contains("+value+")").parent().parent().show();
+            hideMatcheo.parent().parent().hide();
+            appendMatcheo.parent().show();
         }
         // $("#listado-mis-productos").append(appendMatcheo);
         
-    }else{
+    }else if(path=="/ampliar-producto.html"){
         $(".titulo-producto").parent().parent().show();
+    }else{
+        console.log("erres")
+        $(".titulo-producto").parent().parent().parent().parent().show();
     }
     
 });
+
+//ordenar mis compras mis ventas
+$("#ordenar").change(function(){
+    $("select option:selected").each(function() {
+       var curr = $(this).val();
+       var path = window.location.pathname.split("/")[1];
+       if(curr == "recientes"){
+          sortProducto('recientes','sort-nombre',path);
+       }else if(curr == "titulo"){
+          sortProducto('titulo-producto','sort-nombre',path);
+       }
+    });
+ });
+
 
 /*cruz para limpiar buscador*/
 $(function(){
@@ -835,6 +857,7 @@ $(function(){
 
     var buscador = $("#buscador-titulo-input");
     var limpiar = $(".limpiar-buscador");
+    var path = window.location.pathname;
 
     buscador.keyup(function(){
         limpiar.show();
@@ -845,7 +868,11 @@ $(function(){
     });
 
     limpiar.click(function(){
-        $(".titulo-producto").parent().parent().show();
+        if(path=="/ampliar-producto.html"){
+            $(".titulo-producto").parent().parent().show();
+        }else{
+            $(".titulo-producto").parent().parent().parent().parent().show();
+        }
         limpiar.hide();
         buscador.val("");
     });
@@ -896,8 +923,6 @@ $("#subir-csv").on('submit', function() {
     reader.readAsDataURL($("#file-csv").get(0).files[0]);    
     return false;
 });
-
-
 
 
 

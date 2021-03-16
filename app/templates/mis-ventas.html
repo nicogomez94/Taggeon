@@ -1,11 +1,30 @@
 <div class="overlay-loading"></div>
 
 <div class="container container-ventas">
+   <div class="bc-container">
+      <span class="bc-origin">Mi Perfil</span>
+      <span class="bc-separador">></span>
+      <span class="bc-child">Mis Ventas</span>
+   </div>
    <div class="inner-ventas">
-      <br>
-      <br>
       <h1>Mis Ventas</h1>
       <hr>
+      <div class="filtros">
+         <select name="ordenar" id="ordenar">
+            <option value="" selected disabled hidden required>Ordenar por</option>
+            <option value="recientes">Mas recientes</option>
+            <option value="titulo">T&iacute;tulo</option>
+         </select>
+         &nbsp;&nbsp;
+         <span>
+            <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
+            <i class="fas fa-times limpiar-buscador" style="display: none;"></i>
+         </span>
+         
+         <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
+      </div>
+      <hr>
+
 
          <!-- ventas hardcodeado -->
          <!--<div class="row producto venta text-left">
@@ -44,9 +63,13 @@
 
 
 
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <!-- <script src="js/popper.js"></script> -->
+<script src="js/jquery-3.5.1.js"></script>
+<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+   <script src="js/publicacion.js?time=03022021-1656"></script>
+<!-- <script src="js/popper.js"></script> -->
+
+   <script src="js/func.js?time=160321-1633"></script>
 
 <script>
 $(document).ready(function(){
@@ -94,7 +117,9 @@ $(document).ready(function(){
                $(".inner-ventas").append(ventas_html);
         }
     }
-      
+   
+    //override css main style
+    $(".titulo-producto").css("line-height","initial");
 });
 </script>
    <!-- <script src="js/publicacion.js?time=271220-2243"></script> -->
