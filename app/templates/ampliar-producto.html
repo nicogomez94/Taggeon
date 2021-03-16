@@ -70,7 +70,7 @@
       
       <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
    </div>
-      <div id="listado-mis-productos" style="margin-top: 50px">
+      <div id="listado-mis-productos" class="container-sorteable" style="margin-top: 50px">
          <div class="header-productos producto row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
                <!-- <span class="titulo-header-producto">Imagen</span> -->
@@ -80,7 +80,7 @@
                   <span class="fa-stack icon-sort" style="width: 1em;vertical-align: sub;">
                      <i class="fas fa-sort-down"></i>
                   </span>
-                  <span class="sort-nombre" data-order="desc" onclick="sortProducto('titulo-producto','sort-nombre')">Nombre</span>
+                  <span class="sort-nombre" data-order="desc" onclick="sortProducto('titulo-producto','sort-nombre', 'ampliar-producto.html')">Nombre</span>
                </span>
             </div>
 
@@ -89,7 +89,7 @@
                   <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
                      <i class="fas fa-sort-down"></i>
                   </span>
-                  <span class="sort-precio" data-order="desc" onclick="sortProducto('precio-producto','sort-precio')">Precio</span>
+                  <span class="sort-precio" data-order="desc" onclick="sortProducto('precio-producto','sort-precio', 'ampliar-producto.html')">Precio</span>
                </span>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-2">
@@ -97,7 +97,7 @@
                   <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
                      <i class="fas fa-sort-down"></i>
                   </span>
-                  <span class="sort-stock" data-order="desc" onclick="sortProducto('stock-producto','sort-stock')">Stock</span>
+                  <span class="sort-stock" data-order="desc" onclick="sortProducto('stock-producto','sort-stock', 'ampliar-producto.html')">Stock</span>
                </span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
@@ -151,7 +151,6 @@
 <script>
    var jsonData = {json};
 </script>
-
 
 
    <script src="js/jquery-3.5.1.js"></script>

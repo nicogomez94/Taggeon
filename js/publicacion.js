@@ -60,7 +60,7 @@ $(document).ready(function(){
                               '</div>'+
 
 
-                              '<div class="productos-public productos-public-'+i+'">'+
+                              '<div id="ancla-'+i+'" class="productos-public productos-public-'+i+'">'+
                                '<div class="productos-titulo-public">Productos en esta publicacion:</div>'+
                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
                                      '<div class="splide splide-prod-tag-'+i+'">'+
@@ -111,7 +111,6 @@ $(document).ready(function(){
 
             for(var x=0; x<producto_parse_size; x++){
                var id_prod = producto_parse[x].name;
-               console.log("id_prod -->"+id_prod)
                var coords = producto_parse[x].value;
                var ycoord = coords.split("-")[0];
                var xcoord = coords.split("-")[1];
@@ -131,7 +130,6 @@ $(document).ready(function(){
                      var arr2 = jsonData.productos;
                      var index = arr2.findIndex(o => o.id === id_prod);
                      //var test = Object.values(jsonData.productos)[x];
-                     console.log("index--> "+index)
                      var nombre_prod = jsonData.productos[index].titulo;
                      var precio_prod = jsonData.productos[index].precio;
                      var marca_prod = jsonData.productos[index].marca;
@@ -237,7 +235,7 @@ $(document).ready(function(){
                   }
             
                   //dibujo tags
-                  var tag_html = '<div class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'%; left: '+xcoord+'%">'+
+                  var tag_html = '<div href="ancla-'+i+'" class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'%; left: '+xcoord+'%">'+
                               '<span><i class="fas fa-tags"></i></span></div>';
                   
                   $(".tag-container-"+i).append(tag_html);
@@ -245,8 +243,10 @@ $(document).ready(function(){
                   //click en tag
                   $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
                      var prod_public = $(this).parent().parent().parent().find(".productos-public");
-                     console.log($(this).parent().parent().parent())
                      prod_public.toggle(100);
+                     $('html,body').animate({
+                        scrollTop: prod_public.offset().top - 130
+                     }, 200);
                      //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
                   });
           

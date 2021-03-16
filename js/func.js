@@ -968,14 +968,15 @@ function actualizarPantallaEditarUsuario () {
             
 }
 
-function sortProducto(paramTitulo, paramSort){
+function sortProducto(paramTitulo, paramSort, page){
 
     $(".icon-sort").show();
+
     
     var ordenar = function(a, b) {
         if(paramTitulo=='titulo-producto'){//para letras   
             return a.innerHTML.toLowerCase().localeCompare(b.innerHTML.toLowerCase());
-        }else if(paramTitulo=='precio-producto' || paramTitulo=='stock-producto'){ //para nros
+        }else if(paramTitulo=='precio-producto' || paramTitulo=='stock-producto' || paramTitulo=='recientes'){ //para nros
             return a.innerHTML.toLowerCase() - b.innerHTML.toLowerCase();
         }
     }
@@ -984,22 +985,29 @@ function sortProducto(paramTitulo, paramSort){
     var order = $("."+paramSort).data('order');
 
     if(order == "asc"){
+        console.log("asc")
         var lista = $("."+paramTitulo).get();
         lista.reverse(ordenar);
-
         $("."+paramSort).data('order', "desc");
         $(".icon-sort").html('<i class="fas fa-sort-down"></i>');
     }else{
+        console.log("desc")
         var lista = $("."+paramTitulo).get();
         lista.sort(ordenar);
-
         $("."+paramSort).data('order', "asc");
         $(".icon-sort").html('<i class="fas fa-sort-up"></i>');
     }
     
 
     for (var i=0; i<lista.length; i++) {
-        $('#listado-mis-productos').append(lista[i].parentNode.parentNode);
+        if(page == "mis-compras.html"){
+            $('.container-sorteable').append(lista[i].parentNode.parentNode.parentNode.parentNode);
+        }else if(page == "ampliar-producto.html"){
+            $('.container-sorteable').append(lista[i].parentNode.parentNode);
+        }else{
+            alert("Ha ocurrido un error. Recargue la p&aacute;gina")
+        }
+        
     }
 }
 
