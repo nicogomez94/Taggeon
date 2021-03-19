@@ -231,6 +231,7 @@ $(document).ready(function(){
                      var foto_prod_rel = jsonData.productos[y].foto;
                      var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
                      var html_related = '<li class="splide__slide"><img data-toggle="modal" src="'+foto_src_prod_rel+'"></li>';
+                     //encontrar el id de catdel prod y suar ese y fue
                      $(".splide_list_related").append(html_related);
                   }
             
@@ -308,7 +309,6 @@ $(".modal").on("click", ".btn-carrito", function(){
            }
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
-            alert("ERROR"+response);
             console.log(dat);
         }
    });
@@ -350,7 +350,6 @@ $(".modal").on("click", ".btn-carrito", function(){
            }
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
-            alert("ERROR"+response);
             alert(data);
         }
     });
@@ -381,15 +380,12 @@ $("#finalizar-orden").submit(function(){
               console.log("REDIRECT-->"+dataM);
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              alert("OK-->"+dataJ+"/"+dataM);
               window.location.replace("/cobrar-compra.html?id="+id_carrito);
            }else{
-              alert("ELSE-->"+dataJ+"/"+dataM);
               //window.location.replace("/ampliar-carrito.html");
            }
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
-            alert("ERROR"+response);
             alert(data);
         }
     });
@@ -417,20 +413,15 @@ $("#realizar-compra").submit(function(){
            var dataJ = JSON.parse(data).status;
            var dataM = JSON.parse(data).mensaje;
           if (dataJ == 'REDIRECT'){
-            alert("redirrect") 
             console.log("REDIRECT-->"+dataM);
-             
              //window.location.replace(dataM);														
           }else if(dataJ == 'OK'){
-             alert("OK-->"+dataJ+"/"+dataM);
              window.location.replace("/mis-compras.html");
           }else{
-             alert("ELSE-->"+dataJ+"/"+dataM);
              //window.location.replace("/ampliar-carrito.html");
           }
        },
        error: function( data, jqXhr, textStatus, errorThrown ){
-           alert("ERROR"+response);
            alert(data);
        }
    });
