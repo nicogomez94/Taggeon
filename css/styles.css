@@ -150,6 +150,9 @@
         margin-top: 10px;
         float: none !important;
     }
+    .mail-container{
+        width: 90%;
+    }
 }
 
 @media (min-width: 768px) {
@@ -2397,3 +2400,31 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .bc-child,.bc-separador{
     font-weight: 600;
 }
+
+/*MP*/
+.mp__detalles_comprador, .mp__detalles_tarjeta{
+    padding: 10px;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 0px 0px 1px #d9d9d9;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.mp__detalles_tarjeta{
+    padding: 30px;
+}
+.mp__detalles_tarjeta>div{
+    margin-bottom: 20px;
+}
+.mp__tipo-doc{
+    padding: 10px;
+}
+.mp__tipo-doc-izq, .mp__tipo-doc-der{
+    display: inline-block;
+}
+.mp__tipo-doc-izq{
+    vertical-align: bottom;
+}
+.mp__tipo-doc-der{
+    vertical-align: baseline;
+}
+

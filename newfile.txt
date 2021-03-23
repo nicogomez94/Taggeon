@@ -1,0 +1,40 @@
+inicio
+inicio
+inicio
+
+
+nada
+nada
+nada
+Array
+(
+    [pepe] => rompe
+)
+
+Sin POSTArray
+(
+    [pepe] => rompe
+)
+
+REQUEST: Array
+(
+    [pepe] => rompe
+)
+
+Sin POST
+GET: Array
+(
+    [pepe] => rompe
+)
+
+REQUEST: Array
+(
+    [pepe] => rompe
+)
+
+Sin POST
+GET: Array
+(
+    [pepe] => rompe
+)
+

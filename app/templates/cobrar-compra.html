@@ -73,7 +73,7 @@
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 </head>
 <body style="background-color: rgb(216, 216, 216);margin: 0;padding: 0;">
-    <div class="mail-container" style="width: 70%;margin: 30px auto 10px auto;box-shadow: 4px 4px 0px #b3b3b3;">
+    <div class="mail-container" style="width: 50%;margin: 30px auto 10px auto;box-shadow: 4px 4px 0px #b3b3b3;">
         <div class="mail-upper" style="padding: 20px;background-color: #cebd8b;text-align: center;">
             <div class="logo-taggeon"></div>
             <div class="orden-recibida" style="padding: 30px;position: relative;">
@@ -105,30 +105,31 @@
             <hr>
             
 
+        <!-- <form id="paymentForm"> -->
         <form action="/mp/process_payment.php" method="post" id="paymentForm">
             <h3>Detalles del comprador</h3>
-              <div>
+              <div class="mp__detalles_comprador">
                 <div class="group group-form-checkout">
                     <input id="email" name="email" type="text" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
-                    <label class="label-text-subir-producto" style="padding-left: 15px;">E-mail</label>                        
+                    <label class="label-text-subir-producto" style="padding-left: 15px;" >E-mail</label>                        
                 </div>
-                <div class="group group-form-checkout">
-                    <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label for="docNumber">Número de documento</label>
-                </div>
-                <div>
-                    <select id="docType" name="docType" data-checkout="docType" type="text"></select>
-                    <label style="padding-left: 15px;" for="docType">Tipo de documento</label>
+                <div class="mp__tipo-doc">
+                    <div class="mp__tipo-doc-izq">
+                        <label style="padding-left: 15px;" for="docType">Tipo de documento</label><br>
+                        <select style="margin: 15px;" id="docType" name="docType" data-checkout="docType" type="text"></select>
+                    </div>
+                    <div class="group group-form-checkout mp__tipo-doc-der">
+                        <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" required value="38783978">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="label-text-subir-producto" for="docNumber">Número de documento</label>
+                    </div>
                 </div>
               </div>
-              <br>
             <h3>Detalles de la tarjeta</h3>
-            <br>
-              <div>
+              <div class="mp__detalles_tarjeta">
                 <div>
                   <label for="cardholderName">Titular de la tarjeta</label>
                   <input id="cardholderName" data-checkout="cardholderName" type="text">
@@ -139,12 +140,12 @@
                     <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth"
                       onselectstart="return false" onpaste="return false"
                       oncopy="return false" oncut="return false"
-                      ondrag="return false" ondrop="return false" autocomplete=off>
+                      ondrag="return false" ondrop="return false" autocomplete=off value="11">
                     <span class="date-separator">/</span>
                     <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear"
                       onselectstart="return false" onpaste="return false"
                       oncopy="return false" oncut="return false"
-                      ondrag="return false" ondrop="return false" autocomplete=off>
+                      ondrag="return false" ondrop="return false" autocomplete=off value="25">
                   </div>
                 </div>
                 <div>
@@ -152,15 +153,14 @@
                   <input type="text" id="cardNumber" data-checkout="cardNumber"
                     onselectstart="return false" onpaste="return false"
                     oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off>
+                    ondrag="return false" ondrop="return false" autocomplete=off value="37118030325752">
                 </div>
-                <br>
                 <div>
                   <label for="securityCode">Código de seguridad</label>
                   <input style="width: 10%;" id="securityCode" data-checkout="securityCode" type="text"
                     onselectstart="return false" onpaste="return false"
                     oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off>
+                    ondrag="return false" ondrop="return false" autocomplete=off value="1234">
                 </div>
                 <div id="issuerInput">
                   <label for="issuer">Banco emisor</label>
@@ -175,16 +175,28 @@
                   <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
                   <input type="hidden" name="description" id="description" />
                   <br>
-                  <button type="submit">Pagar</button>
+                  <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                    Realizar Compra
+                    </button>
                   <br>
                 </div>
             </div>
           </form>
           <hr>
+
+          <div>
+            <a class="buy-with-crypto"
+               href="https://commerce.coinbase.com/checkout/d70ac7e4-9af8-48f6-9427-8f143f39f574">
+              Comprar con criptomoneda
+            </a>
+            <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807">
+            </script>
+          </div>
+          
             <!-- <form id="realizar-compra">
-            <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
-                Realizar Compra
-            </button>
+                <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                    Realizar Compra
+                </button>
             <img style="float: right; width: 120px;" src="https://calim.com.ar/wp-content/uploads/2020/01/mercado-libre-mercado-pago-percepciones.png" alt="">
             </form> -->
         </div>
@@ -198,7 +210,7 @@
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <script src="js/func.js?time=221220-1647"></script>
    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-   <script src="js/publicacion.js?time=03022021-1656"></script>
+   <script src="js/publicacion.js?time=190321-2055"></script>
 <!-- <script src="js/popper.js"></script> -->
 
 <script>

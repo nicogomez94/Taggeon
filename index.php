@@ -10,8 +10,8 @@ $sesionManager = new SesionManagerImpl();
 
 $perfil = "";
 $url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : ""; 
-
-
+$arrayUrl = explode('?', $url, 2);
+$url = $arrayUrl[0];
 $patron = '/(html|htm|\/|\.html\?.+)$/';
 if (preg_match($patron, $url)){
 	if ($sesionManager->validar(array('picker','seller','admin','superadmin','editor'))){

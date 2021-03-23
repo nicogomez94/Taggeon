@@ -14,6 +14,7 @@ $(document).ready(function(){
             var cat_ampliar_home = jsonData.cat || 0;
             var arrCat = jsonData.categoria || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
+            var winLoc = window.location.pathname || "";
             //if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat//si viene por mis-public lo igualo asi no putea
 
             if(cat_ampliar_home == id_public_cat){
@@ -42,7 +43,7 @@ $(document).ready(function(){
                
 
 
-            var html_public = '<div class="public-ampliar public-actual test2">'+
+            var html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
                                '<div class="header-public">'+
                                   '<span class="img-perfil-public">'+
                                      '<img src="" alt="img-perfil">'+
@@ -61,7 +62,7 @@ $(document).ready(function(){
 
 
                               '<div id="ancla-'+i+'" class="productos-public productos-public-'+i+'">'+
-                               '<div class="productos-titulo-public">Productos en esta publicacion:</div>'+
+                               '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
                                      '<div class="splide splide-prod-tag-'+i+'">'+
                                         '<div class="splide__track">'+
@@ -94,7 +95,13 @@ $(document).ready(function(){
 
                            
             $(".insert-public").append(html_public);
-        
+            
+            
+            
+            
+            //lo mando a la public seleccionada
+            //winLoc.split("=")[1].split("&")[0];
+            //document.location.href="#ancla-desde-home-"+winLoc;
 
             //imgperfil sacada del menu top
             var img_perfil = $(".img-perfil-usuario-drop").attr("src");
@@ -152,34 +159,35 @@ $(document).ready(function(){
                                  '<div class="img-modal-prod"><img style="width: 100%;" src="'+foto_src_prod+'" alt="foto_src_prod"></div>'+
                               '<hr>'+
                               '<div>'+
-                              '<table class="tg" style="table-layout: fixed; width: 282px">'+
-                              '<colgroup>'+
-                              '<col style="width: 153px">'+
-                              '<col style="width: 129px">'+
-                              '</colgroup>'+
-                              '<tbody>'+
-                              '<tr>'+
-                                 '<td class="tg-9f3l">ID Producto</td>'+
-                                 '<td class="tg-wo29">'+id_prod_json+'</td>'+
-                                 '</tr>'+
+                                 '<h5 style="text-align:left">Ficha T&eacute;cnica</h5>'+
+                                 '<table class="tg" style="table-layout: fixed; width: 282px">'+
+                                 '<colgroup>'+
+                                 '<col style="width: 153px">'+
+                                 '<col style="width: 129px">'+
+                                 '</colgroup>'+
+                                 '<tbody>'+
                                  '<tr>'+
-                                 '<td class="tg-9f3l">Marca</td>'+
-                                 '<td class="tg-wo29">'+marca_prod+'</td>'+
+                                    '<td class="tg-9f3l">ID Producto</td>'+
+                                    '<td class="tg-wo29">'+id_prod_json+'</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td class="tg-9f3l">Marca</td>'+
+                                    '<td class="tg-wo29">'+marca_prod+'</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td class="tg-9f3l">Color</td>'+
+                                    '<td class="tg-wo29">'+color_prod+'</td>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td class="tg-9f3l">Categoria</td>'+
+                                    '<td class="tg-wo29">21</td>'+//hardcodeado
+                                    '</tr>'+
+                                    '<tr>'+
+                                    '<td class="tg-9f3l">Rubro</td>'+
+                                    '<td class="tg-z6p2">15</td>'+//hardcodeado
                                  '</tr>'+
-                                 '<tr>'+
-                                 '<td class="tg-9f3l">Color</td>'+
-                                 '<td class="tg-wo29">'+color_prod+'</td>'+
-                                 '</tr>'+
-                                 '<tr>'+
-                                 '<td class="tg-9f3l">Categoria</td>'+
-                                 '<td class="tg-wo29">21</td>'+//hardcodeado
-                                 '</tr>'+
-                                 '<tr>'+
-                                 '<td class="tg-9f3l">Rubro</td>'+
-                                 '<td class="tg-z6p2">15</td>'+//hardcodeado
-                              '</tr>'+
-                              '</tbody>'+
-                              '</table>'+
+                                 '</tbody>'+
+                                 '</table>'+
                               '</div></div>'+
                               '<div class="col-lg-5 col-datos-producto">'+
                               '<div>'+
@@ -220,20 +228,25 @@ $(document).ready(function(){
          
                            $("body").append(modal_html);
 
+                           //related (por ahora traigo todos los prod)
+                           for(var y=0; y<allprod.length; y++){
+
+                              var obj = allprod.find(o => o.marca === "Gucci");
+                              console.log(obj.marca)
+
+                              var foto_prod_rel = jsonData.productos[y].foto;
+                              var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
+                              var html_related = '<li class="splide__slide"><img data-toggle="modal" src="'+foto_src_prod_rel+'"></li>';
+                              //encontrar el id de catdel prod y suar ese y fue
+                              $(".splide_list_related").append(html_related);
+                           }
                      
                   }
                 
                   var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
                   $(".splide__list__"+i).append(splide_fotos);
 
-                  //related (por ahora traigo todos los prod)
-                  for(var y=0; y<allprod.length; y++){
-                     var foto_prod_rel = jsonData.productos[y].foto;
-                     var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
-                     var html_related = '<li class="splide__slide"><img data-toggle="modal" src="'+foto_src_prod_rel+'"></li>';
-                     //encontrar el id de catdel prod y suar ese y fue
-                     $(".splide_list_related").append(html_related);
-                  }
+                  
             
                   //dibujo tags
                   var tag_html = '<div href="ancla-'+i+'" class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'%; left: '+xcoord+'%">'+
@@ -269,9 +282,17 @@ $(document).ready(function(){
         }//fin for principal
 
        
+   }//fin if principal
+
+
+   //lo mando a la public que se selecciono desde home
+   if(winLoc=="/ampliar-publicacion-home.html"){
+      console.log(winLoc)
+      var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
+      $('html,body').animate({
+         scrollTop: $("#ancla-desde-home-"+WinLocSplit).offset().top - 80
+      }, 0);
    }
-
-
 
 ////////////////CARRITO
 
@@ -393,39 +414,48 @@ $("#finalizar-orden").submit(function(){
 });
 
 ///realizar/finalizar compra
-$("#realizar-compra").submit(function(){
+$("#paymentForm").submit(function(){
 
-   var id_carrito = jsonData.compras[0].id_carrito;
+   //var id_carrito = jsonData.compras[0].id_carrito;
 
    var dataForden = new FormData($(this)[0]);
-   dataForden.append("id_carrito",id_carrito);
+   //dataForden.append("id_carrito",id_carrito);
    dataForden.append("accion","pago");
+   dataForden.append("accion","finalizar4");
+   console.log(dataForden)
 
    $.ajax({
-       url: '/app/carrito.php',
-       data: dataForden,
-       type: 'POST',
-       processData: false,
-       contentType: false,
-       //dataType: "json",
-       async: false,
-       success: function( data, textStatus, jQxhr ){
-           var dataJ = JSON.parse(data).status;
-           var dataM = JSON.parse(data).mensaje;
-          if (dataJ == 'REDIRECT'){
+      url: '/app/carrito.php',
+      data: dataForden,
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      //dataType: "json",
+      async: false,
+      success: function(data){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+         if (dataJ == 'REDIRECT'){
             console.log("REDIRECT-->"+dataM);
-             //window.location.replace(dataM);														
-          }else if(dataJ == 'OK'){
-             window.location.replace("/mis-compras.html");
-          }else{
-             //window.location.replace("/ampliar-carrito.html");
-          }
-       },
-       error: function( data, jqXhr, textStatus, errorThrown ){
-           alert(data);
-       }
+            //window.location.replace(dataM);														
+         }else if(dataJ == 'OK'){
+            
+            console.log(data)
+            alert("todod")
+            window.location.replace("/mis-compras.html");
+         }else{
+            console.log(data)
+            alert("todod")
+            window.location.replace("/mis-compras.html");
+            //window.location.replace("/ampliar-carrito.html");
+         }
+      },
+      error: function( data, jqXhr, textStatus, errorThrown ){
+      console.log(data)
+         alert(data);
+      }
    });
-   return false;
+   //return false;
 });
 
 
