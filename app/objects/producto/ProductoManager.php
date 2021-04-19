@@ -407,7 +407,7 @@ class  ProductoManager
 	}
 	private function validarDescr_producto($descr_producto)
 	{
-		if (!preg_match('/^.+$/i', $descr_producto)) {
+		if (!preg_match('/^.+$/im', $descr_producto)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("El campo descr_producto es incorrecto.");
 			return false;

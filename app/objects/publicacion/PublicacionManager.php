@@ -237,7 +237,7 @@ class  PublicacionManager
 			}
             private function validarPublicacion_descripcion($publicacion_descripcion)
             {
-                if (! preg_match('/^.+$/i', $publicacion_descripcion)){
+                if (! preg_match('/^.+$/im', $publicacion_descripcion)){
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo publicación es incorrecto.");
                     return false;
