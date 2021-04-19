@@ -6,8 +6,13 @@ if ($perfil=='seller'){
 
     $productoManager = new ProductoManager();
 
-
+    $tokenMercadoPago = 0;
+    if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
+        $tokenMercadoPago = 1;
+    }
+    
     $jsonData = array(
+        "tokenMercadoPago" => $tokenMercadoPago,
         "usuario" => $GLOBALS['sesionG']['usuario'],
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
@@ -18,13 +23,7 @@ if ($perfil=='seller'){
         
     );
     $jsonData = json_encode($jsonData);
-    $menuperfil = '';
-    if ($perfil == 'seller'){
-
-        $menuperfil = <<<STR
-        <a class="nav-item nav-link" href="/ampliar-producto.html">Mis Productos</a>
-STR;
-    }
+    $menuperfil = $GLOBALS['menuperfil'][$perfil];
     $contenido = new Template($nameTemplate);
 	$contenido->asigna_variables(array(
             "json" => $jsonData,

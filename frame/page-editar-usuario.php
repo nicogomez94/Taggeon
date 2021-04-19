@@ -8,7 +8,13 @@ if ($perfil=='picker' || $perfil == 'seller'){
     $id        = $GLOBALS['sesionG']['id'];
 
 	$contenido = new Template(" ");
+    $tokenMercadoPago = 0;
+    if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
+        $tokenMercadoPago = 1;
+    }
+    
 	$contenido->asigna_variables(array(
+            "tokenMercadoPago" => $tokenMercadoPago,
             "usuario" => $GLOBALS['sesionG']['usuario'],
             "nombre" => $GLOBALS['sesionG']['nombre'],
             "apellido" => $GLOBALS['sesionG']['apellido'],

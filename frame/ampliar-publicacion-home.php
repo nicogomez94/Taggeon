@@ -9,8 +9,14 @@ if ($perfil=='seller' || $perfil='picker'){
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
     $cat = (isset($_GET['cat']))  ? $_GET['cat'] : "";
+    $tokenMercadoPago = 0;
+    if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
+        $tokenMercadoPago = 1;
+    }
+    
     $jsonData = array(
-	"perfil"        => $perfil,
+        "tokenMercadoPago" => $tokenMercadoPago,
+	    "perfil"        => $perfil,
         "usuario"       => $GLOBALS['sesionG']['usuario'],
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],

@@ -200,9 +200,16 @@ SQL;
       	}			$telefono2 = $rowEmp['telefono2'];
       	if (empty($telefono2)){
 				$telefono2 = "";
-      	}			$telefono2Tipo = $rowEmp['telefono2Tipo'];
+      	}			
+		$telefono2Tipo = $rowEmp['telefono2Tipo'];
       	if (empty($telefono2Tipo)){
 				$telefono2Tipo = "";
+      	}
+
+
+		$tokenMercadoPago = $rowEmp['acces_token'];
+      	if (empty($tokenMercadoPago)){
+				$tokenMercadoPago = "";
       	}
 			$seller->setId($id);
 			$seller->setIdUsuario($idUsuario);
@@ -223,6 +230,8 @@ SQL;
 		$seller->setTelefono2Ciudad($telefono2Ciudad);
 		$seller->setTelefono2($telefono2);
 		$seller->setTelefono2Tipo($telefono2Tipo);
+		$seller->setTokenMercadoPago($tokenMercadoPago);
+
 
 		}
 		return $seller;
@@ -307,15 +316,19 @@ SQL;
       	}			$telefono2 = $rowEmp['telefono2'];
       	if (empty($telefono2)){
 				$telefono2 = "";
-      	}			$telefono2Tipo = $rowEmp['telefono2Tipo'];
+      	}			
+		$telefono2Tipo = $rowEmp['telefono2Tipo'];
       	if (empty($telefono2Tipo)){
 				$telefono2Tipo = "";
       	}
-			$seller->setId($id);
-			$seller->setIdUsuario($idUsuario);
-			$seller->setFechaAlta($fechaAlta);
-			$seller->setFechaUpdate($fechaUpdate);
-					$seller->setNombre($nombre);
+		
+
+
+		$seller->setId($id);
+		$seller->setIdUsuario($idUsuario);
+		$seller->setFechaAlta($fechaAlta);
+		$seller->setFechaUpdate($fechaUpdate);
+		$seller->setNombre($nombre);
 		$seller->setApellido($apellido);
 		$seller->setEmail($email);
 		$seller->setCiudad($ciudad);

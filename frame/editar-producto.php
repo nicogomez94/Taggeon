@@ -16,8 +16,13 @@ if ($perfil == 'seller') {
         Database::Connect()->close();
         exit;
     }
-
+    $tokenMercadoPago = 0;
+    if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
+        $tokenMercadoPago = 1;
+    }
+    
     $jsonData = array(
+        "tokenMercadoPago" => $tokenMercadoPago,
         "usuario" => $GLOBALS['sesionG']['usuario'],
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],

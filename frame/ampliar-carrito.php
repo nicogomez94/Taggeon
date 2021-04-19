@@ -10,8 +10,12 @@ if ($perfil=='seller' || $perfil=='picker'){
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
     $carritoManager = new CarritoManager();
-
+    $tokenMercadoPago = 0;
+    if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
+        $tokenMercadoPago = 1;
+    }
     $jsonData = array(
+        "tokenMercadoPago" => $tokenMercadoPago,
         "usuario"       => $GLOBALS['sesionG']['usuario'],
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],

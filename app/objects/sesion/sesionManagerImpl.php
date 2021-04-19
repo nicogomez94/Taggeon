@@ -100,9 +100,13 @@ class  SesionManagerImpl implements  SesionManager{
 					$GLOBALS['sesionG']['perfil'] = $perfil;
 					$GLOBALS['sesionG']['idUsuario'] = $idUsuario;
 					$GLOBALS['sesionG']['usuario'] = $usr;
+					if ($perfil == 'seller'){
+						$obj = new SellerManagerImpl();
+						$GLOBALS['sesionG']['tokenMercadoPago'] = $obj->get()->getTokenMercadoPago();
+					}
 					return true;
 				}
-			}
+		}
          $this->setStatus("error");
          $this->setMsj(getMsjConf('294'));
 		}else{

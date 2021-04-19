@@ -8,8 +8,14 @@ echo $contenidoStringHeader;
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
+    $tokenMercadoPago = 0;
+    if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
+        $tokenMercadoPago = 1;
+    }
+    
     $jsonData = array(
-	"perfil"        => $perfil,
+        "tokenMercadoPago" => $tokenMercadoPago,
+    	"perfil"        => $perfil,
         "usuario"       => $GLOBALS['sesionG']['usuario'],
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
