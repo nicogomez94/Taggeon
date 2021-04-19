@@ -10,6 +10,7 @@ if ($perfil=='seller' || $perfil=='picker'){
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
     }
+
     $jsonData = array(
         "tokenMercadoPago" => $tokenMercadoPago,
 	    "perfil"        => $perfil,

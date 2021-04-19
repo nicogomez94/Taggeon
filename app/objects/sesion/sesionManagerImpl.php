@@ -5,6 +5,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."sesion/sesionD
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."cliente/clienteManagerImpl.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seller/sellerManagerImpl.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seller/sellerDaoImpl.php");
 
 class  SesionManagerImpl implements  SesionManager{
 	private $sesionDao;
@@ -91,7 +92,6 @@ class  SesionManagerImpl implements  SesionManager{
 
 		$identify  = $sesion->getIdentify();
 		$identify2  =  md5($GLOBALS['configuration']['clave_identify'].$idUsuario.$perfil);
-		
 		if ($identify == $identify2){
 			foreach ($array as $c){
 				if ($perfil == $c){
@@ -101,8 +101,8 @@ class  SesionManagerImpl implements  SesionManager{
 					$GLOBALS['sesionG']['idUsuario'] = $idUsuario;
 					$GLOBALS['sesionG']['usuario'] = $usr;
 					if ($perfil == 'seller'){
-						$obj = new SellerManagerImpl();
-						$GLOBALS['sesionG']['tokenMercadoPago'] = $obj->get()->getTokenMercadoPago();
+						$obj = new SellerDaoImpl();
+						$GLOBALS['sesionG']['tokenMercadoPago'] = $obj->get($GLOBALS['sesionG']['id'],$idUsuario)->getTokenMercadoPago();
 					}
 					return true;
 				}

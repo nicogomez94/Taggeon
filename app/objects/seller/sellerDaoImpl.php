@@ -131,7 +131,6 @@ SQL;
 					`usuario_seller`.`idUsuario` = $idUsuarioBase AND
 					`usuario_seller`.`id` = $idBase
 SQL;
-
 		$resultado=Database::Connect()->query($sql);
 		
 		while($rowEmp=mysqli_fetch_array($resultado)){
