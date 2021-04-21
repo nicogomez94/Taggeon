@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
 <div class="overlay-prod"></div>
 
    <div class="container" id="contenedor-form-subir">
@@ -142,9 +144,7 @@
                var search = $(this).val();
 
                if(search != ""){
-                  if(jsonData.perfil == "picker"){
-                        var sizeProd = jsonData.productos.length;
-                     
+
                      var data_json = {
                         "input": search, 
                         "accion": "search",
@@ -157,36 +157,58 @@
                         data: data_json,
                         dataType: 'json',
                         success:function(response){
-                        
+
                            var resp_len = response.mensaje.length;
                            $(".splide__list").empty();
 
-                           for(var i=0; i<resp_len; i++){
+                           //if(jsonData.perfil == "Picker"){
+                              for(var i=0; i<resp_len; i++){
+   
+                                 var id_prod = response.mensaje[i].id;
+                                 var nombre_prod = response.mensaje[i].titulo;
+                                 var foto_prod = response.mensaje[i].foto;
+                                 var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
+   
+                                 /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
+   
+                                 var html = '<li class="splide__slide">'+
+                                             '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
+                                             '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
+                                 // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                                 $(".splide__list").append(html);
+   
+                              }
+                              new Splide( '.splide', {
+                                    perPage: 5,
+                                    rewind : true,
+                                    pagination: false
+                                 } ).mount();
 
-                              var id_prod = response.mensaje[i].id;
-                              var nombre_prod = response.mensaje[i].titulo;
-                              var foto_prod = response.mensaje[i].foto;
-                              var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
+                           
+                           //si es seller
+                           /*}else{
+                              
+                              for(var i=0; i<jsonData.productos.length; i++){
+   
+                                 var id_prod = jsonData.productos[i].id;
+                                 var nombre_prod = jsonData.productos[i].titulo;
+                                 var foto_prod = jsonData.productos[i].foto;
+                                 var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
 
-                              /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
+                                 var html = '<li class="splide__slide">'+
+                                             '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
+                                             '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
+                                 // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                                 $(".splide__list").append(html);
 
-                              var html = '<li class="splide__slide">'+
-                                          '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
-                                          '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
-                              // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-                              $(".splide__list").append(html);
+                              }
+                              new Splide( '.splide', {
+                                    perPage: 5,
+                                    rewind : true,
+                                    pagination: false
+                                 } ).mount();
+                           }*/
 
-                           }
-                           new Splide( '.splide', {
-                                 perPage: 5,
-                                 rewind : true,
-                                 pagination: false
-                              } ).mount();
-                           /*'<div class="splide splide-prod-tag-'+i+'">'+
-                                        '<div class="splide__track">'+
-                                           '<ul class="splide__list splide__list__'+i+'"></ul>'+
-                                        '</div>'+
-                                     '</div>'+*/
 
                         },
                         error:function(response){
@@ -194,28 +216,7 @@
                            alert("ERROR::"+response)
                         }
                      });
-                  }else{
-                     //PARA SELLER
-                     console.log()
-                     /*hardcodeadoooo*/
-                     var sizeProd = jsonData.productos.length;
-
-                     if(sizeProd>0){
-                        for(var i=0; i<sizeProd; i++){
-                           var id_prod = jsonData.productos[i].id;
-                           var nombre_prod = jsonData.productos[i].titulo;
-                           var html ='<div class="popup-producto popup-producto-'+i+'">'+
-                                       '<span class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</span>'+
-                                    '</div>';
-                           // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-                           $(".popup-prod-cont").append(html);
-                        }
-                     }
                   }
-               
-                  
-
-            }
 
          });
 
