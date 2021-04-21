@@ -15,7 +15,7 @@ $(document).ready(function(){
             var arrCat = jsonData.categoria || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             var winLoc = window.location.pathname || "";
-            //if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat//si viene por mis-public lo igualo asi no putea
+            if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat //si viene por mis-public lo igualo asi no putea
 
             if(cat_ampliar_home == id_public_cat){
 
