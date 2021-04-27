@@ -427,7 +427,7 @@ $('#iniciar_sesion').submit(function (e) {
     });
 
     /**modal casero editar para foto*/
-    $('#edit-btn').click(function(e) {
+    $('#edit-btn, .share-sm').click(function(e) {
         e.preventDefault();
 
         $(".overlay").show();
@@ -448,7 +448,7 @@ $('#iniciar_sesion').submit(function (e) {
         $("#limpiar-productos-btn").show();
         $("#anadir-productos-btn").hide();
         
-        $(".overlay-prod").show();
+        //$(".overlay-prod").show(); //TODO
         $("#eliminar-img-flotante").hide();
         
         $('#map').dropPin('dropMulti',{
@@ -728,7 +728,6 @@ if(typeof jsonData.productos != "undefined"){
                 var sizeRubro = jsonData.rubro.length;
                 
                 if(sizeRubro>0 && id_cat==id_cat_rubro){
-                    // console.log("entro al if")
                     for(var i=0; i<sizeRubro; i++){
                         var nombre_rubro = jsonData.rubro[i].nombre;
                         var id_rubro = jsonData.rubro[i].id;
@@ -803,7 +802,6 @@ $(".eliminar-producto").on("click", function() {
 
 /*filtro/buscador por titulo*/
 $("#buscador-titulo").click(function(){
-
     var value = $("#buscador-titulo-input").val();
     var cant_elem= $(".producto:not('.header-productos')").length;//sin header-prod
     //var cant_json = jsonData.productos.length;
@@ -1058,3 +1056,88 @@ function cargarImgPines(event){
 }
 
 
+function copiarLink(){
+    var copyText = document.getElementById("inputCopiarLink");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+}
+
+function activarBuscador(param){
+    var search = param.val();
+
+    if(search != ""){
+
+            var data_json = {
+                "input": search, 
+                "accion": "search",
+                "perfil": jsonData.perfil
+            }
+
+            $.ajax({
+                url: '/app/producto.php',
+                type: 'post',
+                data: data_json,
+                dataType: 'json',
+                success:function(response){
+
+                var resp_len = response.mensaje.length;
+                $(".splide__list").empty();
+
+                //if(jsonData.perfil == "Picker"){
+                    for(var i=0; i<resp_len; i++){
+
+                        var id_prod = response.mensaje[i].id;
+                        var nombre_prod = response.mensaje[i].titulo;
+                        var foto_prod = response.mensaje[i].foto;
+                        var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
+
+                        /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
+
+                        var html = '<li class="splide__slide">'+
+                                    '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
+                                    '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
+                        // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                        $(".splide__list").append(html);
+
+                    }
+                    new Splide( '.splide', {
+                            perPage: 5,
+                            rewind : true,
+                            pagination: false
+                        } ).mount();
+
+                
+                //si es seller
+                /*}else{
+                    
+                    for(var i=0; i<jsonData.productos.length; i++){
+
+                        var id_prod = jsonData.productos[i].id;
+                        var nombre_prod = jsonData.productos[i].titulo;
+                        var foto_prod = jsonData.productos[i].foto;
+                        var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
+
+                        var html = '<li class="splide__slide">'+
+                                    '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
+                                    '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
+                        // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                        $(".splide__list").append(html);
+
+                    }
+                    new Splide( '.splide', {
+                            perPage: 5,
+                            rewind : true,
+                            pagination: false
+                        } ).mount();
+                }*/
+
+
+                },
+                error:function(response){
+                
+                alert("ERROR::"+response)
+                }
+            });
+        }
+}

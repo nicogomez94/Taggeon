@@ -48,7 +48,7 @@ if(sizePublic>0){
                             '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
                                 '<div class="text-overlay">'+
                                     '<span class="text-overlay-link">'+
-                                        '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                        '<a href="#"><i class="share-sm fas fa-share-alt"></i></a>'+
                                     '</span>'+
                                     '&nbsp;&nbsp;'+
                                     '<span class="text-overlay-link">'+

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
 <div class="overlay-prod"></div>
 <div class="row">
    <div class="container col-lg-8 col-md-12 col-sm-12 col-12" id="contenedor-form-subir" >
@@ -49,13 +51,14 @@
                      <img class="img-pines-amapear" src="">
                   </div>
                   <!--  -->
-                  <div class="anadir-productos">
-                     <hr>
-                     <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir/Editar productos</a>
-                     <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
-                     <!-- <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
-                  </div>
+                  
                </div>
+            </div>
+            <div class="anadir-productos">
+               <hr>
+               <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir/Editar productos</a>
+               <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
+               <!-- <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
             </div>
             <div class="row">
                <div class="col-lg-12">
@@ -107,12 +110,12 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=231120-1458"></script>
+   <script src="js/func.js?time=270421-1258"></script>
    <!-- script para la seleccion de fotos -->
-   
+   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <!--  -->
       <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
-      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=231120-1458"></script>
+      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=270421-1258"></script>
       <script>
          $(document).ready(function(){
             
@@ -147,29 +150,18 @@
                         
                     
 
-                     ///DIBUJO PINES
+                     ///SHOW PINES
                      var producto_parse = JSON.parse(tags);
                      var producto_parse_size = producto_parse.length;
-                     //console.log(tags)
+  
                      var test = {"markers":producto_parse};
-                     console.log(test)
+                     
                         $('#map').dropPin('showPins',{
                            cursor: 'crosshair',
                            pinclass: 'qtipinfo',
                            pin: '../../img/tag-solid.svg',
                            pinDataSet: {"markers":producto_parse}
                         });
-
-                     /*for(var x=0; x<producto_parse_size; x++){
-                        var id_prod = producto_parse[x].name;
-                        var coords = producto_parse[x].value;
-                        var ycoord = coords.split("-")[0];
-                        var xcoord = coords.split("-")[1];
-                        var allprod = jsonData.productos || [];
-
-                        
-
-                     }*/
 
                         $("#publicacion_nombre").val(nombre_public);
                         $("#publicacion_descripcion").val(descr_public);
@@ -182,6 +174,13 @@
                         $("#map").css("margin","auto");//para que este centrado
                         $("#eliminar-img-flotante").show();
                         $("#anadir-productos-btn").show();
+
+
+                        
+                     $("#buscador-titulo-input").keyup(function(){
+                        activarBuscador($(this));
+                     });
+
 
                   }
                   var select = document.getElementById('publicacion_categoria');

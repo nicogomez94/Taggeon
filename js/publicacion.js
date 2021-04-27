@@ -84,7 +84,7 @@ $(document).ready(function(){
                                  '<div class="social-public">'+
                                        '<span><i class="fas fa-heart"></i></span>'+
                                        '<span><i class="fas fa-comment-dots"></i></span>'+
-                                       '<span><i class="fas fa-paper-plane"></i></span>'+
+                                       '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
                                  '</div>'+
                                  '<div class="datos-public">'+
                                  '<div class="info-titulo-public">'+nombre_public+'</div>'+

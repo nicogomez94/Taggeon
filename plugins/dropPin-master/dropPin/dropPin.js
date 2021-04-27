@@ -11,7 +11,7 @@
 
 		var defaults = {
 		fixedHeight: 'auto',
-		fixedWidth: '100%',
+		fixedWidth: 'inherit',//100%
 		dropPinPath: '/js/dropPin/',
 		pin: 'dropPin/defaultpin@2x.png',
 		backgroundImage: test,
@@ -72,7 +72,6 @@
 
 		},
 		dropMulti: function(options) {
-
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
 
@@ -139,7 +138,6 @@
 			});
 			//genera producto y futuro click protector
 			$(".popup-prod-cont").on("click", ".nombre-producto", function(){
-				
 				$(".popup-prod-overlay").hide();
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
 				var id_producto = $(this).attr('class').split(' ')[1];
@@ -164,14 +162,15 @@
 			});
 			//para salir de la sel de productos y eliminar pin
 			$(".popup-prod-cont").on("click",".salir-popup", function(){
-				var box_y = $(this).parent().css("top").split('%')[0];
-				var box_x = $(this).parent().css("left").split('%')[0];
-				console.log(box_y)
-				var box_y_new = box_y - 1;
-				var box_x_new = box_x - 1;
+				//hago esto porque sino con css() me toma con pixels
+				var style = $(this).parent().attr("style");
+				var box_y = style.split(";")[0].match(/[0-9]+/g)[0];
+				var box_x = style.split(";")[1].match(/[0-9]+/g)[0];
+
+				var box_y_new = parseInt(box_y - 1);
+				var box_x_new = parseInt(box_x - 1);
 
 				var pin_a_borrar = $("#map").find("."+box_y_new+"-"+box_x_new);
-
 				pin_a_borrar.remove();
 				$(".popup-prod-overlay").hide();
 
