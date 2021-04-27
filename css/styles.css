@@ -884,7 +884,6 @@ form div{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 20px;
     z-index: 999;
   }
 
@@ -2388,6 +2387,15 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     }
 }
 
+/*SHARE*/
+.share-links span{
+    margin: 5px;
+    font-size: 5em;
+    color: #cebd8b;
+}
+.share-btn{
+    margin-top: 10px;
+}
 /*BREADCRUMBS*/
 .bc-container{
     margin-top: 30px;
@@ -2427,4 +2435,16 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .mp__tipo-doc-der{
     vertical-align: baseline;
 }
-
+.msj_sync_mp{
+    margin: 10px;
+    background-color: #ff6464;
+    box-shadow: 1px 1px 5px #c7c7c7;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    /* text-decoration: underline; */
+    width: 70%;
+    margin: 0 auto 10px;
+    font-style: italic;
+}

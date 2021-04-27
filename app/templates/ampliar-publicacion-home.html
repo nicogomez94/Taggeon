@@ -1,4 +1,26 @@
 <div class="overlay-loading"></div>
+<!-- SHARE -->
+<div class="overlay">
+   <div class="lightBox">
+      <div>
+         <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <h3>Compart&iacute; esta publicaci&oacute;n</h3>
+         <hr>
+         <div class="share-links">
+            <span><i class="fab fa-facebook-square"></i></span>
+            <span><i class="fab fa-instagram-square"></i></span>
+            <span><i class="fab fa-twitter-square"></i></span>
+            <span><i class="fab fa-reddit-square"></i></span>
+            <span><i class="fab fa-pinterest-square"></i></span>
+         </div>
+         <hr>
+         <input type="text" id="inputCopiarLink">
+         <button class="share-btn btn btn-warning" onclick="copiarLink()">Copiar</button>
+         <br>
+      </div>
+   </div>
+</div>
+<!--/SHARE-->
 <!-- flecha flotante atras -->
 <div class="flecha-atras-public"><a href="/"><i class="fas fa-arrow-left"></i></a></div>
 <!-- or the reference on CDN -->
@@ -105,18 +127,43 @@
       }*/
 </script>
 
-
-   <script src="js/jquery-3.5.1.js"></script>
-   <!-- <script type="text/javascript" src="../../js/slick/slick/slick.min.js"></script> -->
-   <!-- <script src="/plugins/splide-2.4.21/src/js/splide.js"></script> -->
-   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=221220-1647"></script>
-   <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-   <script src="js/publicacion.js?time=221220-1647"></script>
+<script src="js/jquery-3.5.1.js"></script>
+<!-- <script type="text/javascript" src="../../js/slick/slick/slick.min.js"></script> -->
+<!-- <script src="/plugins/splide-2.4.21/src/js/splide.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+<!-- <script src="js/popper.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+<script src="js/publicacion.js?time=220421-1323"></script>
+<script src="js/func.js?time=220421-1323"></script><!--genera error en consola despues de tocar-->
    <script>
+      
       $(document).ready(function(){
+
+         const shareData = {
+            title: 'MDN',
+            text: 'Learn web development on MDN!',
+            url: 'https://developer.mozilla.org',
+            }
+
+            const btn = document.querySelector('button');
+            const resultPara = document.querySelector('.result');
+
+            // Must be triggered some kind of "user activation"
+            btn.addEventListener('click', async () => {
+            try {
+               await navigator.share(shareData)
+               resultPara.textContent = 'MDN shared successfully'
+            } catch(err) {
+               resultPara.textContent = 'Error: ' + err
+            }
+            });
+            
+
+         /*link a public para copiar*/
+         var linkActual = window.location.href;
+         $("#inputCopiarLink").val(linkActual)
+
          $("body").css("background-color","#e4e4e4");
 
          var parentwidth = $(".parent").width();      
