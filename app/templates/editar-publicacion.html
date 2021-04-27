@@ -110,16 +110,15 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=270421-1258"></script>
+   <script src="js/func.js?time=270421-1758"></script>
    <!-- script para la seleccion de fotos -->
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <!--  -->
       <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
-      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=270421-1258"></script>
+      <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=270421-1758"></script>
       <script>
          $(document).ready(function(){
             
-
             //CATEGORIA
             var catPublicSize = jsonData.categoria.length;
 
@@ -146,16 +145,13 @@
                      var imagen_id = jsonData.publicaciones[i].foto;
                      var foto_src = '/publicaciones_img/'+imagen_id+'.png';
                      var tags = jsonData.publicaciones[i].pid;
-                     
-                        
-                    
 
                      ///SHOW PINES
                      var producto_parse = JSON.parse(tags);
                      var producto_parse_size = producto_parse.length;
   
                      var test = {"markers":producto_parse};
-                     
+                     console.log(test)
                         $('#map').dropPin('showPins',{
                            cursor: 'crosshair',
                            pinclass: 'qtipinfo',
@@ -169,7 +165,6 @@
 
                         $("#img-subir-pins").hide();
                         $(".img-pines-amapear").attr("src",foto_src);
-                        // $("#map").css("width","100%");
                         $("#map").css("width","700px");
                         $("#map").css("margin","auto");//para que este centrado
                         $("#eliminar-img-flotante").show();

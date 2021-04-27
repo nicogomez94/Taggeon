@@ -219,13 +219,14 @@
 			for(var i=0; i < (options.pinDataSet).markers.length; i++)
 			{
 				var dataPin = options.pinDataSet.markers[i];
-
 				var id_prod = dataPin.name;
 				var coords = dataPin.value;
 				var ycoord = coords.split("-")[0];
 				var xcoord = coords.split("-")[1];
 
-				var imgC = $('<img class="pin '+id_prod+'" style="top:'+ycoord+'px;left:'+xcoord+'px;">');
+				console.log(ycoord)
+				//style="top:'+ycoord+'%; left:'+xcoord+'%;"
+				var imgC = $('<img class="pin '+ycoord+'-'+xcoord+'">');
 				imgC.attr('src',  options.pin);
 				imgC.attr('title',  dataPin.title);
 				imgC.appendTo(this);
@@ -234,8 +235,8 @@
 											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
 
 				$(".click-protector-cont").append(click_protector);
-				$("."+ycoord+"-"+xcoord).css("top",ycoord);
-				$("."+ycoord+"-"+xcoord).css("left",xcoord);
+				$("."+ycoord+"-"+xcoord).css("top",ycoord+"%");
+				$("."+ycoord+"-"+xcoord).css("left",xcoord+"%");
 				$("."+ycoord+"-"+xcoord+" .salir-popup-single").css("display","none");
 
 			}

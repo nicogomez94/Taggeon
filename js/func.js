@@ -829,7 +829,6 @@ $("#buscador-titulo").click(function(){
     }else if(path=="/ampliar-producto.html"){
         $(".titulo-producto").parent().parent().show();
     }else{
-        console.log("erres")
         $(".titulo-producto").parent().parent().parent().parent().show();
     }
     
