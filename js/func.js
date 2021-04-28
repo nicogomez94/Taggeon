@@ -448,7 +448,7 @@ $('#iniciar_sesion').submit(function (e) {
         $("#limpiar-productos-btn").show();
         $("#anadir-productos-btn").hide();
         
-        //$(".overlay-prod").show(); //TODO
+        $(".overlay-prod").show(); //TODO
         $("#eliminar-img-flotante").hide();
         
         $('#map').dropPin('dropMulti',{
