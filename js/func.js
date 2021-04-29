@@ -711,13 +711,24 @@ if(typeof jsonData.productos != "undefined"){
                 var fotosArray = foto_prod_editar.split(",") || [];
                 //var fotosArrayIndex = fotosArray[];
                 for(var i=0; i<fotosArray.length; i++){
-
+                    
+                    
                     //inserto img en cubo corresp
                     var foto_src = '/productos_img/'+fotosArray[i]+'.png' || 0;
-                    var imgResp = $("#prev_"+i).find(".img-responsive").attr("src",foto_src);
+                    var img = $("#prev_"+i).find(".img-responsive");
+                    // img.attr("onerror","this.onerror=null;this.src='img no encontrada';");
+                    img.attr("onerror","$(this).parent().addClass('hidden');");
+                    img.attr("onload","$(this).parent().parent().find('.new').addClass('hidden')");
+                    img.attr("src",foto_src);
+                    img.parent().removeClass("hidden");
+                    //img.parent().parent().find(".new").addClass("hidden");
+
                     
-                    //saco class hidden para que se vea img (ver uploadHBR.min.js)
-                    $("#prev_"+i).removeClass("hidden");
+                    // img.on("error", function(){
+                    //     $(this).attr('src', 'pepe');
+                    //     $("#prev_"+i).addClass("hidden");
+                    //     $(this).attr("onerror","this.onerror=null")
+                    // });
                 }
 
                 $("#titulo-producto").val(nombre_prod);
@@ -929,6 +940,209 @@ $("#subir-csv").on('submit', function() {
     return false;
 });
 
+//AÑADIR AL CARRITO
+$(".modal").on("click", ".btn-carrito", function(){
+
+    var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
+    var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
+
+    var dataCarr = new FormData();
+    dataCarr.append("accion","alta");
+    dataCarr.append("id",id_value);
+    dataCarr.append("cantidad",cantidad_value);
+
+    $.ajax({
+        url: '/app/carrito.php',
+        data: dataCarr,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        //async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == 'REDIRECT'){
+              console.log("REDIRECT-->"+dataM);
+              window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              console.log("OK-->"+dataJ+"/"+dataM);
+              window.location.replace("/ampliar-carrito.html");
+           }else{
+              console.log("ELSE-->"+dataJ+"/"+dataM);
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            console.log(dat);
+        }
+   });
+   return false;
+
+});
+
+ 
+
+ ///crear orden de compra carrito
+ $(".boton-checkout-carrito").click(function(){
+
+    var id_carrito = jsonData.carrito[0].id_carrito;
+
+    var dataCheckout = new FormData();
+    dataCheckout.append("accion","finalizar");
+    dataCheckout.append("id_carrito",id_carrito);
+
+    $.ajax({
+        url: '/app/carrito.php',
+        data: dataCheckout,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        //async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == 'REDIRECT'){
+              console.log("REDIRECT-->"+dataM);
+              window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              console.log("OK-->"+dataJ+"/"+dataM);
+              window.location.replace("/ampliar-checkout.html");
+           }else{
+              console.log("ELSE-->"+dataJ+"/"+dataM);
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert(data);
+        }
+    });
+    return false;
+});
+
+
+///finalizar orden
+$("#finalizar-orden").submit(function(){
+
+    var id_carrito = jsonData.carrito[0].id_carrito;
+
+    var dataForden = new FormData($(this)[0]);
+    dataForden.append("id_carrito",id_carrito);
+
+    $.ajax({
+        url: '/app/carrito.php',
+        data: dataForden,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == 'REDIRECT'){
+              console.log("REDIRECT-->"+dataM);
+              //window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              window.location.replace("/cobrar-compra.html?id="+id_carrito);
+           }else{
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert(data);
+        }
+    });
+    return false;
+});
+
+///realizar/finalizar compra
+$("#paymentForm").submit(function(){
+
+   var id_carrito = jsonData.compras[0].id_carrito || 0;
+
+   var dataForden = new FormData($(this)[0]);
+   //dataForden.append("id_carrito",id_carrito);
+   dataForden.append("accion","pago");
+   dataForden.append("accion","finalizar4");
+   dataForden.append("id_carrito",id_carrito);
+   console.log(dataForden)
+
+   $.ajax({
+      url: '/app/carrito.php',
+      data: dataForden,
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      //dataType: "json",
+      async: false,
+      success: function(data){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+         if (dataJ == 'REDIRECT'){
+            console.log("REDIRECT-->"+dataM);
+            //window.location.replace(dataM);														
+         }else if(dataJ == 'OK'){
+            
+            console.log(data)
+            window.location.replace("/mis-compras.html");
+         }else{
+             alert("error-->"+dataJ+""+dataM)
+            console.log(data)
+            //window.location.replace("/mis-compras.html");
+         }
+      },
+      error: function( data, jqXhr, textStatus, errorThrown ){
+      console.log(data)
+         alert(data);
+      }
+   });
+   //return false;
+});
+
+
+///eliminar de carrito
+$(".fa-times-circle").bind("click", function(e){
+    e.preventDefault();
+    var id_prod = $(this).parent().find("input.prod-id").val();
+    var id_carrito = jsonData.carrito[0].id_carrito;
+
+    var dataEliminar = new FormData();
+    dataEliminar.append("cantidad","0");
+    dataEliminar.append("accion","alta");
+    dataEliminar.append("id",id_prod);
+    dataEliminar.append("id_carrito",id_carrito);
+       
+    $.ajax({
+       url: '/app/carrito.php',
+       data: dataEliminar,
+       type: 'POST',
+       processData: false,
+       contentType: false,
+       //async: false,
+       success: function( data, textStatus, jQxhr ){
+           var dataJ = JSON.parse(data).status;
+           var dataM = JSON.parse(data).mensaje;
+          if (dataJ == 'REDIRECT'){
+             console.log("REDIRECT-->"+dataM);
+             window.location.replace(dataM);														
+          }else if(dataJ == 'OK'){
+             console.log("OK-->"+dataJ+"/"+dataM);
+             window.location.replace("/ampliar-carrito.html");
+          }else{
+             console.log("ELSE-->"+dataJ+"/"+dataM);
+             //window.location.replace("/ampliar-carrito.html");
+          }
+       },
+       error: function( data, jqXhr, textStatus, errorThrown ){
+          console.log("ERROR AJAX--> "+response);
+          console.log(data);
+       }
+    });
+    return false;
+
+});
 
 
 
