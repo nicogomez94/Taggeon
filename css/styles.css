@@ -1964,7 +1964,7 @@ input:focus ~ .highlight {
 #imagen-productos-pin{
     width: 100%;
 }
-#anadir-productos{
+.anadir-productos{
     z-index: 999;/*igual que map*/
     position: relative;
 }

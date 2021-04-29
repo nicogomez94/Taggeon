@@ -694,24 +694,32 @@ if(typeof jsonData.productos != "undefined"){
         }else if(window.location.pathname == '/editar-producto.html'){
             for(var i=0; i<sizeProductos; i++){
     
-                var id_prod = jsonData.productos[i].id;
-                var nombre_prod = jsonData.productos[i].titulo;
-                var marca_prod = jsonData.productos[i].marca;
-                var precio_prod = jsonData.productos[i].precio;
-                var envio_prod = jsonData.productos[i].envio;
-                var garantia_prod = jsonData.productos[i].garantia;
-                var descr_prod = jsonData.productos[i].descr_producto;
-                var foto_prod_editar = jsonData.productos[i].foto;
-                var color_prod = jsonData.productos[i].color;
-                var nombre_cat = jsonData.categoria[i].nombre;
-                var stock_prod = jsonData.productos[i].stock;
-                var id_cat = jsonData.categoria[i].id;
-                var id_cat_rubro = jsonData.rubro[i].id_categoria;
-        
-                var fotosArray = foto_prod_editar.split(",");
-                var fotosArrayIndex = fotosArray[i];
-        
-                console.log(fotosArrayIndex)
+                var id_prod = jsonData.productos[i].id || 0;
+                var nombre_prod = jsonData.productos[i].titulo || "";
+                var marca_prod = jsonData.productos[i].marca || "";
+                var precio_prod = jsonData.productos[i].precio || 0;
+                var envio_prod = jsonData.productos[i].envio || "";
+                var garantia_prod = jsonData.productos[i].garantia || "";
+                var descr_prod = jsonData.productos[i].descr_producto || "";
+                var foto_prod_editar = jsonData.productos[i].foto || "";
+                var color_prod = jsonData.productos[i].color || "";
+                var nombre_cat = jsonData.categoria[i].nombre || "";
+                var stock_prod = jsonData.productos[i].stock || 0;
+                var id_cat = jsonData.categoria[i].id || 0;
+                //var id_cat_rubro = jsonData.rubro[i].id_categoria;
+                
+                var fotosArray = foto_prod_editar.split(",") || [];
+                //var fotosArrayIndex = fotosArray[];
+                for(var i=0; i<fotosArray.length; i++){
+
+                    //inserto img en cubo corresp
+                    var foto_src = '/productos_img/'+fotosArray[i]+'.png' || 0;
+                    var imgResp = $("#prev_"+i).find(".img-responsive").attr("src",foto_src);
+                    
+                    //saco class hidden para que se vea img (ver uploadHBR.min.js)
+                    $("#prev_"+i).removeClass("hidden");
+                }
+
                 $("#titulo-producto").val(nombre_prod);
                 $("#precio-producto").val(precio_prod);
                 $("#stock-producto").val(stock_prod);
@@ -725,7 +733,7 @@ if(typeof jsonData.productos != "undefined"){
                 var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
                 $("#categoria-producto").append(html_cat);
         
-                var sizeRubro = jsonData.rubro.length;
+                /*var sizeRubro = jsonData.rubro.length;
                 
                 if(sizeRubro>0 && id_cat==id_cat_rubro){
                     for(var i=0; i<sizeRubro; i++){
@@ -735,7 +743,7 @@ if(typeof jsonData.productos != "undefined"){
                         var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
                         $("#rubro-producto").append(html_rubro);
                     }
-                }
+                }*/
         
             }
         }
