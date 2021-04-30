@@ -631,7 +631,7 @@ $('#editar-publicacion-form').submit(function (e) {
 
 
 /****formu-subir***/
-var sizeCat = jsonData.categoria.length;
+var sizeCat = jsonData.categoria.length || 0;
 
 if(sizeCat>0){
     for(var i=0; i<sizeCat; i++){
@@ -663,7 +663,7 @@ if(sizeCat>0){
 
 /***ampliar/editar producto***/ 
 if(typeof jsonData.productos != "undefined"){
-    var sizeProductos = jsonData.productos.length;
+    var sizeProductos = jsonData.productos.length || 0;
     if(sizeProductos>0 || typeof sizeProductos != "undefined"){
         if(window.location.pathname == '/ampliar-producto.html'){
             for(var i=0; i<sizeProductos; i++){
