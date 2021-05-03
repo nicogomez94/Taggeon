@@ -286,15 +286,10 @@ $(document).ready(function(){
 
 
    //lo mando a la public que se selecciono desde home
-   if(winLoc=="/ampliar-publicacion-home.html"){
-      console.log(winLoc)
-      var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
-      $('html,body').animate({
-         scrollTop: $("#ancla-desde-home-"+WinLocSplit).offset().top - 80
-      }, 0);
-   }
-
-////////////////CARRITO
+   var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
+   $('html,body').animate({
+      scrollTop: $("#ancla-desde-home-"+WinLocSplit).offset().top - 80
+   }, 0);
 
 
 

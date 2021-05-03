@@ -104,9 +104,8 @@
             </div>
             <hr>
             
-
-        <!-- <form id="paymentForm"> -->
-        <form action="/mp/process_payment.php" method="post" id="paymentForm">
+        <!-- <form action="/mp/process_payment.php" method="post" id="paymentForm"> -->
+        <form id="paymentForm">
             <h3>Detalles del comprador</h3>
               <div class="mp__detalles_comprador">
                 <div class="group group-form-checkout">
@@ -137,12 +136,12 @@
                 <div>
                   <label for="">Fecha de vencimiento</label>
                   <div>
-                    <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth"
+                    <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" value="11"
                       onselectstart="return false" onpaste="return false"
                       oncopy="return false" oncut="return false"
                       ondrag="return false" ondrop="return false" autocomplete=off>
                     <span class="date-separator">/</span>
-                    <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear"
+                    <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" value="25"
                       onselectstart="return false" onpaste="return false"
                       oncopy="return false" oncut="return false"
                       ondrag="return false" ondrop="return false" autocomplete=off>
@@ -153,14 +152,14 @@
                   <input type="text" id="cardNumber" data-checkout="cardNumber"
                     onselectstart="return false" onpaste="return false"
                     oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off>
+                    ondrag="return false" ondrop="return false" autocomplete=off value="37118030325752">
                 </div>
                 <div>
                   <label for="securityCode">Código de seguridad</label>
                   <input style="width: 10%;" id="securityCode" data-checkout="securityCode" type="text"
                     onselectstart="return false" onpaste="return false"
                     oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off>
+                    ondrag="return false" ondrop="return false" autocomplete=off value="1234">
                 </div>
                 <div id="issuerInput">
                   <label for="issuer">Banco emisor</label>
@@ -183,15 +182,6 @@
             </div>
           </form>
           <hr>
-
-          <div>
-            <a class="buy-with-crypto"
-               href="https://commerce.coinbase.com/checkout/d70ac7e4-9af8-48f6-9427-8f143f39f574">
-              Comprar con criptomoneda
-            </a>
-            <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807">
-            </script>
-          </div>
           
             <!-- <form id="realizar-compra">
                 <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
@@ -208,7 +198,7 @@
 
 <script src="js/jquery-3.5.1.js"></script>
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-<script src="js/func.js?time=290421-1312"></script>
+<script src="js/func.js?time=300421-1254"></script>
    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
    <!-- <script src="js/publicacion.js?time=190321-2055"></script> -->
 <!-- <script src="js/popper.js"></script> -->
@@ -332,7 +322,12 @@ function getCardToken(event){
 
 function setCardTokenAndPay(status, response) {
    if (status == 200 || status == 201) {
-       let form = document.getElementById('paymentForm');
+        /*para debug*/   
+        console.log(status)
+       console.log(response)
+        alert(status)
+       
+        let form = document.getElementById('paymentForm');
        let card = document.createElement('input');
        card.setAttribute('name', 'token');
        card.setAttribute('type', 'hidden');
