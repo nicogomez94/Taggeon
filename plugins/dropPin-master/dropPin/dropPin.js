@@ -123,14 +123,41 @@
 				
 
 				popup_overlay.show(0,function(){
-					popup_cont.css({
-						'top': yval_pop+'%',
-						'left': xval_pop+'%'
-					});
+
+					var body_w = $('body').width();
+					var popup_cont = $('.popup-prod-cont');
+					var ppc_width = popup_cont.width();
+					var offset_left = popup_cont.offset().left + ppc_width;
+					var body_minus = body_w - 200
+				
+					if (offset_left > body_minus){
+						console.log("se pasa")
+						console.log("left-->"+popup_cont.offset().left)
+						console.log("offset+w-->"+offset_left)
+						console.log("body-->"+body_w)
+						popup_cont.addClass('over')
+						popup_cont.css({
+							'top': yval_pop+'%',
+							'left': xval_pop+'%'
+						});
+					}else{
+						console.log("no se pasa")
+						console.log("left-->"+popup_cont.offset().left)
+						console.log("offset+w-->"+offset_left)
+						console.log("body-->"+body_w)
+						popup_cont.removeClass('over')
+						popup_cont.css({
+							'top': yval_pop+'%',
+							'left': xval_pop+'%'
+						});
+					}
+
+					
 					popup_prod.css({
 						'top': yval_pop+'%',
 						'left': xval_pop+'%'
 					});
+
 				});
 				
 				

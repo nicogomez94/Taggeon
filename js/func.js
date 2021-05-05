@@ -942,7 +942,7 @@ $("#subir-csv").on('submit', function() {
 
 //AÑADIR AL CARRITO
 $(".modal").on("click", ".btn-carrito", function(){
-    
+
     var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
     var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
 
@@ -1058,48 +1058,47 @@ $("#finalizar-orden").submit(function(){
 });
 
 ///pago MP compra
-$("#paymentForm").submit(function(){
+$("#paymentForm").submit(function(e){
+    e.preventDefault();
+    var id_carrito = jsonData.compras[0].id_carrito || 0;
+    //getCardToken();
+    
+    var dataForden = new FormData($(this)[0]);
+    dataForden.append("id_carrito",id_carrito);
+    //dataForden.append("token","pago");
+    console.log(dataForden)
 
-   //var id_carrito = jsonData.compras[0].id_carrito || 0;
-
-   var dataForden = new FormData($(this)[0]);
-   //dataForden.append("id_carrito",id_carrito);
-   //dataForden.append("accion","pago");
-   //dataForden.append("accion","finalizar4");
-   //dataForden.append("id_carrito",id_carrito);
-   console.log(dataForden)
-
-   $.ajax({
-      url: '/mp/process_payment.php',
-      data: dataForden,
-      type: 'POST',
-      processData: false,
-      contentType: false,
-      //dataType: "json",
-      //async: false,
-      success: function(data){
-        //var dataJ = JSON.parse(data).status;
-            //var dataM = JSON.parse(data).mensaje;
-         if (data.status == 'REDIRECT'){
-            alert("redirect-->"+data)
-            console.log("REDIRECT-->"+dataM);
-            //window.location.replace(dataM);														
-         }else if(data.status == 'OK'){
-            alert("ok-->"+data)
-            console.log(data)
-            //window.location.replace("/mis-compras.html");
-         }else{
-            console.log(data)    
-             alert("error-->"+data)
-            //window.location.replace("/mis-compras.html");
-         }
-      },
-      error: function( data, jqXhr, textStatus, errorThrown ){
-      console.log(data)
-         alert(data);
-      }
-   });
-   //return false;
+    $.ajax({
+        url: '/mp/process_payment.php',
+        data: dataForden,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        //async: false,
+        success: function(data){
+            //var dataJ = JSON.parse(data).status;
+                //var dataM = JSON.parse(data).mensaje;
+            if (data.status == 'REDIRECT'){
+                alert("success ajax redirect-->"+data)
+                console.log("REDIRECT-->"+data);
+                //window.location.replace(dataM);														
+            }else if(data.status == 'OK'){
+                alert("success ajax ok-->"+data)
+                console.log(data)
+                //window.location.replace("/mis-compras.html");
+            }else{
+                console.log(data)    
+                alert("success ajax error-->"+data)
+                //window.location.replace("/mis-compras.html");
+            }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+        console.log(data)
+            alert(data);
+        }
+    });
+    return false;
 });
 
 
@@ -1169,19 +1168,8 @@ $(".fa-times-circle").bind("click", function(e){
 
 
 */
-/*
-var w = $('body').width();
-var el = $('#el');
 
-        var ew = el.width();
-        //this is your "formula"
-        var l = el.offset().left + (ew * .99);
-        if (l > w) {
-            el.addClass('over')
-        }
-        else {
-            el.removeClass('over')
-        }*/
+
 
 
 /***fin document.ready***//***fin document.ready***/

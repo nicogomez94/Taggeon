@@ -209,7 +209,8 @@ a:link, a:visited{
     color: #000 !important;
 }
 body{
-    font-family:BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif
+    font-family:BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    overflow-x: hidden;
 }
 [role="main"] {
     padding-top: 48px;
@@ -2004,8 +2005,11 @@ input:focus ~ .highlight {
     background-color: rgb(255 255 255);
     color: rgb(0 0 0);
     padding: 10px;
-    width: 40vw;
+    width: 400px;
     box-shadow: 0 0 6px 1px #757575;
+}
+.popup-prod-cont.over{
+    background-color: red !important;
 }
 .popup-single-cont{
     position: absolute;
