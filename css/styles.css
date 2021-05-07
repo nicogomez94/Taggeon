@@ -169,6 +169,15 @@
 }
 /*  */
 
+@media screen and (max-width: 768px) {
+    .col-vendedor{
+        margin-top: 20px;
+        background: #e8e8e8;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+}
+
 .btn-warning {
     color: #000 !important;
     background-color: #cebd8b !important;

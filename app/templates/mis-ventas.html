@@ -66,7 +66,7 @@
 <script src="js/jquery-3.5.1.js"></script>
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-   <script src="js/publicacion.js?time=03022021-1656"></script>
+   <!-- <script src="js/publicacion.js?time=03022021-1656"></script> -->
 <!-- <script src="js/popper.js"></script> -->
 
    <script src="js/func.js?time=160321-1633"></script>
@@ -84,13 +84,13 @@ $(document).ready(function(){
             var direccion = jsonData.ventas[i].envio_nombre_apellido || "";
             var localidad = jsonData.ventas[i].envio_ciudad_localidad || "";
             var id_carrito = jsonData.ventas[i].id_carrito || 0;
-            var name_vendedor = jsonData.ventas[i].nombre || "";
+            var name_comprador = jsonData.ventas[i].envio_nombre_apellido || "";
             var imagen_id = jsonData.ventas[i].foto_id || 0;
             var foto_src = '/productos_img/'+imagen_id+ '.png' || "";
 
             var ventas_html = 
                   '<div class="row producto venta text-left">'+
-                  '   <div class="col-lg-4">'+
+                  '   <div class="col-lg-4 col-md-4 col-sm-12 col-12">'+
                   '      <div class="media">'+
                   '         <img class="mr-3 img-venta-lista" src="'+foto_src+'" alt="img">'+
                   '         <div class="media-body">'+
@@ -99,16 +99,16 @@ $(document).ready(function(){
                   '         </div>'+
                   '      </div>'+
                   '   </div>'+
-                  '   <div class="col-lg-4 col-vendedor">'+
+                  '   <div class="col-lg-4 col-md-4 col-sm-12 col-12 col-vendedor">'+
                   '      <div class="media">'+
                   '         <img style="border-radius: 50%;" class="mr-3 img-venta-lista" src="../../img/descarga.png" alt="img">'+
                   '         <div class="media-body">'+
-                  '            <h5 class="mt-0">Vendedor</h5>'+
-                  '            <span class="label-compra-vendedor">Blaistein S.A</span>'+//hard
+                  '            <h5 class="mt-0">Comprador</h5>'+
+                  '            <span class="label-compra-vendedor">'+name_comprador+'</span>'+//hard
                   '         </div>'+
                   '      </div>'+
                   '   </div>'+
-                  '   <div class="col-lg-4 text-right">'+
+                  '   <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-right">'+
                   '      <span class="ver-detalle-venta-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="/ampliar-mis-ventas.html?id='+id_carrito+'">Ver Detalle</a></span>'+
                   '      <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->'+
                   '   </div>'+
