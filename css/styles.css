@@ -2456,3 +2456,86 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     margin: 0 auto 10px;
     font-style: italic;
 }
+
+
+
+
+/*pagos*/
+.pago-container{
+    width: 50%;
+    margin: 30px auto 10px auto;
+    box-shadow: 4px 4px 0px #b3b3b3;
+    color: white;
+}
+.pago-upper, .pago-body, .pago-footer{
+    padding: 20px;
+}
+.pago-upper{
+    background-color: #cebd8b;
+    text-align: center;
+}
+.pago-success{
+    background-color: #4cbb00;
+}
+.pago-pending{
+    background-color:#d2a000;
+}
+.pago-failure{
+    background-color:#c30000;
+}
+.pago-body{
+    background-color: rgb(239 239 239);
+    text-align: center;
+}
+.pago-footer{
+    background-color: transparent;
+    text-align: center;
+}
+.cols-prod{
+    width: 32%;
+    display: inline-block;
+}
+.producto {
+    box-shadow: 0px 0px 1px grey;
+    padding: 10px;
+    margin-top: 10px;
+}
+.adress, .fecha, .lista-productos{
+    margin-top: 20px;
+}
+.button-pago {
+    background-color: hsl(199deg 74% 49%);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center !important;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.button-pago:hover{
+    box-shadow: none;
+}
+.orden-recibida{
+    padding: 30px;
+    position: relative;
+}
+.logo-flot{
+    position: absolute;
+    left: -10px;
+    top: -10px
+}
+.logo-flot a:link, .logo-flot a:visited{
+    color: whitesmoke !important;
+    font-size: 20px !important;
+}
+.logo-pago{
+    font-size: 5em;
+    margin-bottom: 10px;
+}
