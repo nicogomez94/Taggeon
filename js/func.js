@@ -1057,50 +1057,6 @@ $("#finalizar-orden").submit(function(){
     return false;
 });
 
-///pago MP compra
-$("#paymentForm").submit(function(e){
-    e.preventDefault();
-    var id_carrito = jsonData.compras[0].id_carrito || 0;
-    //getCardToken();
-    
-    var dataForden = new FormData($(this)[0]);
-    dataForden.append("id_carrito",id_carrito);
-    //dataForden.append("token","pago");
-    console.log(dataForden)
-
-    $.ajax({
-        url: '/mp/process_payment.php',
-        data: dataForden,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        //dataType: "json",
-        //async: false,
-        success: function(data){
-            //var dataJ = JSON.parse(data).status;
-                //var dataM = JSON.parse(data).mensaje;
-            if (data.status == 'REDIRECT'){
-                alert("success ajax redirect-->"+data)
-                console.log("REDIRECT-->"+data);
-                //window.location.replace(dataM);														
-            }else if(data.status == 'OK'){
-                alert("success ajax ok-->"+data)
-                console.log(data)
-                //window.location.replace("/mis-compras.html");
-            }else{
-                console.log(data)    
-                alert("success ajax error-->"+data)
-                //window.location.replace("/mis-compras.html");
-            }
-        },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-        console.log(data)
-            alert(data);
-        }
-    });
-    return false;
-});
-
 
 ///eliminar de carrito
 $(".fa-times-circle").bind("click", function(e){
@@ -1388,3 +1344,36 @@ function activarBuscador(param){
         }
 }
 
+function ajax(){
+    $.ajax({
+        url: '/mp/process_payment.php',
+        data: dataForden,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        //async: false,
+        success: function(data){
+            //var dataJ = JSON.parse(data).status;
+                //var dataM = JSON.parse(data).mensaje;
+            if (data.status == 'REDIRECT'){
+                alert("success ajax redirect-->"+data)
+                console.log("REDIRECT-->"+data);
+                //window.location.replace(dataM);														
+            }else if(data.status == 'OK'){
+                alert("success ajax ok-->"+data)
+                console.log(data)
+                //window.location.replace("/mis-compras.html");
+            }else{
+                console.log(data)    
+                alert("success ajax error-->"+data)
+                //window.location.replace("/mis-compras.html");
+            }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+        console.log(data)
+            alert(data);
+        }
+    });
+    return false;
+}
