@@ -349,7 +349,7 @@ SQL;
 			return false;
  		}
 
-		if ($this->validarId($idCarrito) === false){
+		if ($this->validarId($data["id_carrito"]) === false){
 			return false;
 		}
 		$data["estado"] = $estado;

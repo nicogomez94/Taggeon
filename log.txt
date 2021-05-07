@@ -1,0 +1,112 @@
+Fecha 07/05/2021  15:00:40
+post transactionAmount: 70000
+post token: baf1043b0c1566d73e471a7044436193
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33222111
+post description: 
+post id_carrito: 200
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1236599916
+#---------------------------------------------
+Fecha 07/05/2021  15:12:26
+post transactionAmount: 70000
+post token: a1fd041a4f37204381148f68d1d53516
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 30333122
+post description: 
+post id_carrito: 201
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1236603082
+#---------------------------------------------
+Fecha 07/05/2021  15:30:18
+post transactionAmount: 70000
+post token: 0cb0fdc2f6b18ae5064b055d17e4d45a
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33222111
+post description: 
+post id_carrito: 203
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1236603367
+#---------------------------------------------
+Fecha 07/05/2021  15:30:18
+post transactionAmount: 70000
+post token: 0cb0fdc2f6b18ae5064b055d17e4d45a
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33222111
+post description: 
+post id_carrito: 203
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1236603367
+#---------------------------------------------
+Paso 1
+Fecha 07/05/2021  15:44:28
+post transactionAmount: 70000
+post token: 5f396215aeed5e074784d61b4edaee4d
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33234543
+post description: 
+post id_carrito: 204
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1236602803
+#---------------------------------------------
+Paso 1
+ERROR
+Fecha 07/05/2021  15:47:47
+post transactionAmount: 70000
+post token: 1634faab17ae1c903d100cdf6b71c102
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 32234432
+post description: 
+post id_carrito: 205
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1236603636
+#---------------------------------------------
+Paso 1
+OK
+Fecha 07/05/2021  15:58:24
+post transactionAmount: 70000
+post token: b593b7a1402df73c3c6250d94362573b
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456654
+post description: 
+post id_carrito: 206
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1236603735
+#---------------------------------------------
+Paso 1
+OK

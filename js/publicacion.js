@@ -296,3 +296,39 @@ $(document).ready(function(){
 //FIN READY
 });//FIN READY
 //FIN READY
+
+function añadirFavoritos(){
+
+   var data = new FormData();
+   data.append("accion","alta")
+   data.append("id_usuario","id_usuario")
+   data.append("id_publicacion","id_publicacion")
+
+   $.ajax({
+      url: '/app/favorito.php',
+      data: data,
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      //async: false,
+      success: function( data, textStatus, jQxhr ){
+          var dataJ = JSON.parse(data).status;
+          var dataM = JSON.parse(data).mensaje;
+         if (dataJ == 'REDIRECT'){
+            console.log("REDIRECT-->"+dataM);
+            window.location.replace(dataM);														
+         }else if(dataJ == 'OK'){
+            console.log("OK-->"+dataJ+"/"+dataM);
+            window.location.replace("/ampliar-carrito.html");
+         }else{
+            console.log("ELSE-->"+dataJ+"/"+dataM);
+            //window.location.replace("/ampliar-carrito.html");
+         }
+      },
+      error: function( data, jqXhr, textStatus, errorThrown ){
+         console.log("ERROR AJAX--> "+response);
+         console.log(data);
+      }
+   });
+   return false;
+}

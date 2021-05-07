@@ -329,19 +329,20 @@ function setCardTokenAndPay(status, response) {
    if (status == 200 || status == 201) {   
        
         let form = document.getElementById('paymentForm');
-       let card = document.createElement('input');
-       card.setAttribute('name', 'token');
-       card.setAttribute('id', 'token-mp');
-       card.setAttribute('type', 'hidden');
-       card.setAttribute('value', response.id);
-       form.appendChild(card);
-       doSubmit=true;
-       //console.log(response.id)
-       //form.submit();
+        let card = document.createElement('input');
+        card.setAttribute('name', 'token');
+        card.setAttribute('id', 'token-mp');
+        card.setAttribute('type', 'hidden');
+        card.setAttribute('value', response.id);
+        form.appendChild(card);
+        doSubmit=true;
+        //console.log(response.id)
+        //form.submit();
 
-       var dataForden = new FormData(form);
-    //    console.log($("#paymentForm").serializeArray());
-       //alert("stop antes de ajax "+response.id)
+        var dataForden = new FormData(form);
+        var id_carrito = jsonData.compras[0].id_carrito;
+        dataForden.append("id_carrito",id_carrito);
+
         $.ajax({
             url: '/mp/process_payment.php',
             data: dataForden,
@@ -351,16 +352,20 @@ function setCardTokenAndPay(status, response) {
             //dataType: "json",
             //async: false,
             success: function(data){
-                //var dataJ = JSON.parse(data).status;
-                    //var dataM = JSON.parse(data).mensaje;
-                if(data.status == 'OK'){
-                    alert("success ajax-->"+data)
-                    window.location.replace("/pago_success.html");
-                }else if(data.status == 'ERROR'){
-                    alert("success ajax-->"+data)
+                var dataParse = JSON.parse(data)
+                var dataJ = dataParse.status;
+                //var dataM = JSON.parse(data).mensaje;
+                if(dataJ == 'OK'){
+                    // console.log(dataParse)
+                    // alert("success ajax-->"+dataParse);
+                    window.location.replace("/pago-success.html");
+                }else if(dataJ == 'ERROR'){
+                    // console.log(dataParse)
+                    // alert("success ajax-->"+dataParse);
                     window.location.replace("/pago-failure.html");
                 }else{
-                    alert("success ajax-->"+data)
+                    // console.log(dataParse)
+                    // alert("success ajax-->"+dataParse);
                     window.location.replace("/pago-pending.html");
                 }
             },
@@ -370,10 +375,10 @@ function setCardTokenAndPay(status, response) {
             }
         });
         return false;
-   } else {
-       alert("Verify filled data!\n"+JSON.stringify(response, null, 4));
-       
-   }
+    } else {
+        alert("Verify filled data!\n"+JSON.stringify(response, null, 4));
+        
+    }
 };
 	</script>
 
