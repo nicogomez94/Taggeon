@@ -12,7 +12,7 @@ $objPrincipalManager = new FavoritoManager();
 if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar)$/i', $var_accion)) {
+    if (preg_match('/^(alta|eliminar)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarFavorito($_POST);
         } else if ($var_accion == 'editar') {
