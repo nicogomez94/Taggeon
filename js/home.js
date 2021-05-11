@@ -38,6 +38,13 @@ if(sizePublic>0){
             var imagen_id = jsonData.publicaciones[x].foto || '';
             var producto = jsonData.publicaciones[x].pid || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
+            var favorito = jsonData.publicaciones[x].favorito || 0;
+            var fav_accion = "";
+            if (favorito==null || favorito == 0) {
+                fav_accion="alta";
+            }else{
+                fav_accion="eliminar";
+            }
 
             if(json_cat == id_public_cat){
 
@@ -52,7 +59,8 @@ if(sizePublic>0){
                                     '</span>'+
                                     '&nbsp;&nbsp;'+
                                     '<span class="text-overlay-link">'+
-                                        '<a href="#"><i class="fas fa-heart"></i></a>'+
+                                    '<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                        //'<a href="#"><i class="fas fa-heart"></i></a>'+
                                     '</span>'+
                                 '</div>'+
                             '</div></a>'+

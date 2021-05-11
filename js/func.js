@@ -437,6 +437,8 @@ $('#iniciar_sesion').submit(function (e) {
         });
     });
 
+    
+
     /**modal casero editar para ediat foto con pins/productos*/
     $('#anadir-productos-btn').click(function(e) {
         e.preventDefault();
@@ -631,7 +633,8 @@ $('#editar-publicacion-form').submit(function (e) {
 
 
 /****formu-subir***/
-var sizeCat = jsonData.categoria.length || 0;
+var jcat = jsonData.categoria || 0;
+var sizeCat = jcat.length || 0;
 
 if(sizeCat>0){
     for(var i=0; i<sizeCat; i++){
@@ -1125,7 +1128,15 @@ $(".fa-times-circle").bind("click", function(e){
 
 */
 
+$('.seguidores-label').click(function(e) {
+    e.preventDefault();
 
+    $(".overlay-seguidores").show();
+
+    $('#cerrar-light').click(function() {
+      $('.overlay-seguidores').css("display", "none");
+    });
+});
 
 
 /***fin document.ready***//***fin document.ready***/
@@ -1344,36 +1355,72 @@ function activarBuscador(param){
         }
 }
 
-function ajax(){
+
+function favoritos(id_publicacion,accion){
+
+    var data = new FormData();
+    data.append("accion",accion);
+    data.append("id",id_publicacion);//habitacion musical hard
+ 
     $.ajax({
-        url: '/mp/process_payment.php',
-        data: dataForden,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        //dataType: "json",
-        //async: false,
-        success: function(data){
-            //var dataJ = JSON.parse(data).status;
-                //var dataM = JSON.parse(data).mensaje;
-            if (data.status == 'REDIRECT'){
-                alert("success ajax redirect-->"+data)
-                console.log("REDIRECT-->"+data);
-                //window.location.replace(dataM);														
-            }else if(data.status == 'OK'){
-                alert("success ajax ok-->"+data)
-                console.log(data)
-                //window.location.replace("/mis-compras.html");
-            }else{
-                console.log(data)    
-                alert("success ajax error-->"+data)
-                //window.location.replace("/mis-compras.html");
-            }
-        },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-        console.log(data)
-            alert(data);
-        }
+       url: '/app/favorito.php',
+       data: data,
+       type: 'POST',
+       processData: false,
+       contentType: false,
+       //async: false,
+       success: function(data){
+          var dataJ = JSON.parse(data).status;
+          var dataM = JSON.parse(data).mensaje;
+ 
+          if (dataJ == 'REDIRECT'){
+             console.log("REDIRECT-->"+dataM);							
+          }else if(dataJ == 'OK'){
+             console.log("OK-->"+dataJ+"/"+dataM);
+          }else{
+             console.log("ELSE-->"+dataJ+"/"+dataM);
+          }
+       },
+       error: function( data, jqXhr, textStatus, errorThrown ){
+          ajax("ERROR AJAX--> "+data);
+          console.log(data);
+       }
     });
     return false;
-}
+ }
+
+ function seguidores(id_publicacion,accion){
+
+    var data = new FormData();
+    data.append("accion",accion)
+    data.append("id",id_publicacion)
+ 
+    $.ajax({
+       url: '/app/seguidores.php',
+       data: data,
+       type: 'POST',
+       processData: false,
+       contentType: false,
+       //async: false,
+       success: function(data){
+          var dataJ = JSON.parse(data).status;
+          var dataM = JSON.parse(data).mensaje;
+ 
+          if (dataJ == 'REDIRECT'){
+             console.log("REDIRECT-->"+dataM);
+             alert(data)									
+          }else if(dataJ == 'OK'){
+             console.log("OK-->"+dataJ+"/"+dataM);
+             alert(data)
+          }else{
+             console.log("ELSE-->"+dataJ+"/"+dataM);
+             alert(data)
+          }
+       },
+       error: function( data, jqXhr, textStatus, errorThrown ){
+          ajax("ERROR AJAX--> "+data);
+          console.log(data);
+       }
+    });
+    return false;
+ }
