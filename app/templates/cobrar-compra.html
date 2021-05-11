@@ -1,5 +1,5 @@
 
-    <!-- <style>
+    <style>
         body{
             background-color: rgb(216, 216, 216);
             margin: 0;
@@ -27,6 +27,7 @@
         .cols-prod{
             width: 32%;
             display: inline-block;
+            line-height: 2em;
         }
         .producto {
             box-shadow: 0px 0px 1px grey;
@@ -68,8 +69,12 @@
             color: whitesmoke !important;
             font-size: 20px !important;
         }
+        .pago-cantidad{
+            font-size: 0.7em;
+            color: grey;
+        }
 
-    </style> -->
+    </style>
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 </head>
 <body style="background-color: rgb(216, 216, 216);margin: 0;padding: 0;">
@@ -87,15 +92,15 @@
         <div class="mail-body" style="padding: 20px;background-color: rgb(239 239 239);">
             <h4><span class="nombre-comprador"></span>, Revisa los datos antes de confirmar la compra</h4>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, debitis eveniet cumque incidunt, ab nulla quasi necessitatibus laudantium voluptatum perspiciatis quis modi qui ducimus dolores quisquam accusantium, expedita natus magnam?</p>
-            <div class="adress" style="margin-top: 20px;">
-                <span><b>Direccion de entrega</b></span><br>
+            <div class="adress">
+                <span><b>Direcci&oacute;n de entrega</b></span><br>
                 <span clas="dir-entrega" style="color: grey">Galicia 1207</span>
             </div>
-            <div class="fecha" style="margin-top: 20px;">
+            <div class="fecha">
                 <span><b>Fecha de entrega</b></span><br>
                 <span style="color: grey">16 Dic 2021 - 18:00 (aprox.)</span>
             </div>
-            <div class="lista-productos" style="margin-top: 20px;">
+            <div class="lista-productos">
                 <span><b>Productos en la orden</b></span><br>
                 
             </div>
@@ -181,7 +186,6 @@
                 </div>
             </div>
           </form>
-          <hr>
           
             <!-- <form id="realizar-compra">
                 <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
@@ -206,7 +210,7 @@
 <script>
 $(document).ready(function(){
 
-    
+
     
     var sizeCompras = jsonData.compras.length;
 
@@ -216,22 +220,26 @@ $(document).ready(function(){
             var precio_producto = jsonData.compras[i].precio;
             var direccion = jsonData.compras[i].envio_nombre_apellido;
             var localidad = jsonData.compras[i].envio_ciudad_localidad;
+            var cantidad = jsonData.compras[i].cantidad;
+            var total = jsonData.compras[i].total;
             var name_comprador = jsonData.compras[i].envio_nombre_apellido;
             var imagen_id = jsonData.compras[i].foto_id;
             var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
 
             var compras_html = 
-            '<div class="producto" style="box-shadow: 0px 0px 1px grey;padding: 10px;margin-top: 10px;">'+
-                '<div class="cols-prod" style="width: 32%;display: inline-block;">'+
-                    '<img class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
-                '</div>'+
-                '<div class="cols-prod" style="text-align: left;font-weight: 500;width: 32%;display: inline-block;">'+nombre_producto+'</div>'+
-                '<div class="cols-prod" style="text-align: right;width: 32%;display: inline-block;">$. '+precio_producto+'</div>'+
+            '<div class="producto">'+
+                '<div class="row">'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-2 cols-prod">'+
+                        '<img class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
+                    '</div>'+
+                    '<div class="col-lg-8 col-md-8 col-sm-8 col-8 cols-prod">'+nombre_producto+'&nbsp;<span class="pago-cantidad">(x'+cantidad+')</span></div>'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-2 cols-prod precio-orden">$. '+precio_producto+'</div>'+
+               '</div>'+
             '</div>';
             
             $(".nombre-comprador").html(name_comprador);
             $(".dir-entrega").html(direccion+", "+localidad)
-            $(".totales-num").html('$. '+precio_producto);//hard TODO
+            $(".totales-num").html('$. '+total);
             $('.lista-productos').append(compras_html);
             $("#transactionAmount").val(precio_producto)
             $("#email").val("test_user_87614160@testuser.com")

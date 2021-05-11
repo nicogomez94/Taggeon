@@ -15,6 +15,22 @@ $(document).ready(function(){
             var arrCat = jsonData.categoria || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             var winLoc = window.location.pathname || "";
+            var id_usuario = "1";//hard
+            var favorito = jsonData.publicaciones[i].favorito || 0;
+            var fav_accion = "";
+            if (favorito==null || favorito == 0) {
+               fav_accion="alta"
+            }else{
+               fav_accion="eliminar";
+            }
+            var seguir = jsonData.publicaciones[i].favorito || 0;
+            var seg_accion = "";
+            if (seguir==null || seguir == 0) {
+               seg_accion="alta"
+            }else{
+               seg_accion="eliminar";
+            }
+
             if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat //si viene por mis-public lo igualo asi no putea
 
             if(cat_ampliar_home == id_public_cat){
@@ -41,7 +57,7 @@ $(document).ready(function(){
                $(".up_relleno_1_der").html('<span class="inside_up_relleno">'+objCatNext.nombre+'</span>');
                $(".up_relleno_2_izq").html('<span class="inside_up_relleno">'+objCatPrev.nombre+'</span>');
                
-
+               
 
             var html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
                                '<div class="header-public">'+
@@ -82,8 +98,11 @@ $(document).ready(function(){
 
                               '<div class="info-public">'+
                                  '<div class="social-public">'+
-                                       '<span><i class="fas fa-heart"></i></span>'+
-                                       '<span><i class="fas fa-comment-dots"></i></span>'+
+                                       //'<span><i class="fas fa-heart" onclick="anadirFavoritos('+id_usuario+','+id_public+')"></i></span>'+
+                                       '<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                       //'<input type="checkbox" class="like-btn"><i class="fa fa-heart"></i></input>'+
+                                       
+                                       '<span onclick="seguidores('+id_public+',\''+seg_accion+'\')"><i class="fas fa-user-plus"></i></span>'+
                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
                                  '</div>'+
                                  '<div class="datos-public">'+
@@ -196,9 +215,9 @@ $(document).ready(function(){
                               '</div>'+
                               '<hr>'+
                               '<div>'+
-                              '<div class="precio-producto-modal"><span>$. '+precio_prod+'</span></div>'+
+                              '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">AR$. '+precio_prod+'</span></div>'+
                               '<div class="shipment-modal-producto">'+
-                              '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 dias habiles'+//hardcodeado
+                              '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles'+//hardcodeado
                               '</div>'+
                               '<hr>'+
                               '<div class="stock-boton-modal">'+
@@ -210,8 +229,6 @@ $(document).ready(function(){
                                           '<option value="3">3</option>'+//hardcodeado
                                           '<option value="4">4</option>'+//hardcodeado
                                           '<option value="5">5</option>'+//hardcodeado
-                                          '<option value="6">6</option>'+//hardcodeado
-                                          '<option value="7">7</option>'+//hardcodeado
                                        '</select>'+
                                        '<input type="hidden" class="id_prod_carrito" name="id" value="'+id_prod_json+'">'+
                                  '</span>&nbsp;'+
@@ -232,7 +249,7 @@ $(document).ready(function(){
                            for(var y=0; y<allprod.length; y++){
 
                               var obj = allprod.find(o => o.marca === "Gucci");
-                              console.log(obj.marca)
+                              //console.log(obj.marca)
 
                               var foto_prod_rel = jsonData.productos[y].foto;
                               var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
@@ -297,38 +314,3 @@ $(document).ready(function(){
 });//FIN READY
 //FIN READY
 
-function añadirFavoritos(){
-
-   var data = new FormData();
-   data.append("accion","alta")
-   data.append("id_usuario","id_usuario")
-   data.append("id_publicacion","id_publicacion")
-
-   $.ajax({
-      url: '/app/favorito.php',
-      data: data,
-      type: 'POST',
-      processData: false,
-      contentType: false,
-      //async: false,
-      success: function( data, textStatus, jQxhr ){
-          var dataJ = JSON.parse(data).status;
-          var dataM = JSON.parse(data).mensaje;
-         if (dataJ == 'REDIRECT'){
-            console.log("REDIRECT-->"+dataM);
-            window.location.replace(dataM);														
-         }else if(dataJ == 'OK'){
-            console.log("OK-->"+dataJ+"/"+dataM);
-            window.location.replace("/ampliar-carrito.html");
-         }else{
-            console.log("ELSE-->"+dataJ+"/"+dataM);
-            //window.location.replace("/ampliar-carrito.html");
-         }
-      },
-      error: function( data, jqXhr, textStatus, errorThrown ){
-         console.log("ERROR AJAX--> "+response);
-         console.log(data);
-      }
-   });
-   return false;
-}

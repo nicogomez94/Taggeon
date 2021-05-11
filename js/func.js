@@ -989,11 +989,13 @@ $(".modal").on("click", ".btn-carrito", function(){
  ///crear orden de compra carrito
  $(".boton-checkout-carrito").click(function(){
 
-    var id_carrito = jsonData.carrito[0].id_carrito;
+    var id_carrito = jsonData.carrito[0].id_carrito || 0;
+    var cantidad = jsonData.carrito[0].cantidad || 0;
 
     var dataCheckout = new FormData();
     dataCheckout.append("accion","finalizar");
     dataCheckout.append("id_carrito",id_carrito);
+    dataCheckout.append("cantidad",cantidad);
 
     $.ajax({
         url: '/app/carrito.php',
@@ -1137,6 +1139,23 @@ $('.seguidores-label').click(function(e) {
       $('.overlay-seguidores').css("display", "none");
     });
 });
+
+
+/***/
+$(".cantidad_value").change(function(){
+    var valor_selected = $(this).find("option:selected").val();
+    var tag_precio_cambiar = $(this).parent().parent().parent().find(".precio-producto-modal>span");
+    var tag_precio_cambiar_data = tag_precio_cambiar.attr("data-precio");
+
+    var valor_cambiado = parseInt(tag_precio_cambiar_data) * parseInt(valor_selected);
+    tag_precio_cambiar.text("$. "+valor_cambiado);
+
+    /*console.log("tag_precio_cambiar "+tag_precio_cambiar)
+    console.log("tag_precio_cambiar_split "+tag_precio_cambiar_split)
+    console.log("valor_selected "+valor_selected)
+    console.log("valor_cambiado "+valor_cambiado)*/
+    
+})
 
 
 /***fin document.ready***//***fin document.ready***/
