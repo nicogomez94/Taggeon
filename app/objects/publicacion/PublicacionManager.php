@@ -280,5 +280,11 @@ class  PublicacionManager
 				$ret =  $this->publicacionDao->getListPublicacionIndex();
 				return $ret;
 			}
+
+			public function getListPublicacionFavoritos()
+			{
+				$ret =  $this->publicacionDao->getListPublicacionFavoritos();
+				return $ret;
+			}
 		
 }

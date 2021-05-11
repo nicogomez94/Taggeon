@@ -589,7 +589,7 @@ private function validarNombre ($param){
 			$param = _trim($param);
 			if (strlen($param)<3){
 				$this->setMsj(getMsjConf('321'));
-			}else if(strlen($param)>25){
+			}else if(strlen($param)>64){
 				$this->setMsj(getMsjConf('322'));
 			}else{
 				$patron = '/^([a-z0-9@\._-]+)$/i';

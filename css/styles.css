@@ -316,6 +316,11 @@ body{
     text-align: center;
 
 }
+.navbar-brand img{
+    width: 42px;
+    height: 42px;
+    margin-bottom: 5px;
+}
 #navbar-principal{
     z-index: 999;/*estaba 997*/
     background-color: #fff;
@@ -465,6 +470,14 @@ form div{
     /* text-decoration: underline;  */
     margin-bottom: 15px;
     margin-top: 15px;
+}
+.seguidores-label{
+    cursor: pointer;
+}
+.seguidor-img img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 #registro_seller a{
     color: black;
@@ -1484,10 +1497,12 @@ input:focus ~ .highlight {
     background: #00000099;
     padding: 20px;
     border-radius: 10px;
+    z-index: 999;
 }
 .text-overlay a:link, .text-overlay a:visited{
-    color: #fff !important;
+    color: #aab8c2 !important;
     z-index: 999;
+    font-size: 1.3em;
 }
 .text-overlay-link a:hover{
     color: rgb(196, 196, 196) !important;
@@ -1660,6 +1675,10 @@ input:focus ~ .highlight {
 .social-public span{
     cursor: pointer;
     margin-right: 5px;
+    color: #aab8c2 !important
+}
+.social-public label{
+    margin-bottom: -2.5rem !important;
 }
 .productos-titulo-public{
     font-size: 1em;
@@ -1667,7 +1686,7 @@ input:focus ~ .highlight {
 .items-carrusel {
     width: 90%;
     margin: 0px auto;
-    margin-top: 100px
+    margin-top: 100px;
 }
 
 .slick-slide {
@@ -2548,3 +2567,105 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     font-size: 5em;
     margin-bottom: 10px;
 }
+
+
+
+.like-btn-svg {
+    width: 80px;
+    height: 100px;
+    background: url(https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png) no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+  }
+  
+  input[type="checkbox"] {
+    display:none;
+  }
+  
+  input:checked + .like-btn-svg{
+    transition: background 1s steps(28);
+    animation: fave-like-btn-svg 1s steps(28);
+    background-position: -2800px 0;
+  }
+  
+  @keyframes fave-like-btn-svg {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: -2800px 0;
+    }
+  }
+
+.text-overlay-link label{
+    margin-bottom: -0.3rem !important;
+}
+.text-overlay-link.like-btn-svg{
+    width: 64px;
+    height: 27px;
+    background: url(https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png) no-repeat;
+    margin-left: -25px;
+    background-position: 0px -36px;
+    cursor: pointer;
+}
+
+
+.seguidor{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.seguidor div{
+    display: inline-block;
+}
+/*
+  .like-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: all 0.5s;
+    opacity: 0;
+    z-index: 2;
+  }
+  .fa-heart{
+    position: absolute;
+    font-size: var(--like-font-size);
+    -webkit-text-stroke: 2px #e5e5e5;
+    color: whitesmoke;
+    transition: all ease-in-out;
+}
+
+.like-btn:checked + .fa-heart{
+    color: red;
+    -webkit-text-stroke: 1px red;
+    animation: .5s linear burst; 
+}
+
+  @keyframes burst{
+    0%,10%{
+        transform: scale(1);
+        opacity: .5;
+        color:lavender;
+    }
+    45%{
+        transform: scale(.2) rotate(30deg);
+        opacity: .75;
+    }
+    50%{
+        transform: scale(2) rotate(-37.5deg);
+        opacity: 1;
+        color: red;
+        text-shadow: 2px 2px 6px rgba(235, 9, 9, 0.5);
+    }
+    90%,95%{
+        transform: scale(1) rotate(10deg);
+        text-shadow: none;
+    }
+    100% {
+        transform: rotate(-2.5deg);
+    }
+
+  }*/

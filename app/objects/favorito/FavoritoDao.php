@@ -33,18 +33,14 @@ class  FavoritoDao
 	public function altaFavorito(array $data)
 	{
 
-        $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-        $usuarioDB = Database::escape($usuario);
-        $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
+        $publicacion = isset($data["id"]) ? $data["id"] : '';
         $publicacionDB = Database::escape($publicacion);
-        $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-        $request_uriDB = Database::escape($request_uri);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO favorito (id_usuario, id_publicacion, request_uri,usuario_alta)  
-			VALUES ($usuarioDB, $publicacionDB, $request_uriDB,$usuarioAltaDB)
+			INSERT INTO favorito (id_usuario, id_publicacion, usuario_alta)  
+			VALUES ($usuarioAltaDB, $publicacionDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -52,7 +48,7 @@ SQL;
 			$this->setMsj("$sql" . Database::Connect()->error);
 		} else {
 			$id = mysqli_insert_id(Database::Connect());
-			$this->setMsj($id);
+			$this->setMsj("");
 			$this->setStatus("OK");
 			return true;
 		}
@@ -107,13 +103,10 @@ SQL;
         $usuarioDB = Database::escape($usuario);
 
         $sql = <<<SQL
-UPDATE
+delete from 
     `favorito`
-SET
-    `usuario_editar` = $usuarioDB,
-    `eliminar` = 1
 WHERE
-`id` = $idDB AND
+`id_publicacion` = $idDB AND
 `usuario_alta` = $usuarioDB
 SQL;
 
@@ -282,7 +275,7 @@ SQL;
                     $id_publicacionDB = Database::escape($id_publicacion);      
             
                     $sql = <<<SQL
-                        SELECT *FROM publicacion
+                        SELECT * FROM publicacion
                         WHERE 
                             id = $id_publicacionDB AND
                             (eliminar = 0 OR eliminar is null);

@@ -215,7 +215,7 @@ $(document).ready(function(){
                               '</div>'+
                               '<hr>'+
                               '<div>'+
-                              '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">AR$. '+precio_prod+'</span></div>'+
+                              '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">$. '+precio_prod+'</span></div>'+
                               '<div class="shipment-modal-producto">'+
                               '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles'+//hardcodeado
                               '</div>'+
@@ -224,11 +224,11 @@ $(document).ready(function(){
                                  '<span>'+
                                        'Cantidad&nbsp;'+
                                        '<select class="cantidad_value" name="cantidad">'+
-                                          '<option value="1">1</option>'+//hardcodeado
-                                          '<option value="2">2</option>'+//hardcodeado
-                                          '<option value="3">3</option>'+//hardcodeado
-                                          '<option value="4">4</option>'+//hardcodeado
-                                          '<option value="5">5</option>'+//hardcodeado
+                                          '<option value="1">1</option>'+
+                                          '<option value="2">2</option>'+
+                                          '<option value="3">3</option>'+
+                                          '<option value="4">4</option>'+
+                                          '<option value="5">5</option>'+
                                        '</select>'+
                                        '<input type="hidden" class="id_prod_carrito" name="id" value="'+id_prod_json+'">'+
                                  '</span>&nbsp;'+

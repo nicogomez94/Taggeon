@@ -33,31 +33,12 @@ class  FavoritoManager
 
 	private function validarFavorito(array $data) {
 		$var_accion = isset($data["accion"]) ? $data["accion"] : '';
-		if ($var_accion == 'editar') {
-			$id = isset($data["id"]) ? $data["id"] : '';
-			if ($this->existeId($id) === false) {
-				return false;
-			}
-		}
 
-	    $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-	    if ($this->validarUsuario($usuario) === false){
-	     return false;
-	    }
-	    $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
+	    $publicacion = isset($data["id"]) ? $data["id"] : '';
 	    if ($this->validarPublicacion($publicacion) === false){
 	     return false;
 	    }
-	    $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-	    if ($this->validarRequest_uri($request_uri) === false){
-	     return false;
-	    }
 
-        if ($this->favoritoDao->existeUsuario($usuario) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->favoritoDao->getMsj());
-            return false;
-        }
         if ($this->favoritoDao->existePublicacion($publicacion) === false) {
             $this->setStatus("ERROR");
             $this->setMsj($this->favoritoDao->getMsj());
