@@ -681,7 +681,7 @@ if(typeof jsonData.productos != "undefined"){
                     '<div class="row producto">'+
                         '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+foto_src+'"></div></div>'+
                         '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">$. '+precio_prod+'</span></div>'+
+                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">AR$. '+precio_prod+'</span></div>'+
                         '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
                         '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                         '<div class="acciones-producto acciones-producto-'+i+'">'+
@@ -1148,7 +1148,7 @@ $(".cantidad_value").change(function(){
     var tag_precio_cambiar_data = tag_precio_cambiar.attr("data-precio");
 
     var valor_cambiado = parseInt(tag_precio_cambiar_data) * parseInt(valor_selected);
-    tag_precio_cambiar.text("$. "+valor_cambiado);
+    tag_precio_cambiar.text("AR$. "+valor_cambiado);
 
     /*console.log("tag_precio_cambiar "+tag_precio_cambiar)
     console.log("tag_precio_cambiar_split "+tag_precio_cambiar_split)
@@ -1379,7 +1379,7 @@ function favoritos(id_publicacion,accion){
 
     var data = new FormData();
     data.append("accion",accion);
-    data.append("id",id_publicacion);//habitacion musical hard
+    data.append("id",id_publicacion);
  
     $.ajax({
        url: '/app/favorito.php',
@@ -1408,11 +1408,12 @@ function favoritos(id_publicacion,accion){
     return false;
  }
 
- function seguidores(id_publicacion,accion){
+function seguidores(id_publicacion,accion,idPublicadorParam){
 
     var data = new FormData();
-    data.append("accion",accion)
-    data.append("id",id_publicacion)
+    data.append("accion",accion);
+    data.append("id_publicacion",id_publicacion);
+    data.append("id_publicador",idPublicadorParam);
  
     $.ajax({
        url: '/app/seguidores.php',

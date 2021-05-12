@@ -720,7 +720,7 @@ SET
 WHERE
 `id` = $idDB AND
 `usuario_alta` = $usuarioDB AND
-`estado` >= 2
+`estado` >=  2
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {

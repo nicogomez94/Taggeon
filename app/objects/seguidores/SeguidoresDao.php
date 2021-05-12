@@ -33,26 +33,22 @@ class  SeguidoresDao
 	public function altaSeguidores(array $data)
 	{
 
-        $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-        $usuarioDB = Database::escape($usuario);
-        $seguidor = isset($data["seguidor"]) ? $data["seguidor"] : '';
-        $seguidorDB = Database::escape($seguidor);
-        $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-        $request_uriDB = Database::escape($request_uri);
-		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAlta = isset($data["id_publicador"]) ? $data["id_publicador"] : '';
         $usuarioAltaDB = Database::escape($usuarioAlta);
+		$seguidor = $GLOBALS['sesionG']['idUsuario'];
+        $seguidorDB = Database::escape($seguidor);
         
 		$sql = <<<SQL
-			INSERT INTO seguidores (id_usuario, id_seguidor, request_uri,usuario_alta)  
-			VALUES ($usuarioDB, $seguidorDB, $request_uriDB,$usuarioAltaDB)
+			INSERT INTO seguidores (id_usuario,id_seguidor,usuario_alta)  
+			VALUES ($usuarioAltaDB, $seguidorDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("$sql" . Database::Connect()->error);
 		} else {
-			$id = mysqli_insert_id(Database::Connect());
-			$this->setMsj($id);
+			#$id = mysqli_insert_id(Database::Connect());
+			$this->setMsj("OK");
 			$this->setStatus("OK");
 			return true;
 		}
@@ -276,15 +272,15 @@ SQL;
 
                 }
 
-                public function existeSeguidor($id_seguidor)
+                public function existeSeguidor($id_publicador)
                 {
-                    $id_seguidor = isset($id_seguidor) ?   $id_seguidor : '';
-                    $id_seguidorDB = Database::escape($id_seguidor);      
+                    $id_publicador = isset($id_publicador) ?   $id_publicador : '';
+                    $id_publicadorDB = Database::escape($id_publicador);      
             
                     $sql = <<<SQL
-                        SELECT *FROM seguidor
+                        SELECT * FROM usuario
                         WHERE 
-                            id = $id_seguidorDB AND
+                            id = $id_publicadorDB AND
                             (eliminar = 0 OR eliminar is null);
 SQL;            
 
@@ -296,7 +292,7 @@ SQL;
                     }
                     
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo seguidor es incorrecto.");
+                    $this->setMsj("El campo id_publicador es incorrecto.");
                     return false;
 
                 }

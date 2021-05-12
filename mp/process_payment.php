@@ -10,82 +10,24 @@ $mensajeRet = 'ERROR';
 
 $sesionManager = new SesionManagerImpl();
 if ($sesionManager->validar(array('seller','picker'))){
-
     if (sizeof($_POST) > 0) {
-        
         $objResponse = pagar('TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066');
-
-        #debug post y response mp
-        $str = "Fecha " . date('d/m/Y  H:i:s', time())."\n";
-        $str .= "post transactionAmount: ".$_POST['transactionAmount']."\n";
-        $str .= "post token: ".$_POST['token']."\n";
-        $str .= "post installments: ".$_POST['installments']."\n";
-        $str .= "post paymentMethodId: ".$_POST['paymentMethodId']."\n";
-        $str .= "post issuer: ".$_POST['issuer']."\n";
-        $str .= "post email: ".$_POST['email']."\n";
-        $str .= "post docType: ".$_POST['docType']."\n";
-        $str .= "post docNumber: ".$_POST['docNumber']."\n";
-        $str .= "post description: ".$_POST['description']."\n";
-        $str .= "post id_carrito: ".$_POST['id_carrito']."\n";
-        $str .= "response mp status: ".$objResponse->status."\n";
-        $str .= "response mp status_detail: ".$objResponse->status_detail."\n";
-        $str .= "response mp id: ".$objResponse->id."\n";
-        $str .= "#---------------------------------------------\n";
+        $statusRet  = $objResponse['status'];
+        $mensajeRet = $objResponse['mensaje'];
+        $str = "TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066\n";
+        $str .= " status: ".$statusRet." mensaje: ".$mensajeRet."\n";
         $fp = fopen("/var/www/html/log.txt", 'a');
         fwrite($fp, $str);
         fclose($fp);
-        #fin debug post y response mp
-    
-        if (isset($objResponse) && isset($objResponse->status) && $objResponse->status == 'approved'){
-            $str = "Paso 1\n";
-            $fp = fopen("/var/www/html/log.txt", 'a');
-            fwrite($fp, $str);
-            fclose($fp);
-            $objPrincipalManager = new CarritoManager();
-            $objPrincipalManager->cambiarEstadoMayor3($_POST,4);
-            if ($objPrincipalManager->getStatus() == 'OK') {
-                $str = "OK\n";
-                $fp = fopen("/var/www/html/log.txt", 'a');
-                fwrite($fp, $str);
-                fclose($fp);
-                $statusRet  = 'OK';
-                $mensajeRet = $objResponse->id;
-            } else {
-                $str = "ERROR\n";
-                $fp = fopen("/var/www/html/log.txt", 'a');
-                fwrite($fp, $str);
-                fclose($fp);
-                $statusRet  = 'ERROR';
-                $mensajeRet = $objPrincipalManager->getMsj();
-            }
-        }else{
-            
-            $str = "Paso else\n";
-            $fp = fopen("/var/www/html/log.txt", 'a');
-            fwrite($fp, $str);
-            fclose($fp);
-            if (isset($objResponse)){
-                $str = "Paso else 1\n";
-                $fp = fopen("/var/www/html/log.txt", 'a');
-                fwrite($fp, $str);
-                fclose($fp);
-                if (isset($objResponse->status)){
-                    $str .= "Paso else 2\n";
-                    $fp = fopen("/var/www/html/log.txt", 'a');
-                    fwrite($fp, $str);
-                    fclose($fp);
-                    if ($objResponse->status == 'approved'){
-                        $str .= "Paso else 3\n";
-                        $fp = fopen("/var/www/html/log.txt", 'a');
-                        fwrite($fp, $str);
-                        fclose($fp);
-                    }
-                } 
-            } 
-            
-            $statusRet  = 'ERROR';
-            $mensajeRet = $objResponse->status;
-        }
+        
+        #$objResponse = pagar('TEST-3352741419059189-050618-af87bf11b26552b6b21a12aebad985b6-755113315');
+        #$statusRet  = $objResponse['status'];
+        #$mensajeRet = $objResponse['mensaje'];
+        #$str = "TEST-3352741419059189-050618-af87bf11b26552b6b21a12aebad985b6-755113315\n";
+        #$str .= " status: ".$statusRet." mensaje: ".$mensajeRet."\n";
+        #$fp = fopen("/var/www/html/log.txt", 'a');
+        #fwrite($fp, $str);
+        #fclose($fp);
     } else {
         $statusRet  = 'ERROR';
         $mensajeRet = "Error post.";
@@ -131,8 +73,84 @@ function pagar ($token){
     $payment->payer = $payer;
 
     $payment->save();
-    return $payment;
-   
+
+            #debug post y response mp
+            $str = "Fecha " . date('d/m/Y  H:i:s', time())."\n";
+            $str .= "post transactionAmount: ".$_POST['transactionAmount']."\n";
+            $str .= "post token: ".$_POST['token']."\n";
+            $str .= "post installments: ".$_POST['installments']."\n";
+            $str .= "post paymentMethodId: ".$_POST['paymentMethodId']."\n";
+            $str .= "post issuer: ".$_POST['issuer']."\n";
+            $str .= "post email: ".$_POST['email']."\n";
+            $str .= "post docType: ".$_POST['docType']."\n";
+            $str .= "post docNumber: ".$_POST['docNumber']."\n";
+            $str .= "post description: ".$_POST['description']."\n";
+            $str .= "post id_carrito: ".$_POST['id_carrito']."\n";
+            $str .= "response mp status: ".$payment->status."\n";
+            $str .= "response mp status_detail: ".$payment->status_detail."\n";
+            $str .= "response mp id: ".$payment->id."\n";
+            $str .= "#---------------------------------------------\n";
+            $fp = fopen("/var/www/html/log.txt", 'a');
+            fwrite($fp, $str);
+            fclose($fp);
+            #fin debug post y response mp
+        
+            if (isset($payment) && isset($payment->status) && $payment->status == 'approved'){
+                $str = "Paso 1\n";
+                $fp = fopen("/var/www/html/log.txt", 'a');
+                fwrite($fp, $str);
+                fclose($fp);
+                $objPrincipalManager = new CarritoManager();
+                $objPrincipalManager->cambiarEstadoMayor3($_POST,4);
+                if ($objPrincipalManager->getStatus() == 'OK') {
+                    $str = "OK\n";
+                    $fp = fopen("/var/www/html/log.txt", 'a');
+                    fwrite($fp, $str);
+                    fclose($fp);
+                    $statusRet  = 'OK';
+                    $mensajeRet = $payment->id;
+                } else {
+                    $str = "ERROR\n";
+                    $fp = fopen("/var/www/html/log.txt", 'a');
+                    fwrite($fp, $str);
+                    fclose($fp);
+                    $statusRet  = 'ERROR';
+                    $mensajeRet = $objPrincipalManager->getMsj();
+                }
+            }else{
+                
+                $str = "Paso else\n";
+                $fp = fopen("/var/www/html/log.txt", 'a');
+                fwrite($fp, $str);
+                fclose($fp);
+                if (isset($payment)){
+                    $str = "Paso else 1\n";
+                    $fp = fopen("/var/www/html/log.txt", 'a');
+                    fwrite($fp, $str);
+                    fclose($fp);
+                    if (isset($payment->status)){
+                        $str .= "Paso else 2\n";
+                        $fp = fopen("/var/www/html/log.txt", 'a');
+                        fwrite($fp, $str);
+                        fclose($fp);
+                        if ($payment->status == 'approved'){
+                            $str .= "Paso else 3\n";
+                            $fp = fopen("/var/www/html/log.txt", 'a');
+                            fwrite($fp, $str);
+                            fclose($fp);
+                        }
+                    } 
+                } 
+                
+                $statusRet  = 'ERROR';
+                $mensajeRet = $payment->status;
+            }
+
+            $objRet = array(
+                "status"  => $statusRet,
+                "mensaje" => $mensajeRet
+            );
+            return $objRet;
 }
 
 

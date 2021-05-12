@@ -40,25 +40,13 @@ class  SeguidoresManager
 			}
 		}
 
-	    $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-	    if ($this->validarUsuario($usuario) === false){
-	     return false;
-	    }
-	    $seguidor = isset($data["seguidor"]) ? $data["seguidor"] : '';
-	    if ($this->validarSeguidor($seguidor) === false){
-	     return false;
-	    }
-	    $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-	    if ($this->validarRequest_uri($request_uri) === false){
+
+	    $publicador = isset($data["id_publicador"]) ? $data["id_publicador"] : '';
+	    if ($this->validarSeguidor($publicador) === false){
 	     return false;
 	    }
 
-        if ($this->seguidoresDao->existeUsuario($usuario) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->seguidoresDao->getMsj());
-            return false;
-        }
-        if ($this->seguidoresDao->existeSeguidor($seguidor) === false) {
+        if ($this->seguidoresDao->existeSeguidor($publicador) === false) {
             $this->setStatus("ERROR");
             $this->setMsj($this->seguidoresDao->getMsj());
             return false;

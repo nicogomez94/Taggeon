@@ -9,6 +9,9 @@ $(document).ready(function(){
             var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria || "";
             var nombre_public = jsonData.publicaciones[i].publicacion_nombre || "";
             var descr_public = jsonData.publicaciones[i].publicacion_descripcion || "";
+            var publicador = jsonData.publicaciones[i].nombre_publicador || "";
+            var id_publicador = jsonData.publicaciones[i].id_publicador || "";
+            var seguidor = "";
             var imagen_id = jsonData.publicaciones[i].foto || 0;
             var producto = jsonData.publicaciones[i].pid || 0;
             var cat_ampliar_home = jsonData.cat || 0;
@@ -102,7 +105,7 @@ $(document).ready(function(){
                                        '<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
                                        //'<input type="checkbox" class="like-btn"><i class="fa fa-heart"></i></input>'+
                                        
-                                       '<span onclick="seguidores('+id_public+',\''+seg_accion+'\')"><i class="fas fa-user-plus"></i></span>'+
+                                       '<span onclick="seguidores('+id_public+',\''+seg_accion+'\','+id_publicador+')"><i class="fas fa-user-plus"></i></span>'+
                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
                                  '</div>'+
                                  '<div class="datos-public">'+
@@ -128,8 +131,7 @@ $(document).ready(function(){
             $(".test-suggest").attr("src", img_perfil);
         
             //nombre perfil
-            var nombre_perfil = $(".user-name-perfil").text();
-            $(".title-public").html(nombre_perfil);
+            $(".title-public").html(publicador);
 
             ///DIBUJO PINES
             var producto_parse = JSON.parse(producto);
@@ -215,7 +217,7 @@ $(document).ready(function(){
                               '</div>'+
                               '<hr>'+
                               '<div>'+
-                              '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">$. '+precio_prod+'</span></div>'+
+                              '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">AR$. '+precio_prod+'</span></div>'+
                               '<div class="shipment-modal-producto">'+
                               '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles'+//hardcodeado
                               '</div>'+
