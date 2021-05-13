@@ -40,7 +40,7 @@ class  SeguidoresDao
         
 		$sql = <<<SQL
 			INSERT INTO seguidores (id_usuario,id_seguidor,usuario_alta)  
-			VALUES ($usuarioAltaDB, $seguidorDB,$usuarioAltaDB)
+			VALUES ($usuarioAltaDB, $seguidorDB,$seguidorDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -97,25 +97,22 @@ SQL;
 
 	public function eliminarSeguidores(array $data)
     {
-        $id = isset($data["id"]) ? $data["id"] : '';
-        $idDB = Database::escape($id);
-        $usuario = $GLOBALS['sesionG']['idUsuario'];
+        $usuario = isset($data["id_publicador"]) ? $data["id_publicador"] : '';
         $usuarioDB = Database::escape($usuario);
+		$seguidor = $GLOBALS['sesionG']['idUsuario'];
+        $seguidorDB = Database::escape($seguidor);
 
         $sql = <<<SQL
-UPDATE
+delete from 
     `seguidores`
-SET
-    `usuario_editar` = $usuarioDB,
-    `eliminar` = 1
 WHERE
-`id` = $idDB AND
-`usuario_alta` = $usuarioDB
+`id_usuario` = $usuarioDB  AND
+`id_seguidor` = $seguidorDB
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
             $this->setStatus("ERROR");
-            $this->setMsj("$sql" . Database::Connect()->error);
+            $this->setMsj(Database::Connect()->error);
         } else {
             $this->setStatus("OK");
             return true;
@@ -151,17 +148,44 @@ SQL;
         return false;
 	}
 	
-	public function getListSeguidores()
+	public function getListSeguidos()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
         SELECT
-		*
-    	FROM
-		`seguidores`
-		WHERE
-        (`seguidores`.eliminar = 0 OR `seguidores`.eliminar IS NULL) AND `seguidores`.usuario_alta = $usuarioAltaDB
+    u.*
+FROM
+    seguidores s
+INNER JOIN
+    (
+    SELECT
+        idUsuario,
+        nombre,
+        apellido,
+        email
+    FROM
+        usuario_picker
+    WHERE
+        (
+            eliminar = 0 OR eliminar IS NULL
+        )
+    UNION
+SELECT
+    idUsuario,
+    nombre,
+    apellido,
+    email
+FROM
+    usuario_seller
+WHERE
+    (
+        eliminar = 0 OR eliminar IS NULL
+    )
+) AS u
+ON
+    s.id_usuario = u.idUsuario
+WHERE s.id_seguidor=$usuarioAltaDB
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -172,51 +196,46 @@ sql;
         return $list;
 	}
 
-	public function getSeguidores($id)
+
+	public function getListSeguidores()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
-        $id = isset($id) ?   $id : '';
-        $idDB = Database::escape($id);
         $sql = <<<sql
-		SELECT
-		*
-    	FROM
-        `seguidores`
-    	WHERE
-			seguidores.id=$idDB AND 
-        (`seguidores`.eliminar = 0 OR `seguidores`.eliminar IS NULL) AND `seguidores`.usuario_alta = $usuarioAltaDB
+        SELECT
+    u.*
+FROM
+    seguidores s
+INNER JOIN
+    (
+    SELECT
+        idUsuario,
+        nombre,
+        apellido,
+        email
+    FROM
+        usuario_picker
+    WHERE
+        (
+            eliminar = 0 OR eliminar IS NULL
+        )
+    UNION
+SELECT
+    idUsuario,
+    nombre,
+    apellido,
+    email
+FROM
+    usuario_seller
+WHERE
+    (
+        eliminar = 0 OR eliminar IS NULL
+    )
+) AS u
+ON
+    s.id_seguidor = u.idUsuario
+WHERE s.id_usuario=$usuarioAltaDB
 sql;
-        $resultado = Database::Connect()->query($sql);
-        $row_cnt = mysqli_num_rows($resultado);
-        $list = array();
-        if ($row_cnt <= 0) {
-            $this->setStatus("ERROR");
-            $this->setMsj("No se encontraron resultados o no tiene permisos para editar.");
-            return $list;
-        }
-
-
-        while ($rowEmp = mysqli_fetch_array($resultado)) {
-            $list[] = $rowEmp;
-        }
-        $this->setStatus("ok");
-        return $list;
-    }
-
-                
-    public function getListUsuario()
-    {
-        $sql = <<<sql
-                    SELECT
-                    `id`,
-                    `nombre`
-                FROM
-                    `usuario`
-                WHERE
-                    eliminar=0 OR eliminar is null
-sql;
-
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
@@ -224,30 +243,10 @@ sql;
             $list[] = $rowEmp;
         }
         return $list;
-    }                
-    public function getListSeguidor()
-    {
-        $sql = <<<sql
-                    SELECT
-                    `id`,
-                    `nombre`
-                FROM
-                    `seguidor`
-                WHERE
-                    eliminar=0 OR eliminar is null
-sql;
+	}
 
-        $resultado = Database::Connect()->query($sql);
-        $list = array();
-
-        while ($rowEmp = mysqli_fetch_array($resultado)) {
-            $list[] = $rowEmp;
-        }
-        return $list;
-    }
-
-
-                public function existeUsuario($id_usuario)
+     
+                 public function existeUsuario($id_usuario)
                 {
                     $id_usuario = isset($id_usuario) ?   $id_usuario : '';
                     $id_usuarioDB = Database::escape($id_usuario);      

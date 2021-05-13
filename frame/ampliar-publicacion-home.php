@@ -2,12 +2,15 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
 
 if ($perfil=='seller' || $perfil='picker'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
+    $seguidoresManager = new SeguidoresManager();
+
     $cat = (isset($_GET['cat']))  ? $_GET['cat'] : "";
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
@@ -26,7 +29,9 @@ if ($perfil=='seller' || $perfil='picker'){
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
 	"productos"     => $productoManager->getListProductoIndex(),
-	"cat"           => $cat
+	"cat"           => $cat,
+    "seguidores"     => $seguidoresManager->getListSeguidores(),
+    "seguidos"     => $seguidoresManager->getListSeguidos()
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';

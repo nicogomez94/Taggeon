@@ -156,11 +156,6 @@ class  FavoritoManager
 		return $favorito;
 	}
 
-	public function getListFavorito()
-	{
-		$ret =  $this->publicacionDao->getListFavorito();
-		return $ret;
-	}
 
 
                 public function getListUsuario()

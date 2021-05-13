@@ -24,15 +24,16 @@ $(document).ready(function(){
             if (favorito==null || favorito == 0) {
                fav_accion="alta"
             }else{
+               $(".fav-"+i).addClass("fav-eliminar");
                fav_accion="eliminar";
             }
-            var seguir = jsonData.publicaciones[i].favorito || 0;
             var seg_accion = "";
+            /*var seguir = jsonData.publicaciones[i].favorito || 0;
             if (seguir==null || seguir == 0) {
                seg_accion="alta"
             }else{
                seg_accion="eliminar";
-            }
+            }*/
 
             if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat //si viene por mis-public lo igualo asi no putea
 
@@ -101,11 +102,11 @@ $(document).ready(function(){
 
                               '<div class="info-public">'+
                                  '<div class="social-public">'+
-                                       //'<span><i class="fas fa-heart" onclick="anadirFavoritos('+id_usuario+','+id_public+')"></i></span>'+
-                                       '<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                       '<span><i class="fas fa-heart fav-'+i+'" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'+
+                                       //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
                                        //'<input type="checkbox" class="like-btn"><i class="fa fa-heart"></i></input>'+
                                        
-                                       '<span onclick="seguidores('+id_public+',\''+seg_accion+'\','+id_publicador+')"><i class="fas fa-user-plus"></i></span>'+
+                                       '<span onclick="seguidores('+id_public+','+id_publicador+')"><i class="fas fa-user-plus"></i></span>'+
                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
                                  '</div>'+
                                  '<div class="datos-public">'+

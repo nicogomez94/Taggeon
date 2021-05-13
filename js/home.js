@@ -59,8 +59,8 @@ if(sizePublic>0){
                                     '</span>'+
                                     '&nbsp;&nbsp;'+
                                     '<span class="text-overlay-link">'+
-                                    '<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                        //'<a href="#"><i class="fas fa-heart"></i></a>'+
+                                    //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                        '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\')"></i></a>'+
                                     '</span>'+
                                 '</div>'+
                             '</div></a>'+

@@ -1408,10 +1408,10 @@ function favoritos(id_publicacion,accion){
     return false;
  }
 
-function seguidores(id_publicacion,accion,idPublicadorParam){
+function seguidores(id_publicacion,idPublicadorParam){
 
     var data = new FormData();
-    data.append("accion",accion);
+    data.append("accion","eliminar");
     data.append("id_publicacion",id_publicacion);
     data.append("id_publicador",idPublicadorParam);
  

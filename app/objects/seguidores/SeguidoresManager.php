@@ -97,7 +97,7 @@ class  SeguidoresManager
 
 	public function eliminarSeguidores(array $data)
 	{
-		$id = isset($data["id"]) ? $data["id"] : '';
+		$id = isset($data["id_publicador"]) ? $data["id_publicador"] : '';
 		if ($this->validarId($id) === false){
 			return false;
 		}
@@ -145,41 +145,18 @@ class  SeguidoresManager
 		return true;
 	}
 
-	public function getSeguidores(array $data)
-	{
-
-		$id = isset($data["id"]) ? $data["id"] : '';
-		if ($this->existeId($id) === false) {
-			return [];
-		}
-	
-		$seguidores = $this->seguidoresDao->getSeguidores($id);
-		if ($this->seguidoresDao->getStatus() != 'ok') {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->seguidoresDao->getMsj());
-			return [];
-		}
-		$this->setStatus("ok");
-		return $seguidores;
-	}
-
 	public function getListSeguidores()
 	{
-		$ret =  $this->publicacionDao->getListSeguidores();
+		$ret =  $this->seguidoresDao->getListSeguidores();
 		return $ret;
 	}
 
+	public function getListSeguidos()
+	{
+		$ret =  $this->seguidoresDao->getListSeguidos();
+		return $ret;
+	}
 
-                public function getListUsuario()
-                {
-                    return $this->claseDao->getListUsuario();
-                }                
-                public function getListSeguidor()
-                {
-                    return $this->claseDao->getListSeguidor();
-                }                
-
-        
             private function validarUsuario($usuario)
             {
                 if (!is_numeric($usuario)){
