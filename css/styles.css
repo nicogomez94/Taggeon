@@ -583,23 +583,24 @@ form div{
     cursor: pointer;
 }
 .item {
-    vertical-align: top;
-    /* height: 100%; */
-    display: inline-block;
+    /*vertical-align: top;
+    height: 100vh;
+    display: inline-block;*/
     width: 315px;
-    overflow-y: scroll; /*jugar con estos para individual scrolling*/
+    /*overflow-y: scroll;
     overflow-x: hidden;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
+    transform-style: preserve-3d;*/
 }
 
+/*
 .items.active {
     background: rgba(255,255,255,0.3);
     cursor: grabbing;
     cursor: -webkit-grabbing;
     transform: scale(1);
-}
+}*/
 
 .item::-webkit-scrollbar {
     display: none;
@@ -1572,7 +1573,26 @@ input:focus ~ .highlight {
 .splide{
     padding-left: 40px;
 }
-.splide__slide img {
+.splide__home{
+    padding-left: 0 !important;
+}
+.splide__home>.splide__arrows>.splide__arrow{
+    position: fixed !important;
+    top: 60% !important;
+    margin-right: 15px;
+    margin-left: 15px;
+    width: 3em !important;
+    height: 3em !important;
+}
+/*.splide__home>.splide__arrow>.splide__arrow svg{
+    height: 1.8em !important;
+    width: 1.8em !important;
+}*/
+button:disabled{
+    opacity: .2;
+    pointer-events: none;
+}
+.splide__slide__img img {
 	width : 88px !important;
     height: 88px;
     cursor: pointer;

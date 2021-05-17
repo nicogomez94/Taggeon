@@ -256,14 +256,14 @@ $(document).ready(function(){
 
                               var foto_prod_rel = jsonData.productos[y].foto;
                               var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
-                              var html_related = '<li class="splide__slide"><img data-toggle="modal" src="'+foto_src_prod_rel+'"></li>';
+                              var html_related = '<li class="splide__slide splide__slide__img"><img data-toggle="modal" src="'+foto_src_prod_rel+'"></li>';
                               //encontrar el id de catdel prod y suar ese y fue
                               $(".splide_list_related").append(html_related);
                            }
                      
                   }
                 
-                  var splide_fotos = '<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
+                  var splide_fotos = '<li class="splide__slide splide__slide__img"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
                   $(".splide__list__"+i).append(splide_fotos);
 
                   

@@ -1,6 +1,14 @@
 $(document).ready(function() {
 
-
+    //on/off de arrows
+    $(".splide__arrow").hide(500);
+    $(".board")
+        .mouseenter(function() {
+        $(".splide__arrow").css("display","inline");
+      })
+      .mouseleave(function() {
+        $(".splide__arrow").css("display","none");
+      });
 
     //icono gif de carga
     $(document).on({
@@ -1155,7 +1163,20 @@ $(".cantidad_value").change(function(){
     console.log("valor_selected "+valor_selected)
     console.log("valor_cambiado "+valor_cambiado)*/
     
-})
+});
+
+//on/off botones splide
+/*if($(".splide__arrow")){
+
+    var sarrow = $(".splide__arrow");
+    var sarrow_disabled = $(".splide__arrow").prop("disabled");
+
+    if(sarrow_disabled==true){
+        sarrow.hide();
+    }else{
+        sarrow.show();
+    }
+}*/
 
 
 /***fin document.ready***//***fin document.ready***/
@@ -1169,7 +1190,7 @@ $(".cantidad_value").change(function(){
 
 
 /******/
-
+/*
 var slider = document.querySelector('.items');
 if (slider){
 
@@ -1201,7 +1222,7 @@ if (slider){
         var walk = (x - startX) * 3; //scroll-fast
         slider.scrollLeft = scrollLeft - walk;
     });
-}
+}*/
     
 function actualizarPantallaEditarUsuario () {
     if (jsonDatosEditar != undefined){
@@ -1411,7 +1432,7 @@ function favoritos(id_publicacion,accion){
 function seguidores(id_publicacion,idPublicadorParam){
 
     var data = new FormData();
-    data.append("accion","eliminar");
+    data.append("accion","alta");
     data.append("id_publicacion",id_publicacion);
     data.append("id_publicador",idPublicadorParam);
  
@@ -1444,3 +1465,8 @@ function seguidores(id_publicacion,idPublicadorParam){
     });
     return false;
  }
+
+
+function toggleSliderHome(){
+    
+}

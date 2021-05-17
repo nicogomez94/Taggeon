@@ -14,13 +14,13 @@ if(sizePublic>0){
         var json_cat_nombre = jsonData.categoria[i].nombre || "";
         
 
-        var item_html = '<div class="item item-cat-'+json_cat+'">'+
+        var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
                             '<div class="titulo-col-cont">'+
                                 '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
                             '</div>'
-                        '</div>'
+                        '</li>'
         
-        $(".items").append(item_html);
+        $(".splide__list__home").append(item_html);
         
         //numero random pattern por ahora
         var random = Math.floor(Math.random() * 7);
