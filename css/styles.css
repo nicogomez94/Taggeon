@@ -224,6 +224,28 @@ body{
 [role="main"] {
     padding-top: 48px;
 }
+.overlay-welcome-nologin{
+    z-index: 1000 !important;
+}
+.overlay-welcome-nologin>.lightBox{
+    width: 100%;
+    background-color: transparent;
+}
+.welcome-form{
+    padding: 20px;
+    background-color: white;
+    margin-right: 60px;
+}
+.cerrar-welcome-nologin i{
+    font-size: 2em;
+    cursor: pointer;
+}
+.label-welcome-nologin{
+    color: white;
+    font-size: 4.5em;
+    text-align: left;
+    padding-left: 40px;
+}
 .subir-publicacion-responsive{
     display: none;
 }
@@ -402,7 +424,7 @@ body{
     color: rgba(255,255,255,0.8);
     right: 0;
     top: 0;
-    z-index: 999;
+    z-index: 997;
     margin: 10px;
     font-size: x-large;
     cursor: pointer;
@@ -1589,7 +1611,7 @@ input:focus ~ .highlight {
     width: 1.8em !important;
 }*/
 button:disabled{
-    opacity: .2;
+    opacity: 0;
     pointer-events: none;
 }
 .splide__slide__img img {
