@@ -21,12 +21,6 @@ $(document).ready(function(){
             var id_usuario = "1";//hard
             var favorito = jsonData.publicaciones[i].favorito || 0;
             var fav_accion = "";
-            if (favorito==null || favorito == 0) {
-               fav_accion="alta"
-            }else{
-               $(".fav-"+i).addClass("fav-eliminar");
-               fav_accion="eliminar";
-            }
             var seg_accion = "";
             /*var seguir = jsonData.publicaciones[i].favorito || 0;
             if (seguir==null || seguir == 0) {
@@ -66,10 +60,10 @@ $(document).ready(function(){
             var html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
                                '<div class="header-public">'+
                                   '<span class="img-perfil-public">'+
-                                     '<img src="" alt="img-perfil">'+
+                                     '<a href="/ampliar-usuario-redirect.html?id='+id_publicador+'&accion=ampliar"><img src="{foto-perfil}" alt="img-perfil"></a>'+
                                   '</span>'+
                                   '<span class="title-public"></span>'+
-                                  '<span class="opciones-public"><i class="fas fa-cog"></i></span>'+
+                                 //'<span class="opciones-public"><i class="fas fa-cog"></i></span>'+
                                '</div>'+
                             '<div class="bodyimg-public-container bodyimg-public-container-'+i+'">'+
                                //'<div><img src="../../img/arrrrte.jpg" alt=""></div>'+
@@ -90,7 +84,7 @@ $(document).ready(function(){
                                         '</div>'+
                                      '</div>'+
                                      /**/
-                               '<hr><div class="productos-titulo-public prod-relacionados">Productos relacionados:</div><br>'+
+                               '<hr><div class="productos-titulo-public prod-relacionados">Comprar Productos relacionados:</div><br>'+
                                        '<div class="splide splide-related splide-prod-'+i+'">'+
                                           '<div class="splide__track">'+
                                              '<ul class="splide__list splide_list_related"></ul>'+
@@ -101,11 +95,8 @@ $(document).ready(function(){
 
 
                               '<div class="info-public">'+
-                                 '<div class="social-public">'+
-                                       '<span><i class="fas fa-heart fav-'+i+'" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'+
-                                       //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                       //'<input type="checkbox" class="like-btn"><i class="fa fa-heart"></i></input>'+
-                                       
+                                 '<div class="social-public social-public-'+id_public+'">'+
+                                       //'<span><i class="fas fa-heart fav-'+i+'" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'+
                                        '<span onclick="seguidores('+id_public+','+id_publicador+')"><i class="fas fa-user-plus"></i></span>'+
                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
                                  '</div>'+
@@ -119,7 +110,25 @@ $(document).ready(function(){
                            
             $(".insert-public").append(html_public);
             
-            
+            if (favorito==null || favorito == 0) {
+               fav_accion="alta";
+               var fav_html = '<span><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
+               $(".social-public-"+id_public).prepend(fav_html);
+            }else{
+               fav_accion="eliminar";
+               var fav_html = '<span><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></span>'
+               $(".social-public-"+id_public).prepend(fav_html);
+            }
+            /**/
+            /*if (seguidor==null || seguidor == 0) {
+               seg_accion="alta";
+               var seg_html = '<span><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
+               $(".social-public-"+id_public).append(fav_html);
+            }else{
+               seg_accion="eliminar";
+               var seg_html = '<span><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></span>'
+               $(".social-public-"+id_public).append(fav_html);
+            }*/
             
             
             //lo mando a la public seleccionada

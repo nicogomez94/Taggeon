@@ -147,6 +147,55 @@ SQL;
         $this->setMsj("No se puede editar. Motivo: No existe o no tiene permisos.");
         return false;
 	}
+
+    
+	public function getListSeguidosPublic($usuarioAlta)
+    {
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+        SELECT
+    u.*
+FROM
+    seguidores s
+INNER JOIN
+    (
+    SELECT
+        idUsuario,
+        nombre,
+        apellido,
+        email
+    FROM
+        usuario_picker
+    WHERE
+        (
+            eliminar = 0 OR eliminar IS NULL
+        )
+    UNION
+SELECT
+    idUsuario,
+    nombre,
+    apellido,
+    email
+FROM
+    usuario_seller
+WHERE
+    (
+        eliminar = 0 OR eliminar IS NULL
+    )
+) AS u
+ON
+    s.id_usuario = u.idUsuario
+WHERE s.id_seguidor=$usuarioAltaDB
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
+
 	
 	public function getListSeguidos()
     {
@@ -197,7 +246,54 @@ sql;
 	}
 
 
-	public function getListSeguidores()
+	public function getListSeguidoresPublic($usuarioAlta)
+    {
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+        SELECT
+    u.*
+FROM
+    seguidores s
+INNER JOIN
+    (
+    SELECT
+        idUsuario,
+        nombre,
+        apellido,
+        email
+    FROM
+        usuario_picker
+    WHERE
+        (
+            eliminar = 0 OR eliminar IS NULL
+        )
+    UNION
+SELECT
+    idUsuario,
+    nombre,
+    apellido,
+    email
+FROM
+    usuario_seller
+WHERE
+    (
+        eliminar = 0 OR eliminar IS NULL
+    )
+) AS u
+ON
+    s.id_seguidor = u.idUsuario
+WHERE s.id_usuario=$usuarioAltaDB
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
+
+    public function getListSeguidores()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -244,7 +340,6 @@ sql;
         }
         return $list;
 	}
-
      
                  public function existeUsuario($id_usuario)
                 {

@@ -558,6 +558,14 @@ private function validarNombre ($param){
 		}
 		return $this->getUsuarioDao()->getByUsr($usuario);
 	}
+
+	
+	public function getUsuarioPublic(){
+		$id_usuario  = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : '';
+		
+		return $this->getUsuarioDao()->getUsuarioPublic($id_usuario);
+	}
+	
 	
 	public function listar(){
 		$usuarioList = $this->getUsuarioDao()->getList();

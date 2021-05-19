@@ -36,7 +36,6 @@ if ($url == '/' || $url == '/index.htm'){
 		Database::Connect()->close();
 		exit;
 	}else if (file_exists($GLOBALS['configuration']['path_templates']."/{$nameTemplate}.html") ){
-
 		require('./frame/page-template.php');
 		Database::Connect()->close();
 		exit;

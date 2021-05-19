@@ -145,9 +145,37 @@ class  SeguidoresManager
 		return true;
 	}
 
+
+	public function getListSeguidoresPublic()
+	{
+		$usuario = (isset($_GET['id_usuario']))  ? $_GET['id_usuario'] : "";
+
+	    if ($this->validarUsuario($usuario) === false){
+			return false;
+	   	}
+   
+		$ret =  $this->seguidoresDao->getListSeguidoresPublic($usuario);
+		return $ret;
+	}
+
+
 	public function getListSeguidores()
 	{
+		
 		$ret =  $this->seguidoresDao->getListSeguidores();
+		return $ret;
+	}
+
+	
+	public function getListSeguidosPublic()
+	{
+		$usuario = (isset($_GET['id_usuario']))  ? $_GET['id_usuario'] : "";
+
+	    if ($this->validarUsuario($usuario) === false){
+			return false;
+	   	}
+   
+		$ret =  $this->seguidoresDao->getListSeguidosPublic($usuario);
 		return $ret;
 	}
 

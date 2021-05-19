@@ -71,7 +71,30 @@ SQL;
 
    }
 
-   public function getUsuarioByEmail ($email){
+   public function getUsuarioPublic ($id_usuario){
+	$id_usuarioquote = database::escape($id_usuario);
+	$sql =<<<sql
+        SELECT  idUsuario,nombre,apellido,email
+		FROM    `usuario_picker`
+		WHERE `usuario_picker`.`eliminar` = 0 AND idUsuario=$id_usuarioquote
+		UNION
+	
+		SELECT idUsuario,nombre,apellido,email
+		FROM `usuario_seller`
+		WHERE `usuario_seller`.`eliminar` = 0  AND idUsuario=$id_usuarioquote
+sql;
+
+	$resultado = Database::Connect()->query($sql);
+	$list = array();
+
+	while ($rowEmp = mysqli_fetch_array($resultado)) {
+		$list[] = $rowEmp;
+	}
+	return $list;
+}
+
+
+public function getUsuarioByEmail ($email){
 	$emailquote = database::escape($email);
 	$sql =<<<sql
 SELECT `usuario`.usuario

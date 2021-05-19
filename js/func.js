@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     //on/off de arrows
-    $(".splide__arrow").hide(500);
+    $(".board.splide__arrow").hide(500);
     $(".board")
         .mouseenter(function() {
         $(".splide__arrow").css("display","inline");
@@ -437,7 +437,7 @@ $('#iniciar_sesion').submit(function (e) {
     /**modal casero editar para foto*/
     $('#edit-btn, .share-sm').click(function(e) {
         e.preventDefault();
-
+        console.log("overlay")
         $(".overlay").show();
     
         $('#cerrar-light').click(function() {
@@ -1429,34 +1429,31 @@ function favoritos(id_publicacion,accion){
     return false;
  }
 
-function seguidores(id_publicacion,idPublicadorParam){
+function seguidores(id_publicacion,idPublicadorParam,accionParam){
 
     var data = new FormData();
-    data.append("accion","alta");
+    data.append("accion",accionParam);
     data.append("id_publicacion",id_publicacion);
     data.append("id_publicador",idPublicadorParam);
  
     $.ajax({
-       url: '/app/seguidores.php',
-       data: data,
-       type: 'POST',
-       processData: false,
-       contentType: false,
-       //async: false,
-       success: function(data){
-          var dataJ = JSON.parse(data).status;
-          var dataM = JSON.parse(data).mensaje;
+        url: '/app/seguidores.php',
+        data: data,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function(data){
+        //async: false,
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
  
-          if (dataJ == 'REDIRECT'){
-             console.log("REDIRECT-->"+dataM);
-             alert(data)									
-          }else if(dataJ == 'OK'){
-             console.log("OK-->"+dataJ+"/"+dataM);
-             alert(data)
-          }else{
-             console.log("ELSE-->"+dataJ+"/"+dataM);
-             alert(data)
-          }
+            if (dataJ == 'REDIRECT'){
+                console.log("REDIRECT-->"+dataM);									
+            }else if(dataJ == 'OK'){
+                console.log("OK-->"+dataJ+"/"+dataM);
+            }else{
+                console.log("ELSE-->"+dataJ+"/"+dataM);
+            }
        },
        error: function( data, jqXhr, textStatus, errorThrown ){
           ajax("ERROR AJAX--> "+data);

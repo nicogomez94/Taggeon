@@ -1,9 +1,13 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+
 
 
 if ($perfil=='picker' || $perfil == 'seller'){
+    $seguidoresManager = new SeguidoresManager();
+
     //$usuarioManager = new UsuarioManagerImpl();
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
@@ -16,7 +20,8 @@ if ($perfil=='picker' || $perfil == 'seller'){
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
-
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
     );
     $jsonData = json_encode($jsonData);
     //$urlEditar = ($perfil == 'seller') ? "/editar-usuario-seller.html": '/editar-usuario.html';

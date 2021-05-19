@@ -27,6 +27,7 @@ class  SesionDaoImpl implements SesionDao{
 			}
 		}
 		$recordarme  = isset($_REQUEST["recordarme"]) ? $_REQUEST["recordarme"] : '';
+		$recordarme  = 'recordarme'; #se harcodeo hasta que agreguen el recordarme en el frontend
 		$sessionCookieExpireTime = time() + 3600*24*365;
 		if ($recordarme == 'recordarme'){
 			setcookie("hash", $arrayMd5[1],$sessionCookieExpireTime,"/");

@@ -22,6 +22,9 @@ interface  UsuarioDao{
    public function getUsuarioByEmail($email); //nueva
    public function actualizarPerfilUsuario($id,$usuario,$perfil); //nueva
 	public function actualizarPerfilDatosPersonales($id,$nombre,$apellido,$usuario,$email,$perfil); //nueva
+	public function getUsuarioPublic($id_usuario); //nueva
+
+
 
 }
 ?>

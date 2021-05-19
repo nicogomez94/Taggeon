@@ -274,7 +274,7 @@ body{
     background-color: rgb(193 193 193 / 76%);
     z-index: 999;
     animation-name: flecha-mov;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
     animation-iteration-count: 1;
     opacity: 0;
 }
@@ -1576,6 +1576,19 @@ input:focus ~ .highlight {
 .fixed {
     position: fixed;
 }
+.count-notif{
+    position: absolute;
+    /* top: 0; */
+    bottom: 12px;
+    right: 87px;
+    background: #ff5f5f;
+    border-radius: 50%;
+    line-height: 13px;
+    font-size: 0.7em;
+    padding: 1px 5px 2px 5px;
+    color: white;
+    text-shadow: 0 0 black;
+}
   
 
   /*  */
@@ -1589,7 +1602,8 @@ input:focus ~ .highlight {
     border-right: none;
     margin-top: 20px;
     margin-bottom: 20px;
-    background: #f4f5ff;
+    /* background: #f4f5ff; */
+    background: #fff;
     width: 100%;
 }
 .splide{
@@ -2078,9 +2092,7 @@ button:disabled{
     width: 400px;
     box-shadow: 0 0 6px 1px #757575;
 }
-.popup-prod-cont.over{
-    background-color: red !important;
-}
+
 .popup-single-cont{
     position: absolute;
     background-color: rgb(255 255 255);

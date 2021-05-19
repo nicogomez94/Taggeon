@@ -40,11 +40,7 @@ if(sizePublic>0){
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             var favorito = jsonData.publicaciones[x].favorito || 0;
             var fav_accion = "";
-            if (favorito==null || favorito == 0) {
-                fav_accion="alta";
-            }else{
-                fav_accion="eliminar";
-            }
+
 
             if(json_cat == id_public_cat){
 
@@ -54,13 +50,13 @@ if(sizePublic>0){
                             '<div class="overlay-public">'+
                             '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
                                 '<div class="text-overlay">'+
-                                    '<span class="text-overlay-link">'+
-                                        '<a href="#"><i class="share-sm fas fa-share-alt"></i></a>'+
+                                    '<span class="text-overlay-link share-sm">'+
+                                        '<a href="#"><i class="fas fa-share-alt"></i></a>'+
                                     '</span>'+
                                     '&nbsp;&nbsp;'+
-                                    '<span class="text-overlay-link">'+
+                                    '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
                                     //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                        '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\')"></i></a>'+
+                                        
                                     '</span>'+
                                 '</div>'+
                             '</div></a>'+
@@ -70,6 +66,16 @@ if(sizePublic>0){
 
                 $(".item-cat-"+json_cat).append(public_html)
                 
+                if (favorito==null || favorito == 0) {
+                    fav_accion="alta";
+                    var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                    $(".text-overlay-link-"+id_public).append(fav_html)
+                }else{
+                    fav_accion="eliminar";
+                    var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                    $(".text-overlay-link-"+id_public).append(fav_html)
+                }
+
             }
             /*$(".content-col-div-"+id_public).on("click",".overlay-public",function(){
                 window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
@@ -82,6 +88,14 @@ if(sizePublic>0){
 }
 
 
-
+$('.share-sm').click(function(e) {
+    e.preventDefault();
+    console.log("overlay")
+    $(".overlay").show();
+ 
+    $('#cerrar-light').click(function() {
+       $('.overlay').css("display", "none");
+    });
+ });
 //fin ready
 });
