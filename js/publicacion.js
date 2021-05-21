@@ -22,6 +22,9 @@ $(document).ready(function(){
             var favorito = jsonData.publicaciones[i].favorito || 0;
             var fav_accion = "";
             var seg_accion = "";
+            var seguidos = jsonData.seguidos || [];
+            var idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
+            var idPublicadorSeguido = idPublicadorSearch.idUsuario;
             /*var seguir = jsonData.publicaciones[i].favorito || 0;
             if (seguir==null || seguir == 0) {
                seg_accion="alta"
@@ -97,7 +100,7 @@ $(document).ready(function(){
                               '<div class="info-public">'+
                                  '<div class="social-public social-public-'+id_public+'">'+
                                        //'<span><i class="fas fa-heart fav-'+i+'" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'+
-                                       '<span onclick="seguidores('+id_public+','+id_publicador+')"><i class="fas fa-user-plus"></i></span>'+
+                                       //'<span onclick="seguidores('+id_public+','+id_publicador+','+seg_accion+')"><i class="fas fa-user-plus"></i></span>'+
                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
                                  '</div>'+
                                  '<div class="datos-public">'+
@@ -120,20 +123,21 @@ $(document).ready(function(){
                $(".social-public-"+id_public).prepend(fav_html);
             }
             /**/
-            /*if (seguidor==null || seguidor == 0) {
-               seg_accion="alta";
-               var seg_html = '<span><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
-               $(".social-public-"+id_public).append(fav_html);
-            }else{
-               seg_accion="eliminar";
-               var seg_html = '<span><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></span>'
-               $(".social-public-"+id_public).append(fav_html);
-            }*/
+
+            //for(var y=0; y<seguidos.length; y++){
+               
+
+               if(idPublicadorSeguido==id_publicador) {
+                  seg_accion="eliminar";
+                  var seg_html = '<span><i class="fas fa-user-plus seg-eliminar" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></span>'
+                  $(".social-public-"+id_public).append(seg_html);
+               }else{
+                  seg_accion="alta";
+                  var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
+                  $(".social-public-"+id_public).append(seg_html);
+               }
             
             
-            //lo mando a la public seleccionada
-            //winLoc.split("=")[1].split("&")[0];
-            //document.location.href="#ancla-desde-home-"+winLoc;
 
             //imgperfil sacada del menu top
             var img_perfil = $(".img-perfil-usuario-drop").attr("src");
@@ -320,9 +324,45 @@ $(document).ready(function(){
       scrollTop: $("#ancla-desde-home-"+WinLocSplit).offset().top - 80
    }, 0);
 
+   hideGloboCat()
+
+
+   
+
+   /*//si scrollea que se esconda top
+   var didScroll;
+   // on scroll, let the interval function know the user has scrolled
+   $(window).scroll(function(event){
+      didScroll = true;
+   });
+   // run hasScrolled() and reset didScroll status
+   setInterval(function() {
+   if (didScroll) {
+      hasScrolled();
+      didScroll = false;
+   }
+   }, 250);
+   function hasScrolled() {
+      // do stuff here...
+      console.log("test")
+   }*/
 
 
 //FIN READY
 });//FIN READY
 //FIN READY
 
+function hideGloboCat(){
+   var position = $(window).scrollTop(); 
+
+   $(".globo-cat").show();
+   $(window).scroll(function() {
+      var scroll = $(window).scrollTop();
+      if(scroll > position) {
+         $(".globo-cat").fadeOut(200);
+      } else {
+         $(".globo-cat").fadeIn(200);
+      }
+      position = scroll;
+   });
+}

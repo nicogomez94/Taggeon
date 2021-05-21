@@ -1,11 +1,11 @@
 
    <div class="container" id="contenedor-form-subir">
-      <h1>Subir Producto</h1>
+      <h1>Subir Producto&nbsp;<span class="info"><i class="fas fa-info-circle"></i></span></h1>
       <hr>
       <form id="producto-form">
          <input type="hidden" name="accion" value="alta">
          <div id="col-foto-upload">
-               <p class="label-descr">Seleccione al menos una foto para el producto.</p>
+               <p class="label-descr">Seleccione al menos una foto para el producto. <span class="info" style="font-size: 0.6em;"><i class="fas fa-question-circle"></i></span></p>
                <div class="row">
                   <div id="contenedor-subir-foto" class="img-subir">
                      <!-- <img id="img-subir" alt="imagen" width="100" height="100" /> -->
@@ -47,6 +47,12 @@
                   <div class="col-lg-12">
                      <p class="label-descr">Descripcion del producto</p>
                      <textarea type="text" name="descr_producto" id="descr-producto" required></textarea>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12">
+                     <p class="label-descr">Tags</p>
+                     <textarea type="text" name="descr_producto" id="tags-producto" required></textarea>
                   </div>
                </div>
                <div class="row">

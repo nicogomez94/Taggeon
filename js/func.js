@@ -1432,7 +1432,7 @@ function favoritos(id_publicacion,accion){
 function seguidores(id_publicacion,idPublicadorParam,accionParam){
 
     var data = new FormData();
-    data.append("accion",accionParam);
+    data.append("accion","alta");
     data.append("id_publicacion",id_publicacion);
     data.append("id_publicador",idPublicadorParam);
  

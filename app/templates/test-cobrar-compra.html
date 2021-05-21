@@ -1,0 +1,415 @@
+
+    <style>
+        body{
+            background-color: rgb(216, 216, 216);
+            margin: 0;
+            padding: 0;
+        }
+        .mail-container{
+            width: 50%;
+            margin: 30px auto 10px auto;
+            box-shadow: 4px 4px 0px #b3b3b3;
+        }
+        .mail-upper, .mail-body, .mail-footer{
+            padding: 20px;
+        }
+        .mail-upper{
+            background-color: #cebd8b;
+            text-align: center;
+        }
+        .mail-body{
+            background-color: rgb(239 239 239);
+        }
+        .mail-footer{
+            background-color: transparent;
+            text-align: center;
+        }
+        .cols-prod{
+            width: 32%;
+            display: inline-block;
+            line-height: 2em;
+        }
+        .producto {
+            box-shadow: 0px 0px 1px grey;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .adress, .fecha, .lista-productos{
+            margin-top: 20px;
+        }
+        button {
+            background-color: hsl(199deg 74% 49%);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center !important;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        button:hover{
+            box-shadow: none;
+        }
+        .orden-recibida{
+            padding: 30px;
+            position: relative;
+        }
+        .logo-flot{
+            position: absolute;
+            left: -10px;
+            top: -10px
+        }
+        .logo-flot a:link{
+            color: whitesmoke !important;
+            font-size: 20px !important;
+        }
+        .pago-cantidad{
+            font-size: 0.7em;
+            color: grey;
+        }
+
+    </style>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+</head>
+<body>
+    <div class="mail-container">
+        <div class="mail-upper">
+            <div class="logo-taggeon"></div>
+            <div class="orden-recibida">
+                <div class="logo-flot">
+                    <i class="fab fa-affiliatetheme logo-brand"></i>
+                 </a></div>
+                <h1>Orden generada!</h1>
+                <p style="color: grey;">Orden Nro 1092810928019</p>
+            </div>
+        </div>
+        <div class="mail-body">
+            <h4><span class="nombre-comprador"></span>, Revisa los datos antes de confirmar la compra</h4>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, debitis eveniet cumque incidunt, ab nulla quasi necessitatibus laudantium voluptatum perspiciatis quis modi qui ducimus dolores quisquam accusantium, expedita natus magnam?</p>
+            <div class="adress">
+                <span><b>Direcci&oacute;n de entrega</b></span><br>
+                <span clas="dir-entrega" style="color: grey"></span>
+            </div>
+            <div class="fecha">
+                <span><b>Fecha de entrega</b></span><br>
+                <span style="color: grey">16 Dic 2021 - 18:00 (aprox.)</span>
+            </div>
+            <div class="lista-productos">
+                <span><b>Productos en la orden</b></span><br>
+                
+            </div>
+            <div class="totales" style="text-align: right; padding: 10px;">
+                <b>Total: </b><span class="totales-num"></span>
+            </div>
+            <hr>
+            
+        <!-- <form action="/mp/process_payment.php" method="post" id="paymentForm"> -->
+        <form id="paymentForm">
+            <h3>Detalles del comprador</h3>
+              <div class="mp__detalles_comprador">
+                <div class="group group-form-checkout">
+                    <input id="email" name="email" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label class="label-text-subir-producto" style="padding-left: 15px;">E-mail</label>                        
+                </div>
+                <div class="mp__tipo-doc">
+                    <div class="mp__tipo-doc-izq">
+                        <label style="padding-left: 15px;" for="docType">Tipo de documento</label><br>
+                        <select style="margin: 15px;" id="docType" name="docType" data-checkout="docType" type="text"></select>
+                    </div>
+                    <div class="group group-form-checkout mp__tipo-doc-der">
+                        <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="label-text-subir-producto" for="docNumber">Número de documento</label>
+                    </div>
+                </div>
+              </div>
+            <h3>Detalles de la tarjeta</h3>
+              <div class="mp__detalles_tarjeta">
+                <div>
+                  <label for="cardholderName">Titular de la tarjeta</label>
+                  <input id="cardholderName" data-checkout="cardholderName" type="text">
+                </div>
+                <div>
+                  <label for="">Fecha de vencimiento</label>
+                  <div>
+                    <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" value="11"
+                      onselectstart="return false" onpaste="return false"
+                      oncopy="return false" oncut="return false"
+                      ondrag="return false" ondrop="return false" autocomplete=off>
+                    <span class="date-separator">/</span>
+                    <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" value="25"
+                      onselectstart="return false" onpaste="return false"
+                      oncopy="return false" oncut="return false"
+                      ondrag="return false" ondrop="return false" autocomplete=off>
+                  </div>
+                </div>
+                <div>
+                  <label for="cardNumber">Número de la tarjeta</label>
+                  <input type="text" id="cardNumber" data-checkout="cardNumber"
+                    onselectstart="return false" onpaste="return false"
+                    oncopy="return false" oncut="return false"
+                    ondrag="return false" ondrop="return false" autocomplete=off value="37118030325752">
+                </div>
+                <div>
+                  <label for="securityCode">Código de seguridad</label>
+                  <input style="width: 10%;" id="securityCode" data-checkout="securityCode" type="text"
+                    onselectstart="return false" onpaste="return false"
+                    oncopy="return false" oncut="return false"
+                    ondrag="return false" ondrop="return false" autocomplete=off value="1234">
+                </div>
+                <div id="issuerInput">
+                  <label for="issuer">Banco emisor</label>
+                  <select id="issuer" name="issuer" data-checkout="issuer"></select>
+                </div>
+                <div>
+                  <label for="installments">Cuotas</label>
+                  <select type="text" id="installments" name="installments"></select>
+                </div>
+                <div>
+                  <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
+                  <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
+                  <input type="hidden" name="description" id="description" />
+                  <br>
+                  <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                    Realizar Compra
+                    </button>
+                  <br>
+                </div>
+            </div>
+          </form>
+          
+            <!-- <form id="realizar-compra">
+                <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                    Realizar Compra
+                </button>
+            <img style="float: right; width: 120px;" src="https://calim.com.ar/wp-content/uploads/2020/01/mercado-libre-mercado-pago-percepciones.png" alt="">
+            </form> -->
+        </div>
+    </div>
+
+    <script>
+        var jsonData = {json};
+     </script>
+
+<script src="js/jquery-3.5.1.js"></script>
+<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+<script src="js/func.js?time=070521-1055"></script>
+<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+   <!-- <script src="js/publicacion.js?time=190321-2055"></script> -->
+<!-- <script src="js/popper.js"></script> -->
+
+<script>
+$(document).ready(function(){
+
+    /*const checkout = mp.checkout({
+  tokenizer: {
+    totalAmount: 4000,
+    backUrl: 'https://www.mi-sitio.com/process'
+  },
+});*/
+    
+    var sizeCompras = jsonData.compras.length;
+
+    if(sizeCompras>0){
+        for(var i=0; i<sizeCompras; i++){
+            var nombre_producto = jsonData.compras[i].nombre_producto;
+            var precio_producto = jsonData.compras[i].precio;
+            var direccion = jsonData.compras[i].envio_nombre_apellido;
+            var localidad = jsonData.compras[i].envio_ciudad_localidad;
+            var cantidad = jsonData.compras[i].cantidad;
+            var total = jsonData.compras[i].total;
+            var name_comprador = jsonData.compras[i].envio_nombre_apellido;
+            var imagen_id = jsonData.compras[i].foto_id;
+            var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
+
+            var compras_html = 
+            '<div class="producto">'+
+                '<div class="row">'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-2 cols-prod">'+
+                        '<img class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
+                    '</div>'+
+                    '<div class="col-lg-8 col-md-8 col-sm-8 col-8 cols-prod">'+nombre_producto+'&nbsp;<span class="pago-cantidad">(x'+cantidad+')</span></div>'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-2 cols-prod precio-orden">$. '+precio_producto+'</div>'+
+               '</div>'+
+            '</div>';
+            
+            $(".nombre-comprador").html(name_comprador);
+            $(".dir-entrega").html(direccion+", "+localidad)
+            $(".totales-num").html('$. '+total);
+            $('.lista-productos').append(compras_html);
+            $("#transactionAmount").val(precio_producto)
+            $("#email").val("test_user_87614160@testuser.com")
+        }
+    }
+
+});
+</script>
+<script>
+    // Agrega credenciales de SDK 
+    const mp = new MercadoPago('PUBLIC_KEY', {locale: 'es-AR'});
+    
+    // Inicializa el Web Tokenize Checkout
+    mp.checkout({
+      tokenizer: {
+        totalAmount: 4000,
+        backUrl: 'http://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/cobrar-compra.html'
+      },
+     render: {
+        container: '.tokenizer-container', // Indica dónde se mostrará el botón
+        label: 'Pagar' // Cambia el texto del botón de pago (opcional)
+     }
+    });
+    </script>
+	<script>
+		 window.Mercadopago.setPublishableKey("TEST-08ad9476-bc16-419d-a880-d959f6f4ad7c");
+		window.Mercadopago.getIdentificationTypes();
+document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
+
+function guessPaymentMethod(event) {
+   let cardnumber = document.getElementById("cardNumber").value;
+   if (cardnumber.length >= 6) {
+       let bin = cardnumber.substring(0,6);
+       window.Mercadopago.getPaymentMethod({
+           "bin": bin
+       }, setPaymentMethod);
+   }
+};
+
+function setPaymentMethod(status, response) {
+   if (status == 200) {
+       let paymentMethod = response[0];
+       document.getElementById('paymentMethodId').value = paymentMethod.id;
+
+       getIssuers(paymentMethod.id);
+   } else {
+       alert(`payment method info error: ${response}`);
+   }
+}
+function getIssuers(paymentMethodId) {
+   window.Mercadopago.getIssuers(
+       paymentMethodId,
+       setIssuers
+   );
+}
+
+function setIssuers(status, response) {
+   if (status == 200) {
+       let issuerSelect = document.getElementById('issuer');
+       response.forEach( issuer => {
+           let opt = document.createElement('option');
+           opt.text = issuer.name;
+           opt.value = issuer.id;
+           issuerSelect.appendChild(opt);
+       });
+
+       getInstallments(
+           document.getElementById('paymentMethodId').value,
+           document.getElementById('transactionAmount').value,
+           issuerSelect.value
+       );
+   } else {
+       alert(`issuers method info error: ${response}`);
+   }
+}
+function getInstallments(paymentMethodId, transactionAmount, issuerId){
+   window.Mercadopago.getInstallments({
+       "payment_method_id": paymentMethodId,
+       "amount": parseFloat(transactionAmount),
+       "issuer_id": parseInt(issuerId)
+   }, setInstallments);
+}
+
+function setInstallments(status, response){
+   if (status == 200) {
+       document.getElementById('installments').options.length = 0;
+       response[0].payer_costs.forEach( payerCost => {
+           let opt = document.createElement('option');
+           opt.text = payerCost.recommended_message;
+           opt.value = payerCost.installments;
+           document.getElementById('installments').appendChild(opt);
+       });
+   } else {
+       alert(`installments method info error: ${response}`);
+   }
+}
+
+doSubmit = false;
+document.getElementById('paymentForm').addEventListener('submit', getCardToken);
+function getCardToken(){
+   event.preventDefault();
+   if(!doSubmit){
+       let $form = document.getElementById('paymentForm');
+       window.Mercadopago.createToken($form, setCardTokenAndPay);
+       return false;
+   }
+};
+ 
+function setCardTokenAndPay(status, response) {
+   if (status == 200 || status == 201) {   
+       
+        let form = document.getElementById('paymentForm');
+        let card = document.createElement('input');
+        card.setAttribute('name', 'token');
+        card.setAttribute('id', 'token-mp');
+        card.setAttribute('type', 'hidden');
+        card.setAttribute('value', response.id);
+        form.appendChild(card);
+        doSubmit=true;
+        //console.log(response.id)
+        //form.submit();
+
+        var dataForden = new FormData(form);
+        var id_carrito = jsonData.compras[0].id_carrito;
+        dataForden.append("id_carrito",id_carrito);
+
+        $.ajax({
+            url: '/mp/process_payment.php',
+            data: dataForden,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            //dataType: "json",
+            //async: false,
+            success: function(data){
+                var dataParse = JSON.parse(data)
+                var dataJ = dataParse.status;
+                //var dataM = JSON.parse(data).mensaje;
+                if(dataJ == 'OK'){
+                    // console.log(dataParse)
+                    // alert("success ajax-->"+dataParse);
+                    window.location.replace("/pago-success.html");
+                }else if(dataJ == 'ERROR'){
+                    // console.log(dataParse)
+                    // alert("success ajax-->"+dataParse);
+                    window.location.replace("/pago-failure.html");
+                }else{
+                    // console.log(dataParse)
+                    // alert("success ajax-->"+dataParse);
+                    window.location.replace("/pago-pending.html");
+                }
+            },
+            error: function( data, jqXhr, textStatus, errorThrown ){
+                console.log(data)
+                alert(data);
+            }
+        });
+        return false;
+    } else {
+        alert("Verify filled data!\n"+JSON.stringify(response, null, 4));
+        
+    }
+};
+	</script>
+
+</body>
+</html>

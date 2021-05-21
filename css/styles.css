@@ -1067,7 +1067,10 @@ select{
     box-shadow: 3px 3px 0px 0px #d0d0d0;
 }
 #col-foto-upload, #col-foto-info{
-    padding: 20px;
+    padding: 20px 20px 0 20px;
+}
+#col-foto-upload .group{
+    
 }
 #col-foto-info{
     text-align: left;
@@ -1108,8 +1111,12 @@ select{
 /* form starting stylings ------------------------------- */
 .group 			  { 
   position:relative; 
-  margin-bottom:30px;
-  margin-top: 20px;
+  /*margin-bottom:30px;
+  margin-top: 20px;*/
+}
+.info{
+    font-size: 0.35em;
+    color: lightgrey;
 }
 input 				{
   font-size:18px;
@@ -1780,12 +1787,17 @@ button:disabled{
     color: #656565;
     height: 50px;
     line-height: 50px;
-    position: relative;
+    position: fixed;
+    width: 50%;
+    z-index: 999;
     font-size: 1.2em;
     font-weight: 500;
     border-radius: 20px;
     background: whitesmoke;
     box-shadow: 3px 3px 0px 0px #d0d0d0;
+}
+.insert-public{
+    margin-top: 50px;
 }
 .prev-cat a:link, .prev-cat a:visited, .next-cat a:link, .next-cat a:visited{
     color: #F8F8F8 !important;
@@ -2624,6 +2636,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 .fav-eliminar{
     color: red !important;
+}
+.seg-eliminar{
+    color: #cebd8b !important;
 }
 
 .text-overlay-link label{
