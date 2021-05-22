@@ -63,7 +63,7 @@ $(document).ready(function(){
             var html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
                                '<div class="header-public">'+
                                   '<span class="img-perfil-public">'+
-                                     '<a href="/ampliar-usuario-redirect.html?id='+id_publicador+'&accion=ampliar"><img src="{foto-perfil}" alt="img-perfil"></a>'+
+                                     '<a href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'"><img src="../img/descarga.png" alt="img-perfil"></a>'+
                                   '</span>'+
                                   '<span class="title-public"></span>'+
                                  //'<span class="opciones-public"><i class="fas fa-cog"></i></span>'+
@@ -133,7 +133,7 @@ $(document).ready(function(){
                   $(".social-public-"+id_public).append(seg_html);
                }else{
                   seg_accion="alta";
-                  var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
+                  var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\'+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
                   $(".social-public-"+id_public).append(seg_html);
                }
             

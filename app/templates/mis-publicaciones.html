@@ -74,13 +74,13 @@
       
                var html_public = '<div class="publicacion">'+
                                     '<img class="imagen-public imagen-public-'+imagen_id+'">'+
-                                    '<div class="overlay-public">'+
+                                    '<div class="overlay-public" onclick="window.location.replace(\'/ampliar-publicacion.html?id='+id_public+'&accion=ampliar\')">'+
                                        '<div class="text-overlay">'+
                                           '<div>'+
                                              '<span>'+nombre_public+'</span>'+
                                           '</div>'+
                                           '<div>'+
-                                             '<span class="text-overlay-link"><a href="/ampliar-publicacion.html?id='+id_public+'&accion=ampliar"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a></span>&nbsp;'+
+                                             //'<span class="text-overlay-link"><a href="/ampliar-publicacion.html?id='+id_public+'&accion=ampliar"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a></span>&nbsp;'+
                                              '<span class="text-overlay-link"><a href="/editar-publicacion.html?id='+id_public+'&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>&nbsp;'+
                                              //'<span class="text-overlay-link eliminar-public" data-title="'+id_public+'"><a href="#"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>'+
                                              '<span class="text-overlay-link eliminar-public" data-title="'+id_public+'"><a href="/app/publicacion.php?id='+id_public+'&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>'+
