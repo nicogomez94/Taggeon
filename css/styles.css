@@ -376,7 +376,7 @@ body{
     color: grey;
     background-color: rgb(224, 224, 224) !Important;
 }
-#dropdown-user-menu{
+#dropdown-user-menu, .notifs-button-ampliar{
     position: absolute;
     border-radius: 10px;
     background-color: white;
@@ -388,6 +388,11 @@ body{
     width: 250px;
     display: none;
 }
+.notifs-button-ampliar{
+    white-space: normal;
+    word-break: break-word;
+}
+
 #dropdown-user-menu-bottom{
     position: absolute;
     border-radius: 10px;
@@ -405,7 +410,7 @@ body{
     max-width: 45%;
     border-radius: 20px;
 }
-#dropdown-user-menu>.media>h5{
+#dropdown-user-menu>.media>h5, .notifs-button-ampliar>.media>h5{
     word-break: break-word;
     white-space: normal;
 }
@@ -418,6 +423,9 @@ body{
 }
 #dropdown-user-menu-responsive{
     display: none;
+}
+.img-notifs{
+    max-width: 20%;
 }
 .cerrar-galeria-banner {
     position: absolute;

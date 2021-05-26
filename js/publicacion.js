@@ -133,7 +133,7 @@ $(document).ready(function(){
                   $(".social-public-"+id_public).append(seg_html);
                }else{
                   seg_accion="alta";
-                  var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\'+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
+                  var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
                   $(".social-public-"+id_public).append(seg_html);
                }
             

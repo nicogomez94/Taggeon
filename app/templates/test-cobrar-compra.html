@@ -108,86 +108,169 @@
                 <b>Total: </b><span class="totales-num"></span>
             </div>
             <hr>
-            
-        <!-- <form action="/mp/process_payment.php" method="post" id="paymentForm"> -->
-        <form id="paymentForm">
-            <h3>Detalles del comprador</h3>
-              <div class="mp__detalles_comprador">
-                <div class="group group-form-checkout">
-                    <input id="email" name="email" type="text" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label class="label-text-subir-producto" style="padding-left: 15px;">E-mail</label>                        
+            <div class="row">
+                <div class="col-lg-6">
+                    <form id="paymentForm">
+                        <h3>Detalles del comprador</h3>
+                        <div class="mp__detalles_comprador">
+                            <div class="group group-form-checkout">
+                                <input id="email" name="email" type="text" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label class="label-text-subir-producto" style="padding-left: 15px;">E-mail</label>                        
+                            </div>
+                            <div class="mp__tipo-doc">
+                                <div class="mp__tipo-doc-izq">
+                                    <label style="padding-left: 15px;" for="docType">Tipo de documento</label><br>
+                                    <select style="margin: 15px;" id="docType" name="docType" data-checkout="docType" type="text"></select>
+                                </div>
+                                <div class="group group-form-checkout mp__tipo-doc-der">
+                                    <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label class="label-text-subir-producto" for="docNumber">Número de documento</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Detalles de la tarjeta</h3>
+                        <div class="mp__detalles_tarjeta">
+                            <div>
+                            <label for="cardholderName">Titular de la tarjeta</label>
+                            <input id="cardholderName" data-checkout="cardholderName" type="text">
+                            </div>
+                            <div>
+                            <label for="">Fecha de vencimiento</label>
+                            <div>
+                                <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" value="11"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off>
+                                <span class="date-separator">/</span>
+                                <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" value="25"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off>
+                            </div>
+                            </div>
+                            <div>
+                            <label for="cardNumber">Número de la tarjeta</label>
+                            <input type="text" id="cardNumber" data-checkout="cardNumber"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off value="37118030325752">
+                            </div>
+                            <div>
+                            <label for="securityCode">Código de seguridad</label>
+                            <input style="width: 10%;" id="securityCode" data-checkout="securityCode" type="text"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off value="1234">
+                            </div>
+                            <div id="issuerInput">
+                            <label for="issuer">Banco emisor</label>
+                            <select id="issuer" name="issuer" data-checkout="issuer"></select>
+                            </div>
+                            <div>
+                            <label for="installments">Cuotas</label>
+                            <select type="text" id="installments" name="installments"></select>
+                            </div>
+                            <div>
+                            <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
+                            <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
+                            <input type="hidden" name="description" id="description" />
+                            <br>
+                            <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                                Realizar Compra2
+                                </button>
+                            <br>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="mp__tipo-doc">
-                    <div class="mp__tipo-doc-izq">
-                        <label style="padding-left: 15px;" for="docType">Tipo de documento</label><br>
-                        <select style="margin: 15px;" id="docType" name="docType" data-checkout="docType" type="text"></select>
-                    </div>
-                    <div class="group group-form-checkout mp__tipo-doc-der">
-                        <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="label-text-subir-producto" for="docNumber">Número de documento</label>
-                    </div>
-                </div>
-              </div>
-            <h3>Detalles de la tarjeta</h3>
-              <div class="mp__detalles_tarjeta">
-                <div>
-                  <label for="cardholderName">Titular de la tarjeta</label>
-                  <input id="cardholderName" data-checkout="cardholderName" type="text">
-                </div>
-                <div>
-                  <label for="">Fecha de vencimiento</label>
-                  <div>
-                    <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" value="11"
-                      onselectstart="return false" onpaste="return false"
-                      oncopy="return false" oncut="return false"
-                      ondrag="return false" ondrop="return false" autocomplete=off>
-                    <span class="date-separator">/</span>
-                    <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" value="25"
-                      onselectstart="return false" onpaste="return false"
-                      oncopy="return false" oncut="return false"
-                      ondrag="return false" ondrop="return false" autocomplete=off>
-                  </div>
-                </div>
-                <div>
-                  <label for="cardNumber">Número de la tarjeta</label>
-                  <input type="text" id="cardNumber" data-checkout="cardNumber"
-                    onselectstart="return false" onpaste="return false"
-                    oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off value="37118030325752">
-                </div>
-                <div>
-                  <label for="securityCode">Código de seguridad</label>
-                  <input style="width: 10%;" id="securityCode" data-checkout="securityCode" type="text"
-                    onselectstart="return false" onpaste="return false"
-                    oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off value="1234">
-                </div>
-                <div id="issuerInput">
-                  <label for="issuer">Banco emisor</label>
-                  <select id="issuer" name="issuer" data-checkout="issuer"></select>
-                </div>
-                <div>
-                  <label for="installments">Cuotas</label>
-                  <select type="text" id="installments" name="installments"></select>
-                </div>
-                <div>
-                  <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
-                  <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
-                  <input type="hidden" name="description" id="description" />
-                  <br>
-                  <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
-                    Realizar Compra
-                    </button>
-                  <br>
+                <div class="col-lg-6">
+                    <form id="paymentForm">
+                        <h3>Detalles del comprador</h3>
+                        <div class="mp__detalles_comprador">
+                            <div class="group group-form-checkout">
+                                <input id="email" name="email" type="text" required>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label class="label-text-subir-producto" style="padding-left: 15px;">E-mail</label>                        
+                            </div>
+                            <div class="mp__tipo-doc">
+                                <div class="mp__tipo-doc-izq">
+                                    <label style="padding-left: 15px;" for="docType">Tipo de documento</label><br>
+                                    <select style="margin: 15px;" id="docType" name="docType" data-checkout="docType" type="text"></select>
+                                </div>
+                                <div class="group group-form-checkout mp__tipo-doc-der">
+                                    <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label class="label-text-subir-producto" for="docNumber">Número de documento</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Detalles de la tarjeta</h3>
+                        <div class="mp__detalles_tarjeta">
+                            <div>
+                            <label for="cardholderName">Titular de la tarjeta</label>
+                            <input id="cardholderName" data-checkout="cardholderName" type="text">
+                            </div>
+                            <div>
+                            <label for="">Fecha de vencimiento</label>
+                            <div>
+                                <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" value="11"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off>
+                                <span class="date-separator">/</span>
+                                <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" value="25"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off>
+                            </div>
+                            </div>
+                            <div>
+                            <label for="cardNumber">Número de la tarjeta</label>
+                            <input type="text" id="cardNumber" data-checkout="cardNumber"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off value="37118030325752">
+                            </div>
+                            <div>
+                            <label for="securityCode">Código de seguridad</label>
+                            <input style="width: 10%;" id="securityCode" data-checkout="securityCode" type="text"
+                                onselectstart="return false" onpaste="return false"
+                                oncopy="return false" oncut="return false"
+                                ondrag="return false" ondrop="return false" autocomplete=off value="1234">
+                            </div>
+                            <div id="issuerInput">
+                            <label for="issuer">Banco emisor</label>
+                            <select id="issuer" name="issuer" data-checkout="issuer"></select>
+                            </div>
+                            <div>
+                            <label for="installments">Cuotas</label>
+                            <select type="text" id="installments" name="installments"></select>
+                            </div>
+                            <div>
+                            <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
+                            <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
+                            <input type="hidden" name="description" id="description" />
+                            <br>
+                            <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                                Realizar Compra
+                                </button>
+                            <br>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-          </form>
+            
+
+        <!-- <fo
           
-            <!-- <form id="realizar-compra">
+             <form id="realizar-compra">
                 <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
                     Realizar Compra
                 </button>

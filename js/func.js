@@ -43,6 +43,9 @@ $(document).ready(function() {
     $("#drop").click(function(){
         $("#dropdown-user-menu").toggle();
     });
+    $(".notifs-button").click(function(){
+        $(".notifs-button-ampliar").toggle();
+    });
     // drop de 
     $("#drop-bottom").click(function(){
         $("#dropdown-user-menu-bottom").toggle();
@@ -1052,11 +1055,11 @@ $("#finalizar-orden").submit(function(){
         success: function( data, textStatus, jQxhr ){
             var dataJ = JSON.parse(data).status;
             var dataM = JSON.parse(data).mensaje;
-           if (dataJ == 'REDIRECT'){
+           if (dataJ == "REDIRECT"){
               console.log("REDIRECT-->"+dataM);
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              window.location.replace("/cobrar-compra.html?id="+id_carrito);
+              window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
            }else{
               //window.location.replace("/ampliar-carrito.html");
            }
