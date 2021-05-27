@@ -19,6 +19,19 @@ $(document).ready(function() {
            $("body").removeClass("loading"); 
         }    
      });
+     $("#dropdown-user-menu").click(function(e){
+        e.stopPropagation();
+    });
+
+    /**/
+    //elegir foto editar perfil}
+    $('#file-upload').bind('change', function() { 
+        var result = $("#result-file-upload");
+        var filename = $(this).val();
+        result.css("display","inline-block")
+        result.append(filename); 
+      });
+
     /*funcion para bloquear los botones cuando no estan siendo cambiados*/
     $(".data-datos-editar input").focus(function(e){
         e.preventDefault();
@@ -39,10 +52,20 @@ $(document).ready(function() {
     //para que lo inconos de filtro no show
     $(".icon-sort").hide();
 
-    // $("#dropdown-user-menu").hide();
-    $("#drop").click(function(){
-        $("#dropdown-user-menu").toggle();
+    // abro/cierro menu perfil
+    $(function(){
+        $("#drop").on("click", function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            $("#dropdown-user-menu").show();
+            
+        });
+        $(document).click(function () {
+            $("#dropdown-user-menu").hide();
+        });
     });
+    //notifs
     $(".notifs-button").click(function(){
         $(".notifs-button-ampliar").toggle();
     });

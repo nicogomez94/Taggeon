@@ -74,6 +74,9 @@
     .cerrar-galeria-banner{
         display: none;
     }
+    .lightBox{
+        width: 100%;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
@@ -377,6 +380,8 @@ body{
     background-color: rgb(224, 224, 224) !Important;
 }
 #dropdown-user-menu, .notifs-button-ampliar{
+    word-break: break-word;
+    white-space: normal;
     position: absolute;
     border-radius: 10px;
     background-color: white;
@@ -438,9 +443,11 @@ body{
     cursor: pointer;
 }
 .img-perfil-usuario-drop{
-    max-width: 100%;
+    /* max-width: 100%; */
     box-shadow: 0 0 1px 2px #b7b7b7;
     border-radius: 50%;
+    width: 37px;
+    height: 37px;
 }    
 
 
@@ -929,7 +936,8 @@ form div{
   
   .lightBox {
     background: white;
-    width: auto;
+    /* width: auto; */
+    width: 40%;
     padding: 20px;
     text-align: center;
     display: inline-block;
@@ -973,6 +981,23 @@ form div{
 /* .active-custom:link, .active-custom:visited{
     color: white !important;
 } */
+#file-upload{
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+#result-file-upload{
+    margin: 10px;
+    font-style: italic;
+    color: white;
+    padding: 5px;
+    background: grey;
+    display:none;
+}
 #mensaje-sin-login{
     color: white;
     font-style: italic;
@@ -1551,6 +1576,17 @@ input:focus ~ .highlight {
     z-index: 998; 
     background: transparent; 
     position: absolute;
+}
+.public-title-home{
+    margin: 15px;
+    color: #ffffff;
+    padding: 5px;
+    background: #8080806b;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 90%;
 }
 .fixed-grid-lr{
     position: fixed;

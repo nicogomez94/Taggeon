@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
-var sizePublic = jsonData.publicaciones.length;
+    var reverse = jsonData.publicaciones.reverse();
+var sizePublic = reverse.length;
     
 if(sizePublic>0){
 
@@ -16,7 +17,7 @@ if(sizePublic>0){
 
         var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
                             '<div class="titulo-col-cont">'+
-                                '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
+                                '<div class="titulo-col random-p-'+i+'"><span class="span-titulo" onclick="window.location.replace(\''+window.location.href+'?cat='+json_cat+'\')">'+json_cat_nombre+'</span></div>'+
                             '</div>'
                         '</li>'
         
@@ -48,6 +49,7 @@ if(sizePublic>0){
                     '<div>'+
                         '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                             '<div class="overlay-public">'+
+                            '<div class="public-title-home">'+nombre_public+'</div>'+
                             '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
                                 '<div class="text-overlay">'+
                                     '<span class="text-overlay-link share-sm">'+
@@ -76,6 +78,7 @@ if(sizePublic>0){
                     $(".text-overlay-link-"+id_public).append(fav_html)
                 }
 
+                
             }
             /*$(".content-col-div-"+id_public).on("click",".overlay-public",function(){
                 window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
