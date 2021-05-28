@@ -1,3 +1,4 @@
+<div class="overlay-loading"></div>
 
    <div class="container" id="contenedor-form-subir">
       <h1>Editar Producto</h1>
@@ -14,7 +15,7 @@
                      <div id="uploads"><!-- Upload Content Imagenes --></div>
                   </div>
                </div>
-               <div class="row">
+               <div class="row primer-row-form">
                   <div class="col-lg-12">
                      <div class="group">      
                         <input type="text" name="titulo" id="titulo-producto" required autocomplete="on">
@@ -76,26 +77,27 @@
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-lg-6">
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                         <select name="categoria" id="categoria-producto">
                            <option value="" selected disabled hidden required>Elija una categor&iacute;a</option>
                         </select>
                      </div>
-                     <div class="col-lg-6">
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                         <select name="rubro" id="rubro-producto">
                            <option value="" selected disabled hidden required>Elija un rubro</option>
+                           <option value="1">Otros Rubros</option>
                         </select>
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-lg-6">
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                         <select name="envio" id="envio-producto">
                            <option value="" selected disabled hidden required>Env&iacute;o</option>
                            <option value="1">Si</option>
                            <option value="0">No</option>
                         </select>
                      </div>
-                     <div class="col-lg-6">
+                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                         <select name="garantia" id="garantia-producto">
                            <option value="" selected disabled hidden required>Garant&iacute;a</option>
                            <option value="1">Si</option>

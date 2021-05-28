@@ -108,8 +108,9 @@ $(document).ready(function(){
                                  '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
                                  '<div class="info-descr-public">'+descr_public+'</div><hr>'+
                               '</div>'+
-                              '<div id="ancla-test-'+i+'"></div>'
-                           '</div>'
+                              '<div id="ancla-test-'+i+'"></div>'+
+                              '<div class="commentbox"></div>'+
+                           '</div>';
 
                            
             $(".insert-public").append(html_public);
@@ -326,6 +327,8 @@ $(document).ready(function(){
        
    }//fin if principal
 
+   //funcion para que se esconda globocat
+   hideGloboCat()
 
    //lo mando a la public que se selecciono desde home
    var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
@@ -333,7 +336,6 @@ $(document).ready(function(){
       scrollTop: $("#ancla-desde-home-"+WinLocSplit).offset().top - 80
    }, 0);
 
-   hideGloboCat()
 
 
    
