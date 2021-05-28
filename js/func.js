@@ -1333,7 +1333,7 @@ function activarBuscador(param){
 
                         /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
 
-                        var html = '<li class="splide__slide">'+
+                        var html = '<li class="splide__slide splide__slide__img">'+
                                     '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
                                     '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
                         // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
@@ -1341,7 +1341,7 @@ function activarBuscador(param){
 
                     }
                     new Splide( '.splide', {
-                            perPage: 5,
+                            perPage: 4,
                             rewind : true,
                             pagination: false
                         } ).mount();

@@ -111,7 +111,7 @@
 				$(options.hiddenYid).val(yval);
 				
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'">');
+				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'" data-close="'+yval_pop+'-'+xval_pop+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -175,21 +175,22 @@
 				var id_producto = $(this).attr('class').split(' ')[1];
 				var box_y_prod = $(this).parent().parent().parent().parent().parent().css("top").split('%')[0];
 				var box_x_prod = $(this).parent().parent().parent().parent().parent().css("left").split('%')[0];
-				
 
-				var box_y_prod_posta = box_y_prod - 1;
-				var box_x_prod_posta = box_x_prod - 1;
 
-				var pin_a_namear = $("#map").find("."+box_y_prod_posta+"-"+box_x_prod_posta);//1 porque hay 2
+				/*para que quede centrado*/
+				var box_y_prod_posta = box_y_prod - 20;
+				var box_x_prod_posta = box_x_prod - 20;
+
+				var pin_a_namear = $("#map").find("."+box_y_prod+"-"+box_x_prod);//1 porque hay 2
 				pin_a_namear.attr("name",id_producto);
 
-				var click_protector = '<div class="click-protector '+box_y_prod_posta+"-"+box_x_prod_posta+'">'+
+				var click_protector = '<div class="click-protector '+box_y_prod+"-"+box_x_prod+'">'+
 											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
 
 				$(".click-protector-cont").append(click_protector);
-				$("."+box_y_prod_posta+"-"+box_x_prod_posta).css("top",box_y_prod_posta+"%");
-				$("."+box_y_prod_posta+"-"+box_x_prod_posta).css("left",box_x_prod_posta+"%");
-				$("."+box_y_prod_posta+"-"+box_x_prod_posta+" .salir-popup-single").css("display","none");
+				$("."+box_y_prod+"-"+box_x_prod).css("top",box_y_prod_posta+"px");
+				$("."+box_y_prod+"-"+box_x_prod).css("left",box_x_prod_posta+"px");
+				$("."+box_y_prod+"-"+box_x_prod+" .salir-popup-single").css("display","none");
 
 			});
 			//para salir de la sel de productos y eliminar pin
@@ -204,18 +205,19 @@
 				$(".popup-prod-overlay").hide();
 
 			});
-			//para borrar el single pin
-			$(".click-protector-cont").on("click",".salir-popup-single", function(){
-				var class_parent = $(this).parent().attr("class").split(" ")[1];
-				//var box_xc = $(this).parent().css("left").split('%')[0]
-				var pin_a_borrar = $("#map").find("."+class_parent);
-				pin_a_borrar.remove();
-				$(this).parent().remove();
-
-			});
 			//click para que aparezca la cruz
 			$(".click-protector-cont").on('click', '.click-protector', function() {
 				$(this).find(".salir-popup-single").show();
+			});
+			//para borrar el single pin
+			$(".click-protector-cont").on("click",".salir-popup-single", function(){
+				var class_parent = $(this).parent().attr("class").split(" ")[1];
+				console.log(class_parent)
+				//var box_xc = $(this).parent().css("left").split('%')[0]
+				var pin_a_borrar = $("#map").find("[data-close='"+class_parent+"']");
+				pin_a_borrar.remove();
+				$(this).parent().remove();
+
 			});
 			
 
