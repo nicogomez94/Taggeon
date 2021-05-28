@@ -30,7 +30,8 @@ $(document).ready(function() {
         var filename = $(this).val();
         result.css("display","inline-block")
         result.append(filename); 
-      });
+        $(".btn-cambiar-foto-perfil").show();
+    });
 
     /*funcion para bloquear los botones cuando no estan siendo cambiados*/
     $(".data-datos-editar input").focus(function(e){
@@ -419,7 +420,7 @@ $('#iniciar_sesion').submit(function (e) {
     /********SUBIR IMAGEN*******/
     $("#subir-foto-perfil").on('submit', function() {
 
-        if(['image/jpeg', 'image/jpg', 'image/png', 'image/gif'].indexOf($("#file2").get(0).files[0].type) == -1) {
+        if(['image/jpeg', 'image/jpg', 'image/png', 'image/gif'].indexOf($("#file-upload").get(0).files[0].type) == -1) {
             alert('Error : Solo JPEG, PNG & GIF permitidos');
             return false;
         }
@@ -441,10 +442,11 @@ $('#iniciar_sesion').submit(function (e) {
                     if (data.status == 'REDIRECT'){
                         window.location.replace(data.mensaje);														
                     }else if(data.status == 'OK'){
-                        alert (data.mensaje);
+                        //alert (data.mensaje);
+                        $(".btn-cambiar-foto-perfil").hide();
                         window.location.replace("/editar-usuario.html");
                     }else{
-                        alert (data.mensaje);
+                        alert(data.mensaje);
                     }
 
                 },
@@ -454,7 +456,7 @@ $('#iniciar_sesion').submit(function (e) {
                }
             });
         };
-        reader.readAsDataURL($("#file2").get(0).files[0]);    
+        reader.readAsDataURL($("#file-upload").get(0).files[0]);    
         return false;
     });
 

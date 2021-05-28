@@ -16,8 +16,8 @@ if(sizePublic>0){
         
 
         var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
-                            '<div class="titulo-col-cont">'+
-                                '<div class="titulo-col random-p-'+i+'"><span class="span-titulo" onclick="window.location.replace(\''+window.location.href+'?cat='+json_cat+'\')">'+json_cat_nombre+'</span></div>'+
+                            '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
+                                '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
                             '</div>'
                         '</li>'
         

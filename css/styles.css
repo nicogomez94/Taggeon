@@ -1,185 +1,4 @@
-/*color principal #cebd8b*/
 
-@media screen and (max-width: 576px) {
-    .titulo-col{
-        padding: 5px 10vw 5px 10vw !important;
-    }
-    .item{
-        width: 45vw !important;
-    }
-    #collapsibleNavbar{
-        background-color: white;
-        padding: 10px;
-        box-shadow: 1px 3px 3px 0px darkgrey;
-    }
-    #items-navbar-derecha{
-        margin-top: 10px;
-        /*  */
-    }
-    #dropdown-user-menu-cont{
-        display: none;
-    }
-    #dropdown-user-menu-responsive{
-        display: block !important;
-    }
-    #navbar-bottom-responsive{
-        display: flex;
-    }
-    #menu-editar{
-        margin-top: 10px;
-        float: none !important;
-    }
-    .hr-dinamica{
-        display: block !important;
-    }
-    #menu-perfil>.navbar>.navbar-nav{
-        width: 100%;
-    }
-    #menu-perfil>.navbar>.navbar-nav>.nav-item{
-        margin: 10px;
-    }
-    .navbar-brand-container{
-        width: 10% !important;
-    }
-    #form-buscar{
-        width: 80% !important;
-    }
-    .subir-publicacion-responsive{
-        width: 10% !important;
-    }
-    #subir-publicacion{
-        margin-left: 8px;
-    }
-    .modal h1{
-        font-size: 1.5rem;
-    }
-    .modal{
-        font-size: smaller;
-    }
-    .img-perfil-media{
-        width: 75px !important;
-    }
-    #carouselExampleIndicators{
-        display: none;
-    }
-    .content-col-div img{
-        max-width: 100%;
-    }
-    .subir-publicacion-responsive{
-        display: block !important;
-    }
-    .nombre-brand{
-        display: none;
-    }
-    .cerrar-galeria-banner{
-        display: none;
-    }
-    .lightBox{
-        width: 100%;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-    .navbar-brand-container{
-        width: 10% !important;
-    }
-    #form-buscar{
-        width: 80% !important;
-    }
-    .subir-publicacion-responsive{
-        width: 10% !important;
-    }
-    #subir-publicacion{
-        margin-left: 15px;
-    }
-    .item{
-        width: 45vw !important;
-    }
-    .titulo-col{
-        padding: 5px 10vw 5px 10vw !important;
-    }
-    #collapsibleNavbar{
-        background-color: white;
-        padding: 10px;
-        box-shadow: 1px 3px 3px 0px darkgrey;
-    }
-    #items-navbar-derecha{
-        margin-top: 10px;
-    }
-    #dropdown-user-menu-cont{
-        display: none;
-    }
-    #dropdown-user-menu-responsive{
-        display: block !important;
-    }
-    .ver-perfil{
-        display: none;
-    }
-    #navbar-bottom-responsive{
-        display: flex;
-    }
-    #menu-editar{
-        margin-top: 10px;
-        float: none !important;
-    }
-    .hr-dinamica{
-        display: block !important;
-    }
-    #menu-perfil>.navbar>.navbar-nav{
-        width: 100%;
-    }
-    #menu-perfil>.navbar>.navbar-nav>.nav-item{
-        margin: 10px;
-    }
-    .modal h1{
-        font-size: 1.5rem;
-    }
-    .modal{
-        font-size: smaller;
-    }
-    .img-perfil-media{
-        width: 75px !important;
-    }
-    .subir-publicacion-responsive{
-        display: block !important;
-    }
-    .nombre-brand{
-        display: none;
-    }
-}
-
-@media (max-width: 991px){
-    #menu-editar{
-        margin-top: 10px;
-        float: none !important;
-    }
-    .mail-container{
-        width: 90%;
-    }
-}
-
-@media (min-width: 768px) {
-    #navbar-bottom-responsive{
-        display: none;
-    }
-}
-
-/**/
-@media screen and (max-width: 400px) {
-    .titulo-col{
-        padding: 5px 7vw 5px 7vw !important;
-    }
-}
-/*  */
-
-@media screen and (max-width: 768px) {
-    .col-vendedor{
-        margin-top: 20px;
-        background: #e8e8e8;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-}
 
 .btn-warning {
     color: #000 !important;
@@ -412,7 +231,9 @@ body{
     display: none;
 }
 #dropdown-user-menu>.media>img{
-    max-width: 45%;
+    height: 75px;
+    width: 75px;
+    object-fit: cover;
     border-radius: 20px;
 }
 #dropdown-user-menu>.media>h5, .notifs-button-ampliar>.media>h5{
@@ -448,6 +269,7 @@ body{
     border-radius: 50%;
     width: 37px;
     height: 37px;
+    object-fit: cover;
 }    
 
 
@@ -1028,16 +850,22 @@ form div{
     line-height: 2em;
 }
 #img-perfil-cont{
-    max-width: 100px;
+    /*max-width: 100px;
     max-height: 100px;
-    height: 100px;
+    height: 100px;*/
 }
 #img-perfil-cont img{
     border-radius: 20px;
     border: 1px solid #d3d3d3;
     margin-left: 12px;
-    width: 100%;
-    height: 100%;
+    /*width: 100%;
+    height: 100%;*/
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+#subir-foto-perfil .btn{
+    display: none;
 }
 textarea{
     width: 100%;
@@ -2762,3 +2590,188 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   }*/
 
 
+/*color principal #cebd8b*/
+
+@media screen and (max-width: 576px) {
+    .titulo-col{
+        padding: 5px 10vw 5px 10vw !important;
+    }
+    .item{
+        width: 45vw !important;
+    }
+    #collapsibleNavbar{
+        background-color: white;
+        padding: 10px;
+        box-shadow: 1px 3px 3px 0px darkgrey;
+    }
+    #items-navbar-derecha{
+        margin-top: 10px;
+        /*  */
+    }
+    #dropdown-user-menu-cont{
+        display: none;
+    }
+    #dropdown-user-menu-responsive{
+        display: block !important;
+    }
+    #navbar-bottom-responsive{
+        display: flex;
+    }
+    #menu-editar{
+        margin-top: 10px;
+        float: none !important;
+    }
+    .hr-dinamica{
+        display: block !important;
+    }
+    #menu-perfil>.navbar>.navbar-nav{
+        width: 100%;
+    }
+    #menu-perfil>.navbar>.navbar-nav>.nav-item{
+        margin: 10px;
+    }
+    .navbar-brand-container{
+        width: 10% !important;
+    }
+    #form-buscar{
+        width: 80% !important;
+    }
+    .subir-publicacion-responsive{
+        width: 10% !important;
+    }
+    #subir-publicacion{
+        margin-left: 8px;
+    }
+    .modal h1{
+        font-size: 1.5rem;
+    }
+    .modal{
+        font-size: smaller;
+    }
+    .img-perfil-media{
+        width: 75px !important;
+    }
+    #carouselExampleIndicators{
+        display: none;
+    }
+    .content-col-div img{
+        max-width: 100%;
+    }
+    .subir-publicacion-responsive{
+        display: block !important;
+    }
+    .nombre-brand{
+        display: none;
+    }
+    .cerrar-galeria-banner{
+        display: none;
+    }
+    .lightBox-foto-perfil{
+        width: 100%;
+    }
+    .inner-compras h1{
+        font-size: 2rem !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .navbar-brand-container{
+        width: 10% !important;
+    }
+    #form-buscar{
+        width: 80% !important;
+    }
+    .subir-publicacion-responsive{
+        width: 10% !important;
+    }
+    #subir-publicacion{
+        margin-left: 15px;
+    }
+    .item{
+        width: 45vw !important;
+    }
+    .titulo-col{
+        padding: 5px 10vw 5px 10vw !important;
+    }
+    #collapsibleNavbar{
+        background-color: white;
+        padding: 10px;
+        box-shadow: 1px 3px 3px 0px darkgrey;
+    }
+    #items-navbar-derecha{
+        margin-top: 10px;
+    }
+    #dropdown-user-menu-cont{
+        display: none;
+    }
+    #dropdown-user-menu-responsive{
+        display: block !important;
+    }
+    .ver-perfil{
+        display: none;
+    }
+    #navbar-bottom-responsive{
+        display: flex;
+    }
+    #menu-editar{
+        margin-top: 10px;
+        float: none !important;
+    }
+    .hr-dinamica{
+        display: block !important;
+    }
+    #menu-perfil>.navbar>.navbar-nav{
+        width: 100%;
+    }
+    #menu-perfil>.navbar>.navbar-nav>.nav-item{
+        margin: 10px;
+    }
+    .modal h1{
+        font-size: 1.5rem;
+    }
+    .modal{
+        font-size: smaller;
+    }
+    .img-perfil-media{
+        width: 75px !important;
+    }
+    .subir-publicacion-responsive{
+        display: block !important;
+    }
+    .nombre-brand{
+        display: none;
+    }
+}
+
+@media (max-width: 991px){
+    #menu-editar{
+        margin-top: 10px;
+        float: none !important;
+    }
+    .mail-container{
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    #navbar-bottom-responsive{
+        display: none;
+    }
+}
+
+/**/
+@media screen and (max-width: 400px) {
+    .titulo-col{
+        padding: 5px 7vw 5px 7vw !important;
+    }
+}
+/*  */
+
+@media screen and (max-width: 768px) {
+    .col-vendedor{
+        margin-top: 20px;
+        background: #e8e8e8;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+}

@@ -108,6 +108,7 @@ $(document).ready(function(){
                                  '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
                                  '<div class="info-descr-public">'+descr_public+'</div><hr>'+
                               '</div>'+
+                              '<div id="ancla-test-'+i+'"></div>'
                            '</div>'
 
                            
@@ -231,7 +232,7 @@ $(document).ready(function(){
                               '</div>'+
                               '<hr>'+
                               '<div>'+
-                              '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">AR$. '+precio_prod+'</span></div>'+
+                              '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">AR$ '+precio_prod+'</span></div>'+
                               '<div class="shipment-modal-producto">'+
                               '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles'+//hardcodeado
                               '</div>'+
@@ -288,12 +289,20 @@ $(document).ready(function(){
                   $(".tag-container-"+i).append(tag_html);
 
                   //click en tag
-                  $(".bodyimg-public-container-"+i).on("click", ".tagg", function(){
+                  $(".bodyimg-public-container-"+i).on("click", ".tagg", function(e){
+                     e.stopPropagation();
+                     e.preventDefault();
+                     
                      var prod_public = $(this).parent().parent().parent().find(".productos-public");
                      prod_public.toggle(100);
-                     $('html,body').animate({
-                        scrollTop: prod_public.offset().top - 130
-                     }, 200);
+                     prod_public.toggleClass("prods-abierto");
+
+                     if(prod_public.hasClass("prods-abierto")){
+                        $('html,body').animate({
+                           scrollTop: prod_public.offset().top - 130
+                        }, 400)
+
+                     }
                      //data-toggle="modal" data-target="#modal-producto-'+id_prod+'"
                   });
           
