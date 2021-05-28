@@ -94,10 +94,14 @@
 				yval = parseInt(yval/$("#map").height() * 100);
 
 				// var imgC = $('<img class="pin '+yval+"-"+xval+'">');
-				var imgC = $('<img class="pin '+yval+"-"+xval+'">');
+				var yval_pop = Math.round(y) + 17;
+				var xval_pop = Math.round(x) + 17;
+				var imgC = $('<img data-close="'+yval_pop+'-'+xval_pop+'" class="pin '+yval+"-"+xval+'">');
 				imgC.css('top', yval+'%');
 				imgC.css('left', xval+'%');
 				imgC.css('z-index', i);
+
+				// console.log(left_ppc)
 
 				imgC.attr('src',  options.pin);
 
@@ -118,8 +122,7 @@
 				var popup_overlay = $(".popup-prod-overlay");
 				var popup_cont = $(".popup-prod-cont");
 				var popup_prod = $(".popup-producto");
-				var yval_pop = yval+1;
-				var xval_pop = xval+1;
+
 				
 
 				popup_overlay.show(0,function(){
@@ -131,24 +134,26 @@
 					var body_minus = body_w - 200
 				
 					if (offset_left > body_minus){
-						console.log("se pasa")
+						/*console.log("se pasa")
 						console.log("left-->"+popup_cont.offset().left)
 						console.log("offset+w-->"+offset_left)
-						console.log("body-->"+body_w)
+						console.log("body-->"+body_w)*/
+						popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
 						popup_cont.addClass('over')
 						popup_cont.css({
-							'top': yval_pop+'%',
-							'left': xval_pop+'%'
+							'top': yval_pop+'px',
+							'left': xval_pop+'px'
 						});
 					}else{
-						console.log("no se pasa")
+						/*console.log("no se pasa")
 						console.log("left-->"+popup_cont.offset().left)
 						console.log("offset+w-->"+offset_left)
-						console.log("body-->"+body_w)
+						console.log("body-->"+body_w)*/
+						popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
 						popup_cont.removeClass('over')
 						popup_cont.css({
-							'top': yval_pop+'%',
-							'left': xval_pop+'%'
+							'top': yval_pop+'px',
+							'left': xval_pop+'px'
 						});
 					}
 
@@ -190,14 +195,11 @@
 			//para salir de la sel de productos y eliminar pin
 			$(".popup-prod-cont").on("click",".salir-popup", function(){
 				//hago esto porque sino con css() me toma con pixels
-				var style = $(this).parent().attr("style");
-				var box_y = style.split(";")[0].match(/[0-9]+/g)[0];
-				var box_x = style.split(";")[1].match(/[0-9]+/g)[0];
+				var data_close = $(this).parent().attr("data-close");
+				var box_y = data_close.split("-")[0]//.match(/[0-9]+/g)[0];
+				var box_x = data_close.split("-")[1]//.match(/[0-9]+/g)[0];
 
-				var box_y_new = parseInt(box_y - 1);
-				var box_x_new = parseInt(box_x - 1);
-
-				var pin_a_borrar = $("#map").find("."+box_y_new+"-"+box_x_new);
+				var pin_a_borrar = $("#map").find("[data-close='"+box_y+"-"+box_x+"']");
 				pin_a_borrar.remove();
 				$(".popup-prod-overlay").hide();
 
