@@ -854,7 +854,86 @@ $(".eliminar-producto").on("click", function() {
 });
 
 
+$("#buscador-index").submit(function(){
 
+    var search = param.val();
+    var formData = new FormData($(this)[0]);
+    
+    if(search != ""){
+
+        var data_json = {
+            "input": search, 
+            "accion": "search",
+            "perfil": jsonData.perfil
+        }
+
+        $.ajax({
+            url: '/app/index.php',
+            type: 'post',
+            data: formData,
+            dataType: 'json',
+            success:function(response){
+
+            var resp_len = response.mensaje.length;
+            $(".splide__list").empty();
+
+            //if(jsonData.perfil == "Picker"){
+                for(var i=0; i<resp_len; i++){
+
+                    var id_prod = response.mensaje[i].id;
+                    var nombre_prod = response.mensaje[i].titulo;
+                    var foto_prod = response.mensaje[i].foto;
+                    var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
+
+                    /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
+
+                    var html = '<li class="splide__slide splide__slide__img">'+
+                                '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
+                                '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
+                    // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                    $(".splide__list").append(html);
+
+                }
+                new Splide( '.splide', {
+                        perPage: 4,
+                        rewind : true,
+                        pagination: false
+                    } ).mount();
+
+            
+            //si es seller
+            /*}else{
+                
+                for(var i=0; i<jsonData.productos.length; i++){
+
+                    var id_prod = jsonData.productos[i].id;
+                    var nombre_prod = jsonData.productos[i].titulo;
+                    var foto_prod = jsonData.productos[i].foto;
+                    var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
+
+                    var html = '<li class="splide__slide">'+
+                                '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
+                                '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
+                    // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
+                    $(".splide__list").append(html);
+
+                }
+                new Splide( '.splide', {
+                        perPage: 5,
+                        rewind : true,
+                        pagination: false
+                    } ).mount();
+            }*/
+
+
+            },
+            error:function(response){
+            
+            alert("ERROR::"+response)
+            }
+        });
+    }
+})
 
 /*filtro/buscador por titulo*/
 $("#buscador-titulo").click(function(){

@@ -87,7 +87,7 @@ $(document).ready(function(){
                                         '</div>'+
                                      '</div>'+
                                      /**/
-                               '<hr><div class="productos-titulo-public prod-relacionados">Comprar Productos relacionados:</div><br>'+
+                               //'<hr><div class="productos-titulo-public prod-relacionados">Comprar Productos relacionados:</div><br>'+
                                        '<div class="splide splide-related splide-prod-'+i+'">'+
                                           '<div class="splide__track">'+
                                              '<ul class="splide__list splide_list_related"></ul>'+
@@ -264,7 +264,7 @@ $(document).ready(function(){
                            $("body").append(modal_html);
 
                            //related (por ahora traigo todos los prod)
-                           for(var y=0; y<allprod.length; y++){
+                           /*for(var y=0; y<allprod.length; y++){
 
                               var obj = allprod.find(o => o.marca === "Gucci");
                               //console.log(obj.marca)
@@ -274,7 +274,7 @@ $(document).ready(function(){
                               var html_related = '<li class="splide__slide splide__slide__img"><img data-toggle="modal" src="'+foto_src_prod_rel+'"></li>';
                               //encontrar el id de catdel prod y suar ese y fue
                               $(".splide_list_related").append(html_related);
-                           }
+                           }*/
                      
                   }
                 

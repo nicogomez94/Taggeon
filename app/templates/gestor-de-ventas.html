@@ -1,0 +1,150 @@
+<div class="overlay-loading"></div>
+
+<div class="container container-compras">
+   <div class="inner-compras">
+      <h2 class="num-fecha-compra"></h2>
+      <hr>
+      <div class="row">
+         <div class="col-lg-6">
+            <h4>Detalles de producto</h4>
+            <div class="totales-cont">
+               <div class="row">
+                  <div class="col-12 col-lg-12 totales-compra">
+                     <div class="media">
+                        <img class="mr-3 img-compra-lista" src="" alt="img">
+                        <div class="media-body">
+                           <h5 class="mt-0 titulo-prod"></h5>
+                           <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En Preparaci&oacute;n</span></div>  
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="totales-cont">
+               <div class="row">
+                  <div class="col-12 col-lg-12 totales-compra">
+                     <h4>Totales</h4>
+                     <hr>
+                     <div class="row datos-num-checkout">
+                        <div class="col-lg-6"><span class="subtotal-titulo">Precio</span></div>
+                        <div class="col-lg-6 text-right"><span class="subtotal-cant">$. 1000</span></div>
+                     </div>
+                     <div class="row datos-num-checkout">
+                        <div class="col-lg-6"><span class="total-titulo">Env&iacute;o</span></div>
+                        <div class="col-lg-6 text-right"><span class="total-envio">$. -</span></div>
+                     </div>
+                     <hr>
+                     <div class="row datos-num-checkout">
+                        <div class="col-lg-6"><span class="total-titulo">Tu Pago</span></div>
+                        <div class="col-lg-6 text-right"><span class="total-cant">$. 1239</span></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+         <!--  -->
+         <div class="col-lg-6">
+            <h4>Resumen de compra</h4>
+            <div class="totales-cont">
+               <div class="row">
+                  <div class="col-12 col-lg-12 totales-compra">
+                     <div class="media">
+                        <i class="fas fa-user-alt icono-media"></i>
+                        <div class="media-body">
+                           <h5 class="mt-0">Datos Personales</h5>
+                           <hr>
+                           <div class="texto-detalles-pedido">
+                              <div>Notas: <span class="notas"></span></div>
+                              <div>Galicia 1207 (1416), Capital Federal</div>
+                              <div>Nicolás Gómez 1552291994</div>
+                           </div>
+                        </div>
+                      </div>
+                  </div>
+               </div>
+            </div>
+            <div class="totales-cont">
+               <div class="row">
+                  <div class="col-12 col-lg-12 totales-compra">
+                     <div class="media">
+                        <i class="fas fa-truck-loading icono-media"></i>
+                        <div class="media-body">
+                           <h5 class="mt-0">Seguimiento de envio</h5>
+                           <hr>
+                           <div class="row justify-content-between order-tracking-container">
+                              <div class="order-tracking completed">
+                                 <span class="is-complete"></span>
+                                 <p>En preparaci&oacute;n<br><span class="tracking-label">Lun, Junio 24</span></p>
+                              </div>
+                              <div class="order-tracking">
+                                 <span class="is-complete"></span>
+                                 <p>Enviando<br><span class="tracking-label">Mar, Junio 25</span></p>
+                              </div>
+                              <div class="order-tracking">
+                                 <span class="is-complete"></span>
+                                 <p>Entregado<br><span class="tracking-label">Vie, Junio 28</span></p>
+                              </div>
+                           </div>
+                        </div>
+                      </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+<script>
+   var jsonData = {json};
+</script>
+
+
+
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+
+<script>
+$(document).ready(function(){
+
+   var sizeCompras = jsonData.compras.length;
+
+   if(sizeCompras>0){
+      for(var i=0; i<sizeCompras; i++){
+         var nombre_producto = jsonData.compras[i].nombre_producto || "";
+         var precio_producto = jsonData.compras[i].precio || 0;
+         var id_producto = jsonData.compras[i].id_producto || 0;
+         var id_carrito = jsonData.compras[i].id_carrito || 0;
+         var direccion = jsonData.compras[i].envio_nombre_apellido || "";
+         var localidad = jsonData.compras[i].envio_ciudad_localidad || "";
+         var name_comprador = jsonData.compras[i].nombre || "";
+         var total = jsonData.compras[i].total || 0;
+         var imagen_id = jsonData.compras[i].foto_id || 0;
+         var foto_src = '/productos_img/'+imagen_id+'.png' || 0;
+         var notas = jsonData.compras[i].notas || "";
+         
+         $(".num-fecha-compra").html('Compra #'+id_carrito+id_producto)//faltaria fecha
+         $(".titulo-prod").html(nombre_producto)
+         $(".subtotal-cant").html("$. "+precio_producto)
+         $(".nombre-comprador").html(name_comprador);
+         $(".dir-entrega").html(direccion+", "+localidad)
+         $(".totales-num").html('$. '+precio_producto);//hard
+         $(".img-compra-lista").attr('src',foto_src);
+         $(".total-cant").html('$. '+total);
+         $(".total-envio").html('$. -');
+         $(".notas").html(notas);
+
+      }
+   }
+      
+});
+</script>
+   <script src="js/func.js?time=271220-2243"></script>
+   <!-- <script src="js/publicacion.js?time=271220-2243"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>

@@ -100,5 +100,11 @@ $('.share-sm').click(function(e) {
        $('.overlay').css("display", "none");
     });
  });
+
+
+ /*buscador*/
+ $("#buscador-titulo-input").keyup(function(){
+    activarBuscador($(this));
+ });
 //fin ready
 });

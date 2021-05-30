@@ -367,23 +367,7 @@ sql;
 
         while ($rowEmp = mysqli_fetch_array($resultado)) {
             $id_publicador = isset($rowEmp["id_publicador"]) ? $rowEmp["id_publicador"] : '';
-            $fotoPerfil = '';
-            if (file_exists("/var/www/imagen_perfil/$id_publicador")) {
-                    $fp = fopen("/var/www/imagen_perfil/$id_publicador", 'r');
-                    while(!feof($fp)) {
-                        $rowEmp['foto_perfil'] = fgets($fp);
-                    }
-                    fclose($fp);
-            } else {
-                    if (file_exists("/var/www/imagen_perfil/generica")) {
-                            $fp = fopen("/var/www/imagen_perfil/generica", 'r');
-                            while(!feof($fp)) {
-                                $rowEmp['foto_perfil'] = fgets($fp);
-                            }
-                            fclose($fp);
-                    }
-            }
-
+            $rowEmp['foto_perfil'] = $id_publicador;
             $list[] = $rowEmp;
         }
         return $list;
