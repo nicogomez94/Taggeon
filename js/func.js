@@ -854,86 +854,7 @@ $(".eliminar-producto").on("click", function() {
 });
 
 
-$("#buscador-index").submit(function(){
 
-    var search = param.val();
-    var formData = new FormData($(this)[0]);
-    
-    if(search != ""){
-
-        var data_json = {
-            "input": search, 
-            "accion": "search",
-            "perfil": jsonData.perfil
-        }
-
-        $.ajax({
-            url: '/app/index.php',
-            type: 'post',
-            data: formData,
-            dataType: 'json',
-            success:function(response){
-
-            var resp_len = response.mensaje.length;
-            $(".splide__list").empty();
-
-            //if(jsonData.perfil == "Picker"){
-                for(var i=0; i<resp_len; i++){
-
-                    var id_prod = response.mensaje[i].id;
-                    var nombre_prod = response.mensaje[i].titulo;
-                    var foto_prod = response.mensaje[i].foto;
-                    var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
-
-                    /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
-
-                    var html = '<li class="splide__slide splide__slide__img">'+
-                                '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
-                                '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
-                    // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-                    $(".splide__list").append(html);
-
-                }
-                new Splide( '.splide', {
-                        perPage: 4,
-                        rewind : true,
-                        pagination: false
-                    } ).mount();
-
-            
-            //si es seller
-            /*}else{
-                
-                for(var i=0; i<jsonData.productos.length; i++){
-
-                    var id_prod = jsonData.productos[i].id;
-                    var nombre_prod = jsonData.productos[i].titulo;
-                    var foto_prod = jsonData.productos[i].foto;
-                    var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
-
-                    var html = '<li class="splide__slide">'+
-                                '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
-                                '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
-                    // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-                    $(".splide__list").append(html);
-
-                }
-                new Splide( '.splide', {
-                        perPage: 5,
-                        rewind : true,
-                        pagination: false
-                    } ).mount();
-            }*/
-
-
-            },
-            error:function(response){
-            
-            alert("ERROR::"+response)
-            }
-        });
-    }
-})
 
 /*filtro/buscador por titulo*/
 $("#buscador-titulo").click(function(){
@@ -1280,6 +1201,14 @@ $(".cantidad_value").change(function(){
 });
 
 
+$("#buscador-index-input").keypress(function(e){
+    if(e.key === "Enter"){
+        buscadorIndex($(this));
+    }
+    
+ });
+
+
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
@@ -1532,3 +1461,133 @@ function seguidores(id_publicacion,idPublicadorParam,accionParam){
 function atrasHistory(){
     window.history.back();
 }
+
+function dibujarSearch(){
+    var reverse = jsonData.publicaciones.reverse();
+    var sizePublic = reverse.length;
+        
+    if(sizePublic>0){
+    
+        var public_cat_size = jsonData.categoria.length;
+    
+        //recorre todas las cat y primero dibujo el item de cat
+        for(var i=0; i<public_cat_size; i++){
+    
+    
+            var json_cat = jsonData.categoria[i].id || 0;
+            var json_cat_nombre = jsonData.categoria[i].nombre || "";
+            
+    
+            var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
+                                '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
+                                    '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
+                                '</div>'
+                            '</li>'
+            
+            $(".splide__list__home").append(item_html);
+            
+            //numero random pattern por ahora
+            var random = Math.floor(Math.random() * 7);
+            if (random == 0) {random=random+1}
+            $(".random-p-"+i).addClass("pattern"+random);
+    
+            //recorre solo si la json_cat es igual a la de puid_public_catblic
+    
+            for(var x=0; x<sizePublic; x++){
+    
+                var id_public = jsonData.publicaciones[x].id || '';
+                var id_public_cat = jsonData.publicaciones[x].id_publicacion_categoria || 0;
+                var nombre_public = jsonData.publicaciones[x].publicacion_nombre || '';
+                var descr_public = jsonData.publicaciones[x].publicacion_descripcion || '';
+                var imagen_id = jsonData.publicaciones[x].foto || '';
+                var producto = jsonData.publicaciones[x].pid || 0;
+                var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
+                var favorito = jsonData.publicaciones[x].favorito || 0;
+                var fav_accion = "";
+    
+    
+                if(json_cat == id_public_cat){
+    
+                    var public_html = 
+                        '<div>'+
+                            '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
+                                '<div class="overlay-public">'+
+                                '<div class="public-title-home">'+nombre_public+'</div>'+
+                                '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
+                                    '<div class="text-overlay">'+
+                                        '<span class="text-overlay-link share-sm">'+
+                                            '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                        '</span>'+
+                                        '&nbsp;&nbsp;'+
+                                        '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
+                                        //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                            
+                                        '</span>'+
+                                    '</div>'+
+                                '</div></a>'+
+                            '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
+                            '</div>'+
+                        '</div>';
+    
+                    $(".item-cat-"+json_cat).append(public_html)
+                    
+                    if (favorito==null || favorito == 0) {
+                        fav_accion="alta";
+                        var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                        $(".text-overlay-link-"+id_public).append(fav_html)
+                    }else{
+                        fav_accion="eliminar";
+                        var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                        $(".text-overlay-link-"+id_public).append(fav_html)
+                    }
+    
+                    
+                }
+                /*$(".content-col-div-"+id_public).on("click",".overlay-public",function(){
+                    window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
+                });*/
+            }
+            
+        }
+            
+                
+    }
+}
+
+function buscadorIndex(paramIndex){
+    var search = paramIndex.val();
+    
+    if(search != ""){
+
+        var data_json = {
+            "input": search, 
+            "accion": "search",
+        }
+        console.log(search)
+
+        $.ajax({
+            url: '/app/index.php',
+            type: 'post',
+            data: data_json,
+            dataType: 'json',
+            success:function(response,data){
+                alert("success-- "+response)
+                console.log(response)
+                console.log(data)
+                dibujarSearch()
+            },
+            error:function(response,data){
+                alert("ERROR::"+response)
+                console.log(response)
+                console.log(data)
+            }
+        });
+    }else{
+        alert("inserte texto")
+    }
+}
+
+
+
+
+    
