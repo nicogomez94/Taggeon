@@ -1566,7 +1566,7 @@ function buscadorIndex(paramIndex){
         console.log(search)
 
         $.ajax({
-            url: '/app/index.php',
+            url: '/app/search.php',
             type: 'post',
             data: data_json,
             dataType: 'json',

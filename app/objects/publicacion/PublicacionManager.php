@@ -286,5 +286,37 @@ class  PublicacionManager
 				$ret =  $this->publicacionDao->getListPublicacionFavoritos();
 				return $ret;
 			}
+
+
+			public function searchIndex(array $data)
+			{
+				$input = isset($data["input"]) ? $data["input"] : '';
+				if ($this->validarInputSearch($input) === false) {
+					return false;
+				}
+		
+				if ($this->publicacionDao->searchIndex($data) === false) {
+					$this->setStatus("ERROR");
+					$this->setMsj($this->publicacionDao->getMsj());
+					return false;
+				} else {
+					$this->setStatus("OK");
+					$this->setMsj($this->publicacionDao->getMsj());
+					return 'ok';
+				}
+			}
+
+			private function validarInputSearch($input)
+			{
+				if (!preg_match('/^.+$/i', $input)) {
+					$this->setStatus("ERROR");
+					$this->setMsj("El campo input es incorrecto.");
+					return false;
+				}
+				$this->setStatus("OK");
+				$this->setMsj("");
+				return true;
+			}
+		
 		
 }

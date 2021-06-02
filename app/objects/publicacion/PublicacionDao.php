@@ -490,5 +490,67 @@ sql;
         return $list;
     }
 
+    public function searchIndex($data)
+    {
+        
+        $input = isset($data["input"]) ? $data["input"] : '';
+        $inputDB = Database::escape("%$input%");
+
+        $sql = <<<sql
+        SELECT
+        `producto`.`id`,
+        `producto`.`titulo`,
+        `producto`.`id_rubro`,
+        `producto`.`marca`,
+        `producto`.`precio`,
+        `producto`.`envio`,
+        `producto`.`garantia`,
+        `producto`.`descr_producto`,
+        `producto`.`color`,
+        `producto`.`stock`,
+        min(producto_foto.id) as foto
+    FROM
+        `producto`
+    LEFT JOIN
+        producto_foto
+    ON
+        `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+    WHERE
+        (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) 
+        AND titulo  LIKE $inputDB
+    group by         `producto`.`id`,
+    `producto`.`titulo`,
+    `producto`.`id_rubro`,
+    `producto`.`marca`,
+    `producto`.`precio`,
+    `producto`.`envio`,
+    `producto`.`garantia`,
+    `producto`.`descr_producto`,
+    `producto`.`color`,
+    `producto`.`stock`
+sql;
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $resultado = Database::Connect()->query($sql);
+            $list = array();
+    
+    
+            while ($rowEmp = mysqli_fetch_array($resultado)) {
+                $list[] = $rowEmp;
+            }
+    
+            $this->setStatus("OK");
+            $this->setMsj($list);
+
+            return true;
+        }
+
+        return false;
+    }
+
+
+
 
 }
