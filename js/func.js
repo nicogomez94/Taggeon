@@ -1480,9 +1480,12 @@ function buscadorIndex(paramIndex){
             success:function(response){
 
                 var sizePublic = response.publicaciones.length;
+                console.log(response)
                 var jsonData = response;
                 
-                //primero borro todo
+                //primero borro todo:not('.modal,.navbar')
+                //$("#main-super-container").remove();
+                //window.location.replace("/")
                 $(".splide__list__home").html("");
                 $("#carousel-index").hide();
 
@@ -1506,15 +1509,15 @@ function buscadorIndex(paramIndex){
                             
                             $(".splide__list__home").append(item_html);
                             
-                            //numero random pattern por ahora
+                            //pattern numero random por ahora
                             var random = Math.floor(Math.random() * 7);
                             if (random == 0) {random=random+1}
                             $(".random-p-"+i).addClass("pattern"+random);
-                    
-                            //recorre solo si la json_cat es igual a la de puid_public_catblic
-                    
+                            ///pattern
+                            
+
                             for(var x=0; x<sizePublic; x++){
-                    
+                                
                                 var id_public = jsonData.publicaciones[x].id || '';
                                 var id_public_cat = jsonData.publicaciones[x].id_publicacion_categoria || 0;
                                 var nombre_public = jsonData.publicaciones[x].publicacion_nombre || '';
@@ -1524,27 +1527,28 @@ function buscadorIndex(paramIndex){
                                 var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
                                 var favorito = jsonData.publicaciones[x].favorito || 0;
                                 var fav_accion = "";
-                    
-                    
+                                
+                                
+                                //recorre solo si la json_cat es igual a la de puid_public_catblic y si tiene publics
                                 if(json_cat == id_public_cat){
                     
                                     var public_html = 
-                                        '<div>'+
+                                        '<div id="public-main-container-'+i+'" class="public-main-container">'+
                                             '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                                                 '<div class="overlay-public">'+
-                                                '<div class="public-title-home">'+nombre_public+'</div>'+
                                                 '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
-                                                    '<div class="text-overlay">'+
-                                                        '<span class="text-overlay-link share-sm">'+
-                                                            '<a href="#"><i class="fas fa-share-alt"></i></a>'+
-                                                        '</span>'+
-                                                        '&nbsp;&nbsp;'+
-                                                        '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
-                                                        //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                                            
-                                                        '</span>'+
-                                                    '</div>'+
-                                                '</div></a>'+
+                                                '<div class="public-title-home">'+nombre_public+'</div>'+
+                                                '<div class="text-overlay">'+
+                                                    '<span class="text-overlay-link share-sm">'+
+                                                        '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                                    '</span>'+
+                                                    '&nbsp;&nbsp;'+
+                                                    '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
+                                                    //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                                        
+                                                    '</span>'+
+                                                '</div>'+
+                                                '</div>'+
                                             '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
                                             '</div>'+
                                         '</div>';
@@ -1563,12 +1567,21 @@ function buscadorIndex(paramIndex){
                     
                                     
                                 }
+                            }//seg for 
+
+                            //si viene vacia la cat, la borro
+                            var siCatVacia = $(".item-cat-"+json_cat).find(".public-main-container").length;
+
+                            if(siCatVacia<=0){
+                                var catVacia = $(".item-cat-"+json_cat)
+                                catVacia.remove();
                             }
-                            
-                        }
+
+                        }//primer for
                           
                     }else{
-                        alert("no hay resultados")
+                        var sin_result = '<div class="sin-result-index">Lo sentimos, no hemos encontrado ninguna publicaci&oacute;n para esta b&uacute;squeda.</div>'
+                        $(".board").html(sin_result)
                     }
             },
             error:function(response,data){
@@ -1578,7 +1591,7 @@ function buscadorIndex(paramIndex){
             }
         });
     }else{
-        alert("inserte texto")
+        window.location.replace("/");
     }
 }
 

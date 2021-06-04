@@ -49,19 +49,19 @@ if(sizePublic>0){
                     '<div>'+
                         '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                             '<div class="overlay-public">'+
-                            '<div class="public-title-home">'+nombre_public+'</div>'+
                             '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
-                                '<div class="text-overlay">'+
-                                    '<span class="text-overlay-link share-sm">'+
-                                        '<a href="#"><i class="fas fa-share-alt"></i></a>'+
-                                    '</span>'+
-                                    '&nbsp;&nbsp;'+
-                                    '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
-                                    //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                        
-                                    '</span>'+
-                                '</div>'+
-                            '</div></a>'+
+                            '<div class="public-title-home">'+nombre_public+'</div>'+
+                            '<div class="text-overlay">'+
+                                '<span class="text-overlay-link share-sm">'+
+                                    '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                '</span>'+
+                                '&nbsp;&nbsp;'+
+                                '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
+                                //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                    
+                                '</span>'+
+                            '</div>'+
+                            '</div>'+
                         '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
                         '</div>'+
                     '</div>';

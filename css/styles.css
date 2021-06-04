@@ -433,7 +433,7 @@ form div{
     padding: 15px;
     /* height: 100%; */
     position: relative;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
     /* overflow-y: scroll; */
     white-space: nowrap;
     /*transition: all 0.2s;*/
@@ -452,7 +452,13 @@ form div{
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;*/
 }
-
+.sin-result-index{
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+    width: 100%;
+    margin-top: 50px;
+}
 /*
 .items.active {
     background: rgba(255,255,255,0.3);
