@@ -314,7 +314,8 @@ SQL;
                     }
                     return $list;
                 }
-                public function getListPublicacionIndex()
+               
+    public function getListPublicacionIndex()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -432,7 +433,8 @@ sql;
         }
         return $list;
     }
-                public function getListPublicacion()
+
+    public function getListPublicacion()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -490,66 +492,71 @@ sql;
         return $list;
     }
 
-    public function searchIndex($data)
+
+    public function searchIndex(array $data)
     {
-        
         $input = isset($data["input"]) ? $data["input"] : '';
         $inputDB = Database::escape("%$input%");
 
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
         SELECT
-        `producto`.`id`,
-        `producto`.`titulo`,
-        `producto`.`id_rubro`,
-        `producto`.`marca`,
-        `producto`.`precio`,
-        `producto`.`envio`,
-        `producto`.`garantia`,
-        `producto`.`descr_producto`,
-        `producto`.`color`,
-        `producto`.`stock`,
-        min(producto_foto.id) as foto
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        `id_publicacion_categoria`,
+        `publicacion_descripcion`,
+        pid,
+        MIN(
+            publicacion_publicacion_foto.id
+        ) AS foto,
+        f.id_publicacion AS favorito,
+               usuarios.nombre AS nombre_publicador,
+            usuarios.idUsuario AS id_publicador
     FROM
-        `producto`
+        `publicacion`
     LEFT JOIN
-        producto_foto
+        publicacion_publicacion_foto
     ON
-        `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+        `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
+            publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
+        )
+    LEFT JOIN
+        favorito f
+    ON
+        `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
+        LEFT JOIN
+            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
+        ON
+            `publicacion`.usuario_alta = usuarios.idUsuario    
     WHERE
-        (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) 
-        AND titulo  LIKE $inputDB
-    group by         `producto`.`id`,
-    `producto`.`titulo`,
-    `producto`.`id_rubro`,
-    `producto`.`marca`,
-    `producto`.`precio`,
-    `producto`.`envio`,
-    `producto`.`garantia`,
-    `producto`.`descr_producto`,
-    `producto`.`color`,
-    `producto`.`stock`
+        (
+            `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
+        ) AND
+        (`publicacion_nombre` LIKE $inputDB OR `publicacion_descripcion` LIKE $inputDB)
+
+    GROUP BY
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        `id_publicacion_categoria`,
+        `publicacion_descripcion`,
+        pid,
+        favorito,
+            usuarios.nombre,
+            usuarios.idUsuario
 sql;
-        if (!mysqli_query(Database::Connect(), $sql)) {
-            $this->setStatus("ERROR");
-            $this->setMsj("$sql" . Database::Connect()->error);
-        } else {
-            $resultado = Database::Connect()->query($sql);
-            $list = array();
-    
-    
-            while ($rowEmp = mysqli_fetch_array($resultado)) {
-                $list[] = $rowEmp;
-            }
-    
-            $this->setStatus("OK");
-            $this->setMsj($list);
+//echo $sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
 
-            return true;
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $id_publicador = isset($rowEmp["id_publicador"]) ? $rowEmp["id_publicador"] : '';
+            $rowEmp['foto_perfil'] = $id_publicador;
+            $list[] = $rowEmp;
         }
+        return $list;
 
-        return false;
     }
-
 
 
 

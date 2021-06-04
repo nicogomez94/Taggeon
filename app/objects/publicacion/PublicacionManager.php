@@ -292,18 +292,10 @@ class  PublicacionManager
 			{
 				$input = isset($data["input"]) ? $data["input"] : '';
 				if ($this->validarInputSearch($input) === false) {
-					return false;
+					return [];
 				}
 		
-				if ($this->publicacionDao->searchIndex($data) === false) {
-					$this->setStatus("ERROR");
-					$this->setMsj($this->publicacionDao->getMsj());
-					return false;
-				} else {
-					$this->setStatus("OK");
-					$this->setMsj($this->publicacionDao->getMsj());
-					return 'ok';
-				}
+				return $this->publicacionDao->searchIndex($data); 
 			}
 
 			private function validarInputSearch($input)

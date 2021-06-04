@@ -10,7 +10,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
     
     $jsonData = array(
         "categoria"     => $publicacionManager->getListCategoria(),
-        "publicaciones"     => $publicacionManager->getListPublicacionIndex(),
+        "publicaciones"     => $publicacionManager->searchIndex($_POST),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro()
     );

@@ -80,9 +80,6 @@ if(sizePublic>0){
 
                 
             }
-            /*$(".content-col-div-"+id_public).on("click",".overlay-public",function(){
-                window.location.replace('/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat)
-            });*/
         }
         
     }

@@ -13,6 +13,7 @@ echo $contenidoStringHeader;
         $tokenMercadoPago = 1;
     }
     
+
     $jsonData = array(
         "tokenMercadoPago" => $tokenMercadoPago,
     	"perfil"        => $perfil,
