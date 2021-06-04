@@ -37,8 +37,12 @@ class  NotificacionesDao
         $request_uriDB = Database::escape($request_uri);
         $seguidor = isset($data["seguidor"]) ? $data["seguidor"] : '';
         $seguidorDB = Database::escape($seguidor);
-        $venta = isset($data["venta"]) ? $data["venta"] : '';
-        $ventaDB = Database::escape($venta);
+        $nombre_venta = isset($data["nombre_venta"]) ? $data["nombre_venta"] : '';
+        $nombre_ventaDB = Database::escape($nombre_venta);
+        $tipo_venta = isset($data["tipo_venta"]) ? $data["tipo_venta"] : '';
+        $tipo_ventaDB = Database::escape($tipo_venta);
+        $id_venta = isset($data["id_venta"]) ? $data["id_venta"] : '';
+        $id_ventaDB = Database::escape($id_venta);
         $compra = isset($data["compra"]) ? $data["compra"] : '';
         $compraDB = Database::escape($compra);
         $favorito = isset($data["favorito"]) ? $data["favorito"] : '';
@@ -47,8 +51,8 @@ class  NotificacionesDao
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO notificaciones (request_uri, seguidor, venta, compra, favorito,usuario_alta)  
-			VALUES ($request_uriDB, $seguidorDB, $ventaDB, $compraDB, $favoritoDB,$usuarioAltaDB)
+			INSERT INTO notificaciones (request_uri, seguidor, nombre_venta, tipo_venta, id_venta, compra, favorito,usuario_alta)  
+			VALUES ($request_uriDB, $seguidorDB, $nombre_ventaDB, $tipo_ventaDB, $id_ventaDB, $compraDB, $favoritoDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -76,8 +80,12 @@ SQL;
         $request_uriDB = Database::escape($request_uri);
         $seguidor = isset($data["seguidor"]) ? $data["seguidor"] : '';
         $seguidorDB = Database::escape($seguidor);
-        $venta = isset($data["venta"]) ? $data["venta"] : '';
-        $ventaDB = Database::escape($venta);
+        $nombre_venta = isset($data["nombre_venta"]) ? $data["nombre_venta"] : '';
+        $nombre_ventaDB = Database::escape($nombre_venta);
+        $tipo_venta = isset($data["tipo_venta"]) ? $data["tipo_venta"] : '';
+        $tipo_ventaDB = Database::escape($tipo_venta);
+        $id_venta = isset($data["id_venta"]) ? $data["id_venta"] : '';
+        $id_ventaDB = Database::escape($id_venta);
         $compra = isset($data["compra"]) ? $data["compra"] : '';
         $compraDB = Database::escape($compra);
         $favorito = isset($data["favorito"]) ? $data["favorito"] : '';
@@ -88,7 +96,7 @@ SQL;
 			    `notificaciones`
 			SET
 			    `usuario_editar` = $usuarioDB,
-`request_uri` = $request_uriDB, `seguidor` = $seguidorDB, `venta` = $ventaDB, `compra` = $compraDB, `favorito` = $favoritoDB
+`request_uri` = $request_uriDB, `seguidor` = $seguidorDB, `nombre_venta` = $nombre_ventaDB, `tipo_venta` = $tipo_ventaDB, `id_venta` = $id_ventaDB, `compra` = $compraDB, `favorito` = $favoritoDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB

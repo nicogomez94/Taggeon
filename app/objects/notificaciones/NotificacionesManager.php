@@ -48,8 +48,16 @@ class  NotificacionesManager
 	    if ($this->validarSeguidor($seguidor) === false){
 	     return false;
 	    }
-	    $venta = isset($data["venta"]) ? $data["venta"] : '';
-	    if ($this->validarVenta($venta) === false){
+	    $nombre_venta = isset($data["nombre_venta"]) ? $data["nombre_venta"] : '';
+	    if ($this->validarNombre_venta($nombre_venta) === false){
+	     return false;
+	    }
+	    $tipo_venta = isset($data["tipo_venta"]) ? $data["tipo_venta"] : '';
+	    if ($this->validarTipo_venta($tipo_venta) === false){
+	     return false;
+	    }
+	    $id_venta = isset($data["id_venta"]) ? $data["id_venta"] : '';
+	    if ($this->validarId_venta($id_venta) === false){
 	     return false;
 	    }
 	    $compra = isset($data["compra"]) ? $data["compra"] : '';
@@ -199,11 +207,34 @@ class  NotificacionesManager
                 $this->setMsj("");
                 return true;
             }        
-            private function validarVenta($venta)
+            private function validarNombre_venta($nombre_venta)
             {
-                if (! preg_match('/^\w+$/i', $venta)){
+                if (! preg_match('/^\w+$/i', $nombre_venta)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo venta es incorrecto.");
+                    $this->setMsj("El campo nombre_venta es incorrecto.");
+                    return false;
+                }
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
+            }        
+            private function validarTipo_venta($tipo_venta)
+            {
+                if (! preg_match('/^\w+$/i', $tipo_venta)){
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo tipo_venta es incorrecto.");
+                    return false;
+                }
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
+            }                
+ 
+            private function validarId_venta($id_venta)
+            {
+                if (!preg_match('/^\d+(\.\d{1,2})?$/', $id_venta)){
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo id_venta es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");
