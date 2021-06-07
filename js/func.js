@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    
+    //activar notifs
+    ampliarNotif();
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -1595,7 +1598,31 @@ function buscadorIndex(paramIndex){
     }
 }
 
+function ampliarNotif(){
 
+    var sizeNotifs = jsonData.notificaciones.length;
+
+    for(var i=0; i<sizeNotifs; i++){
+
+        var compracompra = jsonData.notificaciones[i].compracompra
+        var eliminar = jsonData.notificaciones[i].eliminar
+        var favorito = jsonData.notificaciones[i].favorito
+        var fecha_alta = jsonData.notificaciones[i].fecha_alta
+        var fecha_update = jsonData.notificaciones[i].fecha_update
+        var id = jsonData.notificaciones[i].id
+        var id_venta = jsonData.notificaciones[i].id_venta
+        var nombre_venta = jsonData.notificaciones[i].nombre_venta
+        var seguidor = jsonData.notificaciones[i].seguidor
+        var tipo_venta = jsonData.notificaciones[i].tipo_venta
+        var usuario_alta = jsonData.notificaciones[i].usuario_alta
+        var usuario_editar = jsonData.notificaciones[i].usuario_editar
+
+        var html_notif = "<div>notif test  ID--> "+id+"</div>";
+
+        $(".notifs-button-ampliar").append(html_notif)
+    }
+
+}
 
 
     

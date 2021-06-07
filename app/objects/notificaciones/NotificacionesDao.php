@@ -181,7 +181,7 @@ SQL;
     	FROM
 		`notificaciones`
 		WHERE
-        (`notificaciones`.eliminar = 0 OR `notificaciones`.eliminar IS NULL) AND `notificaciones`.usuario_alta = $usuarioAltaDB
+        (`notificaciones`.eliminar = 0 OR `notificaciones`.eliminar IS NULL) 
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -223,7 +223,6 @@ sql;
         $this->setStatus("ok");
         return $list;
     }
-
 
 
 

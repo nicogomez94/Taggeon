@@ -183,7 +183,7 @@ class  NotificacionesManager
 
 	public function getListNotificaciones()
 	{
-		$ret =  $this->publicacionDao->getListNotificaciones();
+		$ret =  $this->notificacionesDao->getListNotificaciones();
 		return $ret;
 	}
 
@@ -263,4 +263,5 @@ class  NotificacionesManager
                 $this->setMsj("");
                 return true;
             }
+
 }
