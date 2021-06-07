@@ -1,7 +1,7 @@
 $(document).ready(function() {
     
     //activar notifs
-    ampliarNotif();
+    //ampliarNotif();
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -1597,9 +1597,10 @@ function buscadorIndex(paramIndex){
         window.location.replace("/");
     }
 }
-
+/*
 function ampliarNotif(){
 
+    var sizeNotifs
     var sizeNotifs = jsonData.notificaciones.length;
 
     for(var i=0; i<sizeNotifs; i++){
@@ -1622,7 +1623,7 @@ function ampliarNotif(){
         $(".notifs-button-ampliar").append(html_notif)
     }
 
-}
+}*/
 
 
     
