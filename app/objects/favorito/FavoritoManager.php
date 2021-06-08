@@ -70,10 +70,9 @@ class  FavoritoManager
 			$notiManager = new NotificacionesManager();
 			$data['tipo_notificacion'] = 'favorito';
 			
-			$notiManager->agregarNotificaciones($data);
 			if ($notiManager->agregarNotificaciones($data) === false) {
 				$this->setStatus("ERROR");
-				$this->setMsj($this->notiManager->getMsj());
+				$this->setMsj("No se pudo enviar la notificacion");
 				
 			}
 

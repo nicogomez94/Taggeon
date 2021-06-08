@@ -53,21 +53,21 @@ class  NotificacionesManager
 		if ($tipo == 'favorito'){
 			$publicacionManager = new PublicacionManager();
 			$publicacion = $publicacionManager->getPublicacionById($data);
-			$data['json_notificacion'] = $publicacion[0];
-			$data['usuario_notificacion'] = $publicacion['usuario_alta'];
-			
+			if (isset($publicacion[0])){
+				$data['json_notificacion'] = $publicacion[0];
+				$data['usuario_notificacion'] = $publicacion[0]['usuario_alta'];
+			}else{
+				return false;
+			}
+		}else{
+			return false;
 		}
-
 
 		if ($this->notificacionesDao->altaNotificaciones($data) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->notificacionesDao->getMsj());
-		} else {
-			$idNotificaciones = $this->notificacionesDao->getMsj();
-			
-			$this->setStatus("OK");
-			$this->setMsj($idNotificaciones);
+			return false;
 		}
+		#$idNotificaciones = $this->notificacionesDao->getMsj();
+		return true;
 	}
 
 	public function modificarNotificaciones(array $data)

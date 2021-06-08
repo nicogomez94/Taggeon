@@ -49,7 +49,7 @@ class  NotificacionesDao
 
         
 		$sql = <<<SQL
-INTO
+INSERT INTO
     `notificaciones`(
         `tipo_notificacion`, `json_notificacion`, `usuario_notificacion`, `usuario_alta`
     )
@@ -185,6 +185,7 @@ SQL;
 		`notificaciones`
 		WHERE
         (`notificaciones`.eliminar = 0 OR `notificaciones`.eliminar IS NULL) 
+AND usuario_notificacion= $usuarioAltaDB
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();

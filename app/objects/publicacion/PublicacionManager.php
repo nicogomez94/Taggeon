@@ -270,17 +270,11 @@ class  PublicacionManager
 				$id = isset($data["id"]) ? $data["id"] : '';
 
 				if ($this->validarId($id) === false) {
-					return false;
+					return [];
 				}
 				
 			
 				$publicacion = $this->publicacionDao->getPublicacionById($id);
-				if ($this->publicacionDao->getStatus() != 'ok') {
-					$this->setStatus("ERROR");
-					$this->setMsj($this->publicacionDao->getMsj());
-					return [];
-				}
-				$this->setStatus("ok");
 				return $publicacion;
 			}
 
