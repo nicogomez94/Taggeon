@@ -228,7 +228,7 @@ SQL;
             
                     if (!mysqli_query(Database::Connect(), $sql)) {
                         $this->setStatus("ERROR");
-                        $this->setMsj("$sql" . Database::Connect()->error);
+                        $this->setMsj("$sql");
                     } else {
                         $id = mysqli_insert_id(Database::Connect());
                         //$fp = fopen("/var/www/html/publicaciones_img/$id", 'w');
@@ -293,6 +293,48 @@ SQL;
                     $this->setStatus("ok");
                     return $list;
                 }
+
+                public function getPublicacionById($id)
+                {
+                    $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+                    $usuarioAltaDB = Database::escape($usuarioAlta);
+                    $id = isset($id) ?   $id : '';
+                    $idDB = Database::escape($id);
+                    $sql = <<<sql
+                    SELECT
+                    `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+                    `publicacion_descripcion`,pid,
+                   GROUP_CONCAT(publicacion_publicacion_foto.id) as foto
+            
+                FROM
+                    `publicacion`
+                LEFT JOIN
+                    publicacion_publicacion_foto
+                ON
+                    `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND (publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL)
+                WHERE
+                publicacion.id=$idDB AND 
+                    (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
+                group by         
+                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid
+sql;
+                    $resultado = Database::Connect()->query($sql);
+                    $row_cnt = mysqli_num_rows($resultado);
+                    $list = array();
+                    if ($row_cnt <= 0) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj("No se encontró la publicación o no tiene permisos para editar.");
+                        return $list;
+                    }
+            
+            
+                    while ($rowEmp = mysqli_fetch_array($resultado)) {
+                        $list[] = $rowEmp;
+                    }
+                    $this->setStatus("ok");
+                    return $list;
+                }
+
 
                 public function getListCategoria()
                 {
@@ -500,6 +542,28 @@ sql;
 
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+
+
+
+        $sql = <<<sql
+        SELECT id FROM `producto` WHERE titulo like $inputDB OR descr_producto like '%pc%'
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        $whereProducto = '';
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $id_producto = isset($rowEmp["id"]) ? $rowEmp["id"] : next;
+            if ($whereProducto != ''){
+                $whereProducto .= " OR ";
+            }
+            $whereProducto .=  "(`publicacion`.pid like '%\"name\":\"$id_producto\"%')";
+        }
+
+        if ($whereProducto != ''){
+            $whereProducto = " OR ($whereProducto)";
+        }
+
         $sql = <<<sql
         SELECT
         `publicacion`.`id`,
@@ -533,7 +597,10 @@ sql;
         (
             `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
         ) AND
-        (`publicacion_nombre` LIKE $inputDB OR `publicacion_descripcion` LIKE $inputDB)
+        (`publicacion_nombre` LIKE $inputDB OR 
+         `publicacion_descripcion` LIKE $inputDB
+         $whereProducto
+        )
 
     GROUP BY
         `publicacion`.`id`,

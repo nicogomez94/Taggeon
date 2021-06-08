@@ -1,5 +1,6 @@
 <?php
 include_once("NotificacionesDao.php");
+include_once("/var/www/html/app/objects/publicacion/PublicacionManager.php");
 class  NotificacionesManager
 {
 	private $notificacionesDao;
@@ -40,35 +41,7 @@ class  NotificacionesManager
 			}
 		}
 
-	    $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-	    if ($this->validarRequest_uri($request_uri) === false){
-	     return false;
-	    }
-	    $seguidor = isset($data["seguidor"]) ? $data["seguidor"] : '';
-	    if ($this->validarSeguidor($seguidor) === false){
-	     return false;
-	    }
-	    $nombre_venta = isset($data["nombre_venta"]) ? $data["nombre_venta"] : '';
-	    if ($this->validarNombre_venta($nombre_venta) === false){
-	     return false;
-	    }
-	    $tipo_venta = isset($data["tipo_venta"]) ? $data["tipo_venta"] : '';
-	    if ($this->validarTipo_venta($tipo_venta) === false){
-	     return false;
-	    }
-	    $id_venta = isset($data["id_venta"]) ? $data["id_venta"] : '';
-	    if ($this->validarId_venta($id_venta) === false){
-	     return false;
-	    }
-	    $compra = isset($data["compra"]) ? $data["compra"] : '';
-	    if ($this->validarCompra($compra) === false){
-	     return false;
-	    }
-	    $favorito = isset($data["favorito"]) ? $data["favorito"] : '';
-	    if ($this->validarFavorito($favorito) === false){
-	     return false;
-	    }
-
+		return true;
 
 	}
 
@@ -76,9 +49,13 @@ class  NotificacionesManager
 
 	public function agregarNotificaciones(array $data)
 	{
-
-		if ($this->validarNotificaciones($data) === false) {
-			return false;
+		$tipo = $data['tipo_notificacion'];
+		if ($tipo == 'favorito'){
+			$publicacionManager = new PublicacionManager();
+			$publicacion = $publicacionManager->getPublicacionById($data);
+			$data['json_notificacion'] = $publicacion[0];
+			$data['usuario_notificacion'] = $publicacion['usuario_alta'];
+			
 		}
 
 
@@ -87,8 +64,6 @@ class  NotificacionesManager
 			$this->setMsj($this->notificacionesDao->getMsj());
 		} else {
 			$idNotificaciones = $this->notificacionesDao->getMsj();
-
-			
 			
 			$this->setStatus("OK");
 			$this->setMsj($idNotificaciones);

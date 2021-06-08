@@ -1,5 +1,7 @@
 <?php
 include_once("FavoritoDao.php");
+include_once("/var/www/html/app/objects/notificaciones/NotificacionesManager.php");
+
 class  FavoritoManager
 {
 	private $favoritoDao;
@@ -62,11 +64,19 @@ class  FavoritoManager
 			$this->setMsj($this->favoritoDao->getMsj());
 		} else {
 			$idFavorito = $this->favoritoDao->getMsj();
-
-			
-			
 			$this->setStatus("OK");
 			$this->setMsj($idFavorito);
+			
+			$notiManager = new NotificacionesManager();
+			$data['tipo_notificacion'] = 'favorito';
+			
+			$notiManager->agregarNotificaciones($data);
+			if ($notiManager->agregarNotificaciones($data) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->notiManager->getMsj());
+				
+			}
+
 		}
 	}
 

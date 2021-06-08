@@ -33,26 +33,29 @@ class  NotificacionesDao
 	public function altaNotificaciones(array $data)
 	{
 
-        $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-        $request_uriDB = Database::escape($request_uri);
-        $seguidor = isset($data["seguidor"]) ? $data["seguidor"] : '';
-        $seguidorDB = Database::escape($seguidor);
-        $nombre_venta = isset($data["nombre_venta"]) ? $data["nombre_venta"] : '';
-        $nombre_ventaDB = Database::escape($nombre_venta);
-        $tipo_venta = isset($data["tipo_venta"]) ? $data["tipo_venta"] : '';
-        $tipo_ventaDB = Database::escape($tipo_venta);
-        $id_venta = isset($data["id_venta"]) ? $data["id_venta"] : '';
-        $id_ventaDB = Database::escape($id_venta);
-        $compra = isset($data["compra"]) ? $data["compra"] : '';
-        $compraDB = Database::escape($compra);
-        $favorito = isset($data["favorito"]) ? $data["favorito"] : '';
-        $favoritoDB = Database::escape($favorito);
+        $tipo_notificacion = isset($data["tipo_notificacion"]) ? $data["tipo_notificacion"] : '';
+        $tipo_notificacionDB = Database::escape($tipo_notificacion);
+
+
+        $json_notificacion = isset($data["json_notificacion"]) ? $data["json_notificacion"] : '';
+        $json_notificacion = json_encode($json_notificacion);
+        $json_notificacionDB = Database::escape($json_notificacion);
+
+        $usuario_notificacion = isset($data["usuario_notificacion"]) ? $data["usuario_notificacion"] : '';
+        $usuario_notificacionDB = Database::escape($usuario_notificacion);
+
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+
         
 		$sql = <<<SQL
-			INSERT INTO notificaciones (request_uri, seguidor, nombre_venta, tipo_venta, id_venta, compra, favorito,usuario_alta)  
-			VALUES ($request_uriDB, $seguidorDB, $nombre_ventaDB, $tipo_ventaDB, $id_ventaDB, $compraDB, $favoritoDB,$usuarioAltaDB)
+INTO
+    `notificaciones`(
+        `tipo_notificacion`, `json_notificacion`, `usuario_notificacion`, `usuario_alta`
+    )
+VALUES(
+    $tipo_notificacionDB,$json_notificacionDB,$usuario_notificacionDB,$usuarioAltaDB
+)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
