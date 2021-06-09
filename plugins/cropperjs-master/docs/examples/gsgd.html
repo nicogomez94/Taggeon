@@ -1,0 +1,126 @@
+<!-- seguidores -->
+<div class="overlay overlay-seguidores" style="display: none;">
+    <div style="width: 400px;" class="lightBox lightBox-seguidores">
+       <div>
+          <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+          <h3 class="count-seguidores"><span class="count-seguidos-num">0</span> Seguidores</h3>
+          <hr>
+            <div class="container-seguidores"></div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!--  -->
+<!-- siguiendo -->
+<div class="overlay overlay-seguidos" style="display: none;">
+    <div style="width: 400px;" class="lightBox lightBox-seguidos">
+       <div>
+          <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+          <h3 class="count-seguidos"><span class="count-seguidos-num">0</span> Seguidos</h3>
+          <hr>
+          <div class="container-seguidos"></div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!--  -->
+ 
+ <div id="info-user" class="container">
+    <div id="icons-upper-perfil">
+       <span><a href="#"><i class="fas fa-plus"></i></a></span>
+       <span><a href="#"><i class="fas fa-user-cog"></i></a></span>      
+       <span><a href="{url_editar}"><i class="fas fa-user-edit"></i></a></span>
+    </div>
+    <div id="titulo-perfil">
+          <img src="{foto-perfil}" alt="foto perfil">
+          <div id="titulo-perfil-datos">
+             <div>{nombre}</div>
+             <div class="fyf">
+                <span class="seguidores-count">0</span>
+                <span class="seguidores-label">&nbsp;Seguidores</span> - 
+                <span class="siguiendo-count">0</span>
+                <span class="seguidos-label">&nbsp;Seguidos</span>
+                
+            </div>
+          </div>
+    </div>
+ <!--<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. <a href="/editar-usuario.html">Edítalo aqu&iacute;</a>-->
+     <span style="position:absolute;right: 15;color: white !important;"><i class="fas fa-times"></i></span>
+ </div>
+    <div id="menu-perfil">
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="navbar-nav navbar-center">
+             {menuperfil}
+          </div>
+        </nav>
+    </div>
+    
+ </div>
+ 
+ 
+ 
+     <script>
+       var jsonData = {json};
+    </script>
+<script>
+$(document).ready(function(){
+
+    var seguidores = jsonData.seguidores || [];
+    var sizeSeguidores = jsonData.seguidores.length || 0;
+    var seguidos = jsonData.seguidos || [];
+    var sizeSeguidos = jsonData.seguidos.length || 0;
+
+    $(".count-seguidos-num").html(sizeSeguidos);
+    $(".count-seguidores-num").html(sizeSeguidores);
+
+    if(sizeSeguidores>0){
+        for(var i=0; i<sizeSeguidores; i++){
+
+            var apellido = jsonData.seguidores[i].apellido || "";
+            var email = jsonData.seguidores[i].email || "";
+            var idUsuario = jsonData.seguidores[i].idUsuario || 0;
+            var nombre = jsonData.seguidores[i].nombre || "";
+
+            var seguidores_html = 
+            '<div class="media">'+
+                '<img class="mr-3" src="unknown" alt="Generic placeholder image">'+
+                '<div class="media-body">'+
+                    '<h5 class="mt-0">'+nombre+'</h5>'+
+                    '<span>'+email+'</span>'
+                '</div>'+
+            '</div>';
+            
+            $(".container-seguidores").append(seguidores_html);
+        }
+    }
+
+    if(sizeSeguidos>0){
+        for(var i=0; i<sizeSeguidos; i++){
+
+            var apellido = jsonData.seguidos[i].apellido || "";
+            var email = jsonData.seguidos[i].email || "";
+            var idUsuario = jsonData.seguidos[i].idUsuario || 0;
+            var nombre = jsonData.seguidos[i].nombre || "";
+
+            var seguidos_html = 
+            '<div class="media">'+
+                '<img class="mr-3" src="unknown" alt="Generic placeholder image">'+
+                '<div class="media-body">'+
+                    '<h5 class="mt-0">'+nombre+'</h5>'+
+                    '<span>'+email+'</span>'
+                '</div>'+
+            '</div>';
+            
+            $(".container-seguidos").append(seguidos_html);
+        }
+    }
+
+});
+</script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+    <!-- <script src="js/popper.js"></script> -->
+    <script src="js/func.js?time=210521-0326"></script>
+     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+ 
+ </body></html>

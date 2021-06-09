@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>IOOO</title>
+  <link rel="stylesheet" href="../css/cropper.css">
+  <style>
+    .container {
+      margin: 20px auto;
+      max-width: 640px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>test</h1>
+    <div>
+      <img id="image" src="../images/picture.jpg" alt="Picture">
+    </div>
+  </div>
+  <br><br>
+  <div>
+    <button id="button">CROPear</button>
+    
+  </div>
+  <div id="result"></div>
+  <script src="../js/cropper.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      var button = document.getElementById('button');
+      var result = document.getElementById('result');
+      var image = document.querySelector('#image');
+      
+      button.onclick = function () {
+        result.innerHTML = '';
+        result.appendChild(cropper.getCroppedCanvas());
+      };
+
+      var cropper = new Cropper(image, {
+        dragMode: 'move',
+        aspectRatio: 4 / 3,
+        autoCropArea: 0.65,
+        restore: false,
+        guides: false,
+        center: false,
+        highlight: false,
+        cropBoxMovable: false,
+        cropBoxResizable: false,
+        toggleDragModeOnDblclick: false,
+      });
+    });
+  </script>
+</body>
+</html>

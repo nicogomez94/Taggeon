@@ -130,7 +130,7 @@ class  NotificacionesManager
 		if ($this->validarId($id) === false) {
 			return false;
 		}
-		if ($this->productoDao->existeId($id) === false) {
+		if ($this->notificacionesDao->existeId($id) === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj($this->productoDao->getMsj());
 			return false;

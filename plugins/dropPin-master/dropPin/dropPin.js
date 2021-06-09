@@ -120,24 +120,20 @@
 				
 				// muestro popup para producto
 				var popup_overlay = $(".popup-prod-overlay");
-				var popup_cont = $(".popup-prod-cont");
+				var popup_cont = $("#popup-prod-cont");
 				var popup_prod = $(".popup-producto");
 
 				
 
 				popup_overlay.show(0,function(){
 
-					var body_w = $('body').width();
-					var popup_cont = $('.popup-prod-cont');
+					/*var body_w = $('body').width();
+					var popup_cont = $('#popup-prod-cont');
 					var ppc_width = popup_cont.width();
 					var offset_left = popup_cont.offset().left + ppc_width;
 					var body_minus = body_w - 200
 				
 					if (offset_left > body_minus){
-						/*console.log("se pasa")
-						console.log("left-->"+popup_cont.offset().left)
-						console.log("offset+w-->"+offset_left)
-						console.log("body-->"+body_w)*/
 						popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
 						popup_cont.addClass('over')
 						popup_cont.css({
@@ -145,31 +141,52 @@
 							'left': xval_pop+'px'
 						});
 					}else{
-						/*console.log("no se pasa")
-						console.log("left-->"+popup_cont.offset().left)
-						console.log("offset+w-->"+offset_left)
-						console.log("body-->"+body_w)*/
 						popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
 						popup_cont.removeClass('over')
 						popup_cont.css({
 							'top': yval_pop+'px',
 							'left': xval_pop+'px'
 						});
-					}
-
+					}*/
 					
+					popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
+					popup_cont.css({
+						'top': yval_pop+'px',
+						'left': xval_pop+'px'
+					});
 					popup_prod.css({
 						'top': yval_pop+'%',
 						'left': xval_pop+'%'
 					});
 
+					/***/
+					//si se sale el popup del viewport invierto los css
+					var salirPopup = document.getElementById("salir-popup");
+
+					if(!inViewport(salirPopup)){
+						console.log(inViewport(salirPopup))
+						
+						var sp = $("#salir-popup");
+						var sp_left = sp.css("left");
+						sp.css("right",sp_left);
+						sp.css("left","unset");
+
+						var ppc = $("#popup-prod-cont");
+						var ppc_left = ppc.css("left").split("px")[0];
+						ppc_left_posta = parseInt(ppc_left) - 300;
+						ppc.css("right",ppc_left_posta+"px");
+						ppc.css("left","unset");
+						
+					}
+					
 				});
 				
 				
 
 			});
 			//genera producto y futuro click protector
-			$(".popup-prod-cont").on("click", ".nombre-producto", function(){
+			$("#popup-prod-cont").on("click", ".nombre-producto", function(){
+				            
 				$(".popup-prod-overlay").hide();
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
 				var id_producto = $(this).attr('class').split(' ')[1];
@@ -194,7 +211,7 @@
 
 			});
 			//para salir de la sel de productos y eliminar pin
-			$(".popup-prod-cont").on("click",".salir-popup", function(){
+			$("#popup-prod-cont").on("click","#salir-popup", function(){
 				//hago esto porque sino con css() me toma con pixels
 				var data_close = $(this).parent().attr("data-close");
 				var box_y = data_close.split("-")[0]//.match(/[0-9]+/g)[0];

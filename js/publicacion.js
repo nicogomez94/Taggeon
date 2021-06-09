@@ -335,8 +335,8 @@ $(document).ready(function(){
    $('html,body').animate({
       scrollTop: $("#ancla-desde-home-"+WinLocSplit).offset().top - 80
    }, 0);
-
-
+   
+   
 
 
 //FIN READY

@@ -32,12 +32,15 @@ class  NotificacionesDao
 
 	public function altaNotificaciones(array $data)
 	{
+        $usuarioNombre = isset($GLOBALS['sesionG']['nombre']) ? $GLOBALS['sesionG']['nombre'] : '';
+
 
         $tipo_notificacion = isset($data["tipo_notificacion"]) ? $data["tipo_notificacion"] : '';
         $tipo_notificacionDB = Database::escape($tipo_notificacion);
 
 
         $json_notificacion = isset($data["json_notificacion"]) ? $data["json_notificacion"] : '';
+        $json_notificacion['nombre'] = $usuarioNombre;
         $json_notificacion = json_encode($json_notificacion);
         $json_notificacionDB = Database::escape($json_notificacion);
 
@@ -133,7 +136,7 @@ SET
     `eliminar` = 1
 WHERE
 `id` = $idDB AND
-`usuario_alta` = $usuarioDB
+`usuario_notificacion` = $usuarioDB
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
@@ -159,7 +162,7 @@ SQL;
                         WHERE 
                             id = $idDB AND
                             (eliminar = 0 OR eliminar is null) AND
-                            usuario_alta = $usuarioAltaDB
+                            usuario_notificacion = $usuarioAltaDB
 SQL;
 
         $resultado = mysqli_query(Database::Connect(), $sql);

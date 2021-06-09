@@ -1,7 +1,7 @@
 $(document).ready(function() {
     
     //activar notifs
-    //ampliarNotif();
+    ampliarNotif();
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -95,7 +95,7 @@ $(document).ready(function() {
             "width" : "unset",
             "height": "unset"
         });
-        $(".img-pines-amapear").hide();
+        $("#img-pines-amapear").hide();
     });
 
     /*slick carrusel productos en ampliar publicaciones*/
@@ -582,7 +582,7 @@ $('#subir-publicacion-form').submit(function (e) {
     /*var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
     var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
     var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal*/
-    var url_imagen_64 = $(".img-pines-amapear").attr("src")
+    var url_imagen_64 = $("#img-pines-amapear").attr("src")
 
     var pin_object = $(".pin").serializeArray();
     var pin_object_str = JSON.stringify(pin_object)
@@ -1292,13 +1292,28 @@ function cargarImgPines(event){
         // output.src = reader.result;
         $("#img-subir-pins").hide();
         // $("#output-imgpins").show();
-        $(".img-pines-amapear").show();
+        $("#img-pines-amapear").show();
         // $("#map").css("background-image","url('"+reader.result+"')");
-        $(".img-pines-amapear").attr("src",reader.result);
+        $("#img-pines-amapear").attr("src",reader.result);
         $("#map").css("width","100%");
         // $("#map").css("height","100%");
         $("#eliminar-img-flotante").show();
         $("#anadir-productos-btn").show();
+
+        //cropper
+        var imagen = document.querySelector('#img-pines-amapear');
+        var cropper = new Cropper(imagen, {
+           viewMode: 3,
+           dragMode: 'move',
+           autoCropArea: 1,
+           restore: true,
+           modal: false,
+           guides: false,
+           highlight: false,
+           cropBoxMovable: false,
+           cropBoxResizable: false,
+           toggleDragModeOnDblclick: false,
+        });
 
     };
     reader.readAsDataURL(event.target.files[0]);
@@ -1597,33 +1612,107 @@ function buscadorIndex(paramIndex){
         window.location.replace("/");
     }
 }
-/*
+
 function ampliarNotif(){
 
-    var sizeNotifs
-    var sizeNotifs = jsonData.notificaciones.length;
+    if(jsonData.usuario != ""){
 
-    for(var i=0; i<sizeNotifs; i++){
+        var sizeNotifs = jsonData.notificaciones.length || 0;
 
-        var compracompra = jsonData.notificaciones[i].compracompra
-        var eliminar = jsonData.notificaciones[i].eliminar
-        var favorito = jsonData.notificaciones[i].favorito
-        var fecha_alta = jsonData.notificaciones[i].fecha_alta
-        var fecha_update = jsonData.notificaciones[i].fecha_update
-        var id = jsonData.notificaciones[i].id
-        var id_venta = jsonData.notificaciones[i].id_venta
-        var nombre_venta = jsonData.notificaciones[i].nombre_venta
-        var seguidor = jsonData.notificaciones[i].seguidor
-        var tipo_venta = jsonData.notificaciones[i].tipo_venta
-        var usuario_alta = jsonData.notificaciones[i].usuario_alta
-        var usuario_editar = jsonData.notificaciones[i].usuario_editar
+        if(sizeNotifs>0){
+            for(var i=0; i<sizeNotifs; i++){
 
-        var html_notif = "<div>notif test  ID--> "+id+"</div>";
+                var compracompra = jsonData.notificaciones[i].compracompra || 0;
+                var json_notif = jsonData.notificaciones[i].json_notificacion || "";
+                var json_notif_p = JSON.parse(json_notif) || 0;
+                var tipo_notif = jsonData.notificaciones[i].tipo_notificacion || "";
+                /*var eliminar = jsonData.notificaciones[i].eliminar || 0;
+                var favorito = jsonData.notificaciones[i].favorito || 0;
+                var fecha_alta = jsonData.notificaciones[i].fecha_alta || 0;
+                var fecha_update = jsonData.notificaciones[i].fecha_update || 0;
+                */var id = jsonData.notificaciones[i].id || 0;/*
+                var id_venta = jsonData.notificaciones[i].id_venta || 0;
+                var nombre_venta = jsonData.notificaciones[i].nombre_venta || "";
+                var seguidor = jsonData.notificaciones[i].seguidor || "";
+                var tipo_venta = jsonData.notificaciones[i].tipo_venta || "";
+                var usuario_alta = jsonData.notificaciones[i].usuario_alta || 0;
+                var usuario_editar = jsonData.notificaciones[i].usuario_editar || 0;*/
+                var json_notif_p_l = Object.keys(json_notif_p).length || 0;
+                
+                //console.log(json_notif_p)
+    
+                var foto = json_notif_p.foto || 0;
+                var id_jn = json_notif_p.id || 0;
+                var id_publicacion_categoria = json_notif_p.id_publicacion_categoria || "";
+                var pid = json_notif_p.pid || "";
+                var publicacion_descripcion = json_notif_p.publicacion_descripcion || "";
+                var nombre = json_notif_p.nombre || "";
+                var publicacion_nombre = json_notif_p.publicacion_nombre || "";
+                var usuario_alta = json_notif_p.usuario_alta || 0;
+    
+                //aparece el contador de notifs con nro
+                $(".count-notif").show();
+                $(".count-notif").text(sizeNotifs)
+                
+    
+                if(tipo_notif == "favorito"){
+                        var html_notif = 
+                            '<div class="media notif-id-'+id+'">'+
+                                //'<img class="mr-3 img-notifs" src="">'+
+                                '<i class="mr-3 fas fa-heart heart-notif"></i>'+
+                                '<div class="media-body">'+
+                                    '<div>'+nombre+' le dio like a tu publicaci&oacute;n "'+publicacion_nombre+'"</div>'+
+                                    '<a href="/ampliar-usuario.html"></a>'+
+                                '</div>'+
+                                '<i onclick="eliminarNotif(\''+id+'\')" class="fas fa-times"></i>'+
+                            '</div>';
+                        
+                        $(".notifs-button-ampliar").append(html_notif)
+                }
+            }
 
-        $(".notifs-button-ampliar").append(html_notif)
+        }else{
+            var no_notif = '<div class="no_notif">No hay notificaciones por el momento.</div>'
+            $(".notifs-button-ampliar").html(no_notif)
+        }
+
     }
 
-}*/
+}
+
+function eliminarNotif(id_notif){
+
+    var data = new FormData();
+    data.append("accion","eliminar");
+    data.append("id",id_notif);
+ 
+    $.ajax({
+        url: '/app/notificaciones.php',
+        data: data,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function(data){
+        //async: false,
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+ 
+            if (dataJ == 'REDIRECT'){
+                console.log("REDIRECT-->"+dataM);									
+            }else if(dataJ == 'OK'){
+                console.log("OK-->"+dataJ+"/"+dataM);
+                $(".notif-id-"+id_notif).remove();
+            }else{
+                console.log("ELSE-->"+dataJ+"/"+dataM);
+            }
+       },
+       error: function( data, jqXhr, textStatus, errorThrown ){
+          ajax("ERROR AJAX--> "+data);
+          console.log(data);
+       }
+    });
+    return false;
+}
 
 
     
