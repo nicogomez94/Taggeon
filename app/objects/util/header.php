@@ -8,14 +8,15 @@ if ($perfil == 'seller' || $perfil == 'picker'){
 	$contenidoHeader = new Template('header_esp_usuario');
 	$reemplazoPerfil = ($perfil == 'seller') ? ' Seller' : '';
 	$id        = $GLOBALS['sesionG']['idUsuario'];
+	$usuarioPerfil = $GLOBALS['sesionG']['usuario'];
 
     if (file_exists("/var/www/html/imagen_perfil/$id.png")) {
-    	$fotoPerfil = "/var/www/html/imagen_perfil/$id.png";
+    	$fotoPerfil = "/imagen_perfil/$id.png";
     } else {
-    	$fotoPerfil = "/var/www/html/imagen_perfil/generica.png";
-	$usuarioPerfil = $GLOBALS['sesionG']['usuario'];
+    	$fotoPerfil = "/imagen_perfil/generica.png";
 	if ($usuarioPerfil == $GLOBALS['sesionG']['email']){
 		$usuarioPerfil = $GLOBALS['sesionG']['nombre'];
+	}
     }
  
     $menu = '';

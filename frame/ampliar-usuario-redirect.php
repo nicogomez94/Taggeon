@@ -31,9 +31,9 @@ if ($perfil=='picker' || $perfil == 'seller'){
 
     $fotoPerfil = '';
     if (file_exists("/var/www/html/imagen_perfil/$id.png")) {
-        $fotoPerfil = "/var/www/html/imagen_perfil/$id.png";
+        $fotoPerfil = "/imagen_perfil/$id.png";
     } else {
-        $fotoPerfil = "/var/www/html/imagen_perfil/generica.png";
+        $fotoPerfil = "/imagen_perfil/generica.png";
     }
 
     $contenido->asigna_variables(array(
