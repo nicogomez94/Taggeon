@@ -5,6 +5,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/Seg
 
 
 
+
 if ($perfil=='picker' || $perfil == 'seller'){
     $seguidoresManager = new SeguidoresManager();
 

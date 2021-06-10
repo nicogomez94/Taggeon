@@ -268,7 +268,9 @@ class  PublicacionManager
 			public function getPublicacionById(array $data)
 			{
 				$id = isset($data["id"]) ? $data["id"] : '';
-
+				if ($id == ''){
+					$id = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
+				}
 				if ($this->validarId($id) === false) {
 					return [];
 				}

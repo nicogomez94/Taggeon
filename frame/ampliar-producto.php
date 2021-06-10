@@ -1,10 +1,13 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+
 
 if ($perfil=='seller'){
 
     $productoManager = new ProductoManager();
+    $seguidoresManager = new SeguidoresManager();
 
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
@@ -19,7 +22,9 @@ if ($perfil=='seller'){
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $productoManager->getListCategoria(),
         "rubro"     => $productoManager->getListRubro(),
-        "productos"     => $productoManager->getListProducto()
+        "productos"     => $productoManager->getListProducto(),
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
         
     );
     $jsonData = json_encode($jsonData);

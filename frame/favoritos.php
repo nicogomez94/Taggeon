@@ -1,10 +1,14 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+
+            
 
 if ($perfil=='seller' || $perfil=='picker'){
 
     $publicacionManager = new PublicacionManager();
+    $seguidoresManager = new SeguidoresManager();
 
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
@@ -19,7 +23,9 @@ if ($perfil=='seller' || $perfil=='picker'){
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $publicacionManager->getListCategoria(),
-        "publicaciones"     => $publicacionManager->getListPublicacionFavoritos()
+        "publicaciones"     => $publicacionManager->getListPublicacionFavoritos(),
+            "seguidores"     => $seguidoresManager->getListSeguidores(),
+            "seguidos"     => $seguidoresManager->getListSeguidos()
         
     );
     $jsonData = json_encode($jsonData);

@@ -1,5 +1,7 @@
 <?php
 include_once("SeguidoresDao.php");
+include_once("/var/www/html/app/objects/notificaciones/NotificacionesManager.php");
+
 class  SeguidoresManager
 {
 	private $seguidoresDao;
@@ -69,11 +71,20 @@ class  SeguidoresManager
 			$this->setMsj($this->seguidoresDao->getMsj());
 		} else {
 			$idSeguidores = $this->seguidoresDao->getMsj();
-
-			
-			
 			$this->setStatus("OK");
 			$this->setMsj($idSeguidores);
+
+
+			$notiManager = new NotificacionesManager();
+			$data['tipo_notificacion'] = 'seguidores';
+			
+			if ($notiManager->agregarNotificaciones($data) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj("No se pudo enviar la notificacion");
+				
+			}
+
+
 		}
 	}
 

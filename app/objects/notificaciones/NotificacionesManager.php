@@ -59,6 +59,15 @@ class  NotificacionesManager
 			}else{
 				return false;
 			}
+		}else if ($tipo == 'seguidores'){
+			$idUsuario = $data['id_publicador'];
+
+			if ($this->validarId($idUsuario) === false){
+				return false;
+			}
+	
+			$data['json_notificacion']    = $data;
+			$data['usuario_notificacion'] = $idUsuario;
 		}else{
 			return false;
 		}
@@ -119,6 +128,24 @@ class  NotificacionesManager
 				return true;
 			}else{
 				$this->setMsj("El campo id es incorrecto.");
+			}
+		}
+		return false;
+	}
+
+	private function validarIdUsuario ($param){
+		$this->setStatus("error");
+		$this->setMsj("");
+		$validSql = validSqlInjection($param);
+		if ($validSql != ''){
+			$this->setMsj("Error validación: $validSql.");
+		}else{
+			$patron = '/^[1-9][0-9]*$/';
+			if (preg_match($patron, $param)){
+				$this->setStatus("ok");
+				return true;
+			}else{
+				$this->setMsj("El campo usuario es incorrecto.");
 			}
 		}
 		return false;

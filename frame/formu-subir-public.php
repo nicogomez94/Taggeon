@@ -2,12 +2,16 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+    
 
 
 
 if ($perfil == 'seller' || $perfil =='picker'){
     $productoManager = new ProductoManager();
     $publicacionManager = new PublicacionManager();
+    $seguidoresManager = new SeguidoresManager();
+
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
@@ -24,7 +28,9 @@ if ($perfil == 'seller' || $perfil =='picker'){
         #"rubro"     => $publicacionManager->getListRubro()
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "productos"     => $productoManager->getListProducto()
+        "productos"     => $productoManager->getListProducto(),
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
     );
     $jsonData = json_encode($jsonData);
     //$urlEditar = ($perfil == 'seller') ? "/editar-usuario-seller.html": '/editar-usuario.html';

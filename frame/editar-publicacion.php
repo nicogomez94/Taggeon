@@ -2,9 +2,11 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects'] . "util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects'] . "publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
 if ($perfil == 'seller' || $perfil=='picker') {
     $publicacionManager = new PublicacionManager();
+    $seguidoresManager = new SeguidoresManager();
 
 
     $publicacion =  $publicacionManager->getPublicacion($_GET);
@@ -34,7 +36,9 @@ if ($perfil == 'seller' || $perfil=='picker') {
         "publicaciones" => $publicacion,
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "productos"     => $productoManager->getListProducto()
+        "productos"     => $productoManager->getListProducto(),
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
     );
 
 
@@ -51,6 +55,7 @@ if ($perfil == 'seller' || $perfil=='picker') {
         "url_editar"  => "/editar-usuario.html",
 	    "id"          => $idEditar,
         "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
+
     ));
     $contenidoString = $contenido->muestra();
     //HEADER

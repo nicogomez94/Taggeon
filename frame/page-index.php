@@ -4,11 +4,15 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.ph
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."notificaciones/NotificacionesManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+
 echo $contenidoStringHeader;
 //FIN HEADER
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
+    $seguidoresManager = new SeguidoresManager();
+
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
@@ -26,7 +30,9 @@ echo $contenidoStringHeader;
         "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones"     => $publicacionManager->getListPublicacionIndex(),
         "categoria_producto" => $productoManager->getListCategoria(),
-        "rubro_producto"     => $productoManager->getListRubro()
+        "rubro_producto"     => $productoManager->getListRubro(),
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
     );
     $jsonData = json_encode($jsonData);
 echo "<script>var jsonData = $jsonData;</script>";

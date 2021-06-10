@@ -3,6 +3,8 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.ph
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+
 
 
 if ($perfil=='seller'){
@@ -10,6 +12,8 @@ if ($perfil=='seller'){
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
     $carritoManager = new CarritoManager();
+    $seguidoresManager = new SeguidoresManager();
+
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
@@ -26,7 +30,9 @@ if ($perfil=='seller'){
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
         "ventas"     => $carritoManager->getListVentas($_GET),
-        "comprador"    => $carritoManager->getMsj()
+        "comprador"    => $carritoManager->getMsj(),
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
     );
     $jsonData = json_encode($jsonData);
     $menuperfil = '';

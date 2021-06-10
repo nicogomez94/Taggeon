@@ -1,10 +1,14 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects'] . "util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects'] . "producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+
+    
 
 
 if ($perfil == 'seller') {
     $productoManager = new ProductoManager();
+    $seguidoresManager = new SeguidoresManager();
 
     $producto =  $productoManager->getProducto($_GET);
     if ($productoManager->getStatus() != "ok"){
@@ -28,7 +32,9 @@ if ($perfil == 'seller') {
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $productoManager->getListCategoria(),
-        "productos" => $producto
+        "productos" => $producto,
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
     );
 
 

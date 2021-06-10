@@ -3,6 +3,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.ph
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
 
+
 if ($perfil=='picker' || $perfil == 'seller'){
     //$usuarioManager = new UsuarioManagerImpl();
     $id        = $GLOBALS['sesionG']['id'];

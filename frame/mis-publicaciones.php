@@ -1,11 +1,13 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
 if ($perfil=='seller' || $perfil=='picker'){
-
+    
     $publicacionManager = new PublicacionManager();
-
+    $seguidoresManager = new SeguidoresManager();
+    
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
@@ -19,7 +21,9 @@ if ($perfil=='seller' || $perfil=='picker'){
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $publicacionManager->getListCategoria(),
-        "publicaciones"     => $publicacionManager->getListPublicacion()
+        "publicaciones"     => $publicacionManager->getListPublicacion(),
+        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "seguidos"     => $seguidoresManager->getListSeguidos()
         
     );
     $jsonData = json_encode($jsonData);
@@ -34,6 +38,7 @@ if ($perfil=='seller' || $perfil=='picker'){
             "url_editar" => "/editar-usuario.html",
             "menuperfil" => $menuperfil,
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
+
 			));
     $contenidoString = $contenido->muestra();
     //HEADER
