@@ -282,18 +282,16 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 			$this->setMsj("No se pudo actualizar la foto.");
 			return false;
 		}
-		$fp = fopen("/var/www/imagen_perfil/$idUsuario", 'w');
-		fwrite($fp, $foto);
-		fclose($fp);
 
-		// $tname = $_FILES["file2"]["tmp_name"];
-		// if (!move_uploaded_file($tname,'/var/www/imagen_perfil/'.$id)){
-			// $this->setStatus("error");
-			// $this->setMsj("No se pudo actualizar la foto.");
-		// }else{
-			// $this->setStatus("ok");
-			// $this->setMsj("");
-		// }
+
+		$base_to_php = explode(',', $foto);
+		if (count($base_to_php) == 2){
+			$data = base64_decode($base_to_php[1]);
+			$filepath = "/var/www/html/imagen_perfil/$idUsuario.png";
+			file_put_contents($filepath,$data);
+		}
+
+
 	}
 
 

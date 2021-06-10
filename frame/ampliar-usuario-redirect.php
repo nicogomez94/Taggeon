@@ -30,20 +30,10 @@ if ($perfil=='picker' || $perfil == 'seller'){
     $id = (isset($_GET['id_usuario']))  ? $_GET['id_usuario'] : "";
 
     $fotoPerfil = '';
-    if (file_exists("/var/www/imagen_perfil/$id")) {
-        $fp = fopen("/var/www/imagen_perfil/$id", 'r');
-        while(!feof($fp)) {
-            $fotoPerfil = fgets($fp);
-        }
-        fclose($fp);
+    if (file_exists("/var/www/html/imagen_perfil/$id.png")) {
+        $fotoPerfil = "/var/www/html/imagen_perfil/$id.png";
     } else {
-        if (file_exists("/var/www/imagen_perfil/generica")) {
-            $fp = fopen("/var/www/imagen_perfil/generica", 'r');
-            while(!feof($fp)) {
-                $fotoPerfil = fgets($fp);
-            }
-            fclose($fp);
-        }
+        $fotoPerfil = "/var/www/html/imagen_perfil/generica.png";
     }
 
     $contenido->asigna_variables(array(
