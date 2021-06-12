@@ -4,6 +4,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/Pu
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
 
 
@@ -13,6 +14,8 @@ if ($perfil=='seller' || $perfil=='picker'){
     $productoManager = new ProductoManager();
     $carritoManager = new CarritoManager();
     $seguidoresManager = new SeguidoresManager();
+    $usuarioManager = new UsuarioManagerImpl();
+
 
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
@@ -20,6 +23,7 @@ if ($perfil=='seller' || $perfil=='picker'){
     }
     
     $jsonData = array(
+        "usuario_envio" => $usuarioManager->getUsuarioBySesion(),
         "tokenMercadoPago" => $tokenMercadoPago,
         "usuario"       => $GLOBALS['sesionG']['usuario'],
         "nombre"        => $GLOBALS['sesionG']['nombre'],

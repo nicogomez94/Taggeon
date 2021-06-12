@@ -94,6 +94,29 @@ sql;
 }
 
 
+
+public function getUsuarioBySesion (){
+		$id_usuario = $GLOBALS['sesionG']['idUsuario']; 
+	$id_usuarioquote = database::escape($id_usuario);
+	$sql =<<<sql
+        SELECT `envio_codigo_postal`, `envio_ciudad_localidad`, `envio_numero`, `envio_direccion`
+		FROM    `usuario`
+		WHERE `usuario`.eliminar = 0 AND id=$id_usuarioquote
+	
+sql;
+
+	$resultado = Database::Connect()->query($sql);
+	$list = array();
+
+	while ($rowEmp = mysqli_fetch_array($resultado)) {
+		$list[] = $rowEmp;
+	}
+
+	
+	return $list;
+}
+
+
 public function getUsuarioByEmail ($email){
 	$emailquote = database::escape($email);
 	$sql =<<<sql

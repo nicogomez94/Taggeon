@@ -557,6 +557,11 @@ private function validarNombre ($param){
 		return $this->getUsuarioDao()->getByUsr($usuario);
 	}
 
+
+	public function getUsuarioBySesion(){
+		return $this->getUsuarioDao()->getUsuarioBySesion();
+	}
+
 	
 	public function getUsuarioPublic(){
 		$id_usuario  = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : '';

@@ -638,18 +638,32 @@ SQL;
         $envio_codigo_postalDB = Database::escape($envio_codigo_postal);
         $envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
         $envio_ciudad_localidadDB = Database::escape($envio_ciudad_localidad);
+
+        $envio_numero = isset($data["envio_numero"]) ? $data["envio_numero"] : '';
+        $envio_numeroDB = Database::escape($envio_numero);
+
+        
+        $envio_direccion = isset($data["envio_direccion"]) ? $data["envio_direccion"] : '';
+        $envio_direccionDB = Database::escape($envio_direccion);
+ 
+ 
+
         $email = isset($data["email"]) ? $data["email"] : '';
         $emailDB = Database::escape($email);
         $notas = isset($data["notas"]) ? $data["notas"] : '';
         $notasDB = Database::escape($notas);
-                    $estado = isset($data["estado"]) ? $data["estado"] : '';
-                    $estadoDB = Database::escape($estado);
+        $estado = isset($data["estado"]) ? $data["estado"] : '';
+        $estadoDB = Database::escape($estado);
+
         $sql = <<<SQL
 			UPDATE
 			    `carrito`
 			SET
 			    `usuario_editar` = $usuarioDB,`estado` = $estadoDB,
-`envio_nombre_apellido` = $envio_nombre_apellidoDB, `envio_codigo_postal` = $envio_codigo_postalDB, `envio_ciudad_localidad` = $envio_ciudad_localidadDB, `email` = $emailDB, `notas` = $notasDB
+`envio_nombre_apellido` = $envio_nombre_apellidoDB, 
+`envio_codigo_postal` = $envio_codigo_postalDB, `envio_ciudad_localidad` = $envio_ciudad_localidadDB, 
+`envio_numero` = $envio_numeroDB, `envio_direccion` = $envio_direccionDB, 
+`email` = $emailDB, `notas` = $notasDB
 WHERE
 `id` = $idDB AND
 `usuario_alta` = $usuarioDB
@@ -659,8 +673,24 @@ SQL;
             $this->setStatus("ERROR");
             $this->setMsj("$sql" . Database::Connect()->error);
         } else {
-            $this->setStatus("OK");
-            return true;
+            $sql = <<<SQL
+			UPDATE
+			    `usuario`
+			SET
+			    `usrUpdate` = $usuarioDB, 
+                `envio_codigo_postal` = $envio_codigo_postalDB, `envio_ciudad_localidad` = $envio_ciudad_localidadDB, 
+                `envio_numero` = $envio_numeroDB, `envio_direccion` = $envio_direccionDB
+            WHERE
+                `id` = $usuarioDB
+SQL;
+
+            if (!mysqli_query(Database::Connect(), $sql)) {
+                $this->setStatus("ERROR");
+                $this->setMsj("$sql" . Database::Connect()->error);
+            } else {
+                $this->setStatus("OK");
+                return true;
+            }
         }
 
         return false;

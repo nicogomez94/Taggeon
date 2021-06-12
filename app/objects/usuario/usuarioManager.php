@@ -17,6 +17,8 @@ interface  UsuarioManager{
 	public function actualizarPerfil(); //new
 	public function getUsuarioByEmail($email); //new
 	public function getUsuarioPublic(); //new
+	public function getUsuarioBySesion(); //new
+	
 
 	
 }
