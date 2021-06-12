@@ -29,47 +29,6 @@
    <meta name="msapplication-TileImage" content="../img/ms-icon-144x144.png">
    <meta name="theme-color" content="#ffffff">
 
-   <script>
-      var jsonData = {
-         "notificaciones": [
-            {
-               "id": "4",
-               "tipo": "seguido",
-               "seguidor": "jorge",
-               "img-seguidor": "0",
-               "venta": "0",
-               "compra": "0",
-               "favorito": "0"
-            },
-            {
-               "id": "4",
-               "tipo": "seguido",
-               "seguidor": "jorge",
-               "img-seguidor": "0",
-               "venta":  [
-                  {
-                     "id_venta":"",
-                     "tipo_venta":"",
-                     "comprador":"",
-                     "producto":""
-                  }
-               ],
-               "compra": "0",
-               "favorito": "0"
-            },
-            {
-               "id": "4",
-               "tipo": "seguido",
-               "seguidor": "jorge",
-               "img-seguidor": "0",
-               "venta": "0",
-               "compra": "0",
-               "favorito": "0"
-            }
-         ]
-      };
-   </script>
-
 </head>
 <body>
 <!--
@@ -89,7 +48,9 @@
          </a>
       </div>
       <!---->
-      <input id="buscador-index-input" class="form-control search" type="text" placeholder="Buscar" aria-label="Buscar">
+      <div class="search-container">
+         <input id="buscador-index-input" class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
+      <i class="fas fa-search fa-search-header"></i></div>
       <!---->
       <!--  -->
       <div class="subir-publicacion-responsive">

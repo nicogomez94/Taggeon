@@ -11,12 +11,14 @@ $(document).ready(function(){
             var descr_public = jsonData.publicaciones[i].publicacion_descripcion || "";
             var publicador = jsonData.publicaciones[i].nombre_publicador || "";
             var id_publicador = jsonData.publicaciones[i].id_publicador || "";
+            var foto_perfil = jsonData.publicaciones[i].foto_perfil || "";
             var seguidor = "";
             var imagen_id = jsonData.publicaciones[i].foto || 0;
             var producto = jsonData.publicaciones[i].pid || 0;
             var cat_ampliar_home = jsonData.cat || 0;
             var arrCat = jsonData.categoria || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
+            var img_publicador = '/imagen_perfil/'+foto_perfil+'.png' || 0;//viene siempre png?
             var winLoc = window.location.pathname || "";
             var id_usuario = "1";//hard
             var favorito = jsonData.publicaciones[i].favorito || 0;
@@ -63,7 +65,7 @@ $(document).ready(function(){
             var html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
                                '<div class="header-public">'+
                                   '<span class="img-perfil-public">'+
-                                     '<a href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'"><img src="../img/descarga.png" alt="img-perfil"></a>'+
+                                     '<a href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'"><img src="'+img_publicador+'" alt="img-perfil"></a>'+
                                   '</span>'+
                                   '<span class="title-public"></span>'+
                                  //'<span class="opciones-public"><i class="fas fa-cog"></i></span>'+
@@ -142,9 +144,9 @@ $(document).ready(function(){
             
 
             //imgperfil sacada del menu top
-            var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+            /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
             $(".img-perfil-public img").attr("src", img_perfil);
-            $(".test-suggest").attr("src", img_perfil);
+            $(".test-suggest").attr("src", img_perfil);*/
         
             //nombre perfil
             $(".title-public").html(publicador);

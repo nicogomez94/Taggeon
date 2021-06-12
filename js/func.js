@@ -1616,15 +1616,15 @@ function buscadorIndex(paramIndex){
 function ampliarNotif(){
 
     if(jsonData.usuario != ""){
-
-        var sizeNotifs = jsonData.notificaciones.length || 0;
+        var notifs = jsonData.notificaciones || [];
+        var sizeNotifs = notifs.length || 0;
 
         if(sizeNotifs>0){
             for(var i=0; i<sizeNotifs; i++){
 
                 var compracompra = jsonData.notificaciones[i].compracompra || 0;
                 var json_notif = jsonData.notificaciones[i].json_notificacion || "";
-                var json_notif_p = JSON.parse(json_notif) || 0;
+                var json_notif_p = JSON.parse(json_notif) || [];
                 var tipo_notif = jsonData.notificaciones[i].tipo_notificacion || "";
                 /*var eliminar = jsonData.notificaciones[i].eliminar || 0;
                 var favorito = jsonData.notificaciones[i].favorito || 0;
@@ -1668,6 +1668,20 @@ function ampliarNotif(){
                             '</div>';
                         
                         $(".notifs-button-ampliar").append(html_notif)
+                }else if(tipo_notif == "seguidores"){
+
+                    var html_notif2 = 
+                            '<div class="media notif-id-'+id+'">'+
+                                //'<img class="mr-3 img-notifs" src="">'+
+                                '<i class="mr-3 fas fa-heart heart-notif"></i>'+
+                                '<div class="media-body">'+
+                                    '<div>'+nombre+' te esta siguiendo</div>'+
+                                    '<a href="/ampliar-usuario.html"></a>'+
+                                '</div>'+
+                                '<i onclick="eliminarNotif(\''+id+'\')" class="fas fa-times"></i>'+
+                            '</div>';
+                        
+                        $(".notifs-button-ampliar").append(html_notif2)
                 }
             }
 
