@@ -116,6 +116,27 @@ sql;
 	return $list;
 }
 
+public function isAdmin (){
+	$id_usuario = $GLOBALS['sesionG']['idUsuario']; 
+$id_usuarioquote = database::escape($id_usuario);
+$sql =<<<sql
+	SELECT `admin`
+	FROM    `usuario`
+	WHERE `usuario`.eliminar = 0 AND id=$id_usuarioquote
+
+sql;
+
+$ret = 0;
+$resultado = Database::Connect()->query($sql);
+
+while ($rowEmp = mysqli_fetch_array($resultado)) {
+	$ret = $rowEmp['admin'];
+}
+
+
+return $ret;
+}
+
 
 public function getUsuarioByEmail ($email){
 	$emailquote = database::escape($email);

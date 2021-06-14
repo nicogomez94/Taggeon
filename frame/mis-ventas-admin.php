@@ -5,9 +5,10 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
+include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
-
-if ($perfil=='seller'){
+$usuarioManager = new UsuarioManagerImpl();
+if (($perfil=='seller' || $perfil=='picker') && $usuarioManager->isAdmin()){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
@@ -59,7 +60,7 @@ if ($perfil=='seller'){
     //HEADER
     echo $contenidoStringHeader;
     //FIN HEADER
-   $contenidoString = Template::sostenedor_error("Permiso denegado {$perfil}");
+   $contenidoString = Template::sostenedor_error("Permiso denegado. Solo usuarios admin pueden acceder.");
    echo $contenidoString;
 }
 Database::Connect()->close();

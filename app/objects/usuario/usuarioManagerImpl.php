@@ -883,5 +883,9 @@ private function validarNombre ($param){
 			return false;
 		}
 	}
+
+	public function isAdmin(){
+		return $this->getUsuarioDao()->isAdmin();
+	}
 }
 ?>

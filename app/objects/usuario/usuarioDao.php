@@ -24,6 +24,7 @@ interface  UsuarioDao{
 	public function actualizarPerfilDatosPersonales($id,$nombre,$apellido,$usuario,$email,$perfil); //nueva
 	public function getUsuarioPublic($id_usuario); //nueva
    public function getUsuarioBySesion (); //nueva
+   public function isAdmin (); //nueva
 
 
 

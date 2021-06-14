@@ -18,7 +18,7 @@ interface  UsuarioManager{
 	public function getUsuarioByEmail($email); //new
 	public function getUsuarioPublic(); //new
 	public function getUsuarioBySesion(); //new
-	
+	public function isAdmin(); //new
 
 	
 }
