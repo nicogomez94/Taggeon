@@ -30,7 +30,8 @@ if ($perfil=='seller' || $perfil=='picker'){
         "rubro_producto"     => $productoManager->getListRubro(),
         "carrito"     => $carritoManager->getListCarrito(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
-        "seguidos"     => $seguidoresManager->getListSeguidos()
+        "seguidos"     => $seguidoresManager->getListSeguidos(),
+        "carritosHuerfanos" => $carritoManager->getListCarritoHuerfano(array())
         
     );
     $jsonData = json_encode($jsonData);

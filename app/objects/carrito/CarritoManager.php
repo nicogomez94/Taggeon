@@ -400,6 +400,21 @@ SQL;
 		return $ret;
 	}
 
+	public function getListCarritoHuerfano(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($id != ''){
+			if ($this->validarId($id) === false){
+				return [];
+			}
+		}
+		$data["estado"] = 2;
+		$ret =  $this->carritoDao->getListCompras($data);
+		$this->setMsj($this->carritoDao->getMsj());
+		return $ret;
+	}
+
+
 	public function getListCompras(array $data)
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';

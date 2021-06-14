@@ -1088,7 +1088,7 @@ $("#finalizar-orden").submit(function(){
               console.log("REDIRECT-->"+dataM);
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+              window.location.replace("/cobrar-compra.html?id="+id_carrito);
            }else{
               //window.location.replace("/ampliar-carrito.html");
            }
@@ -1143,7 +1143,10 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
 
 });
 
-
+$("#cropear-btn").click(function(){
+    $(".anadir-productos-btn").removeClass("disabled");
+    $(this).hide();
+});
 
 /*func para que al subir un puin no se vaya de contexto
 #container {
@@ -1300,14 +1303,16 @@ function cargarImgPines(event){
         // $("#map").css("height","100%");
         $("#eliminar-img-flotante").show();
         $("#anadir-productos-btn").show();
+        $("#anadir-productos-btn").addClass("disabled");
         $("#cropear-btn").show();
+        
 
         //cropper
         var button = document.getElementById('cropear-btn');
         var result = document.getElementById('result');
         var map = document.getElementById('map');
         var image = document.querySelector('#img-pines-amapear');
-        var imgj = $("#img-pines-amapear")
+        var imgj = $("#img-pines-amapear");
         
         button.onclick = function () {
             result.innerHTML = '';
