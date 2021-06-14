@@ -414,6 +414,21 @@ SQL;
 		return $ret;
 	}
 
+	public function getListComprasAdmin(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($id != ''){
+			if ($this->validarId($id) === false){
+				return [];
+			}
+		}
+		$data["estado"] = 4;
+		$ret =  $this->carritoDao->getListComprasAdmin($data);
+		$this->setMsj($this->carritoDao->getMsj());
+		return $ret;
+	}
+
+
 	public function getAmpliarCompra(array $data)
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';
@@ -452,6 +467,21 @@ SQL;
 		}
 		$data["estado"] = 4;
 		$ret =  $this->carritoDao->getListVentas($data);
+		$this->setMsj($this->carritoDao->getMsj());
+		return $ret;
+	}
+
+
+	public function getListVentasAdmin(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($id != ''){
+			if ($this->validarId($id) === false){
+				return [];
+			}
+		}
+		$data["estado"] = 4;
+		$ret =  $this->carritoDao->getListVentasAdmin($data);
 		$this->setMsj($this->carritoDao->getMsj());
 		return $ret;
 	}

@@ -1330,9 +1330,9 @@ function cargarImgPines(event){
             result.style.display = "none";
 
 
-            var test1 = $("#canvas_result").css("width");
+            /*var test1 = $("#canvas_result").css("width");
             var test2 = $("#canvas_result").css("height");
-                console.log($("#canvas_result"))
+                console.log($("#canvas_result"))*/
 
             
         };

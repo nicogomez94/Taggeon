@@ -7,7 +7,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/Seg
 
 
 
-if ($perfil=='seller' || $perfil=='picker'){
+if ($perfil=='seller'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
@@ -29,10 +29,11 @@ if ($perfil=='seller' || $perfil=='picker'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "compras"     => $carritoManager->getListCompras(array()),
-        "vendedor"    => $carritoManager->getMsj(),
+        "ventas"     => $carritoManager->getListVentasAdmin(array()),
+        "comprador"    => $carritoManager->getMsj(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
+
         
     );
     $jsonData = json_encode($jsonData);

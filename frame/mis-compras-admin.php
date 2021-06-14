@@ -29,7 +29,7 @@ if ($perfil=='seller' || $perfil=='picker'){
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
-        "compras"     => $carritoManager->getListCompras(array()),
+        "compras"     => $carritoManager->getListComprasAdmin(array()),
         "vendedor"    => $carritoManager->getMsj(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()

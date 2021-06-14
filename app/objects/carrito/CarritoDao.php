@@ -302,6 +302,115 @@ sql;
         return $list;
 	}
 
+    public function getListComprasAdmin(array $data)	
+    {
+        $id = isset($data["id"]) ? $data["id"] : '';
+        $where = '';
+        $estado = isset($data["estado"]) ? $data["estado"] : '';
+        $estadoDB = Database::escape($estado);
+
+        $where = " AND carrito.estado = $estadoDB";
+
+        if ($id != ''){
+            $idDB = Database::escape($id);
+            $where .= " AND carrito.id = $idDB";
+        }
+
+
+        $sql = <<<sql
+        SELECT
+		envio_direccion,envio_numero,
+            `envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`,producto.usuario_alta as vendedor,carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+        FROM
+                `carrito`
+                LEFT JOIN
+                carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
+                (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
+                LEFT JOIN
+                producto
+        ON 
+        `carrito_detalle`.id_producto = producto.id
+                    LEFT JOIN
+                producto_foto
+            ON
+                `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+                
+                
+                        WHERE
+                (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) 
+                $where
+                GROUP BY
+		envio_direccion,envio_numero,
+`envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, producto.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+sql;
+//echo $sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+        $whereVendedor = '';
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $vendedor = isset($rowEmp["vendedor"]) ? $rowEmp["vendedor"] : 0;
+            if ($vendedor > 0){
+                if ($whereVendedor != ''){
+                    $whereVendedor .= ',';
+                }
+                $whereVendedor .= $vendedor;
+            }
+
+            $nombreFile = isset($data["foto_id"]) ? $data["foto_id"] : '-';
+
+            if (file_exists('/var/www/html/productos_img/'.$nombreFile.'.jpg')) {
+                $rowEmp['existe_foto'] =1;
+            }else{
+                $rowEmp['existe_foto'] = 0;
+            }
+            $list[] = $rowEmp;
+        }
+
+        $list2 = array();
+
+
+        if ($whereVendedor != ''){
+
+            $sql = <<<sql
+            SELECT
+                idUsuario,
+                nombre,
+                apellido,
+                email,
+                ciudad,
+                estado,
+                codigoPostal,
+                pais,
+                telefono1Pais,
+                telefono1Ciudad,
+                telefono1,
+                telefono1Tipo,
+                telefono2Pais,
+                telefono2Ciudad,
+                telefono2,
+                telefono2Tipo
+            FROM
+                usuario_seller
+            where idUsuario IN ($whereVendedor)
+sql;
+
+    //echo $sql;
+            $resultado = Database::Connect()->query($sql);
+            
+            while ($rowEmp = mysqli_fetch_array($resultado)) {
+                $list2[] = $rowEmp;
+            }
+    
+    
+        }
+
+        $this->setMsj($list2);
+
+
+        return $list;
+	}
+
+
 public function getListVentas(array $data)	
     {
         $id = isset($data["id"]) ? $data["id"] : '';
@@ -441,6 +550,145 @@ sql;
 
         return $list;
 	}
+
+    public function getListVentasAdmin(array $data)	
+    {
+        $id = isset($data["id"]) ? $data["id"] : '';
+        $where = '';
+        $estado = isset($data["estado"]) ? $data["estado"] : '';
+        $estadoDB = Database::escape($estado);
+
+        $where = " AND carrito.estado = $estadoDB";
+
+        if ($id != ''){
+            $idDB = Database::escape($id);
+            $where .= " AND carrito.id = $idDB";
+        }
+
+
+        $sql = <<<sql
+        SELECT
+		envio_direccion,envio_numero,
+`envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, carrito.usuario_alta as comprador,carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto_id,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+        FROM
+                `carrito`
+                LEFT JOIN
+                carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
+                (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
+                LEFT JOIN
+                    producto
+            ON 
+            `carrito_detalle`.id_producto = producto.id
+                LEFT JOIN
+                producto_foto
+            ON
+                `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+                
+                
+            WHERE
+                (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) 
+                $where
+                GROUP BY
+		envio_direccion,envio_numero,
+`envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, carrito.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+sql;
+//echo $sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+        $whereComprador = '';
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $comprador = isset($rowEmp["comprador"]) ? $rowEmp["comprador"] : 0;
+            if ($comprador > 0){
+                if ($whereComprador != ''){
+                    $whereComprador .= ',';
+                }
+                $whereComprador .= $comprador;
+            }
+
+
+            $nombreFile = isset($data["foto_id"]) ? $data["foto_id"] : '-';
+
+            if (file_exists('/var/www/html/productos_img/'.$nombreFile.'.jpg')) {
+                $rowEmp['existe_foto'] =1;
+            }else{
+                $rowEmp['existe_foto'] = 0;
+            }
+            $list[] = $rowEmp;
+        }
+
+
+
+        $list2 = array();
+
+
+        if ($whereComprador != ''){
+
+            $sql = <<<sql
+            (
+                SELECT
+                    idUsuario,
+                    nombre,
+                    apellido,
+                    email,
+                    ciudad,
+                    estado,
+                    codigoPostal,
+                    pais,
+                    telefono1Pais,
+                    telefono1Ciudad,
+                    telefono1,
+                    telefono1Tipo,
+                    telefono2Pais,
+                    telefono2Ciudad,
+                    telefono2,
+                    telefono2Tipo
+                 FROM
+                        usuario_picker
+                WHERE idUsuario IN ($whereComprador)
+            )
+            UNION
+            (
+                 SELECT
+                     idUsuario,
+                     nombre,
+                     apellido,
+                     email,
+                     ciudad,
+                     estado,
+                     codigoPostal,
+                     pais,
+                     telefono1Pais,
+                     telefono1Ciudad,
+                     telefono1,
+                     telefono1Tipo,
+                     telefono2Pais,
+                     telefono2Ciudad,
+                     telefono2,
+                     telefono2Tipo
+                 FROM
+                     usuario_seller
+                 WHERE idUsuario IN ($whereComprador)
+            )
+sql;
+
+    //echo $sql;
+            $resultado = Database::Connect()->query($sql);
+            
+            while ($rowEmp = mysqli_fetch_array($resultado)) {
+                $list2[] = $rowEmp;
+            }
+    
+    
+        }
+
+        $this->setMsj($list2);
+
+
+
+        return $list;
+	}
+
+
 
 	public function getListCarrito2()	
     {
