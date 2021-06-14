@@ -140,6 +140,7 @@ body{
     padding: 5px;
     margin-right: 5px;
     transition: .1s all ease-in;
+    cursor: pointer;
 }
 .button-header{
     transition: .1s all ease-in;
@@ -1638,9 +1639,11 @@ button:disabled{
 }
 .bodyimg-public-container{
     position: relative;
+    text-align: center;/*si la imagen es mas chica que los parametros, que se centre*/
 }
 .bodyimg-public-container img{
-    width: 100%;
+    /* width: 100%; */
+    max-width: 100%;
 }
 .opciones-public{
     float: right;
@@ -2004,7 +2007,7 @@ button:disabled{
     box-shadow: 0 0 5px rgb(121, 121, 121);
     color: #848484;
 }
-#anadir-productos-btn, #limpiar-productos-btn, #terminar-productos-btn{
+#anadir-productos-btn, #limpiar-productos-btn, #terminar-productos-btn, #cropear-btn{
     display: none;
 }
 .anadir-prod-img-container{
@@ -2030,10 +2033,11 @@ button:disabled{
 }
 #map, #map-show{
     z-index: 998;
-    background-position: center;
+    /*background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
-    pointer-events: none;
+    background-size: contain;*/
+    text-align: center;
+    /* pointer-events: none; */
 }
 .pin{
     cursor: pointer !important;

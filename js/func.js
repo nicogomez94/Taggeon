@@ -90,6 +90,7 @@ $(document).ready(function() {
         $("#img-subir-pins").show();
         $("#output-imgpins").attr("src","");
         $("#output-imgpins").hide();
+        $("#cropear-btn").hide();
         $("#map").css({
             "background-image" : "none",
             "width" : "unset",
@@ -1299,20 +1300,63 @@ function cargarImgPines(event){
         // $("#map").css("height","100%");
         $("#eliminar-img-flotante").show();
         $("#anadir-productos-btn").show();
+        $("#cropear-btn").show();
 
         //cropper
-        var imagen = document.querySelector('#img-pines-amapear');
-        var cropper = new Cropper(imagen, {
-           viewMode: 3,
-           dragMode: 'move',
-           autoCropArea: 1,
-           restore: true,
-           modal: false,
-           guides: false,
-           highlight: false,
-           cropBoxMovable: false,
-           cropBoxResizable: false,
-           toggleDragModeOnDblclick: false,
+        var button = document.getElementById('cropear-btn');
+        var result = document.getElementById('result');
+        var map = document.getElementById('map');
+        var image = document.querySelector('#img-pines-amapear');
+        var imgj = $("#img-pines-amapear")
+        
+        button.onclick = function () {
+            result.innerHTML = '';
+            result.appendChild(cropper.getCroppedCanvas(
+                {
+                    fillColor: "#aaa",
+                    /*maxHeight: 700,
+                    maxWidth: 700*/
+                }
+            ));
+
+
+            var canvas = $("#result canvas");
+            canvas.prop("id","canvas_result");
+            var id_canvas = document.getElementById("canvas_result")
+            var toImg = id_canvas.toDataURL();
+            $(".cropper-container").remove();
+            imgj.attr("src",toImg);
+            imgj.removeClass("cropper-hidden");
+            result.style.display = "none";
+
+
+            var test1 = $("#canvas_result").css("width");
+            var test2 = $("#canvas_result").css("height");
+                console.log($("#canvas_result"))
+
+            
+        };
+
+        var cropper = new Cropper(image, {
+            dragMode: 'move',
+            aspectRatio: 1 / 1,
+            viewMode: 1,
+            autoCropArea: 1,
+            minContainerHeight: 500,
+            minContainerWidth: 500,
+            minCropBoxWidth: 500,
+            minCropBoxHeight: 500,
+            minCanvasWidth: 500,
+            minCanvasHeight: 500,
+            responsive: true,
+            background: false,
+            restore: false,
+            guides: true,
+            center: false,
+            highlight: false,
+            cropBoxMovable: false,
+            cropBoxResizable: false,
+            toggleDragModeOnDblclick: false,
         });
 
     };
@@ -1615,6 +1659,7 @@ function buscadorIndex(paramIndex){
 
 function ampliarNotif(){
 
+    var jsonData = jsonData || [];
     if(jsonData.usuario != ""){
         var notifs = jsonData.notificaciones || [];
         var sizeNotifs = notifs.length || 0;
