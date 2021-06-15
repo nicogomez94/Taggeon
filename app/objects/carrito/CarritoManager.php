@@ -36,6 +36,18 @@ class  CarritoManager
 
 	public function agregarCarrito(array $data)
 	{
+		$dataAux = array();
+		$dataAux["estado"] = 2;
+		$carritosHuerfanos = $this->carritoDao->getListCompras($dataAux);
+
+		$dataAux["estado"] = 1;
+		$carritosEstado1 = $this->carritoDao->getListCompras($dataAux);
+		
+		if (count($carritosHuerfanos)>0 || count($carritosEstado1)>0){
+			$this->setStatus("ERROR");
+			$this->setMsj("No se puede agregar el producto. Existe un carrito abierto. Cancele o finalice el mismo para poder continuar.");
+			return false;
+		}
 
 		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
 
@@ -409,6 +421,20 @@ SQL;
 			}
 		}
 		$data["estado"] = 2;
+		$ret =  $this->carritoDao->getListCompras($data);
+		$this->setMsj($this->carritoDao->getMsj());
+		return $ret;
+	}
+
+	public function getListCarritoPantallaDomicilio(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($id != ''){
+			if ($this->validarId($id) === false){
+				return [];
+			}
+		}
+		$data["estado"] = 1;
 		$ret =  $this->carritoDao->getListCompras($data);
 		$this->setMsj($this->carritoDao->getMsj());
 		return $ret;

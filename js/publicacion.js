@@ -252,7 +252,7 @@ $(document).ready(function(){
                                        '</select>'+
                                        '<input type="hidden" class="id_prod_carrito" name="id" value="'+id_prod_json+'">'+
                                  '</span>&nbsp;'+
-                                 '<span><button class="btn btn-warning btn-carrito">Añadir a Carrito</button></span>'+
+                                 '<span><button class="btn btn-warning btn-carrito" data-idpublic="'+id_public+'" data-idprod="'+id_prod_json+'">Añadir a Carrito</button></span>'+
                               '</div>'+
                               '</div>'+
                               '<hr>'+

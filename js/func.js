@@ -986,11 +986,16 @@ $(".modal").on("click", ".btn-carrito", function(){
 
     var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
     var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
-
+    var id_prod = $(this).data("idprod");
+    var id_publicacion = $(this).data("idpublic");
+    console.log($(this))
+    //console.log(id_publicacion)
     var dataCarr = new FormData();
     dataCarr.append("accion","alta");
     dataCarr.append("id",id_value);
     dataCarr.append("cantidad",cantidad_value);
+    dataCarr.append("id_prod",id_prod);
+    dataCarr.append("id_publicacion",id_publicacion);
 
     $.ajax({
         url: '/app/carrito.php',
@@ -1008,6 +1013,7 @@ $(".modal").on("click", ".btn-carrito", function(){
               window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               console.log("OK-->"+dataJ+"/"+dataM);
+              alert("fgjfd")
               window.location.replace("/ampliar-carrito.html");
            }else{
               console.log("ELSE-->"+dataJ+"/"+dataM);

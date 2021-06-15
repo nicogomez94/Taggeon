@@ -14,6 +14,24 @@ if ($perfil=='seller' || $perfil=='picker'){
     $carritoManager = new CarritoManager();
     $seguidoresManager = new SeguidoresManager();
 
+    $dataHuerfanos = $carritoManager->getListCarritoHuerfano(array()); #PANTALLA PAGO
+
+   if (count($dataHuerfanos)>0){
+       echo (var_dump($dataHuerfanos));
+       $id_carrito = $dataHuerfanos[0]['id_carrito'];
+       header("Location: /cobrar-compra.html?id=$id_carrito");
+       Database::Connect()->close();
+       exit;
+   }
+
+   
+	$dataAux["estado"] = 1;
+	$carritosEstado1 = $carritoManager->getListCarritoPantallaDomicilio($dataAux);
+    if (count($carritosEstado1)>0){
+        header("Location: /ampliar-checkout.html");
+        Database::Connect()->close();
+        exit;
+    }
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
@@ -30,8 +48,7 @@ if ($perfil=='seller' || $perfil=='picker'){
         "rubro_producto"     => $productoManager->getListRubro(),
         "carrito"     => $carritoManager->getListCarrito(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
-        "seguidos"     => $seguidoresManager->getListSeguidos(),
-        "carritosHuerfanos" => $carritoManager->getListCarritoHuerfano(array())
+        "seguidos"     => $seguidoresManager->getListSeguidos()
         
     );
     $jsonData = json_encode($jsonData);
