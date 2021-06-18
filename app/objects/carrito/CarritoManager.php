@@ -1,10 +1,16 @@
 <?php
 include_once("CarritoDao.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+include_once("/var/www/html/app/objects/notificaciones/NotificacionesManager.php");
+
+
 class  CarritoManager
 {
 	private $carritoDao;
 	private $productoManager;
+	private $publicacionManager;
+
 	private $status    = "";
 	private $msj       = "";
 
@@ -12,6 +18,7 @@ class  CarritoManager
 	{
 		$this->carritoDao = new CarritoDao();
 		$this->productoManager = new ProductoManager();
+		$this->publicacionManager = new PublicacionManager();
 	}
 
 	public function getStatus()
@@ -49,6 +56,7 @@ class  CarritoManager
 			return false;
 		}
 
+
 		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
 
 		if (!is_numeric($data["id_carrito"])){
@@ -56,6 +64,7 @@ class  CarritoManager
 			$this->setMsj("El id de carrito es incorrecto.");
 			return false;
 		}
+
 
 		if ($data["id_carrito"] <= 0){
 			if ($this->carritoDao->altaCarrito($data) === false) {
@@ -88,6 +97,18 @@ class  CarritoManager
 			$this->setMsj($this->productoManager->getMsj());
 			return false;
 		}
+
+		$data["id_publicacion"] = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
+
+		if (!is_numeric($data["id_publicacion"])){
+			$this->setStatus("ERROR");
+			$this->setMsj("La publicación es incorrecto.");
+			return false;
+		}
+
+		$dataPublicacion       = $this->publicacionManager->getPublicacionByIdYProducto($data);
+		$data["id_usuario_publicador"]  =  (isset($dataPublicacion[0]) && isset($dataPublicacion[0]['usuario_alta'])) ? $dataPublicacion[0]['usuario_alta'] : 0;
+
 		$data["precio"]          = isset($dataProducto["precio"]) ? $dataProducto["precio"] : 0;
 		$data["nombre_producto"] = isset($dataProducto["titulo"]) ? $dataProducto["titulo"] : '';
 		
@@ -237,35 +258,6 @@ class  CarritoManager
 		} else {
 			$this->setStatus("OK");
 			$this->setMsj($this->carritoDao->getMsj());
-
-                        $email = isset($data["email"]) ? $data["email"] : '';
-                        $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
-			$envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
-			$envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
-			$envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
-			$email = isset($data["email"]) ? $data["email"] : '';
-			$notas = isset($data["notas"]) ? $data["notas"] : '';
-
-        $bodymail = <<<SQL
-Hola $envio_nombre_apellido, se creo la orden $id.\n
-Datos del envio: codigo postal $envio_codigo_postal. Localidad: $envio_ciudad_localidad.\n
-Notas: $notas
-SQL;
-			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
-			$objEmail = new Email();
-			$objEmail->setEnviar(true);
-			#$objEmail->enviarEmailCarrito($bodymail,$email);
-
-
-			$contenido = new Template("compras-mail");
-
-			$contenido->asigna_variables(array(
-					"fecha"   => date('d/m/Y', time())
-			));
-			$contenidoString = $contenido->muestra();
-			$usuario = $GLOBALS['sesionG']['usuario'];
-			$objEmail->enviarEmailCarritoHtml($bodymail,$contenidoString,$email,$usuario);
-
 		}
 	}
 
@@ -372,6 +364,56 @@ SQL;
 		} else {
 			$this->setStatus("OK");
 			$this->setMsj($this->carritoDao->getMsj());
+
+
+            $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+			$carrito = $this->carritoDao->getCarrito($data);
+			$data = isset($carrito[0]) ? $carrito[0] : [];
+			$envio_nombre_apellido = isset($data["envio_nombre_apellido"]) ? $data["envio_nombre_apellido"] : '';
+			$envio_codigo_postal = isset($data["envio_codigo_postal"]) ? $data["envio_codigo_postal"] : '';
+			$envio_ciudad_localidad = isset($data["envio_ciudad_localidad"]) ? $data["envio_ciudad_localidad"] : '';
+			$email = isset($data["email"]) ? $data["email"] : '';
+			$notas = isset($data["notas"]) ? $data["notas"] : '';
+
+        $bodymail = <<<SQL
+Hola $envio_nombre_apellido, se creo la orden $id.\n
+Datos del envio: codigo postal $envio_codigo_postal. Localidad: $envio_ciudad_localidad.\n
+Notas: $notas
+SQL;
+			include_once($GLOBALS['configuration']['path_app_admin_objects']."util/email.php");
+			$objEmail = new Email();
+			$objEmail->setEnviar(true);
+			$objEmail->enviarEmailCarrito($bodymail,$email);
+
+
+			#$contenido = new Template("compras-mail");
+#
+			#$contenido->asigna_variables(array(
+			#		"fecha"   => date('d/m/Y', time())
+			#));
+			#$contenidoString = $contenido->muestra();
+			#$usuario = $GLOBALS['sesionG']['usuario'];
+			#$objEmail->enviarEmailCarritoHtml($bodymail,$contenidoString,$email,$usuario);
+
+
+			$notiManager = new NotificacionesManager();
+
+
+			foreach ($carrito as &$fila) {
+				$data['json_notificacion']    = $fila;
+				if (isset($fila['id_usuario_publicador'])){
+					$data['usuario_notificacion'] = $fila['id_usuario_publicador'];
+					$data['tipo_notificacion'] = 'taggeador';
+					$notiManager->agregarNotificaciones($data);
+				}
+
+				if (isset($fila['vendedor'])){
+					$data['usuario_notificacion'] = $fila['vendedor'];
+					$data['tipo_notificacion'] = 'vendedor';
+					$notiManager->agregarNotificaciones($data);
+				}
+
+			}
 		}
 	}
 

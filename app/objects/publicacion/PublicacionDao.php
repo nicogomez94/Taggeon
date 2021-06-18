@@ -327,6 +327,44 @@ sql;
                 }
 
 
+                public function getPublicacionByIdYProducto($data)
+                {
+
+                    $id_producto = isset($data["id_producto"]) ? $data["id_producto"] : 0;
+                    $id = isset($data["id_publicacion"]) ? $data["id_publicacion"] : 0;
+                    $idDB = Database::escape($id);
+
+                    $sql =<<<sql
+                    SELECT
+                    `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+                    `publicacion_descripcion`,pid,
+                   GROUP_CONCAT(publicacion_publicacion_foto.id) as foto,`publicacion`.usuario_alta
+            
+                FROM
+                    `publicacion`
+                LEFT JOIN
+                    publicacion_publicacion_foto
+                ON
+                    `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND (publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL)
+                WHERE
+                (`publicacion`.pid like '%\"name\":\"$id_producto\"%') AND
+                publicacion.id=$idDB AND 
+                    (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
+                group by         
+                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,usuario_alta
+sql;
+                    $resultado = Database::Connect()->query($sql);
+                    $list = array();
+            
+            
+                    while ($rowEmp = mysqli_fetch_array($resultado)) {
+                        $list[] = $rowEmp;
+                    }
+                    return $list;
+                }
+
+
+
                 public function getListCategoria()
                 {
                     $sql = <<<sql

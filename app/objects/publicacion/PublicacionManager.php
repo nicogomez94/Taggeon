@@ -280,6 +280,22 @@ class  PublicacionManager
 				return $publicacion;
 			}
 
+			public function getPublicacionByIdYProducto(array $data)
+			{
+				$id = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
+
+				if ($this->validarId($id) === false) {
+					return [];
+				}
+				
+				if (!is_numeric($data["id_producto"])){
+					return [];
+				}
+			
+				$publicacion = $this->publicacionDao->getPublicacionByIdYProducto($data);
+				return $publicacion;
+			}
+
 			public function getListCategoria()
 			{
 				return $this->publicacionDao->getListCategoria();

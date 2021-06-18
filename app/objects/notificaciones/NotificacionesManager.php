@@ -68,6 +68,7 @@ class  NotificacionesManager
 	
 			$data['json_notificacion']    = $data;
 			$data['usuario_notificacion'] = $idUsuario;
+		}else if ($tipo == 'vendedor' || $tipo == 'taggeador'){
 		}else{
 			return false;
 		}

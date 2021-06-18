@@ -802,6 +802,13 @@ sql;
                     $id_producto = isset($data["id_producto"]) ? $data["id_producto"] : '';
                     $idProductoDB = Database::escape($id_producto);
 
+                    $id_publicacion = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
+                    $idPublicacionDB = Database::escape($id_publicacion);
+
+                    
+                    $id_usuario_publicador = isset($data["id_usuario_publicador"]) ? $data["id_usuario_publicador"] : '';
+                    $id_usuario_publicadorDB = Database::escape($id_usuario_publicador);
+
                     $usuario = $GLOBALS['sesionG']['idUsuario'];
                     $usuarioDB = Database::escape($usuario);
 
@@ -821,8 +828,8 @@ sql;
 
 
                     $sql = <<<SQL
-                        INSERT INTO carrito_detalle (id_carrito,id_producto,usuario_alta,cantidad,precio,total,nombre_producto) 
-                        VALUES ($id_carritoDB,$idProductoDB,$usuarioDB,$cantidadDB,$precioDB,$totalDB,$nombreProductoDB)
+                        INSERT INTO carrito_detalle (id_carrito,id_producto,usuario_alta,cantidad,precio,total,nombre_producto,id_publicacion,id_usuario_publicador) 
+                        VALUES ($id_carritoDB,$idProductoDB,$usuarioDB,$cantidadDB,$precioDB,$totalDB,$nombreProductoDB,$idPublicacionDB,$id_usuario_publicadorDB)
 SQL;
             
                     if (!mysqli_query(Database::Connect(), $sql)) {
@@ -927,7 +934,8 @@ SQL;
 			SET
 			    `usrUpdate` = $usuarioDB, 
                 `envio_codigo_postal` = $envio_codigo_postalDB, `envio_ciudad_localidad` = $envio_ciudad_localidadDB, 
-                `envio_numero` = $envio_numeroDB, `envio_direccion` = $envio_direccionDB
+                `envio_numero` = $envio_numeroDB, `envio_direccion` = $envio_direccionDB,
+                `envio_mail` = $emailDB, `envio_notas` = $notasDB, `envio_nombre_apellido` = $envio_nombre_apellidoDB
             WHERE
                 `id` = $usuarioDB
 SQL;
@@ -1011,5 +1019,89 @@ SQL;
 
         return false;
     }
+
+
+
+
+    
+	public function getCarrito($data)	
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $id_carrito = isset($data["id_carrito"]) ? $data["id_carrito"] : 0;
+        $idCarritoBD = Database::escape($id_carrito);
+
+
+
+
+        $sql = <<<sql
+SELECT
+    envio_direccion,
+    envio_numero,
+    `envio_nombre_apellido`,
+    `envio_codigo_postal`,
+    `envio_ciudad_localidad`,
+    `estado`,
+    `email`,
+    `notas`,
+    producto.usuario_alta AS vendedor,
+    carrito.id AS id_carrito,
+    carrito_detalle.cantidad,
+    carrito_detalle.precio,
+    carrito_detalle.nombre_producto,
+    carrito_detalle.id_producto,
+    carrito_detalle.total,
+    MIN(producto_foto.id) AS foto_id,
+    SUM(carrito_detalle.total) AS carrito_total,
+    SUM(carrito_detalle.total) AS carrito_subtotal
+FROM
+    `carrito`
+LEFT JOIN
+    carrito_detalle
+ON
+    carrito.id = carrito_detalle.id_carrito AND(
+        carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL
+    )
+LEFT JOIN
+    producto
+ON
+    `carrito_detalle`.id_producto = producto.id
+LEFT JOIN
+    producto_foto
+ON
+    `carrito_detalle`.id_producto = producto_foto.id_producto AND(
+        producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL
+    )
+WHERE
+    (
+        `carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL
+    ) AND `carrito`.usuario_alta = $usuarioAltaDB AND `carrito`.id = $idCarritoBD 
+GROUP BY
+    envio_direccion,
+    envio_numero,
+    `envio_nombre_apellido`,
+    `envio_codigo_postal`,
+    `envio_ciudad_localidad`,
+    `estado`,
+    `email`,
+    `notas`,
+    producto.usuario_alta,
+    carrito.id,
+    carrito_detalle.cantidad,
+    carrito_detalle.precio,
+    carrito_detalle.nombre_producto,
+    carrito_detalle.id_producto,
+    carrito_detalle.total
+sql;
+//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
 
 }

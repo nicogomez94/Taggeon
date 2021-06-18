@@ -56,3 +56,136 @@ Paso 1
 OK
 TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
  status: OK mensaje: 1237563459
+Fecha 15/06/2021  06:06:20
+post transactionAmount: 150
+post token: a7298e4484293388da57664481300e45
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 30745419
+post description: 
+post id_carrito: 283
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237561822
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237561822
+Fecha 15/06/2021  07:14:24
+post transactionAmount: 16555
+post token: 518b3ac9e2af54a5ca4d384bff00ae8b
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 30745432
+post description: 
+post id_carrito: 284
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237561944
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237561944
+Fecha 15/06/2021  07:24:36
+post transactionAmount: 70000
+post token: b7871728ba6c64318e62c7f4285a5575
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 30987789
+post description: 
+post id_carrito: 285
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237563698
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237563698
+Fecha 15/06/2021  07:27:20
+post transactionAmount: 70000
+post token: 9476d89244425e4cafa21708b485950b
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 30987778
+post description: 
+post id_carrito: 286
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237563704
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237563704
+Fecha 18/06/2021  08:23:59
+post transactionAmount: 23324
+post token: 6ab3cb9f1aed56735c5eef3f82662a0c
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33987123
+post description: 
+post id_carrito: 287
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237688139
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237688139
+Fecha 18/06/2021  09:33:57
+post transactionAmount: 155
+post token: 916bf72cd5d7b571cf54bb1fc2d643fc
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 55678876
+post description: 
+post id_carrito: 288
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237688444
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237688444
+Fecha 18/06/2021  09:38:02
+post transactionAmount: 70000
+post token: 13c3048ca888bdd0bdb83425cc30617c
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 30777889
+post description: 
+post id_carrito: 289
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237688466
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237688466
