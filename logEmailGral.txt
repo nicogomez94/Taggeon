@@ -8060,3 +8060,76 @@ Datos del envio: codigo postal 11. Localidad: Nostrud consectetur .
 Notas: Necessitatibus nostr
 usuario pyvo@mailinator.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36190.16.216.77
+Fecha 18/06/2021  15:30:39
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 290.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: testtest
+usuario nicolasgomez94@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36190.16.216.77
+Fecha 18/06/2021  15:30:41
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 290.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: testtest
+usuario nicolasgomez94@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36190.16.216.77
+Fecha 18/06/2021  19:04:35
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 291.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: testtest
+usuario nicolasgomez94@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36190.16.216.77
+Fecha 18/06/2021  19:04:37
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 291.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: testtest
+usuario nicolasgomez94@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-N985F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.0 Chrome/87.0.4280.141 Mobile Safari/537.36186.111.129.148
+Fecha 19/06/2021  12:21:36
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario gomezrodrigoheenan@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-N985F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.0 Chrome/87.0.4280.141 Mobile Safari/537.36186.111.129.148
+Fecha 19/06/2021  12:21:38
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario gomezrodrigoheenan@gmail.com
+Detalle Respuesta:

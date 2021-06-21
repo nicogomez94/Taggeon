@@ -82,6 +82,9 @@ $(document).ready(function() {
         $("#carousel-index").hide();
     });
 
+    /**/
+
+
     /*PUBLICACIONES*/
     /*eliminar foto img-pins*/
     $("#eliminar-img-flotante").click(function(){
@@ -1679,7 +1682,7 @@ function buscadorIndex(paramIndex){
 
 function ampliarNotif(){
 
-    var jsonData = jsonData || [];
+    //var jsonData = jsonData || [];
     if(jsonData.usuario != ""){
         var notifs = jsonData.notificaciones || [];
         var sizeNotifs = notifs.length || 0;
@@ -1712,41 +1715,40 @@ function ampliarNotif(){
                 var pid = json_notif_p.pid || "";
                 var publicacion_descripcion = json_notif_p.publicacion_descripcion || "";
                 var nombre = json_notif_p.nombre || "";
+                var nombre_producto = json_notif_p.nombre_producto || "";
                 var publicacion_nombre = json_notif_p.publicacion_nombre || "";
                 var usuario_alta = json_notif_p.usuario_alta || 0;
+                var foto_prod = json_notif_p.foto_id;
+                var foto_src = '/productos_img/'+foto_prod+'.png';
     
                 //aparece el contador de notifs con nro
                 $(".count-notif").show();
                 $(".count-notif").text(sizeNotifs)
                 
+                var html_notif = 
+                            '<div class="media notif-id-'+id+'">'+
+                                '<i class="notif-icon mr-3 fas fa-heart heart-notif"></i>'+
+                                '<div class="media-body"></div>'+
+                                '<i onclick="eliminarNotif(\''+id+'\')" class="fas fa-times"></i>'+
+                            '</div>';
     
-                if(tipo_notif == "favorito"){
-                        var html_notif = 
-                            '<div class="media notif-id-'+id+'">'+
-                                //'<img class="mr-3 img-notifs" src="">'+
-                                '<i class="mr-3 fas fa-heart heart-notif"></i>'+
-                                '<div class="media-body">'+
-                                    '<div>'+nombre+' le dio like a tu publicaci&oacute;n "'+publicacion_nombre+'"</div>'+
-                                    '<a href="/ampliar-usuario.html"></a>'+
-                                '</div>'+
-                                '<i onclick="eliminarNotif(\''+id+'\')" class="fas fa-times"></i>'+
-                            '</div>';
-                        
-                        $(".notifs-button-ampliar").append(html_notif)
-                }else if(tipo_notif == "seguidores"){
+                    $(".notifs-button-ampliar").append(html_notif)
 
-                    var html_notif2 = 
-                            '<div class="media notif-id-'+id+'">'+
-                                //'<img class="mr-3 img-notifs" src="">'+
-                                '<i class="mr-3 fas fa-heart heart-notif"></i>'+
-                                '<div class="media-body">'+
-                                    '<div>'+nombre+' te esta siguiendo</div>'+
-                                    '<a href="/ampliar-usuario.html"></a>'+
-                                '</div>'+
-                                '<i onclick="eliminarNotif(\''+id+'\')" class="fas fa-times"></i>'+
-                            '</div>';
-                        
-                        $(".notifs-button-ampliar").append(html_notif2)
+                if(tipo_notif == "favorito"){
+                    var html_favorito = '<div>'+nombre+' le dio like a tu publicaci&oacute;n "'+publicacion_nombre+'"</div>'+
+                    $(".notif-id-"+id+" .media-body").append(html_favorito)
+
+                }else if(tipo_notif == "seguidores"){
+                    var html_seg = '<div>'+nombre+' te esta siguiendo</div>';
+                    $(".notif-id-"+id+" .media-body").append(html_seg)
+
+                }else if(tipo_notif == "vendedor"){
+                    var html_vendedor = '<div><a href="/mis-ventas.html">Vendiste '+nombre_producto+'!</a></div>';
+                    var html_foto_prod = '<img class="mr-3 img-notifs" src="'+foto_src+'" alt="img_notif">';
+
+                    $(".notif-id-"+id).prepend(html_foto_prod);
+                    $(".notif-id-"+id+">.notif-icon").remove();
+                    $(".notif-id-"+id+">.media-body").html(html_vendedor);
                 }
             }
 
@@ -1792,6 +1794,4 @@ function eliminarNotif(id_notif){
     });
     return false;
 }
-
-
     

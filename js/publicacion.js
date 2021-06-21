@@ -104,6 +104,7 @@ $(document).ready(function(){
                                        //'<span><i class="fas fa-heart fav-'+i+'" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'+
                                        //'<span onclick="seguidores('+id_public+','+id_publicador+','+seg_accion+')"><i class="fas fa-user-plus"></i></span>'+
                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
+                                       '<span class="comment-icon"><i class="fas fa-comment-dots"></i></span>'+
                                  '</div>'+
                                  '<div class="datos-public">'+
                                  '<div class="info-titulo-public">'+nombre_public+'</div>'+
@@ -111,12 +112,56 @@ $(document).ready(function(){
                                  '<div class="info-descr-public">'+descr_public+'</div><hr>'+
                               '</div>'+
                               '<div id="ancla-test-'+i+'"></div>'+
-                              '<div class="commentbox"></div>'+
+                              '<div class="commentbox-container" style="display:none">'+
+                                 '<div class="commentbox media commentbox-id-'+i+'">'+
+                                    '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                                    '<div class="media-body">'+
+                                       '<form>'+
+                                          '<div class="textarea-container">'+
+                                             '<textarea placeholder="Deja un comentario" maxlength="16384"></textarea>'+
+                                          '</div>'+
+                                          '<button class="btn btn-warning">Enviar</button>'+
+                                          /*'<div class="rating">'+
+                                          '   <input name="stars" id="e5" type="radio"></a><label for="e5">☆</label>'+
+                                          '   <input name="stars" id="e4" type="radio"></a><label for="e4">☆</label>'+
+                                          '   <input name="stars" id="e3" type="radio"></a><label for="e3">☆</label>'+
+                                          '   <input name="stars" id="e2" type="radio"></a><label for="e2">☆</label>'+
+                                          '   <input name="stars" id="e1" type="radio"></a><label for="e1">☆</label>'+
+                                          '</div>'+*/
+                                       '</form>'+
+                                    '</div>'+
+                                 '</div>'+
+                                 '<div class="comment-count"><span>Comentarios</span></div>'+
+                                 '<div class="commentbox-list media commentbox-id-'+i+'">'+
+                                    '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                                    '<div class="media-body">'+
+                                       '<p>Ive tried embeding it in the new google sites - the comment box showed up, but required authentication. It would be nice to have it simply allowing anon comments. Yet, once the signin was made, it keeps showing the message "The supplied URL is not a part of this proje - yet everything seems ok in the project config.</p>'+
+                                          '<div class="commentbox-actions">'+
+                                          '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+
+                                          '   <span class="actions-time">1m</span>'+
+                                          '</div>'+
+                                    '</div>'+
+                                 '</div>'+
+                              '</div>'+
                            '</div>';
 
                            
             $(".insert-public").append(html_public);
+
+            /*apertura y cierre de comments*/
+            $(".social-public-"+id_public).on("click", ".comment-icon", function(e){
+               e.stopPropagation();
+               e.preventDefault();
+               
+               var prod_public = $(this).parent().parent().find(".commentbox-container");
+               prod_public.toggle(100);
+            });
+
+            //imgperfil comentarios
+            var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+            $(".commentbox-user-img").attr("src", img_perfil);
             
+
             if (favorito==null || favorito == 0) {
                fav_accion="alta";
                var fav_html = '<span><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
@@ -143,10 +188,7 @@ $(document).ready(function(){
             
             
 
-            //imgperfil sacada del menu top
-            /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
-            $(".img-perfil-public img").attr("src", img_perfil);
-            $(".test-suggest").attr("src", img_perfil);*/
+            
         
             //nombre perfil
             $(".title-public").html(publicador);

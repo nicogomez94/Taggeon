@@ -189,3 +189,41 @@ Paso 1
 OK
 TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
  status: OK mensaje: 1237688466
+Fecha 18/06/2021  15:30:39
+post transactionAmount: 23324
+post token: aed72022e5e3367f598aeded55ac1661
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 38783978
+post description: 
+post id_carrito: 290
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237699742
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237699742
+Fecha 18/06/2021  19:04:35
+post transactionAmount: 15000
+post token: 7b63da4c86c918c362013d17474e8a86
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 38783978
+post description: 
+post id_carrito: 291
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1237707254
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1237707254
