@@ -958,13 +958,18 @@ textarea{
 }
 .commentbox-container{
     font-size: 0.8rem;
+    margin-top: 15px;
+    text-align: left;
 }
 .commentbox-actions{
     color: #848484;
 }
+.commentbox-list{
+    margin-bottom: 25px;
+}
 .comment-count{
     margin: 25px 0;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 /*  
 		 * Rating styles

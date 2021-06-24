@@ -1097,7 +1097,7 @@ $("#finalizar-orden").submit(function(){
               console.log("REDIRECT-->"+dataM);
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              window.location.replace("/cobrar-compra.html?id="+id_carrito);
+              window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
            }else{
               //window.location.replace("/ampliar-carrito.html");
            }
@@ -1156,6 +1156,75 @@ $("#cropear-btn").click(function(){
     $(".anadir-productos-btn").removeClass("disabled");
     $(this).hide();
 });
+
+///submit comentario_public
+$("#comentario_public").submit(function(){
+
+    var dataComentario = new FormData($(this)[0]);
+    dataComentario.append("accion","alta");
+
+    $.ajax({
+        url: '/app/comentario.php',
+        data: dataComentario,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == "REDIRECT"){
+              console.log("REDIRECT-->"+dataM);
+              //window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+              alert(dataJ)
+           }else{
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert(data);
+        }
+    });
+    return false;
+});
+
+///submit comentario_prod
+$("#comentario_prod").submit(function(){
+
+    var dataComentario = new FormData($(this)[0]);
+    dataComentario.append("accion","alta");
+
+    $.ajax({
+        url: '/app/comentario.php',
+        data: dataComentario,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == "REDIRECT"){
+              console.log("REDIRECT-->"+dataM);
+              //window.location.replace(dataM);														
+           }else if(dataJ == 'OK'){
+              //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+              alert(dataJ)
+           }else{
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+            alert(data);
+        }
+    });
+    return false;
+});
+
 
 /*func para que al subir un puin no se vaya de contexto
 #container {

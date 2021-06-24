@@ -116,10 +116,11 @@ $(document).ready(function(){
                                  '<div class="commentbox media commentbox-id-'+i+'">'+
                                     '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
                                     '<div class="media-body">'+
-                                       '<form>'+
+                                       '<form class="comentario_public">'+
                                           '<div class="textarea-container">'+
-                                             '<textarea placeholder="Deja un comentario" maxlength="16384"></textarea>'+
+                                             '<textarea name="contenido" placeholder="Deja un comentario" maxlength="16384"></textarea>'+
                                           '</div>'+
+                                          '<input type="hidden" name="id_publicacion" value="'+id_public+'">'+
                                           '<button class="btn btn-warning">Enviar</button>'+
                                           /*'<div class="rating">'+
                                           '   <input name="stars" id="e5" type="radio"></a><label for="e5">☆</label>'+
@@ -132,14 +133,16 @@ $(document).ready(function(){
                                     '</div>'+
                                  '</div>'+
                                  '<div class="comment-count"><span>Comentarios</span></div>'+
-                                 '<div class="commentbox-list media commentbox-id-'+i+'">'+
-                                    '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
-                                    '<div class="media-body">'+
-                                       '<p>Ive tried embeding it in the new google sites - the comment box showed up, but required authentication. It would be nice to have it simply allowing anon comments. Yet, once the signin was made, it keeps showing the message "The supplied URL is not a part of this proje - yet everything seems ok in the project config.</p>'+
-                                          '<div class="commentbox-actions">'+
-                                          '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+
-                                          '   <span class="actions-time">1m</span>'+
-                                          '</div>'+
+                                 '<div class="commentbox-list-container">'+
+                                    '<div class="commentbox-list media commentbox-id-'+i+'">'+
+                                       '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                                       '<div class="media-body">'+
+                                          '<p>cuerpo del comment. testtestestetsetsetetset</p>'+
+                                             '<div class="commentbox-actions">'+
+                                             '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+
+                                             '   <span class="actions-time">1m</span>'+
+                                             '</div>'+
+                                       '</div>'+
                                     '</div>'+
                                  '</div>'+
                               '</div>'+
@@ -147,6 +150,10 @@ $(document).ready(function(){
 
                            
             $(".insert-public").append(html_public);
+
+            /*for(var x=0; x<producto_parse_size; x++){
+               commentbox-list-container
+            }*/
 
             /*apertura y cierre de comments*/
             $(".social-public-"+id_public).on("click", ".comment-icon", function(e){
@@ -303,10 +310,73 @@ $(document).ready(function(){
                               '<div>'+descr_prod+'</div>'+
                               '</div>'+
                               '<hr>'+
-                              '</div></div></div></div></div></div>';
+                              '</div>'+
+                              // separador comments
+                              '<div class="commentbox-container" style="display:none">'+
+                                 '<hr><div class="commentbox media commentbox-id-'+i+'">'+
+                                    '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                                    '<div class="media-body">'+
+                                       '<form class="comentario_prod">'+
+                                          '<div class="textarea-container">'+
+                                             '<textarea placeholder="Deja un comentario" maxlength="16384"></textarea>'+
+                                          '</div>'+
+                                          '<input type="hidden" name="id_producto" value="'+id_prod_json+'">'+
+                                          '<button class="btn btn-warning">Enviar</button>'+
+                                          /*'<div class="rating">'+
+                                          '   <input name="stars" id="e5" type="radio"></a><label for="e5">☆</label>'+
+                                          '   <input name="stars" id="e4" type="radio"></a><label for="e4">☆</label>'+
+                                          '   <input name="stars" id="e3" type="radio"></a><label for="e3">☆</label>'+
+                                          '   <input name="stars" id="e2" type="radio"></a><label for="e2">☆</label>'+
+                                          '   <input name="stars" id="e1" type="radio"></a><label for="e1">☆</label>'+
+                                          '</div>'+*/
+                                       '</form>'+
+                                    '</div>'+
+                                 '</div>'+
+                                 '<div class="comment-count"><span>Comentarios</span></div>'+
+                                 '<div class="commentbox-list-container">'+
+                                    '<div class="commentbox-list media commentbox-id-'+i+'">'+
+                                       '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                                       '<div class="media-body">'+
+                                          '<p>Ive tried embeding it in the new google sites - the comment box showed up, but required authentication. It would be nice to have it simply allowing anon comments. Yet, once the signin was made, it keeps showing the message "The supplied URL is not a part of this proje - yet everything seems ok in the project config.</p>'+
+                                             '<div class="commentbox-actions">'+
+                                             '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+
+                                             '   <span class="actions-time">1m</span>'+
+                                             '</div>'+
+                                       '</div>'+
+                                    '</div>'+
+                                    //
+                                    '<div class="commentbox-list media commentbox-id-'+i+'">'+
+                                       '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                                       '<div class="media-body">'+
+                                          '<p>Ive tried embeding it in the new google sites - the comment box showed up, but required authentication. It would be nice to have it simply allowing anon comments. Yet, once the signin was made, it keeps showing the message "The supplied URL is not a part of this proje - yet everything seems ok in the project config.</p>'+
+                                             '<div class="commentbox-actions">'+
+                                             '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+
+                                             '   <span class="actions-time">1m</span>'+
+                                             '</div>'+
+                                       '</div>'+
+                                    '</div>'+
+                                    //
+                                    '<div class="commentbox-list media commentbox-id-'+i+'">'+
+                                       '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                                       '<div class="media-body">'+
+                                          '<p>Ive tried embeding it in the new google sites - the comment box showed up, but required authentication. It would be nice to have it simply allowing anon comments. Yet, once the signin was made, it keeps showing the message "The supplied URL is not a part of this proje - yet everything seems ok in the project config.</p>'+
+                                             '<div class="commentbox-actions">'+
+                                             '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+
+                                             '   <span class="actions-time">1m</span>'+
+                                             '</div>'+
+                                       '</div>'+
+                                    '</div>'+
+
+                                 '</div>'+
+                              '</div>'+
+                              '</div></div></div></div></div>';
          
                            $("body").append(modal_html);
 
+                           /*for(){
+                              
+                           }*/
+                        
                            //related (por ahora traigo todos los prod)
                            /*for(var y=0; y<allprod.length; y++){
 
