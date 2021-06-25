@@ -48,12 +48,12 @@ class  ComentarioManager
 	    if ($this->validarPublicacion($publicacion) === false){
 	     return false;
 	    }
-	    $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-	    if ($this->validarRequest_uri($request_uri) === false){
-	     return false;
-	    }
 	    $comentario = isset($data["comentario"]) ? $data["comentario"] : '';
 	    if ($this->validarComentario($comentario) === false){
+	     return false;
+	    }
+	    $producto = isset($data["producto"]) ? $data["producto"] : '';
+	    if ($this->validarProducto($producto) === false){
 	     return false;
 	    }
 
@@ -63,6 +63,11 @@ class  ComentarioManager
             return false;
         }
         if ($this->comentarioDao->existePublicacion($publicacion) === false) {
+            $this->setStatus("ERROR");
+            $this->setMsj($this->comentarioDao->getMsj());
+            return false;
+        }
+        if ($this->comentarioDao->existeProducto($producto) === false) {
             $this->setStatus("ERROR");
             $this->setMsj($this->comentarioDao->getMsj());
             return false;
@@ -194,6 +199,10 @@ class  ComentarioManager
                 {
                     return $this->claseDao->getListPublicacion();
                 }                
+                public function getListProducto()
+                {
+                    return $this->claseDao->getListProducto();
+                }                
 
         
             private function validarUsuario($usuario)
@@ -218,17 +227,23 @@ class  ComentarioManager
                 $this->setMsj("");
                 return true;
             }        
-            private function validarRequest_uri($request_uri)
-            {
-                $this->setStatus("ERROR");
-                $this->setMsj("El campo request_uri es incorrecto.");
-                return false;
-            }        
+      
             private function validarComentario($comentario)
             {
                 if (! preg_match('/^\w+$/i', $comentario)){
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo comentario es incorrecto.");
+                    return false;
+                }
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
+            }        
+            private function validarProducto($producto)
+            {
+                if (!is_numeric($producto)){
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo producto es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");

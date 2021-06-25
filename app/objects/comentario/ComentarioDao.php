@@ -37,16 +37,17 @@ class  ComentarioDao
         $usuarioDB = Database::escape($usuario);
         $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
         $publicacionDB = Database::escape($publicacion);
-        $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-        $request_uriDB = Database::escape($request_uri);
+
         $comentario = isset($data["comentario"]) ? $data["comentario"] : '';
         $comentarioDB = Database::escape($comentario);
+        $producto = isset($data["producto"]) ? $data["producto"] : '';
+        $productoDB = Database::escape($producto);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO comentario (id_usuario, id_publicacion, request_uri, comentario,usuario_alta)  
-			VALUES ($usuarioDB, $publicacionDB, $request_uriDB, $comentarioDB,$usuarioAltaDB)
+			INSERT INTO comentario (id_usuario, id_publicacion,  comentario, id_producto,usuario_alta)  
+			VALUES ($usuarioDB, $publicacionDB,  $comentarioDB, $productoDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -74,17 +75,18 @@ SQL;
         $usuarioDB = Database::escape($usuario);
         $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
         $publicacionDB = Database::escape($publicacion);
-        $request_uri = isset($data["request_uri"]) ? $data["request_uri"] : '';
-        $request_uriDB = Database::escape($request_uri);
+
         $comentario = isset($data["comentario"]) ? $data["comentario"] : '';
         $comentarioDB = Database::escape($comentario);
+        $producto = isset($data["producto"]) ? $data["producto"] : '';
+        $productoDB = Database::escape($producto);
 
         $sql = <<<SQL
 			UPDATE
 			    `comentario`
 			SET
 			    `usuario_editar` = $usuarioDB,
-id_`usuario` = $usuarioDB, id_`publicacion` = $publicacionDB, `request_uri` = $request_uriDB, `comentario` = $comentarioDB
+id_`usuario` = $usuarioDB, id_`publicacion` = $publicacionDB,  `comentario` = $comentarioDB, id_`producto` = $productoDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB
@@ -252,6 +254,26 @@ sql;
             $list[] = $rowEmp;
         }
         return $list;
+    }                
+    public function getListProducto()
+    {
+        $sql = <<<sql
+                    SELECT
+                    `id`,
+                    `nombre`
+                FROM
+                    `producto`
+                WHERE
+                    eliminar=0 OR eliminar is null
+sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
     }
 
 
@@ -301,6 +323,31 @@ SQL;
                     
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo publicacion es incorrecto.");
+                    return false;
+
+                }
+
+                public function existeProducto($id_producto)
+                {
+                    $id_producto = isset($id_producto) ?   $id_producto : '';
+                    $id_productoDB = Database::escape($id_producto);      
+            
+                    $sql = <<<SQL
+                        SELECT *FROM producto
+                        WHERE 
+                            id = $id_productoDB AND
+                            (eliminar = 0 OR eliminar is null);
+SQL;            
+
+                    $resultado=mysqli_query(Database::Connect(), $sql);
+                    $row_cnt = mysqli_num_rows($resultado);
+                    if ($row_cnt == 1){
+                        $this->setStatus("OK");
+                        return true;
+                    }
+                    
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo producto es incorrecto.");
                     return false;
 
                 }
