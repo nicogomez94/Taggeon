@@ -33,8 +33,7 @@ class  ComentarioDao
 	public function altaComentario(array $data)
 	{
 
-        $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-        $usuarioDB = Database::escape($usuario);
+
         $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
         $publicacionDB = Database::escape($publicacion);
 
@@ -46,8 +45,8 @@ class  ComentarioDao
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO comentario (id_usuario, id_publicacion,  comentario, id_producto,usuario_alta)  
-			VALUES ($usuarioDB, $publicacionDB,  $comentarioDB, $productoDB,$usuarioAltaDB)
+			INSERT INTO comentario ( id_publicacion,  comentario, id_producto,usuario_alta)  
+			VALUES ($publicacionDB,  $comentarioDB, $productoDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -277,31 +276,7 @@ sql;
     }
 
 
-                public function existeUsuario($id_usuario)
-                {
-                    $id_usuario = isset($id_usuario) ?   $id_usuario : '';
-                    $id_usuarioDB = Database::escape($id_usuario);      
-            
-                    $sql = <<<SQL
-                        SELECT *FROM usuario
-                        WHERE 
-                            id = $id_usuarioDB AND
-                            (eliminar = 0 OR eliminar is null);
-SQL;            
-
-                    $resultado=mysqli_query(Database::Connect(), $sql);
-                    $row_cnt = mysqli_num_rows($resultado);
-                    if ($row_cnt == 1){
-                        $this->setStatus("OK");
-                        return true;
-                    }
-                    
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo usuario es incorrecto.");
-                    return false;
-
-                }
-
+               
                 public function existePublicacion($id_publicacion)
                 {
                     $id_publicacion = isset($id_publicacion) ?   $id_publicacion : '';

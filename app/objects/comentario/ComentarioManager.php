@@ -40,10 +40,6 @@ class  ComentarioManager
 			}
 		}
 
-	    $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-	    if ($this->validarUsuario($usuario) === false){
-	     return false;
-	    }
 	    $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
 	    if ($this->validarPublicacion($publicacion) === false){
 	     return false;
@@ -57,11 +53,6 @@ class  ComentarioManager
 	     return false;
 	    }
 
-        if ($this->comentarioDao->existeUsuario($usuario) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->comentarioDao->getMsj());
-            return false;
-        }
         if ($this->comentarioDao->existePublicacion($publicacion) === false) {
             $this->setStatus("ERROR");
             $this->setMsj($this->comentarioDao->getMsj());

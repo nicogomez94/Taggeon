@@ -1179,17 +1179,17 @@ $(".comentario_public").submit(function(){
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
-              alert(dataJ)
+              alert(dataJ+"--"+dataM)
            }else{
               //window.location.replace("/ampliar-carrito.html");
-              alert(dataJ)
+              alert(dataJ+"--"+dataM)
            }
         },
         error: function( data ){
             console.log(data)
             /*var dataJ2 = JSON.parse(data).status;
             var dataM2 = JSON.parse(data).mensaje;*/
-            alert(data.status);
+            alert("error->"+data.status);
         }
     });
     return false;
