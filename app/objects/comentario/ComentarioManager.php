@@ -48,21 +48,13 @@ class  ComentarioManager
 	    if ($this->validarComentarioPrivate($comentario) === false){
 	     return false;
 	    }
-	    $producto = isset($data["producto"]) ? $data["producto"] : '';
-	    if ($this->validarProducto($producto) === false){
-	     return false;
-	    }
-
+	    
         if ($this->comentarioDao->existePublicacion($publicacion) === false) {
             $this->setStatus("ERROR");
             $this->setMsj($this->comentarioDao->getMsj());
             return false;
         }
-        if ($this->comentarioDao->existeProducto($producto) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->comentarioDao->getMsj());
-            return false;
-        }
+
 
 	}
 
@@ -149,9 +141,9 @@ class  ComentarioManager
 		if ($this->validarId($id) === false) {
 			return false;
 		}
-		if ($this->productoDao->existeId($id) === false) {
+		if ($this->comentarioDao->existeId($id) === false) {
 			$this->setStatus("ERROR");
-			$this->setMsj($this->productoDao->getMsj());
+			$this->setMsj($this->comentarioDao->getMsj());
 			return false;
 		}
 		return true;
@@ -181,20 +173,7 @@ class  ComentarioManager
 		return $ret;
 	}
 
-
-                public function getListUsuario()
-                {
-                    return $this->claseDao->getListUsuario();
-                }                
-                public function getListPublicacion()
-                {
-                    return $this->claseDao->getListPublicacion();
-                }                
-                public function getListProducto()
-                {
-                    return $this->claseDao->getListProducto();
-                }                
-
+   
         
             private function validarUsuario($usuario)
             {
@@ -230,15 +209,5 @@ class  ComentarioManager
                 $this->setMsj("");
                 return true;
             }        
-            private function validarProducto($producto)
-            {
-                if (!is_numeric($producto)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo producto es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }
+
 }

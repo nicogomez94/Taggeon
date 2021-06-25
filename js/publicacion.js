@@ -118,9 +118,9 @@ $(document).ready(function(){
                                     '<div class="media-body">'+
                                        '<form class="comentario_public">'+
                                           '<div class="textarea-container">'+
-                                             '<textarea name="contenido" placeholder="Deja un comentario" maxlength="16384"></textarea>'+
+                                             '<textarea name="comentario" placeholder="Deja un comentario" maxlength="16384"></textarea>'+
                                           '</div>'+
-                                          '<input type="hidden" name="id_publicacion" value="'+id_public+'">'+
+                                          '<input type="hidden" name="publicacion" value="'+id_public+'">'+
                                           '<button class="btn btn-warning">Enviar</button>'+
                                           /*'<div class="rating">'+
                                           '   <input name="stars" id="e5" type="radio"></a><label for="e5">☆</label>'+

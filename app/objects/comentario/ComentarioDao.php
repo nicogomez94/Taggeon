@@ -39,14 +39,13 @@ class  ComentarioDao
 
         $comentario = isset($data["comentario"]) ? $data["comentario"] : '';
         $comentarioDB = Database::escape($comentario);
-        $producto = isset($data["producto"]) ? $data["producto"] : '';
-        $productoDB = Database::escape($producto);
+
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO comentario ( id_publicacion,  comentario, id_producto,usuario_alta)  
-			VALUES ($publicacionDB,  $comentarioDB, $productoDB,$usuarioAltaDB)
+			INSERT INTO comentario ( id_publicacion,  comentario,usuario_alta)  
+			VALUES ($publicacionDB,  $comentarioDB, $usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -77,15 +76,14 @@ SQL;
 
         $comentario = isset($data["comentario"]) ? $data["comentario"] : '';
         $comentarioDB = Database::escape($comentario);
-        $producto = isset($data["producto"]) ? $data["producto"] : '';
-        $productoDB = Database::escape($producto);
+
 
         $sql = <<<SQL
 			UPDATE
 			    `comentario`
 			SET
 			    `usuario_editar` = $usuarioDB,
-id_`usuario` = $usuarioDB, id_`publicacion` = $publicacionDB,  `comentario` = $comentarioDB, id_`producto` = $productoDB
+id_`usuario` = $usuarioDB, id_`publicacion` = $publicacionDB,  `comentario` = $comentarioDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB
@@ -254,29 +252,7 @@ sql;
         }
         return $list;
     }                
-    public function getListProducto()
-    {
-        $sql = <<<sql
-                    SELECT
-                    `id`,
-                    `nombre`
-                FROM
-                    `producto`
-                WHERE
-                    eliminar=0 OR eliminar is null
-sql;
-
-        $resultado = Database::Connect()->query($sql);
-        $list = array();
-
-        while ($rowEmp = mysqli_fetch_array($resultado)) {
-            $list[] = $rowEmp;
-        }
-        return $list;
-    }
-
-
-               
+                
                 public function existePublicacion($id_publicacion)
                 {
                     $id_publicacion = isset($id_publicacion) ?   $id_publicacion : '';
@@ -302,30 +278,6 @@ SQL;
 
                 }
 
-                public function existeProducto($id_producto)
-                {
-                    $id_producto = isset($id_producto) ?   $id_producto : '';
-                    $id_productoDB = Database::escape($id_producto);      
-            
-                    $sql = <<<SQL
-                        SELECT *FROM producto
-                        WHERE 
-                            id = $id_productoDB AND
-                            (eliminar = 0 OR eliminar is null);
-SQL;            
-
-                    $resultado=mysqli_query(Database::Connect(), $sql);
-                    $row_cnt = mysqli_num_rows($resultado);
-                    if ($row_cnt == 1){
-                        $this->setStatus("OK");
-                        return true;
-                    }
-                    
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo producto es incorrecto.");
-                    return false;
-
-                }
-
+                
 
 }
