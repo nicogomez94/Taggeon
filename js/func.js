@@ -1158,7 +1158,7 @@ $("#cropear-btn").click(function(){
 });
 
 ///submit comentario_public
-$("#comentario_public").submit(function(){
+$(".comentario_public").submit(function(){
 
     var dataComentario = new FormData($(this)[0]);
     dataComentario.append("accion","alta");
@@ -1182,17 +1182,21 @@ $("#comentario_public").submit(function(){
               alert(dataJ)
            }else{
               //window.location.replace("/ampliar-carrito.html");
+              alert(dataJ)
            }
         },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-            alert(data);
+        error: function( data ){
+            console.log(data)
+            /*var dataJ2 = JSON.parse(data).status;
+            var dataM2 = JSON.parse(data).mensaje;*/
+            alert(data.status);
         }
     });
     return false;
 });
 
 ///submit comentario_prod
-$("#comentario_prod").submit(function(){
+$(".comentario_prod").submit(function(){
 
     var dataComentario = new FormData($(this)[0]);
     dataComentario.append("accion","alta");

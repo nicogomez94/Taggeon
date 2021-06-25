@@ -49,7 +49,7 @@ class  ComentarioManager
 	     return false;
 	    }
 	    $comentario = isset($data["comentario"]) ? $data["comentario"] : '';
-	    if ($this->validarComentario($comentario) === false){
+	    if ($this->validarComentarioPrivate($comentario) === false){
 	     return false;
 	    }
 	    $producto = isset($data["producto"]) ? $data["producto"] : '';
@@ -228,7 +228,7 @@ class  ComentarioManager
                 return true;
             }        
       
-            private function validarComentario($comentario)
+            private function validarComentarioPrivate($comentario)
             {
                 if (! preg_match('/^\w+$/i', $comentario)){
                     $this->setStatus("ERROR");
