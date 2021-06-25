@@ -168,7 +168,7 @@ SQL;
     	FROM
 		`comentario`
 		WHERE
-        (`comentario`.eliminar = 0 OR `comentario`.eliminar IS NULL) AND `comentario`.usuario_alta = $usuarioAltaDB
+        (`comentario`.eliminar = 0 OR `comentario`.eliminar IS NULL) 
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();

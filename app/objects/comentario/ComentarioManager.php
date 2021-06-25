@@ -169,7 +169,7 @@ class  ComentarioManager
 
 	public function getListComentario()
 	{
-		$ret =  $this->publicacionDao->getListComentario();
+		$ret =  $this->comentarioDao->getListComentario();
 		return $ret;
 	}
 
