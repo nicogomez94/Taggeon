@@ -1397,8 +1397,8 @@ function cargarImgPines(event){
             result.appendChild(cropper.getCroppedCanvas(
                 {
                     fillColor: "#aaa",
-                    /*maxHeight: 700,
-                    maxWidth: 700*/
+                    maxHeight: 4096,
+                    maxWidth: 4096
                 }
             ));
 
@@ -1425,12 +1425,12 @@ function cargarImgPines(event){
             aspectRatio: 1 / 1,
             viewMode: 1,
             autoCropArea: 1,
-            minContainerHeight: 500,
+            /*minContainerHeight: 500,
             minContainerWidth: 500,
             minCropBoxWidth: 500,
             minCropBoxHeight: 500,
             minCanvasWidth: 500,
-            minCanvasHeight: 500,
+            minCanvasHeight: 500,*/
             responsive: true,
             background: false,
             restore: false,
@@ -1445,7 +1445,6 @@ function cargarImgPines(event){
                 console.log(event.detail.y);
                 console.log(event.detail.width);
                 console.log(event.detail.height);
-                console.log(event.detail.rotate);
                 console.log(event.detail.scaleX);
                 console.log(event.detail.scaleY);
             }
