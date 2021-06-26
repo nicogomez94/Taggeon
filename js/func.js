@@ -1163,6 +1163,27 @@ $(".comentario_public").submit(function(){
     var dataComentario = new FormData($(this)[0]);
     dataComentario.append("accion","alta");
 
+    var comentario = dataComentario.get("comentario");
+    
+    var appendeo = $(this).parent().parent().parent().find(".commentbox-list-container");
+
+    var content_html =
+    '<div class="commentbox-list media commentbox-id">'+
+        '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+        '<div class="media-body">'+
+        '<p>'+comentario+'</p>'+
+            '<div class="commentbox-actions">'+
+            '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+//hard
+            '   <span class="actions-time">hace instantes</span>'+
+            '</div>'+
+        '</div>'+
+    '</div>';
+
+    $(appendeo).append(content_html);
+
+    var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+    $(".commentbox-user-img").attr("src", img_perfil);
+
     $.ajax({
         url: '/app/comentario.php',
         data: dataComentario,
@@ -1174,16 +1195,19 @@ $(".comentario_public").submit(function(){
         success: function( data, textStatus, jQxhr ){
             var dataJ = JSON.parse(data).status;
             var dataM = JSON.parse(data).mensaje;
-           if (dataJ == "REDIRECT"){
-              console.log("REDIRECT-->"+dataM);
-              //window.location.replace(dataM);														
-           }else if(dataJ == 'OK'){
-              //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
-              alert(dataJ+"--"+dataM)
-           }else{
-              //window.location.replace("/ampliar-carrito.html");
-              alert(dataJ+"--"+dataM)
-           }
+            if (dataJ == "REDIRECT"){
+                console.log("REDIRECT-->"+dataM);
+                //window.location.replace(dataM);														
+            }else if(dataJ == 'OK'){
+                //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+                console.log(dataJ+"--"+dataM);
+                /*var appendeo = $(this).find("commentbox-list-container");
+                $("appendeo")*/
+            }else{
+                //window.location.replace("/ampliar-carrito.html");
+                //alert(dataJ+"--"+dataM);
+                console.log(dataJ+"--"+dataM);
+            }
         },
         error: function( data ){
             console.log(data)
@@ -1372,6 +1396,7 @@ function sortProducto(paramTitulo, paramSort, page){
 
 
 function cargarImgPines(event){
+    
     var reader = new FileReader();
     reader.onload = function(){
         // var output = document.getElementById('output-imgpins');
@@ -1387,14 +1412,15 @@ function cargarImgPines(event){
         $("#anadir-productos-btn").show();
         $("#anadir-productos-btn").addClass("disabled");
         $("#cropear-btn").show();
+        //mostrar modal
+        $("#modal-cropper").modal('show');
         
-
         //cropper
         var button = document.getElementById('cropear-btn');
         var result = document.getElementById('result');
         var map = document.getElementById('map');
         var image = document.querySelector('#img-pines-amapear');
-        var imgj = $("#img-pines-amapear");
+        var imgj = document.querySelector("#img-pines-amapear");
         
         button.onclick = function () {
             result.innerHTML = '';
@@ -1405,58 +1431,72 @@ function cargarImgPines(event){
                     maxWidth: 4096
                 }
             ));
-
-
-            var canvas = $("#result canvas");
-            canvas.prop("id","canvas_result");
-            var id_canvas = document.getElementById("canvas_result")
-            var toImg = id_canvas.toDataURL();
-            $(".cropper-container").remove();
-            imgj.attr("src",toImg);
-            imgj.removeClass("cropper-hidden");
-            result.style.display = "none";
-
-
-            /*var test1 = $("#canvas_result").css("width");
-            var test2 = $("#canvas_result").css("height");
+                
+                
+                /*var canvas = $("#result canvas");
+                canvas.prop("id","canvas_result");
+                var id_canvas = document.getElementById("canvas_result")
+                var toImg = id_canvas.toDataURL();
+                $(".cropper-container").remove();
+                imgj.attr("src",toImg);
+                imgj.removeClass("cropper-hidden");
+                result.style.display = "none";*/
+                
+                
+                /*var test1 = $("#canvas_result").css("width");
+                var test2 = $("#canvas_result").css("height");
                 console.log($("#canvas_result"))*/
-
             
         };
 
-        var cropper = new Cropper(image, {
-            dragMode: 'move',
-            aspectRatio: 1 / 1,
-            viewMode: 1,
-            autoCropArea: 1,
-            /*minContainerHeight: 500,
-            minContainerWidth: 500,
-            minCropBoxWidth: 500,
-            minCropBoxHeight: 500,
-            minCanvasWidth: 500,
-            minCanvasHeight: 500,*/
-            responsive: true,
-            background: false,
-            restore: false,
-            guides: true,
-            center: false,
-            highlight: false,
-            cropBoxMovable: false,
-            cropBoxResizable: false,
-            toggleDragModeOnDblclick: false,
-            crop(event) {
-                console.log(event.detail.x);
-                console.log(event.detail.y);
-                console.log(event.detail.width);
-                console.log(event.detail.height);
-                console.log(event.detail.scaleX);
-                console.log(event.detail.scaleY);
-            }
-        });
-
-    };
-    reader.readAsDataURL(event.target.files[0]);
-
+        $('#modal-cropper').on('shown.bs.modal', function () {
+            var cropper = new Cropper(image, {
+                dragMode: 'move',
+                aspectRatio: 1 / 1,
+                viewMode: 1,
+                autoCropArea: 1,
+                /*minContainerHeight: 500,
+                minContainerWidth: 500,
+                minCropBoxWidth: 500,
+                minCropBoxHeight: 500,
+                minCanvasWidth: 500,
+                minCanvasHeight: 500,*/
+                responsive: true,
+                background: false,
+                restore: false,
+                guides: true,
+                center: false,
+                highlight: false,
+                cropBoxMovable: false,
+                cropBoxResizable: false,
+                toggleDragModeOnDblclick: false,
+                ready: function () {
+                    var cropper = this.cropper;
+                    
+                    cropper.setCropBoxData({
+                        width: 500
+                    });
+                }
+                /*crop(event) {
+                    console.log(event.detail.x);
+                    console.log(event.detail.y);
+                    console.log(event.detail.width);
+                    console.log(event.detail.height);
+                    console.log(event.detail.scaleX);
+                    console.log(event.detail.scaleY);*/
+                });
+            }).on('hidden.bs.modal', function () {
+                cropBoxData = cropper.getCropBoxData();
+                canvasData = cropper.getCanvasData();
+                cropper.destroy();
+            });
+            
+            
+            
+        };
+        reader.readAsDataURL(event.target.files[0]);
+            
+            
 }
 
 

@@ -1,5 +1,69 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 
+<!--  -->
+
+<div class="modal fade" id="modal-cropper" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+         </div>
+         <div class="modal-body">
+            <div id="output-container">
+               <div id="eliminar-img-flotante">
+                  <i class="fas fa-trash-alt"></i>
+               </div>
+               <!--  -->
+               <div class="popup-prod-overlay">
+                  <div id="popup-prod-cont">
+                     <div id="salir-popup" class="test-pop"><a href="#"><i class="fas fa-times"></i></a></div>
+                     <!-- <h6>Elija un producto:</h6> -->
+                     <div class="filtros">
+                           <span>
+                              <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
+                              <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
+                           </span>
+                           <br>
+                           <!-- <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a> -->
+                     </div>
+                     <div class="popup-producto">
+                        <div class="splide">
+                           <div class="splide__track">
+                              <ul class="splide__list"></ul>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- <div class="popup-prod-cont-galeria"></div> -->
+                     <!-- <select class="lista-prod"></select> -->
+                  </div>
+               </div>
+               <div class="contenedor-content">
+                  <div class="click-protector-cont"></div>
+                  <div id="map">
+                     <img id="img-pines-amapear" src="">
+                  </div>
+               </div>
+               <!--  -->
+               <div class="anadir-productos">
+                  <hr>
+                  <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
+                  <a href="#" id="cropear-btn" class="btn btn-warning">Terminar Ajuste</a>
+                  <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
+                  <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a>
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <div id="result"></div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+ </div>
+</div>
+
+
+<!--  -->
+
 <div class="overlay-prod"></div>
 
    <div class="container" id="contenedor-form-subir">
@@ -15,54 +79,12 @@
                         <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
                         <div><span class="hide-mobile">Arrastra una imagen, o </span>Haz click para subir</div>
                      </div>
-                     <input type="file" name="publicacion_foto" id="imagen-pins" onchange="cargarImgPines(event)">
+                     <input type="file" name="publicacion_foto" id="imagen-pins" onchange="cargarImgPines(event)" data-target="#modal-cropper" data-toggle="modal-cropper">
                   </div>
-                  <div id="output-container">
-                     <div id="eliminar-img-flotante">
-                        <i class="fas fa-trash-alt"></i>
-                     </div>
-                     <!--  -->
-                     <div class="popup-prod-overlay">
-                        <div id="popup-prod-cont">
-                           <div id="salir-popup" class="test-pop"><a href="#"><i class="fas fa-times"></i></a></div>
-                           <!-- <h6>Elija un producto:</h6> -->
-                           <div class="filtros">
-                                 <span>
-                                    <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
-                                    <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
-                                 </span>
-                                 <br>
-                                 <!-- <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a> -->
-                           </div>
-                           <div class="popup-producto">
-                              <div class="splide">
-                                 <div class="splide__track">
-                                    <ul class="splide__list"></ul>
-                                 </div>
-                              </div>
-                           </div>
-                           <!-- <div class="popup-prod-cont-galeria"></div> -->
-                           <!-- <select class="lista-prod"></select> -->
-                        </div>
-                     </div>
-                     <div class="contenedor-content">
-                        <div class="click-protector-cont"></div>
-                        <div id="map">
-                           <img id="img-pines-amapear" src="">
-                        </div>
-                     </div>
-                     <!--  -->
-                     <div class="anadir-productos">
-                        <hr>
-                        <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
-                        <a href="#" id="cropear-btn" class="btn btn-warning">Terminar Ajuste</a>
-                        <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
-                        <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a>
-                     </div>
-                  </div>
+                  
                </div>
                <div class="row">
-                  <div id="result"></div>
+                 
                   <div class="col-lg-12">
                      <div class="group">      
                         <input type="text" name="publicacion_nombre" id="titulo-publicacion" required>
@@ -116,7 +138,7 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <script src="js/func.js?time=280521-1225"></script>
+   <script src="js/func.js?time=260621-1546"></script>
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <!--  -->
    <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />

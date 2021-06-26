@@ -440,6 +440,24 @@ sql;
         while ($rowEmp = mysqli_fetch_array($resultado)) {
             $id_publicador = isset($rowEmp["id_publicador"]) ? $rowEmp["id_publicador"] : '';
             $rowEmp['foto_perfil'] = $id_publicador;
+
+            #INICIO COMENTARIOS
+            $idPublicacion = isset($rowEmp["id"]) ? $rowEmp["id"] : '';
+            $idPublicacionBD = Database::escape($idPublicacion);
+            $sql2 = <<<sql
+                SELECT *
+                FROM comentario
+                WHERE id_publicacion=$idPublicacionBD
+sql;
+            //echo $sql2;
+    
+            $resultado2 = Database::Connect()->query($sql2);
+            $list2 = array();
+            while ($rowEmp2 = mysqli_fetch_array($resultado2)) {
+                $list2[] = $rowEmp2;
+            }
+            #FIN COMENTARIOS
+            $rowEmp['comentarios'] = $list2;
             $list[] = $rowEmp;
         }
         return $list;

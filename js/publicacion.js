@@ -133,27 +133,46 @@ $(document).ready(function(){
                                     '</div>'+
                                  '</div>'+
                                  '<div class="comment-count"><span>Comentarios</span></div>'+
-                                 '<div class="commentbox-list-container">'+
-                                    '<div class="commentbox-list media commentbox-id-'+i+'">'+
-                                       '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
-                                       '<div class="media-body">'+
-                                          '<p>cuerpo del comment. testtestestetsetsetetset</p>'+
-                                             '<div class="commentbox-actions">'+
-                                             '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+
-                                             '   <span class="actions-time">1m</span>'+
-                                             '</div>'+
-                                       '</div>'+
-                                    '</div>'+
-                                 '</div>'+
+                                 '<div class="commentbox-list-container commentbox-list-container-'+id_public+'"></div>'+
                               '</div>'+
                            '</div>';
 
                            
             $(".insert-public").append(html_public);
 
-            /*for(var x=0; x<producto_parse_size; x++){
-               commentbox-list-container
-            }*/
+            for(var y=0; y<jsonData.comentarios.length; y++){
+
+               if(jsonData.comentarios.length>0){
+                  var comentario = jsonData.comentarios[y].comentario || "";
+                  var eliminar = jsonData.comentarios[y].eliminar || "";
+                  var fecha_alta = jsonData.comentarios[y].fecha_alta || "";
+                  var fecha_update = jsonData.comentarios[y].fecha_update || "";
+                  var id = jsonData.comentarios[y].id || 0;
+                  var id_publicacion = jsonData.comentarios[y].id_publicacion || 0;
+                  var usuario_alta = jsonData.comentarios[y].usuario_alta || "";
+                  var usuario_editar = jsonData.comentarios[y].usuario_editar || "";
+                  
+                  var comentario_html = 
+                  '<div class="commentbox-list media commentbox-id-'+y+'">'+
+                     '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
+                     '<div class="media-body">'+
+                        '<p>'+comentario+'</p>'+
+                           '<div class="commentbox-actions">'+
+                           '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+//hard
+                           '   <span class="actions-time">'+fecha_alta+'</span>'+
+                           '</div>'+
+                     '</div>'+
+                  '</div>';
+                  
+                  $(".commentbox-list-container-"+id_public).append(comentario_html);
+
+               }else{
+                  var comentario_html2 = "<p>No hay comentarios</p>"
+                  
+                  $(".commentbox-list-container-"+id_public).append(comentario_html2)
+               }
+               
+            }
 
             /*apertura y cierre de comments*/
             $(".social-public-"+id_public).on("click", ".comment-icon", function(e){
