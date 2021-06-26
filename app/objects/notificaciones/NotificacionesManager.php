@@ -65,6 +65,8 @@ class  NotificacionesManager
 			$publicacion = $publicacionManager->getPublicacionById($data);
 			if (isset($publicacion[0])){
 				$data['json_notificacion'] = $publicacion[0];
+				$comentario = isset($data["comentario"]) ? $data["comentario"] : '';
+				$data['json_notificacion']['comentario'] = $comentario;
 				$data['usuario_notificacion'] = $publicacion[0]['usuario_alta'];
 			}else{
 				return false;
