@@ -2,7 +2,7 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."comentario/ComentarioManager.php");
+#include_once($GLOBALS['configuration']['path_app_admin_objects']."comentario/ComentarioManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
 
@@ -10,7 +10,7 @@ if ($perfil=='seller' || $perfil='picker'){
 
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
-    $comentarioManager = new ComentarioManager();
+    #$comentarioManager = new ComentarioManager();
     $seguidoresManager = new SeguidoresManager();
 
     $cat = (isset($_GET['cat']))  ? $_GET['cat'] : "";
@@ -31,7 +31,7 @@ if ($perfil=='seller' || $perfil='picker'){
         "categoria_producto" => $productoManager->getListCategoria(),
         "rubro_producto"     => $productoManager->getListRubro(),
 	"productos"     => $productoManager->getListProductoIndex(),
-    "comentarios"     => $comentarioManager->getListComentario(),
+   # "comentarios"     => $comentarioManager->getListComentario(),
 	"cat"           => $cat,
     "seguidores"     => $seguidoresManager->getListSeguidores(),
     "seguidos"     => $seguidoresManager->getListSeguidos()
