@@ -27,6 +27,7 @@ $(document).ready(function(){
             var seguidos = jsonData.seguidos || [];
             var idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
             var idPublicadorSeguido = idPublicadorSearch.idUsuario;
+            var comentarios_obj = jsonData.publicaciones[i].comentarios || []
             /*var seguir = jsonData.publicaciones[i].favorito || 0;
             if (seguir==null || seguir == 0) {
                seg_accion="alta"
@@ -140,17 +141,18 @@ $(document).ready(function(){
                            
             $(".insert-public").append(html_public);
 
-            for(var y=0; y<jsonData.comentarios.length; y++){
+            //recorro comentarios en la public
+            for(var y=0; y<comentarios_obj.length; y++){
 
-               if(jsonData.comentarios.length>0){
-                  var comentario = jsonData.comentarios[y].comentario || "";
-                  var eliminar = jsonData.comentarios[y].eliminar || "";
-                  var fecha_alta = jsonData.comentarios[y].fecha_alta || "";
-                  var fecha_update = jsonData.comentarios[y].fecha_update || "";
-                  var id = jsonData.comentarios[y].id || 0;
-                  var id_publicacion = jsonData.comentarios[y].id_publicacion || 0;
-                  var usuario_alta = jsonData.comentarios[y].usuario_alta || "";
-                  var usuario_editar = jsonData.comentarios[y].usuario_editar || "";
+               if(comentarios_obj.length>0){
+                  var comentario = comentarios_obj[y].comentario || "";
+                  var eliminar = comentarios_obj[y].eliminar || "";
+                  var fecha_alta = comentarios_obj[y].fecha_alta || "";
+                  var fecha_update = comentarios_obj[y].fecha_update || "";
+                  var id = comentarios_obj[y].id || 0;
+                  var id_publicacion = comentarios_obj[y].id_publicacion || 0;
+                  var usuario_alta = comentarios_obj[y].usuario_alta || "";
+                  var usuario_editar = comentarios_obj[y].usuario_editar || "";
                   
                   var comentario_html = 
                   '<div class="commentbox-list media commentbox-id-'+y+'">'+

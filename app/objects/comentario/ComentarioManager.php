@@ -1,5 +1,7 @@
 <?php
 include_once("ComentarioDao.php");
+include_once("/var/www/html/app/objects/notificaciones/NotificacionesManager.php");
+
 class  ComentarioManager
 {
 	private $comentarioDao;
@@ -73,11 +75,17 @@ class  ComentarioManager
 			$this->setMsj($this->comentarioDao->getMsj());
 		} else {
 			$idComentario = $this->comentarioDao->getMsj();
-
-			
-			
 			$this->setStatus("OK");
 			$this->setMsj($idComentario);
+
+
+			$notiManager = new NotificacionesManager();
+			$data['tipo_notificacion'] = 'comentario';
+			
+			if ($notiManager->agregarNotificaciones($data) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj("No se pudo enviar la notificacion");
+			}
 		}
 	}
 

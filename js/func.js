@@ -1421,33 +1421,28 @@ function cargarImgPines(event){
         var map = document.getElementById('map');
         var image = document.querySelector('#img-pines-amapear');
         var imgj = document.querySelector("#img-pines-amapear");
+        var cropper;
+        var options = {
+            dragMode: 'move',
+            aspectRatio: 1 / 1,
+            viewMode: 1,
+            autoCropArea: 1,
+            responsive: true,
+            background: false,
+            restore: false,
+            guides: true,
+            center: false,
+            highlight: false,
+            cropBoxMovable: false,
+            cropBoxResizable: false,
+            toggleDragModeOnDblclick: false
+        }
         
-        button.onclick = function () {
-            result.innerHTML = '';
-            result.appendChild(cropper.getCroppedCanvas(
-                {
-                    fillColor: "#aaa",
-                    maxHeight: 4096,
-                    maxWidth: 4096
-                }
-            ));
-                
-                
-                /*var canvas = $("#result canvas");
-                canvas.prop("id","canvas_result");
-                var id_canvas = document.getElementById("canvas_result")
-                var toImg = id_canvas.toDataURL();
-                $(".cropper-container").remove();
-                imgj.attr("src",toImg);
-                imgj.removeClass("cropper-hidden");
-                result.style.display = "none";*/
-                
-                
-                /*var test1 = $("#canvas_result").css("width");
-                var test2 = $("#canvas_result").css("height");
-                console.log($("#canvas_result"))*/
-            
-        };
+        $(document).on('click', '.toggle-aspect-ratio .btn', function () {
+            options.aspectRatio = $(this).attr('data-value'); 
+            image.cropper('destroy').cropper(options);
+        });
+        
 
         $('#modal-cropper').on('shown.bs.modal', function () {
             var cropper = new Cropper(image, {
@@ -1455,12 +1450,6 @@ function cargarImgPines(event){
                 aspectRatio: 1 / 1,
                 viewMode: 1,
                 autoCropArea: 1,
-                /*minContainerHeight: 500,
-                minContainerWidth: 500,
-                minCropBoxWidth: 500,
-                minCropBoxHeight: 500,
-                minCanvasWidth: 500,
-                minCanvasHeight: 500,*/
                 responsive: true,
                 background: false,
                 restore: false,
@@ -1474,8 +1463,36 @@ function cargarImgPines(event){
                     var cropper = this.cropper;
                     
                     cropper.setCropBoxData({
-                        width: 500
+                        width: 500,
                     });
+
+                    button.onclick = function () {
+                        result.innerHTML = '';
+                        result.appendChild(cropper.getCroppedCanvas(
+                            {
+                                fillColor: "#aaa",
+                                maxHeight: 4096,
+                                maxWidth: 4096
+                            }
+                        ));
+
+                        
+                            
+                        /*var canvas = $("#result canvas");
+                        canvas.prop("id","canvas_result");
+                        var id_canvas = document.getElementById("canvas_result")
+                        var toImg = id_canvas.toDataURL();
+                        $(".cropper-container").remove();
+                        imgj.attr("src",toImg);
+                        imgj.removeClass("cropper-hidden");
+                        result.style.display = "none";*/
+                        
+                        
+                        /*var test1 = $("#canvas_result").css("width");
+                        var test2 = $("#canvas_result").css("height");
+                        console.log($("#canvas_result"))*/
+                        
+                    };
                 }
                 /*crop(event) {
                     console.log(event.detail.x);

@@ -59,6 +59,16 @@ class  NotificacionesManager
 			}else{
 				return false;
 			}
+		}else if ($tipo == 'comentario'){
+			$data["id_publicacion"] = $data["publicacion"];
+			$publicacionManager = new PublicacionManager();
+			$publicacion = $publicacionManager->getPublicacionById($data);
+			if (isset($publicacion[0])){
+				$data['json_notificacion'] = $publicacion[0];
+				$data['usuario_notificacion'] = $publicacion[0]['usuario_alta'];
+			}else{
+				return false;
+			}
 		}else if ($tipo == 'seguidores'){
 			$idUsuario = $data['id_publicador'];
 
