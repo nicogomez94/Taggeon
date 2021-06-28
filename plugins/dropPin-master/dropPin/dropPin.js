@@ -11,7 +11,7 @@
 
 		var defaults = {
 		fixedHeight: 'auto',
-		fixedWidth: '700px',//antes 100%
+		fixedWidth: '100%',//antes 100%
 		dropPinPath: '/js/dropPin/',
 		pin: 'dropPin/defaultpin@2x.png',
 		backgroundImage: test,

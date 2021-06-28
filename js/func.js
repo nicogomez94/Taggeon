@@ -491,7 +491,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
         $("#limpiar-productos-btn").show();
         $("#anadir-productos-btn").hide();
         
-        $(".overlay-prod").show(); //TODO
+        //$(".overlay-prod").show(); //TODO
         $("#eliminar-img-flotante").hide();
         
         $('#map').dropPin('dropMulti',{
@@ -1155,6 +1155,7 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
 $("#cropear-btn").click(function(){
     $(".anadir-productos-btn").removeClass("disabled");
     $(this).hide();
+    $(".toggle-aspect-ratio").hide();
 });
 
 ///submit comentario_public
@@ -1313,13 +1314,12 @@ $(".cantidad_value").change(function(){
     
 });
 
-
+//activo buscador
 $("#buscador-index-input").keypress(function(e){
     if(e.key === "Enter"){
         buscadorIndex($(this));
     }
-    
- });
+});
 
 
 /***fin document.ready***//***fin document.ready***/
@@ -1401,7 +1401,7 @@ function cargarImgPines(event){
     reader.onload = function(){
         // var output = document.getElementById('output-imgpins');
         // output.src = reader.result;
-        $("#img-subir-pins").hide();
+        //$("#img-subir-pins").hide();
         // $("#output-imgpins").show();
         $("#img-pines-amapear").show();
         // $("#map").css("background-image","url('"+reader.result+"')");
@@ -1420,7 +1420,7 @@ function cargarImgPines(event){
         var result = document.getElementById('result');
         var map = document.getElementById('map');
         var image = document.querySelector('#img-pines-amapear');
-        var imgj = document.querySelector("#img-pines-amapear");
+
         var cropper;
         var options = {
             dragMode: 'move',
@@ -1438,80 +1438,56 @@ function cargarImgPines(event){
             toggleDragModeOnDblclick: false
         }
         
-        $(document).on('click', '.toggle-aspect-ratio .btn', function () {
-            options.aspectRatio = $(this).attr('data-value'); 
-            image.cropper('destroy').cropper(options);
-        });
+        
         
 
         $('#modal-cropper').on('shown.bs.modal', function () {
-            var cropper = new Cropper(image, {
-                dragMode: 'move',
-                aspectRatio: 1 / 1,
-                viewMode: 1,
-                autoCropArea: 1,
-                responsive: true,
-                background: false,
-                restore: false,
-                guides: true,
-                center: false,
-                highlight: false,
-                cropBoxMovable: false,
-                cropBoxResizable: false,
-                toggleDragModeOnDblclick: false,
-                ready: function () {
-                    var cropper = this.cropper;
-                    
-                    cropper.setCropBoxData({
-                        width: 500,
-                    });
+            var cropper = new Cropper(image,options);
 
-                    button.onclick = function () {
-                        result.innerHTML = '';
-                        result.appendChild(cropper.getCroppedCanvas(
-                            {
-                                fillColor: "#aaa",
-                                maxHeight: 4096,
-                                maxWidth: 4096
-                            }
-                        ));
-
-                        
-                            
-                        /*var canvas = $("#result canvas");
-                        canvas.prop("id","canvas_result");
-                        var id_canvas = document.getElementById("canvas_result")
-                        var toImg = id_canvas.toDataURL();
-                        $(".cropper-container").remove();
-                        imgj.attr("src",toImg);
-                        imgj.removeClass("cropper-hidden");
-                        result.style.display = "none";*/
-                        
-                        
-                        /*var test1 = $("#canvas_result").css("width");
-                        var test2 = $("#canvas_result").css("height");
-                        console.log($("#canvas_result"))*/
-                        
-                    };
-                }
-                /*crop(event) {
-                    console.log(event.detail.x);
-                    console.log(event.detail.y);
-                    console.log(event.detail.width);
-                    console.log(event.detail.height);
-                    console.log(event.detail.scaleX);
-                    console.log(event.detail.scaleY);*/
-                });
-            }).on('hidden.bs.modal', function () {
-                cropBoxData = cropper.getCropBoxData();
-                canvasData = cropper.getCanvasData();
+            //si cierro el modal
+        }).on('hidden.bs.modal', function () {
+                /*cropBoxData = cropper.getCropBoxData();
+                canvasData = cropper.getCanvasData();*/
                 cropper.destroy();
-            });
+        });
             
+            //toggle de aspect ratio
+            $(document).on('click', '.l-radio', function () {
+                options.aspectRatio = this.dataset.aspect; 
+                //destruyo el viejo y creo uno nuevo
+                image.cropper.destroy();
+                var newCropper = new Cropper(image,options);
+                
+                //e.stopPropagation();
+                button.onclick = function () {
+                    result.innerHTML = '';
+                    result.appendChild(newCropper.getCroppedCanvas(
+                        {
+                            fillColor: "#aaa",
+                            maxHeight: 4096,
+                            maxWidth: 4096
+                        }
+                    ));
+                    newCropper.destroy()
+    
+                    var canvas = document.querySelector("#result canvas");
+                    //var id_canvas = document.getElementById("result")
+                    var toImg = canvas.toDataURL();
+                    image.src = toImg;
+                    canvas.style.display = "none";
+
+                    //actuivo boton para taguear
+                    document.querySelector("#anadir-productos-btn").classList.remove("disabled");
+                    
+                };
+            });
+
             
             
         };
         reader.readAsDataURL(event.target.files[0]);
+
+        
             
             
 }
@@ -1706,6 +1682,11 @@ function buscadorIndex(paramIndex){
                     if(sizePublic>0){   
 
                         var public_cat_size = jsonData.categoria.length;
+
+                        var globos_html = 
+                        <div></div>
+                        
+                        $(".board").prepend("<p>gfkjghdfjk</p>")
                     
                         //recorre todas las cat y primero dibujo el item de cat
                         for(var i=0; i<public_cat_size; i++){
