@@ -1865,7 +1865,18 @@ button:disabled{
     box-shadow: 3px 3px 0px 0px #d0d0d0;
 }
 .globo-escenario{
-    
+    padding: 20px;
+    color: white;
+    font-weight: 600;
+    border-radius: 15px;
+    text-align: center;
+    margin: 15px 10px;
+    width: 10%;
+    display: inline-block;
+    transition: all ease .4s;
+}
+.globo-escenario:hover{
+    box-shadow: 0 0 7px gray;
 }
 .insert-public{
     margin-top: 50px;
@@ -2811,7 +2822,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         /*  */
     }
     #dropdown-user-menu-cont{
-        display: none;
+        /* display: none; */
     }
     #dropdown-user-menu-responsive{
         display: block !important;

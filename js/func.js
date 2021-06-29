@@ -1684,9 +1684,16 @@ function buscadorIndex(paramIndex){
                         var public_cat_size = jsonData.categoria.length;
 
                         var globos_html = 
-                        <div></div>
-                        
-                        $(".board").prepend("<p>gfkjghdfjk</p>")
+                        '<div class="globo-escenario" style="background-color: #417238;">Gamer Room</div>'+
+                        '<div class="globo-escenario" style="background-color: #887f2d;">Estudio</div>'+
+                        '<div class="globo-escenario" style="background-color: #8f4141;">Escritorio</div>'+
+                        '<div class="globo-escenario" style="background-color: #46418f;">Habitacion</div>'+
+                        '<div class="globo-escenario" style="background-color: #8f4185;">Gamer Room</div>'+
+                        '<div class="globo-escenario" style="background-color: #417238;">Estudio</div>'+
+                        '<div class="globo-escenario" style="background-color: #887f2d;">Escritorio</div>'+
+                        '<div class="globo-escenario" style="background-color: #8f4141;">Habitacion</div>';
+
+                        $(".board").prepend(globos_html)
                     
                         //recorre todas las cat y primero dibujo el item de cat
                         for(var i=0; i<public_cat_size; i++){
@@ -1804,17 +1811,7 @@ function ampliarNotif(){
                 var json_notif = jsonData.notificaciones[i].json_notificacion || "";
                 var json_notif_p = JSON.parse(json_notif) || [];
                 var tipo_notif = jsonData.notificaciones[i].tipo_notificacion || "";
-                /*var eliminar = jsonData.notificaciones[i].eliminar || 0;
-                var favorito = jsonData.notificaciones[i].favorito || 0;
-                var fecha_alta = jsonData.notificaciones[i].fecha_alta || 0;
-                var fecha_update = jsonData.notificaciones[i].fecha_update || 0;
-                */var id = jsonData.notificaciones[i].id || 0;/*
-                var id_venta = jsonData.notificaciones[i].id_venta || 0;
-                var nombre_venta = jsonData.notificaciones[i].nombre_venta || "";
-                var seguidor = jsonData.notificaciones[i].seguidor || "";
-                var tipo_venta = jsonData.notificaciones[i].tipo_venta || "";
-                var usuario_alta = jsonData.notificaciones[i].usuario_alta || 0;
-                var usuario_editar = jsonData.notificaciones[i].usuario_editar || 0;*/
+                var id = jsonData.notificaciones[i].id || 0;
                 var json_notif_p_l = Object.keys(json_notif_p).length || 0;
                 
                 //console.log(json_notif_p)
@@ -1829,6 +1826,7 @@ function ampliarNotif(){
                 var publicacion_nombre = json_notif_p.publicacion_nombre || "";
                 var usuario_alta = json_notif_p.usuario_alta || 0;
                 var foto_prod = json_notif_p.foto_id;
+                var comentario = json_notif_p.comentario;
                 var foto_src = '/productos_img/'+foto_prod+'.png';
     
                 //aparece el contador de notifs con nro
@@ -1859,6 +1857,13 @@ function ampliarNotif(){
                     $(".notif-id-"+id).prepend(html_foto_prod);
                     $(".notif-id-"+id+">.notif-icon").remove();
                     $(".notif-id-"+id+">.media-body").html(html_vendedor);
+
+                }else if(tipo_notif == "comentario"){
+                    var html_comentario = '<div><a href="/">'+nombre+' coment&oacute; "'+comentario+'" en tu public.: "'+publicacion_nombre+'"</a></div>';
+                    //var html_foto_prod = '<img class="mr-3 img-notifs" src="'+foto_src+'" alt="img_notif">';
+
+                    $(".notif-id-"+id+" .media-body").append(html_comentario)
+                    
                 }
             }
 
