@@ -47,122 +47,59 @@
             <span class="nombre-brand"> Taggeon</span>
          </a>
       </div>
-      <!---->
+      <!--BUSCADOR-->
       <div class="search-container">
          <input id="buscador-index-input" class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
-      <i class="fas fa-search fa-search-header"></i></div>
-      <!---->
-      <!--  -->
-      <div class="subir-publicacion-responsive">
-         <div id="subir-publicacion" class="button-header">
-             <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
-         </div>
+         <i class="fas fa-search fa-search-header"></i>
       </div>
-      <!--  -->
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-         <ul class="navbar-nav px-3" id="items-navbar-derecha">
-            <li class="nav-item text-nowrap">
-                  <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
-                  Sign In
-               </button> -->
-                  <!-- <div id="ver-perfil" class="nav-item-icon" data-toggle="modal" data-target="#exampleModalCenter">
-                     <i class="fas fa-user"></i>
-                  </div> -->
-            </li>
-            <!-- SUBIR PUBLIC -->
-            <li class="nav-item text-nowrap subir-publicacion-container">
-               <div id="subir-publicacion" class="button-header">
-                   <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
-               </div>
-            </li>
-            <!-- CARRITO -->
-            <li class="nav-item text-nowrap subir-publicacion-container">
-               <div id="subir-publicacion" class="button-header">
-                   <a href="/ampliar-carrito.html"><i class="fas fa-shopping-cart"></i></a>
-               </div>
-            </li>
-            <!-- NOTIFS -->
-            <li class="nav-item text-nowrap subir-publicacion-container">
-               <div class="count-notif">1</div>
-               <div id="subir-publicacion" class="notifs-button button-header">
-                   <a href="#"><i class="fas fa-bell"></i></a>
-               </div>
-               <div class="notifs-button-ampliar">
-                  <div class="notifs-header button-header">Notificaciones</div><hr>
-                  <!-- <div class="media">
-                     <img class="mr-3 img-notifs" src="{foto-perfil}"> 
-                     <div class="media-body">
-                       <p class="mt-0 user-name-perfil">Nicolas te esta siguiendo</p>
-                       <a href="/ampliar-usuario.html"></a>
-                     </div>
-                   </div> -->
-               </div>
-            </li>
-            <!-- USER MENU -->
-            <li id="dropdown-user-menu-cont" class="nav-item text-nowrap">
-                  <div id="drop" class="nav-item-icon button-header">
-                     <img class="img-perfil-usuario-drop" src="{foto-perfil}" alt="img-perfil"> 
+      <!---->
+      <div id="items-navbar-container">
+         <!-- BUSCADOR RESPONSIVE -->
+         <div class="btn-header">
+            <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
+         </div>
+         <!-- SUBIR PUBLIC -->
+         <div class="btn-header">
+               <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
+         </div>
+         <!-- CARRITO -->
+         <div class="btn-header">
+               <a href="/ampliar-carrito.html"><i class="fas fa-shopping-cart"></i></a>
+         </div>
+         <!-- NOTIFS -->
+         <div class="btn-header">
+            <div class="count-notif">1</div>
+            <div class="notifs-button">
+                  <a href="#"><i class="fas fa-bell"></i></a>
+            </div>
+            <div class="notifs-button-ampliar">
+               <div class="notifs-header">Notificaciones</div><hr>
+            </div>
+         </div>
+         <!-- USER MENU -->
+         <div id="dropdown-user-menu-cont" class="btn-header">
+            <div id="drop" class="nav-item-icon">
+               <img class="img-perfil-usuario-drop" src="{foto-perfil}" alt="img-perfil"> 
+            </div>
+            <div id="dropdown-user-menu">
+               <div class="media">
+                  <img class="mr-3" src="{foto-perfil}" alt="Generic placeholder image"> 
+                  <div class="media-body">
+                     <h5 class="mt-0 user-name-perfil">{nombre-usuario}</h5>
+                     <a href="/ampliar-usuario.html">Ver Perfil{perfil}</a>
                   </div>
-                  <div id="dropdown-user-menu">
-                     <div class="media">
-                        <img class="mr-3" src="{foto-perfil}" alt="Generic placeholder image"> 
-                        <div class="media-body">
-                          <h5 class="mt-0 user-name-perfil">{nombre-usuario}</h5>
-                          <a href="/ampliar-usuario.html">Ver Perfil{perfil}</a>
-                        </div>
-                      </div>
-                     <hr>
-                     {menu}
-                     <a href="/app/logout.php">Cerrar Sesi&oacute;n</a>
                   </div>
-            </li>
-            <li id="dropdown-user-menu-responsive">
-               <div>
-                  <div class="media">
-                      <img class="mr-3" src="{foto-perfil}" alt="Generic placeholder image"> 
-                     <div class="media-body">
-                       <h5 class="mt-0">{nombre-usuario}</h5>
-                       <a href="/ampliar-usuario.html">Ver Perfil{perfil}</a>
-                     </div>
-                   </div>
-                  <hr>
-                  {menu}
-                  <a href="/app/logout.php">Cerrar Sesi&oacute;n</a>
-               </div>
-            </li>
-         </ul>
+               <hr>
+               {menu}
+               <a href="/app/logout.php">Cerrar Sesi&oacute;n</a>
+            </div>
+         </div>
       </div>
    </nav>
-   <!-- navegador bottom fixed usuario logueado -->
-   <!--
-   <nav id="navbar-bottom-responsive" class="navbar fixed-bottom navbar-light bg-light">
-            <div class="navbar-bottom-col">
-               <a href="/">
-                  <div><i class="fas fa-home"></i></div>
-                  <div>Home</div>
-               </a>
-            </div>
-            <div class="navbar-bottom-col">
-               <a href="#" id="drop-bottom">
-                  <div><i class="fas fa-user-circle"></i></div>
-                  <div>Usuario</div>
-               </a>
-               <div id="dropdown-user-menu-bottom">
-                     <div class="media">
-                        <img class="mr-3 img-perfil-media" src="{foto-perfil}" alt="Generic placeholder image"> 
-                        <div class="media-body">
-                          <h5 class="mt-0">{nombre-usuario}</h5>
-                          <a href="/ampliar-usuario.html">Ver Perfil{perfil}</a>
-                        </div>
-                      </div>
-                     <hr>
-                     {menu}
-                     <a href="/app/logout.php">Cerrar Sesi&oacute;n</a>
-               </div>
-         </div>
-   
-      </nav>
-   -->
+
+
+   <!-- MODALS -->
+
 	
 	<!-- Modal INICIO DE SESION -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

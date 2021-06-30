@@ -68,9 +68,6 @@ body{
     text-align: left;
     padding-left: 40px;
 }
-.subir-publicacion-responsive{
-    display: none;
-}
 #flotante-subir{
     position: fixed;
     bottom: 0;
@@ -136,32 +133,30 @@ body{
 #flotante-subir a.link, #flotante-subir a:visited{
     color: black !important;
 }
-#subir-publicacion{
-    padding: 5px;
-    margin-right: 5px;
+.btn-header{
+    margin-right: 10px;
     transition: .1s all ease-in;
     cursor: pointer;
-}
-.button-header{
-    transition: .1s all ease-in;
+    display: table-cell;
+    padding-right: 10px;
 }
 .count-notif{
     transition: .1s all ease-in;
 }
 .count-notif:hover{
-    opacity: .7;
+
 }
-#subir-publicacion:hover{
-    opacity: .7;
+.btn-header:hover{
+
 }
-#subir-publicacion i{
+.btn-header i{
     padding: 12px;
     color: white;
     /* background: #f1f1f1; */
     background: #cebd8b;
     border-radius: 50%;
 }
-#subir-publicacion a.link, #subir-publicacion a:visited{
+.btn-header a.link, .btn-header a:visited{
     color: grey;
 }
 .navbar-brand-container{
@@ -201,17 +196,16 @@ body{
     border-width: 0;
     border-radius: 0;
 }
+
 .search-container{
     display: inline-block;
-    width: 80%;
     position: relative;
 }
 .fa-search-header{
-    
     position: absolute;
     top: 35%;
     right: 20px;
-             color: #b3b3b3;
+    color: #b3b3b3;
 }
 .navbar-nav{
     flex-direction: unset !important;
@@ -368,6 +362,14 @@ form div{
     position: relative;
     padding: 5px;
 }
+.gris-label{
+    font-size: 0.8em;
+    color: gray;
+    font-style: italic;
+}
+.media-body-metricas{
+    line-height: 42px;
+}
 /* img{
     width: 100%;
     height: auto;
@@ -413,9 +415,9 @@ form div{
     background-color: rgb(231, 231, 231);
 }
 #dropdown-user-menu-cont{
-    width: 35px;
+    /*width: 35px;
     margin-left: 10px;
-    margin-top: 7px;
+    margin-top: 7px;*/
 }
 .content-col-div img{
     max-width: 100%;
@@ -908,6 +910,13 @@ form div{
 .navbar-bottom-col-sl{
     width: 50%;/*me hincho bootstrap*/
     text-align: center;
+}
+#items-navbar-derecha li{
+    list-style-type: none;
+}
+#items-navbar-container{
+    display: inline-block;
+    margin-left: 10px;
 }
 .data-datos-editar input{
     width: 100%;
@@ -1593,7 +1602,7 @@ input:focus ~ .highlight {
     /* top: 0; */
     display: none;
     bottom: 12px;
-    right: 87px;
+    /* right: 87px; */
     background: #ff5f5f;
     border-radius: 50%;
     line-height: 13px;
@@ -2354,7 +2363,10 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     padding-left: 20px;
     padding-right: 20px;
 }
-
+.num-big{
+    font-weight: 700;
+    font-size: 1.5em;
+}
 
 
 
@@ -2818,7 +2830,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         box-shadow: 1px 3px 3px 0px darkgrey;
     }
     #items-navbar-derecha{
-        margin-top: 10px;
+        /* margin-top: 10px; */
         /*  */
     }
     #dropdown-user-menu-cont{
@@ -2852,7 +2864,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     .subir-publicacion-responsive{
         width: 12.5%;
     }
-    /*#subir-publicacion{
+    /*.btn-header{
         margin-left: 8px;
     }*/
     .modal h1{
@@ -2889,11 +2901,11 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         display: none;
     }
     /**/
-    #subir-publicacion{
+    .btn-header{
         margin-right: 0 !important;
         padding: 0;
     }
-    #subir-publicacion i {
+    .btn-header i {
         padding: 8px;
     }
     #navbar-principal{
@@ -2924,10 +2936,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     #form-buscar{
         width: 80%;
     }
-    .subir-publicacion-responsive{
-        width: 10%;
-    }
-    #subir-publicacion{
+    .btn-header{
         margin-left: 15px;
     }
     .item{
@@ -2942,7 +2951,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         box-shadow: 1px 3px 3px 0px darkgrey;
     }
     #items-navbar-derecha{
-        margin-top: 10px;
+        /* margin-top: 10px; */
     }
     #dropdown-user-menu-cont{
         display: none;
@@ -2977,9 +2986,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     }
     .img-perfil-media{
         width: 75px !important;
-    }
-    .subir-publicacion-responsive{
-        display: block !important;
     }
     .nombre-brand{
         display: none;
