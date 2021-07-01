@@ -1521,7 +1521,7 @@ function activarBuscador(param){
                 data: data_json,
                 dataType: 'json',
                 success:function(response){
-                console.log(response)
+
                 var resp_len = response.mensaje.length;
                 $(".splide__list").empty();
 

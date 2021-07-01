@@ -94,10 +94,14 @@
 				yval = parseInt(yval/$("#map").height() * 100);
 
 				// var imgC = $('<img class="pin '+yval+"-"+xval+'">');
-				var yval_pop = Math.round(y) + 17;
-				var xval_pop = Math.round(x) + 17;
+				//para que quede bien centrado el popup-prod
+				var yval_pop = Math.round(y)// + 17;
+				var xval_pop = Math.round(x)// + 17;
+				//console.log(typeof Math.round(y))
+				//console.log(y)
+
 				// var imgC = $('<img data-close="'+yval_pop+'-'+xval_pop+'" class="pin '+yval+"-"+xval+'">');
-				var imgC = $('<img data-close="'+yval_pop+'-'+xval_pop+'" class="pin '+yval+"-"+xval+'">');
+				var imgC = $('<img data-close="'+yval+'-'+xval+'" class="pin '+yval+"-"+xval+'">');
 				imgC.css('top', yval+'%');
 				imgC.css('left', xval+'%');
 				imgC.css('z-index', i);
@@ -112,7 +116,7 @@
 				$(options.hiddenYid).val(yval);
 				
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="tagss" class="pin '+yval+"-"+xval+'" data-close="'+yval_pop+'-'+xval_pop+'">');
+				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'" data-close="'+yval_pop+'-'+xval_pop+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -127,28 +131,6 @@
 				
 
 				popup_overlay.show(0,function(){
-
-					/*var body_w = $('body').width();
-					var popup_cont = $('#popup-prod-cont');
-					var ppc_width = popup_cont.width();
-					var offset_left = popup_cont.offset().left + ppc_width;
-					var body_minus = body_w - 200
-				
-					if (offset_left > body_minus){
-						popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
-						popup_cont.addClass('over')
-						popup_cont.css({
-							'top': yval_pop+'px',
-							'left': xval_pop+'px'
-						});
-					}else{
-						popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
-						popup_cont.removeClass('over')
-						popup_cont.css({
-							'top': yval_pop+'px',
-							'left': xval_pop+'px'
-						});
-					}*/
 					
 					popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
 					popup_cont.css({
@@ -156,16 +138,22 @@
 						'left': xval_pop+'px'
 					});
 					popup_prod.css({
-						'top': yval_pop+'%',
-						'left': xval_pop+'%'
+						'top': yval+'%',
+						'left': xval+'%'
 					});
 
 					/***/
 					//si se sale el popup del viewport invierto los css
 					var salirPopup = document.getElementById("salir-popup");
 
+					/*NO MEZCLARRARRAR*/
+					/*NO MEZCLARRARRAR*/
+					/*NO MEZCLARRARRAR*/
+					/*NO MEZCLARRARRAR*/
+					/*NO MEZCLARRARRAR*/
+
 					if(!inViewport(salirPopup)){
-						console.log(inViewport(salirPopup))
+						//console.log(inViewport(salirPopup))
 						
 						var sp = $("#salir-popup");
 						var sp_left = sp.css("left");
@@ -185,7 +173,7 @@
 				
 
 			});
-			//genera producto y futuro click protector
+			//genera tag con producto y futuro click protector
 			$("#popup-prod-cont").on("click", ".nombre-producto", function(){
 				            
 				$(".popup-prod-overlay").hide();
@@ -196,18 +184,25 @@
 
 
 				/*para que quede centrado*/
-				var box_y_prod_posta = box_y_prod - 20;
-				var box_x_prod_posta = box_x_prod - 20;
+				//var box_y_prod_posta = box_y_prod - 20;
+				//var box_x_prod_posta = box_x_prod - 20;
 
+				
 				var pin_a_namear = $("#map").find("."+box_y_prod+"-"+box_x_prod);//1 porque hay 2
 				pin_a_namear.attr("name",id_producto);
-
+				
+				//console.log(box_y_prod)
+				//console.log(box_x_prod)
+				//console.log(pin_a_namear)
+				//console.log("box_y_prod_posta"+box_y_prod_posta)
+				//console.log("box_x_prod_posta"+box_x_prod_posta)
+				
 				var click_protector = '<div class="click-protector '+box_y_prod+"-"+box_x_prod+'">'+
 											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
 
 				$(".click-protector-cont").append(click_protector);
-				$("."+box_y_prod+"-"+box_x_prod).css("top",box_y_prod_posta+"px");
-				$("."+box_y_prod+"-"+box_x_prod).css("left",box_x_prod_posta+"px");
+				$("."+box_y_prod+"-"+box_x_prod).css("top",box_y_prod+"%");
+				$("."+box_y_prod+"-"+box_x_prod).css("left",box_x_prod+"%");
 				$("."+box_y_prod+"-"+box_x_prod+" .salir-popup-single").css("display","none");
 
 			});
@@ -230,9 +225,10 @@
 			//para borrar el single pin
 			$(".click-protector-cont").on("click",".salir-popup-single", function(){
 				var class_parent = $(this).parent().attr("class").split(" ")[1];
-				console.log(class_parent)
+				//console.log(class_parent)
 				//var box_xc = $(this).parent().css("left").split('%')[0]
 				var pin_a_borrar = $("#map").find("[data-close='"+class_parent+"']");
+				console.log(typeof pin_a_borrar)
 				pin_a_borrar.remove();
 				$(this).parent().remove();
 
@@ -273,7 +269,7 @@
 				var ycoord = coords.split("-")[0];
 				var xcoord = coords.split("-")[1];
 
-				console.log(ycoord)
+				//console.log(ycoord)
 				//style="top:'+ycoord+'%; left:'+xcoord+'%;"
 				var imgC = $('<img class="pin '+ycoord+'-'+xcoord+'">');
 				imgC.attr('src',  options.pin);
