@@ -96,6 +96,7 @@
 				// var imgC = $('<img class="pin '+yval+"-"+xval+'">');
 				var yval_pop = Math.round(y) + 17;
 				var xval_pop = Math.round(x) + 17;
+				// var imgC = $('<img data-close="'+yval_pop+'-'+xval_pop+'" class="pin '+yval+"-"+xval+'">');
 				var imgC = $('<img data-close="'+yval_pop+'-'+xval_pop+'" class="pin '+yval+"-"+xval+'">');
 				imgC.css('top', yval+'%');
 				imgC.css('left', xval+'%');
@@ -111,7 +112,7 @@
 				$(options.hiddenYid).val(yval);
 				
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'" data-close="'+yval_pop+'-'+xval_pop+'">');
+				var hiddenCtl= $('<input type="hidden" name="tagss" class="pin '+yval+"-"+xval+'" data-close="'+yval_pop+'-'+xval_pop+'">');
 				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);

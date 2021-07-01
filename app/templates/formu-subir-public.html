@@ -134,7 +134,6 @@
             </div>
             <div class="modal-footer">
                <div id="result"></div>
-               
             </div>
          </div>
       </div>
@@ -220,12 +219,12 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <script src="js/func.js?time=28062-0105"></script>
+   <script src="js/func.js?time=010721-1621"></script>
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <!--  -->
    <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
    
-   <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=27062-2207"></script>
+   <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=010721-1621"></script>
    <script src="../../plugins/cropperjs-master/dist/cropper.js"></script>
       <script>
          $(document).ready(function(){
@@ -260,8 +259,8 @@
          if ( !el || 1 !== el.nodeType ) { return false; }
          html = document.documentElement;
          r = el.getBoundingClientRect();
-         console.log(r)
-         console.log(typeof !!r)
+         //console.log(r)
+         //console.log(typeof !!r)
 
          return ( !!r
             && r.bottom >= 0
@@ -273,7 +272,7 @@
       }
 
 
-      /**cierre*/
+      /**cierre del modal de tagueo*/
       $("#modal-cropper").on('show.bs.modal', function (e) {
          $("#modal-data").modal("hide");
       });
@@ -281,6 +280,7 @@
       $("#modal-data").on('show.bs.modal', function (e) {
          $("#modal-cropper").modal("hide");
       });
+
       /*function isElementOutViewport (el) {
             var rect = el.getBoundingClientRect();
          return rect.bottom < 0 || rect.right < 0 || rect.left > window.innerWidth || rect.top > window.innerHeight;

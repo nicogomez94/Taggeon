@@ -596,6 +596,11 @@ $('#subir-publicacion-form').submit(function (e) {
     formData.append("data_pines",pin_object_str);
     formData.delete("publicacion_foto");
         
+    console.log(formData.get("data_pines"))
+    console.log(formData.get("tagss"))
+
+    alert(formData.get("data_pines"))
+
     $.ajax({
         url: '/app/publicacion.php',
         data: formData,
@@ -608,7 +613,8 @@ $('#subir-publicacion-form').submit(function (e) {
             if (data.status == 'ERROR'){
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                $("body").addClass("loading"); 
+                //$("body").addClass("loading");
+                alert(data)
                 window.location.replace("/mis-publicaciones.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
@@ -1437,9 +1443,6 @@ function cargarImgPines(event){
             cropBoxResizable: false,
             toggleDragModeOnDblclick: false
         }
-        
-        
-        
 
         $('#modal-cropper').on('shown.bs.modal', function () {
             var cropper = new Cropper(image,options);
@@ -1448,7 +1451,7 @@ function cargarImgPines(event){
         }).on('hidden.bs.modal', function () {
                 /*cropBoxData = cropper.getCropBoxData();
                 canvasData = cropper.getCanvasData();*/
-                cropper.destroy();
+                /*cropper.destroy();*/
         });
             
             //toggle de aspect ratio
