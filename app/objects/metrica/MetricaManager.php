@@ -40,16 +40,12 @@ class  MetricaManager
 			}
 		}
 
-	    $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
-	    if ($this->validarPublicacion($publicacion) === false){
+	    $carrito_detalle = isset($data["carrito_detalle"]) ? $data["carrito_detalle"] : '';
+	    if ($this->validarCarrito_detalle($carrito_detalle) === false){
 	     return false;
 	    }
-	    $producto = isset($data["producto"]) ? $data["producto"] : '';
-	    if ($this->validarProducto($producto) === false){
-	     return false;
-	    }
-	    $precio = isset($data["precio"]) ? $data["precio"] : '';
-	    if ($this->validarPrecio($precio) === false){
+	    $rol_usuario = isset($data["rol_usuario"]) ? $data["rol_usuario"] : '';
+	    if ($this->validarRol_usuario($rol_usuario) === false){
 	     return false;
 	    }
 	    $comision_porc = isset($data["comision_porc"]) ? $data["comision_porc"] : '';
@@ -60,80 +56,12 @@ class  MetricaManager
 	    if ($this->validarComision($comision) === false){
 	     return false;
 	    }
-	    $carrito_detalle = isset($data["carrito_detalle"]) ? $data["carrito_detalle"] : '';
-	    if ($this->validarCarrito_detalle($carrito_detalle) === false){
-	     return false;
-	    }
-	    $carrito = isset($data["carrito"]) ? $data["carrito"] : '';
-	    if ($this->validarCarrito($carrito) === false){
-	     return false;
-	    }
-	    $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-	    if ($this->validarUsuario($usuario) === false){
-	     return false;
-	    }
-	    $fecha_transaccion = isset($data["fecha_transaccion"]) ? $data["fecha_transaccion"] : '';
-	    if ($this->validarFecha_transaccion($fecha_transaccion) === false){
-	     return false;
-	    }
-	    $objeto_producto = isset($data["objeto_producto"]) ? $data["objeto_producto"] : '';
-	    if ($this->validarObjeto_producto($objeto_producto) === false){
-	     return false;
-	    }
-	    $objeto_publicacion = isset($data["objeto_publicacion"]) ? $data["objeto_publicacion"] : '';
-	    if ($this->validarObjeto_publicacion($objeto_publicacion) === false){
-	     return false;
-	    }
-	    $objeto_carrito = isset($data["objeto_carrito"]) ? $data["objeto_carrito"] : '';
-	    if ($this->validarObjeto_carrito($objeto_carrito) === false){
-	     return false;
-	    }
-	    $objeto_carrito_detalle = isset($data["objeto_carrito_detalle"]) ? $data["objeto_carrito_detalle"] : '';
-	    if ($this->validarObjeto_carrito_detalle($objeto_carrito_detalle) === false){
-	     return false;
-	    }
-	    $objeto_usuario = isset($data["objeto_usuario"]) ? $data["objeto_usuario"] : '';
-	    if ($this->validarObjeto_usuario($objeto_usuario) === false){
-	     return false;
-	    }
-	    $fecha_pago = isset($data["fecha_pago"]) ? $data["fecha_pago"] : '';
-	    if ($this->validarFecha_pago($fecha_pago) === false){
-	     return false;
-	    }
-	    $id_pago = isset($data["id_pago"]) ? $data["id_pago"] : '';
-	    if ($this->validarId_pago($id_pago) === false){
-	     return false;
-	    }
-	    $estado = isset($data["estado"]) ? $data["estado"] : '';
-	    if ($this->validarEstado($estado) === false){
-	     return false;
-	    }
-	    $observacion = isset($data["observacion"]) ? $data["observacion"] : '';
-	    if ($this->validarObservacion($observacion) === false){
+	    $pago_id = isset($data["pago_id"]) ? $data["pago_id"] : '';
+	    if ($this->validarPago_id($pago_id) === false){
 	     return false;
 	    }
 
-        if ($this->metricaDao->existePublicacion($publicacion) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->metricaDao->getMsj());
-            return false;
-        }
-        if ($this->metricaDao->existeProducto($producto) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->metricaDao->getMsj());
-            return false;
-        }
         if ($this->metricaDao->existeCarrito_detalle($carrito_detalle) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->metricaDao->getMsj());
-            return false;
-        }
-        if ($this->metricaDao->existeCarrito($carrito) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->metricaDao->getMsj());
-            return false;
-        }
-        if ($this->metricaDao->existeUsuario($usuario) === false) {
             $this->setStatus("ERROR");
             $this->setMsj($this->metricaDao->getMsj());
             return false;
@@ -252,61 +180,33 @@ class  MetricaManager
 
 	public function getListMetrica()
 	{
-		$ret =  $this->publicacionDao->getListMetrica();
+		$ret =  $this->metricaDao->getListMetrica();
 		return $ret;
 	}
 
 
-                public function getListPublicacion()
-                {
-                    return $this->claseDao->getListPublicacion();
-                }                
-                public function getListProducto()
-                {
-                    return $this->claseDao->getListProducto();
-                }                
                 public function getListCarrito_detalle()
                 {
                     return $this->claseDao->getListCarrito_detalle();
                 }                
-                public function getListCarrito()
-                {
-                    return $this->claseDao->getListCarrito();
-                }                
-                public function getListUsuario()
-                {
-                    return $this->claseDao->getListUsuario();
-                }                
 
         
-            private function validarPublicacion($publicacion)
+            private function validarCarrito_detalle($carrito_detalle)
             {
-                if (!is_numeric($publicacion)){
+                if (!is_numeric($carrito_detalle)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo publicacion es incorrecto.");
+                    $this->setMsj("El campo carrito_detalle es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");
                 $this->setMsj("");
                 return true;
             }        
-            private function validarProducto($producto)
+            private function validarRol_usuario($rol_usuario)
             {
-                if (!is_numeric($producto)){
+                if (! preg_match('/^\w+$/i', $rol_usuario)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo producto es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }                
- 
-            private function validarPrecio($precio)
-            {
-                if (!preg_match('/^\d+(\.\d{1,2})?$/', $precio)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo precio es incorrecto.");
+                    $this->setMsj("El campo rol_usuario es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");
@@ -324,151 +224,23 @@ class  MetricaManager
                 $this->setStatus("OK");
                 $this->setMsj("");
                 return true;
-            }                
- 
+            }        
             private function validarComision($comision)
             {
-                if (!preg_match('/^\d+(\.\d{1,2})?$/', $comision)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo comision es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarCarrito_detalle($carrito_detalle)
-            {
-                if (!is_numeric($carrito_detalle)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo carrito_detalle es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarCarrito($carrito)
-            {
-                if (!is_numeric($carrito)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo carrito es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarUsuario($usuario)
-            {
-                if (!is_numeric($usuario)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo usuario es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarFecha_transaccion($fecha_transaccion)
-            {
                 $this->setStatus("ERROR");
-                $this->setMsj("El campo fecha_transaccion es incorrecto.");
-                return false;
-            }        
-            private function validarObjeto_producto($objeto_producto)
-            {
-                if (! preg_match('/^\w+$/i', $objeto_producto)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo objeto_producto es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarObjeto_publicacion($objeto_publicacion)
-            {
-                if (! preg_match('/^\w+$/i', $objeto_publicacion)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo objeto_publicacion es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarObjeto_carrito($objeto_carrito)
-            {
-                if (! preg_match('/^\w+$/i', $objeto_carrito)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo objeto_carrito es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarObjeto_carrito_detalle($objeto_carrito_detalle)
-            {
-                if (! preg_match('/^\w+$/i', $objeto_carrito_detalle)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo objeto_carrito_detalle es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarObjeto_usuario($objeto_usuario)
-            {
-                if (! preg_match('/^\w+$/i', $objeto_usuario)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo objeto_usuario es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarFecha_pago($fecha_pago)
-            {
-                $this->setStatus("ERROR");
-                $this->setMsj("El campo fecha_pago es incorrecto.");
+                $this->setMsj("El campo comision es incorrecto.");
                 return false;
             }    
 
-private function validarId_pago($id_pago)
+private function validarPago_id($pago_id)
 {
-    if (!preg_match('/^\d+$/', $id_pago)){
+    if (!preg_match('/^\d+$/', $pago_id)){
         $this->setStatus("ERROR");
-        $this->setMsj("El campo id_pago es incorrecto.");
+        $this->setMsj("El campo pago_id es incorrecto.");
         return false;
     }
     $this->setStatus("OK");
     $this->setMsj("");
     return true;
-}        
-            private function validarEstado($estado)
-            {
-                if (! preg_match('/^\w+$/i', $estado)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo estado es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }        
-            private function validarObservacion($observacion)
-            {
-                if (! preg_match('/^\w+$/i', $observacion)){
-                    $this->setStatus("ERROR");
-                    $this->setMsj("El campo observacion es incorrecto.");
-                    return false;
-                }
-                $this->setStatus("OK");
-                $this->setMsj("");
-                return true;
-            }
+}
 }
