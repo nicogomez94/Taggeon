@@ -720,11 +720,11 @@ if(typeof jsonData.productos != "undefined"){
         
                 var listadoProducto = 
                     '<div class="row producto">'+
-                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+foto_src+'"></div></div>'+
-                        '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="precio-producto">AR$ '+precio_prod+'</span></div>'+
-                        '<div class="col-lg-2 col-md-2 col-sm-2 col-2 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-                        '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                        '<div class="col-lg-2 col-md-2 col-sm-2 col-4"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+foto_src+'"></div></div>'+
+                        '<div class="col-lg-3 col-md-3 col-sm-3 col-6 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                        '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="precio-producto">AR$ '+precio_prod+'</span></div>'+
+                        '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="stock-producto">'+stock_prod+'</span></div>'+
+                        '<div class="col-lg-3 col-md-3 col-sm-3 col-4 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
                         '<div class="acciones-producto acciones-producto-'+i+'">'+
                             '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
                             '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
@@ -1910,3 +1910,26 @@ function eliminarNotif(id_notif){
     return false;
 }
     
+function showSearchMobile(){
+    var brand = document.getElementById("brand-container");
+    var items = document.getElementById("items-navbar-container");
+    var search = document.getElementById("search-container");
+    var cancelar = document.getElementById("cancelar-search");
+
+    brand.style.display = "none";
+    items.style.display = "none";
+    search.style.display = "inline-block";
+    cancelar.style.display = "inline-block";
+}
+
+function cancelSearchMobile(){
+    var brand = document.getElementById("brand-container");
+    var items = document.getElementById("items-navbar-container");
+    var search = document.getElementById("search-container");
+    var cancelar = document.getElementById("cancelar-search");
+
+    brand.style.display = "inline-block";
+    items.style.display = "inline-block";
+    search.style.display = "none";
+    cancelar.style.display = "none";
+}

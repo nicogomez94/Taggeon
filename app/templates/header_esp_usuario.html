@@ -40,7 +40,7 @@
 
 
     <nav id="navbar-principal" class="navbar navbar-expand-md fixed-top">
-      <div class="navbar-brand-container">
+      <div id="brand-container" class="navbar-brand-container">
          <a class="navbar-brand" href="/">
             <!-- <i class="fab fa-affiliatetheme logo-brand"></i> -->
             <img src="../img/pp.jpg" class="logo-brand">
@@ -48,15 +48,16 @@
          </a>
       </div>
       <!--BUSCADOR-->
-      <div class="search-container">
+      <div id="search-container" class="search-container">
          <input id="buscador-index-input" class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
          <i class="fas fa-search fa-search-header"></i>
       </div>
+      <div id="cancelar-search" onclick="cancelSearchMobile()">Cancelar</div>
       <!---->
       <div id="items-navbar-container">
          <!-- BUSCADOR RESPONSIVE -->
-         <div class="btn-header">
-            <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
+         <div id="search-responsive" class="btn-header" onclick="showSearchMobile()">
+            <a href="#"><i class="fas fa-search"></i></a>
          </div>
          <!-- SUBIR PUBLIC -->
          <div class="btn-header">
