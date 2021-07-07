@@ -99,6 +99,7 @@ class  CarritoManager
 		}
 
 		$data["id_publicacion"] = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
+		$data["id_vendedor"] = isset($dataProducto["usuario_alta"]) ? $data["usuario_alta"] : '';
 
 		if (!is_numeric($data["id_publicacion"])){
 			$this->setStatus("ERROR");
@@ -138,6 +139,16 @@ class  CarritoManager
 			$this->setMsj("No se puede calcular el total del producto.");
 			return false;
 		}
+
+
+                $data["comision_porcentaje_tienda"] = 2;
+		$data["comision_porcentaje_taggeador"] = 50;
+
+                $data["total_tienda"]     = ($data["total"] * $data["comision_porcentaje_tienda"])/100;
+
+                $data["total_vendedor"] = $data["total"] - $data["total_tienda"];
+
+                $data["total_taggeador"] =  ($data["total_tienda"] * $data["comision_porcentaje_taggeador"])/100;
 
 		if ($this->carritoDao->eliminarDetalle($data) === false) {
 			$this->setStatus("ERROR");
