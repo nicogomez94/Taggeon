@@ -7,9 +7,9 @@
    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
          <div class="modal-header modal-header-public">
-            <div class="text-left"><i class="fas fa-chevron-circle-left"></i></div>
+            <div></div>
             <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
-            <div class="text-right"><i class="fas fa-times"></i></div>
+            <div onclick="$('#modal-cropper').modal('hide')" class="text-right"><i class="fas fa-times"></i></div>
          </div>
          <div class="modal-body">
             <div id="output-container">
@@ -42,14 +42,14 @@
                </div>
                <div class="contenedor-content">
                   <div class="click-protector-cont"></div>
-                  <div id="map">
+                  <!-- <div id="map">
                      <img id="img-pines-amapear" src="">
-                  </div>
+                  </div> -->
                </div>
                <!--  -->
                <div class="toggle-aspect-ratio">
                   <!-- <span class="btn btn-warning" data-value="NaN">Original</span> -->
-                  <div class="text-center">Elegir Tama&ntilde;o</div>
+                  <div class="text-center">Elija un Tama&ntilde;o:</div>
                   <div>
                      <label for="f-option" class="l-radio" data-aspect="1.77777">
                         <input type="radio" id="f-option" name="aspect-ratio" tabindex="1" >
@@ -68,9 +68,9 @@
                <div class="anadir-productos">
                   <hr>
                   <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
-                  <a href="#" id="cropear-btn" class="btn btn-warning">Terminar Ajuste</a>
+                  <a href="#" id="cropear-btn" class="btn btn-warning disabled">Terminar Ajuste</a>
                   <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
-                  <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a>
+                  <!-- <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
                </div>
             </div>
          </div>
@@ -86,9 +86,9 @@
    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
          <div class="modal-header modal-header-public">
-            <div class="text-left"><i class="fas fa-chevron-circle-left"></i></div>
+            <div class="text-left" data-toggle="modal" data-target="#modal-cropper" onclick="$('#modal-cropper').modal('hide');"><i class="fas fa-chevron-circle-left"></i></div>
             <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
-            <div class="text-right"><i class="fas fa-times"></i></div>
+            <div class="text-right" onclick="$('#modal-cropper').modal('hide')"><i class="fas fa-times"></i></div>
          </div>
          <div class="modal-body text-left">
                <input type="hidden" name="accion" value="alta">
@@ -219,12 +219,12 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <script src="js/func.js?time=010721-2046"></script>
+   <script src="js/func.js?time=070721-0226"></script>
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <!--  -->
    <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
    
-   <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=010721-2046"></script>
+   <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=070721-0226"></script>
    <script src="../../plugins/cropperjs-master/dist/cropper.js"></script>
       <script>
          $(document).ready(function(){
@@ -261,14 +261,6 @@
          r = el.getBoundingClientRect();
          //console.log(r)
          //console.log(typeof !!r)
-
-         /*NO MEZCLAR JQEURY Y JS*/
-         /*NO MEZCLAR JQEURY Y JS*/
-         /*NO MEZCLAR JQEURY Y JS*/
-         /*NO MEZCLAR JQEURY Y JS*/
-         /*NO MEZCLAR JQEURY Y JS*/
-         /*NO MEZCLAR JQEURY Y JS*/
-         /*NO MEZCLAR JQEURY Y JS*/
 
          return ( !!r
             && r.bottom >= 0

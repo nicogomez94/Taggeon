@@ -123,8 +123,14 @@ body{
     box-shadow: 0 0 3px 2px #dddddd;
 }
 .ver-perfil{
-    padding: 11px !important;
-    border-radius: 0px !important;
+    padding: 11px;
+    border-radius: 0px;
+    display: inline-block;
+    
+}
+#sin-log-cont{
+    width: 100%;
+    text-align: right;
 }
 #flotante-subir:hover{ 
     background-color: rgb(216, 216, 216);
@@ -2162,7 +2168,7 @@ button:disabled{
     width: 100%;
 }
 .anadir-productos{
-    z-index: 999;/*igual que map*/
+    z-index: 998;/*igual que map*/
     position: relative;
 }
 .overlay-prod{
@@ -2182,7 +2188,11 @@ button:disabled{
     background-repeat: no-repeat;
     background-size: contain;*/
     text-align: center;
-    /* pointer-events: none; */
+    margin: auto;
+    pointer-events: none;
+}
+.cropper-container{
+    pointer-events: all !important;
 }
 .pin{
     cursor: pointer !important;
@@ -2763,6 +2773,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     .btn-header{
         margin-left: 15px;
     }
+    #sin-log-cont{
+        width: 50%;
+    }
     /*para que siempre queden 2 cols*/
     .item{
         width: 45vw !important;
@@ -2784,9 +2797,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     }
     #dropdown-user-menu-responsive{
         display: block !important;
-    }
-    .ver-perfil{
-        display: none;
     }
     #navbar-bottom-responsive{
         display: flex;
@@ -2861,6 +2871,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 
 @media screen and (max-width: 576px) {
+    #sin-log-cont{
+        width: unset !important;
+    }
     .titulo-col{
         padding: 5px 10vw 5px 10vw !important;
     }

@@ -11,7 +11,7 @@
 
 		var defaults = {
 		fixedHeight: 'auto',
-		fixedWidth: '100%',//antes 100%
+		fixedWidth: 'fit-content',//antes 100%
 		dropPinPath: '/js/dropPin/',
 		pin: 'dropPin/defaultpin@2x.png',
 		backgroundImage: test,
@@ -85,7 +85,7 @@
 				var x = ev.pageX - offset.left;
 				var y = ev.pageY - offset.top;
 
-				//parseado por mi par que x no hinchee
+				//parseado por mi para que x no hinchee
 				var xval = parseInt(x - options.xoffset);
 				var yval = parseInt(y - options.yoffset);
 
@@ -93,20 +93,16 @@
 				xval = parseInt(xval/$("#map").width() * 100);
 				yval = parseInt(yval/$("#map").height() * 100);
 
-				// var imgC = $('<img class="pin '+yval+"-"+xval+'">');
 				//para que quede bien centrado el popup-prod
-				var yval_pop = Math.round(y)// + 17;
-				var xval_pop = Math.round(x)// + 17;
-				//console.log(typeof Math.round(y))
-				//console.log(y)
+				//se deja en pixels porque sino se va proporcionalmente al carajo
+				var yval_pop = Math.round(y) + 17;//hardhard esta ya definido en el csss
+				var xval_pop = Math.round(x) + 17;//hard esta ya definido en el csss
 
 				// var imgC = $('<img data-close="'+yval_pop+'-'+xval_pop+'" class="pin '+yval+"-"+xval+'">');
 				var imgC = $('<img data-close="'+yval+'-'+xval+'" class="pin '+yval+"-"+xval+'">');
 				imgC.css('top', yval+'%');
 				imgC.css('left', xval+'%');
 				imgC.css('z-index', i);
-
-				// console.log(left_ppc)
 
 				imgC.attr('src',  options.pin);
 
@@ -116,8 +112,7 @@
 				$(options.hiddenYid).val(yval);
 				
 				// add hidden fields - can use these to save to database
-				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'" data-close="'+yval_pop+'-'+xval_pop+'">');
-				// var hiddenCtl= $('<input type="hidden" name="hiddenpin-'+xval+yval+'" class="pin">');
+				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'" data-close="'+yval+'-'+xval+'">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
 		        hiddenCtl.val(yval+"-"+xval);
@@ -128,11 +123,10 @@
 				var popup_cont = $("#popup-prod-cont");
 				var popup_prod = $(".popup-producto");
 
-				
-
 				popup_overlay.show(0,function(){
 					
-					popup_cont.attr("data-close",yval_pop+'-'+xval_pop)
+					//se deja en pixels porque sino se va proporcionalmente al carajo
+					popup_cont.attr("data-close",yval+'-'+xval)
 					popup_cont.css({
 						'top': yval_pop+'px',
 						'left': xval_pop+'px'
@@ -142,29 +136,21 @@
 						'left': xval+'%'
 					});
 
-					/***/
 					//si se sale el popup del viewport invierto los css
 					var salirPopup = document.getElementById("salir-popup");
 
-					/*NO MEZCLARRARRAR*/
-					/*NO MEZCLARRARRAR*/
-					/*NO MEZCLARRARRAR*/
-					/*NO MEZCLARRARRAR*/
-					/*NO MEZCLARRARRAR*/
-
 					if(!inViewport(salirPopup)){
-						//console.log(inViewport(salirPopup))
 						
-						var sp = $("#salir-popup");
-						var sp_left = sp.css("left");
-						sp.css("right",sp_left);
-						sp.css("left","unset");
+						var sp = document.querySelector("#salir-popup");
+						var sp_left = sp.style.display ="left";
+						sp.style.right = sp_left;
+						sp.style.left = "unset";
 
-						var ppc = $("#popup-prod-cont");
-						var ppc_left = ppc.css("left").split("px")[0];
+						var ppc = document.querySelector("#popup-prod-cont");
+						var ppc_left = ppc.style.left.split("px")[0];
 						ppc_left_posta = parseInt(ppc_left) - 300;
-						ppc.css("right",ppc_left_posta+"px");
-						ppc.css("left","unset");
+						ppc.style.right = ppc_left_posta+"px";
+						ppc.style.left = "unset";
 						
 					}
 					
@@ -181,25 +167,11 @@
 				var id_producto = $(this).attr('class').split(' ')[1];
 				var box_y_prod = $(this).parent().parent().parent().parent().parent().css("top").split('%')[0];
 				var box_x_prod = $(this).parent().parent().parent().parent().parent().css("left").split('%')[0];
-
-
-				/*para que quede centrado*/
-				//var box_y_prod_posta = box_y_prod - 20;
-				//var box_x_prod_posta = box_x_prod - 20;
-
-				
 				var pin_a_namear = $("#map").find("."+box_y_prod+"-"+box_x_prod);//1 porque hay 2
-				pin_a_namear.attr("name",id_producto);
-				
-				//console.log(box_y_prod)
-				//console.log(box_x_prod)
-				//console.log(pin_a_namear)
-				//console.log("box_y_prod_posta"+box_y_prod_posta)
-				//console.log("box_x_prod_posta"+box_x_prod_posta)
-				
 				var click_protector = '<div class="click-protector '+box_y_prod+"-"+box_x_prod+'">'+
-											'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
-
+										'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
+				
+				pin_a_namear.attr("name",id_producto);
 				$(".click-protector-cont").append(click_protector);
 				$("."+box_y_prod+"-"+box_x_prod).css("top",box_y_prod+"%");
 				$("."+box_y_prod+"-"+box_x_prod).css("left",box_x_prod+"%");
@@ -210,10 +182,10 @@
 			$("#popup-prod-cont").on("click","#salir-popup", function(){
 				//hago esto porque sino con css() me toma con pixels
 				var data_close = $(this).parent().attr("data-close");
-				var box_y = data_close.split("-")[0]//.match(/[0-9]+/g)[0];
-				var box_x = data_close.split("-")[1]//.match(/[0-9]+/g)[0];
-
+				var box_y = data_close.split("-")[0]
+				var box_x = data_close.split("-")[1]
 				var pin_a_borrar = $("#map").find("[data-close='"+box_y+"-"+box_x+"']");
+
 				pin_a_borrar.remove();
 				$(".popup-prod-overlay").hide();
 
@@ -225,16 +197,12 @@
 			//para borrar el single pin
 			$(".click-protector-cont").on("click",".salir-popup-single", function(){
 				var class_parent = $(this).parent().attr("class").split(" ")[1];
-				//console.log(class_parent)
-				//var box_xc = $(this).parent().css("left").split('%')[0]
 				var pin_a_borrar = $("#map").find("[data-close='"+class_parent+"']");
-				console.log(typeof pin_a_borrar)
+
 				pin_a_borrar.remove();
 				$(this).parent().remove();
 
 			});
-			
-
 		},
 		showPin: function(options) {
 

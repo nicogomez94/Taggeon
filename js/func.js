@@ -486,7 +486,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
 
         // var src_output = $("#output-imgpins").attr("src");
       /*  $("#imagen-productos-pin").attr("src",src_output);*/
-        $("#map").css("pointer-events","all");
+        //$("#map").css("pointer-events","all");
         $("#terminar-productos-btn").show();
         $("#limpiar-productos-btn").show();
         $("#anadir-productos-btn").hide();
@@ -502,17 +502,6 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
 
     });
 
-    /*cerrar modo edicion de pines*/
-    $("#terminar-productos-btn").click(function(){
-        $(".overlay-prod").hide();
-        $("#limpiar-productos-btn").hide();
-        $("#terminar-productos-btn").hide();
-        $("#anadir-productos-btn").show();
-        $("#map").css("pointer-events","none");
-    });
-
-    /*SHOW PINES*/
-    /**/
 
     /*funciones para que se cierre el otro modal atras del otro*/
     $("#recuperaPass").on('show.bs.modal', function (e) {
@@ -527,9 +516,6 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
         $("#exampleModalCenter2").modal("hide");
     });
 
-    
-
-/*FIN NICO*//*NICOOOO*//*NICOOOO*/
 
 
 /*FORMULARIO SUBIR PRODUCTO*/
@@ -1159,9 +1145,13 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
 });
 
 $("#cropear-btn").click(function(){
+
+
     $(".anadir-productos-btn").removeClass("disabled");
     $(this).hide();
     $(".toggle-aspect-ratio").hide();
+
+
 });
 
 ///submit comentario_public
@@ -1406,13 +1396,18 @@ function cargarImgPines(event){
     var reader = new FileReader();
     reader.onload = function(){
         // var output = document.getElementById('output-imgpins');
+        var map = $('<div id="map">');
+        var img_pin = $('<img id="img-pines-amapear">');
+        //lo creo en ves de tocarlo
+        $(".contenedor-content").append(map);
+        map.append(img_pin)
         // output.src = reader.result;
         //$("#img-subir-pins").hide();
         // $("#output-imgpins").show();
         $("#img-pines-amapear").show();
         // $("#map").css("background-image","url('"+reader.result+"')");
         $("#img-pines-amapear").attr("src",reader.result);
-        $("#map").css("width","100%");
+        $("#map").css("width","fit-content");
         // $("#map").css("height","100%");
         $("#eliminar-img-flotante").show();
         $("#anadir-productos-btn").show();
@@ -1421,11 +1416,13 @@ function cargarImgPines(event){
         //mostrar modal
         $("#modal-cropper").modal('show');
         
+
         //cropper
         var button = document.getElementById('cropear-btn');
         var result = document.getElementById('result');
         var map = document.getElementById('map');
         var image = document.querySelector('#img-pines-amapear');
+        var anadir = document.querySelector("#anadir-productos-btn");
 
         var cropper;
         var options = {
@@ -1444,34 +1441,50 @@ function cargarImgPines(event){
             toggleDragModeOnDblclick: false
         }
 
-        $('#modal-cropper').on('shown.bs.modal', function () {
-            var cropper = new Cropper(image,options);
+        $('#modal-cropper').on('shown.bs.modal', function (event) {
+            var desdeBack = event.relatedTarget;
 
-            //si cierro el modal
+            if(!desdeBack){
+                cropper = new Cropper(image,options);
+            }
+
         }).on('hidden.bs.modal', function () {
-                /*cropBoxData = cropper.getCropBoxData();
-                canvasData = cropper.getCanvasData();*/
-                /*cropper.destroy();*/
+            
+            //borro todo dentro de map, excepto la imagen y lo dejo en default
+            //$("#map").find(".pin").remove();
+           // $("#map").css("pointer-events","none");
+            $("#map").remove();
+            $("#img-pines-amapear").attr("src","");
+            $(".click-protector-cont").html("");
+
+            if(image.className == 'cropper-hidden'){
+                image.cropper.destroy();
+            }
+                
         });
             
+
             //toggle de aspect ratio
             $(document).on('click', '.l-radio', function () {
                 options.aspectRatio = this.dataset.aspect; 
                 //destruyo el viejo y creo uno nuevo
                 image.cropper.destroy();
-                var newCropper = new Cropper(image,options);
+                //console.log(image.cropper)
+                var cropper = new Cropper(image,options);
+                
+                button.classList.remove("disabled");
                 
                 //e.stopPropagation();
                 button.onclick = function () {
                     result.innerHTML = '';
-                    result.appendChild(newCropper.getCroppedCanvas(
+                    result.appendChild(cropper.getCroppedCanvas(
                         {
                             fillColor: "#aaa",
                             maxHeight: 4096,
                             maxWidth: 4096
                         }
                     ));
-                    newCropper.destroy()
+                    cropper.destroy()
     
                     var canvas = document.querySelector("#result canvas");
                     //var id_canvas = document.getElementById("result")
@@ -1479,11 +1492,13 @@ function cargarImgPines(event){
                     image.src = toImg;
                     canvas.style.display = "none";
 
-                    //actuivo boton para taguear
-                    document.querySelector("#anadir-productos-btn").classList.remove("disabled");
+                    //activo botones para taguear
+                    anadir.classList.remove("disabled");
                     
                 };
             });
+
+
 
             
             
