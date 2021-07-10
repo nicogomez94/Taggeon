@@ -488,8 +488,9 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
       /*  $("#imagen-productos-pin").attr("src",src_output);*/
         //$("#map").css("pointer-events","all");
         $("#terminar-productos-btn").show();
-        $("#limpiar-productos-btn").show();
+        //$("#limpiar-productos-btn").show();
         $("#anadir-productos-btn").hide();
+        $("#map").css("pointer-events","all");
         
         //$(".overlay-prod").show(); //TODO
         $("#eliminar-img-flotante").hide();
@@ -501,6 +502,12 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
         });
 
     });
+
+    $("#terminar-productos-btn").click(function(){
+        $("#map").css("pointer-events","none");
+        $("#terminar-productos-btn").hide();
+        $("#anadir-productos-btn").show();
+    })
 
 
     /*funciones para que se cierre el otro modal atras del otro*/
@@ -1146,12 +1153,8 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
 
 $("#cropear-btn").click(function(){
 
-
-    $(".anadir-productos-btn").removeClass("disabled");
     $(this).hide();
     $(".toggle-aspect-ratio").hide();
-
-
 });
 
 ///submit comentario_public
@@ -1401,21 +1404,16 @@ function cargarImgPines(event){
         //lo creo en ves de tocarlo
         $(".contenedor-content").append(map);
         map.append(img_pin)
-        // output.src = reader.result;
-        //$("#img-subir-pins").hide();
-        // $("#output-imgpins").show();
+        
         $("#img-pines-amapear").show();
-        // $("#map").css("background-image","url('"+reader.result+"')");
         $("#img-pines-amapear").attr("src",reader.result);
         $("#map").css("width","fit-content");
-        // $("#map").css("height","100%");
-        $("#eliminar-img-flotante").show();
         $("#anadir-productos-btn").show();
         $("#anadir-productos-btn").addClass("disabled");
         $("#cropear-btn").show();
         //mostrar modal
         $("#modal-cropper").modal('show');
-        
+        $(".toggle-aspect-ratio").show();
 
         //cropper
         var button = document.getElementById('cropear-btn');
@@ -1423,8 +1421,6 @@ function cargarImgPines(event){
         var map = document.getElementById('map');
         var image = document.querySelector('#img-pines-amapear');
         var anadir = document.querySelector("#anadir-productos-btn");
-
-        var cropper;
         var options = {
             dragMode: 'move',
             aspectRatio: 1 / 1,
@@ -1442,52 +1438,91 @@ function cargarImgPines(event){
         }
 
         $('#modal-cropper').on('shown.bs.modal', function (event) {
+            event.stopPropagation();
             var desdeBack = event.relatedTarget;
 
             if(!desdeBack){
-                cropper = new Cropper(image,options);
+                // QUE ES LO QUE TIENE DISTINTO A CUANDO ENTRA POR ACA
+                var cropper = new Cropper(image,options);
             }
 
-        }).on('hidden.bs.modal', function () {
+        });//*.on('hide.bs.modal', function (event) {
+            //event.stopPropagation();
+            var target = event.target.id;
+            //reseteo input file
+            $("#imagen-pins").val("");
+
+           /* var activeElement = document.activeElement;
+            console.log(activeElement);
             
-            //borro todo dentro de map, excepto la imagen y lo dejo en default
-            //$("#map").find(".pin").remove();
-           // $("#map").css("pointer-events","none");
-            $("#map").remove();
-            $("#img-pines-amapear").attr("src","");
-            $(".click-protector-cont").html("");
+            QUE ES LO QUE TIENE DISTINTO A CUANDO ENTRA POR ACA
 
-            if(image.className == 'cropper-hidden'){
-                image.cropper.destroy();
-            }
+            
                 
+        });*/
+
+        $('.cerrarModal').on('click', function(event) {
+            var disparador = $(event.target).attr("id");
+          
+            $(this).closest('.modal').one('hidden.bs.modal', function(event) {
+
+                //event.stopPropagation();
+                var target = event.target.id;
+                //reseteo input file
+                $("#imagen-pins").val("");
+          
+                $("#map").remove();
+                $("#img-pines-amapear").attr("src","");
+                $(".click-protector-cont").html("");
+                $("#terminar-productos-btn").hide();
+
+                if(image.className == 'cropper-hidden'){
+                    image.cropper.destroy();
+                }
+
+            });
         });
+        
+        /*$('#modal-cropper').on('hide.bs.modal', function(event) {
+            var $activeElement = $(document.activeElement);
             
+            if ($activeElement.is('[data-toggle], [data-dismiss]')) {
+                if (event.type === 'hide') {
+                    // Do something with the button that closed the modal
+                    console.log('The button that closed the modal is: ', $activeElement);
+                
+                }else if (event.type === 'show') {
+                    // Do something with the button that opened the modal
+                    console.log('The button that opened the modal is: ', $activeElement);
+                }
+            }
+        });*/
 
             //toggle de aspect ratio
-            $(document).on('click', '.l-radio', function () {
+            $("#modal-cropper").on('click', '.l-radio', function (e) {
+                e.stopPropagation();
                 options.aspectRatio = this.dataset.aspect; 
+
                 //destruyo el viejo y creo uno nuevo
                 image.cropper.destroy();
-                //console.log(image.cropper)
-                var cropper = new Cropper(image,options);
-                
+                var cropper2 = new Cropper(image,options);
+
                 button.classList.remove("disabled");
                 
-                //e.stopPropagation();
-                button.onclick = function () {
+                button.onclick = function (e) {
+                    e.stopPropagation();
+
                     result.innerHTML = '';
-                    result.appendChild(cropper.getCroppedCanvas(
+                    result.appendChild(cropper2.getCroppedCanvas(
                         {
                             fillColor: "#aaa",
                             maxHeight: 4096,
                             maxWidth: 4096
                         }
                     ));
-                    cropper.destroy()
-    
+                    image.cropper.destroy()
+
                     var canvas = document.querySelector("#result canvas");
-                    //var id_canvas = document.getElementById("result")
                     var toImg = canvas.toDataURL();
                     image.src = toImg;
                     canvas.style.display = "none";
@@ -1497,16 +1532,11 @@ function cargarImgPines(event){
                     
                 };
             });
-
-
-
-            
-            
-        };
-        reader.readAsDataURL(event.target.files[0]);
-
         
-            
+
+
+    };
+    reader.readAsDataURL(event.target.files[0]);
             
 }
 
@@ -1950,4 +1980,23 @@ function cancelSearchMobile(){
     items.style.display = "inline-block";
     search.style.display = "none";
     cancelar.style.display = "none";
+}
+function siguiente(event){
+
+    event.stopPropagation();
+    var target = event.target.id;
+    console.log(event)
+    //reseteo input file
+    $("#imagen-pins").val("");
+    
+    if(target != "modal-cropper"){                
+        $("#map").remove();
+        $("#img-pines-amapear").attr("src","");
+        $(".click-protector-cont").html("");
+        $("#terminar-productos-btn").hide();
+
+    }else if(image.className == 'cropper-hidden'){
+        image.cropper.destroy();
+    }
+
 }
