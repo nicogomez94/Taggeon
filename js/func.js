@@ -2000,3 +2000,51 @@ function siguiente(event){
     }
 
 }
+
+function inViewport(el){
+    //var pe = document.getElementsByClassName("test-pop");
+    var r, html;
+    if ( !el || 1 !== el.nodeType ) { return false; }
+    html = document.documentElement;
+    r = el.getBoundingClientRect();
+    //console.log(r)
+    //console.log(typeof !!r)
+
+    return ( !!r
+       && r.bottom >= 0
+       && r.right >= 0
+       && r.top <= html.clientHeight
+       && r.left <= html.clientWidth
+    );
+}
+
+function appearSelect(){
+    
+    //primero limpio el container
+    $("#escena-param-container").empty();
+
+    var jesc = jsonTestSelect.escenas || 0;
+    var sizeEsc = jesc.length || 0;
+
+    for(var i=0; i<sizeEsc; i++){
+        var nombre_esc = jsonTestSelect.escenas[i].nombre || 0;
+        var id_esc = jsonTestSelect.escenas[i].id || 0;
+        //
+        var param = jsonTestSelect.escenas[i].param || [];
+        var paramArray = param.split(",");
+        var option_selected = $('#publicacion_categoria option').filter(':selected').text();
+
+        if(nombre_esc == option_selected){
+            for(var y=0; y<paramArray.length; y++) {
+                var element = paramArray[y];
+                console.log(element)
+                var input_estilo = '<label for="'+element+'_public">'+element+'</label><input type="text" id="'+element+'_public" name="'+element+'_public">';
+                $("#escena-param-container").append(input_estilo)
+            }
+        }
+        
+    }
+
+    
+
+}

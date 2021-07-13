@@ -48,8 +48,9 @@
          </a>
       </div>
       <!--BUSCADOR-->
-      <div id="search-container" class="search-container">
-         <input id="buscador-index-input" class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
+      <div id="search-container" class="search-container autocomplete">
+         <input id="myInput" autocomplete="off"  class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
+         <!-- <input id="myInput" id="buscador-index-input" autocomplete="off"  class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar"> -->
          <i class="fas fa-search fa-search-header"></i>
       </div>
       <div id="cancelar-search" onclick="cancelSearchMobile()">Cancelar</div>
