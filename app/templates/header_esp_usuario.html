@@ -28,7 +28,15 @@
    <meta name="msapplication-TileColor" content="#ffffff">
    <meta name="msapplication-TileImage" content="../img/ms-icon-144x144.png">
    <meta name="theme-color" content="#ffffff">
+   <script>
+      $(document).ready(function(){
+         //$("#modalFirstLogin").modal("show");
 
+         $(".interes").click(function(){
+            $(this).toggleClass("selected");
+         })
+      })
+   </script>
 </head>
 <body>
 <!--
@@ -212,6 +220,61 @@
 							</div>
 							<p class="small-text-form">Al hacer clic en "Registrarte", aceptas nuestras Condiciones, la Pol&iacute;tica de datos y la Pol&iacute;tica de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.</p>
 						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+   </div>
+   
+   <!-- Modal INTERESES/PRIEMRA VEZ -->
+	<div class="modal fade" id="modalFirstLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
+				<div class="modal-body text-center">
+					<h1>Te damos la bienvenida a Taggeon!</h1>
+               <hr>
+               <h3>Contanos cuales son tus intereses:</h3>
+                  <div class="interes_container">
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/118633151_614588322578999_7377311366937586649_n.jpg" alt="">
+                        <div class="interes_title">Moda</div>
+                     </div>
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/arquitectura-que-es.jpg" alt="">
+                        <div class="interes_title">Joyeria</div>
+                     </div>
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt="">
+                        <div class="interes_title">Arquitectura</div>
+                     </div>
+
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/16047728589908.jpg" alt="">
+                        <div class="interes_title">Deportes</div>
+                     </div>
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/gaming.jpg" alt="">
+                        <div class="interes_title">Arquitectura</div>
+                     </div>
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/furniposta.jpg" alt="">
+                        <div class="interes_title">Diseño</div>
+                     </div>
+
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/118633151_614588322578999_7377311366937586649_n.jpg" alt="">
+                        <div class="interes_title">Moda</div>
+                     </div>
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/arquitectura-que-es.jpg" alt="">
+                        <div class="interes_title">Joyeria</div>
+                     </div>
+                     <div class="interes">
+                        <img class="interes_img" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt="">
+                        <div class="interes_title">Arquitectura</div>
+                     </div>
+                  </div>
 					</div>
 				</div>
 			</div>

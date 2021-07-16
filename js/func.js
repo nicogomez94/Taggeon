@@ -2042,9 +2042,6 @@ function appearSelect(){
                 $("#escena-param-container").append(input_estilo)
             }
         }
-        
     }
-
     
-
 }
