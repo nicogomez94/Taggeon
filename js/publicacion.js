@@ -27,13 +27,8 @@ $(document).ready(function(){
             var seguidos = jsonData.seguidos || [];
             var idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
             var idPublicadorSeguido = idPublicadorSearch.idUsuario;
-            var comentarios_obj = jsonData.publicaciones[i].comentarios || []
-            /*var seguir = jsonData.publicaciones[i].favorito || 0;
-            if (seguir==null || seguir == 0) {
-               seg_accion="alta"
-            }else{
-               seg_accion="eliminar";
-            }*/
+            var comentarios_obj = jsonData.publicaciones[i].comentarios || []      
+
 
             if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat //si viene por mis-public lo igualo asi no putea
 
@@ -200,22 +195,20 @@ $(document).ready(function(){
                $(".social-public-"+id_public).prepend(fav_html);
             }
             /**/
-
-            //for(var y=0; y<seguidos.length; y++){
                
 
-               if(idPublicadorSeguido==id_publicador) {
-                  seg_accion="eliminar";
-                  var seg_html = '<span><i class="fas fa-user-plus seg-eliminar" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></span>'
-                  $(".social-public-"+id_public).append(seg_html);
-               }else{
-                  seg_accion="alta";
-                  var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
-                  $(".social-public-"+id_public).append(seg_html);
-               }
+            if(idPublicadorSeguido==id_publicador) {
+               seg_accion="eliminar";
+               var seg_html = '<span><i class="fas fa-user-plus seg-eliminar" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></span>'
+               $(".social-public-"+id_public).append(seg_html);
+            }else{
+               seg_accion="alta";
+               var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></i></span>'
+               $(".social-public-"+id_public).append(seg_html);
+            }
             
             
-            //productos en esta public
+            //productos
             var splide = new Splide( '.splide-prod-tag-'+i, {
                perPage: 6,
                rewind : true,
@@ -261,24 +254,27 @@ $(document).ready(function(){
                      var foto_prod = jsonData.productos[index].foto;
                      var nombre_completo = jsonData.nombre+""+jsonData.apellido;
                      var foto_src_prod = '/productos_img/'+foto_prod+'.png';
+                     //var modParam = "modal-producto-rel-"+i;
                      //var marca_filtro = allprod.find(o => o.marca === "Gucci");
                      //console.log(marca_filtro)
 
-                     traerModalProducto(id_prod,id_public,foto_src_prod,id_prod_json,marca_prod,color_prod,descr_prod,nombre_prod,nombre_completo,precio_prod,i)
-                     buscarProdRel(arr2,marca_prod,'marca',i,splide);
+                     var objParamModal = {
+                        id_prod_p : id_prod,
+                        id_public_p : id_public,
+                        foto_src_prod_p : foto_src_prod,
+                        id_prod_json_p : id_prod_json,
+                        marca_prod_p : marca_prod,
+                        color_prod_p : color_prod, 
+                        descr_prod_p : descr_prod,
+                        nombre_prod_p : nombre_prod,
+                        nombre_completo_p : nombre_completo,
+                        precio_prod_p : precio_prod,
+                        i_p : i
+                     }
 
-                     /*for (var i=0; i<arr2.length; i++) {
-                        if (arr2[i]['marca'] === marca_prod) {
-                           //console.log(array[i]);
-                           var foto_prod_rel = arr2[i].foto;
-                           var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
-                           var html_related = '<li class="splide__slide splide__slide__img">'+
-                           '<img data-toggle="modal" data-target="" src="'+foto_src_prod_rel+'"></li>';
-                  
-                           $(".splide__list__"+i).append(html_related);
-                           //splide.add(html_related);
-                        }
-                     }*/
+
+                     traerModalProducto(objParamModal)
+                     //buscarProdRel(arr2,marca_prod,'marca',i,splide);
                      
                   }
                 
@@ -312,13 +308,6 @@ $(document).ready(function(){
           
             
             }//fin for prdo
-            
-
-            /*new Splide( '.splide-prod-'+i, {
-                perPage: 6,
-                rewind : true,
-                pagination: false
-            } ).mount();*/
         }
         }//fin for principal
 
@@ -333,7 +322,6 @@ $(document).ready(function(){
    $('html,body').animate({
       scrollTop: $("#ancla-desde-home-"+WinLocSplit).offset().top - 80
    }, 0);
-   
    
 
 
@@ -391,17 +379,18 @@ function showRelated(){
 
 }*/
 
-function traerModalProducto(id_prod,id_public,foto_src_prod,id_prod_json,marca_prod,color_prod,descr_prod,nombre_prod,nombre_completo,precio_prod,i){
+function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_p,marca_prod_p,color_prod_p,descr_prod_p,
+   nombre_prod_p,nombre_completo_p,precio_prod_p,i_p}){
 
    var modal_producto_html =  
-      '<div class="modal fade" id="modal-producto-'+id_prod+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
+      '<div class="modal fade" id="modal-producto-'+id_prod_p+'" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">'+
       '<div class="modal-dialog modal-dialog-centered modal-lg" role="document">'+
       '<div class="modal-content">'+
       '<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->'+
       '<div class="modal-body">'+
       '<div class="row">'+
       '<div class="col-lg-7">'+
-         '<div class="img-modal-prod"><img style="width: 100%;" src="'+foto_src_prod+'" alt="foto_src_prod"></div>'+
+         '<div class="img-modal-prod"><img style="width: 100%;" src="'+foto_src_prod_p+'" alt="foto_src_prod"></div>'+
       '<hr>'+
       '<div>'+
          '<h5 style="text-align:left">Ficha T&eacute;cnica</h5>'+
@@ -413,15 +402,15 @@ function traerModalProducto(id_prod,id_public,foto_src_prod,id_prod_json,marca_p
          '<tbody>'+
          '<tr>'+
             '<td class="tg-9f3l">ID Producto</td>'+
-            '<td class="tg-wo29">'+id_prod_json+'</td>'+
+            '<td class="tg-wo29">'+id_prod_json_p+'</td>'+
             '</tr>'+
             '<tr>'+
             '<td class="tg-9f3l">Marca</td>'+
-            '<td class="tg-wo29">'+marca_prod+'</td>'+
+            '<td class="tg-wo29">'+marca_prod_p+'</td>'+
             '</tr>'+
             '<tr>'+
             '<td class="tg-9f3l">Color</td>'+
-            '<td class="tg-wo29">'+color_prod+'</td>'+
+            '<td class="tg-wo29">'+color_prod_p+'</td>'+
             '</tr>'+
             '<tr>'+
             '<td class="tg-9f3l">Categoria</td>'+
@@ -436,12 +425,12 @@ function traerModalProducto(id_prod,id_public,foto_src_prod,id_prod_json,marca_p
       '</div></div>'+
       '<div class="col-lg-5 col-datos-producto">'+
       '<div>'+
-         '<h2>'+nombre_prod+'</h2>'+
-         '<p style="font-size: 0.8em; color: grey; font-style: italic">Por: '+nombre_completo+'</p>'+
+         '<h2>'+nombre_prod_p+'</h2>'+
+         '<p style="font-size: 0.8em; color: grey; font-style: italic">Por: '+nombre_completo_p+'</p>'+
       '</div>'+
       '<hr>'+
       '<div>'+
-      '<div class="precio-producto-modal"><span data-precio="'+precio_prod+'">AR$ '+precio_prod+'</span></div>'+
+      '<div class="precio-producto-modal"><span data-precio="'+precio_prod_p+'">AR$ '+precio_prod_p+'</span></div>'+
       '<div class="shipment-modal-producto">'+
       '<i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles'+//hardcodeado
       '</div>'+
@@ -456,28 +445,28 @@ function traerModalProducto(id_prod,id_public,foto_src_prod,id_prod_json,marca_p
                   '<option value="4">4</option>'+
                   '<option value="5">5</option>'+
                '</select>'+
-               '<input type="hidden" class="id_prod_carrito" name="id" value="'+id_prod_json+'">'+
+               '<input type="hidden" class="id_prod_carrito" name="id" value="'+id_prod_json_p+'">'+
          '</span>&nbsp;'+
-         '<span><button class="btn btn-warning btn-carrito" data-idpublic="'+id_public+'" data-idprod="'+id_prod_json+'">Añadir a Carrito</button></span>'+
+         '<span><button class="btn btn-warning btn-carrito" data-idpublic="'+id_public_p+'" data-idprod="'+id_prod_json_p+'">Añadir a Carrito</button></span>'+
       '</div>'+
       '</div>'+
       '<hr>'+
       '<div class="descripcion-modal-producto">'+
       '<strong>Descripcion:</strong>'+
-      '<div>'+descr_prod+'</div>'+
+      '<div>'+descr_prod_p+'</div>'+
       '</div>'+
       '<hr>'+
       '</div>'+
       // separador comments
       '<div class="commentbox-container" style="display:none">'+
-         '<hr><div class="commentbox media commentbox-id-'+i+'">'+
+         '<hr><div class="commentbox media commentbox-id-'+id_prod_p+'">'+
             '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
             '<div class="media-body">'+
                '<form class="comentario_prod">'+
                   '<div class="textarea-container">'+
                      '<textarea placeholder="Deja un comentario" maxlength="16384"></textarea>'+
                   '</div>'+
-                  '<input type="hidden" name="id_producto" value="'+id_prod_json+'">'+
+                  '<input type="hidden" name="id_producto" value="'+id_prod_json_p+'">'+
                   '<button class="btn btn-warning">Enviar</button>'+
                   /*'<div class="rating">'+
                   '   <input name="stars" id="e5" type="radio"></a><label for="e5">☆</label>'+
@@ -491,7 +480,7 @@ function traerModalProducto(id_prod,id_public,foto_src_prod,id_prod_json,marca_p
          '</div>'+
          '<div class="comment-count"><span>Comentarios</span></div>'+
          '<div class="commentbox-list-container">'+
-            '<div class="commentbox-list media commentbox-id-'+i+'">'+
+            '<div class="commentbox-list media commentbox-id-'+id_prod_p+'">'+
                '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
                '<div class="media-body">'+
                   '<p>Ive tried embeding it in the new google sites - the comment box showed up, but required authentication. It would be nice to have it simply allowing anon comments. Yet, once the signin was made, it keeps showing the message "The supplied URL is not a part of this proje - yet everything seems ok in the project config.</p>'+
@@ -517,14 +506,29 @@ function buscarProdRel(array,key,prop,index,splideParam){
 
    for (var i=0; i<array.length; i++) {
       if (array[i][prop] === key) {
-         //console.log(array[i]);
+
          var foto_prod_rel = array[i].foto;
+         var id_prod_rel = array[i].id;
          var foto_src_prod_rel = '/productos_img/'+foto_prod_rel+'.png';
          var html_related = '<li class="splide__slide splide__slide__img">'+
-         '<img data-toggle="modal" data-target="" src="'+foto_src_prod_rel+'"></li>';
-         //console.log(".splide__list__"+index)
-         splideParam.add(html_related);
+         '<img data-toggle="modal" data-target="modal-producto-'+i+'" src="'+foto_src_prod_rel+'"></li>';
+         var objParamModalRel = {
+            id_prod_p : i,
+            id_public_p : array[i].id_public,
+            foto_src_prod_p : array[i].foto_src_prod,
+            id_prod_json_p : array[i].id_prod_json,
+            marca_prod_p : array[i].marca_prod,
+            color_prod_p : array[i].color_prod,
+            descr_prod_p : array[i].descr_prod,
+            nombre_prod_p : array[i].nombre_prod,
+            nombre_completo_p : array[i].nombre_completo,
+            precio_prod_p : array[i].precio_prod,
+            i_p : id_prod_rel
+         }
+         //hay algunas que tiran undefined
 
+         splideParam.add(html_related);
+         traerModalProducto(objParamModalRel)
       }
    }
 }
