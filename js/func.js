@@ -1015,7 +1015,6 @@ $(".modal").on("click", ".btn-carrito", function(){
               window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
               console.log("OK-->"+dataJ+"/"+dataM);
-              alert("fgjfd")
               window.location.replace("/ampliar-carrito.html");
            }else{
               console.log("ELSE-->"+dataJ+"/"+dataM);
@@ -1117,10 +1116,10 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
 
     var dataEliminar = new FormData();
     dataEliminar.append("cantidad","0");
-    dataEliminar.append("accion","alta");
+    dataEliminar.append("accion","eliminar");
     dataEliminar.append("id",id_prod);
     dataEliminar.append("id_carrito",id_carrito);
-       
+       console.log("test")
     $.ajax({
        url: '/app/carrito.php',
        data: dataEliminar,
@@ -1305,11 +1304,6 @@ $(".cantidad_value").change(function(){
 
     var valor_cambiado = parseInt(tag_precio_cambiar_data) * parseInt(valor_selected);
     tag_precio_cambiar.text("AR$. "+valor_cambiado);
-
-    /*console.log("tag_precio_cambiar "+tag_precio_cambiar)
-    console.log("tag_precio_cambiar_split "+tag_precio_cambiar_split)
-    console.log("valor_selected "+valor_selected)
-    console.log("valor_cambiado "+valor_cambiado)*/
     
 });
 
@@ -1724,14 +1718,15 @@ function buscadorIndex(paramIndex){
                 //primero borro todo:not('.modal,.navbar')
                 //$("#main-super-container").remove();
                 //window.location.replace("/")
-                $(".splide__list__home").html("");
-                $("#carousel-index").hide();
+                $(".splide__home").empty();
+                $("#main-super-container").empty();
+                $("#carousel-index").remove();
 
                     if(sizePublic>0){   
 
                         var public_cat_size = jsonData.categoria.length;
 
-                        var globos_html = 
+                        /*var globos_html = 
                         '<div class="globo-escenario" style="background-color: #417238;">Gamer Room</div>'+
                         '<div class="globo-escenario" style="background-color: #887f2d;">Estudio</div>'+
                         '<div class="globo-escenario" style="background-color: #8f4141;">Escritorio</div>'+
@@ -1741,7 +1736,7 @@ function buscadorIndex(paramIndex){
                         '<div class="globo-escenario" style="background-color: #887f2d;">Escritorio</div>'+
                         '<div class="globo-escenario" style="background-color: #8f4141;">Habitacion</div>';
 
-                        $(".board").prepend(globos_html)
+                        $(".board").prepend(globos_html);*/
                     
                         //recorre todas las cat y primero dibujo el item de cat
                         for(var i=0; i<public_cat_size; i++){
@@ -1749,7 +1744,12 @@ function buscadorIndex(paramIndex){
                     
                             var json_cat = jsonData.categoria[i].id || 0;
                             var json_cat_nombre = jsonData.categoria[i].nombre || "";
-                            
+                            var splideSearch = new Splide( '.splide__search', {
+                                autoWidth: true,
+                                pagination: false
+                            }).mount();
+
+                            $(".splide__container").show();
                     
                             var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
                                                 '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
@@ -1757,7 +1757,7 @@ function buscadorIndex(paramIndex){
                                                 '</div>'
                                             '</li>'
                             
-                            $(".splide__list__home").append(item_html);
+                            splideSearch.add(item_html);
                             
                             //pattern numero random por ahora
                             var random = Math.floor(Math.random() * 7);
@@ -1885,13 +1885,13 @@ function ampliarNotif(){
                             '<div class="media notif-id-'+id+'">'+
                                 '<i class="notif-icon mr-3 fas fa-heart heart-notif"></i>'+
                                 '<div class="media-body"></div>'+
-                                '<i onclick="eliminarNotif(\''+id+'\')" class="fas fa-times"></i>'+
+                                '<i onclick="eliminarNotif(\''+id+'\')" class="eliminar-notif fas fa-times"></i>'+
                             '</div>';
     
                     $(".notifs-button-ampliar").append(html_notif)
 
                 if(tipo_notif == "favorito"){
-                    var html_favorito = '<div>'+nombre+' le dio like a tu publicaci&oacute;n "'+publicacion_nombre+'"</div>'+
+                    var html_favorito = '<div>'+nombre+' le dio like a tu publicaci&oacute;n "'+publicacion_nombre+'"</div>';
                     $(".notif-id-"+id+" .media-body").append(html_favorito)
 
                 }else if(tipo_notif == "seguidores"){

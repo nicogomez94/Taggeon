@@ -214,6 +214,9 @@ body{
     position: relative;
     width: 100%;
 }
+.splide__search{
+    display: none;
+}
 .fa-search-header{
     position: absolute;
     top: 35%;
@@ -283,6 +286,9 @@ body{
 .notifs-button-ampliar .fa-times{
     font-size: 11px;
     cursor: pointer;
+}
+.eliminar-notif{
+    background-color: #f9f9f9 !important;
 }
 
 #dropdown-user-menu-bottom{
@@ -1211,7 +1217,7 @@ label 				 {
 input:focus ~ label, input:valid ~ label 		{
   top:-20px;
   font-size:14px;
-  color:#000;
+  color:rgb(160, 160, 160);
 }
 
 /* BOTTOM BARS ================================= */
@@ -1683,8 +1689,10 @@ input:focus ~ .highlight {
     background: #fff;
     width: 100%;
 }
-.splide{
-    padding-left: 40px;
+.splide__container{
+    margin: 20px;
+    display: none;
+    /* padding-left: 40px; causaba problemas al slidear*/
 }
 .splide__home{
     padding-left: 0 !important;
@@ -2414,8 +2422,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     width: 40%;
 }
 .group-form-checkout{
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-top: 25px;
 }
 .num-big{
     font-weight: 700;

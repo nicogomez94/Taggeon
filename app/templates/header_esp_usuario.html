@@ -28,6 +28,7 @@
    <meta name="msapplication-TileColor" content="#ffffff">
    <meta name="msapplication-TileImage" content="../img/ms-icon-144x144.png">
    <meta name="theme-color" content="#ffffff">
+   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <script>
       $(document).ready(function(){
          //$("#modalFirstLogin").modal("show");
@@ -57,7 +58,7 @@
       </div>
       <!--BUSCADOR-->
       <div id="search-container" class="search-container autocomplete">
-         <input id="myInput" autocomplete="off"  class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
+         <input id="buscador-index-input" autocomplete="off"  class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
          <!-- <input id="myInput" id="buscador-index-input" autocomplete="off"  class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar"> -->
          <i class="fas fa-search fa-search-header"></i>
       </div>
@@ -107,6 +108,7 @@
       </div>
    </nav>
 
+   
 
    <!-- MODALS -->
 
@@ -279,7 +281,17 @@
 				</div>
 			</div>
 		</div>
-	</div>
+   </div>
+   
+   <!-- splide search -->
+   <div class="splide__container">
+      <div class="splide splide__search">
+         <div class="splide__track">
+            <ul class="splide__list">
+            </ul>
+         </div>
+      </div>
+   </div>
 
 <div id="main-super-container">
 
