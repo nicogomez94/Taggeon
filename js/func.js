@@ -26,6 +26,11 @@ $(document).ready(function() {
         e.stopPropagation();
     });
 
+    //si la img viene con error
+    $("img").on("error", function(){
+        $(this).attr('src', '../../imagen_perfil/generica.png');
+    });
+
     /**/
     //elegir foto editar perfil}
     $('#file-upload').bind('change', function() { 
@@ -574,25 +579,16 @@ $('#subir-publicacion-form').submit(function (e) {
     e.stopPropagation();
 
     var formData = new FormData($(this)[0]);
-    
-    //appendeo la imagen sacada del map. ya la inicio el onchange
-    /*var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
-    var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
-    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal*/
-    var url_imagen_64 = $("#img-pines-amapear").attr("src")
 
+    var url_imagen_64 = $("#img-pines-amapear").attr("src")
     var pin_object = $(".pin").serializeArray();
     var pin_object_str = JSON.stringify(pin_object)
-    //console.log(pin_object_str)
 
     formData.append("foto_base64",url_imagen_64);
     formData.append("data_pines",pin_object_str);
     formData.delete("publicacion_foto");
-        
-    console.log(formData.get("data_pines"))
-    console.log(formData.get("tagss"))
 
-    alert(formData.get("data_pines"))
+    //alert(formData.get("data_pines"))
 
     $.ajax({
         url: '/app/publicacion.php',
@@ -607,7 +603,6 @@ $('#subir-publicacion-form').submit(function (e) {
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 //$("body").addClass("loading");
-                alert(data)
                 window.location.replace("/mis-publicaciones.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
@@ -670,36 +665,6 @@ $('#editar-publicacion-form').submit(function (e) {
    });
    return false;
 });
-
-
-/****formu-subir***/
-var jcat = jsonData.categoria || 0;
-var sizeCat = jcat.length || 0;
-
-if(sizeCat>0){
-    for(var i=0; i<sizeCat; i++){
-        var nombre_cat = jsonData.categoria[i].nombre;
-        var id_cat = jsonData.categoria[i].id;
-        /*var id_cat_rubro = jsonData.rubro[i].id_categoria;*/
-    
-        var html_cat = '<option class="option-cat" value="'+id_cat+'">'+nombre_cat+'</option>';
-        $("#categoria-producto").append(html_cat);
-
-        /*var sizeRubro = jsonData.rubro.length;*/
-        
-        /*if(sizeRubro>0 && id_cat==id_cat_rubro){
-            for(var i=0; i<sizeRubro; i++){
-                var nombre_rubro = jsonData.rubro[i].nombre;
-                var id_rubro = jsonData.rubro[i].id;
-                
-                var html_rubro = '<option value="'+id_rubro+'">'+nombre_rubro+'</option>';
-                $("#rubro-producto").append(html_rubro);
-            }
-        }*/
-
-    }
-}
-
 
 
 
@@ -1436,24 +1401,15 @@ function cargarImgPines(event){
             var desdeBack = event.relatedTarget;
 
             if(!desdeBack){
-                // QUE ES LO QUE TIENE DISTINTO A CUANDO ENTRA POR ACA
                 var cropper = new Cropper(image,options);
             }
 
-        });//*.on('hide.bs.modal', function (event) {
-            //event.stopPropagation();
-            var target = event.target.id;
+        });
+            
+        var target = event.target.id;
             //reseteo input file
             $("#imagen-pins").val("");
 
-           /* var activeElement = document.activeElement;
-            console.log(activeElement);
-            
-            QUE ES LO QUE TIENE DISTINTO A CUANDO ENTRA POR ACA
-
-            
-                
-        });*/
 
         $('.cerrarModal').on('click', function(event) {
             var disparador = $(event.target).attr("id");
@@ -1496,6 +1452,7 @@ function cargarImgPines(event){
             $("#modal-cropper").on('click', '.l-radio', function (e) {
                 e.stopPropagation();
                 options.aspectRatio = this.dataset.aspect; 
+                document.getElementById("aspect-ratio-input").value = options.aspectRatio
 
                 //destruyo el viejo y creo uno nuevo
                 image.cropper.destroy();
@@ -1581,7 +1538,7 @@ function activarBuscador(param){
                         $(".splide__list").append(html);
 
                     }
-                    new Splide( '.splide', {
+                    new Splide( '.splide__prod_public', {
                             perPage: 4,
                             rewind : true,
                             pagination: false
@@ -1723,9 +1680,8 @@ function buscadorIndex(paramIndex){
                 $("#carousel-index").remove();
 
                     if(sizePublic>0){   
-
                         var public_cat_size = jsonData.categoria.length;
-
+                        
                         /*var globos_html = 
                         '<div class="globo-escenario" style="background-color: #417238;">Gamer Room</div>'+
                         '<div class="globo-escenario" style="background-color: #887f2d;">Estudio</div>'+
@@ -1735,27 +1691,27 @@ function buscadorIndex(paramIndex){
                         '<div class="globo-escenario" style="background-color: #417238;">Estudio</div>'+
                         '<div class="globo-escenario" style="background-color: #887f2d;">Escritorio</div>'+
                         '<div class="globo-escenario" style="background-color: #8f4141;">Habitacion</div>';
-
+                        
                         $(".board").prepend(globos_html);*/
-                    
+                        
                         //recorre todas las cat y primero dibujo el item de cat
                         for(var i=0; i<public_cat_size; i++){
-                    
-                    
+                            
+                            
                             var json_cat = jsonData.categoria[i].id || 0;
                             var json_cat_nombre = jsonData.categoria[i].nombre || "";
                             var splideSearch = new Splide( '.splide__search', {
                                 autoWidth: true,
                                 pagination: false
                             }).mount();
-
+                            
                             $(".splide__container").show();
-                    
+                            
                             var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
-                                                '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
-                                                    '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
-                                                '</div>'
-                                            '</li>'
+                            '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
+                            '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
+                            '</div>'
+                            '</li>'
                             
                             splideSearch.add(item_html);
                             
@@ -1765,6 +1721,7 @@ function buscadorIndex(paramIndex){
                             $(".random-p-"+i).addClass("pattern"+random);
                             ///pattern
                             
+                            console.log("test2")
 
                             for(var x=0; x<sizePublic; x++){
                                 
@@ -1847,7 +1804,7 @@ function buscadorIndex(paramIndex){
 
 function ampliarNotif(){
 
-    //var jsonData = jsonData || [];
+    var jsonData = jsonData || [];
     if(jsonData.usuario != ""){
         var notifs = jsonData.notificaciones || [];
         var sizeNotifs = notifs.length || 0;
@@ -1891,7 +1848,7 @@ function ampliarNotif(){
                     $(".notifs-button-ampliar").append(html_notif)
 
                 if(tipo_notif == "favorito"){
-                    var html_favorito = '<div>'+nombre+' le dio like a tu publicaci&oacute;n "'+publicacion_nombre+'"</div>';
+                    var html_favorito = '<div>'+nombre+' a&ntilde;adi&oacute; tu publicaci&oacute;n <a href="/ampliar-publicacion-home.html?id='+id_jn+'&accion=ampliar&cat='+id_publicacion_categoria+'">"'+publicacion_nombre+'"</a> como favorita</div>';
                     $(".notif-id-"+id+" .media-body").append(html_favorito)
 
                 }else if(tipo_notif == "seguidores"){
@@ -1916,7 +1873,7 @@ function ampliarNotif(){
             }
 
         }else{
-            var no_notif = '<div class="no_notif">No hay notificaciones por el momento.</div>'
+            var no_notif = '<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay notificaciones por el momento.</div>'
             $(".notifs-button-ampliar").html(no_notif)
         }
 
@@ -1941,11 +1898,16 @@ function eliminarNotif(id_notif){
             var dataJ = JSON.parse(data).status;
             var dataM = JSON.parse(data).mensaje;
  
-            if (dataJ == 'REDIRECT'){
-                console.log("REDIRECT-->"+dataM);									
-            }else if(dataJ == 'OK'){
-                console.log("OK-->"+dataJ+"/"+dataM);
-                $(".notif-id-"+id_notif).remove();
+            if(dataJ == 'OK'){
+                //console.log("OK-->"+dataJ+"/"+dataM);
+                var siHayNotifs =  $(".notifs-button-ampliar").find(".media").length;
+                
+                if(siHayNotifs == 1){
+                    $(".notif-id-"+id_notif).remove();
+                    var no_notif = '<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay notificaciones por el momento.</div>'
+                    $(".notifs-button-ampliar").html(no_notif);
+
+                }
             }else{
                 console.log("ELSE-->"+dataJ+"/"+dataM);
             }
@@ -2020,8 +1982,10 @@ function inViewport(el){
 
 function appearSelect(){
     
+    var escena = $("#escena-param-container");
     //primero limpio el container
-    $("#escena-param-container").empty();
+    escena.empty();
+    escena.show();
 
     var jesc = jsonTestSelect.escenas || 0;
     var sizeEsc = jesc.length || 0;
@@ -2038,10 +2002,77 @@ function appearSelect(){
             for(var y=0; y<paramArray.length; y++) {
                 var element = paramArray[y];
                 console.log(element)
-                var input_estilo = '<label for="'+element+'_public">'+element+'</label><input type="text" id="'+element+'_public" name="'+element+'_public">';
-                $("#escena-param-container").append(input_estilo)
+                var input_estilo = 
+                '<div class="form-group">'+
+                    '<label for="'+element+'_public">'+element+'</label>'+
+                    '<input type="text" id="'+element+'_public" class="form-control" name="'+element+'_public">';
+                '</div>'
+
+                escena.append(input_estilo)
             }
         }
     }
     
+}
+
+function mostrarSeguidores(){
+
+    var seguidores = jsonData.seguidores || [];
+    var sizeSeguidores = jsonData.seguidores.length;
+    var seguidos = jsonData.seguidos || [];
+    var sizeSeguidos = jsonData.seguidos.length || 0;
+
+    $(".seguidos-count").html(sizeSeguidos);
+    $(".count-seguidos-num").html(sizeSeguidos);
+    $(".seguidores-count").html(sizeSeguidores);
+    $(".count-seguidores-num").html(sizeSeguidores);
+
+    if(sizeSeguidores>0){
+        for(var i=0; i<sizeSeguidores; i++){
+            
+            console.log("test")
+            var apellido = jsonData.seguidores[i].apellido || "";
+            var email = jsonData.seguidores[i].email || "";
+            var idUsuario = jsonData.seguidores[i].idUsuario || 0;
+            var nombre = jsonData.seguidores[i].nombre || "";
+
+            var seguidores_html = 
+            '<div class="media seguidor">'+
+                '<img class="mr-3 img-seg" src="unknown" alt="Generic placeholder image">'+
+                '<div class="media-body">'+
+                    '<h5 class="mt-0">'+nombre+'</h5>'+
+                    '<span>'+email+'</span>'
+                '</div>'+
+            '</div>';
+            
+            $(".container-seguidores").append(seguidores_html);
+        }
+    }else{
+        var sin_seg = "<div>Por el momento, nadie te esta siguiendo</div>";
+        $(".container-seguidores").html(sin_seg);
+    }
+
+    if(sizeSeguidos>0){
+        for(var i=0; i<sizeSeguidos; i++){
+
+            var apellido = jsonData.seguidos[i].apellido || "";
+            var email = jsonData.seguidos[i].email || "";
+            var idUsuario = jsonData.seguidos[i].idUsuario || 0;
+            var nombre = jsonData.seguidos[i].nombre || "";
+
+            var seguidos_html = 
+            '<div class="media seguido">'+
+                '<img class="mr-3 img-seg" src="unknown" alt="Generic placeholder image">'+
+                '<div class="media-body">'+
+                    '<h5 class="mt-0">'+nombre+'</h5>'+
+                    '<span>'+email+'</span>'
+                '</div>'+
+            '</div>';
+            
+            $(".container-seguidos").append(seguidos_html);
+        }
+    }else{
+        var sin_seg = "<div>Por el momento, no sigues a nadie</div>";
+        $(".container-seguidos").html(sin_seg);
+    }
 }

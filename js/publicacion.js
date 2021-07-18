@@ -29,11 +29,12 @@ $(document).ready(function(){
             var idPublicadorSeguido = idPublicadorSearch.idUsuario;
             var comentarios_obj = jsonData.publicaciones[i].comentarios || []      
 
+            //nombre perfil
 
             if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat //si viene por mis-public lo igualo asi no putea
 
             if(cat_ampliar_home == id_public_cat){
-
+            
                //dibujo la cat arriba de todo
                var objCat = arrCat.find(o => o.id === cat_ampliar_home) || "";
                var nameCat = objCat.nombre || "";
@@ -63,7 +64,7 @@ $(document).ready(function(){
                                   '<span class="img-perfil-public">'+
                                      '<a href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'"><img src="'+img_publicador+'" alt="img-perfil"></a>'+
                                   '</span>'+
-                                  '<span class="title-public"></span>'+
+                                  '<span class="title-public title-public-'+i+'"></span>'+
                                  //'<span class="opciones-public"><i class="fas fa-cog"></i></span>'+
                                '</div>'+
                             '<div class="bodyimg-public-container bodyimg-public-container-'+i+'">'+
@@ -135,6 +136,7 @@ $(document).ready(function(){
 
                            
             $(".insert-public").append(html_public);
+            $(".title-public-"+i).html(publicador);
 
             //recorro comentarios en la public
             for(var y=0; y<comentarios_obj.length; y++){
@@ -216,8 +218,7 @@ $(document).ready(function(){
             } ).mount();
             
         
-            //nombre perfil
-            $(".title-public").html(publicador);
+            
 
             ///DIBUJO PINES
             var producto_parse = JSON.parse(producto);

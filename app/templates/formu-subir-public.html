@@ -31,7 +31,7 @@
                            <!-- <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a> -->
                      </div>
                      <div class="popup-producto">
-                        <div class="splide">
+                        <div class="splide splide__prod_public">
                            <div class="splide__track">
                               <ul class="splide__list"></ul>
                            </div>
@@ -118,15 +118,11 @@
                            <p class="label-descr">Escenario de la publicaci&oacute;n</p>
                            <select name="publicacion_categoria" id="publicacion_categoria" onchange="appearSelect()">
                               <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
-                              <option value="Arquitectura">Arquitectura</option>
+                              <option value="14">Arquitectura</option>
                               <option value="Outdoor">Outdoor</option>
                            </select>
                            <br>
-                           <div id="escena-param-container" class="group">
-                            
-                           </div>
-
-
+                           <div id="escena-param-container" class="group"></div>
                         </div>
                      </div>
                      <br><hr>
@@ -148,6 +144,7 @@
       </div>
 </div>
 
+<input id="aspect-ratio-input" name="aspect_ratio" type="hidden">
 </form>
 <!--  -->
 
@@ -183,12 +180,12 @@
             {
                "id":"1",
                "nombre":"Arquitectura",
-               "param":"estilo,color,size"
+               "param":"Estilo,Color,Tamaño"
             },
             {
                "id":"2",
                "nombre":"Outdoor",
-               "param":"estilo,color"
+               "param":"Estilo,Color"
             }
          ]
       }
@@ -199,12 +196,12 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <script src="js/func.js?time=120721-2313"></script>
+   <script src="js/func.js?time=170721-0141"></script>
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <!--  -->
    <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
    
-   <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=120721-2313"></script>
+   <script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=170721-0141"></script>
    <script src="../../plugins/cropperjs-master/dist/cropper.js"></script>
 <script src="../../plugins/tagify-master/dist/tagify.min.js"></script>
    <script>
@@ -212,10 +209,10 @@
          
          
 
-         //var catPublicSize = jsonData.categoria.length;
+         var catPublicSize = jsonData.categoria.length;
          //console.log(catPublicSize);
 
-         /*if(catPublicSize>0){
+         if(catPublicSize>0){
             for(var i=0; i<catPublicSize; i++){
 
                var nombre_categoria_public = jsonData.categoria[i].nombre;
@@ -226,7 +223,7 @@
                $("#publicacion_categoria").append(cat_html);
 
             }
-         }*/
+         }
       
          $("#buscador-titulo-input").keyup(function(){
             activarBuscador($(this));
