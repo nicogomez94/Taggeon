@@ -55,6 +55,11 @@ class  PublicacionManager
 	    $pid = isset($data["data_pines"]) ? $data["data_pines"] : '';
 	    if ($this->validarPublicacion_pid($pid) === false){
 	     return false;
+		}
+		/*nico*/
+		$aspect_ratio = isset($data["aspect_ratio"]) ? $data["aspect_ratio"] : '';
+	    if ($this->validarPublicacion_aspect_ratio($aspect_ratio) === false){
+	     return false;
 	    }
 
         if ($this->publicacionDao->existePublicacion_categoria($publicacion_categoria) === false) {
@@ -242,6 +247,13 @@ class  PublicacionManager
                     $this->setMsj("El campo publicación es incorrecto.");
                     return false;
                 }
+                $this->setStatus("OK");
+                $this->setMsj("");
+                return true;
+			}
+			//nico
+			private function validarPublicacion_aspect_ratio($aspect_ratio)
+            {
                 $this->setStatus("OK");
                 $this->setMsj("");
                 return true;

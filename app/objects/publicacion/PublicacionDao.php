@@ -43,10 +43,12 @@ class  PublicacionDao
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $publicacion_pid = isset($data["data_pines"]) ? $data["data_pines"] : '';
         $publicacion_pidDB = Database::escape($publicacion_pid);
+        $aspect_ratio = isset($data["aspect_ratio"]) ? $data["aspect_ratio"] : '';
+        $aspect_ratioDB = Database::escape($aspect_ratio);
         
 		$sql = <<<SQL
-INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta,pid)  
-VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB)
+INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta,pid,aspect_ratio)  
+VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -262,7 +264,7 @@ SQL;
                     $sql = <<<sql
                     SELECT
                     `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
-                    `publicacion_descripcion`,pid,
+                    `publicacion_descripcion`,pid,aspect_ratio
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto
             
                 FROM
@@ -275,7 +277,7 @@ SQL;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid
+                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,aspect_ratio
             sql;
                     $resultado = Database::Connect()->query($sql);
                     $row_cnt = mysqli_num_rows($resultado);
@@ -301,7 +303,7 @@ SQL;
                     $sql =<<<sql
                     SELECT
                     `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
-                    `publicacion_descripcion`,pid,
+                    `publicacion_descripcion`,pid,aspect_ratio,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto,`publicacion`.usuario_alta
             
                 FROM
@@ -314,7 +316,7 @@ SQL;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,usuario_alta
+                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
 sql;
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
@@ -337,7 +339,7 @@ sql;
                     $sql =<<<sql
                     SELECT
                     `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
-                    `publicacion_descripcion`,pid,
+                    `publicacion_descripcion`,pid,aspect_ratio,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto,`publicacion`.usuario_alta
             
                 FROM
@@ -351,7 +353,7 @@ sql;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,usuario_alta
+                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
 sql;
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
@@ -397,6 +399,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         MIN(
             publicacion_publicacion_foto.id
         ) AS foto,
@@ -429,6 +432,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         favorito,
             usuarios.nombre,
             usuarios.idUsuario
@@ -476,6 +480,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         MIN(
             publicacion_publicacion_foto.id
         ) AS foto,
@@ -508,6 +513,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         favorito,
         usuarios.nombre,
         usuarios.idUsuario
@@ -534,6 +540,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         MIN(
             publicacion_publicacion_foto.id
         ) AS foto,
@@ -567,6 +574,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         favorito,
                 usuarios.nombre,
                 usuarios.idUsuario
@@ -618,6 +626,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         MIN(
             publicacion_publicacion_foto.id
         ) AS foto,
@@ -655,6 +664,7 @@ sql;
         `id_publicacion_categoria`,
         `publicacion_descripcion`,
         pid,
+        aspect_ratio,
         favorito,
             usuarios.nombre,
             usuarios.idUsuario
