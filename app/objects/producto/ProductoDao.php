@@ -659,7 +659,8 @@ SQL;
         `producto`.`garantia`,
         `producto`.`descr_producto`,
         `producto`.`color`,
-        `producto`.`stock`,
+	`producto`.`stock`,
+	producto.usuario_alta,
        GROUP_CONCAT(producto_foto.id) as foto
 
     FROM
@@ -680,7 +681,8 @@ SQL;
     `producto`.`garantia`,
     `producto`.`descr_producto`,
     `producto`.`color`,
-    `producto`.`stock`
+    `producto`.`stock`,
+    producto.usuario_alta
     LIMIT 1
 sql;
 

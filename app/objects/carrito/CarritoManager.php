@@ -99,7 +99,7 @@ class  CarritoManager
 		}
 
 		$data["id_publicacion"] = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
-		$data["id_vendedor"] = isset($dataProducto["usuario_alta"]) ? $data["usuario_alta"] : '';
+		$data["id_vendedor"] = isset($dataProducto["usuario_alta"]) ? $dataProducto["usuario_alta"] : '';
 
 		if (!is_numeric($data["id_publicacion"])){
 			$this->setStatus("ERROR");
@@ -141,14 +141,22 @@ class  CarritoManager
 		}
 
 
+
+		$data["comision_porcentaje_taggeador"] = 0;
+                $data["total_taggeador"] =  0;
                 $data["comision_porcentaje_tienda"] = 2;
-		$data["comision_porcentaje_taggeador"] = 50;
+
+		if ( $data["id_usuario_publicador"] !=  $data["id_vendedor"] ){
+                	$data["comision_porcentaje_tienda"] = 1;
+			$data["comision_porcentaje_taggeador"] = 1;
+                	$data["total_taggeador"] =  ($data["total"] * $data["comision_porcentaje_taggeador"])/100;
+		}
+
 
                 $data["total_tienda"]     = ($data["total"] * $data["comision_porcentaje_tienda"])/100;
 
-                $data["total_vendedor"] = $data["total"] - $data["total_tienda"];
+                $data["total_vendedor"] = $data["total"] - $data["total_tienda"] - $data["total_taggeador"];
 
-                $data["total_taggeador"] =  ($data["total_tienda"] * $data["comision_porcentaje_taggeador"])/100;
 
 		if ($this->carritoDao->eliminarDetalle($data) === false) {
 			$this->setStatus("ERROR");
