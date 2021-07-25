@@ -1121,4 +1121,42 @@ sql;
         return $list;
 	}
 
+	public function getVendedorByIdCarrito($id_carrito)	
+    {
+        $id_carrito = isset($data["id_carrito"]) ? $data["id_carrito"] : 0;
+        $idCarritoBD = Database::escape($id_carrito);
+
+
+        $sql = <<<sql
+SELECT
+    producto.usuario_alta AS vendedor
+FROM
+    `carrito`
+LEFT JOIN
+    carrito_detalle
+ON
+    carrito.id = carrito_detalle.id_carrito AND(
+        carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL
+    )
+LEFT JOIN
+    producto
+ON
+    `carrito_detalle`.id_producto = producto.id
+WHERE
+    (
+        `carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL
+    ) AND `carrito`.id = $idCarritoBD 
+LIMIT 1
+sql;
+//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+
+	$vendedor = 0;
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $vendedor = $rowEmp["vendedor"];
+        }
+        return $vendedor;
+	}
+
 }

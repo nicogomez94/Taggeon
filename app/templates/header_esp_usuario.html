@@ -29,6 +29,7 @@
    <meta name="msapplication-TileImage" content="../img/ms-icon-144x144.png">
    <meta name="theme-color" content="#ffffff">
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+   <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
    <script>
       $(document).ready(function(){
          //$("#modalFirstLogin").modal("show");
@@ -36,6 +37,12 @@
          $(".interes").click(function(){
             $(this).toggleClass("selected");
          })
+
+         $('.grid').masonry({
+            itemSelector: '.grid-item',
+            columnWidth: 160,
+            gutter: 20
+         });
       })
    </script>
 </head>

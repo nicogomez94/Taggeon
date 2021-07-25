@@ -1060,7 +1060,7 @@ $("#finalizar-orden").submit(function(){
               console.log("REDIRECT-->"+dataM);
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+              window.location.replace("/cobrar-compra.html?id="+id_carrito);
            }else{
               //window.location.replace("/ampliar-carrito.html");
            }
@@ -1081,7 +1081,8 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
 
     var dataEliminar = new FormData();
     dataEliminar.append("cantidad","0");
-    dataEliminar.append("accion","eliminar");
+    // dataEliminar.append("accion","eliminar");
+    dataEliminar.append("accion","alta");
     dataEliminar.append("id",id_prod);
     dataEliminar.append("id_carrito",id_carrito);
        console.log("test")
@@ -1116,10 +1117,26 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
 });
 
 $("#cropear-btn").click(function(){
-
     $(this).hide();
     $(".toggle-aspect-ratio").hide();
+
 });
+$("#terminar-productos-btn").click(function(){
+    var cant_pines = $(".click-protector-cont").children().length;
+    if(cant_pines>=1){
+        $("#btn-siguiente").show();
+    }
+});
+
+$("#btn-siguiente").click(function(){
+    var cant_pines = $(".click-protector-cont").children().length;
+    if(cant_pines>=1){
+        $("#modal-data").modal("show");
+    }else{
+        $('.tooltip-nico').show(500);
+    }
+});
+
 
 ///submit comentario_public
 $(".comentario_public").submit(function(){
@@ -1695,97 +1712,79 @@ function buscadorIndex(paramIndex){
                         $(".board").prepend(globos_html);*/
                         
                         //recorre todas las cat y primero dibujo el item de cat
-                        for(var i=0; i<public_cat_size; i++){
-                            
-                            
-                            var json_cat = jsonData.categoria[i].id || 0;
-                            var json_cat_nombre = jsonData.categoria[i].nombre || "";
-                            var splideSearch = new Splide( '.splide__search', {
-                                autoWidth: true,
-                                pagination: false
-                            }).mount();
-                            
-                            $(".splide__container").show();
-                            
-                            var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
-                            '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
-                            '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
-                            '</div>'
-                            '</li>'
-                            
-                            splideSearch.add(item_html);
-                            
-                            //pattern numero random por ahora
-                            var random = Math.floor(Math.random() * 7);
-                            if (random == 0) {random=random+1}
-                            $(".random-p-"+i).addClass("pattern"+random);
-                            ///pattern
-                            
-                            console.log("test2")
 
-                            for(var x=0; x<sizePublic; x++){
-                                
-                                var id_public = jsonData.publicaciones[x].id || '';
-                                var id_public_cat = jsonData.publicaciones[x].id_publicacion_categoria || 0;
-                                var nombre_public = jsonData.publicaciones[x].publicacion_nombre || '';
-                                var descr_public = jsonData.publicaciones[x].publicacion_descripcion || '';
-                                var imagen_id = jsonData.publicaciones[x].foto || '';
-                                var producto = jsonData.publicaciones[x].pid || 0;
-                                var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
-                                var favorito = jsonData.publicaciones[x].favorito || 0;
-                                var fav_accion = "";
-                                
-                                
-                                //recorre solo si la json_cat es igual a la de puid_public_catblic y si tiene publics
-                                if(json_cat == id_public_cat){
-                    
-                                    var public_html = 
-                                        '<div id="public-main-container-'+i+'" class="public-main-container">'+
-                                            '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
-                                                '<div class="overlay-public">'+
-                                                '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
-                                                '<div class="public-title-home">'+nombre_public+'</div>'+
-                                                '<div class="text-overlay">'+
-                                                    '<span class="text-overlay-link share-sm">'+
-                                                        '<a href="#"><i class="fas fa-share-alt"></i></a>'+
-                                                    '</span>'+
-                                                    '&nbsp;&nbsp;'+
-                                                    '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
-                                                    //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                                        
-                                                    '</span>'+
-                                                '</div>'+
-                                                '</div>'+
-                                            '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
-                                            '</div>'+
-                                        '</div>';
-                    
-                                    $(".item-cat-"+json_cat).append(public_html)
-                                    
-                                    if (favorito==null || favorito == 0) {
-                                        fav_accion="alta";
-                                        var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
-                                        $(".text-overlay-link-"+id_public).append(fav_html)
-                                    }else{
-                                        fav_accion="eliminar";
-                                        var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
-                                        $(".text-overlay-link-"+id_public).append(fav_html)
-                                    }
-                    
-                                    
-                                }
-                            }//seg for 
 
-                            //si viene vacia la cat, la borro
-                            var siCatVacia = $(".item-cat-"+json_cat).find(".public-main-container").length;
+                        for(var x=0; x<sizePublic; x++){
+                            
+                            var id_public = jsonData.publicaciones[x].id || '';
+                            var id_public_cat = jsonData.publicaciones[x].id_publicacion_categoria || 0;
+                            var nombre_public = jsonData.publicaciones[x].publicacion_nombre || '';
+                            var descr_public = jsonData.publicaciones[x].publicacion_descripcion || '';
+                            var imagen_id = jsonData.publicaciones[x].foto || '';
+                            var producto = jsonData.publicaciones[x].pid || 0;
+                            var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
+                            var favorito = jsonData.publicaciones[x].favorito || 0;
+                            var fav_accion = "";
+                
+                            var public_html = 
+                                // '<div id="public-main-container-'+x+'" onclick="ampliarPublic(\''+foto_src+'\',\''+nombre_public+'\',\''+descr_public+'\')" class="public-main-container">'+
+                                //     '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
+                                //         '<div class="overlay-public">'+
+                                //         // '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
+                                //         '<a class="link-ampliar-home"></a>'+
+                                //         '<div class="public-title-home">'+nombre_public+'</div>'+
+                                //         '<div class="text-overlay">'+
+                                //             '<span class="text-overlay-link share-sm">'+
+                                //                 '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                //             '</span>'+
+                                //             '&nbsp;&nbsp;'+
+                                //             '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
+                                //             //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                                
+                                //             '</span>'+
+                                //         '</div>'+
+                                //         '</div>'+
+                                //     '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
+                                //     '</div>'+
+                                // '</div>';
+            
+                                '<div class="container">'+
+                              
+'<div class="grid">'+
+'<div class="grid-item"><img src="https://viapais.com.ar/resizer/KWRZoK3z10QyfWP5tdn38QNza2s=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GQZDSZJUGJSTGZJYGU2DCMJRMM.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+'</div>'+
+                                
+                              '</div>';
 
-                            if(siCatVacia<=0){
-                                var catVacia = $(".item-cat-"+json_cat)
-                                catVacia.remove();
+                            $(".board").append(public_html)
+                            
+                            if (favorito==null || favorito == 0) {
+                                fav_accion="alta";
+                                var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                                $(".text-overlay-link-"+id_public).append(fav_html)
+                            }else{
+                                fav_accion="eliminar";
+                                var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                                $(".text-overlay-link-"+id_public).append(fav_html)
                             }
+                
+                                
+                            
+                        }
 
-                        }//primer for
-                          
                     }else{
                         var sin_result = '<div class="sin-result-index">Lo sentimos, no hemos encontrado ninguna publicaci&oacute;n para esta b&uacute;squeda.</div>'
                         $(".board").html(sin_result)
@@ -2075,4 +2074,56 @@ function mostrarSeguidores(){
         var sin_seg = "<div>Por el momento, no sigues a nadie</div>";
         $(".container-seguidos").html(sin_seg);
     }
+}
+
+function ampliarPublic(imgParam,nombreParam,descrParam){
+
+    var html_ampliar_public = 
+    // '<div class="overlay" style="display: none;">'+
+    //     '<div class="lightBox lightBox-public" style="width: 85%;">'+
+    //         '<div class="row">'+
+    //             '<div class="col-lg-6"><img class="img_lp" src="'+imgParam+'"></div>'+
+    //             '<div class="col-lg-6 texto-public">'+
+    //                 '<h1>'+nombreParam+'</h1>'+
+    //                 '<p>'+descrParam+'</p>'+
+    //             '</div>'+
+    //         '</div>'+
+    //     '</div>'+
+    // '</div>';
+
+'<div class="container">'+
+  
+  '<h1 class="my-4 font-weight-bold">Masonry - columnWidth</h1>'+
+
+  '<div class="grid">'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+    '<div class="grid-item"></div>'+
+  '</div>'+
+  
+'</div>';
+
+
+    $(".board").append(html_ampliar_public)
+    $(".lightBox-public").parent().css("display","block");
 }

@@ -17,7 +17,6 @@ if ($perfil=='seller' || $perfil=='picker'){
     $dataHuerfanos = $carritoManager->getListCarritoHuerfano(array()); #PANTALLA PAGO
 
    if (count($dataHuerfanos)>0){
-       echo (var_dump($dataHuerfanos));
        $id_carrito = $dataHuerfanos[0]['id_carrito'];
        header("Location: /cobrar-compra.html?id=$id_carrito");
        Database::Connect()->close();

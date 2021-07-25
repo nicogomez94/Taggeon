@@ -511,11 +511,6 @@ body{
 
 /********************************/
 
-.board:active{
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: grabbing;
-}
 .items {
     padding: 15px;
     /* height: 100%; */
@@ -539,12 +534,22 @@ body{
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;*/
 }
+.img-lp{
+    width: 100%;
+}
 .sin-result-index{
     text-align: center;
     font-weight: 500;
     font-style: italic;
     width: 100%;
     margin-top: 50px;
+}
+.lightBox-public{
+    width: 85%;
+    text-align: left;
+}
+.texto-public{
+
 }
 /*
 .items.active {
@@ -1173,8 +1178,20 @@ select{
     color: #999;
 }
 
-
-
+.tooltip-nico{
+    position: absolute;
+    right: 112px;
+    background-color: #a29879;
+    color: white;
+    padding: 5px;
+    width: auto;
+    border-radius: 4px;
+    transition: .3s all ease-in-out;
+    display: none;
+}
+#btn-siguiente{
+    display: none;
+}
 
 
 /* form starting stylings ------------------------------- */
@@ -1625,6 +1642,10 @@ input:focus ~ .highlight {
     overflow: hidden;
     max-width: 90%;
     text-transform: uppercase;
+}
+.public-main-container{
+    width: 292px;
+    display: inline-block;
 }
 .fixed-grid-lr{
     position: fixed;
@@ -3061,3 +3082,18 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 
 
+/***/
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.grid-item {
+    width: 200px;
+    float: left;
+    margin: 10px;
+}
+.grid-item img{
+    width: 100%;
+}
+  

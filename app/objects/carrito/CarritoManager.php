@@ -88,6 +88,15 @@ class  CarritoManager
 			return false;
 		}
 
+		$vendedorActual = $this->carritoDao->getVendedorByIdCarrito($data["id_carrito"]);
+		$vendedorActual = isset($vendedorActual) ? $vendedorActual : '';
+
+		if ( $vendedorActual !=  $data["id_vendedor"] ){
+			$this->setStatus("ERROR");
+			$this->setMsj("El producto que quiere agregar pertenece a otro vendedor. Finalize el carrito y vuelva a intentarlo.");
+			return false;
+
+		}
 
 		#valida el manager de producto el id_producto
 		$data["id_producto"] = isset($data["id"]) ? $data["id"] : '';

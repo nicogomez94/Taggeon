@@ -1,0 +1,38 @@
+Fecha 21/07/2021  07:25:29
+post transactionAmount: 70000
+post token: 7e54afefab9d9a15354f64cf2ebb8740
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456543
+post description: 
+post id_carrito: 294
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1238943630
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1238943630
+Fecha 21/07/2021  07:28:10
+post transactionAmount: 70000
+post token: bb757cbbd7e0813c504221782c0b2b62
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33212234
+post description: 
+post id_carrito: 296
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1238942713
+#---------------------------------------------
+Paso 1
+OK
+TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
+ status: OK mensaje: 1238942713
