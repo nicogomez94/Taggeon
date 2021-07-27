@@ -696,7 +696,7 @@ sql;
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
         SELECT
-                carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+                carrito_detalle.id_publicacion, carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
         FROM    
         `carrito`
         LEFT JOIN
@@ -713,7 +713,7 @@ sql;
         `carrito`.usuario_alta = $usuarioAltaDB                AND
         estado = 1 
         GROUP BY
-        carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+        carrito_detalle.id_publicacion, carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
         order by id_carrito desc limit 1
 sql;
 //echo $sql;
@@ -732,7 +732,7 @@ sql;
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
 SELECT
-                carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+               carrito_detalle.id_publicacion, carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
         FROM
         `carrito`
         LEFT JOIN
@@ -749,7 +749,7 @@ SELECT
         `carrito`.usuario_alta = $usuarioAltaDB                AND
         (estado is null OR estado <= 0 )
         GROUP BY
-        carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+        carrito_detalle.id_publicacion, carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
 sql;
 
         $resultado = Database::Connect()->query($sql);
@@ -1129,7 +1129,7 @@ sql;
 
         $sql = <<<sql
 SELECT
-    producto.usuario_alta AS vendedor
+	    producto.usuario_alta AS vendedor
 FROM
     `carrito`
 LEFT JOIN

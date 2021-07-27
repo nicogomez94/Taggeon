@@ -1076,16 +1076,19 @@ $("#finalizar-orden").submit(function(){
 ///eliminar de carrito
 $(".eliminar-carrito").bind("click", function(e){//cochinada
     e.preventDefault();
-    var id_prod = $(this).parent().find("input.prod-id").val();
+    var id_prod = $(this).parent().find("input.prod-id").val() || 0;
+    var carrito_id = $(this).parent().find("input.carrito-id").val() || 0;
+    var id_publicacion = $(this).parent().find("input.id-publicacion").val() || 0;
     var id_carrito = jsonData.carrito[0].id_carrito;
 
     var dataEliminar = new FormData();
-    dataEliminar.append("cantidad","0");
     // dataEliminar.append("accion","eliminar");
     dataEliminar.append("accion","alta");
-    dataEliminar.append("id",id_prod);
-    dataEliminar.append("id_carrito",id_carrito);
-       console.log("test")
+    dataEliminar.append("id",carrito_id);
+    dataEliminar.append("cantidad","0");
+    dataEliminar.append("id_prod",id_prod);
+    dataEliminar.append("id_publicacion",id_publicacion);
+
     $.ajax({
        url: '/app/carrito.php',
        data: dataEliminar,

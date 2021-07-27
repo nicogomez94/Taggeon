@@ -96,6 +96,7 @@ $(document).ready(function(){
             var id_carrito = jsonData.carrito[i].id_carrito;
             var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
             var precio_prod_carrito = jsonData.carrito[i].precio;
+            var id_publicacion = jsonData.carrito[i].id_publicacion;
             var total_prod_carrito = jsonData.carrito[i].total;
             var prod_id = jsonData.carrito[i].id_producto;
             var cantidad = jsonData.carrito[i].cantidad;
@@ -125,6 +126,8 @@ $(document).ready(function(){
                               //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
                               '<div class="cerrar-prod-carrito">'+
                                  '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
+                                 '<input type="hidden" class="carrito-id" name="id_carrito" value="'+id_carrito+'">'+
+                                 '<input type="hidden" class="id-publicacion" name="id_publicacion" value="'+id_publicacion+'">'+
                                  '<i class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>'+
                               '</div>'+
                               '</div>'+
