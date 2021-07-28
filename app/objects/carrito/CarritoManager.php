@@ -157,7 +157,7 @@ class  CarritoManager
 
 		if ( $data["id_usuario_publicador"] !=  $data["id_vendedor"] ){
                 	$data["comision_porcentaje_tienda"] = 1;
-			$data["comision_porcentaje_taggeador"] = 1;
+			        $data["comision_porcentaje_taggeador"] = 1;
                 	$data["total_taggeador"] =  ($data["total"] * $data["comision_porcentaje_taggeador"])/100;
 		}
 

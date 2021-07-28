@@ -1084,7 +1084,7 @@ $(".eliminar-carrito").bind("click", function(e){//cochinada
     var dataEliminar = new FormData();
     // dataEliminar.append("accion","eliminar");
     dataEliminar.append("accion","alta");
-    dataEliminar.append("id",id_prod);
+    dataEliminar.append("id",carrito_id);
     dataEliminar.append("cantidad","0");
     dataEliminar.append("id_prod",id_prod);
     dataEliminar.append("id_publicacion",id_publicacion);
@@ -1699,11 +1699,22 @@ function buscadorIndex(paramIndex){
                 $("#main-super-container").empty();
                 $("#carousel-index").remove();
 
-
-                    if(sizePublic>1111){   
+                    if(sizePublic>0){   
                         var public_cat_size = jsonData.categoria.length;
                         
-                        /*$(".board").prepend(globos_html);*/
+                        /*var globos_html = 
+                        '<div class="globo-escenario" style="background-color: #417238;">Gamer Room</div>'+
+                        '<div class="globo-escenario" style="background-color: #887f2d;">Estudio</div>'+
+                        '<div class="globo-escenario" style="background-color: #8f4141;">Escritorio</div>'+
+                        '<div class="globo-escenario" style="background-color: #46418f;">Habitacion</div>'+
+                        '<div class="globo-escenario" style="background-color: #8f4185;">Gamer Room</div>'+
+                        '<div class="globo-escenario" style="background-color: #417238;">Estudio</div>'+
+                        '<div class="globo-escenario" style="background-color: #887f2d;">Escritorio</div>'+
+                        '<div class="globo-escenario" style="background-color: #8f4141;">Habitacion</div>';
+                        
+                        $(".board").prepend(globos_html);*/
+                        
+                        //recorre todas las cat y primero dibujo el item de cat
 
 
                         for(var x=0; x<sizePublic; x++){
@@ -1739,27 +1750,29 @@ function buscadorIndex(paramIndex){
                                 //     '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
                                 //     '</div>'+
                                 // '</div>';
-
-                         var public_html2 =
-                            // '<div class="grid" data-masonry=\'{"itemSelector": ".grid-item"}\'>   '+
-                            '<div class="grid">   '+
-                            '<div class="grid-item"><img src="https://viapais.com.ar/resizer/KWRZoK3z10QyfWP5tdn38QNza2s=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GQZDSZJUGJSTGZJYGU2DCMJRMM.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                            '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                            '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
-                            '</div>';
-                        $(".board").append(public_html2)
             
+                                '<div class="container">'+
+                              
+'<div class="grid">'+
+'<div class="grid-item"><img src="https://viapais.com.ar/resizer/KWRZoK3z10QyfWP5tdn38QNza2s=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GQZDSZJUGJSTGZJYGU2DCMJRMM.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+'<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+'<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+'</div>'+
+                                
+                              '</div>';
+
+                            $(".board").append(public_html)
                             
                             if (favorito==null || favorito == 0) {
                                 fav_accion="alta";
@@ -1773,28 +1786,11 @@ function buscadorIndex(paramIndex){
                 
                                 
                             
-                        }//end for
-
-                        var $grid = $('.grid').imagesLoaded( function() {
-                            // init Masonry after all images have loaded
-                            $grid.masonry({
-                                itemSelector: '.grid-item',
-                                columnWidth: 160,
-                                gutter: 20,
-                                horizontalOrder: true
-                            });
-                        });
+                        }
 
                     }else{
-                        /*var sin_result = '<div class="sin-result-index">Lo sentimos, no hemos encontrado ninguna publicaci&oacute;n para esta b&uacute;squeda.</div>'
-                        $(".board").html(sin_result)*/
-                        
-                        
-                        
-
-                        
-
-
+                        var sin_result = '<div class="sin-result-index">Lo sentimos, no hemos encontrado ninguna publicaci&oacute;n para esta b&uacute;squeda.</div>'
+                        $(".board").html(sin_result)
                     }
             },
             error:function(response,data){
