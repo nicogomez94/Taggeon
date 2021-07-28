@@ -1700,37 +1700,10 @@ function buscadorIndex(paramIndex){
                 $("#carousel-index").remove();
 
 
-                var public_html = 
-                // '<div id="public-main-container-'+x+'" onclick="ampliarPublic(\''+foto_src+'\',\''+nombre_public+'\',\''+descr_public+'\')" class="public-main-container">'+
-                //     '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
-                //         '<div class="overlay-public">'+
-                //         // '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
-                //         '<a class="link-ampliar-home"></a>'+
-                //         '<div class="public-title-home">'+nombre_public+'</div>'+
-                //         '<div class="text-overlay">'+
-                //             '<span class="text-overlay-link share-sm">'+
-                //                 '<a href="#"><i class="fas fa-share-alt"></i></a>'+
-                //             '</span>'+
-                //             '&nbsp;&nbsp;'+
-                //             '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
-                //             //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                
-                //             '</span>'+
-                //         '</div>'+
-                //         '</div>'+
-                //     '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
-                //     '</div>'+
-                // '</div>';
-         
-
-            $(".board").append(public_html)
-
                     if(sizePublic>1111){   
                         var public_cat_size = jsonData.categoria.length;
                         
-                        $(".board").prepend(globos_html);*/
-                        
-                        //recorre todas las cat y primero dibujo el item de cat
+                        /*$(".board").prepend(globos_html);*/
 
 
                         for(var x=0; x<sizePublic; x++){
@@ -1766,9 +1739,27 @@ function buscadorIndex(paramIndex){
                                 //     '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
                                 //     '</div>'+
                                 // '</div>';
-            
 
-                            $(".board").append(public_html)
+                         var public_html2 =
+                            // '<div class="grid" data-masonry=\'{"itemSelector": ".grid-item"}\'>   '+
+                            '<div class="grid">   '+
+                            '<div class="grid-item"><img src="https://viapais.com.ar/resizer/KWRZoK3z10QyfWP5tdn38QNza2s=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GQZDSZJUGJSTGZJYGU2DCMJRMM.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+                            '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
+                            '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
+                            '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
+                            '</div>';
+                        $(".board").append(public_html2)
+            
                             
                             if (favorito==null || favorito == 0) {
                                 fav_accion="alta";
@@ -1782,32 +1773,7 @@ function buscadorIndex(paramIndex){
                 
                                 
                             
-                        }
-
-                    }else{
-                        /*var sin_result = '<div class="sin-result-index">Lo sentimos, no hemos encontrado ninguna publicaci&oacute;n para esta b&uacute;squeda.</div>'
-                        $(".board").html(sin_result)*/
-                        
-                        var public_html2 =
-                        // '<div class="grid" data-masonry=\'{"itemSelector": ".grid-item"}\'>   '+
-                        '<div class="grid">   '+
-                        '<div class="grid-item"><img src="https://viapais.com.ar/resizer/KWRZoK3z10QyfWP5tdn38QNza2s=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GQZDSZJUGJSTGZJYGU2DCMJRMM.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                        '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                        '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                        '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                        '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>'+
-                        '<div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>'+
-                        '<div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>'+
-                        '</div>';
-                        $(".board").append(public_html2)
-                        
+                        }//end for
 
                         var $grid = $('.grid').imagesLoaded( function() {
                             // init Masonry after all images have loaded
@@ -1819,10 +1785,14 @@ function buscadorIndex(paramIndex){
                             });
                         });
 
-                        $grid.on( 'layoutComplete', function( event, items ) {
-                            console.log( "listo" );
-                            console.log( items.length );
-                        });
+                    }else{
+                        /*var sin_result = '<div class="sin-result-index">Lo sentimos, no hemos encontrado ninguna publicaci&oacute;n para esta b&uacute;squeda.</div>'
+                        $(".board").html(sin_result)*/
+                        
+                        
+                        
+
+                        
 
 
                     }
