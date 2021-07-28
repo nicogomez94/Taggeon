@@ -75,7 +75,7 @@
         }
 
     </style>
-    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    
 </head>
 <body style="background-color: rgb(216, 216, 216);margin: 0;padding: 0;">
     <div class="mail-container" style="width: 50%;margin: 30px auto 10px auto;box-shadow: 4px 4px 0px #b3b3b3;">
@@ -203,7 +203,8 @@
 <script src="js/jquery-3.5.1.js"></script>
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <script src="js/func.js?time=070521-1055"></script>
-<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+<!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+<script src="https://sdk.mercadopago.com/js/v2"></script> -->
    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
    <!-- <script src="js/publicacion.js?time=190321-2055"></script> -->
 <!-- <script src="js/popper.js"></script> -->
@@ -254,7 +255,7 @@ $(document).ready(function(){
 
 });
 </script>
-<script>
+<!-- <script>
     // Agrega credenciales de SDK 
     const mp = new MercadoPago('PUBLIC_KEY', {locale: 'es-AR'});
     
@@ -269,9 +270,10 @@ $(document).ready(function(){
         label: 'Pagar' // Cambia el texto del botón de pago (opcional)
      }
     });
-    </script>
+    </script> -->
 	<script>
-		 window.Mercadopago.setPublishableKey("TEST-08ad9476-bc16-419d-a880-d959f6f4ad7c");
+		//window.Mercadopago.setPublishableKey("TEST-08ad9476-bc16-419d-a880-d959f6f4ad7c");
+		window.Mercadopago.setPublishableKey("TEST-08ad9476-bc16-419d-a880-d959f6f4ad7c");
 		window.Mercadopago.getIdentificationTypes();
 document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
 

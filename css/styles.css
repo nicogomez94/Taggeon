@@ -3083,17 +3083,27 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 
 /***/
+
+.grid-item img{
+    width: 100%;
+}
+  
+
+* { box-sizing: border-box; }
+
 .grid:after {
     content: '';
     display: block;
     clear: both;
 }
+
 .grid-item {
-    width: 200px;
+    width: 160px;
+    height: auto;
     float: left;
-    margin: 10px;
+    background: #00997B;
+    border: 1px solid #333;
+    border-color: hsla(0, 0%, 0%, 0.5);
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
-.grid-item img{
-    width: 100%;
-}
-  
