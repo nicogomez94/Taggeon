@@ -1,4 +1,8 @@
 <?php
+if (isset($_GET['code'])){
+	echo $_GET['code'];
+	exit;
+}
 
 include_once("/var/www/html/app/objects/util/configuration.php");
 

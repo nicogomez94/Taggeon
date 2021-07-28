@@ -35,8 +35,11 @@ STR;
 
 STR;
     }
+
+    $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=3352741419059189&response_type=code&platform_id=mp&state=$id&redirect_uri=https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/";
 	
 	$contenidoHeader->asigna_variables(array(
+        "url-mp"     => $urlMP,
 		"perfil"         => $reemplazoPerfil,
 		"foto-perfil"    => $fotoPerfil,
 		"menu"           => $menu,

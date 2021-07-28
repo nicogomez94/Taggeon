@@ -28,7 +28,21 @@
    <meta name="msapplication-TileColor" content="#ffffff">
    <meta name="msapplication-TileImage" content="../img/ms-icon-144x144.png">
    <meta name="theme-color" content="#ffffff">
+   <script>
+      $(document).ready(function(){
+         //jsonData.
+         var url_mp = "{url-mp}";
 
+         var html_test = 
+         '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos.'+
+            '<a href="https://auth.mercadopago.com.ar/authorization?client_id=3352741419059189&response_type=code&platform_id=mp&redirect_uri=https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/">Edítalo aqu&iacute;</a>'+
+            '<span style="position:absolute;right: 15;color: white !important;"><i class="fas fa-times"></i></span>'+
+         '</div>';
+
+         $(".token_mp").html(html_test);
+
+      });
+   </script>
 </head>
 <body>
 <!--
@@ -286,7 +300,7 @@
    </div>
 
 <div id="main-super-container">
-
+<div class="token_mp"></div>
 <!-- 
    <div class="grid" data-masonry='{"itemSelector": ".grid-item"}'>   
       <div class="grid-item"><img src="https://viapais.com.ar/resizer/KWRZoK3z10QyfWP5tdn38QNza2s=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GQZDSZJUGJSTGZJYGU2DCMJRMM.jpg"></div>
