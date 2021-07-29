@@ -32,13 +32,20 @@
       $(document).ready(function(){
          //jsonData.
          var url_mp = "{url-mp}";
-
+         
          var html_test = 
-         '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos.'+
-            '<a href="https://auth.mercadopago.com.ar/authorization?client_id=3352741419059189&response_type=code&platform_id=mp&redirect_uri=https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/">Edítalo aqu&iacute;</a>'+
-            '<span style="position:absolute;right: 15;color: white !important;"><i class="fas fa-times"></i></span>'+
+         '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
+            '<a href="'+url_mp+'">Edítalo aqu&iacute;</a>'+
+            //'<span class="close-mp"><i class=" fas fa-times"></i></span>'+
          '</div>';
-
+            
+            $(".close-mp").bind('click',function(e){
+               console.log("test")
+               e.stopPropagation();
+               e.preventDefault();
+               $(".token_mp").hide(300);
+            });
+            
          $(".token_mp").html(html_test);
 
       });
@@ -51,7 +58,22 @@
    </div>
 -->
 
+         <!-- <hr><br>
+          <h3>Gestionar Notificaciones</h3>
+          <br>
+          <div class="row">
+            <div class="col-lg-8">
+                <span>Crea tu token de Mercado Pago &reg; para poder recibir y enviar pagos</span>
+             </div>
+             <div class="col-lg-4">
+                <div class="botonera-editar">
+                   <span><a href="https://mpago.la/24riMq1">Crear Token</a></span>
+                </div>
+             </div>
+          </div> -->
 
+
+          
 
     <nav id="navbar-principal" class="navbar navbar-expand-md fixed-top">
       <div id="brand-container" class="navbar-brand-container">
