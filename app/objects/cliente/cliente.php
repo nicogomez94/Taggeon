@@ -82,6 +82,7 @@ class Cliente{
 	private $telefono2Tipo = "";
 	private $fechaAlta = "";
 	private $fechaUpdate = "";
+	private $tokenMercadoPago = "";
 
 	private $usuario;
    public function __construct(){
@@ -228,6 +229,14 @@ class Cliente{
 	
 	public function setFechaUpdate($fechaUpdate){
 		$this->fechaUpdate = $fechaUpdate;
+	}
+
+	public function getTokenMercadoPago(){
+		return $this->tokenMercadoPago;
+	}
+	
+	public function setTokenMercadoPago($tokenMercadoPago){
+		$this->tokenMercadoPago = $tokenMercadoPago;
 	}
 
 }

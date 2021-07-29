@@ -1,10 +1,17 @@
 <?php
-if (isset($_GET['code'])){
-	echo $_GET['code'];
+include_once("/var/www/html/app/objects/util/configuration.php");
+if (isset($_GET['code']) && isset($_GET['state'])){
+	include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
+	$usuarioManager = new UsuarionManagerImpl();
+	$usuarioManager->actualizarTokenMP();
+
+	header("Location: /");
+	Database::Connect()->close();
 	exit;
 }
 
-include_once("/var/www/html/app/objects/util/configuration.php");
+
+
 
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/template.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."sesion/sesionManagerImpl.php");

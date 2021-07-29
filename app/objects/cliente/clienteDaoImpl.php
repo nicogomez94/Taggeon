@@ -205,6 +205,12 @@ SQL;
       	if (empty($telefono2Tipo)){
 				$telefono2Tipo = "";
       	}
+
+		  $tokenMercadoPago = $rowEmp['acces_token'];
+      	if (empty($tokenMercadoPago)){
+				$tokenMercadoPago = "";
+      	}
+
 			$cliente->setId($id);
 			$cliente->setIdUsuario($idUsuario);
 			$cliente->setFechaAlta($fechaAlta);
@@ -224,6 +230,7 @@ SQL;
 		$cliente->setTelefono2Ciudad($telefono2Ciudad);
 		$cliente->setTelefono2($telefono2);
 		$cliente->setTelefono2Tipo($telefono2Tipo);
+		$seller->setTokenMercadoPago($tokenMercadoPago);
 
 		}
 		return $cliente;

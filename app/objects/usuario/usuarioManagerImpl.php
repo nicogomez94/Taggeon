@@ -96,6 +96,19 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		return $usuario;
 	}
 
+
+	public function actualizarTokenMP(){
+		//validar
+		$idUserMP = $GLOBALS['sesionG']['idUsuario'];
+		$stateMP  = $_GET['state'];
+
+		if ($idUserMP == $stateMP){
+			$this->getUsuarioDao()->actualizarTokenMP();
+		}
+
+	}
+
+
 	public function crearByCliente($usuario_var,$pass,$perfil,$idUsuarioCliente){
 		$usuario = new Usuario();
 		$usuario->setUsuario(_trim($usuario_var));

@@ -104,6 +104,12 @@ class  SesionManagerImpl implements  SesionManager{
 						$obj = new SellerDaoImpl();
 						$GLOBALS['sesionG']['tokenMercadoPago'] = $obj->get($GLOBALS['sesionG']['id'],$idUsuario)->getTokenMercadoPago();
 					}
+
+					if ($perfil == 'picker'){
+						$obj = new ClienteDaoImpl();
+						$GLOBALS['sesionG']['tokenMercadoPago'] = $obj->get($GLOBALS['sesionG']['id'],$idUsuario)->getTokenMercadoPago();
+					}
+
 					return true;
 				}
 		}
