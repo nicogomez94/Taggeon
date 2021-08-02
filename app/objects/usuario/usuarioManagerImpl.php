@@ -96,6 +96,12 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		return $usuario;
 	}
 
+	public function getTokenMP(){
+
+
+		return 	$this->getUsuarioDao()->getTokenMP();
+
+	}
 
 	public function actualizarTokenMP(){
 		//validar

@@ -19,6 +19,7 @@ interface  UsuarioManager{
 	public function getUsuarioPublic(); //new
 	public function getUsuarioBySesion(); //new
 	public function actualizarTokenMP(); //new
+	public function getTokenMP(); //new
 
 	
 }

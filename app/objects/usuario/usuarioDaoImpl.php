@@ -171,6 +171,46 @@ sql;
 
 }
 
+public function getTokenMP (){
+
+	//validar
+	$idUsuario = $GLOBALS['sesionG']['idUsuario'];
+	$idUsuarioBD = Database::escape($idUsuario);
+
+	$sql =<<<SQL
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` = $idUsuarioBD 
+			  AND `eliminar` = 0 
+SQL;
+            
+    if (!mysqli_query(Database::Connect(), $sql)) {
+		$this->setStatus("error");
+		$this->setMsj("error al obtener token seller");
+   }else{
+		$this->setStatus("ok");
+		$this->setMsj("");
+
+
+		$sql =<<<SQL
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` = $idUsuarioBD 
+			  AND `eliminar` = 0 
+SQL;
+    	if (!mysqli_query(Database::Connect(), $sql)) {
+
+
+				$this->setStatus("error");
+				$this->setMsj("error al obtner token picker");
+   		}else{
+				$this->setStatus("ok");
+				$this->setMsj("");
+   		}
+	   
+   }
+}
+
 public function actualizarTokenMP (){
 	$code      = $_GET['code'];
 	$idUsuario = $_GET['state'];

@@ -26,6 +26,7 @@ interface  UsuarioDao{
    public function getUsuarioBySesion (); //nueva
    public function isAdmin (); //nueva
    public function actualizarTokenMP (); //nueva
+	public function getTokenMP(); //new
 
 }
 ?>
