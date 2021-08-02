@@ -171,10 +171,7 @@ sql;
 
 }
 
-public function actualizarTokenMP ){
-	$id          = $objUsuario->getId();
-	$usuario     = Database::escape($objUsuario->getUsuario());
-	
+public function actualizarTokenMP (){
 	$code      = $_GET['code'];
 	$idUsuario = $_GET['state'];
 
@@ -183,12 +180,12 @@ public function actualizarTokenMP ){
 
 	$sql =<<<SQL
 		UPDATE `usuario_seller` SET
-				 `acces_token`=$code
+				 `acces_token`=$codeBD
 		WHERE `idUsuario` = $idUsuarioBD 
 			  AND `eliminar` = 0 
 SQL;
-
-   if (!mysql_query($sql,Database::Connect())){
+            
+    if (!mysqli_query(Database::Connect(), $sql)) {
 		$this->setStatus("error");
 		$this->setMsj("error al actualizar token seller");
    }else{
@@ -198,12 +195,13 @@ SQL;
 
 		$sql =<<<SQL
 		UPDATE `usuario_picker` SET
-				 `acces_token`=$code
+				 `acces_token`=$codeBD
 		WHERE `idUsuario` = $idUsuarioBD 
 			  AND `eliminar` = 0 
 SQL;
+    	if (!mysqli_query(Database::Connect(), $sql)) {
 
-   		if (!mysql_query($sql,Database::Connect())){
+
 				$this->setStatus("error");
 				$this->setMsj("error al actualizar token picker");
    		}else{

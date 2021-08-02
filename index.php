@@ -1,16 +1,5 @@
 <?php
 include_once("/var/www/html/app/objects/util/configuration.php");
-if (isset($_GET['code']) && isset($_GET['state'])){
-	include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
-	$usuarioManager = new UsuarionManagerImpl();
-	$usuarioManager->actualizarTokenMP();
-
-	header("Location: /");
-	Database::Connect()->close();
-	exit;
-}
-
-
 
 
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/template.php");
@@ -27,6 +16,18 @@ $patron = '/(html|htm|\/|\.html\?.+)$/';
 if (preg_match($patron, $url)){
 	if ($sesionManager->validar(array('picker','seller','admin','superadmin','editor'))){
 		$perfil = $GLOBALS['sesionG']['perfil'];
+		if (isset($_GET['code']) && isset($_GET['state'])){
+			include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
+			$usuarioManager = new UsuarioManagerImpl();
+			$usuarioManager->actualizarTokenMP();
+		
+			header("Location: /");
+			Database::Connect()->close();
+			exit;
+		}
+		
+		
+		
 	}
 }
 $language = $GLOBALS['sesionG']['language'];

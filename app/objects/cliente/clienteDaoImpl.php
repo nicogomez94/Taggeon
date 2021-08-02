@@ -230,7 +230,7 @@ SQL;
 		$cliente->setTelefono2Ciudad($telefono2Ciudad);
 		$cliente->setTelefono2($telefono2);
 		$cliente->setTelefono2Tipo($telefono2Tipo);
-		$seller->setTokenMercadoPago($tokenMercadoPago);
+		$cliente->setTokenMercadoPago($tokenMercadoPago);
 
 		}
 		return $cliente;

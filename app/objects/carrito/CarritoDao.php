@@ -879,7 +879,7 @@ SQL;
             WHERE
             `id` = $idDB AND
             `usuario_alta` = $usuarioDB
-            SQL;
+SQL;
             
                     if (!mysqli_query(Database::Connect(), $sql)) {
                         $this->setStatus("ERROR");

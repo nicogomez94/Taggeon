@@ -1776,15 +1776,15 @@ function buscadorIndex(paramIndex){
 }
 
 function ampliarNotif(){
-
-    var jsonData = jsonData || [];
+    //var jsonData = jsonData || [];
+    //console.log(jsonData)
     if(jsonData.usuario != ""){
         var notifs = jsonData.notificaciones || [];
         var sizeNotifs = notifs.length || 0;
 
         if(sizeNotifs>0){
             for(var i=0; i<sizeNotifs; i++){
-
+                
                 var compracompra = jsonData.notificaciones[i].compracompra || 0;
                 var json_notif = jsonData.notificaciones[i].json_notificacion || "";
                 var json_notif_p = JSON.parse(json_notif) || [];
@@ -1821,7 +1821,7 @@ function ampliarNotif(){
                     $(".notifs-button-ampliar").append(html_notif)
 
                 if(tipo_notif == "favorito"){
-                    var html_favorito = '<div>'+nombre+' a&ntilde;adi&oacute; tu publicaci&oacute;n <a href="/ampliar-publicacion-home.html?id='+id_jn+'&accion=ampliar&cat='+id_publicacion_categoria+'">"'+publicacion_nombre+'"</a> como favorita</div>';
+                    var html_favorito = '<div>'+nombre+' a&ntilde;adi&oacute; tu publicaci&oacute;n "'+publicacion_nombre+'" como favorita</div>';
                     $(".notif-id-"+id+" .media-body").append(html_favorito)
 
                 }else if(tipo_notif == "seguidores"){
@@ -1837,7 +1837,7 @@ function ampliarNotif(){
                     $(".notif-id-"+id+">.media-body").html(html_vendedor);
 
                 }else if(tipo_notif == "comentario"){
-                    var html_comentario = '<div><a href="/">'+nombre+' coment&oacute; "'+comentario+'" en tu public.: "'+publicacion_nombre+'"</a></div>';
+                    var html_comentario = '<div><a href="/ampliar-publicacion-home.html?id='+id_jn+'&accion=ampliar&cat='+id_publicacion_categoria+'">'+nombre+' coment&oacute; "'+comentario+'" en tu public.: "'+publicacion_nombre+'"</a></div>';
                     //var html_foto_prod = '<img class="mr-3 img-notifs" src="'+foto_src+'" alt="img_notif">';
 
                     $(".notif-id-"+id+" .media-body").append(html_comentario)

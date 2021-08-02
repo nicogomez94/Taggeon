@@ -102,6 +102,7 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		$idUserMP = $GLOBALS['sesionG']['idUsuario'];
 		$stateMP  = $_GET['state'];
 
+
 		if ($idUserMP == $stateMP){
 			$this->getUsuarioDao()->actualizarTokenMP();
 		}
