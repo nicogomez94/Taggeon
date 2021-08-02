@@ -174,12 +174,12 @@
                   <label for="installments">Cuotas</label>
                   <select type="text" id="installments" name="installments"></select>
                 </div>
-                <div>
+                <div class="cho-container">
                   <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
                   <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
                   <input type="hidden" name="description" id="description" />
                   <br>
-                  <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                  <button  type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
                     Realizar Compra
                     </button>
                   <br>
@@ -204,10 +204,10 @@
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <script src="js/func.js?time=070521-1055"></script>
 <!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
-<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+<!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
 <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
-   <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-   <!-- <script src="js/publicacion.js?time=190321-2055"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+<!-- <script src="js/publicacion.js?time=190321-2055"></script> -->
 <!-- <script src="js/popper.js"></script> -->
 
 <script>
@@ -259,13 +259,14 @@ $(document).ready(function(){
 <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
 <script>
     // Agrega credenciales de SDK 
-    const mp = new MercadoPago('PUBLIC_KEY', {locale: 'es-AR'});
-    console.log(mp)
+    const mp = new MercadoPago('APP_USR-31427082-1223-4141-9ae8-c30f8404c448', {locale: 'es-AR'});
+    }
     // Inicializa el Web Tokenize Checkout
     mp.checkout({
-        preference: {
-          id: '112'
-      },
+        tokenizer: {
+            totalAmount: 4000,
+            backUrl: 'http://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/cobrar-compra.html'
+        },
       render: {
             container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
             label: 'Pagar', // Cambia el texto del botón de pago (opcional)
@@ -397,16 +398,16 @@ function setCardTokenAndPay(status, response) {
                 var dataJ = dataParse.status;
                 //var dataM = JSON.parse(data).mensaje;
                 if(dataJ == 'OK'){
-                    // console.log(dataParse)
-                    // alert("success ajax-->"+dataParse);
+                    console.log(dataParse)
+                    alert("success ajax-->"+dataParse);
                     window.location.replace("/pago-success.html");
                 }else if(dataJ == 'ERROR'){
-                    // console.log(dataParse)
-                    // alert("success ajax-->"+dataParse);
+                    console.log(dataParse)
+                    alert("success ajax-->"+dataParse);
                     window.location.replace("/pago-failure.html");
                 }else{
-                    // console.log(dataParse)
-                    // alert("success ajax-->"+dataParse);
+                    console.log(dataParse)
+                     alert("success ajax-->"+dataParse);
                     window.location.replace("/pago-pending.html");
                 }
             },
