@@ -235,7 +235,7 @@ SQL;
         carrito_detalle.total
 
 sql;
-echo $sql;
+//echo $sql;
 
         $resultado = Database::Connect()->query($sql);
         $list = array();
