@@ -955,7 +955,7 @@ $(".modal").on("click", ".btn-carrito", function(){
     var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
     var id_prod = $(this).data("idprod");
     var id_publicacion = $(this).data("idpublic");
-    console.log($(this))
+
     //console.log(id_publicacion)
     var dataCarr = new FormData();
     dataCarr.append("accion","alta");
@@ -1375,98 +1375,87 @@ function sortProducto(paramTitulo, paramSort, page){
 
 function cargarImgPines(event){
     
-    var reader = new FileReader();
-    reader.onload = function(){
-        // var output = document.getElementById('output-imgpins');
-        var map = $('<div id="map">');
-        var img_pin = $('<img id="img-pines-amapear">');
-        //lo creo en ves de tocarlo
-        $(".contenedor-content").append(map);
-        map.append(img_pin)
-        
-        $("#img-pines-amapear").show();
-        $("#img-pines-amapear").attr("src",reader.result);
-        $("#map").css("width","fit-content");
-        $("#anadir-productos-btn").show();
-        $("#anadir-productos-btn").addClass("disabled");
-        $("#cropear-btn").show();
-        //mostrar modal
-        $("#modal-cropper").modal('show');
-        $(".toggle-aspect-ratio").show();
+    var tipoFile = event.target.files[0].type || "";
+    console.log(event)
 
-        //cropper
-        var button = document.getElementById('cropear-btn');
-        var result = document.getElementById('result');
-        var map = document.getElementById('map');
-        var image = document.querySelector('#img-pines-amapear');
-        var anadir = document.querySelector("#anadir-productos-btn");
-        var options = {
-            dragMode: 'move',
-            aspectRatio: 1 / 1,
-            viewMode: 1,
-            autoCropArea: 1,
-            responsive: true,
-            background: false,
-            restore: false,
-            guides: true,
-            center: false,
-            highlight: false,
-            cropBoxMovable: false,
-            cropBoxResizable: false,
-            toggleDragModeOnDblclick: false
-        }
+    if(tipoFile=="image/jpeg" || tipoFile=="image/png" || tipoFile=="image/jpg"){
 
-        $('#modal-cropper').on('shown.bs.modal', function (event) {
-            event.stopPropagation();
-            var desdeBack = event.relatedTarget;
+        var reader = new FileReader();
+        reader.onload = function(){
+            // var output = document.getElementById('output-imgpins');
+            var map = $('<div id="map">');
+            var img_pin = $('<img id="img-pines-amapear">');
+            //lo creo en ves de tocarlo
+            $(".contenedor-content").append(map);
+            map.append(img_pin)
+            
+            $("#img-pines-amapear").show();
+            $("#img-pines-amapear").attr("src",reader.result);
+            $("#map").css("width","fit-content");
+            $("#anadir-productos-btn").show();
+            $("#anadir-productos-btn").addClass("disabled");
+            $("#cropear-btn").show();
+            //mostrar modal
+            $("#modal-cropper").modal('show');
+            $(".toggle-aspect-ratio").show();
 
-            if(!desdeBack){
-                var cropper = new Cropper(image,options);
+            //cropper
+            var button = document.getElementById('cropear-btn');
+            var result = document.getElementById('result');
+            var map = document.getElementById('map');
+            var image = document.querySelector('#img-pines-amapear');
+            var anadir = document.querySelector("#anadir-productos-btn");
+            var options = {
+                dragMode: 'move',
+                aspectRatio: 1 / 1,
+                viewMode: 1,
+                autoCropArea: 1,
+                responsive: true,
+                background: false,
+                restore: false,
+                guides: true,
+                center: false,
+                highlight: false,
+                cropBoxMovable: false,
+                cropBoxResizable: false,
+                toggleDragModeOnDblclick: false
             }
 
-        });
-            
-        var target = event.target.id;
-            //reseteo input file
-            $("#imagen-pins").val("");
+            $('#modal-cropper').on('shown.bs.modal', function (event) {
+                event.stopPropagation();
+                var desdeBack = event.relatedTarget;
 
-
-        $('.cerrarModal').on('click', function(event) {
-            var disparador = $(event.target).attr("id");
-          
-            $(this).closest('.modal').one('hidden.bs.modal', function(event) {
-
-                //event.stopPropagation();
-                var target = event.target.id;
-                //reseteo input file
-                $("#imagen-pins").val("");
-          
-                $("#map").remove();
-                $("#img-pines-amapear").attr("src","");
-                $(".click-protector-cont").html("");
-                $("#terminar-productos-btn").hide();
-
-                if(image.className == 'cropper-hidden'){
-                    image.cropper.destroy();
+                if(!desdeBack){
+                    var cropper = new Cropper(image,options);
                 }
 
             });
-        });
-        
-        /*$('#modal-cropper').on('hide.bs.modal', function(event) {
-            var $activeElement = $(document.activeElement);
-            
-            if ($activeElement.is('[data-toggle], [data-dismiss]')) {
-                if (event.type === 'hide') {
-                    // Do something with the button that closed the modal
-                    console.log('The button that closed the modal is: ', $activeElement);
                 
-                }else if (event.type === 'show') {
-                    // Do something with the button that opened the modal
-                    console.log('The button that opened the modal is: ', $activeElement);
-                }
-            }
-        });*/
+            /*var target = event.target.id;
+                //reseteo input file
+                $("#imagen-pins").val("");*/
+
+
+            $('.cerrarModal').on('click', function(event) {
+                var disparador = $(event.target).attr("id");
+            
+                $(this).closest('.modal').one('hidden.bs.modal', function(event) {
+
+                    //event.stopPropagation();
+                    var target = event.target.id;
+                    //reseteo input file
+                    $("#imagen-pins").val("");
+                    $("#map").remove();
+                    $("#img-pines-amapear").attr("src","");
+                    $(".click-protector-cont").html("");
+                    $("#terminar-productos-btn").hide();
+
+                    if(image.className == 'cropper-hidden'){
+                        image.cropper.destroy();
+                    }
+
+                });
+            });
 
             //toggle de aspect ratio
             $("#modal-cropper").on('click', '.l-radio', function (e) {
@@ -1503,11 +1492,15 @@ function cargarImgPines(event){
                     
                 };
             });
-        
+            
 
 
-    };
-    reader.readAsDataURL(event.target.files[0]);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+
+    }else{
+        alert("archivo erroneo")
+    }
             
 }
 
@@ -2055,56 +2048,4 @@ function mostrarSeguidores(){
         var sin_seg = "<div>Por el momento, no sigues a nadie</div>";
         $(".container-seguidos").html(sin_seg);
     }
-}
-
-function ampliarPublic(imgParam,nombreParam,descrParam){
-
-    var html_ampliar_public = 
-    // '<div class="overlay" style="display: none;">'+
-    //     '<div class="lightBox lightBox-public" style="width: 85%;">'+
-    //         '<div class="row">'+
-    //             '<div class="col-lg-6"><img class="img_lp" src="'+imgParam+'"></div>'+
-    //             '<div class="col-lg-6 texto-public">'+
-    //                 '<h1>'+nombreParam+'</h1>'+
-    //                 '<p>'+descrParam+'</p>'+
-    //             '</div>'+
-    //         '</div>'+
-    //     '</div>'+
-    // '</div>';
-
-'<div class="container">'+
-  
-  '<h1 class="my-4 font-weight-bold">Masonry - columnWidth</h1>'+
-
-  '<div class="grid">'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-    '<div class="grid-item"></div>'+
-  '</div>'+
-  
-'</div>';
-
-
-    $(".board").append(html_ampliar_public)
-    $(".lightBox-public").parent().css("display","block");
 }
