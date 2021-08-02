@@ -33,20 +33,27 @@
          //jsonData.
          var url_mp = "{url-mp}";
          
-         var html_test = 
-         '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
-            '<a href="'+url_mp+'">Edítalo aqu&iacute;</a>'+
-            //'<span class="close-mp"><i class=" fas fa-times"></i></span>'+
-         '</div>';
-            
-            $(".close-mp").bind('click',function(e){
-               console.log("test")
-               e.stopPropagation();
-               e.preventDefault();
-               $(".token_mp").hide(300);
-            });
-            
-         $(".token_mp").html(html_test);
+
+         if(jsonData != "undefined"){
+            if(jsonData.tokenMercadoPago == 0){
+               var html_test = 
+               '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
+                  '<a href="'+url_mp+'">Edítalo aqu&iacute;</a>'+
+               '</div>';
+                  
+                  $(".close-mp").bind('click',function(e){
+                     console.log("test")
+                     e.stopPropagation();
+                     e.preventDefault();
+                     $(".token_mp").hide(300);
+                  });
+                  
+               $(".token_mp").html(html_test);
+
+            }else{
+               $(".token_mp").hide();
+            }
+         }
 
       });
    </script>

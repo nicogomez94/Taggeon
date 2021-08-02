@@ -160,7 +160,7 @@
 
 			});
 			//genera tag con producto y futuro click protector
-			$("#popup-prod-cont").on("click", ".nombre-producto", function(){
+			$("#popup-prod-cont").on("click", ".splide__slide", function(){
 				            
 				$(".popup-prod-overlay").hide();
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
