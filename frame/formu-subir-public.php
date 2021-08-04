@@ -21,7 +21,7 @@ if ($perfil == 'seller' || $perfil =='picker'){
         "tokenMercadoPago" => $tokenMercadoPago,
 	"perfil"        => $perfil,
         "usuario" => $GLOBALS['sesionG']['usuario'],
-        "nombre"      => $GLOBALS['         sesionG']['nombre'],
+        "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $publicacionManager->getListCategoria(),

@@ -5,19 +5,6 @@ include_once("../app/objects/util/database.php");
 include_once("../app/objects/carrito/CarritoManager.php");
 require_once 'vendor/autoload.php';
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
-$usuarioManager = new UsuarioManagerImpl();
-$tokenMP = $usuarioManager->getTokenMP();
-if (!isset($tokenMP)){
-            $objRet = array(
-                "status"  => "ERROR",
-                "mensaje" => "token incorrecto"
-            );
-$ret = json_encode($objRet);
-Database::Connect()->close();
-echo $ret;
-exit;
-
-}
 
 
 $statusRet  = 'ERROR';
@@ -25,6 +12,28 @@ $mensajeRet = 'ERROR';
 
 $sesionManager = new SesionManagerImpl();
 if ($sesionManager->validar(array('seller','picker'))){
+
+
+    $usuarioManager = new UsuarioManagerImpl();
+    $tokenMP = $usuarioManager->getTokenMP();
+    if (!isset($tokenMP) || $tokenMP == ''){
+                $objRet = array(
+                    "status"  => "ERROR",
+                    "mensaje" => "token incorrecto $tokenMP"
+                );
+    $ret = json_encode($objRet);
+    $fp = fopen("/var/www/html/log.txt", 'a');
+    fwrite($fp, $ret);
+    fclose($fp);
+    Database::Connect()->close();
+    echo $ret;
+    exit;
+    
+    }
+    
+
+
+
     if (sizeof($_POST) > 0) {
         $objResponse = pagar($tokenMP);
         $statusRet  = $objResponse['status'];

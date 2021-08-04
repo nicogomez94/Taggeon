@@ -98,8 +98,31 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 
 	public function getTokenMP(){
 
+		
+		$carritoDao = new CarritoDao();
+		$data["id_carrito"] = $carritoDao->getIdCarrito3();
 
-		return 	$this->getUsuarioDao()->getTokenMP();
+		if (!is_numeric($data["id_carrito"])){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id de carrito es incorrecto.");
+			return 0;
+		}
+
+		if ($data["id_carrito"] <= 0){
+			$this->setStatus("ERROR");
+			$this->setMsj("No se encontro el carrito.");
+			return 0;
+ 		}
+
+		 $idCarrito = isset($_POST["id_carrito"]) ? $_POST["id_carrito"] : '';
+
+		if ($data["id_carrito"] != $idCarrito){
+			$this->setStatus("ERROR");
+			$this->setMsj("El id ". $idCarrito ." de carrito  es incorrecto.");
+			return 0;
+		}
+		
+		return 	$this->getUsuarioDao()->getTokenMP($idCarrito);
 
 	}
 

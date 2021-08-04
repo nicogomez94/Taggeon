@@ -70,6 +70,10 @@ SQL;
         ORDER BY id desc
         LIMIT 1
 sql;
+
+//echo $sql;
+
+
         $resultado = Database::Connect()->query($sql);
 
         $id_carrito = 0;

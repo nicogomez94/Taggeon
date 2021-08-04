@@ -1,6 +1,8 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioDao.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/database.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
+
 class  UsuarioDaoImpl implements UsuarioDao{
 	private $status    = "";
 	private $msj       = "";
@@ -171,44 +173,36 @@ sql;
 
 }
 
-public function getTokenMP (){
+public function getTokenMP ($idCarrito){
 
 	//validar
-	$idUsuario = $GLOBALS['sesionG']['idUsuario'];
-	$idUsuarioBD = Database::escape($idUsuario);
+	$idCarritoBD = Database::escape($idCarrito);
 
 	$sql =<<<SQL
 		SELECT `acces_token`
 		FROM usuario_seller
-		WHERE `idUsuario` = $idUsuarioBD 
-			  AND `eliminar` = 0 
-SQL;
-            
-    if (!mysqli_query(Database::Connect(), $sql)) {
-		$this->setStatus("error");
-		$this->setMsj("error al obtener token seller");
-   }else{
-		$this->setStatus("ok");
-		$this->setMsj("");
-
-
-		$sql =<<<SQL
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = $idCarritoBD) 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
 		SELECT `acces_token`
 		FROM `usuario_picker`
-		WHERE `idUsuario` = $idUsuarioBD 
-			  AND `eliminar` = 0 
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = $idCarritoBD) 
+			  AND `eliminar` = 0 AND acces_token is not null
 SQL;
-    	if (!mysqli_query(Database::Connect(), $sql)) {
+//echo $sql;
 
 
-				$this->setStatus("error");
-				$this->setMsj("error al obtner token picker");
-   		}else{
-				$this->setStatus("ok");
-				$this->setMsj("");
-   		}
-	   
-   }
+$resultado=Database::Connect()->query($sql);
+$tokenMP = '';
+
+while($rowEmp=mysqli_fetch_array($resultado)){
+	$tokenMP = $rowEmp['acces_token'];
+	  if (empty($tokenMP)){
+		$tokenMP = "";
+	  }
+}
+return $tokenMP;
+
 }
 
 public function actualizarTokenMP (){

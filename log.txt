@@ -74,3 +74,163 @@ Paso 1
 OK
 TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066
  status: OK mensaje: 1239155417
+Fecha 02/08/2021  15:42:41
+post transactionAmount: 15000
+post token: 7d276d7fdd5aefb018d84a0a5ac250a9
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 38783978
+post description: 
+post id_carrito: 295
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token 
+ status: ERROR mensaje: 
+Fecha 02/08/2021  16:05:38
+post transactionAmount: 15000
+post token: 27eccd7f9a6e58da04e81920f57b63e4
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 38783978
+post description: 
+post id_carrito: 295
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token 
+ status: ERROR mensaje: 
+Fecha 04/08/2021  06:17:36
+post transactionAmount: 70000
+post token: af509f8b7fb79174c8752bd69cd957ee
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456654
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token 
+ status: ERROR mensaje: 
+Fecha 04/08/2021  06:23:48
+post transactionAmount: 70000
+post token: cf5c4b79908a264b7e43f85f019555ca
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33432234
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token 
+ status: ERROR mensaje: 
+Fecha 04/08/2021  06:28:33
+post transactionAmount: 70000
+post token: afba181c56176f2f73f5dc200f3db472
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456654
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token 
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM tb_carrito_detalle WHERE id_carrito = '303') 
+			  AND `eliminar` = 0 
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM tb_carrito_detalle WHERE id_carrito = '303') 
+			  AND `eliminar` = 0  ANDFecha 04/08/2021  07:13:11
+post transactionAmount: 70000
+post token: 8a5646a6ddf5fb5fb7fff7846078e6f0
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456654
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TG-610a5d4846dc620008d342f0-754982066
+ status: ERROR mensaje: 
+Fecha 04/08/2021  07:15:40
+post transactionAmount: 70000
+post token: 11a28e768d30c7043f99ca759034b8e3
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 34567765
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TG-610a5d4846dc620008d342f0-754982066
+ status: ERROR mensaje: 
+Fecha 04/08/2021  10:33:45
+post transactionAmount: 70000
+post token: c28232f70a6ce84ca4db5fd9ef8b1606
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33234432
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TG-610a5d4846dc620008d342f0-754982066
+ status: ERROR mensaje: 
