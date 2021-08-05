@@ -3,3 +3,234 @@
 code TG-610af1d4c7a46400089d3be3-802190672
 -----------------##################
 "{\"message\":\"invalid grant_type: \\\\\\\"authorization_code\\\\\\\"\",\"error\":\"unsupported_grant_type\",\"status\":400,\"cause\":[]}"
+code TG-610af1d4c7a46400089d3be3-802190672
+-----------------##################
+"{\"message\":\"grant_type is a required parameter\",\"error\":\"invalid_request\",\"status\":400,\"cause\":[]}"
+code TG-610af1d4c7a46400089d3be3-802190672
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+code TG-610ba5e9ab4c1a0006ea680d-802190672
+-----------------##################
+"{\"access_token\":\"TEST-8374534224864099-080508-b12be56bba1d3fcb84da32880d307b3d-802190672\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":802190672,\"refresh_token\":\"TG-610ba62701432a00082d7839-802190672\",\"public_key\":\"TEST-6077c8bc-c457-4deb-8681-09a293e4f630\",\"live_mode\":false}"
+code TG-610ba5e9ab4c1a0006ea680d-802190672
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+code TG-610ba5e9ab4c1a0006ea680d-802190672
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  05:54:01
+post transactionAmount: 70000
+post token: 06afd37485f6691b100fafc0459407e7
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456789
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+ status: ERROR mensaje: 
+
+code TG-610ba5e9ab4c1a0006ea680d-802190672
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  05:56:27
+post transactionAmount: 70000
+post token: 56db586e639eba87dd5427e17d0ec3e7
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456678
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+ status: ERROR mensaje: 
+
+code TG-610ba5e9ab4c1a0006ea680d-802190672
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:01:21
+post transactionAmount: 70000
+post token: 179539c17c55048bc6b09d84b12dc37b
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 30999000
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+ status: ERROR mensaje: 
+
+code TG-610ba5e9ab4c1a0006ea680d-802190672
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:10:29
+post transactionAmount: 70000
+post token: a481a6ed1eaf69258d6280c616998c15
+post installments: 1
+post paymentMethodId: amex
+post issuer: 279
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456654
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+ status: ERROR mensaje: 
+
+code TG-610bb2ceab4c1a0006ea7a44-754982066
+-----------------##################
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:44:28
+post transactionAmount: 70000
+post token: d296363e47ca00d0e57ba0b5d97487c8
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33212234
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+ status: ERROR mensaje: 
+
+code TG-610bb2ceab4c1a0006ea7a44-754982066
+-----------------##################
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:45:29
+post transactionAmount: 70000
+post token: 00bbeca334fd8cb2c7ac89318c593157
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456234
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+ status: ERROR mensaje: 
+
+code TG-610bb2ceab4c1a0006ea7a44-754982066
+-----------------##################
+"{\"access_token\":\"TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610bb3e40ba1a10008aeb8dd-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"Fecha 05/08/2021  06:48:21
+post transactionAmount: 70000
+post token: 67517fdaa48aa521463e5e27589927e0
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 34567765
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+ status: ERROR mensaje: 
+
+code TG-610bb2ceab4c1a0006ea7a44-754982066
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:50:00
+post transactionAmount: 70000
+post token: 4c7c7d5aae82da65566955633375ee16
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456653
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-75498206
+ status: ERROR mensaje: 
+
+code TG-610bb2ceab4c1a0006ea7a44-754982066
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:51:15
+post transactionAmount: 70000
+post token: 146a8e2fa46eca588640df3fc7704c1b
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456654
+post description: 
+post id_carrito: 303
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-75498206
+ status: ERROR mensaje: 
+
+code TG-610bb2ceab4c1a0006ea7a44-754982066
+-----------------##################
+"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:52:40
+post transactionAmount: 70000
+post token: 115a03c5963d5672fb4f79de97cf6c5d
+post installments: 1
+post paymentMethodId: amex
+post issuer: 303
+post email: test_user_87614160@testuser.com
+post docType: DNI
+post docNumber: 33456765
+post description: 
+post id_carrito: 303
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 1239446110
+#---------------------------------------------
+Paso 1
+OK
+token TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-754982066
+ status: OK mensaje: 1239446110

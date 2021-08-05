@@ -43,10 +43,10 @@ curl_setopt($ch, CURLOPT_URL, 'https://api.mercadopago.com/oauth/token');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
 $post = array(
-    'client_secret' => '\"TEST-8374534224864099-031110-2172397d2fe3c0aab34a7b8e5539b524-22602582\"',
-    'grant_type' => '\"authorization_code\"',
-    'code' => '\"'.$codeMP.'\"',
-    'redirect_uri' => '\"https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/\";'
+    'client_secret' => "TEST-3352741419059189-050614-755049662bda9663d0cfd003654542a6-754221997",
+    'grant_type' => "authorization_code",
+    'code' => "$codeMP",
+    'redirect_uri' => "https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/"
 );
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 
@@ -64,10 +64,12 @@ $ret = json_encode($result);
 $fp = fopen("/var/www/html/log.txt", 'a');
 fwrite($fp, $ret);
 fclose($fp);
-Database::Connect()->close();
-echo $ret;
-exit;
+//Database::Connect()->close();
+//echo $ret;
+//exit;
 
+
+$tokenMP = "TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-754982066";
 
     }
     if (sizeof($_POST) > 0) {
@@ -165,6 +167,7 @@ function pagar ($token){
                 if ($objPrincipalManager->getStatus() == 'OK') {
                     $str = "OK\n";
                     $fp = fopen("/var/www/html/log.txt", 'a');
+
                     fwrite($fp, $str);
                     fclose($fp);
                     $statusRet  = 'OK';
