@@ -15,25 +15,61 @@ if ($sesionManager->validar(array('seller','picker'))){
 
 
     $usuarioManager = new UsuarioManagerImpl();
-    $tokenMP = $usuarioManager->getTokenMP();
-    if (!isset($tokenMP) || $tokenMP == ''){
-                $objRet = array(
-                    "status"  => "ERROR",
-                    "mensaje" => "token incorrecto $tokenMP"
-                );
-    $ret = json_encode($objRet);
-    $fp = fopen("/var/www/html/log.txt", 'a');
-    fwrite($fp, $ret);
-    fclose($fp);
-    Database::Connect()->close();
-    echo $ret;
-    exit;
-    
+    $codeMP = $usuarioManager->getTokenMP();
+    $tokenMP = '';
+
+    if (!isset($codeMP) || $codeMP == ''){
+        $objRet = array(
+            "status"  => "ERROR",
+            "mensaje" => "token incorrecto $codeMP"
+        );
+        $ret = json_encode($objRet);
+        $fp = fopen("/var/www/html/log.txt", 'a');
+        fwrite($fp, $ret);
+        fclose($fp);
+        Database::Connect()->close();
+        echo $ret;
+        exit;
+    }else{
+
+        $fp = fopen("/var/www/html/log.txt", 'a');
+        fwrite($fp, "\ncode $codeMP\n-----------------##################\n");
+        fclose($fp);
+
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, 'https://api.mercadopago.com/oauth/token');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+$post = array(
+    'client_secret' => '\"TEST-8374534224864099-031110-2172397d2fe3c0aab34a7b8e5539b524-22602582\"',
+    'grant_type' => '\"authorization_code\"',
+    'code' => '\"'.$codeMP.'\"',
+    'redirect_uri' => '\"https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/\";'
+);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+
+$headers = array();
+$headers[] = 'Cookie: _d2id=11ad01cf-b28f-4c4d-8fcd-8dda7df01919-n';
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+curl_close($ch);
+
+$ret = json_encode($result);
+$fp = fopen("/var/www/html/log.txt", 'a');
+fwrite($fp, $ret);
+fclose($fp);
+Database::Connect()->close();
+echo $ret;
+exit;
+
+
     }
-    
-
-
-
     if (sizeof($_POST) > 0) {
         $objResponse = pagar($tokenMP);
         $statusRet  = $objResponse['status'];
