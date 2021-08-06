@@ -1,25 +1,55 @@
 
-"{\"message\":\"invalid grant_type: \\\\\\\"authorization_code\\\\\\\"\",\"error\":\"unsupported_grant_type\",\"status\":400,\"cause\":[]}"
-code TG-610af1d4c7a46400089d3be3-802190672
------------------##################
-"{\"message\":\"invalid grant_type: \\\\\\\"authorization_code\\\\\\\"\",\"error\":\"unsupported_grant_type\",\"status\":400,\"cause\":[]}"
-code TG-610af1d4c7a46400089d3be3-802190672
------------------##################
-"{\"message\":\"grant_type is a required parameter\",\"error\":\"invalid_request\",\"status\":400,\"cause\":[]}"
-code TG-610af1d4c7a46400089d3be3-802190672
------------------##################
+"{\"access_token\":\"TEST-3352741419059189-080611-d19db7deb81710b08e4ef1ab6eecda5f-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610d19527ee2bc0008e4cbeb-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='{',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-d19db7deb81710b08e4ef1ab6eecda5f-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d19527ee2bc0008e4cbeb-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='{',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-d19db7deb81710b08e4ef1ab6eecda5f-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d19527ee2bc0008e4cbeb-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
 "{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
-code TG-610ba5e9ab4c1a0006ea680d-802190672
------------------##################
-"{\"access_token\":\"TEST-8374534224864099-080508-b12be56bba1d3fcb84da32880d307b3d-802190672\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":802190672,\"refresh_token\":\"TG-610ba62701432a00082d7839-802190672\",\"public_key\":\"TEST-6077c8bc-c457-4deb-8681-09a293e4f630\",\"live_mode\":false}"
-code TG-610ba5e9ab4c1a0006ea680d-802190672
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
-code TG-610ba5e9ab4c1a0006ea680d-802190672
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  05:54:01
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610d1b820f8a1c000719d9e8-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1b820f8a1c000719d9e8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1b820f8a1c000719d9e8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610d1c4546b17b000a45f9f8-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1c4546b17b000a45f9f8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1c4546b17b000a45f9f8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '399' 
+			  AND `eliminar` = 0 
+
+######################################################
+json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+######################################################
+
+######################################################
+json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+######################################################
+Fecha 06/08/2021  08:27:49
 post transactionAmount: 70000
-post token: 06afd37485f6691b100fafc0459407e7
+post token: fd95af313c577851e66926a28b71ce99
 post installments: 1
 post paymentMethodId: amex
 post issuer: 303
@@ -27,211 +57,104 @@ post email: test_user_87614160@testuser.com
 post docType: DNI
 post docNumber: 33456789
 post description: 
-post id_carrito: 303
+post id_carrito: 304
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+token 
  status: ERROR mensaje: 
 
-code TG-610ba5e9ab4c1a0006ea680d-802190672
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  05:56:27
+######################################################
+json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+######################################################
+Fecha 06/08/2021  08:28:30
 post transactionAmount: 70000
-post token: 56db586e639eba87dd5427e17d0ec3e7
+post token: 896ce268a2356e4383692f85fe5072c0
 post installments: 1
 post paymentMethodId: amex
 post issuer: 303
 post email: test_user_87614160@testuser.com
 post docType: DNI
-post docNumber: 33456678
+post docNumber: 33456123
 post description: 
-post id_carrito: 303
+post id_carrito: 304
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+token 
  status: ERROR mensaje: 
 
-code TG-610ba5e9ab4c1a0006ea680d-802190672
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:01:21
+######################################################
+json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+######################################################
+Fecha 06/08/2021  08:31:03
 post transactionAmount: 70000
-post token: 179539c17c55048bc6b09d84b12dc37b
+post token: 78d464a628d6c2686e7694454cd8b212
 post installments: 1
 post paymentMethodId: amex
 post issuer: 303
 post email: test_user_87614160@testuser.com
 post docType: DNI
-post docNumber: 30999000
+post docNumber: 33987789
 post description: 
-post id_carrito: 303
+post id_carrito: 304
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+token TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
  status: ERROR mensaje: 
 
-code TG-610ba5e9ab4c1a0006ea680d-802190672
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:10:29
+######################################################
+json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+######################################################
+Fecha 06/08/2021  08:38:36
 post transactionAmount: 70000
-post token: a481a6ed1eaf69258d6280c616998c15
-post installments: 1
-post paymentMethodId: amex
-post issuer: 279
-post email: test_user_87614160@testuser.com
-post docType: DNI
-post docNumber: 33456654
-post description: 
-post id_carrito: 303
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
- status: ERROR mensaje: 
-
-code TG-610bb2ceab4c1a0006ea7a44-754982066
------------------##################
-"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:44:28
-post transactionAmount: 70000
-post token: d296363e47ca00d0e57ba0b5d97487c8
+post token: 2e38253eccc01277830a6ac403463b70
 post installments: 1
 post paymentMethodId: amex
 post issuer: 303
 post email: test_user_87614160@testuser.com
 post docType: DNI
-post docNumber: 33212234
+post docNumber: 33456789
 post description: 
-post id_carrito: 303
+post id_carrito: 304
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
+token TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
  status: ERROR mensaje: 
 
-code TG-610bb2ceab4c1a0006ea7a44-754982066
------------------##################
-"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:45:29
+######################################################
+json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+######################################################
+Fecha 06/08/2021  08:50:40
 post transactionAmount: 70000
-post token: 00bbeca334fd8cb2c7ac89318c593157
+post token: 82b1a7369f978c889726c0c26ad86bc3
 post installments: 1
 post paymentMethodId: amex
 post issuer: 303
 post email: test_user_87614160@testuser.com
 post docType: DNI
-post docNumber: 33456234
+post docNumber: 33456789
 post description: 
-post id_carrito: 303
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
- status: ERROR mensaje: 
-
-code TG-610bb2ceab4c1a0006ea7a44-754982066
------------------##################
-"{\"access_token\":\"TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610bb3e40ba1a10008aeb8dd-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"Fecha 05/08/2021  06:48:21
-post transactionAmount: 70000
-post token: 67517fdaa48aa521463e5e27589927e0
-post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
-post docType: DNI
-post docNumber: 34567765
-post description: 
-post id_carrito: 303
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token TEST-8374534224864099-050502-c525c4cf6fba42fba3060c7e2f9f82e9-754216372
- status: ERROR mensaje: 
-
-code TG-610bb2ceab4c1a0006ea7a44-754982066
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:50:00
-post transactionAmount: 70000
-post token: 4c7c7d5aae82da65566955633375ee16
-post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
-post docType: DNI
-post docNumber: 33456653
-post description: 
-post id_carrito: 303
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-75498206
- status: ERROR mensaje: 
-
-code TG-610bb2ceab4c1a0006ea7a44-754982066
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:51:15
-post transactionAmount: 70000
-post token: 146a8e2fa46eca588640df3fc7704c1b
-post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
-post docType: DNI
-post docNumber: 33456654
-post description: 
-post id_carrito: 303
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-75498206
- status: ERROR mensaje: 
-
-code TG-610bb2ceab4c1a0006ea7a44-754982066
------------------##################
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"Fecha 05/08/2021  06:52:40
-post transactionAmount: 70000
-post token: 115a03c5963d5672fb4f79de97cf6c5d
-post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
-post docType: DNI
-post docNumber: 33456765
-post description: 
-post id_carrito: 303
+post id_carrito: 304
 response mp status: approved
 response mp status_detail: accredited
-response mp id: 1239446110
+response mp id: 1239512039
 #---------------------------------------------
 Paso 1
 OK
-token TEST-3352741419059189-080509-3d1c55fc82611495cb0d857aa36b90a6-754982066
- status: OK mensaje: 1239446110
-"{\"access_token\":\"TEST-3352741419059189-080518-4af4c63521691b13ee477c74b152a4c2-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610c33d7a8f2a5000938d8b7-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}""{\"access_token\":\"TEST-3352741419059189-080518-c0df0a6b345917122260692e904f86e9-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610c3411eb3b3d0008fb1410-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}""{\"access_token\":\"TEST-3352741419059189-080518-e3d36cd9f1cedfabe5d76ba02a93b0ac-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610c343d818820000857300e-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}""{\"access_token\":\"TEST-3352741419059189-080523-20e6cb7eb4b1b0b7e37464187bee84cc-299598887\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":299598887,\"refresh_token\":\"TG-610c77326102c2000978f95b-299598887\",\"public_key\":\"TEST-df033830-8f3c-4c3c-9c9b-3bada5278dd2\",\"live_mode\":false}"
+token TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+ status: OK mensaje: 1239512039

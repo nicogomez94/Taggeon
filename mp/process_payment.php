@@ -15,13 +15,12 @@ if ($sesionManager->validar(array('seller','picker'))){
 
 
     $usuarioManager = new UsuarioManagerImpl();
-    $strMP = $usuarioManager->getTokenMP();
-    $tokenMP = '';
+    $tokenMP = $usuarioManager->getTokenMP();
 
-    if (!isset($strMP) || $strMP == ''){
+    if (!isset($tokenMP) || $tokenMP == ''){
         $objRet = array(
             "status"  => "ERROR",
-            "mensaje" => "token incorrecto $strMP"
+            "mensaje" => "token incorrecto $tokenMP"
         );
         $ret = json_encode($objRet);
         $fp = fopen("/var/www/html/log.txt", 'a');
@@ -33,7 +32,7 @@ if ($sesionManager->validar(array('seller','picker'))){
     }else{
 
         $fp = fopen("/var/www/html/log.txt", 'a');
-        fwrite($fp, "\n######################################################\njson $strMP\n######################################################\n");
+        fwrite($fp, "\n######################################################\njson $tokenMP\n######################################################\n");
         fclose($fp);
     }
     if (sizeof($_POST) > 0) {

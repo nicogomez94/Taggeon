@@ -156,6 +156,9 @@ if (curl_errno($ch)) {
 }
 curl_close($ch);
 
+//var_dump($result);exit;
+$obj = json_decode($result, false);
+$token = $obj->access_token;
 $ret = json_encode($result);
 $fp = fopen("/var/www/html/log.txt", 'a');
 fwrite($fp, $ret);
@@ -164,7 +167,7 @@ fclose($fp);
 //echo $ret;
 //exit;
 
-			$this->getUsuarioDao()->actualizarTokenMP($ret);
+			$this->getUsuarioDao()->actualizarTokenMP($ret,$token);
 		}
 
 	}

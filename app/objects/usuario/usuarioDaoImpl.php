@@ -205,33 +205,40 @@ return $tokenMP;
 
 }
 
-public function actualizarTokenMP ($json){
+public function actualizarTokenMP ($json,$token){
 	$idUsuario = $_GET['state'];
+	$tokenBD      = Database::escape($token);
 
 	$jsonBD      = Database::escape($json);
 	$idUsuarioBD = Database::escape($idUsuario);
 
 	$sql =<<<SQL
 		UPDATE `usuario_seller` SET
-				 `acces_token`=$jsonBD
+				 `acces_token`=$tokenBD,`jsonmercadopago`=$jsonBD
 		WHERE `idUsuario` = $idUsuarioBD 
 			  AND `eliminar` = 0 
 SQL;
-            
+
+$fp = fopen("/var/www/html/log.txt", 'a');
+fwrite($fp, "\n$sql\n");
+fclose($fp);
+
     if (!mysqli_query(Database::Connect(), $sql)) {
 		$this->setStatus("error");
 		$this->setMsj("error al actualizar token seller");
    }else{
 		$this->setStatus("ok");
 		$this->setMsj("");
-
-
 		$sql =<<<SQL
 		UPDATE `usuario_picker` SET
-				 `acces_token`=$jsonBD
+				 `acces_token`=$tokenBD,`jsonmercadopago`=$jsonBD
 		WHERE `idUsuario` = $idUsuarioBD 
 			  AND `eliminar` = 0 
 SQL;
+
+$fp = fopen("/var/www/html/log.txt", 'a');
+fwrite($fp, "\n$sql\n");
+fclose($fp);
     	if (!mysqli_query(Database::Connect(), $sql)) {
 
 

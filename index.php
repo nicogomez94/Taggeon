@@ -21,7 +21,7 @@ if (preg_match($patron, $url)){
 			$usuarioManager = new UsuarioManagerImpl();
 			$usuarioManager->actualizarTokenMP();
 		
-			header("Location: /");
+			header("Location: http://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/");
 			Database::Connect()->close();
 			exit;
 		}
