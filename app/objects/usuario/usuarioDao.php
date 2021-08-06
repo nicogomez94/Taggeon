@@ -25,7 +25,7 @@ interface  UsuarioDao{
 	public function getUsuarioPublic($id_usuario); //nueva
    public function getUsuarioBySesion (); //nueva
    public function isAdmin (); //nueva
-   public function actualizarTokenMP (); //nueva
+   public function actualizarTokenMP ($json); //nueva
 	public function getTokenMP($id_carrito); //new
 
 }

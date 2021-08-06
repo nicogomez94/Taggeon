@@ -78,7 +78,7 @@ $(document).ready(function(){
 
 
                               '<div id="ancla-'+i+'" class="productos-public productos-public-'+i+'">'+
-                               '<div class="productos-titulo-public">Productos en esta publicacion:</div><br>'+
+                               '<div class="productos-titulo-public">Productos Relacionados:</div><br>'+
                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
                                      '<div class="splide splide-prod-tag-'+i+'">'+
                                         '<div class="splide__track">'+
@@ -279,7 +279,7 @@ $(document).ready(function(){
                      
                   }
                 
-                  var splide_fotos = '<li class="splide__slide splide__slide__img"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
+                  var splide_fotos = '<li class="splide__slide splide__slide__img splide__prodtag"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
                   $(".splide__list__"+i).prepend(splide_fotos);
                   
             
@@ -514,10 +514,7 @@ function dibujarSplideRel(array,key,prop,splideParam,idProdTag){
             var html_related = '<li class="splide__slide splide__slide__img">'+
             '<img data-toggle="modal" onclick="createModalRelAjax(\''+id_prod_rel+'\');$(\'#modal-producto-'+id_prod_rel+'\').modal(\'show\');" data-target="modal-producto-'+id_prod_rel+'" src="'+foto_src_prod_rel+'"></li>';
    
-            splideParam.add(html_related + ( splideParam.length + 1 ) );
-            console.log(splideParam.length)
-         }else{
-            console.log("ENCONTRO EL IGUAL")
+            splideParam.add(html_related);
          }
       }
    }
@@ -530,7 +527,6 @@ function createModalRelAjax(idParam){
    //TODO HARD falta añadir funcionalidad para que no se creen infinitos modales
 
    if(idParam == obj.id){
-      console.log(obj)
       var id_prod_p = obj.id || 0;
       var id_public_p = obj.id_public || 0;
       var id_prod_json_p = obj.id || 0;
@@ -663,4 +659,13 @@ function createModalRelAjax(idParam){
    }
       
 
+}
+
+function appearTooltip(msjParam){
+   
+   /*var tooltip = document.querySelector(".tooltip-nico");
+   tooltip.style.right="blue";
+   tooltip.innerHTML = msjParam;*/
+
+   //document.getElementsByClassName("tooltip-nico").style.color="blue";
 }

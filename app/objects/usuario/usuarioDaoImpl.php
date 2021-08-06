@@ -205,16 +205,15 @@ return $tokenMP;
 
 }
 
-public function actualizarTokenMP (){
-	$code      = $_GET['code'];
+public function actualizarTokenMP ($json){
 	$idUsuario = $_GET['state'];
 
-	$codeBD      = Database::escape($code);
+	$jsonBD      = Database::escape($json);
 	$idUsuarioBD = Database::escape($idUsuario);
 
 	$sql =<<<SQL
 		UPDATE `usuario_seller` SET
-				 `acces_token`=$codeBD
+				 `acces_token`=$jsonBD
 		WHERE `idUsuario` = $idUsuarioBD 
 			  AND `eliminar` = 0 
 SQL;
@@ -229,7 +228,7 @@ SQL;
 
 		$sql =<<<SQL
 		UPDATE `usuario_picker` SET
-				 `acces_token`=$codeBD
+				 `acces_token`=$jsonBD
 		WHERE `idUsuario` = $idUsuarioBD 
 			  AND `eliminar` = 0 
 SQL;

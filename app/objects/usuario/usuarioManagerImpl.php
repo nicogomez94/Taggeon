@@ -132,7 +132,39 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		$stateMP  = $_GET['state'];
 
 		if ($idUserMP == $stateMP){
-			$this->getUsuarioDao()->actualizarTokenMP();
+			$codeMP      = $_GET['code'];
+			$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, 'https://api.mercadopago.com/oauth/token');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+$post = array(
+    'client_secret' => "TEST-3352741419059189-050614-755049662bda9663d0cfd003654542a6-754221997",
+    'grant_type' => "authorization_code",
+    'code' => "$codeMP",
+    'redirect_uri' => "https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/"
+);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+
+$headers = array();
+$headers[] = 'Cookie: _d2id=11ad01cf-b28f-4c4d-8fcd-8dda7df01919-n';
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+curl_close($ch);
+
+$ret = json_encode($result);
+$fp = fopen("/var/www/html/log.txt", 'a');
+fwrite($fp, $ret);
+fclose($fp);
+//Database::Connect()->close();
+//echo $ret;
+//exit;
+
+			$this->getUsuarioDao()->actualizarTokenMP($ret);
 		}
 
 	}

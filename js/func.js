@@ -983,6 +983,7 @@ $(".modal").on("click", ".btn-carrito", function(){
               window.location.replace("/ampliar-carrito.html");
            }else{
               console.log("ELSE-->"+dataJ+"/"+dataM);
+              alert(dataJ+"/"+dataM);
               //window.location.replace("/ampliar-carrito.html");
            }
         },
