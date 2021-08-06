@@ -158,3 +158,13 @@ Paso 1
 OK
 token TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
  status: OK mensaje: 1239512039
+"{\"access_token\":\"TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":141510028,\"refresh_token\":\"TG-610d2c2a6426ab000833b104-141510028\",\"public_key\":\"TEST-249a604a-2edc-4658-ae36-050a680c37e3\",\"live_mode\":false}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-610d2c2a6426ab000833b104-141510028\\\",\\\"public_key\\\":\\\"TEST-249a604a-2edc-4658-ae36-050a680c37e3\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '388' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-610d2c2a6426ab000833b104-141510028\\\",\\\"public_key\\\":\\\"TEST-249a604a-2edc-4658-ae36-050a680c37e3\\\",\\\"live_mode\\\":false}\"'
+		WHERE `idUsuario` = '388' 
+			  AND `eliminar` = 0 
