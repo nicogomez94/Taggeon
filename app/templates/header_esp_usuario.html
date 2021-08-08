@@ -56,7 +56,14 @@
             }
          }
 
+
+         $("#buscador-index-input").keyup(function(){
+            activarBuscadorRelated($(this));
+         });
+
       });
+
+      
    </script>
    
 <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
@@ -335,23 +342,6 @@
 
 <div id="main-super-container">
 <div class="token_mp"></div>
-<!-- 
-   <div class="grid" data-masonry='{"itemSelector": ".grid-item"}'>   
-      <div class="grid-item"><img src="https://viapais.com.ar/resizer/KWRZoK3z10QyfWP5tdn38QNza2s=/982x551/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/GQZDSZJUGJSTGZJYGU2DCMJRMM.jpg"></div>
-      <div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>
-      <div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>
-      <div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>
-      <div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>
-      <div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>
-      <div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>
-      <div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>
-      <div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>
-      <div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>
-      <div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>
-      <div class="grid-item"><img src="https://aws.glamour.mx/prod/designs/v1/assets/620x930/260429.jpg"></div>
-      <div class="grid-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/1200px-The_Leaning_Tower_of_Pisa_SB.jpeg"></div>
-      <div class="grid-item"><img src="https://estaticos-cdn.elperiodico.com/clip/80ccbd4a-9d52-4b2a-b2b3-e9c254b3447c_alta-libre-aspect-ratio_default_0.jpg"></div>
-      </div> -->
 
    <div id="background-atras"></div>
    <!-- <div class="flecha-atras-public" onclick="atrasHistory()"><i class="fas fa-arrow-left"></i></div> -->

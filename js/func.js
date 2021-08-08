@@ -1594,6 +1594,8 @@ function activarBuscador(param){
 }
 
 
+
+
 function favoritos(id_publicacion,accion){
 
     var data = new FormData();
@@ -2050,3 +2052,36 @@ function mostrarSeguidores(){
         $(".container-seguidos").html(sin_seg);
     }
 }
+
+  
+  
+  function activarBuscadorRelated(param){
+    var search = param.val();
+
+    if(search != ""){
+
+            var data_json = {
+                "input": search, 
+                "accion": "search",
+                "perfil": jsonData.perfil
+            }
+
+            $.ajax({
+                url: '/app/busqueda.php',
+                type: 'post',
+                data: data_json,
+                dataType: 'json',
+                success:function(data,response){
+                    console.log("success") 
+                    console.log(response,data)
+
+
+                },
+                error:function(response){
+                
+                    alert("ERROR::"+response)
+                }
+            });
+        }
+}
+
