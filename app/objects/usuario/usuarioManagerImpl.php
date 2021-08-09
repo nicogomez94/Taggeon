@@ -105,12 +105,18 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		if (!is_numeric($data["id_carrito"])){
 			$this->setStatus("ERROR");
 			$this->setMsj("El id de carrito es incorrecto.");
+			$fp = fopen("/var/www/html/log.txt", 'a');
+			fwrite($fp, $this->getMsj());
+			fclose($fp);
 			return 0;
 		}
 
 		if ($data["id_carrito"] <= 0){
 			$this->setStatus("ERROR");
 			$this->setMsj("No se encontro el carrito.");
+			$fp = fopen("/var/www/html/log.txt", 'a');
+			fwrite($fp, $this->getMsj());
+			fclose($fp);
 			return 0;
  		}
 
@@ -119,6 +125,9 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		if ($data["id_carrito"] != $idCarrito){
 			$this->setStatus("ERROR");
 			$this->setMsj("El id ". $idCarrito ." de carrito  es incorrecto.");
+			$fp = fopen("/var/www/html/log.txt", 'a');
+			fwrite($fp, $this->getMsj());
+			fclose($fp);
 			return 0;
 		}
 		
@@ -142,7 +151,7 @@ $post = array(
     'client_secret' => "APP_USR-8374534224864099-031110-4f6f85c7c881ec465effc93b0c547035-22602582",
     'grant_type' => "authorization_code",
     'code' => "$codeMP",
-    'redirect_uri' => "https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/"
+    'redirect_uri' => "https://taggeon.com/"
 );
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 

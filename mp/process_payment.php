@@ -82,7 +82,7 @@ function pagar ($token){
     $payment = new MercadoPago\Payment();
     $payment->transaction_amount = (float)$_POST['transactionAmount'];
     $payment->token = $_POST['token'];
-    $payment->description = $_POST['description'];
+    $payment->description = "TAGGEON ".$_POST['id_carrito'];
     $payment->installments = (int)$_POST['installments'];
     $payment->payment_method_id = $_POST['paymentMethodId'];
     $payment->issuer_id = (int)$_POST['issuer'];
@@ -109,7 +109,7 @@ function pagar ($token){
             $str .= "post email: ".$_POST['email']."\n";
             $str .= "post docType: ".$_POST['docType']."\n";
             $str .= "post docNumber: ".$_POST['docNumber']."\n";
-            $str .= "post description: ".$_POST['description']."\n";
+            $str .= "post description: TAGGEON ".$_POST['id_carrito']."\n";
             $str .= "post id_carrito: ".$_POST['id_carrito']."\n";
             $str .= "response mp status: ".$payment->status."\n";
             $str .= "response mp status_detail: ".$payment->status_detail."\n";

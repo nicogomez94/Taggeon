@@ -1,210 +1,214 @@
 
-"{\"access_token\":\"TEST-3352741419059189-080611-d19db7deb81710b08e4ef1ab6eecda5f-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610d19527ee2bc0008e4cbeb-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"
+{"status":"ERROR","mensaje":"token incorrecto "}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null{"status":"ERROR","mensaje":"token incorrecto "}"{\"access_token\":\"APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-611066620958f00007f73cd9-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
 		UPDATE `usuario_seller` SET
-				 `acces_token`='{',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-d19db7deb81710b08e4ef1ab6eecda5f-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d19527ee2bc0008e4cbeb-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-611066620958f00007f73cd9-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '416' 
 			  AND `eliminar` = 0 
 
 		UPDATE `usuario_picker` SET
-				 `acces_token`='{',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-d19db7deb81710b08e4ef1ab6eecda5f-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d19527ee2bc0008e4cbeb-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-611066620958f00007f73cd9-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '416' 
 			  AND `eliminar` = 0 
-"{\"message\":\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+"{\"message\":\"the redirect_uri does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
 		UPDATE `usuario_seller` SET
-				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
 			  AND `eliminar` = 0 
 
 		UPDATE `usuario_picker` SET
-				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"Error validating grant. Your authorization code or refresh token may be expired or it was already used\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
 			  AND `eliminar` = 0 
-"{\"access_token\":\"TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610d1b820f8a1c000719d9e8-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"
+"{\"message\":\"the redirect_uri does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
 		UPDATE `usuario_seller` SET
-				 `acces_token`='TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1b820f8a1c000719d9e8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
 			  AND `eliminar` = 0 
 
 		UPDATE `usuario_picker` SET
-				 `acces_token`='TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-571189b3942b61700594778b420fa282-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1b820f8a1c000719d9e8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
 			  AND `eliminar` = 0 
-"{\"access_token\":\"TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":754982066,\"refresh_token\":\"TG-610d1c4546b17b000a45f9f8-754982066\",\"public_key\":\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\",\"live_mode\":false}"
+"{\"access_token\":\"APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":22602582,\"refresh_token\":\"TG-61106d6946b17b000a49b647-22602582\",\"public_key\":\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\",\"live_mode\":true}"
 		UPDATE `usuario_seller` SET
-				 `acces_token`='TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1c4546b17b000a45f9f8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61106d6946b17b000a49b647-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
 			  AND `eliminar` = 0 
 
 		UPDATE `usuario_picker` SET
-				 `acces_token`='TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":754982066,\\\"refresh_token\\\":\\\"TG-610d1c4546b17b000a45f9f8-754982066\\\",\\\"public_key\\\":\\\"TEST-24049e16-344c-46af-883b-b7249fe97e7f\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '399' 
+				 `acces_token`='APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61106d6946b17b000a49b647-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":183441779,\"refresh_token\":\"TG-61106fcd41272c0006852bd9-183441779\",\"public_key\":\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-61106fcd41272c0006852bd9-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '375' 
 			  AND `eliminar` = 0 
 
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-61106fcd41272c0006852bd9-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '375' 
+			  AND `eliminar` = 0 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
 ######################################################
-json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
 ######################################################
-
-######################################################
-json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
-######################################################
-Fecha 06/08/2021  08:27:49
-post transactionAmount: 70000
-post token: fd95af313c577851e66926a28b71ce99
+Fecha 08/08/2021  20:59:48
+post transactionAmount: 150
+post token: cdb973b77428a0311a652f314fff3f7e
 post installments: 1
-post paymentMethodId: amex
-post issuer: 303
+post paymentMethodId: visa
+post issuer: 12448
 post email: test_user_87614160@testuser.com
 post docType: DNI
-post docNumber: 33456789
+post docNumber: 38783978
 post description: 
-post id_carrito: 304
+post id_carrito: 298
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token 
+token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
  status: ERROR mensaje: 
-
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
 ######################################################
-json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
 ######################################################
-Fecha 06/08/2021  08:28:30
-post transactionAmount: 70000
-post token: 896ce268a2356e4383692f85fe5072c0
+Fecha 08/08/2021  21:23:12
+post transactionAmount: 150
+post token: dba05b74bbb6faa5727357cbd9e1fd71
 post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
+post paymentMethodId: visa
+post issuer: 288
+post email: nicolasgomez94@gmail.com
 post docType: DNI
-post docNumber: 33456123
+post docNumber: 38783978
 post description: 
-post id_carrito: 304
+post id_carrito: 298
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token 
+token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
  status: ERROR mensaje: 
-
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
 ######################################################
-json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
 ######################################################
-Fecha 06/08/2021  08:31:03
-post transactionAmount: 70000
-post token: 78d464a628d6c2686e7694454cd8b212
+Fecha 08/08/2021  21:24:21
+post transactionAmount: 150
+post token: 79852b7163e9e78509a9f82c51ee8e65
 post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
 post docType: DNI
-post docNumber: 33987789
+post docNumber: 38783978
 post description: 
-post id_carrito: 304
+post id_carrito: 298
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
  status: ERROR mensaje: 
-
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
 ######################################################
-json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
 ######################################################
-Fecha 06/08/2021  08:38:36
-post transactionAmount: 70000
-post token: 2e38253eccc01277830a6ac403463b70
+Fecha 08/08/2021  21:40:41
+post transactionAmount: 150
+post token: b68318642260ef967dbf1c62dd869004
 post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
+post paymentMethodId: master
+post issuer: 12437
+post email: nicolasgomez94@gmail.com
 post docType: DNI
-post docNumber: 33456789
-post description: 
-post id_carrito: 304
+post docNumber: 38783978
+post description: TAGGEON 298
+post id_carrito: 298
 response mp status: 
 response mp status_detail: 
 response mp id: 
 #---------------------------------------------
 Paso else
 Paso else 1
-token TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
  status: ERROR mensaje: 
-
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+			  AND `eliminar` = 0 AND acces_token is not null
 ######################################################
-json TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
+json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
 ######################################################
-Fecha 06/08/2021  08:50:40
-post transactionAmount: 70000
-post token: 82b1a7369f978c889726c0c26ad86bc3
+Fecha 08/08/2021  21:41:53
+post transactionAmount: 150
+post token: 142f2f147a03579dbed33568f9321273
 post installments: 1
-post paymentMethodId: amex
-post issuer: 303
-post email: test_user_87614160@testuser.com
+post paymentMethodId: visa
+post issuer: 279
+post email: nicolasgomez94@gmail.com
 post docType: DNI
-post docNumber: 33456789
-post description: 
-post id_carrito: 304
+post docNumber: 38783978
+post description: TAGGEON 298
+post id_carrito: 298
 response mp status: approved
 response mp status_detail: accredited
-response mp id: 1239512039
+response mp id: 16285035766
 #---------------------------------------------
 Paso 1
 OK
-token TEST-3352741419059189-080611-7a41e1700b55f91ee99b8eebc9537dd3-754982066
- status: OK mensaje: 1239512039
-"{\"access_token\":\"TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access read write\",\"user_id\":141510028,\"refresh_token\":\"TG-610d2c2a6426ab000833b104-141510028\",\"public_key\":\"TEST-249a604a-2edc-4658-ae36-050a680c37e3\",\"live_mode\":false}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-610d2c2a6426ab000833b104-141510028\\\",\\\"public_key\\\":\\\"TEST-249a604a-2edc-4658-ae36-050a680c37e3\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '388' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"TEST-3352741419059189-080612-c740bb8066c9293cb064b4076c608a1a-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-610d2c2a6426ab000833b104-141510028\\\",\\\"public_key\\\":\\\"TEST-249a604a-2edc-4658-ae36-050a680c37e3\\\",\\\"live_mode\\\":false}\"'
-		WHERE `idUsuario` = '388' 
-			  AND `eliminar` = 0 
-"{\"access_token\":\"APP_USR-8374534224864099-080615-9e01c7dac7aab9c64c8d518f4904454a-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-610d4ec71f49a500088538d1-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='APP_USR-8374534224864099-080615-9e01c7dac7aab9c64c8d518f4904454a-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080615-9e01c7dac7aab9c64c8d518f4904454a-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-610d4ec71f49a500088538d1-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '368' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='APP_USR-8374534224864099-080615-9e01c7dac7aab9c64c8d518f4904454a-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080615-9e01c7dac7aab9c64c8d518f4904454a-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-610d4ec71f49a500088538d1-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '368' 
-			  AND `eliminar` = 0 
-"{\"access_token\":\"APP_USR-8374534224864099-080615-e2587f3b0d4bbec602fc395525611c29-183441779\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":183441779,\"refresh_token\":\"TG-610d4f091a4f4d00072c11d1-183441779\",\"public_key\":\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\",\"live_mode\":true}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='APP_USR-8374534224864099-080615-e2587f3b0d4bbec602fc395525611c29-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080615-e2587f3b0d4bbec602fc395525611c29-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-610d4f091a4f4d00072c11d1-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '377' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='APP_USR-8374534224864099-080615-e2587f3b0d4bbec602fc395525611c29-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080615-e2587f3b0d4bbec602fc395525611c29-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-610d4f091a4f4d00072c11d1-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '377' 
-			  AND `eliminar` = 0 
-"{\"access_token\":\"APP_USR-8374534224864099-080615-796b1e346c24d02f0afaf987da68dacf-183441779\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":183441779,\"refresh_token\":\"TG-610d4fc578d77e00074b5870-183441779\",\"public_key\":\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\",\"live_mode\":true}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='APP_USR-8374534224864099-080615-796b1e346c24d02f0afaf987da68dacf-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080615-796b1e346c24d02f0afaf987da68dacf-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-610d4fc578d77e00074b5870-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '390' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='APP_USR-8374534224864099-080615-796b1e346c24d02f0afaf987da68dacf-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080615-796b1e346c24d02f0afaf987da68dacf-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-610d4fc578d77e00074b5870-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '390' 
-			  AND `eliminar` = 0 
-"{\"access_token\":\"APP_USR-8374534224864099-080616-44425dc52714c10a1ed1d6b2b2425680-22602582\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":22602582,\"refresh_token\":\"TG-610d612518b46b0007b02018-22602582\",\"public_key\":\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\",\"live_mode\":true}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='APP_USR-8374534224864099-080616-44425dc52714c10a1ed1d6b2b2425680-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080616-44425dc52714c10a1ed1d6b2b2425680-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-610d612518b46b0007b02018-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '399' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='APP_USR-8374534224864099-080616-44425dc52714c10a1ed1d6b2b2425680-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080616-44425dc52714c10a1ed1d6b2b2425680-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-610d612518b46b0007b02018-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '399' 
-			  AND `eliminar` = 0 
+token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
+ status: OK mensaje: 16285035766

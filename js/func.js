@@ -2062,8 +2062,7 @@ function mostrarSeguidores(){
 
             var data_json = {
                 "input": search, 
-                "accion": "search",
-                "perfil": jsonData.perfil
+                "accion": "search"
             }
 
             $.ajax({

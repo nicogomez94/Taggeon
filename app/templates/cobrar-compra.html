@@ -141,12 +141,12 @@
                 <div>
                   <label for="">Fecha de vencimiento</label>
                   <div>
-                    <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" value="11"
+                    <input style="width: 10%;" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" value="06"
                       onselectstart="return false" onpaste="return false"
                       oncopy="return false" oncut="return false"
                       ondrag="return false" ondrop="return false" autocomplete=off>
                     <span class="date-separator">/</span>
-                    <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" value="25"
+                    <input style="width: 10%;" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" value="27"
                       onselectstart="return false" onpaste="return false"
                       oncopy="return false" oncut="return false"
                       ondrag="return false" ondrop="return false" autocomplete=off>
@@ -157,14 +157,14 @@
                   <input type="text" id="cardNumber" data-checkout="cardNumber"
                     onselectstart="return false" onpaste="return false"
                     oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off value="37118030325752">
+                    ondrag="return false" ondrop="return false" autocomplete=off value="459354000679">
                 </div>
                 <div>
                   <label for="securityCode">Código de seguridad</label>
                   <input style="width: 10%;" id="securityCode" data-checkout="securityCode" type="text"
                     onselectstart="return false" onpaste="return false"
                     oncopy="return false" oncut="return false"
-                    ondrag="return false" ondrop="return false" autocomplete=off value="1234">
+                    ondrag="return false" ondrop="return false" autocomplete=off value="161">
                 </div>
                 <div id="issuerInput">
                   <label for="issuer">Banco emisor</label>
@@ -250,7 +250,7 @@ $(document).ready(function(){
             $(".totales-num").html('$. '+total);
             $('.lista-productos').append(compras_html);
             $("#transactionAmount").val(precio_producto)
-            $("#email").val("test_user_87614160@testuser.com")
+            $("#email").val("nicolasgomez94@gmail.com")
         }
     }
 
@@ -265,7 +265,7 @@ $(document).ready(function(){
     mp.checkout({
         tokenizer: {
             totalAmount: 4000,
-            backUrl: 'http://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/cobrar-compra.html'
+            backUrl: 'https://taggeon.com/cobrar-compra.html'
         },
       render: {
             container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
