@@ -36,7 +36,7 @@
          
 
          if(jsonData != "undefined"){
-            if(jsonData.tokenMercadoPago == 0){
+            if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
                var html_test = 
                '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
                   '<a href="'+url_mp+'">Edítalo aqu&iacute;</a>'+
@@ -60,6 +60,9 @@
          $("#buscador-index-input").keyup(function(){
             activarBuscadorRelated($(this));
          });
+
+         /*test*/
+         //$("#modalFirstLogin").modal('show');
 
       });
 
@@ -323,6 +326,9 @@
                         <img class="interes_img" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt="">
                         <div class="interes_title">Arquitectura</div>
                      </div>
+                  </div>
+                  <div class="text-center">
+                     <input type="submit" class="btn btn-warning" value="Enviar">
                   </div>
 					</div>
 				</div>
