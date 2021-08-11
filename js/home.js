@@ -41,6 +41,7 @@ if(sizePublic>0){
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             var favorito = jsonData.publicaciones[x].favorito || 0;
             var fav_accion = "";
+            var full_url = '/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat;
 
 
             if(json_cat == id_public_cat){
@@ -49,10 +50,10 @@ if(sizePublic>0){
                     '<div>'+
                         '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                             '<div class="overlay-public">'+
-                            '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
+                            '<a class="link-ampliar-home" href="'+full_url+'"></a>'+
                             '<div class="public-title-home">'+nombre_public+'</div>'+
                             '<div class="text-overlay">'+
-                                '<span class="text-overlay-link share-sm">'+
+                                '<span class="text-overlay-link share-sm" onclick="pathShareHome(\''+full_url+'\')">'+
                                     '<a href="#"><i class="fas fa-share-alt"></i></a>'+
                                 '</span>'+
                                 '&nbsp;&nbsp;'+
@@ -88,7 +89,7 @@ if(sizePublic>0){
 }
 
 
-$('.share-sm').click(function(e) {
+/*$('.share-sm').click(function(e) {
     e.preventDefault();
     console.log("overlay")
     $(".overlay").show();
@@ -96,7 +97,7 @@ $('.share-sm').click(function(e) {
     $('#cerrar-light').click(function() {
        $('.overlay').css("display", "none");
     });
- });
+ });*/
 
 
  /*buscador*/

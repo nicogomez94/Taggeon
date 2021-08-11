@@ -1,25 +1,6 @@
 <div class="overlay-loading"></div>
 <!-- SHARE -->
-<div class="overlay">
-   <div class="lightBox">
-      <div>
-         <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-         <h3>Compart&iacute; esta publicaci&oacute;n</h3>
-         <hr>
-         <div class="share-links">
-            <span><i class="fab fa-facebook-square"></i></span>
-            <span><i class="fab fa-instagram-square"></i></span>
-            <span><i class="fab fa-twitter-square"></i></span>
-            <span><i class="fab fa-reddit-square"></i></span>
-            <span><i class="fab fa-pinterest-square"></i></span>
-         </div>
-         <hr>
-         <input type="text" id="inputCopiarLink">
-         <button class="share-btn btn btn-warning" onclick="copiarLink()">Copiar</button>
-         <br>
-      </div>
-   </div>
-</div>
+
 <!--/SHARE-->
 <!-- flecha flotante atras -->
 <!-- <div class="flecha-atras-public"><a onclick="atrasHistory()"><i class="fas fa-arrow-left"></i></a></div> -->
@@ -170,9 +151,7 @@
             });
             
 
-         /*link a public para copiar*/
-         var linkActual = window.location.href;
-         $("#inputCopiarLink").val(linkActual)
+
 
          $("body").css("background-color","#e4e4e4");
 

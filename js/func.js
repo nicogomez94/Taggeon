@@ -473,7 +473,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
     });
 
     /**modal casero editar para foto*/
-    $('#edit-btn, .share-sm').click(function(e) {
+    $('#edit-btn').click(function(e) {
         e.preventDefault();
         console.log("overlay")
         $(".overlay").show();
@@ -1310,7 +1310,6 @@ $("#buscador-index-input").keyup(function(e){
 /***fin document.ready***//***fin document.ready***/
 
 
-
 });
 
     
@@ -1719,17 +1718,18 @@ function buscadorIndex(paramIndex){
                             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
                             var favorito = jsonData.publicaciones[x].favorito || 0;
                             var fav_accion = "";
+                            var full_url = '/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat
 
                             var public_html2 =
                                 '<div class="grid-item">'+
                                     '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                                         '<div class="overlay-public">'+
-                                            '<a class="link-ampliar-home" href="/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat+'"></a>'+
+                                            '<a class="link-ampliar-home" href="'+full_url+'"></a>'+
                                             // '<a class="link-ampliar-home"></a>'+
                                             '<div class="public-title-home">'+nombre_public+'</div>'+
                                             '<div class="text-overlay">'+
-                                                '<span class="text-overlay-link share-sm">'+
-                                                    '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                                '<span class="text-overlay-link share-sm" onclick="pathShareHome(\''+full_url+'\')">'+
+                                                    '<a href="#"><i class="fas fa-share-alt" ></i></a>'+
                                                 '</span>'+
                                                 '&nbsp;&nbsp;'+
                                                 '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
@@ -2202,5 +2202,25 @@ function activarBuscadorRelated(param){
             }
         });
     }
+}
+
+function pathShareHome(param){
+    /*link a public para copiar*/
+    var Url = window.location.href;
+	var UrlEncoded = encodeURIComponent(Url);
+    var title = "taggeon";
+    
+    $(".overlayShare").show();
+    
+    $('#cerrar-light').click(function() {
+        $('.overlayShare').css("display", "none");
+    });
+
+    console.log(Url+param)
+    $("#inputCopiarLink").val(Url+param)
+	document.getElementById("fa-facebook-square").href="http://www.facebook.com/share.php?u=" + UrlEncoded;
+	document.getElementById("fa-twitter-square").href="http://twitter.com/home?status=" + title + " " + UrlEncoded;
+	//document.getElementById("fa-instagram-square").href="http://twitter.com/home?status=" + title + " " + UrlEncoded;
+	//document.getElementById("fa-pinterest-square").href="mailto:?body=Take a look at this page I found: " + title + ". You can read it here: " + Url;
 }
 
