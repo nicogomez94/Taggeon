@@ -1294,8 +1294,12 @@ $(".cantidad_value").change(function(){
 });
 
 //activo buscador
-$("#buscador-index-input").keypress(function(e){
+$("#buscador-index-input").keyup(function(e){
+
+    activarBuscadorRelated($(this));
+    
     if(e.key === "Enter"){
+        //console.log("enter")
         buscadorIndex($(this));
     }
 });
@@ -1668,6 +1672,7 @@ function atrasHistory(){
 }
 
 function buscadorIndex(paramIndex){
+    console.log("entro")
     var search = paramIndex.val();
     
     if(search != ""){
@@ -2177,7 +2182,7 @@ function activarBuscadorRelated(param){
                         var result_search = response.mensaje[0].search;
                         var relatedArr = [];
                         var buscadorNode = document.getElementById("buscador-index-input");
-                        console.log(result_search)
+
                         relatedArr.splice(0,0,result_search);
     
                         //llamo a func

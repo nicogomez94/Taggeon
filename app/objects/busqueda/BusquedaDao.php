@@ -33,29 +33,50 @@ class  BusquedaDao
 	public function altaBusqueda(array $data)
 	{
 
-        $search = isset($data["search"]) ? $data["search"] : '';
+        $search = isset($data["input"]) ? $data["input"] : '';
         $searchDB = Database::escape($search);
-        $contador = isset($data["contador"]) ? $data["contador"] : '';
-        $contadorDB = Database::escape($contador);
-		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
-        $usuarioAltaDB = Database::escape($usuarioAlta);
-        
-		$sql = <<<SQL
-			INSERT INTO busqueda (search, contador,usuario_alta)  
-			VALUES ($searchDB, $contadorDB,$usuarioAltaDB)
+
+
+
+        $sql = <<<SQL
+			UPDATE
+			    `busqueda`
+			SET `contador` = `contador` + 1
+			    WHERE
+                `search` = $searchDB
 SQL;
 
-		if (!mysqli_query(Database::Connect(), $sql)) {
-			$this->setStatus("ERROR");
-			$this->setMsj("$sql" . Database::Connect()->error);
-		} else {
-			$id = mysqli_insert_id(Database::Connect());
-			$this->setMsj($id);
-			$this->setStatus("OK");
-			return true;
-		}
+$mysqli = Database::Connect();
 
-		return false;
+// Perform queries and print out affected rows
+$mysqli->query($sql);
+    $row_cnt =  $mysqli->affected_rows;
+
+    $fp = fopen("/var/www/html/log.txt", 'a');
+    fwrite($fp, "\nrow_cnt $row_cnt\n");
+    fclose($fp);
+    
+    if ($row_cnt <= 0) {
+        $sql = <<<SQL
+        INSERT INTO busqueda (search, contador)  
+        VALUES ($searchDB, '1')
+SQL;
+
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $id = mysqli_insert_id(Database::Connect());
+            $this->setMsj($id);
+            $this->setStatus("OK");
+            return true;
+        }
+
+        return false;
+    }
+
+    return true;
+ 
 	}
 
 
@@ -204,6 +225,41 @@ sql;
         return $list;
     }
 
+    public function search($data)
+    {
+        
+        $input = isset($data["input"]) ? $data["input"] : '';
+        $inputDB = Database::escape("%$input%");
+
+        $sql = <<<sql
+        SELECT
+        search
+    FROM
+    busqueda
+    WHERE
+        search  LIKE $inputDB
+    order by contador desc
+sql;
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj(Database::Connect()->error);
+        } else {
+            $resultado = Database::Connect()->query($sql);
+            $list = array();
+    
+    
+            while ($rowEmp = mysqli_fetch_array($resultado)) {
+                $list[] = $rowEmp;
+            }
+    
+            $this->setStatus("OK");
+            $this->setMsj($list);
+
+            return true;
+        }
+
+        return false;
+    }
 
 
 

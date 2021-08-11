@@ -12,21 +12,17 @@ $objPrincipalManager = new BusquedaManager();
 if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar)$/i', $var_accion)) {
-        if ($var_accion == 'alta') {
-            $objPrincipalManager->agregarBusqueda($_POST);
-        } else if ($var_accion == 'editar') {
-            $objPrincipalManager->modificarBusqueda($_POST);
-        } else if ($var_accion == 'eliminar') {
-            $objPrincipalManager->eliminarBusqueda($_POST);
-        }
+    if (preg_match('/^(search)$/i', $var_accion)) {
+        $objPrincipalManager->search($_POST);
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';
-            $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+            $mensajeRet = $objPrincipalManager->getMsj();
         } else {
             $statusRet  = 'ERROR';
             $mensajeRet = $objPrincipalManager->getMsj();
         }
+
+
     } else {
         $statusRet  = 'ERROR';
         $mensajeRet = "Acción incorrecta.";

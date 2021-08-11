@@ -1,5 +1,6 @@
 <?php
 include_once("BusquedaDao.php");
+
 class  BusquedaManager
 {
 	private $busquedaDao;
@@ -40,36 +41,69 @@ class  BusquedaManager
 			}
 		}
 
-	    $search = isset($data["search"]) ? $data["search"] : '';
+	    $search = isset($data["input"]) ? $data["input"] : '';
 	    if ($this->validarSearch($search) === false){
 	     return false;
 	    }
-	    $contador = isset($data["contador"]) ? $data["contador"] : '';
-	    if ($this->validarContador($contador) === false){
-	     return false;
-	    }
-
-
 	}
 
+	public function search(array $data)
+	{
+		$input = isset($data["input"]) ? $data["input"] : '';
+		if ($this->validarInputSearch($input) === false) {
+			return false;
+		}
 
+		if ($this->busquedaDao->search($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->busquedaDao->getMsj());
+			return false;
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->busquedaDao->getMsj());
+			return 'ok';
+		}
+	}
+
+	private function validarInputSearch($input)
+	{
+		if (!preg_match('/^.+$/i', $input)) {
+			$this->setStatus("ERROR");
+			$this->setMsj("El campo input es incorrecto.");
+			return false;
+		}
+		$this->setStatus("OK");
+		$this->setMsj("");
+		return true;
+	}
 
 	public function agregarBusqueda(array $data)
 	{
 
+		$fp = fopen("/var/www/html/log.txt", 'a');
+		fwrite($fp, "Paso agregar busqueda");
+		fclose($fp);
+
 		if ($this->validarBusqueda($data) === false) {
 			return false;
 		}
-
+		$fp = fopen("/var/www/html/log.txt", 'a');
+		fwrite($fp, "Paso agregar busqueda");
+		fclose($fp);
 
 		if ($this->busquedaDao->altaBusqueda($data) === false) {
+			
+		$fp = fopen("/var/www/html/log.txt", 'a');
+		fwrite($fp, "Paso agregar busqueda error".$this->busquedaDao->getMsj());
+		fclose($fp);
 			$this->setStatus("ERROR");
 			$this->setMsj($this->busquedaDao->getMsj());
 		} else {
+			
+		$fp = fopen("/var/www/html/log.txt", 'a');
+		fwrite($fp, "ok");
+		fclose($fp);
 			$idBusqueda = $this->busquedaDao->getMsj();
-
-			
-			
 			$this->setStatus("OK");
 			$this->setMsj($idBusqueda);
 		}

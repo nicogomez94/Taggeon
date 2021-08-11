@@ -1,116 +1,59 @@
 
-{"status":"ERROR","mensaje":"token incorrecto "}		SELECT `acces_token`
+Paso searchindexPaso agregar busquedaPaso searchindexPaso agregar busquedaPaso agregar busquedaokPaso searchindexPaso agregar busquedaPaso agregar busquedaokPaso searchindexPaso agregar busquedaPaso agregar busquedaokPaso searchindexPaso agregar busquedaPaso agregar busquedaokPaso searchindexPaso agregar busquedaPaso agregar busquedaokPaso searchindexPaso agregar busquedaPaso agregar busquedaokPaso searchindexPaso agregar busquedaPaso agregar busquedaokPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 5
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 5
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 5
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 0
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 1
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 1
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 1
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 1
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 1
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 1
+okPaso searchindexPaso agregar busquedaPaso agregar busqueda
+row_cnt 0
+ok		SELECT `acces_token`
 		FROM usuario_seller
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '295') 
 			  AND `eliminar` = 0 AND acces_token is not null
 		UNION
 		SELECT `acces_token`
 		FROM `usuario_picker`
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null{"status":"ERROR","mensaje":"token incorrecto "}"{\"access_token\":\"APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-611066620958f00007f73cd9-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-611066620958f00007f73cd9-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '416' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-be834113a0e2fac82e3cc07ef4dd0e4f-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-611066620958f00007f73cd9-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '416' 
-			  AND `eliminar` = 0 
-"{\"message\":\"the redirect_uri does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
-		WHERE `idUsuario` = '414' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
-		WHERE `idUsuario` = '414' 
-			  AND `eliminar` = 0 
-"{\"message\":\"the redirect_uri does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
-		WHERE `idUsuario` = '414' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the redirect_uri does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
-		WHERE `idUsuario` = '414' 
-			  AND `eliminar` = 0 
-"{\"access_token\":\"APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":22602582,\"refresh_token\":\"TG-61106d6946b17b000a49b647-22602582\",\"public_key\":\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\",\"live_mode\":true}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61106d6946b17b000a49b647-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '414' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-5dd1a5945050e9729c0287c94f3dce5c-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61106d6946b17b000a49b647-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '414' 
-			  AND `eliminar` = 0 
-"{\"access_token\":\"APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":183441779,\"refresh_token\":\"TG-61106fcd41272c0006852bd9-183441779\",\"public_key\":\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\",\"live_mode\":true}"
-		UPDATE `usuario_seller` SET
-				 `acces_token`='APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-61106fcd41272c0006852bd9-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '375' 
-			  AND `eliminar` = 0 
-
-		UPDATE `usuario_picker` SET
-				 `acces_token`='APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":183441779,\\\"refresh_token\\\":\\\"TG-61106fcd41272c0006852bd9-183441779\\\",\\\"public_key\\\":\\\"APP_USR-9669f2ae-fdd7-4dae-ac6e-e89571beea3d\\\",\\\"live_mode\\\":true}\"'
-		WHERE `idUsuario` = '375' 
-			  AND `eliminar` = 0 
-		SELECT `acces_token`
-		FROM usuario_seller
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-		UNION
-		SELECT `acces_token`
-		FROM `usuario_picker`
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '295') 
 			  AND `eliminar` = 0 AND acces_token is not null
 ######################################################
 json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
 ######################################################
-Fecha 08/08/2021  20:59:48
-post transactionAmount: 150
-post token: cdb973b77428a0311a652f314fff3f7e
-post installments: 1
-post paymentMethodId: visa
-post issuer: 12448
-post email: test_user_87614160@testuser.com
-post docType: DNI
-post docNumber: 38783978
-post description: 
-post id_carrito: 298
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
- status: ERROR mensaje: 
-		SELECT `acces_token`
-		FROM usuario_seller
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-		UNION
-		SELECT `acces_token`
-		FROM `usuario_picker`
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-######################################################
-json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
-######################################################
-Fecha 08/08/2021  21:23:12
-post transactionAmount: 150
-post token: dba05b74bbb6faa5727357cbd9e1fd71
+Fecha 11/08/2021  01:08:48
+post transactionAmount: 15000
+post token: e8dce4fb3c2c006041833c490e17ceb8
 post installments: 1
 post paymentMethodId: visa
 post issuer: 288
 post email: nicolasgomez94@gmail.com
 post docType: DNI
 post docNumber: 38783978
-post description: 
-post id_carrito: 298
+post description: TAGGEON 295
+post id_carrito: 295
 response mp status: 
 response mp status_detail: 
 response mp id: 
@@ -119,96 +62,3 @@ Paso else
 Paso else 1
 token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
  status: ERROR mensaje: 
-		SELECT `acces_token`
-		FROM usuario_seller
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-		UNION
-		SELECT `acces_token`
-		FROM `usuario_picker`
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-######################################################
-json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
-######################################################
-Fecha 08/08/2021  21:24:21
-post transactionAmount: 150
-post token: 79852b7163e9e78509a9f82c51ee8e65
-post installments: 1
-post paymentMethodId: visa
-post issuer: 12448
-post email: nicolasgomez94@gmail.com
-post docType: DNI
-post docNumber: 38783978
-post description: 
-post id_carrito: 298
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
- status: ERROR mensaje: 
-		SELECT `acces_token`
-		FROM usuario_seller
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-		UNION
-		SELECT `acces_token`
-		FROM `usuario_picker`
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-######################################################
-json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
-######################################################
-Fecha 08/08/2021  21:40:41
-post transactionAmount: 150
-post token: b68318642260ef967dbf1c62dd869004
-post installments: 1
-post paymentMethodId: master
-post issuer: 12437
-post email: nicolasgomez94@gmail.com
-post docType: DNI
-post docNumber: 38783978
-post description: TAGGEON 298
-post id_carrito: 298
-response mp status: 
-response mp status_detail: 
-response mp id: 
-#---------------------------------------------
-Paso else
-Paso else 1
-token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
- status: ERROR mensaje: 
-		SELECT `acces_token`
-		FROM usuario_seller
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-		UNION
-		SELECT `acces_token`
-		FROM `usuario_picker`
-		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '298') 
-			  AND `eliminar` = 0 AND acces_token is not null
-######################################################
-json APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
-######################################################
-Fecha 08/08/2021  21:41:53
-post transactionAmount: 150
-post token: 142f2f147a03579dbed33568f9321273
-post installments: 1
-post paymentMethodId: visa
-post issuer: 279
-post email: nicolasgomez94@gmail.com
-post docType: DNI
-post docNumber: 38783978
-post description: TAGGEON 298
-post id_carrito: 298
-response mp status: approved
-response mp status_detail: accredited
-response mp id: 16285035766
-#---------------------------------------------
-Paso 1
-OK
-token APP_USR-8374534224864099-080823-e28a6b9d941675afa25d85017389721b-183441779
- status: OK mensaje: 16285035766

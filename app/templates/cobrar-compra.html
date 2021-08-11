@@ -258,11 +258,11 @@
                         <input id="securityCode" data-checkout="securityCode" type="text" pattern="[0-9]*" inputmode="numeric">
                     </div>
                 </div>
-                  <div id="issuerInput">
+                  <div id="issuerInput" class="afterCard">
                     <label for="issuer">Banco emisor</label>
                     <select id="issuer" name="issuer" data-checkout="issuer"></select>
                   </div>
-                  <div>
+                  <div class="afterCard">
                     <label for="installments">Cuotas</label>
                     <select type="text" id="installments" name="installments"></select>
                   </div>
@@ -408,10 +408,12 @@ function setPaymentMethod(status, response) {
    }
 }
 function getIssuers(paymentMethodId) {
-   window.Mercadopago.getIssuers(
-       paymentMethodId,
-       setIssuers
-   );
+    $(".afterCard").show();
+
+    window.Mercadopago.getIssuers(
+        paymentMethodId,
+        setIssuers
+    );
 }
 
 function setIssuers(status, response) {

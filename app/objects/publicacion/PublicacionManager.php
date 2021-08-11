@@ -1,5 +1,7 @@
 <?php
 include_once("PublicacionDao.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."busqueda/BusquedaManager.php");
+
 class  PublicacionManager
 {
 	private $publicacionDao;
@@ -338,7 +340,17 @@ class  PublicacionManager
 					return [];
 				}
 		
-				return $this->publicacionDao->searchIndex($data); 
+				$list = $this->publicacionDao->searchIndex($data);
+
+				$fp = fopen("/var/www/html/log.txt", 'a');
+				fwrite($fp, "Paso searchindex");
+				fclose($fp);
+		
+				if (count($list)>0){
+					$obj = new BusquedaManager();
+					$obj->agregarBusqueda($data);
+				}
+				return $list; 
 			}
 
 			private function validarInputSearch($input)
