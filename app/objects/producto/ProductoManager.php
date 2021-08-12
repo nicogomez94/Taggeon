@@ -153,10 +153,10 @@ class  ProductoManager
 				    $this->setStatus("error");
 				    $filaSiguiente = $filaImportadas + 1;
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción");
-			      	    return false;
+			        return false;
 
 				}
-		                $dataNew["titulo"] = isset($datacol[0]) ? $datacol[0] : '';
+		        $dataNew["titulo"] = isset($datacol[0]) ? $datacol[0] : '';
 				$dataNew["precio"] = isset($datacol[1]) ? $datacol[1] : '';;
 				$dataNew["stock"] = isset($datacol[2]) ? $datacol[2] : '';
 				$dataNew["color"] = isset($datacol[3]) ?  $datacol[3] : '';
