@@ -1,6 +1,9 @@
 <?php
 include_once("template.php");
 include_once("configuration.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."intereses/InteresesManager.php");
+
+
 $perfil   = isset($perfil) ? $perfil : '';
 
     $fotoPerfil = '';
@@ -39,12 +42,18 @@ STR;
     $idUserMP        = $GLOBALS['sesionG']['idUsuario'];
     $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=8374534224864099&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=https://taggeon.com/";
 	
+    $objIntereses = new InteresesManager();
+    $intereses = $objIntereses->getListIntereses();
+    $intereses = json_encode($intereses);
+
+
 	$contenidoHeader->asigna_variables(array(
         "url-mp"     => $urlMP,
 		"perfil"         => $reemplazoPerfil,
 		"foto-perfil"    => $fotoPerfil,
 		"menu"           => $menu,
-		"nombre-usuario" => $usuarioPerfil
+		"nombre-usuario" => $usuarioPerfil,
+        "intereses"      => $intereses
 		));
 }else{
 	$contenidoHeader = new Template('header_esp');
