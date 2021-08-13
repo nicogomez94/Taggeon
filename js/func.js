@@ -670,7 +670,7 @@ $('#editar-publicacion-form').submit(function (e) {
 
 
 /***ampliar/editar producto***/ 
-if(typeof jsonData != "undefined"){
+if(typeof jsonData != "undefined" && typeof jsonData != "undefined" ){
     var sizeProductos = jsonData.productos.length || 0;
     if(sizeProductos>0 || typeof sizeProductos != "undefined"){
         if(window.location.pathname == '/ampliar-producto.html'){
