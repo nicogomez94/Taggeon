@@ -1,7 +1,7 @@
 $(document).ready(function() {
     
     //activar notifs
-    ampliarNotif();
+    //ampliarNotif();
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -670,7 +670,7 @@ $('#editar-publicacion-form').submit(function (e) {
 
 
 /***ampliar/editar producto***/ 
-if(typeof jsonData.productos != "undefined"){
+if(typeof jsonData != "undefined"){
     var sizeProductos = jsonData.productos.length || 0;
     if(sizeProductos>0 || typeof sizeProductos != "undefined"){
         if(window.location.pathname == '/ampliar-producto.html'){
