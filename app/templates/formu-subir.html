@@ -85,7 +85,7 @@
                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                         <select name="categoria" id="categoria-producto">
                            <option value="" selected disabled hidden required>Elija una categor&iacute;a</option>
-                           <option value="4">test</option>
+                           <!-- <option value="4">test</option> -->
                         </select>
                      </div>
                      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -151,6 +151,19 @@
              uploadHBR.reset('#uploads');
          });
 
+         var cats = jsonData.categoria.length;
+         
+         //dibujo cats
+         for(var i=0; i<cats; i++) {
+               var cat_id = jsonData.categoria[i].id;
+               var cat_nombre = jsonData.categoria[i].nombre;
+
+               var cat_select_html = 
+               '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+
+               $("#categoria-producto").append(cat_select_html)
+         }
+
          $("#categoria-producto").change(function(){
             var val = $(this).val();
 
@@ -162,11 +175,9 @@
             var catData = new FormData();
             catData.append("accion","subcategoria");
             catData.append("id",val);
-
-            console.log(catData)
             
             $.ajax({
-               url: '/app/categoria.php',
+               url: '/app/producto.php',
                //type: 'post',
                //data: $("#registro_usuario_seller").serialize(), 
                //dataType : "json",

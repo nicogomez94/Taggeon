@@ -153,6 +153,8 @@ class  ProductoManager
 				    $this->setStatus("error");
 				    $filaSiguiente = $filaImportadas + 1;
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción");
+				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción");
+
 			        return false;
 
 				}
@@ -247,6 +249,26 @@ class  ProductoManager
 			}
 		}
 	}
+
+	public function searchSubCategoria(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarId($id) === false) {
+			return false;
+		}
+
+		if ($this->productoDao->searchSubCategoria($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->productoDao->getMsj());
+			return 'ok';
+		}
+	}
+
+
 
 	public function searchProductoSeller(array $data)
 	{

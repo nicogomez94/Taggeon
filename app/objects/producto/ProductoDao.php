@@ -526,6 +526,43 @@ sql;
     }
 
 
+    public function searchSubCategoria($data)
+    {
+        
+        $input = isset($data["id"]) ? $data["id"] : '';
+        $inputDB = Database::escape("$input");
+
+        $sql = <<<sql
+SELECT
+    id,
+    nombre
+FROM
+    categoria
+WHERE
+    id_padre = $inputDB AND (
+        categoria.eliminar IS NULL OR categoria.eliminar = 0
+    )
+sql;
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $resultado = Database::Connect()->query($sql);
+            $list = array();
+    
+    
+            while ($rowEmp = mysqli_fetch_array($resultado)) {
+                $list[] = $rowEmp;
+            }
+    
+            $this->setStatus("OK");
+            $this->setMsj($list);
+
+            return true;
+        }
+
+        return false;
+    }
 
     public function searchProductosSeller($data)
     {
