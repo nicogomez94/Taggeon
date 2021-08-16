@@ -755,7 +755,8 @@ sql;
         `producto`.`garantia`,
         `producto`.`descr_producto`,
         `producto`.`color`,
-        `producto`.`stock`,
+	`producto`.`stock`,
+         producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3,
        GROUP_CONCAT(producto_foto.id) as foto
 
     FROM
@@ -776,7 +777,8 @@ sql;
     `producto`.`garantia`,
     `producto`.`descr_producto`,
     `producto`.`color`,
-    `producto`.`stock`
+    `producto`.`stock`,
+producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3
 sql;
         $resultado = Database::Connect()->query($sql);
         $row_cnt = mysqli_num_rows($resultado);

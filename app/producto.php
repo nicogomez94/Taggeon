@@ -34,7 +34,7 @@ if ($sesionManager->validar(array('seller','picker'))){
 
 			if ($var_accion == 'alta') {
 			    $objPrincipalManager->agregarProducto($_POST);
-			    $mensajeRet = "La solicitud se proceso con éxito. Id: " . $objPrincipalManager->getMsj();
+			    $mensajeRet = $objPrincipalManager->getMsj();
 			} else if ($var_accion == 'editar') {
 			    $objPrincipalManager->modificarProducto($_POST);
 			    $mensajeRet = "La solicitud se proceso con éxito. Id: " . $objPrincipalManager->getMsj();

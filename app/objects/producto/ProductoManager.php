@@ -49,8 +49,16 @@ class  ProductoManager
 		if ($this->validarCategoria($categoria) === false) {
 			return false;
 		}
-		$rubro = isset($data["rubro"]) ? $data["rubro"] : '';
-		if ($this->validarRubro($rubro) === false) {
+		$subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
+		if ($this->validarCategoria($subcategoria1) === false) {
+			return false;
+		}
+		$subcategoria2 = isset($data["subcategoria2"]) ? $data["subcategoria2"] : '';
+		if ($this->validarCategoria($subcategoria2) === false) {
+			return false;
+		}
+		$subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
+		if ($this->validarCategoria($subcategoria3) === false) {
 			return false;
 		}
 		$marca = isset($data["marca"]) ? $data["marca"] : '';
@@ -89,7 +97,17 @@ class  ProductoManager
 			$this->setMsj($this->productoDao->getMsj());
 			return false;
 		}
-		if ($this->productoDao->existeRubro($rubro) === false) {
+		if ($this->productoDao->existeCategoria($subcategoria1) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		}
+		if ($this->productoDao->existeCategoria($subcategoria2) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return false;
+		}
+		if ($this->productoDao->existeCategoria($subcategoria3) === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj($this->productoDao->getMsj());
 			return false;
