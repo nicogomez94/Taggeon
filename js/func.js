@@ -714,20 +714,17 @@ if(typeof jsonData != "undefined" && typeof jsonData.productos != "undefined" ){
                 var nombre_cat = jsonData.categoria[i].nombre || "";
                 var stock_prod = jsonData.productos[i].stock || 0;
                 var id_cat = jsonData.categoria[i].id || 0;
-                //var id_cat_rubro = jsonData.rubro[i].id_categoria;
                 
                 var fotosArray = foto_prod_editar.split(",") || [];
-                //var fotosArrayIndex = fotosArray[];
+
                 for(var i=0; i<fotosArray.length; i++){
 
                     var foto_src = '/productos_img/'+fotosArray[i]+'.png' || 0;
                     var img = $("#prev_"+i).find(".img-responsive");
-                    // img.attr("onerror","this.onerror=null;this.src='img no encontrada';");
                     img.attr("onerror","$(this).parent().addClass('hidden');");
                     img.attr("onload","$(this).parent().parent().find('.new').addClass('hidden')");
                     img.attr("src",foto_src);
                     img.parent().removeClass("hidden");
-                    //img.parent().parent().find(".new").addClass("hidden");
                 }
 
                 $("#titulo-producto").val(nombre_prod);
