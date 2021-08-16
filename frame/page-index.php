@@ -30,7 +30,6 @@ echo $contenidoStringHeader;
         "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones"     => $publicacionManager->getListPublicacionIndex(),
         "categoria_producto" => $productoManager->getListCategoria(),
-        "rubro_producto"     => $productoManager->getListRubro(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
     );

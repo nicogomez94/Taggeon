@@ -461,10 +461,6 @@ class  ProductoManager
 	{
 		return $this->productoDao->getListCategoria();
 	}
-	public function getListRubro()
-	{
-		return $this->productoDao->getListRubro();
-	}
 	public function getListProducto()
 	{
 		$ret =  $this->productoDao->getListProducto();

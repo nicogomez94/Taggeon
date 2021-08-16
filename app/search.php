@@ -11,8 +11,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
     $jsonData = array(
         "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones"     => $publicacionManager->searchIndex($_POST),
-        "categoria_producto" => $productoManager->getListCategoria(),
-        "rubro_producto"     => $productoManager->getListRubro()
+        "categoria_producto" => $productoManager->getListCategoria()
     );
     $jsonData = json_encode($jsonData);
 echo $jsonData;

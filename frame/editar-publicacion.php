@@ -35,7 +35,6 @@ if ($perfil == 'seller' || $perfil=='picker') {
         "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones" => $publicacion,
         "categoria_producto" => $productoManager->getListCategoria(),
-        "rubro_producto"     => $productoManager->getListRubro(),
         "productos"     => $productoManager->getListProducto(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()

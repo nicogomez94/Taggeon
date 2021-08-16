@@ -25,9 +25,7 @@ if ($perfil == 'seller' || $perfil =='picker'){
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $publicacionManager->getListCategoria(),
-        #"rubro"     => $publicacionManager->getListRubro()
         "categoria_producto" => $productoManager->getListCategoria(),
-        "rubro_producto"     => $productoManager->getListRubro(),
         "productos"     => $productoManager->getListProducto(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()

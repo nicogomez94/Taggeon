@@ -20,7 +20,6 @@ if ($perfil == 'seller'){
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "categoria" => $productoManager->getListCategoria(),
-        "rubro"     => $productoManager->getListRubro(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
     );

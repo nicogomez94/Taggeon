@@ -28,7 +28,6 @@ if ($perfil=='seller' || $perfil=='picker'){
         "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
-        "rubro_producto"     => $productoManager->getListRubro(),
         "compras"     => $carritoManager->getListCompras(array()),
 
         "vendedor"    => $carritoManager->getMsj(),

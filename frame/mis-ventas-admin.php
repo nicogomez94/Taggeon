@@ -29,7 +29,6 @@ if (($perfil=='seller' || $perfil=='picker') && $usuarioManager->isAdmin()){
         "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
-        "rubro_producto"     => $productoManager->getListRubro(),
         "ventas"     => $carritoManager->getListVentasAdmin(array()),
         "comprador"    => $carritoManager->getMsj(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
