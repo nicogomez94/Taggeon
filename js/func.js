@@ -1,7 +1,7 @@
 $(document).ready(function() {
     
     //activar notifs
-    //ampliarNotif();
+    ampliarNotif();
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -670,7 +670,7 @@ $('#editar-publicacion-form').submit(function (e) {
 
 
 /***ampliar/editar producto***/ 
-if(typeof jsonData != "undefined" && typeof jsonData != "undefined" ){
+if(typeof jsonData != "undefined" && typeof jsonData.productos != "undefined" ){
     var sizeProductos = jsonData.productos.length || 0;
     if(sizeProductos>0 || typeof sizeProductos != "undefined"){
         if(window.location.pathname == '/ampliar-producto.html'){
@@ -719,9 +719,7 @@ if(typeof jsonData != "undefined" && typeof jsonData != "undefined" ){
                 var fotosArray = foto_prod_editar.split(",") || [];
                 //var fotosArrayIndex = fotosArray[];
                 for(var i=0; i<fotosArray.length; i++){
-                    
-                    
-                    //inserto img en cubo corresp
+
                     var foto_src = '/productos_img/'+fotosArray[i]+'.png' || 0;
                     var img = $("#prev_"+i).find(".img-responsive");
                     // img.attr("onerror","this.onerror=null;this.src='img no encontrada';");
@@ -730,13 +728,6 @@ if(typeof jsonData != "undefined" && typeof jsonData != "undefined" ){
                     img.attr("src",foto_src);
                     img.parent().removeClass("hidden");
                     //img.parent().parent().find(".new").addClass("hidden");
-
-                    
-                    // img.on("error", function(){
-                    //     $(this).attr('src', 'pepe');
-                    //     $("#prev_"+i).addClass("hidden");
-                    //     $(this).attr("onerror","this.onerror=null")
-                    // });
                 }
 
                 $("#titulo-producto").val(nombre_prod);
@@ -751,18 +742,6 @@ if(typeof jsonData != "undefined" && typeof jsonData != "undefined" ){
         
                 var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
                 $("#categoria-producto").append(html_cat);
-        
-                /*var sizeRubro = jsonData.rubro.length;
-                
-                if(sizeRubro>0 && id_cat==id_cat_rubro){
-                    for(var i=0; i<sizeRubro; i++){
-                        var nombre_rubro = jsonData.rubro[i].nombre;
-                        var id_rubro = jsonData.rubro[i].id;
-        
-                        var html_rubro = '<option value="'+id_rubro+'" selected>'+nombre_rubro+'</option>';
-                        $("#rubro-producto").append(html_rubro);
-                    }
-                }*/
         
             }
         }
@@ -950,7 +929,7 @@ $("#subir-csv").on('submit', function() {
 
 //AÑADIR AL CARRITO
 $(".modal").on("click", ".btn-carrito", function(){
-
+console.log("test")
     var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
     var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
     var id_prod = $(this).data("idprod");
@@ -2224,3 +2203,53 @@ function pathShareHome(param){
 	//document.getElementById("fa-pinterest-square").href="mailto:?body=Take a look at this page I found: " + title + ". You can read it here: " + Url;
 }
 
+function getSubCat(valueParam,source,target){
+
+    var catData = new FormData();
+    catData.append("accion","subcategoria");
+    catData.append("id",valueParam);
+    
+    $.ajax({
+        url: '/app/producto.php',
+        data: catData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function( data ,response ){
+            if (data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);														
+            }else if(data.status == 'OK'){
+
+                var subcats = data.mensaje || [];
+                var subcats_length = data.mensaje.length || 0;
+
+                console.log("subcats",subcats)
+                console.log("source",source)
+                console.log("target",target)
+                
+                for(var i=0; i<subcats_length; i++) {
+                    var cat_id = subcats[i].id;
+                    var cat_nombre = subcats[i].nombre;
+                    var targetHtml = $(target);
+     
+                    var cat_select_html = 
+                    '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+     
+                    targetHtml.append(cat_select_html)
+                    targetHtml.addClass("showCat");
+                }
+
+            }else{
+                console.log("else")
+                console.log(response)
+                console.log(data)
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alert(msj);
+        }
+    });
+    return false;
+}

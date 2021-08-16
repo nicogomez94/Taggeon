@@ -343,7 +343,7 @@ SQL;
                 FROM
                     `categoria`
                 WHERE
-                    eliminar=0 OR eliminar is null
+                    eliminar is null OR eliminar = 0
 sql;
 
         $resultado = Database::Connect()->query($sql);
