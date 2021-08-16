@@ -320,29 +320,9 @@ SQL;
         return false;
     }
 
-    public function getListEscena()
-    {
-        $sql = <<<sql
-                    SELECT
-                    `id`,
-                    `nombre`
-                FROM
-                    `categoria`
-                WHERE
-                    eliminar is null OR eliminar = 0
-sql;
-
-        $resultado = Database::Connect()->query($sql);
-        $list = array();
-
-        while ($rowEmp = mysqli_fetch_array($resultado)) {
-            $list[] = $rowEmp;
-        }
-        return $list;
-    }
 
 
-    public function getListEscena2()
+    public function getListCategoria()
     {
         $sql = <<<sql
                     SELECT
