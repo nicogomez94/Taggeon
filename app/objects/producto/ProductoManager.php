@@ -186,7 +186,6 @@ class  ProductoManager
 				$dataNew["descr_producto"] = isset($datacol[7]) ?  $datacol[7] : '';
 
 				$dataNew["categoria"] = '1';
-				$dataNew["rubro"] = '1';
  				$this->agregarProducto($dataNew);
 				if ($this->getStatus() != 'OK') {
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error: ".$this->getMsj());
@@ -371,17 +370,6 @@ class  ProductoManager
 		if (!is_numeric($categoria)) {
 			$this->setStatus("ERROR");
 			$this->setMsj("El campo categoria es incorrecto.");
-			return false;
-		}
-		$this->setStatus("OK");
-		$this->setMsj("");
-		return true;
-	}
-	private function validarRubro($rubro)
-	{
-		if (!is_numeric($rubro)) {
-			$this->setStatus("ERROR");
-			$this->setMsj("El campo rubro es incorrecto.");
 			return false;
 		}
 		$this->setStatus("OK");

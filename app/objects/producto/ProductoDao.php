@@ -35,10 +35,14 @@ class  ProductoDao
 
         $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
         $tituloDB = Database::escape($titulo);
-        //$categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-        //$categoriaDB = Database::escape($categoria);
-        $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
-        $rubroDB = Database::escape($rubro);
+        $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
+        $categoriaDB = Database::escape($categoria);
+        $subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
+        $subcategoria1DB = Database::escape($subcategoria1);
+        $subcategoria2 = isset($data["subcategoria2"]) ? $data["subcategoria2"] : '';
+        $subcategoria2DB = Database::escape($subcategoria2);
+        $subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
+        $subcategoria3DB = Database::escape($subcategoria3);
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';
@@ -56,8 +60,8 @@ class  ProductoDao
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<SQL
-			INSERT INTO producto (titulo, id_rubro, marca, precio, envio, garantia, descr_producto, color,usuario_alta,stock)  
-			VALUES ($tituloDB, $rubroDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB,$usuarioAltaDB,$stockDB)
+			INSERT INTO producto (titulo, marca, precio, envio, garantia, descr_producto, color,usuario_alta,stock,categoria,subcategoria1,subcategoria2,subcategoria3)  
+			VALUES ($tituloDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB,$usuarioAltaDB,$stockDB,$categoria,$subcategoria1DB,$subcategoria2DB,$subcategoria3DB)
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
@@ -83,10 +87,14 @@ SQL;
 
         $titulo = isset($data["titulo"]) ? $data["titulo"] : '';
         $tituloDB = Database::escape($titulo);
-        //$categoria = isset($data["categoria"]) ? $data["categoria"] : '';
-        //$categoriaDB = Database::escape($categoria);
-        $rubro = isset($data["rubro"]) ? $data["rubro"] : '';
-        $rubroDB = Database::escape($rubro);
+        $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
+        $categoriaDB = Database::escape($categoria);
+        $subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
+        $subcategoria1DB = Database::escape($subcategoria1);
+        $subcategoria2 = isset($data["subcategoria2"]) ? $data["subcategoria2"] : '';
+        $subcategoria2DB = Database::escape($subcategoria2);
+        $subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
+        $subcategoria3DB = Database::escape($subcategoria3);
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';
@@ -108,8 +116,11 @@ UPDATE
     `producto`
 SET
     `titulo` = $tituloDB,
-    `id_rubro` = $rubroDB,
     `marca` = $marcaDB,
+    `categoria` = $categoriaDB,
+    `subcategoria1` = $subcategoria1DB,
+    `subcategoria2` = $subcategoria2DB,
+    `subcategoria3` = $subcategoria3DB,
     `precio` = $precioDB,
     `envio` = $envioDB,
     `garantia` = $garantiaDB,
@@ -216,29 +227,6 @@ SQL;
         return false;
     }
 
-    public function existeRubro($id_rubro)
-    {
-        $id_rubro = isset($id_rubro) ?   $id_rubro : '';
-        $id_rubroDB = Database::escape($id_rubro);
-
-        $sql = <<<SQL
-                        SELECT *FROM rubro
-                        WHERE 
-                            id = $id_rubroDB AND
-                            (eliminar = 0 OR eliminar is null);
-SQL;
-
-        $resultado = mysqli_query(Database::Connect(), $sql);
-        $row_cnt = mysqli_num_rows($resultado);
-        if ($row_cnt == 1) {
-            $this->setStatus("OK");
-            return true;
-        }
-
-        $this->setStatus("ERROR");
-        $this->setMsj("El campo rubro es incorrecto.");
-        return false;
-    }
 
     public function altaFoto(array $data)
     {
@@ -354,28 +342,6 @@ sql;
         }
         return $list;
     }
-    public function getListRubro()
-    {
-        $sql = <<<sql
-        SELECT
-            `id`,
-            `nombre`,
-            `id_categoria`
-        FROM
-            `rubro`
-    WHERE
-        eliminar=0 OR eliminar is null
-
-sql;
-
-        $resultado = Database::Connect()->query($sql);
-        $list = array();
-
-        while ($rowEmp = mysqli_fetch_array($resultado)) {
-            $list[] = $rowEmp;
-        }
-        return $list;
-    }
     public function getListProductoIndex()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
@@ -384,7 +350,6 @@ sql;
         SELECT
         `producto`.`id`,
         `producto`.`titulo`,
-        `producto`.`id_rubro`,
         `producto`.`marca`,
         `producto`.`precio`,
         `producto`.`envio`,
@@ -403,7 +368,6 @@ sql;
 	(`producto`.eliminar = 0 OR `producto`.eliminar IS NULL)
     group by         `producto`.`id`,
     `producto`.`titulo`,
-    `producto`.`id_rubro`,
     `producto`.`marca`,
     `producto`.`precio`,
     `producto`.`envio`,
@@ -428,7 +392,6 @@ sql;
         SELECT
         `producto`.`id`,
         `producto`.`titulo`,
-        `producto`.`id_rubro`,
         `producto`.`marca`,
         `producto`.`precio`,
         `producto`.`envio`,
@@ -447,7 +410,6 @@ sql;
         (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) AND `producto`.usuario_alta = $usuarioAltaDB
     group by         `producto`.`id`,
     `producto`.`titulo`,
-    `producto`.`id_rubro`,
     `producto`.`marca`,
     `producto`.`precio`,
     `producto`.`envio`,
@@ -475,7 +437,6 @@ sql;
         SELECT
         `producto`.`id`,
         `producto`.`titulo`,
-        `producto`.`id_rubro`,
         `producto`.`marca`,
         `producto`.`precio`,
         `producto`.`envio`,
@@ -495,7 +456,6 @@ sql;
         AND titulo  LIKE $inputDB
     group by         `producto`.`id`,
     `producto`.`titulo`,
-    `producto`.`id_rubro`,
     `producto`.`marca`,
     `producto`.`precio`,
     `producto`.`envio`,
@@ -576,7 +536,6 @@ sql;
         SELECT
         `producto`.`id`,
         `producto`.`titulo`,
-        `producto`.`id_rubro`,
         `producto`.`marca`,
         `producto`.`precio`,
         `producto`.`envio`,
@@ -596,7 +555,6 @@ sql;
         AND titulo LIKE $inputDB
     group by         `producto`.`id`,
     `producto`.`titulo`,
-    `producto`.`id_rubro`,
     `producto`.`marca`,
     `producto`.`precio`,
     `producto`.`envio`,
@@ -689,7 +647,6 @@ SQL;
         SELECT
         `producto`.`id`,
         `producto`.`titulo`,
-        `producto`.`id_rubro`,
         `producto`.`marca`,
         `producto`.`precio`,
         `producto`.`envio`,
@@ -711,7 +668,6 @@ SQL;
         (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL)
     group by         `producto`.`id`,
     `producto`.`titulo`,
-    `producto`.`id_rubro`,
     `producto`.`marca`,
     `producto`.`precio`,
     `producto`.`envio`,
@@ -748,7 +704,6 @@ sql;
         SELECT
         `producto`.`id`,
         `producto`.`titulo`,
-        `producto`.`id_rubro`,
         `producto`.`marca`,
         `producto`.`precio`,
         `producto`.`envio`,
@@ -770,7 +725,6 @@ sql;
         (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) AND `producto`.usuario_alta = $usuarioAltaDB
     group by         `producto`.`id`,
     `producto`.`titulo`,
-    `producto`.`id_rubro`,
     `producto`.`marca`,
     `producto`.`precio`,
     `producto`.`envio`,
