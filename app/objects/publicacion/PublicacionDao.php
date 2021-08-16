@@ -367,7 +367,7 @@ sql;
 
 
 
-                public function getListCategoria()
+                public function getListEscena()
                 {
                     $sql = <<<sql
                                 SELECT
@@ -375,6 +375,27 @@ sql;
                                 `nombre`
                             FROM
                                 `publicacion_categoria`
+                            WHERE
+                                eliminar=0 OR eliminar is null
+            sql;
+            
+                    $resultado = Database::Connect()->query($sql);
+                    $list = array();
+            
+                    while ($rowEmp = mysqli_fetch_array($resultado)) {
+                        $list[] = $rowEmp;
+                    }
+                    return $list;
+                }
+		
+		public function getListEscena2()
+                {
+                    $sql = <<<sql
+                                SELECT
+                                `id`,
+                                `nombre`
+                            FROM
+                                `publicacion_categoria2`
                             WHERE
                                 eliminar=0 OR eliminar is null
             sql;
