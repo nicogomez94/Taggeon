@@ -2,6 +2,7 @@
 include_once("template.php");
 include_once("configuration.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."intereses/InteresesManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 
 
 $perfil   = isset($perfil) ? $perfil : '';
@@ -46,6 +47,12 @@ STR;
     $intereses = $objIntereses->getListIntereses();
     $intereses = json_encode($intereses);
 
+    $publicacionManager = new PublicacionManager();
+    $escena = $publicacionManager->getListEscena(); 
+    $escena = json_encode($escena);
+    $escena2 = $publicacionManager->getListEscena2(); 
+    $escena2 = json_encode($escena2);
+
 
 	$contenidoHeader->asigna_variables(array(
         "url-mp"     => $urlMP,
@@ -53,7 +60,9 @@ STR;
 		"foto-perfil"    => $fotoPerfil,
 		"menu"           => $menu,
 		"nombre-usuario" => $usuarioPerfil,
-        "intereses"      => $intereses
+		"intereses"      => $intereses,
+		"escena"         => $escena,
+		"escena2"         => $escena2
 		));
 }else{
 	$contenidoHeader = new Template('header_esp');

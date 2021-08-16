@@ -9,7 +9,8 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
     $productoManager = new ProductoManager();
     
     $jsonData = array(
-        "categoria"     => $publicacionManager->getListCategoria(),
+        "escena"     => $publicacionManager->getListEscena(),
+        "escena2"     => $publicacionManager->getListEscena2(),
         "publicaciones"     => $publicacionManager->searchIndex($_POST),
         "categoria_producto" => $productoManager->getListCategoria()
     );

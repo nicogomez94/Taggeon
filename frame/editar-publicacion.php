@@ -32,7 +32,6 @@ if ($perfil == 'seller' || $perfil=='picker') {
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones" => $publicacion,
         "categoria_producto" => $productoManager->getListCategoria(),
         "productos"     => $productoManager->getListProducto(),

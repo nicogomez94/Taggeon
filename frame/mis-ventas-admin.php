@@ -26,7 +26,6 @@ if (($perfil=='seller' || $perfil=='picker') && $usuarioManager->isAdmin()){
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "categoria"     => $publicacionManager->getListCategoria(),
         "publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "ventas"     => $carritoManager->getListVentasAdmin(array()),

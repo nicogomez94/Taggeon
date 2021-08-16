@@ -310,9 +310,13 @@ class  PublicacionManager
 				return $publicacion;
 			}
 
-			public function getListCategoria()
+			public function getListEscena2()
 			{
-				return $this->publicacionDao->getListCategoria();
+				return $this->publicacionDao->getListEscena2();
+			}
+			public function getListEscena()
+			{
+				return $this->publicacionDao->getListEscena();
 			}
 
 			public function getListPublicacion()
