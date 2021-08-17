@@ -1289,6 +1289,7 @@ $("#form_intereses").submit(function(e){
     e.preventDefault();
     var formData = new FormData($(this)[0]);
     var checkbox = $(this).find("input[type=checkbox]");
+    formData.append("accion","alta")
 
     $.ajax({
         url: '/app/intereses.php',

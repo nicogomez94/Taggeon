@@ -40,16 +40,33 @@ class  InteresesManager
 			}
 		}
 
-	    $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-	    if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
-	     return false;
-	    }
+	    $escena_ind = isset($data["escena_ind"]) ? $data["escena_ind"] : [];
+	    $escena_arq = isset($data["escena_arq"]) ? $data["escena_arq"] : [];
 
-        if ($this->interesesDao->existePublicacion_categoria($publicacion_categoria) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->interesesDao->getMsj());
-            return false;
-        }
+	   foreach ($escena_ind as $publicacion_categoria){
+		    if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
+		     return false;
+		    }
+
+		if ($this->interesesDao->existePublicacion_categoria($publicacion_categoria) === false) {
+		    $this->setStatus("ERROR");
+		    $this->setMsj($this->interesesDao->getMsj());
+		    return false;
+		}
+	    } 
+	   foreach ($escena_arq as $publicacion_categoria){
+		    if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
+		     return false;
+		    }
+
+		if ($this->interesesDao->existePublicacion_categoria2($publicacion_categoria) === false) {
+		    $this->setStatus("ERROR");
+		    $this->setMsj($this->interesesDao->getMsj());
+		    return false;
+		}
+	    } 
+
+
 
 	}
 
@@ -63,17 +80,29 @@ class  InteresesManager
 		}
 
 
-		if ($this->interesesDao->altaIntereses($data) === false) {
+	    $escena_ind = isset($data["escena_ind"]) ? $data["escena_ind"] : [];
+	    $escena_arq = isset($data["escena_arq"]) ? $data["escena_arq"] : [];
+
+	   foreach ($escena_ind as $publicacion_categoria){
+		if ($this->interesesDao->altaIntereses($publicacion_categoria,"escena_ind") === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj($this->interesesDao->getMsj());
 		} else {
 			$idIntereses = $this->interesesDao->getMsj();
-
-			
-			
 			$this->setStatus("OK");
 			$this->setMsj($idIntereses);
 		}
+	    } 
+	   foreach ($escena_arq as $publicacion_categoria){
+		if ($this->interesesDao->altaIntereses($publicacion_categoria,"escena_arq") === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->interesesDao->getMsj());
+		} else {
+			$idIntereses = $this->interesesDao->getMsj();
+			$this->setStatus("OK");
+			$this->setMsj($idIntereses);
+		}
+	    } 
 	}
 
 	public function modificarIntereses(array $data)
@@ -179,7 +208,7 @@ class  InteresesManager
             {
                 if (!is_numeric($publicacion_categoria)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo publicacion_categoria es incorrecto.");
+                    $this->setMsj("El campo publicacion_categoria.... $publicacion_categoria es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");

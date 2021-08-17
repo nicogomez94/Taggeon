@@ -30,17 +30,17 @@ class  InteresesDao
 	}
 
 
-	public function altaIntereses(array $data)
+	public function altaIntereses($publicacion_categoria,$tipo)
 	{
 
-        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
+        $tipoDB = Database::escape($tipo);
         $publicacion_categoriaDB = Database::escape($publicacion_categoria);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO intereses (id_publicacion_categoria,usuario_alta)  
-			VALUES ($publicacion_categoriaDB,$usuarioAltaDB)
+			INSERT INTO intereses (id_publicacion_categoria,usuario_alta,tipo)  
+			VALUES ($publicacion_categoriaDB,$usuarioAltaDB,$tipoDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -223,6 +223,30 @@ sql;
     }
 
 
+                public function existePublicacion_categoria2($id_publicacion_categoria)
+                {
+                    $id_publicacion_categoria = isset($id_publicacion_categoria) ?   $id_publicacion_categoria : '';
+                    $id_publicacion_categoriaDB = Database::escape($id_publicacion_categoria);      
+            
+                    $sql = <<<SQL
+                        SELECT *FROM publicacion_categoria2
+                        WHERE 
+                            id = $id_publicacion_categoriaDB AND
+                            (eliminar = 0 OR eliminar is null);
+SQL;            
+
+                    $resultado=mysqli_query(Database::Connect(), $sql);
+                    $row_cnt = mysqli_num_rows($resultado);
+                    if ($row_cnt == 1){
+                        $this->setStatus("OK");
+                        return true;
+                    }
+                    
+                    $this->setStatus("ERROR");
+                    $this->setMsj("El campo publicacion_categoria es incorrecto.");
+                    return false;
+
+                }
                 public function existePublicacion_categoria($id_publicacion_categoria)
                 {
                     $id_publicacion_categoria = isset($id_publicacion_categoria) ?   $id_publicacion_categoria : '';
