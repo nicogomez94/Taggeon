@@ -6,7 +6,8 @@ $(document).ready(function(){
             
         if(sizePublic>0){
 
-            var public_cat_size = jsonData.categoria.length;
+            // var public_cat_size = jsonData.categoria.length;
+            var public_cat_size = 0;//HARD
 
             //recorre todas las cat y primero dibujo el item de cat
             for(var i=0; i<public_cat_size; i++){

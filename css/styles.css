@@ -3534,12 +3534,16 @@ input {
     display: none;
 }
 
-.check_intereses{
+#esc_arq, #esc_ind{
+    display: none;
+}
+
+.interes_container input[type='checkbox']{
     position: absolute;
     z-index: 999;
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
-    visibility: hidden;
+    opacity: 0;
 }

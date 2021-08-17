@@ -117,10 +117,17 @@
                         <div class="col-lg-12">
                            <br>
                            <p class="label-descr">Escenario de la publicaci&oacute;n</p>
-                           <select name="publicacion_categoria" id="publicacion_categoria" onchange="appearSelect()">
+                           <select name="escena_sel" id="escena_sel" onchange="getSubEscena(this.value)">
                               <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
-                              <option value="14">Arquitectura</option>
-                              <option value="Outdoor">Outdoor</option>
+                              <option value="Arquitectura">Arquitectura</option>
+                              <option value="Indumentaria">Indumentaria</option>
+                           </select>
+                           <!--  -->
+                           <select name="esc_arq" id="esc_arq">
+                              <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
+                           </select>
+                           <select name="esc_ind" id="esc_ind">
+                              <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
                            </select>
                            <br>
                            <div id="escena-param-container" class="group"></div>
@@ -208,23 +215,6 @@
    <script>
       $(document).ready(function(){
          
-         
-
-         var catPublicSize = jsonData.categoria.length;
-         //console.log(catPublicSize);
-
-         if(catPublicSize>0){
-            for(var i=0; i<catPublicSize; i++){
-
-               var nombre_categoria_public = jsonData.categoria[i].nombre;
-               var id_categoria_public = jsonData.categoria[i].id;
-               
-               var cat_html = '<option value="'+id_categoria_public+'">'+nombre_categoria_public+'</option>'
-
-               $("#publicacion_categoria").append(cat_html);
-
-            }
-         }
       
          $("#buscador-titulo-input").keyup(function(){
             activarBuscador($(this));

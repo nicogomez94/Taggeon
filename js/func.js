@@ -1280,6 +1280,57 @@ $("#buscador-index-input").keyup(function(e){
     }
 });
 
+//test
+$("#modalFirstLogin").modal('show')
+
+//form intereses
+$("#form_intereses").submit(function(e){
+
+    e.preventDefault();
+    var formData = new FormData($(this)[0]);
+    var checkbox = $(this).find("input[type=checkbox]");
+
+    $.ajax({
+        url: '/app/intereses.php',
+        data: formData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function( data, response ){
+           if (data.mensaje == "REDIRECT"){
+              console.log("REDIRECT-->"+response);
+              //window.location.replace(dataM);														
+           }else if(data.mensaje == 'OK'){
+              //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+              console.log("elseif-->"+response);
+           }else{
+              //window.location.replace("/ampliar-carrito.html");
+              console.log("else-->"+response);
+              console.log(data);
+           }
+        },
+        error: function(data,response){
+            alert(data);
+            console.log(data,response)
+        }
+    });
+    return false;
+    //data.append("")
+
+    /*fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .then(response => console.log('Success:', JSON.stringify(response)))
+    .catch(error => console.log('Error:', error));*/
+
+
+});
+
 
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
@@ -2249,4 +2300,48 @@ function getSubCat(valueParam,source,target){
         }
     });
     return false;
+}
+
+function getSubEscena(valueParam){
+
+    if(valueParam == "Arquitectura"){
+        
+        var arq = $("#esc_arq");
+        arq.addClass("showCat");
+        $("#esc_ind").removeClass("showCat")
+
+        var escena_parse = JSON.parse(escena)
+        var escena_length = escena_parse.length || 0;
+        
+        for(var i=0; i<escena_length; i++) {
+            var cat_id = escena_parse[i].id;
+            var cat_nombre = escena_parse[i].nombre;
+    
+            var cat_select_html = 
+            '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+    
+            arq.append(cat_select_html)
+        }
+
+    }else if(valueParam == "Indumentaria"){
+
+        var arq = $("#esc_ind");
+        arq.addClass("showCat");
+        $("#esc_arq").removeClass("showCat")
+
+        var escena2_parse = JSON.parse(escena2)
+        var escena_length = escena2_parse.length || 0;
+        
+        for(var i=0; i<escena_length; i++) {
+            var cat_id = escena2_parse[i].id;
+            var cat_nombre = escena2_parse[i].nombre;
+    
+            var cat_select_html = 
+            '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+    
+            arq.append(cat_select_html)
+        }
+
+    }
+
 }

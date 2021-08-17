@@ -139,26 +139,26 @@
          $('#reset').click(function () {
              uploadHBR.reset('#uploads');
          });
-
-         //si no tiene imagen en recuadro (TODO)
-         //$(".img-responsive").on("error", function(){
-         //   console.log("errr")
-         //   $(this).attr('src', '');
-         //});
-         // var subcats = jsonData.productos || [];
-         // var subcats_length = jsonData.productos.length || 0;
          
-         // for(var i=0; i<subcats_length; i++) {
-         //    var cat_id = subcats[i].id;
-         //    var cat_nombre = subcats[i].nombre;
-         //    var targetHtml = $(target);
+         //si no tiene imagen en recuadro (TODO)
+         $(".img-responsive").on("error", function(){
+            console.log("errr")
+            $(this).attr('src', '');
+         });
+         
+         var subcats_length = jsonData.productos[0] || [];
+      
+         for(var i=0; i<subcats_length; i++) {
+            var cat_id = subcats[i].id;
+            var cat_nombre = subcats[i].nombre;
+            var targetHtml = $(target);
 
-         //    var cat_select_html = 
-         //    '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+            var cat_select_html = 
+            '<option value="'+cat_id+'">'+cat_nombre+'</option>';
 
-         //    targetHtml.append(cat_select_html)
-         //    targetHtml.addClass("showCat");
-         // }
+            targetHtml.append(cat_select_html)
+            targetHtml.addClass("showCat");
+         }
 
          
       });

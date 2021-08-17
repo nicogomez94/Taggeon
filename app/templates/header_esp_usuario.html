@@ -15,12 +15,13 @@
    <!-- <link rel="manifest" href="../favicon/img/manifest.json"> -->
 
    <script>
+      var escena ='{escena}';
+      var escena2 = '{escena2}';
+
       $(document).ready(function(){
          //jsonData.
          var url_mp = "{url-mp}";
          var intereses = "{intereses}";
-         var escena = "{escena}";
-         var escena2 = "{escena2}";
 
          if(typeof jsonData != "undefined"){
             if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
@@ -55,7 +56,7 @@
 
       });
 
-      
+ 
    </script>
    
 <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
@@ -299,50 +300,49 @@
                      <div class="interes_container">
                         <div class="interes">
                            <img class="interes_img" src="../../img/118633151_614588322578999_7377311366937586649_n.jpg" alt="">
-                           <div class="interes_title">Moda</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Indumentaria</div>
+                           <input id="check_intereses_1" type="checkbox" name="escena_ind[]" value="1">
                         </div>
                         <div class="interes">
                            <img class="interes_img" src="../../img/arquitectura-que-es.jpg" alt="">
-                           <div class="interes_title">Joyeria</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Indumentaria</div>
+                           <input id="check_intereses_2" type="checkbox" name="escena_ind[]" value="2">
+                           <input type="hidden" name="test2" value="test2">
                         </div>
                         <div class="interes">
                            <img class="interes_img" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt="">
-                           <div class="interes_title">Arquitectura</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Indumentaria</div>
+                           <input id="check_intereses_3" type="checkbox" name="escena_ind[]" value="3">
                         </div>
-
                         <div class="interes">
                            <img class="interes_img" src="../../img/16047728589908.jpg" alt="">
-                           <div class="interes_title">Deportes</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Indumentaria</div>
+                           <input id="check_intereses_4" type="checkbox" name="escena_ind[]" value="4">
                         </div>
                         <div class="interes">
                            <img class="interes_img" src="../../img/gaming.jpg" alt="">
-                           <div class="interes_title">Arquitectura</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Indumentaria</div>
+                           <input id="check_intereses_5" type="checkbox" name="escena_ind[]" value="5">
                         </div>
                         <div class="interes">
                            <img class="interes_img" src="../../img/furniposta.jpg" alt="">
-                           <div class="interes_title">Diseño</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Arquitectura</div>
+                           <input id="check_intereses_6" type="checkbox" name="escena_arq[]" value="6">
                         </div>
-
                         <div class="interes">
                            <img class="interes_img" src="../../img/118633151_614588322578999_7377311366937586649_n.jpg" alt="">
-                           <div class="interes_title">Moda</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Arquitectura</div>
+                           <input id="check_intereses_7" type="checkbox" name="escena_arq[]" value="7">
                         </div>
                         <div class="interes">
                            <img class="interes_img" src="../../img/arquitectura-que-es.jpg" alt="">
-                           <div class="interes_title">Joyeria</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <div class="interes_title">Arquitectura</div>
+                           <input id="check_intereses_8" type="checkbox" name="escena_arq[]" value="8">
                         </div>
                         <div class="interes">
                            <img class="interes_img" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt="">
                            <div class="interes_title">Arquitectura</div>
-                           <input class="check_intereses" type="checkbox" name="c_intereses">
+                           <input id="check_intereses_9" type="checkbox" name="escena_arq[]" value="9">
                         </div>
                      </div>
                      <div class="text-center">
