@@ -229,12 +229,11 @@ sql;
                     $id_publicacion_categoriaDB = Database::escape($id_publicacion_categoria);      
             
                     $sql = <<<SQL
-                        SELECT *FROM publicacion_categoria2
+                        SELECT * FROM publicacion_categoria2
                         WHERE 
                             id = $id_publicacion_categoriaDB AND
                             (eliminar = 0 OR eliminar is null);
 SQL;            
-
                     $resultado=mysqli_query(Database::Connect(), $sql);
                     $row_cnt = mysqli_num_rows($resultado);
                     if ($row_cnt == 1){

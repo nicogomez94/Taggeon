@@ -48,7 +48,7 @@ class  InteresesManager
 		     return false;
 		    }
 
-		if ($this->interesesDao->existePublicacion_categoria($publicacion_categoria) === false) {
+		if ($this->interesesDao->existePublicacion_categoria2($publicacion_categoria) === false) {
 		    $this->setStatus("ERROR");
 		    $this->setMsj($this->interesesDao->getMsj());
 		    return false;
@@ -59,7 +59,7 @@ class  InteresesManager
 		     return false;
 		    }
 
-		if ($this->interesesDao->existePublicacion_categoria2($publicacion_categoria) === false) {
+		if ($this->interesesDao->existePublicacion_categoria($publicacion_categoria) === false) {
 		    $this->setStatus("ERROR");
 		    $this->setMsj($this->interesesDao->getMsj());
 		    return false;
@@ -208,7 +208,7 @@ class  InteresesManager
             {
                 if (!is_numeric($publicacion_categoria)){
                     $this->setStatus("ERROR");
-                    $this->setMsj("El campo publicacion_categoria.... $publicacion_categoria es incorrecto.");
+                    $this->setMsj("El campo publicacion_categoria es incorrecto.");
                     return false;
                 }
                 $this->setStatus("OK");
