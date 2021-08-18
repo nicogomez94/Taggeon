@@ -308,7 +308,41 @@ class  PublicacionManager
 			
 				$publicacion = $this->publicacionDao->getPublicacionByIdYProducto($data);
 				return $publicacion;
+	public function searchSubEscena2(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarId($id) === false) {
+			return false;
+		}
+
+		if ($this->publicacionDao->searchSubEscena2($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->publicacionDao->getMsj());
+			return false;
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->publicacionDao->getMsj());
+			return 'ok';
+		}
+	}
 			}
+	public function searchSubEscena(array $data)
+	{
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarId($id) === false) {
+			return false;
+		}
+
+		if ($this->publicacionDao->searchSubEscena($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->publicacionDao->getMsj());
+			return false;
+		} else {
+			$this->setStatus("OK");
+			$this->setMsj($this->publicacionDao->getMsj());
+			return 'ok';
+		}
+	}
 
 			public function getListEscena2()
 			{

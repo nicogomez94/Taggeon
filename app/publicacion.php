@@ -12,16 +12,25 @@ $objPrincipalManager = new PublicacionManager();
 if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|subescena|subescena2)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarPublicacion($_POST);
-        } else if ($var_accion == 'editar') {
-            $objPrincipalManager->modificarPublicacion($_POST);
-        }
-        if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';
             $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
-        } else {
+	} else if ($var_accion == 'subescena') {
+	    $objPrincipalManager->searchSubEscena($_POST);
+            $statusRet  = 'OK';
+	    $mensajeRet = $objPrincipalManager->getMsj();
+	} else if ($var_accion == 'subescena2') {
+	    $objPrincipalManager->searchSubEscena2($_POST);
+            $statusRet  = 'OK';
+	    $mensajeRet = $objPrincipalManager->getMsj();
+        } else if ($var_accion == 'editar') {
+            $objPrincipalManager->modificarPublicacion($_POST);
+            $statusRet  = 'OK';
+            $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+        }
+        if ($objPrincipalManager->getStatus() != 'OK') {
             $statusRet  = 'ERROR';
             $mensajeRet = $objPrincipalManager->getMsj();
         }

@@ -408,6 +408,81 @@ sql;
                     }
                     return $list;
                 }
+    public function searchSubEscena2($data)
+    {
+        
+        $input = isset($data["id"]) ? $data["id"] : '';
+        $inputDB = Database::escape("$input");
+
+        $sql = <<<sql
+SELECT
+    id,
+    nombre
+FROM
+    publicacion_categoria2
+WHERE
+    id_padre = $inputDB AND (
+        publicacion_categoria2.eliminar IS NULL OR publicacion_categoria2.eliminar = 0
+    )
+sql;
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $resultado = Database::Connect()->query($sql);
+            $list = array();
+    
+    
+            while ($rowEmp = mysqli_fetch_array($resultado)) {
+                $list[] = $rowEmp;
+            }
+    
+            $this->setStatus("OK");
+            $this->setMsj($list);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function searchSubEscena($data)
+    {
+        
+        $input = isset($data["id"]) ? $data["id"] : '';
+        $inputDB = Database::escape("$input");
+
+        $sql = <<<sql
+SELECT
+    id,
+    nombre
+FROM
+    publicacion_categoria
+WHERE
+    id_padre = $inputDB AND (
+        publicacion_categoria.eliminar IS NULL OR publicacion_categoria.eliminar = 0
+    )
+sql;
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+        } else {
+            $resultado = Database::Connect()->query($sql);
+            $list = array();
+    
+    
+            while ($rowEmp = mysqli_fetch_array($resultado)) {
+                $list[] = $rowEmp;
+            }
+    
+            $this->setStatus("OK");
+            $this->setMsj($list);
+
+            return true;
+        }
+
+        return false;
+    }
                
     public function getListPublicacionIndex()
     {
