@@ -114,26 +114,39 @@
                         </div>
                      </div>
                      <div class="row">
-                        <div class="col-lg-12">
-                           <br>
-                           <p class="label-descr">Escenario de la publicaci&oacute;n</p>
-                           <select name="escena_sel" id="escena_sel" onchange="getSubEscena(this.value)">
-                              <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
-                              <option value="Arquitectura">Arquitectura</option>
-                              <option value="Indumentaria">Indumentaria</option>
-                           </select>
-                           <!--  -->
-                           <select name="esc_arq" id="esc_arq">
-                              <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
-                           </select>
-                           <select name="esc_ind" id="esc_ind">
-                              <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
-                           </select>
-                           <br>
-                           <div id="escena-param-container" class="group"></div>
-                        </div>
+                           <div id="sels_cat_prod" class="col-lg-12">
+                              <select name="escena_sel" id="escena_sel" onchange="getEscenas(this.value)">
+                                 <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
+                                 <option value="Arquitectura">Arquitectura</option>
+                                 <option value="Indumentaria">Indumentaria</option>
+                              </select>
+                              <select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,'#esc_arq','#esc_arq2')">
+                                 <option value="" selected disabled hidden required>Elija otro parametro</option>
+                              </select>
+                              <select name="subescena2" id="esc_arq2" onchange="getSubEscena(this.value,'#esc_arq2','#esc_arq3')">
+                                 <option value="" selected disabled hidden required>Elija un parametro</option>
+                              </select>
+                              <select name="subescena3" id="esc_arq3" onchange="getSubEscena(this.value,'#esc_arq3','#esc_arq4')">
+                                 <option value="" selected disabled hidden required>Elija otro parametro</option>
+                              </select>
+                              <!-- <select name="esc_ind" id="esc_ind">
+                                 <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
+                              </select> -->
+                                 
+
+                              <!-- <select name="escena" id="escena" onchange="getSubEscena(this.value,'#escena','#escena2')">
+                                 <option value="" selected disabled hidden required>Elija un tipo de escena</option>
+                              </select>
+                              <select name="subescena1" id="escena2" onchange="getSubEscena(this.value,'#escena2','#escena3')">
+                                 <option value="" selected disabled hidden required>Elija un parametro</option>
+                              </select>
+                              <select name="subescena2" id="escena3" onchange="getSubEscena(this.value,'#escena3','#escena4')">
+                                 <option value="" selected disabled hidden required>Elija otro parametro</option>
+                              </select> -->
+                           </div>
                      </div>
-                     <br><hr>
+               </div>
+               <br><hr>
                      
                   <div>
                      <div class="row">

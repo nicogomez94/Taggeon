@@ -1281,7 +1281,7 @@ $("#buscador-index-input").keyup(function(e){
 });
 
 //test
-$("#modalFirstLogin").modal('show')
+//$("#modalFirstLogin").modal('show')
 
 //form intereses
 $("#form_intereses").submit(function(e){
@@ -2272,10 +2272,6 @@ function getSubCat(valueParam,source,target){
 
                 var subcats = data.mensaje || [];
                 var subcats_length = data.mensaje.length || 0;
-
-                console.log("subcats",subcats)
-                console.log("source",source)
-                console.log("target",target)
                 
                 for(var i=0; i<subcats_length; i++) {
                     var cat_id = subcats[i].id;
@@ -2303,10 +2299,62 @@ function getSubCat(valueParam,source,target){
     return false;
 }
 
-function getSubEscena(valueParam){
+function getSubEscena(valueParam,source,target){
+
+    var catData = new FormData();
+    catData.append("accion","subescena1");
+    catData.append("id",valueParam);
+    
+    $.ajax({
+        url: '/app/publicaciones.php',
+        data: catData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function(data,response){
+            if (data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);														
+            }else if(data.status == 'OK'){
+
+                var subEscena = data.mensaje || [];
+                var subEscena_length = data.mensaje.length || 0;
+
+                console.log("subEscena",subEscena)
+                console.log("source",source)
+                console.log("target",target)
+                
+                for(var i=0; i<subEscena_length; i++) {
+                    var cat_id = subEscena[i].id;
+                    var cat_nombre = subEscena[i].nombre;
+                    var targetHtml = $(target);
+     
+                    var cat_select_html = 
+                    '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+     
+                    targetHtml.append(cat_select_html)
+                    targetHtml.addClass("showCat");
+                }
+
+            }else{
+                console.log("else")
+                console.log(response)
+                console.log(data)
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alert(msj);
+        }
+    });
+    return false;
+}
+
+
+function getEscenas(valueParam){
 
     if(valueParam == "Arquitectura"){
-        
+        console.log("test")
         var arq = $("#esc_arq");
         arq.addClass("showCat");
         $("#esc_ind").removeClass("showCat")
