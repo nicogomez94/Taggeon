@@ -2302,11 +2302,11 @@ function getSubCat(valueParam,source,target){
 function getSubEscena(valueParam,source,target){
 
     var catData = new FormData();
-    catData.append("accion","subescena1");
+    catData.append("accion","subescena");
     catData.append("id",valueParam);
     
     $.ajax({
-        url: '/app/publicaciones.php',
+        url: '/app/publicacion.php',
         data: catData,
         type: 'POST',
         processData: false,
