@@ -308,6 +308,7 @@ class  PublicacionManager
 			
 				$publicacion = $this->publicacionDao->getPublicacionByIdYProducto($data);
 				return $publicacion;
+	 }
 	public function searchSubEscena2(array $data)
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';
@@ -325,7 +326,6 @@ class  PublicacionManager
 			return 'ok';
 		}
 	}
-			}
 	public function searchSubEscena(array $data)
 	{
 		$id = isset($data["id"]) ? $data["id"] : '';
