@@ -1814,80 +1814,80 @@ function buscadorIndex(paramIndex){
 function ampliarNotif(){
     //var jsonData = jsonData || [];
     //console.log(jsonData)
-    if(jsonData.usuario != ""){
-        var notifs = jsonData.notificaciones || [];
-        var sizeNotifs = notifs.length || 0;
+    if(typeof jsonData !== "undefined"){
+        if(typeof jsonData.usuario !== "undefined"){
+            var notifs = jsonData.notificaciones || [];
+            var sizeNotifs = notifs.length || 0;
 
-        if(sizeNotifs>0){
-            for(var i=0; i<sizeNotifs; i++){
-                
-                var compracompra = jsonData.notificaciones[i].compracompra || 0;
-                var json_notif = jsonData.notificaciones[i].json_notificacion || "";
-                var json_notif_p = JSON.parse(json_notif) || [];
-                var tipo_notif = jsonData.notificaciones[i].tipo_notificacion || "";
-                var id = jsonData.notificaciones[i].id || 0;
-                var json_notif_p_l = Object.keys(json_notif_p).length || 0;
-                
-                //console.log(json_notif_p)
-    
-                var foto = json_notif_p.foto || 0;
-                var id_jn = json_notif_p.id || 0;
-                var id_publicacion_categoria = json_notif_p.id_publicacion_categoria || "";
-                var pid = json_notif_p.pid || "";
-                var publicacion_descripcion = json_notif_p.publicacion_descripcion || "";
-                var nombre = json_notif_p.nombre || "";
-                var nombre_producto = json_notif_p.nombre_producto || "";
-                var publicacion_nombre = json_notif_p.publicacion_nombre || "";
-                var usuario_alta = json_notif_p.usuario_alta || 0;
-                var foto_prod = json_notif_p.foto_id;
-                var comentario = json_notif_p.comentario;
-                var foto_src = '/productos_img/'+foto_prod+'.png';
-    
-                //aparece el contador de notifs con nro
-                $(".count-notif").show();
-                $(".count-notif").text(sizeNotifs)
-                
-                var html_notif = 
-                            '<div class="media notif-id-'+id+'">'+
-                                '<i class="notif-icon mr-3 fas fa-heart heart-notif"></i>'+
-                                '<div class="media-body"></div>'+
-                                '<i onclick="eliminarNotif(\''+id+'\')" class="eliminar-notif fas fa-times"></i>'+
-                            '</div>';
-    
-                    $(".notifs-button-ampliar").append(html_notif)
-
-                if(tipo_notif == "favorito"){
-                    var html_favorito = '<div>'+nombre+' a&ntilde;adi&oacute; tu publicaci&oacute;n "'+publicacion_nombre+'" como favorita</div>';
-                    $(".notif-id-"+id+" .media-body").append(html_favorito)
-
-                }else if(tipo_notif == "seguidores"){
-                    var html_seg = '<div>'+nombre+' te esta siguiendo</div>';
-                    $(".notif-id-"+id+" .media-body").append(html_seg)
-
-                }else if(tipo_notif == "vendedor"){
-                    var html_vendedor = '<div><a href="/mis-ventas.html">Vendiste '+nombre_producto+'!</a></div>';
-                    var html_foto_prod = '<img class="mr-3 img-notifs" src="'+foto_src+'" alt="img_notif">';
-
-                    $(".notif-id-"+id).prepend(html_foto_prod);
-                    $(".notif-id-"+id+">.notif-icon").remove();
-                    $(".notif-id-"+id+">.media-body").html(html_vendedor);
-
-                }else if(tipo_notif == "comentario"){
-                    var html_comentario = '<div><a href="/ampliar-publicacion-home.html?id='+id_jn+'&accion=ampliar&cat='+id_publicacion_categoria+'">'+nombre+' coment&oacute; "'+comentario+'" en tu public.: "'+publicacion_nombre+'"</a></div>';
-                    //var html_foto_prod = '<img class="mr-3 img-notifs" src="'+foto_src+'" alt="img_notif">';
-
-                    $(".notif-id-"+id+" .media-body").append(html_comentario)
+            if(sizeNotifs>0){
+                for(var i=0; i<sizeNotifs; i++){
                     
+                    var compracompra = jsonData.notificaciones[i].compracompra || 0;
+                    var json_notif = jsonData.notificaciones[i].json_notificacion || "";
+                    var json_notif_p = JSON.parse(json_notif) || [];
+                    var tipo_notif = jsonData.notificaciones[i].tipo_notificacion || "";
+                    var id = jsonData.notificaciones[i].id || 0;
+                    var json_notif_p_l = Object.keys(json_notif_p).length || 0;
+                    
+                    //console.log(json_notif_p)
+        
+                    var foto = json_notif_p.foto || 0;
+                    var id_jn = json_notif_p.id || 0;
+                    var id_publicacion_categoria = json_notif_p.id_publicacion_categoria || "";
+                    var pid = json_notif_p.pid || "";
+                    var publicacion_descripcion = json_notif_p.publicacion_descripcion || "";
+                    var nombre = json_notif_p.nombre || "";
+                    var nombre_producto = json_notif_p.nombre_producto || "";
+                    var publicacion_nombre = json_notif_p.publicacion_nombre || "";
+                    var usuario_alta = json_notif_p.usuario_alta || 0;
+                    var foto_prod = json_notif_p.foto_id;
+                    var comentario = json_notif_p.comentario;
+                    var foto_src = '/productos_img/'+foto_prod+'.png';
+        
+                    //aparece el contador de notifs con nro
+                    $(".count-notif").show();
+                    $(".count-notif").text(sizeNotifs)
+                    
+                    var html_notif = 
+                                '<div class="media notif-id-'+id+'">'+
+                                    '<i class="notif-icon mr-3 fas fa-heart heart-notif"></i>'+
+                                    '<div class="media-body"></div>'+
+                                    '<i onclick="eliminarNotif(\''+id+'\')" class="eliminar-notif fas fa-times"></i>'+
+                                '</div>';
+        
+                        $(".notifs-button-ampliar").append(html_notif)
+
+                    if(tipo_notif == "favorito"){
+                        var html_favorito = '<div>'+nombre+' a&ntilde;adi&oacute; tu publicaci&oacute;n "'+publicacion_nombre+'" como favorita</div>';
+                        $(".notif-id-"+id+" .media-body").append(html_favorito)
+
+                    }else if(tipo_notif == "seguidores"){
+                        var html_seg = '<div>'+nombre+' te esta siguiendo</div>';
+                        $(".notif-id-"+id+" .media-body").append(html_seg)
+
+                    }else if(tipo_notif == "vendedor"){
+                        var html_vendedor = '<div><a href="/mis-ventas.html">Vendiste '+nombre_producto+'!</a></div>';
+                        var html_foto_prod = '<img class="mr-3 img-notifs" src="'+foto_src+'" alt="img_notif">';
+
+                        $(".notif-id-"+id).prepend(html_foto_prod);
+                        $(".notif-id-"+id+">.notif-icon").remove();
+                        $(".notif-id-"+id+">.media-body").html(html_vendedor);
+
+                    }else if(tipo_notif == "comentario"){
+                        var html_comentario = '<div><a href="/ampliar-publicacion-home.html?id='+id_jn+'&accion=ampliar&cat='+id_publicacion_categoria+'">'+nombre+' coment&oacute; "'+comentario+'" en tu public.: "'+publicacion_nombre+'"</a></div>';
+                        //var html_foto_prod = '<img class="mr-3 img-notifs" src="'+foto_src+'" alt="img_notif">';
+
+                        $(".notif-id-"+id+" .media-body").append(html_comentario)
+                        
+                    }
                 }
+
+            }else{
+                var no_notif = '<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay notificaciones por el momento.</div>'
+                $(".notifs-button-ampliar").html(no_notif)
             }
-
-        }else{
-            var no_notif = '<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay notificaciones por el momento.</div>'
-            $(".notifs-button-ampliar").html(no_notif)
         }
-
     }
-
 }
 
 function eliminarNotif(id_notif){

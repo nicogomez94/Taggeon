@@ -3547,3 +3547,7 @@ input {
     width: 100%;
     opacity: 0;
 }
+
+#tyc_container{
+    padding: 30px;
+}

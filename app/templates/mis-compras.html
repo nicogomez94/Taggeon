@@ -1,11 +1,81 @@
 <div class="overlay-loading"></div>
 
-<div>
+<div class="container container-compras">
+   <div class="bc-container">
+      <span class="bc-origin">Mi Perfil</span>
+      <span class="bc-separador"><i class="fas fa-angle-right"></i></span>
+      <span class="bc-child">Mis Compras</span>
+   </div>
+   <div class="inner-compras container-sorteable">
+      <h1>Detalle de Compras/Ordenes</h1>
+      <hr>
+      <div class="filtros">
+         <select name="ordenar" id="ordenar">
+            <option value="" selected disabled hidden required>Ordenar por</option>
+            <option value="recientes">Mas recientes</option>
+            <option value="titulo">T&iacute;tulo</option>
+         </select>
+         &nbsp;&nbsp;
+         <span>
+            <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
+            <i class="fas fa-times limpiar-buscador" style="display: none;"></i>
+         </span>
+         
+         <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
+      </div>
+      <hr>
 
+<!--
+         <div class="row producto compra text-left">
+            <div class="col-lg-4">
+               <div class="media">
+                  <img class="mr-3 img-compra-lista" src="https://www.ferrum.com/siteimages/lineas/A_CuartoDeBa%C3%B1o_BariDeColgar.jpg" alt="img">
+                  <div class="media-body">
+                     <h5 class="mt-0">Aplique baño blanco</h5>
+                     <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-entregado"><i class="fas fa-truck-loading"></i>&nbsp;Entregado</span></div>  
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 c">
+               <div class="media">
+                  <img style="border-radius: 50%;" class="mr-3 img-compra-lista" src="https://i.pinimg.com/280x280_RS/91/cc/54/91cc54991ffe69a28c36f33b06341e91.jpg" alt="img">
+                  <div class="media-body">
+                     <h5 class="mt-0">Vendedor</h5>
+                     <span class="label-compra-vendedor">Ferrum SRL</span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 text-right">
+               <span class="ver-detalle-compra-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="#">Ver Detalle</a></span>
+            </div>
+         </div>
 
-
-
-   
+         <div class="row producto compra text-left">
+            <div class="col-lg-4">
+               <div class="media">
+                  <img class="mr-3 img-compra-lista" src="https://t2.ev.ltmcdn.com/es/posts/3/9/2/como_cuidar_la_planta_de_romero_en_maceta_1293_orig.jpg" alt="img">
+                  <div class="media-body">
+                     <h5 class="mt-0">Planta lorem deco</h5>
+                     <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-enviando"><i class="fas fa-truck-loading"></i>&nbsp;Enviandose</span></div>  
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-vendedor">
+               <div class="media">
+                  <img style="border-radius: 50%;" class="mr-3 img-compra-lista" src="https://pbs.twimg.com/profile_images/1041684949911461888/Vb60OZq3_400x400.jpg" alt="img">
+                  <div class="media-body">
+                     <h5 class="mt-0">Vendedor</h5>
+                     <span class="label-compra-vendedor">Easy Caballito SA</span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 text-right">
+               <span class="ver-detalle-compra-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="#">Ver Detalle</a></span>
+            </div>
+         </div>
+-->
+         <!-- /compras hardcodeado -->
+   </div>
 </div>
 
 
@@ -22,4 +92,75 @@
 <!-- <script src="js/popper.js"></script> -->
 
    <script src="js/func.js?time=160321-1633"></script>
+   <script>
+      $(document).ready(function(){
+      
+         var sizeCompras = jsonData.compras.length;
+      
+         if(sizeCompras>0){
+            console.log("andentro if")
+            // if($(".form-orden-compra").html().length > 0){
+               for(var i=0; i<sizeCompras; i++){
+               
+                  var nombre_producto = jsonData.compras[i].nombre_producto || "";
+                  var precio_producto = jsonData.compras[i].precio || 0;
+                  var id = jsonData.compras[i].id || 0;
+                  var direccion = jsonData.compras[i].envio_nombre_apellido || "";
+                  var localidad = jsonData.compras[i].envio_ciudad_localidad || "";
+                  var id_carrito = jsonData.compras[i].id_carrito || 0;
+                  var name_comprador = jsonData.compras[i].nombre || "";
+                  var imagen_id = jsonData.compras[i].foto_id || 0;
+                  var vendedor = jsonData.compras[i].vendedor || "";
+                  var sizeVendedor = jsonData.vendedor.length || 0;
+                  var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
+      
+                  var compras_html = 
+                        '<div class="row producto compra text-left" data-id-carrito="'+id_carrito+'">'+
+                        '   <div class="col-lg-4 col-md-4 col-sm-12 col-12">'+
+                        '      <div class="media">'+
+                        '         <img class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
+                        '         <div class="media-body">'+
+                        '            <h5 class="mt-0 titulo-producto">'+nombre_producto+'</h5>'+
+                        '            <div><span class="estado-pedido-compra-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-compra estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  '+//hard
+                        '         </div>'+
+                        '      </div>'+
+                        '   </div>'+
+                        '   <div class="col-lg-4 col-md-4 col-sm-12 col-12 col-vendedor">'+
+                        '      <div class="media">'+
+                        '         <img style="border-radius: 50%;" class="mr-3 img-compra-lista" src="../../img/descarga.png" alt="img">'+
+                        '         <div class="media-body">'+
+                        '            <h5 class="mt-0">Vendedor</h5>'+
+                        '            <span class="label-compra-vendedor"></span>'+//hard
+                        '         </div>'+
+                        '      </div>'+
+                        '   </div>'+
+                        '   <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-right">'+
+                        '      <span class="ver-detalle-compra-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="/ampliar-compras.html?id='+id_carrito+'">Ver Detalle</a></span>'+
+                        '      <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->'+
+                        '   </div>'+
+                        '</div>';
+                        
+                        
+                        $(".inner-compras").append(compras_html);
+
+                        for(var x=0; x<sizeVendedor; x++){
+                           var arr = jsonData.vendedor; 
+                           var idUsuario = jsonData.vendedor[x].idUsuario;
+                           var obj = arr.find(o => o.idUsuario === idUsuario);
+                           if(obj.idUsuario == vendedor){
+                              $(".label-compra-vendedor").html(obj.nombre/*" "+obj.apellido*/)
+                           }
+                        }
+      
+                  }
+            }else{
+               console.log("afueroo if")
+               $(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>')
+            }
+      
+                  
+         //override css main style
+         $(".titulo-producto").css("line-height","initial");
+      });
+      </script>
 </body></html>
