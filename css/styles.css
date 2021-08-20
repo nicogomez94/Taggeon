@@ -2,7 +2,7 @@
 
 .btn-warning {
     color: #000 !important;
-    background-color: #cebd8b !important;
+    background-color: transparent !important;
     border-color: #cebd8b !important;;
     /*font-weight: 500 !important;*/
 }
@@ -141,13 +141,12 @@ body{
 }
 .btn-header{
     margin-right: 10px;
-    transition: .1s all ease-in;
     cursor: pointer;
     display: table-cell;
     padding-right: 10px;
 }
 .count-notif{
-    transition: .1s all ease-in;
+    /* transition: .1s all ease-in; */
 }
 .count-notif:hover{
 
@@ -157,10 +156,16 @@ body{
 }
 .btn-header i{
     padding: 12px;
-    color: white;
+    color: #cebd8b;
     /* background: #f1f1f1; */
-    background: #cebd8b;
+    /* background: #cebd8b; */
     border-radius: 50%;
+}
+.btn-header i:hover{
+    background: rgb(234 234 234 / 45%);
+}
+.btn-header i:active{
+    background: rgb(200 200 200 / 45%);
 }
 .btn-header a.link, .btn-header a:visited{
     color: grey;
@@ -249,7 +254,7 @@ body{
     word-break: break-word;
     white-space: normal;
     position: absolute;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: white;
     color: black;
     font-weight: 500;
@@ -346,7 +351,12 @@ body{
     height: 37px;
     object-fit: cover;
 }    
-
+.img-perfil-usuario-drop:hover {
+    opacity: 0.8;
+}
+.img-perfil-usuario-drop:active {
+    opacity: 0.6;
+}
 
 .modal-body{
     text-align: center;
@@ -486,7 +496,6 @@ body{
     border-radius: 20px;
     background: gray;
     box-shadow: 3px 3px 0px 0px #d0d0d0;
-    transition: .3s all ease;
     cursor: pointer;
     /*background-image: url("data:image/svg+xml,%3Csvg width='32' height='26' viewBox='0 0 32 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 0v3.994C14 7.864 10.858 11 7 11c-3.866 0-7-3.138-7-7.006V0h2v4.005C2 6.765 4.24 9 7 9c2.756 0 5-2.236 5-4.995V0h2zm0 26v-5.994C14 16.138 10.866 13 7 13c-3.858 0-7 3.137-7 7.006V26h2v-6.005C2 17.235 4.244 15 7 15c2.76 0 5 2.236 5 4.995V26h2zm2-18.994C16 3.136 19.142 0 23 0c3.866 0 7 3.138 7 7.006v9.988C30 20.864 26.858 24 23 24c-3.866 0-7-3.138-7-7.006V7.006zm2-.01C18 4.235 20.244 2 23 2c2.76 0 5 2.236 5 4.995v10.01C28 19.765 25.756 22 23 22c-2.76 0-5-2.236-5-4.995V6.995z' fill='%23eeedf0' fill-opacity='0.7' fill-rule='evenodd'/%3E%3C/svg%3E");*/
     /*background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h16v2h-6v6h6v8H8v-6H2v6H0V0zm4 4h2v2H4V4zm8 8h2v2h-2v-2zm-8 0h2v2H4v-2zm8-8h2v2h-2V4z' fill='%23ebeaec' fill-opacity='0.66' fill-rule='evenodd'/%3E%3C/svg%3E");
@@ -685,10 +694,10 @@ body{
 }
 #titulo-perfil img{
     max-width: 150px;
-    border-radius: 10%;
-    border: 1px solid black;
+    border-radius: 50%;
+    /* border: 1px solid black; */
     padding: 5px;
-    box-shadow: 0px 0px 5px black;
+    /* box-shadow: 0px 0px 5px black;*/
 }
 #titulo-perfil-datos{
     margin-top: 10px;
@@ -701,6 +710,27 @@ body{
 }
 .fyf{
     font-size: 0.5em;
+    margin-top: 15px;
+}
+#name_usuario{
+    font-size: 1.5em;
+}
+#edit_perfil{
+    font-size: 0.5em;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.follower_container {
+    display: inline-block;
+    min-width: 70px;
+}
+
+
+.follower_count{
+    text-align: center;
+    /* padding-left: 5px; */
+    font-size: 1.3em;
+    color: #cebd8b;
 }
 .seguidor, .seguido{
     padding: 15px;
@@ -1002,7 +1032,6 @@ body{
     width: 200px;
     height: 100px;
     position: relative;
-    transition: .3s all ease;
     cursor: pointer;
     display: inline-block;
 }
@@ -1289,7 +1318,6 @@ select{
     padding: 5px;
     width: auto;
     border-radius: 4px;
-    transition: .3s all ease-in-out;
     display: none;
 }
 #btn-siguiente{
@@ -1701,7 +1729,6 @@ input:focus ~ .highlight {
     height: 100%;
     width: 100%;
     opacity: 0;
-    transition: .1s ease-in;
     background-color: rgb(0 0 0 / 15%);
 }
 .content-col-div:hover .overlay-public {
@@ -2080,7 +2107,6 @@ button:disabled{
     margin: 15px 10px;
     width: 10%;
     display: inline-block;
-    transition: all ease .4s;
 }
 .globo-escenario:hover{
     box-shadow: 0 0 7px gray;
@@ -2102,7 +2128,6 @@ button:disabled{
     cursor: pointer;
     text-shadow: 0px 0px 3px #585858;
     opacity: 0.5;
-    transition: all ease .1s;
 }
 .prev-cat{
     padding-right: 10px;
@@ -3548,6 +3573,9 @@ input {
     opacity: 0;
 }
 
-#tyc_container{
-    padding: 30px;
+#tyc_container,#pp_container{
+    padding: 60px;
+}
+.h2_pp{
+    margin: 40px 0 30px 0;
 }

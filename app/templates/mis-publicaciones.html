@@ -1,10 +1,10 @@
 <div class="overlay-loading"></div>
-<!-- seguidores -->
+<!-- overlay seguidores -->
 <div class="overlay overlay-seguidores" style="display: none;">
    <div style="width: 400px;" class="lightBox lightBox-seguidores">
       <div>
          <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-         <h3 class="count-seguidores"><span class="count-seguidores-num">0</span> Seguidores</h3>
+         <h3 class="count-seguidores"></h3>
          <hr>
            <div class="container-seguidores"></div>
          </div>
@@ -12,12 +12,12 @@
    </div>
 </div>
 <!--  -->
-<!-- siguiendo -->
+<!-- overlay siguiendo -->
 <div class="overlay overlay-seguidos" style="display: none;">
    <div style="width: 400px;" class="lightBox lightBox-seguidos">
       <div>
          <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-         <h3 class="count-seguidos"><span class="count-seguidos-num">0</span> Seguidos</h3>
+         <h3 class="count-seguidos"></h3>
          <hr>
          <div class="container-seguidos"></div>
          </div>
@@ -27,20 +27,25 @@
 <!--  -->
 
 <div id="info-user" class="container">
-   <div id="icons-upper-perfil">
-      <!-- <span><a href="#"><i class="fas fa-plus"></i></a></span>
-      <span><a href="#"><i class="fas fa-user-cog"></i></a></span>       -->
+   <!-- <div id="icons-upper-perfil">
       <span><a href="{url_editar}"><i class="fas fa-user-edit"></i></a></span>
-   </div>
+   </div> -->
    <div id="titulo-perfil">
          <img src="{foto-perfil}" alt="foto perfil">
          <div id="titulo-perfil-datos">
-            <div>{nombre}</div>
+            <div id="name_usuario">{nombre}</div>
+            <div class="edit_perfil">
+               <a href="#" class="btn btn-warning btn-sm">Editar Perfil</a>
+            </div>
             <div class="fyf">
-               <span class="seguidores-count"></span>
-               <span class="seguidores-label">&nbsp;Seguidores</span> - 
-               <span class="siguiendo-count"></span>
-               <span class="seguidos-label">&nbsp;Seguidos</span>
+               <div class="follower_container">
+                  <div id="follower_count" class="follower_count">0</div>
+                  <div class="follower_label">Seguidores</div>
+               </div>
+               <div class="follower_container" style="margin-left: 15px;">
+                  <div id="following_count" class="follower_count">0</div>
+                  <div class="follower_label">Seguidos</div>
+               </div>
            </div>
          </div>
    </div>
@@ -56,24 +61,23 @@
 
 
 <div class="container contenedor-mis-public">
-   <h1>Mis Publicaciones</h1>
+   <!-- <h1>Mis Publicaciones</h1>
    <hr>
    <div class="filtros">
-      <!--
+
       <a href="/formu-subir.html" class="btn btn-warning">Ordenar</a>
       <span>
          <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
          <i class="fas fa-times-circle limpiar-buscador"></i>
       </span>
       
-      <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>-->
+      <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
 
       <a href="/formu-subir-public.html" class="btn btn-warning">Subir Publicaci&oacute;n</a>
 
    </div>
-
-   <!--  -->
-   <hr><br>
+  -->
+ <br>
       
 </div>
 

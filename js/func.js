@@ -926,7 +926,7 @@ $("#subir-csv").on('submit', function() {
 
 //AÑADIR AL CARRITO
 $(".modal").on("click", ".btn-carrito", function(){
-console.log("test")
+
     var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
     var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
     var id_prod = $(this).data("idprod");
@@ -2030,16 +2030,19 @@ function mostrarSeguidores(){
     var sizeSeguidores = jsonData.seguidores.length;
     var seguidos = jsonData.seguidos || [];
     var sizeSeguidos = jsonData.seguidos.length || 0;
+    console.log("teset",sizeSeguidos)
 
-    $(".seguidos-count").html(sizeSeguidos);
+    //perfil
+    $(".seguidos-label").html(sizeSeguidos+" Seguidos");
+    $(".seguidores-label").html(sizeSeguidores+" Seguidores");
+
+    //popup
     $(".count-seguidos-num").html(sizeSeguidos);
     $(".seguidores-count").html(sizeSeguidores);
-    $(".count-seguidores-num").html(sizeSeguidores);
 
     if(sizeSeguidores>0){
         for(var i=0; i<sizeSeguidores; i++){
             
-            console.log("test")
             var apellido = jsonData.seguidores[i].apellido || "";
             var email = jsonData.seguidores[i].email || "";
             var idUsuario = jsonData.seguidores[i].idUsuario || 0;
@@ -2354,7 +2357,6 @@ function getSubEscena(valueParam,source,target){
 function getEscenas(valueParam){
 
     if(valueParam == "Arquitectura"){
-        console.log("test")
         var arq = $("#esc_arq");
         arq.addClass("showCat");
         $("#esc_ind").removeClass("showCat")
