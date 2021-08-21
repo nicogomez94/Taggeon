@@ -343,6 +343,12 @@ class  PublicacionManager
 			{
 				return $this->publicacionDao->getListEscena();
 			}
+                     public function getListPublicacion()
+                       {
+                               $ret =  $this->publicacionDao->getListPublicacion();
+                               return $ret;
+                       }
+
 
 			public function getListPublicacionIndex()
 			{
