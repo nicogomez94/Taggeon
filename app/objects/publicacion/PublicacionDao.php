@@ -84,19 +84,28 @@ SQL;
 
         $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
         $publicacion_nombreDB = Database::escape($publicacion_nombre);
-        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-        $publicacion_categoriaDB = Database::escape($publicacion_categoria);
         $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 	$publicacion_pid = isset($data["data_pines"]) ? $data["data_pines"] : '';
         $publicacion_pidDB = Database::escape($publicacion_pid);
+        $escena_sel = isset($data["escena_sel"]) ? $data["escena_sel"] : '';
+        $escena_selDB = Database::escape($escena_sel);
+
+        $subescena1 = isset($data["subescena1"]) ? $data["subescena1"] : '';
+        $subescena1DB = Database::escape($subescena1);
+
+        $subescena2 = isset($data["subescena2"]) ? $data["subescena2"] : '';
+        $subescena2DB = Database::escape($subescena2);
+
+        $subescena3 = isset($data["subescena3"]) ? $data["subescena3"] : '';
+        $subescena3DB = Database::escape($subescena3);
 
         $sql = <<<SQL
 			UPDATE
 			    `publicacion`
 			SET
 			    `usuario_editar` = $usuarioDB, pid=$publicacion_pidDB,
-`publicacion_nombre` = $publicacion_nombreDB, id_`publicacion_categoria` = $publicacion_categoriaDB, `publicacion_descripcion` = $publicacion_descripcionDB
+`publicacion_nombre` = $publicacion_nombreDB, subescena1=$subescena1DB,subescena2=$subescena2DB,subescena3=$subescena3DB,escena_sel=$escena_selDB, `publicacion_descripcion` = $publicacion_descripcionDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB
@@ -273,7 +282,7 @@ SQL;
                     $idDB = Database::escape($id);
                     $sql = <<<sql
                     SELECT
-                    `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+                    `publicacion`.`id`, `publicacion_nombre`,subescena1,subescena2,subescena3,escena_sel, 
                     `publicacion_descripcion`,pid,aspect_ratio
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto
             
@@ -287,7 +296,7 @@ SQL;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,aspect_ratio
+                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, `publicacion_descripcion`,pid,aspect_ratio
             sql;
                     $resultado = Database::Connect()->query($sql);
                     $row_cnt = mysqli_num_rows($resultado);
@@ -312,7 +321,7 @@ SQL;
                     $idDB = Database::escape($id);
                     $sql =<<<sql
                     SELECT
-                    `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+                    `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, 
                     `publicacion_descripcion`,pid,aspect_ratio,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto,`publicacion`.usuario_alta
             
@@ -326,7 +335,7 @@ SQL;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
+                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
 sql;
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
@@ -348,7 +357,7 @@ sql;
 
                     $sql =<<<sql
                     SELECT
-                    `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, 
+                    `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, 
                     `publicacion_descripcion`,pid,aspect_ratio,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto,`publicacion`.usuario_alta
             
@@ -363,7 +372,7 @@ sql;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, `id_publicacion_categoria`, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
+                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
 sql;
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
@@ -502,7 +511,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -535,7 +544,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -583,7 +592,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -616,7 +625,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -643,7 +652,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -677,7 +686,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -729,7 +738,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -767,7 +776,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        `id_publicacion_categoria`,
+        subescena1,subescena2,subescena3,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
