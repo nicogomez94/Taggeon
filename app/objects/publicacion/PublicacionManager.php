@@ -46,6 +46,10 @@ class  PublicacionManager
 	    if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
 	     return false;
 	    }
+	    $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
+	    if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
+	     return false;
+	    }
 	    $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
 	    if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
 	     return false;
@@ -59,12 +63,6 @@ class  PublicacionManager
 	    if ($this->validarPublicacion_aspect_ratio($aspect_ratio) === false){
 	     return false;
 	    }
-
-        if ($this->publicacionDao->existePublicacion_categoria($publicacion_categoria) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->publicacionDao->getMsj());
-            return false;
-       	}
 
 	    $publicacion_foto = isset($data["foto_base64"]) ? $data["foto_base64"] : '';
 	    if ($this->validarPublicacion_foto($publicacion_foto) === false){
@@ -118,10 +116,6 @@ class  PublicacionManager
 			$this->setStatus("ERROR");
 			$this->setMsj($this->publicacionDao->getMsj());
 		} else {
-                if ($this->publicacionDao->eliminarPublicacion_foto($data) === false) {
-                    $this->setStatus("ERROR");
-                    $this->setMsj("No se pudo eactualizar Publicacion_foto");
-                    return false;
                 } else {
                     $idPublicacion = isset($data["id"]) ? $data["id"] : '';
 	            $valor = isset($data["foto_base64"]) ? $data["foto_base64"] : '';
@@ -354,6 +348,10 @@ class  PublicacionManager
 				$ret =  $this->publicacionDao->getListPublicacion();
 				return $ret;
 			}
+			public function getListPublicacionIndex()
+			{
+				$ret =  $this->publicacionDao->getListPublicacionIndex();
+				return $ret;
 			public function getListPublicacionIndex()
 			{
 				$ret =  $this->publicacionDao->getListPublicacionIndex();
