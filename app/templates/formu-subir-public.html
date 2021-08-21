@@ -115,6 +115,7 @@
                      </div>
                      <div class="row">
                            <div id="sels_cat_prod" class="col-lg-12">
+                              <!-- ARQ -->
                               <select name="escena_sel" id="escena_sel" onchange="getEscenas(this.value)">
                                  <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
                                  <option value="Arquitectura">Arquitectura</option>
@@ -129,20 +130,16 @@
                               <select name="subescena3" id="esc_arq3" onchange="getSubEscena(this.value,'#esc_arq3','#esc_arq4')">
                                  <option value="" selected disabled hidden required>Elija otro parametro</option>
                               </select>
-                              <!-- <select name="esc_ind" id="esc_ind">
+                              <!-- IND -->
+                              <select name="subcategoria1" id="esc_ind" onchange="getSubEscena(this.value,'#esc_ind','#esc_ind2')">
+                                 <option value="" selected disabled hidden required>Elija una subcategor&iacute;a</option>
+                              </select>
+                              <select name="subcategoria2" id="esc_ind2" onchange="getSubEscena(this.value,'#esc_ind2','#esc_ind3')">
                                  <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
-                              </select> -->
-                                 
-
-                              <!-- <select name="escena" id="escena" onchange="getSubEscena(this.value,'#escena','#escena2')">
-                                 <option value="" selected disabled hidden required>Elija un tipo de escena</option>
                               </select>
-                              <select name="subescena1" id="escena2" onchange="getSubEscena(this.value,'#escena2','#escena3')">
-                                 <option value="" selected disabled hidden required>Elija un parametro</option>
+                              <select name="subcategoria3" id="esc_ind3" onchange="getSubEscena(this.value,'#esc_ind3','#esc_ind3')">
+                                 <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
                               </select>
-                              <select name="subescena2" id="escena3" onchange="getSubEscena(this.value,'#escena3','#escena4')">
-                                 <option value="" selected disabled hidden required>Elija otro parametro</option>
-                              </select> -->
                            </div>
                      </div>
                </div>

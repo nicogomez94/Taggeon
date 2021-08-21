@@ -35,8 +35,18 @@ class  PublicacionDao
 
         $publicacion_nombre = isset($data["publicacion_nombre"]) ? $data["publicacion_nombre"] : '';
         $publicacion_nombreDB = Database::escape($publicacion_nombre);
-        $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-        $publicacion_categoriaDB = Database::escape($publicacion_categoria);
+        $escena_sel = isset($data["escena_sel"]) ? $data["escena_sel"] : '';
+        $escena_selDB = Database::escape($escena_sel);
+
+        $subescena1 = isset($data["subescena1"]) ? $data["subescena1"] : '';
+        $subescena1DB = Database::escape($subescena1);
+
+        $subescena2 = isset($data["subescena2"]) ? $data["subescena2"] : '';
+        $subescena2DB = Database::escape($subescena2);
+
+        $subescena3 = isset($data["subescena3"]) ? $data["subescena3"] : '';
+        $subescena3DB = Database::escape($subescena3);
+
         $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
@@ -47,8 +57,8 @@ class  PublicacionDao
         $aspect_ratioDB = Database::escape($aspect_ratio);
         
 		$sql = <<<SQL
-INSERT INTO publicacion (publicacion_nombre, id_publicacion_categoria, publicacion_descripcion,usuario_alta,pid,aspect_ratio)  
-VALUES ($publicacion_nombreDB, $publicacion_categoriaDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB)
+INSERT INTO publicacion (publicacion_nombre, publicacion_descripcion,usuario_alta,pid,aspect_ratio,subescena1,subescena2,subescena3,escena_sel)  
+VALUES ($publicacion_nombreDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB,$subescena1DB,$subescena2DB,$subescena3,$escena_selDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {

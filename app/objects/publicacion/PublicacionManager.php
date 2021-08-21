@@ -46,10 +46,6 @@ class  PublicacionManager
 	    if ($this->validarPublicacion_nombre($publicacion_nombre) === false){
 	     return false;
 	    }
-	    $publicacion_categoria = isset($data["publicacion_categoria"]) ? $data["publicacion_categoria"] : '';
-	    if ($this->validarPublicacion_categoria($publicacion_categoria) === false){
-	     return false;
-	    }
 	    $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
 	    if ($this->validarPublicacion_descripcion($publicacion_descripcion) === false){
 	     return false;
