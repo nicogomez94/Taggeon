@@ -8,13 +8,15 @@ $(document).ready(function(){
 
             // var public_cat_size = jsonData.categoria.length;
             var public_cat_size = 0;//HARD
+            var escena_json = JSON.parse(escena);
+            var escena_json_length = escena_json.length;
 
             //recorre todas las cat y primero dibujo el item de cat
-            for(var i=0; i<public_cat_size; i++){
+            for(var i=0; i<escena_json_length; i++){
 
 
-                var json_cat = jsonData.categoria[i].id || 0;
-                var json_cat_nombre = jsonData.categoria[i].nombre || "";
+                var json_cat = escena_json[i].id || 0;
+                var json_cat_nombre = escena_json[i].nombre || "";
                 
 
                 var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+

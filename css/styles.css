@@ -40,7 +40,7 @@ a:link, a:visited{
     color: #000 !important;
 }
 body{
-    font-family:BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Helvetica,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
 }
 [role="main"] {
@@ -188,10 +188,14 @@ body{
 #navbar-principal{
     z-index: 999;/*estaba 997*/
     background-color: #fff;
-    box-shadow: 0px 1px 7px #cecece;
+    /* box-shadow: 0px 0px 2px #cecece; */
+    border-bottom: 1px solid #e2e2e2;
 }
 #navbar-principal a{
     color: black !important;
+}
+#buscador-index-input{
+    border-radius: 40px;
 }
 #navbar-principal .form-control{
     background-color: rgb(241, 241, 241);
@@ -260,9 +264,25 @@ body{
     font-weight: 500;
     padding: 20px;
     right: 30px;
-    box-shadow: 0px 0px 20px rgb(187 187 187);
+    box-shadow: 0px 0px 5px rgb(187 187 187);
     width: 250px;
     display: none;
+    margin-top: 7px;
+}
+#dropdown-user-menu img{
+    border-radius: 50%;
+}
+.flechita{
+    display: inline;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -5px;
+    right: 9px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+    background: transparent;
 }
 .notifs-button-ampliar{
     white-space: normal;
@@ -352,10 +372,7 @@ body{
     object-fit: cover;
 }    
 .img-perfil-usuario-drop:hover {
-    opacity: 0.8;
-}
-.img-perfil-usuario-drop:active {
-    opacity: 0.6;
+    opacity: 0.85;
 }
 
 .modal-body{
@@ -711,6 +728,7 @@ body{
 .fyf{
     font-size: 0.5em;
     margin-top: 15px;
+    margin-bottom: 40px;
 }
 #name_usuario{
     font-size: 1.5em;
@@ -747,6 +765,9 @@ body{
 #menu-perfil{
     font-weight: 500 !important;
     margin-bottom: 90px;
+}
+#menu-perfil .nav-link:hover{
+
 }
 #inside-nav{
     position: absolute;
@@ -1158,7 +1179,7 @@ textarea{
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
-    background-color: #f8f8f8;
+    background-color: white;
 }
 .commentbox textarea{
     font-size: small;
@@ -1254,23 +1275,26 @@ select{
 
 
 #background-atras{
-    background-color: rgb(214, 214, 214);
-    height: 33%;
+    background-color: #ccc1a1;
+    height: 48%;
     width: 100%;
     position: absolute;
     top: 0;
     z-index: -1;
-    /*  */
     display: none;
 }
 #contenedor-form-subir{
     z-index: 1;
-    width: 60%;
-    padding: 20px;
-    background-color: rgb(243, 243, 243);
+    width: 90%;
+    padding: 40px;
+    background-color: #ffffff;
     margin-bottom: 50px;
-    margin-top: 70px;/*para que se acomode flecha atras*/
-    box-shadow: 3px 3px 0px 0px #d0d0d0;
+    margin-top: 60px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    margin-left: auto;
+    /* box-shadow: 3px 3px 0px 0px #d0d0d0; */
+    margin-right: auto;
 }
 .primer-row-form{
     margin-top: 30px;
@@ -1284,17 +1308,12 @@ select{
 #contenedor-subir-foto{
     margin: 15px;
     padding: 25px 10px 0 10px;
-    background-color: #e7e7e7;
+    background-color: #f1f1f1;
     border-radius: 10px;
     height: 100%;
 }
 #text-inside-subir{
     margin: 0;
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
-    /* z-index: -1; */
 }
 #img-subir{
     padding: 20px;
@@ -1336,14 +1355,13 @@ select{
     color: lightgrey;
 }
 input 				{
-  font-size:18px;
-  padding:10px 10px 10px 5px;
-  /* display:block; */
-  /* width:300px; */
-  width: 90%;
-  border:none;
-  border-bottom:1px solid #757575;
-  background-color: transparent;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    width: 90%;
+    border: none;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    background-color: transparent;
 }
 input:focus 		{ outline:none; }
 
@@ -1361,16 +1379,16 @@ label 				 {
   -webkit-transition:0.2s ease all;
 }
 .label-text-subir-producto{
-    color:#999; 
-    font-size:18px;
-    font-weight:normal;
-    position:absolute;
-    pointer-events:none;
-    left:5px;
-    top:10px;
-    transition:0.2s ease all; 
-    -moz-transition:0.2s ease all; 
-    -webkit-transition:0.2s ease all;
+    color: #999;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 23px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
 }
 
 /* active state */
@@ -2867,13 +2885,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     position: relative;
     display: inline-block;
   }
-  
-  input {
-    border: 1px solid transparent;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 16px;
-  }
+
   
   .autocomplete-items {
     position: absolute;
