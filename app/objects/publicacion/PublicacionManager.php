@@ -372,9 +372,6 @@ class  PublicacionManager
 		
 				$list = $this->publicacionDao->searchIndex($data);
 
-				$fp = fopen("/var/www/html/log.txt", 'a');
-				fwrite($fp, "Paso searchindex");
-				fclose($fp);
 		
 				if (count($list)>0){
 					$obj = new BusquedaManager();

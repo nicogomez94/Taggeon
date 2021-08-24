@@ -66,5 +66,5 @@ $objRet = array(
 );
 $ret = json_encode($objRet);
 Database::Connect()->close();
-echo $ret;
+echo html($ret);
 exit;

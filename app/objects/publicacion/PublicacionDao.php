@@ -391,7 +391,7 @@ sql;
                     $sql = <<<sql
                                 SELECT
                                 `id`,
-                                `nombre`
+                                `nombre`,id_padre
                             FROM
                                 `publicacion_categoria`
                             WHERE
@@ -412,12 +412,13 @@ sql;
                     $sql = <<<sql
                                 SELECT
                                 `id`,
-                                `nombre`
+                                `nombre`,id_padre
                             FROM
                                 `publicacion_categoria2`
                             WHERE
                                 eliminar=0 OR eliminar is null
             sql;
+
             
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
