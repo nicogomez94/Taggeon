@@ -140,7 +140,7 @@ body{
     color: black !important;
 }
 .btn-header{
-    margin-right: 10px;
+    /* margin-right: 10px; */
     cursor: pointer;
     display: table-cell;
     padding-right: 10px;
@@ -181,9 +181,9 @@ body{
 
 }
 .navbar-brand img{
-    width: 42px;
-    height: 42px;
-    margin-bottom: 5px;
+    width: 58px;
+    height: 76px;
+    margin-bottom: 25px;
 }
 #navbar-principal{
     z-index: 999;/*estaba 997*/
@@ -333,7 +333,7 @@ body{
     height: 75px;
     width: 75px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 50%;
 }
 #dropdown-user-menu>.media>h5, .notifs-button-ampliar>.media>h5{
     word-break: break-word;
@@ -365,11 +365,11 @@ body{
 }
 .img-perfil-usuario-drop{
     /* max-width: 100%; */
-    box-shadow: 0 0 1px 2px #b7b7b7;
     border-radius: 50%;
-    width: 37px;
-    height: 37px;
+    max-width: 38px;
+    max-height: 38px;
     object-fit: cover;
+    margin-bottom: 4px;
 }    
 .img-perfil-usuario-drop:hover {
     opacity: 0.85;
@@ -465,13 +465,6 @@ body{
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: rgb(226, 226, 226);
-}
-.nav-item-icon{
-    /* padding: 11px; */
-    border-radius: 50%;
-    color: grey;
-    cursor: pointer;
-    background-color: rgb(231, 231, 231);
 }
 .content-col-div img{
     max-width: 100%;
@@ -1281,7 +1274,6 @@ select{
     position: absolute;
     top: 0;
     z-index: -1;
-    display: none;
 }
 #contenedor-form-subir{
     z-index: 1;
@@ -1390,10 +1382,12 @@ label 				 {
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
 }
-
+.campos-subir-prod{
+    margin-top: 30px;
+}
 /* active state */
 input:focus ~ label, input:valid ~ label 		{
-  top:-20px;
+  top: -25px;
   font-size:14px;
   color:rgb(160, 160, 160);
 }
@@ -1463,6 +1457,11 @@ input:focus ~ .highlight {
     box-shadow: 0px 0px 5px rgb(194, 194, 194);
     font-size: 20px;
     position: relative;
+}
+.h-subir-prod{
+    padding-left: 100px;
+    padding-top: 55px;
+    color: white;
 }
 .compra, .venta{
     font-size: 15px;
@@ -1883,8 +1882,11 @@ input:focus ~ .highlight {
     top: 60% !important;
     margin-right: 15px;
     margin-left: 15px;
-    width: 3em !important;
-    height: 3em !important;
+    width: 2.4em !important;
+    height: 2.4em !important;
+}
+.splide__home>.splide__arrows>.splide__arrow>i{
+    font-size: 0.8em;
 }
 .splide__prodtag{
     border: 1px solid #fff7e0;
