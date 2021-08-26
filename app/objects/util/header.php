@@ -49,7 +49,7 @@ STR;
 
     $publicacionManager = new PublicacionManager();
     $escena = $publicacionManager->getListEscena(); 
-    $escena = json_encode($escena);
+    $escena = json_encode($escena,JSON_INVALID_UTF8_IGNORE);
     $escena2 = $publicacionManager->getListEscena2(); 
     $escena2 = json_encode($escena2);
 

@@ -2,11 +2,15 @@ $(document).ready(function(){
 
     var sizePublic = jsonData.publicaciones.length;
     
-    if(sizePublic>0){
-        for(var i=0; i<sizePublic; i++){
-          
+
+    for(var i=0; i<sizePublic; i++){
+       
+       if(sizePublic>0){
+
+            var escena_json = JSON.parse(escena);
+            var escena_json_length = escena_json.length;
             var id_public = jsonData.publicaciones[i].id || 0;
-            var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria || "";
+            var id_public_cat = jsonData.publicaciones[i].subescena1 || "";//que onda esto cuando son mas de una??
             var nombre_public = jsonData.publicaciones[i].publicacion_nombre || "";
             var descr_public = jsonData.publicaciones[i].publicacion_descripcion || "";
             var publicador = jsonData.publicaciones[i].nombre_publicador || "";
@@ -16,7 +20,7 @@ $(document).ready(function(){
             var imagen_id = jsonData.publicaciones[i].foto || 0;
             var producto = jsonData.publicaciones[i].pid || 0;
             var cat_ampliar_home = jsonData.cat || 0;
-            var arrCat = jsonData.categoria || 0;
+            var arrCat = escena_json || 0;
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
             var img_publicador = '/imagen_perfil/'+foto_perfil+'.png' || 0;//viene siempre png?
             var winLoc = window.location.pathname || "";
@@ -29,14 +33,14 @@ $(document).ready(function(){
             var idPublicadorSeguido = idPublicadorSearch.idUsuario;
             var comentarios_obj = jsonData.publicaciones[i].comentarios || []      
 
-            //nombre perfil
 
             if(cat_ampliar_home == 0) cat_ampliar_home = id_public_cat //si viene por mis-public lo igualo asi no putea
+
 
             if(cat_ampliar_home == id_public_cat){
             
                //dibujo la cat arriba de todo
-               var objCat = arrCat.find(o => o.id === cat_ampliar_home) || "";
+               var objCat = escena_json.find(o => o.id === cat_ampliar_home) || "";
                var nameCat = objCat.nombre || "";
                $(".title-cat").html(nameCat);
 
@@ -301,7 +305,7 @@ $(document).ready(function(){
                      if(prod_public.hasClass("prods-abierto")){
                         $('html,body').animate({
                            scrollTop: prod_public.offset().top - 130
-                        }, 400)
+                        }, 0)
 
                      }
 

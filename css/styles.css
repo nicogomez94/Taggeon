@@ -683,7 +683,7 @@ body{
  /*PERFIL/AMPLIAR USUARIO*/
 #info-user{
     margin-top: 30px;
-    padding: 15px;
+    margin-bottom: 30px;
 }
 #icons-upper-perfil{
     font-size: 1.5em;
@@ -757,7 +757,6 @@ body{
 }
 #menu-perfil{
     font-weight: 500 !important;
-    margin-bottom: 90px;
 }
 #menu-perfil .nav-link:hover{
 

@@ -1,4 +1,5 @@
 <?php
+
 include 'objects/util/configuration.php';
 include_once("objects/sesion/sesionManagerImpl.php");
 include_once("objects/util/database.php");
@@ -64,7 +65,7 @@ $objRet = array(
     "status"  => $statusRet,
     "mensaje" => $mensajeRet
 );
-$ret = json_encode($objRet);
+$ret = json_encode($objRet,JSON_INVALID_UTF8_IGNORE);
 Database::Connect()->close();
-echo html($ret);
+echo $ret;
 exit;

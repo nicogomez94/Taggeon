@@ -1,15 +1,42 @@
-<div class="overlay-loading"></div>
-<div id="info-user" class="container">
-   <div id="icons-upper-perfil">
-      <span><a href="#"><i class="fas fa-plus"></i></a></span>
-      <span><a href="#"><i class="fas fa-user-cog"></i></a></span>      
-      <span><a href="{url_editar}"><i class="fas fa-user-edit"></i></a></span>
+<!-- lighbox importar -->
+<div class="overlay">
+   <div class="lightBox">
+      <div>
+         <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <h3>Importar Archivo CSV</h3>
+         <hr>
+         <form id="subir-csv">
+            <input type="file" id="file-csv" name="file-csv"><br><br>
+            <div>
+               <button type="submit" class="btn btn-warning">Importar Productos</button>
+            </div>
+         </form>
+         <hr>
+         <div id="result-importar"></div>
+      </div>
    </div>
+</div>
+
+<div class="overlay-loading"></div>
+
+<div id="info-user" class="container">
    <div id="titulo-perfil">
          <img src="{foto-perfil}" alt="foto perfil">
          <div id="titulo-perfil-datos">
-            <div>{nombre}</div>
-            <div class="fyf"><span class="seguidores">0</span>&nbsp;Seguidores - <span class="siguiendo">0</span>&nbsp; Siguiendo</div>
+            <div id="name_usuario">{nombre}</div>
+            <div class="edit_perfil">
+               <a href="#" class="btn btn-warning btn-sm">Editar Perfil</a>
+            </div>
+            <div class="fyf">
+               <div class="follower_container">
+                  <div id="follower_count" class="follower_count">0</div>
+                  <div class="follower_label">Seguidores</div>
+               </div>
+               <div class="follower_container" style="margin-left: 15px;">
+                  <div id="following_count" class="follower_count">0</div>
+                  <div class="follower_label">Seguidos</div>
+               </div>
+           </div>
          </div>
    </div>
    <div id="menu-perfil">
@@ -23,54 +50,23 @@
 </div>
 
 <!-- PRODUCTO -->
-<!-- PRODUCTO -->
-<!-- PRODUCTO -->
-<!-- PRODUCTO -->
-<!-- PRODUCTO -->
-<!-- PRODUCTO -->
-<!-- PRODUCTO -->
-<!-- PRODUCTO -->
-
 
 <div class="container contenedor-productos">
-   <h1>Mis Productos</h1>
-   <hr>
    <div class="filtros">
-      <div id="edit-btn">
-         <div class="botonera-editar">
-            <span><a href="#">Importar Productos</a></span>
-         </div>
-      </div>
-      <div class="overlay">
-         <div class="lightBox">
-            <div>
-               <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-               <h3>Importar Archivo CSV</h3>
-               <hr>
-               <form id="subir-csv">
-                  <input type="file" id="file-csv" name="file-csv"><br><br>
-                  <div>
-                     <button type="submit" class="btn btn-warning">Importar Productos</button>
-                  </div>
-               </form>
-               <hr>
-               <div id="result-importar"></div>
-            </div>
-         </div>
-      </div>
-      <hr>
       <a href="/formu-subir.html" class="btn btn-warning">Nuevo producto</a>
-      <span>
+      <span id="buscador">
          <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
          <i class="fas fa-times-circle limpiar-buscador"></i>
       </span>
-      
       <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
+
+      <span class="botonera-editar"><a href="#">Importar Productos</a></span>
    </div>
+   
+   <!-- LISTADO -->
       <div id="listado-mis-productos" class="container-sorteable" style="margin-top: 50px">
-         <div class="header-productos producto row">
+         <!-- <div class="header-productos producto row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
-               <!-- <span class="titulo-header-producto">Imagen</span> -->
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
                <span class="titulo-header-producto">
@@ -99,10 +95,9 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-right">
                <span class="titulo-header-producto">
-                  <!-- Opciones -->
                </span>
             </div>
-         </div>
+         </div> -->
       </div>
 </div>
 <!-- <div id="info-user" class="container">
