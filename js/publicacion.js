@@ -64,7 +64,7 @@ $(document).ready(function(){
                
 
             var html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
-                               '<div class="header-public">'+
+                               '<div class="header-public header-public-'+id_public+'">'+
                                   '<span class="img-perfil-public">'+
                                      '<a href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'"><img src="'+img_publicador+'" alt="img-perfil"></a>'+
                                   '</span>'+
@@ -104,12 +104,13 @@ $(document).ready(function(){
                                  '<div class="social-public social-public-'+id_public+'">'+
                                        //'<span><i class="fas fa-heart fav-'+i+'" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'+
                                        //'<span onclick="seguidores('+id_public+','+id_publicador+','+seg_accion+')"><i class="fas fa-user-plus"></i></span>'+
+                                       // '<span class="comment-icon"><i class="fas fa-comment-dots"></i></span>'+
                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
-                                       '<span class="comment-icon"><i class="fas fa-comment-dots"></i></span>'+
+                                       '<span><i class="fas fa-star"></i></span>'+
                                  '</div>'+
                                  '<div class="datos-public">'+
                                  '<div class="info-titulo-public">'+nombre_public+'</div>'+
-                                 '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
+                                 // '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
                                  '<div class="info-descr-public">'+descr_public+'</div><hr>'+
                               '</div>'+
                               '<div id="ancla-test-'+i+'"></div>'+
@@ -205,12 +206,12 @@ $(document).ready(function(){
 
             if(idPublicadorSeguido==id_publicador) {
                seg_accion="eliminar";
-               var seg_html = '<span><i class="fas fa-user-plus seg-eliminar" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></span>'
-               $(".social-public-"+id_public).append(seg_html);
+               var seg_html = '<span class="follow_public"><i class="fas fa-user-plus seg-eliminar" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></span>'
+               $(".header-public-"+id_public).append(seg_html);
             }else{
                seg_accion="alta";
-               var seg_html = '<span><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></i></span>'
-               $(".social-public-"+id_public).append(seg_html);
+               var seg_html = '<span class="follow_public"><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></i></span>'
+               $(".header-public-"+id_public).append(seg_html);
             }
             
             
