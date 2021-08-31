@@ -1,0 +1,19 @@
+{
+  "name": "nico",
+  "version": "1.0.0",
+  "description": "nico",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://zigodevelopers@dev.azure.com/zigodevelopers/taggeon/_git/general"
+  },
+  "author": "",
+  "license": "ISC"
+}

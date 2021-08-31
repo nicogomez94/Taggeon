@@ -5,9 +5,7 @@ $(document).ready(function(){
         var sizePublic = reverse.length;
             
         if(sizePublic>0){
-
-            // var public_cat_size = jsonData.categoria.length;
-            var public_cat_size = 0;//HARD
+            
             var escena_json = JSON.parse(escena);
             var escena_json_length = escena_json.length;
 

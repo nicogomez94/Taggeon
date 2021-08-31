@@ -13,7 +13,7 @@
 		fixedHeight: 'auto',
 		fixedWidth: 'fit-content',//antes 100%
 		dropPinPath: '/js/dropPin/',
-		pin: 'dropPin/defaultpin@2x.png',
+		pin: 'dropPin/dot-circle-solid.svg',
 		backgroundImage: test,
 		backgroundColor: 'transparent',
 		xoffset : 0,
@@ -74,6 +74,7 @@
 		dropMulti: function(options) {
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
+			var popup_cont = $("#popup-prod-cont");
 
 			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
@@ -112,6 +113,7 @@
 				$(options.hiddenYid).val(yval);
 				
 				// add hidden fields - can use these to save to database
+				//name vacio porque se llena despues con el idproducto
 				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'" data-close="'+yval+'-'+xval+'">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -160,17 +162,21 @@
 
 			});
 			//genera tag con producto y futuro click protector
-			$("#popup-prod-cont").on("click", ".splide__slide", function(){
+			popup_cont.on("click", ".splide__slide", function(){
 				            
 				$(".popup-prod-overlay").hide();
 				// var segunda_clase = $(this).attr('class').split(' ')[1];
-				var id_producto = $(this).attr('class').split(' ')[1];
-				var box_y_prod = $(this).parent().parent().parent().parent().parent().css("top").split('%')[0];
-				var box_x_prod = $(this).parent().parent().parent().parent().parent().css("left").split('%')[0];
-				var pin_a_namear = $("#map").find("."+box_y_prod+"-"+box_x_prod);//1 porque hay 2
+				var id_producto = $(this).find('.nombre-producto').attr('class').split(' ')[1];//lo saco del splide
+				var box_y_prod = popup_cont.attr("data-close").split('-')[0];
+				var box_x_prod = popup_cont.attr("data-close").split('-')[1];
+				console.log(box_y_prod,box_x_prod)
+
+				var pin_a_namear = $("#map").find("."+box_y_prod+"-"+box_x_prod);
 				var click_protector = '<div class="click-protector '+box_y_prod+"-"+box_x_prod+'">'+
 										'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
-				
+				console.log(id_producto)
+				console.log("pinanamear",pin_a_namear)
+
 				pin_a_namear.attr("name",id_producto);
 				$(".click-protector-cont").append(click_protector);
 				$("."+box_y_prod+"-"+box_x_prod).css("top",box_y_prod+"%");
@@ -179,7 +185,7 @@
 
 			});
 			//para salir de la sel de productos y eliminar pin
-			$("#popup-prod-cont").on("click","#salir-popup", function(){
+			popup_cont.on("click","#salir-popup", function(){
 				//hago esto porque sino con css() me toma con pixels
 				var data_close = $(this).parent().attr("data-close");
 				var box_y = data_close.split("-")[0]

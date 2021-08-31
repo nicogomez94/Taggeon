@@ -48,6 +48,7 @@ $(document).ready(function(){
                var cat_ampliar_home_next = parseInt(cat_ampliar_home) + 1;
                var objCatNext = arrCat.find(o => o.id === cat_ampliar_home_next.toString()) || 0;
                var objCatNextId = objCatNext.id || 0;
+               var nombre_cat_next = (typeof objCatNext.nombre == "undefined") ? "" : objCatNext.nombre;
                $(".next-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatNextId);
                
 
@@ -55,22 +56,22 @@ $(document).ready(function(){
                var cat_ampliar_home_prev = parseInt(cat_ampliar_home) - 1;
                var objCatPrev = arrCat.find(o => o.id === cat_ampliar_home_prev.toString()) || 0;
                var objCatPrevId = objCatPrev.id || 0;
+               var nombre_cat_pre = (typeof objCatPrev.nombre == "undefined") ? "" : objCatPrev.nombre;
                $(".prev-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatPrevId);
 
                //rellenos costados
-               $(".up_relleno_1_der").html('<span class="inside_up_relleno">'+objCatNext.nombre+'</span>');
-               $(".up_relleno_2_izq").html('<span class="inside_up_relleno">'+objCatPrev.nombre+'</span>');
+               $(".up_relleno_2_izq").html('<span class="inside_up_relleno">'+nombre_cat_pre+'</span>');
+               $(".up_relleno_1_der").html('<span class="inside_up_relleno">'+nombre_cat_next+'</span>');
                
                
 
             var html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
-                               '<div class="header-public header-public-'+id_public+'">'+
-                                  '<span class="img-perfil-public">'+
-                                     '<a href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'"><img src="'+img_publicador+'" alt="img-perfil"></a>'+
-                                  '</span>'+
-                                  '<span class="title-public title-public-'+i+'"></span>'+
-                                 //'<span class="opciones-public"><i class="fas fa-cog"></i></span>'+
-                               '</div>'+
+                                 '<div class="header-public header-public-'+id_public+'" onmouseover="showFollow(this)" onmouseout="hideFollow(this)">'+
+                                    '<a class="nombre-perfil-public" href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'">'+
+                                       '<span class="img-perfil-public"><img src="'+img_publicador+'" alt="img-perfil"></span>'+
+                                       '<span class="title-public title-public-'+i+'"></span>'+
+                                    '</a>'+
+                                 '</div>'+
                             '<div class="bodyimg-public-container bodyimg-public-container-'+i+'">'+
                                //'<div><img src="../../img/arrrrte.jpg" alt=""></div>'+
                                   '<img class="imagen-public-'+imagen_id+'" src="'+foto_src+'" alt="">'+
@@ -221,21 +222,17 @@ $(document).ready(function(){
                rewind : true,
                pagination: false
             } ).mount();
-            
-        
-            
 
             ///DIBUJO PINES
             var producto_parse = JSON.parse(producto);
             var producto_parse_size = producto_parse.length;
+            console.log(producto_parse)
 
             for(var x=0; x<producto_parse_size; x++){
                var id_prod = producto_parse[x].name;
                var coords = producto_parse[x].value;
                var ycoord = coords.split("-")[0];
                var xcoord = coords.split("-")[1];
-               var cat_actual_prod = "1";
-               var allprod = jsonData.productos || [];
       
                //checkeo si es el mismo id de tag y prod
                var arr = jsonData.productos;
@@ -243,6 +240,7 @@ $(document).ready(function(){
 
                //checkeo que cat es para mostrar relacionados
                //var objRel = arr.find(o => o.id === cat_actual);
+               console.log(obj)
                   //dibujo modales
                   if(id_prod == obj.id){
       
@@ -290,7 +288,7 @@ $(document).ready(function(){
             
                   //dibujo tags
                   var tag_html = '<div href="ancla-'+i+'" class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'%; left: '+xcoord+'%">'+
-                              '<span><i class="fas fa-tags"></i></span></div>';
+                              '<span><i class="fas fa-dot-circle"></i></span></div>';
                   
                   $(".tag-container-"+i).append(tag_html);
 

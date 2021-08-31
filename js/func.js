@@ -503,7 +503,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
         $('#map').dropPin('dropMulti',{
             cursor: 'crosshair',
             pinclass: 'qtipinfo',
-            pin: '../../img/tag-solid.svg'
+            pin: '../../plugins/dropPin-master/dropPin/dot-circle-solid.svg'
         });
 
     });
@@ -583,6 +583,7 @@ $('#subir-publicacion-form').submit(function (e) {
     var url_imagen_64 = $("#img-pines-amapear").attr("src")
     var pin_object = $(".pin").serializeArray();
     var pin_object_str = JSON.stringify(pin_object)
+    console.log(pin_object)
 
     formData.append("foto_base64",url_imagen_64);
     formData.append("data_pines",pin_object_str);
@@ -604,8 +605,10 @@ $('#subir-publicacion-form').submit(function (e) {
             }else if(data.status == 'OK' || data.status == 'ok'){
                 //$("body").addClass("loading");
                 window.location.replace("/mis-publicaciones.html");
+                alert("test")
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
+                alert("test")
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
@@ -1092,6 +1095,7 @@ $("#form_intereses").submit(function(e){
 });
 
 
+
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
@@ -1221,10 +1225,6 @@ function cargarImgPines(event){
                 }
 
             });
-                
-            /*var target = event.target.id;
-                //reseteo input file
-                $("#imagen-pins").val("");*/
 
 
             $('.cerrarModal').on('click', function(event) {
@@ -1335,7 +1335,7 @@ function activarBuscador(param){
 
                         /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
 
-                        var html = '<li class="splide__slide splide__slide__img">'+
+                        var html = '<li class="splide__slide splide__slide__img '+id_prod+'">'+
                                     '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
                                     '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
                         // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
@@ -1479,16 +1479,12 @@ function buscadorIndex(paramIndex){
                 console.log(response)
                 var jsonData = response;
                 
-                //primero borro todo:not('.modal,.navbar')
-                //$("#main-super-container").remove();
-                //window.location.replace("/")
                 $(".splide__home").empty();
                 $("#main-super-container").empty();
                 $("#carousel-index").remove();
 
-
                     if(sizePublic>0){   
-                        var public_cat_size = jsonData.categoria.length;
+                        var public_cat_size = escena.length;
                         
                         /*si encontro publics, creo la grid*/
                         var grid_ = '<div class="grid"></div>';
@@ -2169,13 +2165,18 @@ function getEscenas(valueParam){
         var escena_length = escena_parse.length || 0;
         
         for(var i=0; i<escena_length; i++) {
-            var cat_id = escena_parse[i].id;
-            var cat_nombre = escena_parse[i].nombre;
-    
-            var cat_select_html = 
-            '<option value="'+cat_id+'">'+cat_nombre+'</option>';
-    
-            arq.append(cat_select_html)
+            var id_padre = escena_parse[i].id_padre;
+
+            if(id_padre == null){
+                var cat_id = escena_parse[i].id;
+                var cat_nombre = escena_parse[i].nombre;
+        
+                var cat_select_html = 
+                '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+        
+                arq.append(cat_select_html)
+
+            }
         }
 
     }else if(valueParam == "Indumentaria"){
@@ -2188,15 +2189,32 @@ function getEscenas(valueParam){
         var escena_length = escena2_parse.length || 0;
         
         for(var i=0; i<escena_length; i++) {
-            var cat_id = escena2_parse[i].id;
-            var cat_nombre = escena2_parse[i].nombre;
-    
-            var cat_select_html = 
-            '<option value="'+cat_id+'">'+cat_nombre+'</option>';
-    
-            ind.append(cat_select_html)
+            var id_padre2 = escena2_parse[i].id_padre;
+            
+            if(id_padre2 == null){
+                var cat_id = escena2_parse[i].id;
+                var cat_nombre = escena2_parse[i].nombre;
+        
+                var cat_select_html = 
+                '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+        
+                ind.append(cat_select_html)
+            }
         }
 
     }
 
+}
+
+
+function showFollow(el){
+    var clase = el.classList[0];
+    var toShow = $("."+clase).find(".follow_public");
+    toShow.addClass("showFollow");
+}
+
+function hideFollow(el){
+    var clase = el.classList[0];
+    var toShow = $("."+clase).find(".follow_public");
+    toShow.removeClass("showFollow");
 }
