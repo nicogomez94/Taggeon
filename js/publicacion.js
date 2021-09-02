@@ -58,6 +58,7 @@ $(document).ready(function(){
                var objCatPrevId = objCatPrev.id || 0;
                var nombre_cat_pre = (typeof objCatPrev.nombre == "undefined") ? "" : objCatPrev.nombre;
                $(".prev-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatPrevId);
+               if(typeof objCatPrev.nombre == "undefined") $(".prev-cat").hide();
 
                //rellenos costados
                $(".up_relleno_2_izq").html('<span class="inside_up_relleno">'+nombre_cat_pre+'</span>');
@@ -115,27 +116,21 @@ $(document).ready(function(){
                                  '<div class="info-descr-public">'+descr_public+'</div><hr>'+
                               '</div>'+
                               '<div id="ancla-test-'+i+'"></div>'+
-                              '<div class="commentbox-container" style="display:none">'+
-                                 '<div class="commentbox media commentbox-id-'+i+'">'+
-                                    '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
-                                    '<div class="media-body">'+
-                                       '<form class="comentario_public">'+
-                                          '<div class="textarea-container">'+
-                                             '<textarea name="comentario" placeholder="Deja un comentario" maxlength="16384"></textarea>'+
+                              '<div class="commentbox-container">'+
+                                 '<div class="commentbox commentbox-id-2">'+
+                                       '<div>'+
+                                          '<img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>'+
+                                          '<div style="flex-grow: 1;">'+
+                                             '<form class="comentario_public comentario_public_'+id_public+'">'+
+                                                '<input type="text" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">'+
+                                                '<input type="hidden" name="publicacion" value="'+id_public+'">'+
+                                             '</form>'+
                                           '</div>'+
-                                          '<input type="hidden" name="publicacion" value="'+id_public+'">'+
-                                          '<button class="btn btn-warning">Enviar</button>'+
-                                          /*'<div class="rating">'+
-                                          '   <input name="stars" id="e5" type="radio"></a><label for="e5">☆</label>'+
-                                          '   <input name="stars" id="e4" type="radio"></a><label for="e4">☆</label>'+
-                                          '   <input name="stars" id="e3" type="radio"></a><label for="e3">☆</label>'+
-                                          '   <input name="stars" id="e2" type="radio"></a><label for="e2">☆</label>'+
-                                          '   <input name="stars" id="e1" type="radio"></a><label for="e1">☆</label>'+
-                                          '</div>'+*/
-                                       '</form>'+
-                                    '</div>'+
-                                 '</div>'+
-                                 '<div class="comment-count"><span>Comentarios</span></div>'+
+                                          '<div class="ml-1">'+
+                                             '<button onclick="$(\'.comentario_public_'+id_public+'\').submit();console.log(\'test\')" class="btn">Enviar</button>'+
+                                          '</div>'+
+                                       '</div>'+
+                                 //'<div class="comment-count"><span>Comentarios</span></div>'+
                                  '<div class="commentbox-list-container commentbox-list-container-'+id_public+'"></div>'+
                               '</div>'+
                            '</div>';
@@ -159,14 +154,8 @@ $(document).ready(function(){
                   
                   var comentario_html = 
                   '<div class="commentbox-list media commentbox-id-'+y+'">'+
-                     '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
-                     '<div class="media-body">'+
-                        '<p>'+comentario+'</p>'+
-                           '<div class="commentbox-actions">'+
-                           '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+//hard
-                           '   <span class="actions-time">'+fecha_alta+'</span>'+
-                           '</div>'+
-                     '</div>'+
+                  '   <span class="comment-name">nicolasgomez94</span>'+//hard
+                  '   <span class="comment-text">'+comentario+'</span>'+
                   '</div>';
                   
                   $(".commentbox-list-container-"+id_public).append(comentario_html);
@@ -226,7 +215,6 @@ $(document).ready(function(){
             ///DIBUJO PINES
             var producto_parse = JSON.parse(producto);
             var producto_parse_size = producto_parse.length;
-            console.log(producto_parse)
 
             for(var x=0; x<producto_parse_size; x++){
                var id_prod = producto_parse[x].name;
@@ -240,7 +228,6 @@ $(document).ready(function(){
 
                //checkeo que cat es para mostrar relacionados
                //var objRel = arr.find(o => o.id === cat_actual);
-               console.log(obj)
                   //dibujo modales
                   if(id_prod == obj.id){
       
@@ -260,7 +247,6 @@ $(document).ready(function(){
                      var foto_src_prod = '/productos_img/'+foto_prod+'.png';
                      //var modParam = "modal-producto-rel-"+i;
                      //var marca_filtro = allprod.find(o => o.marca === "Gucci");
-                     //console.log(marca_filtro)
 
                      var objParamModal = {
                         id_prod_p : id_prod,
@@ -288,7 +274,7 @@ $(document).ready(function(){
             
                   //dibujo tags
                   var tag_html = '<div href="ancla-'+i+'" class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'%; left: '+xcoord+'%">'+
-                              '<span><i class="fas fa-dot-circle"></i></span></div>';
+                              '<span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>';
                   
                   $(".tag-container-"+i).append(tag_html);
 

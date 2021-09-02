@@ -605,10 +605,8 @@ $('#subir-publicacion-form').submit(function (e) {
             }else if(data.status == 'OK' || data.status == 'ok'){
                 //$("body").addClass("loading");
                 window.location.replace("/mis-publicaciones.html");
-                alert("test")
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);
-                alert("test")
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
@@ -882,7 +880,7 @@ $("#btn-siguiente").click(function(){
 
 ///submit comentario_public
 $(".comentario_public").submit(function(){
-
+    console.log("test")
     var dataComentario = new FormData($(this)[0]);
     dataComentario.append("accion","alta");
 
@@ -892,14 +890,8 @@ $(".comentario_public").submit(function(){
 
     var content_html =
     '<div class="commentbox-list media commentbox-id">'+
-        '<img class="mr-3 commentbox-user-img" src="" alt="perfil">'+
-        '<div class="media-body">'+
-        '<p>'+comentario+'</p>'+
-            '<div class="commentbox-actions">'+
-            '   <span class="actions-name">Nicolas Gómez</span>&nbsp;&middot;&nbsp;'+//hard
-            '   <span class="actions-time">hace instantes</span>'+
-            '</div>'+
-        '</div>'+
+    '   <span class="comment-name">nicolasgomez94</span>'+//hard
+    '   <span class="comment-text">'+comentario+'</span>'+
     '</div>';
 
     $(appendeo).append(content_html);
@@ -1514,7 +1506,6 @@ function buscadorIndex(paramIndex){
                                                 '<span class="text-overlay-link share-sm" onclick="pathShareHome(\''+full_url+'\')">'+
                                                     '<a href="#"><i class="fas fa-share-alt" ></i></a>'+
                                                 '</span>'+
-                                                '&nbsp;&nbsp;'+
                                                 '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
                                                 //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
                                                 '</span>'+
