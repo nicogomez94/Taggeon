@@ -645,6 +645,65 @@ sql;
         return $list;
     }
 
+    public function getListPublicacionPublic($usuarioAlta)
+    {
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+        SELECT
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        MIN(
+            publicacion_publicacion_foto.id
+        ) AS foto,
+        f.id_publicacion AS favorito,
+                   usuarios.nombre AS nombre_publicador,
+                usuarios.idUsuario AS id_publicador
+    FROM
+        `publicacion`
+    LEFT JOIN
+        publicacion_publicacion_foto
+    ON
+        `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
+            publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
+        )
+    LEFT JOIN
+        favorito f
+    ON
+        `publicacion`.id = f.id_publicacion AND f.id_usuario = $usuarioAltaDB
+        
+            LEFT JOIN
+                (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
+            ON
+                `publicacion`.usuario_alta = usuarios.idUsuario    
+    WHERE
+        (
+            `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
+        ) AND `publicacion`.usuario_alta = $usuarioAltaDB
+    GROUP BY
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        favorito,
+                usuarios.nombre,
+                usuarios.idUsuario
+sql;
+//echo $sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+    }
+
     public function getListPublicacion()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];

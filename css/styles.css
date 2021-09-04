@@ -492,6 +492,12 @@ input#buscador-index-input:hover {
     bottom: unset !important;
     border-radius: 10px;
 }
+.carousel-control-prev-icon{
+    background: url(../assets/chevron-left-solid.svg) !important;
+}
+.carousel-control-next-icon{
+    background: url(../assets/chevron-right-solid.svg) !important;
+}
 .titulo-col-cont{
     margin-bottom: 15px;
     width: 90%;

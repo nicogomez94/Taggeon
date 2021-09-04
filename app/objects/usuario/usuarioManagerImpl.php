@@ -652,7 +652,7 @@ private function validarNombre ($param){
 	public function getUsuarioPublic(){
 		$id_usuario  = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : '';
 		
-		return $this->getUsuarioDao()->getUsuarioPublic($id_usuario);
+		return $this->getUsuarioDao()->getUsuarioPublic($id_usuario)[0];
 	}
 	
 	

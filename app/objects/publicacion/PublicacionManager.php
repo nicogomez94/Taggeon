@@ -349,6 +349,12 @@ class  PublicacionManager
                                return $ret;
                        }
 
+                     public function getListPublicacionPublic()
+                       {
+				$id_usuario  = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : '';
+                               $ret =  $this->publicacionDao->getListPublicacionPublic($id_usuario);
+                               return $ret;
+                       }
 
 			public function getListPublicacionIndex()
 			{

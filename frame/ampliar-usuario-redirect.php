@@ -10,14 +10,15 @@ if ($perfil=='picker' || $perfil == 'seller'){
 
     $usuarioManager = new UsuarioManagerImpl();
     $listUsr = $usuarioManager->getUsuarioPublic();
-    $nombre = (isset($listUsr['nombre']))  ? $listUsr['nombre'] : "";
-    $apellido = (isset($listUsr['apellido']))  ? $listUsr['apellido'] : "";
-    $email = (isset($listUsr['email']))  ? $listUsr['email'] : "";
+    $nombrepublic = (isset($listUsr['nombre']))  ? $listUsr['nombre'] : "";
+    $apellidopublic = (isset($listUsr['apellido']))  ? $listUsr['apellido'] : "";
+    $emailpublic = (isset($listUsr['email']))  ? $listUsr['email'] : "";
     $jsonData = array(
-        "nombre"      => $nombre,
-        "apellido"    => $apellido,
-        "contacto" => $email,
+        "nombre"      => $nombrepublic,
+        "apellido"    => $apellidopublic,
+        "contacto" => $emailpublic,
         "seguidores"     => $seguidoresManager->getListSeguidoresPublic(),
+        "publicaciones"     => $publicacionManager->getListPublicacionPublic(),
         "seguidos"     => $seguidoresManager->getListSeguidosPublic()
     );
     
@@ -40,7 +41,9 @@ if ($perfil=='picker' || $perfil == 'seller'){
         "json" => $jsonData,
         "usuario" => $GLOBALS['sesionG']['usuario'],
         "nombre" => $GLOBALS['sesionG']['nombre']." ".$GLOBALS['sesionG']['apellido'],
+        "nombrepublic"  => $nombrepublic." ".$apellidopublic,
         "apellido" => $GLOBALS['sesionG']['apellido'],
+        "apellidopublic" => $apellidopublic,
         "contacto" => $GLOBALS['sesionG']['email'],
         "url_editar" => "/editar-usuario.html",
         "menuperfil" => $menuperfil,
