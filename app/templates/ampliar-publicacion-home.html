@@ -30,24 +30,24 @@
                   </div>
                </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
                 </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
                 </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
                 </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
                </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-der"></div></div>
                </div>
             </div>
          </div>
@@ -72,24 +72,24 @@
                   </div>
                </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
                 </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
                 </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col func"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col func"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
                 </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
                </div>
                <div class="row test-row">
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
-                  <div onload="randomHeight(this)" class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
+                  <div class="col-lg-6 test-col responsive"><div class="relleno relleno-izq"></div></div>
+                  <div class="col-lg-6 test-col"><div class="relleno relleno-der"></div></div>
                </div>
             </div>
          </div>
@@ -169,14 +169,14 @@
          var random = Math.floor(Math.random() * 7);
          $(".globo-cat").addClass("pattern"+random);
          
+         
+         $(".test-col:not(.span-arriba)").each(function(){
+            console.log(this)
+            var randomHeight = Math.floor(Math.random() * 500) + 100;
+            $(this).css("height",randomHeight)
+         });
+
       });
-
-      function randomHeight(obj){
-         console.log("tres")
-         var randomHeight = Math.floor(Math.random() * 100);
-         $(obj).css("height",randomHeight)
-      }
-
    </script>
 
 </body></html>

@@ -6,6 +6,7 @@
 :root{
     --golden-taggeon: #cebd8b;
     --redondeado: 40px;
+    --random-test-col: 215px; 
 }
 
 
@@ -493,10 +494,10 @@ input#buscador-index-input:hover {
     border-radius: 10px;
 }
 .carousel-control-prev-icon{
-    background: url(../assets/chevron-left-solid.svg) !important;
+    background-image: url(../assets/chevron-left-solid.svg) !important;
 }
 .carousel-control-next-icon{
-    background: url(../assets/chevron-right-solid.svg) !important;
+    background-image: url(../assets/chevron-right-solid.svg) !important;
 }
 .titulo-col-cont{
     margin-bottom: 15px;
@@ -1785,7 +1786,7 @@ input:focus ~ .highlight {
 }
 .test-col {
     /* border: 1px solid blue; */
-    height: 215px;
+    height: var(--random-test-col);
     padding: 0 5px 0 5px !important;
     /* padding: 0px; */
     /* background: gainsboro; */
@@ -1983,7 +1984,7 @@ button:disabled{
     position: absolute;
     box-shadow: 0 0 0 0 rgb(0 0 0);
     transform: scale(1);
-    animation: pulse 2s infinite;
+    animation: pulse 2s;
     filter: invert(1);
     background-color: transparent;
     border-radius: 50%;
@@ -1994,8 +1995,11 @@ button:disabled{
     height: auto;
     width: 25px;
 }
-.tagg:hover{
-    /*  */
+.tagg:hover {
+    box-shadow: 0px 0px 10px 2px #e2e2e2;
+}
+.tagg:active {
+    filter: invert(.8);
 }
 #img-pines-amapear{
     max-width: 100%;
