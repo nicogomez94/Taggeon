@@ -1,0 +1,179 @@
+<div class="overlay-loading"></div>
+<!-- overlay seguidores -->
+<div class="overlay overlay-seguidores" style="display: none;">
+   <div style="width: 400px;" class="lightBox lightBox-seguidores">
+      <div>
+         <a href="javascript:void(0)" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <h3 class="count-seguidores"></h3>
+         <hr>
+           <div class="container-seguidores"></div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--  -->
+<!-- overlay siguiendo -->
+<div class="overlay overlay-seguidos" style="display: none;">
+   <div style="width: 400px;" class="lightBox lightBox-seguidos">
+      <div>
+         <a href="javascript:void(0)" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <h3 class="count-seguidos"></h3>
+         <hr>
+         <div class="container-seguidos"></div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--  -->
+
+<div id="info-user" class="container">
+   <!-- <div id="icons-upper-perfil">
+      <span><a href="{url_editar}"><i class="fas fa-user-edit"></i></a></span>
+   </div> -->
+   <div id="titulo-perfil">
+         <img src="{foto-perfil}" alt="foto perfil">
+         <div id="titulo-perfil-datos">
+            <div id="name_usuario">{nombre}</div>
+            <div class="edit_perfil">
+               <a href="/editar-usuario.html" class="btn btn-warning btn-sm">Editar Perfil</a>
+            </div>
+            <div class="fyf">
+               <div class="follower_container">
+                  <div id="follower_count" class="follower_count">0</div>
+                  <div class="follower_label">Seguidores</div>
+               </div>
+               <div class="follower_container" style="margin-left: 15px;">
+                  <div id="following_count" class="follower_count">0</div>
+                  <div class="follower_label">Seguidos</div>
+               </div>
+           </div>
+         </div>
+   </div>
+   <div id="menu-perfil">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div class="navbar-nav navbar-center">
+            {menuperfil}
+         </div>
+       </nav>
+   </div>
+   
+</div>
+
+
+<div class="container contenedor-mis-public">
+   <!-- <h1>Mis Publicaciones</h1>
+   <hr>
+   <div class="filtros">
+
+      <a href="/formu-subir.html" class="btn btn-warning">Ordenar</a>
+      <span>
+         <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
+         <i class="fas fa-times-circle limpiar-buscador"></i>
+      </span>
+      
+      <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
+
+      <a href="/formu-subir-public.html" class="btn btn-warning">Subir Publicaci&oacute;n</a>
+
+   </div>
+  -->
+ <br>
+      
+</div>
+
+<br><br>
+<!-- -->
+
+<script>
+   var jsonData = {json};
+</script>
+
+
+
+   <script src="js/jquery-3.5.1.js"></script>
+   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+   <!-- <script src="js/popper.js"></script> -->
+   <script src="js/func.js?time=170721-0342"></script>
+   <script>
+      $(document).ready(function(){
+
+         $("img").on("error", function(){//parcheado hard, buscar una mejor solucion con una func que abarque todas las img
+            $(this).attr('src', '../../imagen_perfil/generica.png');
+         });
+
+         //seguidores y seguidos
+         mostrarSeguidores();
+
+         var sizePublic = jsonData.publicaciones.length;
+
+         if(sizePublic>0){
+            for(var i=0; i<sizePublic; i++){
+               var id_public = jsonData.publicaciones[i].id;
+               var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
+               var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
+               var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
+               var imagen_id = jsonData.publicaciones[i].foto;
+
+               var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;        
+      
+               var html_public = '<div class="publicacion">'+
+                                    '<img class="imagen-public imagen-public-'+imagen_id+'">'+
+                                    '<div class="overlay-public" onclick="window.location.replace(\'/ampliar-publicacion.html?id='+id_public+'&accion=ampliar\')">'+
+                                       '<div class="text-overlay">'+
+                                          '<div>'+
+                                             '<span>'+nombre_public+'</span>'+
+                                          '</div>'+
+                                          '<div>'+
+                                             //'<span class="text-overlay-link"><a href="/ampliar-publicacion.html?id='+id_public+'&accion=ampliar"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a></span>&nbsp;'+
+                                             '<span class="text-overlay-link"><a href="/editar-publicacion.html?id='+id_public+'&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>&nbsp;'+
+                                             //'<span class="text-overlay-link eliminar-public" data-title="'+id_public+'"><a href="javascript:void(0)"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>'+
+                                             '<span class="text-overlay-link eliminar-public" data-title="'+id_public+'"><a href="/app/publicacion.php?id='+id_public+'&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>'+
+                                          '</div>'+
+                                       '</div>'+
+                                    '</div>'+
+                                 '</div>'
+                                 
+               $(".contenedor-mis-public").append(html_public);
+               
+               $(".imagen-public-"+imagen_id).attr("src", foto_src);
+
+            }
+         }else{
+            var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
+            $(".contenedor-mis-public").append(html_sin_public);
+         }
+/*
+         $(".eliminar-public").on("click", function() {  
+            console.log("enttro")
+            //href="/app/publicacion.php?id='+id_public+'&accion=eliminar"
+            var $this = $(this);
+            var id_public = $this.data('title');
+
+            $.post('/app/publicacion.php', {id: id_public, accion: "eliminar"})
+               .done(function(data) {
+                     var jsonp = JSON.parse(data)
+                     if (jsonp.status == 'ERROR'){
+                        alert(data);														
+                     }else if(jsonp.status == 'OK' || jsonp.status == 'ok'){
+                        window.location.replace("/mis-publicaciones.html");
+                     }else if(jsonp.status == 'REDIRECT'){
+                        window.location.replace(jsonp.mensaje);
+                     }else{
+                        $("#mensaje-sin-login").css("display","block");
+                        $("#mensaje-sin-login").html(jsonp.mensaje);
+                        //alert (data.mensaje);
+                     }
+               })
+               .fail(function() {
+                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                     alert(msj)
+               }); 
+
+            return false;
+
+         });*/
+      });
+   </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+
+</body></html>

@@ -27,7 +27,8 @@
             if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
                var html_test = 
                '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
-                  '<a href="'+url_mp+'">Edítalo aqu&iacute;</a>'+
+                  '<a href="'+url_mp+'">Edítalo aqu&iacute;&middot;</a>'+
+                  '<a href="javascript:void(0)" onclick="cerrarOverlay(\'overlayImportar\')">Cerrar</a>'+
                '</div>';
                   
                   $(".close-mp").bind('click',function(e){
@@ -304,10 +305,9 @@
    </div>
    
    <!-- Modal INTERESES/PRIEMRA VEZ -->
-	<div class="modal fade" id="modalFirstLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<!-- <div class="modal fade" id="modalFirstLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 			<div class="modal-content">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
 				<div class="modal-body text-center">
 					<h1>Te damos la bienvenida a Taggeon!</h1>
                <hr>
@@ -368,7 +368,7 @@
 				</div>
 			</div>
 		</div>
-   </div>
+   </div> -->
    
    <!-- splide search -->
    <div class="splide__container">

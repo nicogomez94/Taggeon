@@ -1473,14 +1473,24 @@ function buscadorIndex(paramIndex){
                 
                 $(".splide__home").empty();
                 $("#main-super-container").empty();
-                $("#carousel-index").remove();
+                $("#carousel-index").empty();
 
                     if(sizePublic>0){   
                         var public_cat_size = escena.length;
                         
                         /*si encontro publics, creo la grid*/
                         var grid_ = '<div class="grid"></div>';
-                        $(".board").html(grid_)
+                        var board_el = document.querySelector(".board");
+                        var mscontainer = document.querySelector("#main-super-container")
+                        
+                        if(board_el == null){
+                            var board_new = document.createElement("div");
+                            board_new.innerHTML = grid_
+                            board_new.classList.add("board");
+                            mscontainer.appendChild(board_new);
+                        }else{
+                            board_el.innerHTML = grid_
+                        }
 
                         for(var x=0; x<sizePublic; x++){
                             
@@ -2208,4 +2218,14 @@ function hideFollow(el){
     var clase = el.classList[0];
     var toShow = $("."+clase).find(".follow_public");
     toShow.removeClass("showFollow");
+}
+
+function ampliarOverlay(clase){
+    var classAmpliar = document.querySelector("."+clase);
+    classAmpliar.style.display = "block"
+}
+
+function cerrarOverlay(clase){
+    var el = document.querySelector("."+clase);
+    el.style.display = "none";
 }

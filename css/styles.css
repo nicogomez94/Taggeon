@@ -162,6 +162,9 @@ body{
 .btn-header a.link, .btn-header a:visited{
     color: grey;
 }
+.notifs-button-ampliar i{
+    color: white;
+}
 .navbar-brand-container{
     text-align: center;
 }

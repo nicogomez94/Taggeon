@@ -1,8 +1,8 @@
 <!-- lighbox importar -->
-<div class="overlay">
+<div class="overlay overlayImportar">
    <div class="lightBox">
       <div>
-         <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <a href="javascript:void(0)" id="cerrar-light"><i onclick="cerrarOverlay('overlayImportar')" class="fas fa-times-circle"></i></a>
          <h3>Importar Archivo CSV</h3>
          <hr>
          <form id="subir-csv">
@@ -25,7 +25,7 @@
          <div id="titulo-perfil-datos">
             <div id="name_usuario">{nombre}</div>
             <div class="edit_perfil">
-               <a href="#" class="btn btn-warning btn-sm">Editar Perfil</a>
+               <a href="/editar-usuario.html" class="btn btn-warning btn-sm">Editar Perfil</a>
             </div>
             <div class="fyf">
                <div class="follower_container">
@@ -60,7 +60,7 @@
       </span>
       <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
 
-      <span class="botonera-editar"><a href="#">Importar Productos</a></span>
+      <span class="botonera-editar"><a href="javascript:void(0)" id="ampliarImportar" onclick="ampliarOverlay('overlayImportar')">Importar Productos</a></span>
    </div>
    
    <!-- LISTADO -->
@@ -103,9 +103,9 @@
 <!-- <div id="info-user" class="container">
    <div id="icons-upper-perfil">
       <ul>
-         <li><a class="nav-item nav-link" href="#"><i class="fas fa-plus"></i></a></li>
-         <li><a class="nav-item nav-link" href="#"><i class="fas fa-user-cog"></i></a></li>
-         <li><a class="nav-item nav-link" href="#"><i class="fas fa-user-edit"></i></a></li>            
+         <li><a class="nav-item nav-link" href="javascript:void(0)"><i class="fas fa-plus"></i></a></li>
+         <li><a class="nav-item nav-link" href="javascript:void(0)"><i class="fas fa-user-cog"></i></a></li>
+         <li><a class="nav-item nav-link" href="javascript:void(0)"><i class="fas fa-user-edit"></i></a></li>            
       </ul>
    </div>
    <div id="titulo-perfil">
@@ -123,10 +123,10 @@
    <div id="menu-perfil">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
          <div class="navbar-nav">
-            <a class="nav-item nav-link active active-custom" href="#">Favoritos <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Compras</a>
-            <a class="nav-item nav-link" href="#">Mis Publicaciones</a>
-            <a class="nav-item nav-link" href="#">Disabled</a>
+            <a class="nav-item nav-link active active-custom" href="javascript:void(0)">Favoritos <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="javascript:void(0)">Compras</a>
+            <a class="nav-item nav-link" href="javascript:void(0)">Mis Publicaciones</a>
+            <a class="nav-item nav-link" href="javascript:void(0)">Disabled</a>
          </div>
        </nav>
    </div>
@@ -148,7 +148,7 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=031120-1749"></script>
+   <script src="js/func.js?time=080921-1419"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>
