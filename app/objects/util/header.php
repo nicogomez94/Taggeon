@@ -8,6 +8,11 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/Pu
 $perfil   = isset($perfil) ? $perfil : '';
 
     $fotoPerfil = '';
+    $publicacionManager = new PublicacionManager();
+    $escena = $publicacionManager->getListEscena(); 
+    $escena = json_encode($escena,JSON_INVALID_UTF8_IGNORE);
+    $escena2 = $publicacionManager->getListEscena2(); 
+    $escena2 = json_encode($escena2);
 if ($perfil == 'seller' || $perfil == 'picker'){
 	$contenidoHeader = new Template('header_esp_usuario');
 	$reemplazoPerfil = ($perfil == 'seller') ? ' Seller' : '';
@@ -47,11 +52,6 @@ STR;
     $intereses = $objIntereses->getListIntereses();
     $intereses = json_encode($intereses);
 
-    $publicacionManager = new PublicacionManager();
-    $escena = $publicacionManager->getListEscena(); 
-    $escena = json_encode($escena,JSON_INVALID_UTF8_IGNORE);
-    $escena2 = $publicacionManager->getListEscena2(); 
-    $escena2 = json_encode($escena2);
 
 
 	$contenidoHeader->asigna_variables(array(
@@ -66,6 +66,10 @@ STR;
 		));
 }else{
 	$contenidoHeader = new Template('header_esp');
+	$contenidoHeader->asigna_variables(array(
+		"escena"         => $escena,
+		"escena2"         => $escena2
+		));
 }
 $contenidoStringHeader = $contenidoHeader->muestra();
 ?>
