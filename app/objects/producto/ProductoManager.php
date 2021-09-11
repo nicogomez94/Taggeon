@@ -149,6 +149,45 @@ class  ProductoManager
 			$this->setMsj($idProducto);
 		}
 	}
+	public function agregarCategoriaProducto(array $data)
+	{
+
+			$this->setStatus("ERROR");
+			$this->setMsj("programando metodo agregarCategoriaProducto ProductoManager.pm");
+			return false;
+		if ($this->validarProducto($data) === false) {
+			return false;
+		}
+
+
+
+		if ($this->productoDao->altaProducto($data) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+		} else {
+			$idProducto = $this->productoDao->getMsj();
+
+
+			foreach ($_POST["base"] as $valor) {
+				if(!isset($valor)){continue;}
+				$valor = isset($valor) ?  $valor : '';
+				$dataFoto = array(
+					"id_producto" => $idProducto,
+					"foto"        => $valor
+				);
+
+				if ($this->productoDao->altaFoto($dataFoto) === false) {
+					$this->setStatus("ERROR");
+					$this->setMsj($this->productoDao->getMsj());
+					return false;
+				}
+			}
+
+
+			$this->setStatus("OK");
+			$this->setMsj($idProducto);
+		}
+	}
 
 	public function importarProducto(array $data)
 	{
@@ -171,7 +210,6 @@ class  ProductoManager
 				    $this->setStatus("error");
 				    $filaSiguiente = $filaImportadas + 1;
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción");
-				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción");
 
 			        return false;
 
@@ -187,6 +225,50 @@ class  ProductoManager
 
 				$dataNew["categoria"] = '1';
  				$this->agregarProducto($dataNew);
+				if ($this->getStatus() != 'OK') {
+				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error: ".$this->getMsj());
+			            return false;
+				}
+				$filaImportadas++;
+			 }
+
+			$this->setStatus("OK");
+			$this->setMsj("Se importaron $filaImportadas registros de $fila.");
+			return true;
+		}
+
+	}
+	public function importarCategoria(array $data)
+	{
+	
+		$file = isset($data["file-csv-importar"]) ? $data["file-csv-importar"] : '';
+		if ($file == ''){
+			$this->setStatus("error");
+			$this->setMsj("El csv esta vacio o no se agrego en el formulario.");
+			return false;
+		}else{
+			$var = file_get_contents($file);
+			$data = str_getcsv($var, "\n"); //parse the rows
+			$var = '';
+			$fila = 0;
+			$filaImportadas = 0;
+			foreach($data as &$row) {
+				$fila++;
+				$datacol = str_getcsv($row, ","); //parse the items in rows
+				if (count($datacol) != 5){
+				    $this->setStatus("error");
+				    $filaSiguiente = $filaImportadas + 1;
+				    $this->setMsj("Se importo hasta la linea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: categoria,subcategoria1,subcategoria2,subcategoria3,subcategoria4 Ejemplo: Indumentaria,Indumentaria Laboral y Escolar, Uniformes y Ropa de Trabajo, Otro, otro");
+
+			        return false;
+
+				}
+		        $dataNew["categoria"] = isset($datacol[0]) ? $datacol[0] : '';
+				$dataNew["subcategoria1"] = isset($datacol[1]) ? $datacol[1] : '';;
+				$dataNew["subcategoria2"] = isset($datacol[2]) ? $datacol[2] : '';
+				$dataNew["subcategoria3"] = isset($datacol[3]) ?  $datacol[3] : '';
+				$dataNew["subcategoria4"] = isset($datacol[4]) ?  $datacol[4] : '';
+ 				$this->agregarCategoriaProducto($dataNew);
 				if ($this->getStatus() != 'OK') {
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error: ".$this->getMsj());
 			            return false;

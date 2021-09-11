@@ -28,7 +28,7 @@ if ($sesionManager->validar(array('seller','picker'))){
 		}
 	    
 	    }else{
-		    if (preg_match('/^(alta|editar|listar|get|eliminar|importar|search|subcategoria)$/i', $var_accion)) {
+		    if (preg_match('/^(alta|editar|listar|get|eliminar|importar|search|subcategoria|importar-categoria)$/i', $var_accion)) {
 			$statusRet  = 'ERROR';
 			$mensajeRet = "";
 
@@ -40,7 +40,10 @@ if ($sesionManager->validar(array('seller','picker'))){
 			    $mensajeRet = "La solicitud se proceso con éxito. Id: " . $objPrincipalManager->getMsj();
 			} else if ($var_accion == 'importar') {
 			    $objPrincipalManager->importarProducto($_POST);
-			    $mensajeRet = "La solicitud se proceso con éxito. Id: " . $objPrincipalManager->getMsj();
+			    $mensajeRet =  $objPrincipalManager->getMsj().".";
+			} else if ($var_accion == 'importar-categoria') {
+			    $objPrincipalManager->importarCategoria($_POST);
+			    $mensajeRet =  $objPrincipalManager->getMsj()." importar categoria.";
 			} else if ($var_accion == 'eliminar') {
 			    $objPrincipalManager->eliminarProducto($_POST);
 			    $mensajeRet = "La solicitud se proceso con éxito. Id: " . $objPrincipalManager->getMsj();
