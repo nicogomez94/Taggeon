@@ -49,11 +49,7 @@ if ($perfil == 'seller' || $perfil =='picker'){
 
 	echo $contenidoString;
 }else{
-    //HEADER
-    echo $contenidoStringHeader;
-    //FIN HEADER
-   $contenidoString = Template::sostenedor_error("Permiso denegado");
-   echo $contenidoString;
+    header("Location: ".$GLOBALS['configuration']['redirect_home']);
 }
 Database::Connect()->close();
 exit;

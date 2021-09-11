@@ -54,11 +54,7 @@ if ($perfil=='seller'){
     //FIN HEADER
 	echo $contenidoString;
 }else{
-    //HEADER
-    echo $contenidoStringHeader;
-    //FIN HEADER
-   $contenidoString = Template::sostenedor_error("Permiso denegado {$perfil}");
-   echo $contenidoString;
+    header("Location: ".$GLOBALS['configuration']['redirect_home']);
 }
 Database::Connect()->close();
 exit;
