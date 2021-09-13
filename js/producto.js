@@ -1,35 +1,44 @@
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function() {
 
-
+    
     /***ampliar/editar producto***/ 
     if(typeof jsonData != "undefined" && typeof jsonData.productos != "undefined" ){
         var sizeProductos = jsonData.productos.length || 0;
         if(sizeProductos>0 || typeof sizeProductos != "undefined"){
             if(window.location.pathname == '/ampliar-producto.html'){
                 for(var i=0; i<sizeProductos; i++){
-                    var nombre_prod = jsonData.productos[i].titulo;
-                    var precio_prod = jsonData.productos[i].precio;
-                    var id_prod = jsonData.productos[i].id;
-                    var stock_prod = jsonData.productos[i].stock;
-                    var foto_prod = jsonData.productos[i].foto;
-                    var foto_src = '/productos_img/'+foto_prod+'.png';
-            
-                    var listadoProducto = 
-                        '<div class="row producto">'+
-                            '<div class="col-lg-2 col-md-2 col-sm-2 col-4"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+foto_src+'"></div></div>'+
-                            '<div class="col-lg-3 col-md-3 col-sm-3 col-6 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                            '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="precio-producto">AR$ '+precio_prod+'</span></div>'+
-                            '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-                            '<div class="col-lg-3 col-md-3 col-sm-3 col-4 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-                            '<div class="acciones-producto acciones-producto-'+i+'">'+
-                                '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                                '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
-                            '</div>'+
-                        '</div>';
-            
-            
-                    $("#listado-mis-productos").append(listadoProducto);
-            
+                    let nombre_prod = jsonData.productos[i].titulo;
+                    let precio_prod = jsonData.productos[i].precio;
+                    let id_prod = jsonData.productos[i].id;
+                    let stock_prod = jsonData.productos[i].stock;
+                    let foto_prod = jsonData.productos[i].foto;
+                    let foto_src = '/productos_img/'+foto_prod+'.png';
+                    let prod_flex_container = document.querySelector(".prod-flex-container");
+                    
+                    let listadoProducto = 
+                    /* '<div class="row producto">'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-4"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+foto_src+'"></div></div>'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-6 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="precio-producto">AR$ '+precio_prod+'</span></div>'+
+                    '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="stock-producto">'+stock_prod+'</span></div>'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-4 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
+                    '<div class="acciones-producto acciones-producto-'+i+'">'+
+                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
+                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
+                    '</div>'+
+                    '</div>';*/
+                    
+                    '<img src="'+foto_src+'" alt="'+foto_src+'">'+
+                    '<div class="prod-datos">'+
+                    '    <div class="nombre_prod">'+nombre_prod+'</div>'+
+                    '    <div class="precio_prod">$ '+precio_prod+'</div>'+
+                    '</div>';
+                    
+                    var nodo = document.createElement('div');
+                    nodo.classList.add("prod-flex-listado");
+                    nodo.innerHTML = listadoProducto;
+                    prod_flex_container.appendChild(nodo);
+                    
                 }
             }else if(window.location.pathname == '/editar-producto.html'){
                 for(var i=0; i<sizeProductos; i++){
