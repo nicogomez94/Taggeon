@@ -3,7 +3,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.ph
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
-if ($GLOBALS['sesionG']['usuario'] == 'poepe@gmail.com'){
+if ($GLOBALS['sesionG']['usuario'] == 'poepe@gmail.com' || $GLOBALS['sesionG']['usuario'] ==  'nico15@gmail.com'){
 
     $productoManager = new ProductoManager();
     $seguidoresManager = new SeguidoresManager();

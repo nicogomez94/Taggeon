@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function() {
     /***ampliar/editar producto***/ 
     if(typeof jsonData != "undefined" && typeof jsonData.productos != "undefined" ){
         var sizeProductos = jsonData.productos.length || 0;
+        
+        var showResultados = document.querySelector(".show-result-num");
+        showResultados.innerHTML = sizeProductos; 
+
         if(sizeProductos>0 || typeof sizeProductos != "undefined"){
             if(window.location.pathname == '/ampliar-producto.html'){
                 for(var i=0; i<sizeProductos; i++){
@@ -27,11 +31,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
                     '</div>'+
                     '</div>';*/
-                    
+                    '<div class="overlay-public">'+
+                        '<div class="text-overlay-prod">'+
+                            '<span data-title="'+id_prod+'" class="text-overlay-link share-sm">'+
+                                '<a href="#"><i class="fas fa-trash-alt"></i></a>'+
+                            '</span>'+
+                            '<span data-title="'+id_prod+'" class="text-overlay-link text-overlay-link-'+id_prod+'">'+
+                                '<a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i></a>'+
+                            '</span>'+
+                        '</div>'+
+                    '</div>'+
                     '<img src="'+foto_src+'" alt="'+foto_src+'">'+
                     '<div class="prod-datos">'+
-                    '    <div class="nombre_prod">'+nombre_prod+'</div>'+
-                    '    <div class="precio_prod">$ '+precio_prod+'</div>'+
+                    '    <div class="nombre-prod">'+nombre_prod+'</div>'+
+                    '    <div class="precio-prod">$ '+precio_prod+'</div>'+
                     '</div>';
                     
                     var nodo = document.createElement('div');

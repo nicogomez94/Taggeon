@@ -37,12 +37,25 @@ class  ProductoDao
         $tituloDB = Database::escape($titulo);
         $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
         $categoriaDB = Database::escape($categoria);
+
         $subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
-        $subcategoria1DB = Database::escape($subcategoria1);
+        $subcategoria1DB = 'null';
+        if ($subcategoria1 != ''){
+            $subcategoria1DB = Database::escape($subcategoria1);
+        }
+
         $subcategoria2 = isset($data["subcategoria2"]) ? $data["subcategoria2"] : '';
-        $subcategoria2DB = Database::escape($subcategoria2);
+        $subcategoria2DB = 'null';
+        if ($subcategoria2 != ''){
+            $subcategoria2DB = Database::escape($subcategoria2);
+        }
+        
         $subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
-        $subcategoria3DB = Database::escape($subcategoria3);
+        $subcategoria3DB = 'null';
+        if ($subcategoria3 != ''){
+            $subcategoria3DB = Database::escape($subcategoria3);
+        }
+        
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';

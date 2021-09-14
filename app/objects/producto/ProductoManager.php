@@ -50,17 +50,42 @@ class  ProductoManager
 			return false;
 		}
 		$subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
-		if ($this->validarCategoria($subcategoria1) === false) {
-			return false;
+		if ($subcategoria1 != ''){
+			if ($this->validarCategoria($subcategoria1) === false) {
+				return false;
+			}
+			if ($this->productoDao->existeCategoria($subcategoria1) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
 		}
 		$subcategoria2 = isset($data["subcategoria2"]) ? $data["subcategoria2"] : '';
-		if ($this->validarCategoria($subcategoria2) === false) {
-			return false;
+		if ($subcategoria2 != ''){
+			if ($this->validarCategoria($subcategoria2) === false) {
+				return false;
+			}
+			if ($this->productoDao->existeCategoria($subcategoria2) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
 		}
+
 		$subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
-		if ($this->validarCategoria($subcategoria3) === false) {
-			return false;
+		if ($subcategoria3 != ''){
+			if ($this->validarCategoria($subcategoria3) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategoria3) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
 		}
+
 		$marca = isset($data["marca"]) ? $data["marca"] : '';
 		if ($this->validarMarca($marca) === false) {
 			return false;
@@ -97,21 +122,6 @@ class  ProductoManager
 			$this->setMsj($this->productoDao->getMsj());
 			return false;
 		}
-		if ($this->productoDao->existeCategoria($subcategoria1) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->productoDao->getMsj());
-			return false;
-		}
-		if ($this->productoDao->existeCategoria($subcategoria2) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->productoDao->getMsj());
-			return false;
-		}
-		if ($this->productoDao->existeCategoria($subcategoria3) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->productoDao->getMsj());
-			return false;
-		}
 	}
 	public function agregarProducto(array $data)
 	{
@@ -128,22 +138,24 @@ class  ProductoManager
 		} else {
 			$idProducto = $this->productoDao->getMsj();
 
+			if (isset ($_POST["base"])){
 
-			foreach ($_POST["base"] as $valor) {
-				if(!isset($valor)){continue;}
-				$valor = isset($valor) ?  $valor : '';
-				$dataFoto = array(
-					"id_producto" => $idProducto,
-					"foto"        => $valor
-				);
+				foreach ($_POST["base"] as $valor) {
+					if(!isset($valor)){continue;}
+					$valor = isset($valor) ?  $valor : '';
+					$dataFoto = array(
+						"id_producto" => $idProducto,
+						"foto"        => $valor
+					);
 
-				if ($this->productoDao->altaFoto($dataFoto) === false) {
-					$this->setStatus("ERROR");
-					$this->setMsj($this->productoDao->getMsj());
-					return false;
+					if ($this->productoDao->altaFoto($dataFoto) === false) {
+						$this->setStatus("ERROR");
+						$this->setMsj($this->productoDao->getMsj());
+						return false;
+					}
 				}
-			}
 
+			}
 
 			$this->setStatus("OK");
 			$this->setMsj($idProducto);
@@ -204,12 +216,13 @@ class  ProductoManager
 			$fila = 0;
 			$filaImportadas = 0;
 			foreach($data as &$row) {
+
 				$fila++;
 				$datacol = str_getcsv($row, ";"); //parse the items in rows
 				if (count($datacol) != 8){
 				    $this->setStatus("error");
 				    $filaSiguiente = $filaImportadas + 1;
-				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción");
+				    $this->setMsj("Se importo hasta la linea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: titulo;precio;stock;color;marca;envio;garantia;descripcion. Ejemplo: zapatillas;123;2;rojo;topper;1;1;sin descripción. La fila que se quiere importar es: $row");
 
 			        return false;
 
@@ -233,7 +246,7 @@ class  ProductoManager
 			 }
 
 			$this->setStatus("OK");
-			$this->setMsj("Se importaron $filaImportadas registros de $fila.");
+			$this->setMsj("Se importaron $filaImportadas registros de $fila");
 			return true;
 		}
 
@@ -241,7 +254,7 @@ class  ProductoManager
 	public function importarCategoria(array $data)
 	{
 	
-		$file = isset($data["file-csv-importar"]) ? $data["file-csv-importar"] : '';
+		$file = isset($data["file"]) ? $data["file"] : '';
 		if ($file == ''){
 			$this->setStatus("error");
 			$this->setMsj("El csv esta vacio o no se agrego en el formulario.");
@@ -254,11 +267,11 @@ class  ProductoManager
 			$filaImportadas = 0;
 			foreach($data as &$row) {
 				$fila++;
-				$datacol = str_getcsv($row, ","); //parse the items in rows
-				if (count($datacol) != 5){
+				$datacol = str_getcsv($row, ";"); //parse the items in rows
+				if (count($datacol) != 4){
 				    $this->setStatus("error");
 				    $filaSiguiente = $filaImportadas + 1;
-				    $this->setMsj("Se importo hasta la linea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: categoria,subcategoria1,subcategoria2,subcategoria3,subcategoria4 Ejemplo: Indumentaria,Indumentaria Laboral y Escolar, Uniformes y Ropa de Trabajo, Otro, otro");
+				    $this->setMsj("Se  importo hasta la linea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: categoria;subcategoria1;subcategoria2;subcategoria3 Ejemplo: Indumentaria;Indumentaria Laboral y Escolar; Uniformes y Ropa de Trabajo; Otro => $row");
 
 			        return false;
 
@@ -267,7 +280,6 @@ class  ProductoManager
 				$dataNew["subcategoria1"] = isset($datacol[1]) ? $datacol[1] : '';;
 				$dataNew["subcategoria2"] = isset($datacol[2]) ? $datacol[2] : '';
 				$dataNew["subcategoria3"] = isset($datacol[3]) ?  $datacol[3] : '';
-				$dataNew["subcategoria4"] = isset($datacol[4]) ?  $datacol[4] : '';
  				$this->agregarCategoriaProducto($dataNew);
 				if ($this->getStatus() != 'OK') {
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error: ".$this->getMsj());
@@ -277,7 +289,7 @@ class  ProductoManager
 			 }
 
 			$this->setStatus("OK");
-			$this->setMsj("Se importaron $filaImportadas registros de $fila.");
+			$this->setMsj("Se importaron $filaImportadas registros de $fila");
 			return true;
 		}
 

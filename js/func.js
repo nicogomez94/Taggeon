@@ -1503,7 +1503,7 @@ function buscadorIndex(paramIndex){
                             $grid.masonry({
                                 itemSelector: '.grid-item',
                                 columnWidth: '.grid-sizer',
-                                percentPosition: true,
+                                // percentPosition: true,
                                 gutter: 10,
                                 horizontalOrder: true
                             });

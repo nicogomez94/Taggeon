@@ -24,7 +24,7 @@
     #search-responsive{
         display: table-cell;
     }
-    #search-container{
+    #navbar-principal #search-container{
         display: none;
         width: 90%;
     }

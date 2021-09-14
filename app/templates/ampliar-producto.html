@@ -51,19 +51,20 @@
 
 <div class="container contenedor-productos">
    <div class="filtros">
-      <a href="/formu-subir.html" class="btn btn-warning">Nuevo producto</a>
-      <span id="buscador">
-         <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
-         <i class="fas fa-times-circle limpiar-buscador"></i>
-      </span>
-      <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
-      
-      <span class="botonera-editar"><a href="javascript:void(0)" id="ampliarImportar" onclick="ampliarOverlay('overlayImportar')">Importar Productos</a></span>
+      <div id="search-container" class="search-container" style="width: 25%">
+         <input id="buscador-prod" autocomplete="off" class="search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
+         <i class="fas fa-search fa-search-header"></i>
+      </div>
+      <div>
+         <a href="/formu-subir.html" class="btn btn-warning"><i class="fas fa-tags"></i> Nuevo producto</a>
+      </div>
+      <div>
+         <a href="javascript:void(0)" class="btn btn-warning" id="ampliarImportar" onclick="ampliarOverlay('overlayImportar')"><i class="fas fa-file-upload"></i> Importar Productos</a>
+      </div>
    </div>
-   
-   <div class="prod-flex-container"></div>
-
 </div>
+<div class="container show-result">Mostrando <span class="show-result-num"></span> resultados.</div>
+<div class="prod-flex-container"></div>
 
 <script>
    var jsonData = {json};
@@ -73,8 +74,8 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=110921-1958"></script>
-   <script src="js/producto.js?time=110921-1958"></script>
+   <script src="js/func.js?time=130921-1922"></script>
+   <script src="js/producto.js?time=130921-1922"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>
