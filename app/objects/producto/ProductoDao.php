@@ -787,4 +787,52 @@ sql;
         return $foto;
     }
 
+
+    public function insertarCategoria($categoria)
+    {
+
+        $categoriaDB = Database::escape($categoria);
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+
+        $sql = <<<SQL
+			INSERT INTO categoria (nombre,usuario_alta)  
+			VALUES ($categoriaDB,$usuarioAltaDB)
+SQL;
+
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+	    return 0;
+        } else {
+            $id = mysqli_insert_id(Database::Connect());
+            $this->setMsj($id);
+            $this->setStatus("OK");
+            return $id;
+        }
+
+        return 0;
+    }
+
+    public function getIdCategoriaByNombre($categoria)
+    {
+        $categoriaDB = Database::escape($categoria);
+
+        $sql = <<<SQL
+                        SELECT id FROM categoria
+                        WHERE 
+                            nombre = $categoriaDB AND
+                            (eliminar = 0 OR eliminar is null);
+			LIMIT 1
+SQL;
+
+        $resultado = Database::Connect()->query($sql);
+
+	$id = 0;
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $id = $rowEmp["id"];
+        }
+
+        return $id;
+    }
 }

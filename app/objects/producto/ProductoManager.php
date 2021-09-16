@@ -163,42 +163,24 @@ class  ProductoManager
 	}
 	public function agregarCategoriaProducto(array $data)
 	{
+		$categoria = isset($data["categoria"]) ? $data["categoria"] : '';
+		$idCategoria = $this->productoDao->getIdCategoriaByNombre($categoria);
+		if ($idCategoria == 0){
+			$idCategoria = $this->productoDao->insertarCategoria($categoria);
+		}
 
+		if ($idCategoria == 0){
 			$this->setStatus("ERROR");
 			$this->setMsj("programando metodo agregarCategoriaProducto ProductoManager.pm");
 			return false;
-		if ($this->validarProducto($data) === false) {
-			return false;
+		
 		}
+		
 
 
-
-		if ($this->productoDao->altaProducto($data) === false) {
-			$this->setStatus("ERROR");
-			$this->setMsj($this->productoDao->getMsj());
-		} else {
-			$idProducto = $this->productoDao->getMsj();
-
-
-			foreach ($_POST["base"] as $valor) {
-				if(!isset($valor)){continue;}
-				$valor = isset($valor) ?  $valor : '';
-				$dataFoto = array(
-					"id_producto" => $idProducto,
-					"foto"        => $valor
-				);
-
-				if ($this->productoDao->altaFoto($dataFoto) === false) {
-					$this->setStatus("ERROR");
-					$this->setMsj($this->productoDao->getMsj());
-					return false;
-				}
-			}
-
-
-			$this->setStatus("OK");
-			$this->setMsj($idProducto);
-		}
+		$this->setStatus("OK");
+		$this->setMsj("");
+		return true;
 	}
 
 	public function importarProducto(array $data)
