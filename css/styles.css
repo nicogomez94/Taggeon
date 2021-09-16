@@ -342,7 +342,7 @@ body{
     cursor: pointer;
 }
 .eliminar-notif{
-    background-color: #f9f9f9 !important;
+    background-color: transparent !important;
 }
 
 #dropdown-user-menu-bottom{
@@ -619,6 +619,8 @@ body{
     left: 0;
     bottom: 10;
     z-index: 999;
+    /* hard */
+    display: none;
 }
 .close-mp{
     position:absolute;
@@ -1363,19 +1365,6 @@ select{
     box-shadow: 0 0 5px 0px #e4e4e4;
     background-color: white;
 }
-/*para que salga bien un modal*/
-/* .modal:nth-of-type(even) {
-    z-index: 1052 !important;
-}
-.modal-backdrop.show:nth-of-type(even) {
-    z-index: 1051 !important;
-} */
-/* .active-custom:link, .active-custom:visited{
-    color: white !important;
-} */
-
-
-/*subirproducto*/
 
 
 
@@ -1450,30 +1439,19 @@ select{
 }
 
 
-/* LABEL ======================================= */
-label 				 {
-  color:#999; 
-  font-size:18px;
-  font-weight:normal;
-  /* position:absolute; */
-  /* pointer-events:none; */
-  left:5px;
-  top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+input{
+    padding: .75rem 1rem;
+    border: none;
+    border-radius: var(--redondeado);
+    background-color: rgb(241, 241, 241);
 }
-.label-text-subir-producto{
-    color: #999;
-    font-size: 16px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 23px;
-    top: 10px;
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all;
+input:focus-visible, .input:focus-within{
+    background-color: #fbfbfb !important;
+    border-color: #cebd8b !important;
+    box-shadow: 0 0 0 0.2rem #cebd8b7d !important;
+    color: #d1d1d1;
+    font-style: italic;
+    outline: none;
 }
 .campos-subir-prod{
     margin-top: 30px;

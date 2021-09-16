@@ -15,21 +15,17 @@
                </div>
 
                <!-- principales -->
-               <div class="group campos-subir-prod">      
-                  <input type="text" name="titulo" id="titulo-producto" required>
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label class="label-text-subir-producto">Nombre del producto</label>
+               <div class="campos-subir-prod">      
+                  <input type="text" name="titulo" id="titulo-producto" placeholder="Nombre del producto" required>
+                  <!-- <label class="label-text-subir-producto">Nombre del producto</label> -->
                </div>
-               <div class="group campos-subir-prod">      
-                  <input type="number" name="precio" id="precio-producto" required>
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label class="label-text-subir-producto">Precio</label>
+               <div class="campos-subir-prod">      
+                  <input type="number" name="precio" id="precio-producto" placeholder="Precio" required>
+                  <!-- <label class="label-text-subir-producto">Precio</label> -->
                </div>
-               <div class="group campos-subir-prod"> 
-                  <p class="label-descr">Descripcion del producto</p>
-                  <textarea type="text" name="descr_producto" id="descr-producto" required></textarea>
+               <div class="campos-subir-prod"> 
+                  <!-- <p class="label-descr">Descripcion del producto</p> -->
+                  <textarea type="text" name="descr_producto" id="descr-producto" placeholder="Ingrese una descripcion del producuto" required></textarea>
                </div>
                <!-- /principales -->
 
@@ -38,19 +34,13 @@
                <!-- secundarios -->
                <div class="row">
                   <div class="col-lg-6">
-                     <div class="group campos-subir-prod">      
-                        <input type="text" name="marca" id="marca-producto" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="label-text-subir-producto">Marca</label>
+                     <div class="campos-subir-prod">      
+                        <input type="text" name="marca" id="marca-producto" required placeholder="Marca">
                      </div>
                   </div>
                   <div class="col-lg-6">
-                     <div class="group campos-subir-prod">      
-                        <input type="number" name="stock" id="stock-producto" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="label-text-subir-producto">Stock</label>
+                     <div class="campos-subir-prod">      
+                        <input type="number" name="stock" id="stock-producto" required  placeholder="Stock">
                      </div>
                   </div>
                </div>
@@ -73,7 +63,7 @@
                      
                   </div>
                </div>
-               <div class="group  campos-subir-prod"> 
+               <div class="campos-subir-prod"> 
                   <select name="color" id="color">
                      <option value="" selected disabled hidden required>Elija un color</option>
                      <option value="color-negro">Negro</option>
@@ -83,14 +73,14 @@
                      <option value="color-amarillo">Amarillo</option>
                   </select>
                </div>
-               <div class="group  campos-subir-prod"> 
+               <div class="campos-subir-prod"> 
                   <select name="envio" id="envio-producto">
                      <option value="" selected disabled hidden required>Env&iacute;o</option>
                      <option value="1">Si</option>
                      <option value="0">No</option>
                   </select>
                </div>
-               <div class="group  campos-subir-prod">
+               <div class="campos-subir-prod">
                   <select name="garantia" id="garantia-producto">
                      <option value="" selected disabled hidden required>Garant&iacute;a</option>
                      <option value="1">Si</option>

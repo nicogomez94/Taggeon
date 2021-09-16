@@ -268,7 +268,7 @@ class  ProductoManager
 			foreach($data as &$row) {
 				$fila++;
 				$datacol = str_getcsv($row, ";"); //parse the items in rows
-				if (count($datacol) != 4){
+				if (count($datacol) != 5){
 				    $this->setStatus("error");
 				    $filaSiguiente = $filaImportadas + 1;
 				    $this->setMsj("Se  importo hasta la linea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: categoria;subcategoria1;subcategoria2;subcategoria3 Ejemplo: Indumentaria;Indumentaria Laboral y Escolar; Uniformes y Ropa de Trabajo; Otro => $row");
