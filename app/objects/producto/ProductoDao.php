@@ -835,4 +835,53 @@ SQL;
 
         return $id;
     }
+    public function getIdSubCategoriaByNombre($subcategoria,$id_padre)
+    {
+        $subcategoriaDB = Database::escape($subcategoria);
+        $id_padreDB      = Database::escape($id_padre);
+
+        $sql = <<<SQL
+                        SELECT id FROM categoria
+                        WHERE 
+                            nombre = $subcategoriaDB AND id_padre = $id_padreDB AND
+                            (eliminar = 0 OR eliminar is null)
+			LIMIT 1
+SQL;
+
+        $resultado = Database::Connect()->query($sql);
+
+	$id = 0;
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $id = $rowEmp["id"];
+        }
+
+        return $id;
+    }
+
+    public function insertarSubCategoria($subcategoria,$id_padre)
+    {
+
+        $subcategoriaDB = Database::escape($subcategoria);
+        $id_padreDB = Database::escape($id_padre);
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+
+        $sql = <<<SQL
+			INSERT INTO categoria (nombre,usuario_alta,id_padre)  
+			VALUES ($subcategoriaDB,$usuarioAltaDB,$id_padreDB)
+SQL;
+
+        if (!mysqli_query(Database::Connect(), $sql)) {
+            $this->setStatus("ERROR");
+            $this->setMsj("$sql" . Database::Connect()->error);
+	    return 0;
+        } else {
+            $id = mysqli_insert_id(Database::Connect());
+            $this->setMsj($id);
+            $this->setStatus("OK");
+            return $id;
+        }
+
+        return 0;
+    }
 }

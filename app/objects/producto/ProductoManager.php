@@ -171,7 +171,19 @@ class  ProductoManager
 
 		if ($idCategoria == 0){
 			$this->setStatus("ERROR");
-			$this->setMsj("programando metodo agregarCategoriaProducto ProductoManager.pm");
+			$this->setMsj("Categoria incorrecta.");
+			return false;
+		}
+
+		$subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
+		$idSubcategoria1 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria1,$idCategoria);
+		if ($idSubcategoria1 == 0){
+			$idSubcategoria1 = $this->productoDao->insertarSubCategoria($subcategoria1,$idCategoria);
+		}
+
+		if ($idSubcategoria1 == 0){
+			$this->setStatus("ERROR");
+			$this->setMsj("Subcategoria1 incorrecta.");
 			return false;
 		
 		}
