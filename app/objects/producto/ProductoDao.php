@@ -822,7 +822,7 @@ SQL;
                         SELECT id FROM categoria
                         WHERE 
                             nombre = $categoriaDB AND
-                            (eliminar = 0 OR eliminar is null);
+                            (eliminar = 0 OR eliminar is null)
 			LIMIT 1
 SQL;
 
