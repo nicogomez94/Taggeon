@@ -186,7 +186,7 @@ body{
     filter: grayscale(.5);
 }
 #navbar-principal{
-    z-index: 999;/*estaba 997*/
+    z-index: 998;/*estaba 997*//*998 para que no choque con header*/
     background-color: #fff;
     /* box-shadow: 0px 0px 2px #cecece; */
     border-bottom: 1px solid #e2e2e2;
@@ -199,6 +199,13 @@ body{
     color: rgb(184, 184, 184);
     /* border-radius: 20px; */
     height: 50px;
+}
+.header-public-overlay {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 .navbar{
     height: 4.5em;
@@ -300,6 +307,10 @@ body{
 #dropdown-user-menu a:hover{
     text-decoration: none;
     color: rgb(160, 160, 160) !important;
+}
+#dropdown-user-menu i{
+    background: none !important;
+    color: rgb(160, 160, 160);
 }
 .flechita{
     display: inline;
@@ -705,10 +716,7 @@ body{
     width: 100%;
     margin-top: 50px;
 }
-.lightBox-public{
-    width: 85%;
-    text-align: left;
-}
+
 .texto-public{
 
 }
@@ -1124,7 +1132,7 @@ body{
     padding: 20px;
     text-align: center;
     display: inline-block;
-    margin: 50px auto;
+    margin: 0 auto;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1132,8 +1140,11 @@ body{
     z-index: 999;
   }
 
+.lightBox-public{
+    width: 85%;
+    /* text-align: left; */
+}
 
-  /****gdfdfgfdg**/
   #cerrar-light{
     position: absolute;
     right: 0;
@@ -1377,19 +1388,6 @@ select{
     position: absolute;
     top: 0;
     z-index: -1;
-}
-#contenedor-form-subir{
-    z-index: 1;
-    width: 90%;
-    padding: 40px;
-    background-color: #ffffff;
-    margin-bottom: 50px;
-    margin-top: 60px;
-    border: 1px solid #e2e2e2;
-    border-radius: 5px;
-    margin-left: auto;
-    /* box-shadow: 3px 3px 0px 0px #d0d0d0; */
-    margin-right: auto;
 }
 .primer-row-form{
     margin-top: 30px;

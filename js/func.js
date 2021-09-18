@@ -54,6 +54,21 @@ $(document).ready(function() {
         });
     });
 
+    /*subir public traidop de template*/
+    $("#buscador-titulo-input").keyup(function(){
+        activarBuscador($(this));
+     });
+    /**cierre del modal de tagueo*/
+    $("#modal-cropper").on('show.bs.modal', function (e) {
+        $("#modal-data").modal("hide");
+    });
+    /**/
+    $("#modal-data").on('show.bs.modal', function (e) {
+        $("#modal-cropper").modal("hide");
+    });
+
+    /************************************/
+
     $('.carousel').carousel({
         interval: 20001111
     })
@@ -1625,12 +1640,22 @@ function eliminarNotif(id_notif){
             if(dataJ == 'OK'){
                 //console.log("OK-->"+dataJ+"/"+dataM);
                 var siHayNotifs =  $(".notifs-button-ampliar").find(".media").length;
+                var count_notif = document.querySelector(".count-notif")
+                var count_notif_int = parseInt(document.querySelector(".count-notif").innerText)
                 
                 if(siHayNotifs == 1){
                     $(".notif-id-"+id_notif).remove();
                     var no_notif = '<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay notificaciones por el momento.</div>'
                     $(".notifs-button-ampliar").html(no_notif);
-
+                    
+                    //bajo cantidad de notifs
+                    count_notif_int = count_notif_int - 1;
+                    count_notif.style.display = "none";
+                }else{
+                    
+                    $(".notif-id-"+id_notif).remove();
+                    count_notif_int = count_notif_int - 1;
+                    count_notif.innerHTML = count_notif_int;
                 }
             }else{
                 console.log("ELSE-->"+dataJ+"/"+dataM);

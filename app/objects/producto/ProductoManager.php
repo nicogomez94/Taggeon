@@ -164,6 +164,11 @@ class  ProductoManager
 	public function agregarCategoriaProducto(array $data)
 	{
 		$categoria = isset($data["categoria"]) ? $data["categoria"] : '';
+		if ($categoria == ''){
+			$this->setStatus("ERROR");
+			$this->setMsj("categoria incorrecta");
+			return true;
+		}
 		$idCategoria = $this->productoDao->getIdCategoriaByNombre($categoria);
 		if ($idCategoria == 0){
 			$idCategoria = $this->productoDao->insertarCategoria($categoria);
@@ -176,19 +181,73 @@ class  ProductoManager
 		}
 
 		$subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
+		if ($subcategoria1 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
 		$idSubcategoria1 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria1,$idCategoria);
 		if ($idSubcategoria1 == 0){
 			$idSubcategoria1 = $this->productoDao->insertarSubCategoria($subcategoria1,$idCategoria);
 		}
 
 		if ($idSubcategoria1 == 0){
-			$this->setStatus("ERROR");
-			$this->setMsj("Subcategoria1 incorrecta.");
-			return false;
-		
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
 		}
 		
+		$subcategoria2 = isset($data["subcategoria2"]) ? $data["subcategoria2"] : '';
+		if ($subcategoria2 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria2 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria2,$idSubcategoria1);
+		if ($idSubcategoria2 == 0 ){
+			$idSubcategoria2 = $this->productoDao->insertarSubCategoria($subcategoria2,$idSubcategoria1);
+		}
 
+		if ($idSubcategoria2 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+
+		$subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
+		if ($subcategoria3 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria3 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria3,$idSubcategoria2);
+		if ($idSubcategoria3 == 0){
+			$idSubcategoria3 = $this->productoDao->insertarSubCategoria($subcategoria3,$idSubcategoria2);
+		}
+
+		if ($idSubcategoria3 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+
+		$subcategoria4 = isset($data["subcategoria4"]) ? $data["subcategoria4"] : '';
+		if ($subcategoria4 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria4 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria4,$idSubcategoria3);
+		if ($idSubcategoria4 == 0){
+			$idSubcategoria4 = $this->productoDao->insertarSubCategoria($subcategoria4,$idSubcategoria3);
+		}
+
+		if ($idSubcategoria4 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		
+		}
 
 		$this->setStatus("OK");
 		$this->setMsj("");
@@ -274,6 +333,7 @@ class  ProductoManager
 				$dataNew["subcategoria1"] = isset($datacol[1]) ? $datacol[1] : '';;
 				$dataNew["subcategoria2"] = isset($datacol[2]) ? $datacol[2] : '';
 				$dataNew["subcategoria3"] = isset($datacol[3]) ?  $datacol[3] : '';
+				$dataNew["subcategoria4"] = isset($datacol[4]) ?  $datacol[4] : '';
  				$this->agregarCategoriaProducto($dataNew);
 				if ($this->getStatus() != 'OK') {
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error: ".$this->getMsj());

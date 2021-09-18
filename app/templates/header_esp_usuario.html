@@ -73,46 +73,27 @@
 
 </head>
 <body>
-<!--
-   <div id="flotante-subir">
-      <span><a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a></span>
-   </div>
--->
-
-         <!-- <hr><br>
-          <h3>Gestionar Notificaciones</h3>
-          <br>
-          <div class="row">
-            <div class="col-lg-8">
-                <span>Crea tu token de Mercado Pago &reg; para poder recibir y enviar pagos</span>
-             </div>
-             <div class="col-lg-4">
-                <div class="botonera-editar">
-                   <span><a href="https://mpago.la/24riMq1">Crear Token</a></span>
-                </div>
-             </div>
-          </div> -->
-         <!-- share -->
-          <div class="overlay overlayShare">
-            <div class="lightBox">
-               <div>
-                  <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-                  <h3>Compart&iacute; esta publicaci&oacute;n</h3>
-                  <hr>
-                  <div class="share-links">
-                     <span><a href="" id="fa-facebook-square"><i class="fab fa-facebook-square"></i></a></span>
-                     <span><a href="" id="fa-instagram-square"><i class="fab fa-instagram-square"></i></a></span>
-                     <span><a href="" id="fa-twitter-square"><i class="fab fa-twitter-square"></i></a></span>
-                     <span><a href="" id="fa-pinterest-square"><i class="fab fa-pinterest-square"></i></a></span>
-                  </div>
-                  <hr>
-                  <input type="text" id="inputCopiarLink">
-                  <button class="share-btn btn btn-warning" onclick="copiarLink()">Copiar</button>
-                  <br>
+      <!-- share -->
+         <div class="overlay overlayShare">
+         <div class="lightBox">
+            <div>
+               <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+               <h3>Compart&iacute; esta publicaci&oacute;n</h3>
+               <hr>
+               <div class="share-links">
+                  <span><a href="" id="fa-facebook-square"><i class="fab fa-facebook-square"></i></a></span>
+                  <span><a href="" id="fa-instagram-square"><i class="fab fa-instagram-square"></i></a></span>
+                  <span><a href="" id="fa-twitter-square"><i class="fab fa-twitter-square"></i></a></span>
+                  <span><a href="" id="fa-pinterest-square"><i class="fab fa-pinterest-square"></i></a></span>
                </div>
+               <hr>
+               <input type="text" id="inputCopiarLink">
+               <button class="share-btn btn btn-warning" onclick="copiarLink()">Copiar</button>
+               <br>
             </div>
          </div>
-         <!-- share -->
+      </div>
+      <!-- share -->
           
 
     <nav id="navbar-principal" class="navbar navbar-expand-md fixed-top">
@@ -137,8 +118,8 @@
             <a href="#"><i class="fas fa-search"></i></a>
          </div>
          <!-- SUBIR PUBLIC -->
-         <div class="btn-header">
-               <a href="/formu-subir-public.html"><i class="fas fa-plus"></i></a>
+         <div class="btn-header" onclick="ampliarOverlay('overlayPublic')">
+               <a href="javascript:void(0)"><i class="fas fa-plus"></i></a>
          </div>
          <!-- CARRITO -->
          <div class="btn-header">
@@ -298,71 +279,193 @@
 		</div>
    </div>
    
-   <!-- Modal INTERESES/PRIEMRA VEZ -->
-	<!-- <div class="modal fade" id="modalFirstLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-body text-center">
-					<h1>Te damos la bienvenida a Taggeon!</h1>
-               <hr>
-               <h3>Contanos cuales son tus intereses:</h3>
-                  <form id="form_intereses">
-                     <div class="interes_container">
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/118633151_614588322578999_7377311366937586649_n.jpg" alt="">
-                           <div class="interes_title">Indumentaria</div>
-                           <input id="check_intereses_1" type="checkbox" name="escena_ind[]" value="1">
+
+      <!-- overlayPublic -->
+      <div class="overlay overlayPublic">
+         <div class="lightBox lightBox-public">
+            <div id="contenedor-form-subir">
+               <div class="header-public-overlay">
+                  <div><b>Nueva Publicaci&oacute;n</b></div>
+                  <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayPublic').hide();" class="fas fa-times-circle"></i></a></div>
+               </div>
+               <div id="img-subir-pins" class="img-subir">
+                  <div id="mensaje-flotante-imgsp">
+                     <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
+                     <div><span class="hide-mobile">Arrastra una imagen, o </span>Haz click para subir</div>
+                  </div>
+                  <input type="file" name="publicacion_foto" id="imagen-pins" accept="image/x-png, image/gif, image/jpeg" onchange="cargarImgPines(event)" data-target="#modal-cropper" data-toggle="modal-cropper">
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- subir publicacion -->
+      <form id="subir-publicacion-form">
+         <div class="modal fade left" id="modal-cropper" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+               <div class="modal-content">
+                  <div class="modal-header modal-header-public">
+                     <div></div>
+                     <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
+                     <div class="cerrarModal text-right" data-dismiss="modal" class="text-right"><i id="cerrar-desde-cropper" class="fas fa-times"></i></div>
+                  </div>
+                  <div class="modal-body">
+                     <div id="output-container">
+                        <!-- <div id="eliminar-img-flotante">
+                           <i class="fas fa-trash-alt"></i>
+                        </div> -->
+                        <!--  -->
+                        <div class="popup-prod-overlay">
+                           <div id="popup-prod-cont">
+                              <div id="salir-popup" class="test-pop"><a href="#"><i class="fas fa-times"></i></a></div>
+                              <!-- <h6>Elija un producto:</h6> -->
+                              <div class="filtros">
+                                    <span>
+                                       <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
+                                       <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
+                                    </span>
+                                    <br>
+                                    <!-- <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a> -->
+                              </div>
+                              <div class="popup-producto">
+                                 <div class="splide splide__prod_public">
+                                    <div class="splide__track">
+                                       <ul class="splide__list"></ul>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- <div class="popup-prod-cont-galeria"></div> -->
+                              <!-- <select class="lista-prod"></select> -->
+                           </div>
                         </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/arquitectura-que-es.jpg" alt="">
-                           <div class="interes_title">Indumentaria</div>
-                           <input id="check_intereses_2" type="checkbox" name="escena_ind[]" value="2">
+                        <div class="contenedor-content">
+                           <div class="click-protector-cont"></div>
+                           <!-- <div id="map">
+                              <img id="img-pines-amapear" src="">
+                           </div> -->
                         </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt="">
-                           <div class="interes_title">Indumentaria</div>
-                           <input id="check_intereses_3" type="checkbox" name="escena_ind[]" value="3">
-                        </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/16047728589908.jpg" alt="">
-                           <div class="interes_title">Indumentaria</div>
-                           <input id="check_intereses_4" type="checkbox" name="escena_ind[]" value="4">
-                        </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/gaming.jpg" alt="">
-                           <div class="interes_title">Indumentaria</div>
-                           <input id="check_intereses_5" type="checkbox" name="escena_ind[]" value="5">
-                        </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/furniposta.jpg" alt="">
-                           <div class="interes_title">Arquitectura</div>
-                           <input id="check_intereses_6" type="checkbox" name="escena_arq[]" value="6">
-                        </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/118633151_614588322578999_7377311366937586649_n.jpg" alt="">
-                           <div class="interes_title">Arquitectura</div>
-                           <input id="check_intereses_7" type="checkbox" name="escena_arq[]" value="7">
-                        </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/arquitectura-que-es.jpg" alt="">
-                           <div class="interes_title">Arquitectura</div>
-                           <input id="check_intereses_8" type="checkbox" name="escena_arq[]" value="8">
-                        </div>
-                        <div class="interes">
-                           <img class="interes_img" src="../../img/bch05-bacha-de-apoyar-cuadrada-370x370x130-copia (1).jpg" alt="">
-                           <div class="interes_title">Arquitectura</div>
-                           <input id="check_intereses_9" type="checkbox" name="escena_arq[]" value="9">
+                        <!--  -->
+                        <div class="toggle-aspect-ratio">
+                           <!-- <span class="btn btn-warning" data-value="NaN">Original</span> -->
+                           <div class="text-center">Elija un Tama&ntilde;o:</div>
+                           <div>
+                              <label for="f-option" class="l-radio" data-aspect="1.77777">
+                                 <input type="radio" id="f-option" name="aspect-ratio" tabindex="1" >
+                                 <span>Horizontal (16:9)<!--<i class="fas fa-mobile-alt"></i>--></span>
+                              </label>
+                              <label for="s-option" class="l-radio" data-aspect="1.33333">
+                                 <input type="radio" id="s-option" name="aspect-ratio" tabindex="2">
+                                 <span>Vertical (4:3)<!--<i class="fas fa-mobile-alt" style="transform: rotate(90deg);"></i>--></span>
+                              </label>
+                              <label for="t-option" class="l-radio" data-aspect="1">
+                                 <input type="radio" id="t-option" name="aspect-ratio" tabindex="3">
+                                 <span>Cuadrado (1:1)<!--<i class="far fa-square"></i>--></span>
+                              </label>
+                            </div>
+                       </div>
+                        <div class="anadir-productos">
+                           <hr>
+                           <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
+                           <a href="#" id="cropear-btn" class="btn btn-warning disabled">Terminar Ajuste</a>
+                           <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
+                           <!-- <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
                         </div>
                      </div>
-                     <div class="text-center">
-                        <input type="submit" class="btn btn-warning" value="Enviar">
+                  </div>
+                  <div class="modal-footer">
+                     <div id="result"></div>
+                     <button id="btn-siguiente" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-data">Siguiente</button>
+                     <div class="tooltip-nico">Debe añadir por lo menos un pin!</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+         <div class="modal fade" id="modal-data" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+               <div class="modal-content">
+                  <div class="modal-header modal-header-public">
+                     <div class="text-left" data-toggle="modal" data-target="#modal-cropper" onclick="$('#modal-cropper').modal('hide');"><i class="fas fa-chevron-circle-left"></i></div>
+                     <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
+                     <div class="cerrarModal text-right" data-dismiss="modal"><i id="cerrar-desde-data" class="fas fa-times"></i></div>
+                  </div>
+                  <div class="modal-body text-left">
+                        <input type="hidden" name="accion" value="alta">
+                        <div id="col-foto-upload">
+                              <!-- <p class="label-descr">Seleccione al menos una foto para el publicacion.</p> -->
+                              <div class="row">
+                                
+                                 <div class="col-lg-12">
+                                    <div class="group">      
+                                       <input type="text" name="publicacion_nombre" id="titulo-publicacion" required>
+                                       <span class="highlight"></span>
+                                       <span class="bar"></span>
+                                       <label class="label-text-subir-publicacion">Nombre del publicaci&oacute;n</label>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-lg-12">
+                                    <p class="label-descr">Descripcion de la publicaci&oacute;n</p>
+                                    <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                    <div id="sels_cat_prod" class="col-lg-12">
+                                       <!-- ARQ -->
+                                       <select name="escena_sel" id="escena_sel" onchange="getEscenas(this.value)">
+                                          <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
+                                          <option value="Arquitectura">Arquitectura</option>
+                                          <option value="Indumentaria">Indumentaria</option>
+                                       </select>
+                                       <select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,'#esc_arq','#esc_arq2')">
+                                          <option value="" selected disabled hidden required>Elija otro parametro</option>
+                                       </select>
+                                       <select name="subescena2" id="esc_arq2" onchange="getSubEscena(this.value,'#esc_arq2','#esc_arq3')">
+                                          <option value="" selected disabled hidden required>Elija un parametro</option>
+                                       </select>
+                                       <select name="subescena3" id="esc_arq3" onchange="getSubEscena(this.value,'#esc_arq3','#esc_arq4')">
+                                          <option value="" selected disabled hidden required>Elija otro parametro</option>
+                                       </select>
+                                       <!-- IND -->
+                                       <select name="subescena1" id="esc_ind" onchange="getSubEscena(this.value,'#esc_ind','#esc_ind2')">
+                                          <option value="" selected disabled hidden required>Elija un estilo de indumentaria</option>
+                                       </select>
+                                    </div>
+                              </div>
+                        </div>
+                        <br><hr>
+                              
+                           <div>
+                              <div class="row">
+                                 <div class="col-lg-4">
+                                    <br>
+                                    <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
                      </div>
-                  </form>
-					</div>
-				</div>
-			</div>
-		</div>
-   </div> -->
+                     <div class="modal-footer">
+                        <div id="result"></div>
+                     </div>
+                  </div>
+               </div>
+         </div>
+         
+         <input id="aspect-ratio-input" name="aspect_ratio" type="hidden">
+         </form>
+
+         
+
+
+
+
+
+
+
+
+
+
    
    <!-- splide search -->
    <div class="splide__container">
