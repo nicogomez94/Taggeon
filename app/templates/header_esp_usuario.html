@@ -7,6 +7,7 @@
     <link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <link rel="stylesheet" href="../../plugins/cropperjs-master/dist/cropper.css" type="text/css" />
+    <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery-3.5.1.js"></script>
 
@@ -70,9 +71,14 @@
    
 <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 <script src="https://sdk.mercadopago.com/js/v2"></script>
+<script src="../../plugins/cropperjs-master/dist/cropper.js"></script>
+<script type="text/javascript" src="../../plugins/dropPin-master/dropPin/dropPin.js?time=300821-1657"></script>
 
 </head>
 <body>
+
+   <!-- OVERLAYS -->
+
       <!-- share -->
          <div class="overlay overlayShare">
          <div class="lightBox">
@@ -93,7 +99,50 @@
             </div>
          </div>
       </div>
-      <!-- share -->
+
+      <!-- overlayPublic -->
+      <div class="overlay overlayPublic">
+         <div class="lightBox lightBox-public">
+            <div id="contenedor-form-subir">
+               <div class="header-public-overlay">
+                  <div><b>Nueva Publicaci&oacute;n</b></div>
+                  <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayPublic').hide();" class="fas fa-times-circle"></i></a></div>
+               </div>
+               <div id="img-subir-pins" class="img-subir">
+                  <div id="mensaje-flotante-imgsp">
+                     <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
+                     <div><span class="hide-mobile">Arrastra una imagen, o </span>Haz click para subir</div>
+                  </div>
+                  <input type="file" name="publicacion_foto" id="imagen-pins" accept="image/x-png, image/gif, image/jpeg" onchange="cargarImgPines(event)" data-target="#modal-cropper" data-toggle="modal-cropper">
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- overlayUpload -->
+      <div class="overlay overlayUpload">
+         <div class="lightBox lightBox-upload">
+            <div id="contenedor-form-subir">
+               <div class="header-upload-overlay">
+                  <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayUpload').hide();" class="fas fa-times-circle"></i></a></div>
+                  <div class="button-upload-container">
+                     <div>Que desea subir?</div>
+                     <div class="button-upload" id="upload-public" onclick="$('.uploadPublic').show();">
+                        <span>Publicacion</span>
+                        <i class="fas fa-plus"></i>
+                     </div>
+                     <div class="button-upload" id="upload-prod" onclick="$('.uploadProd').show();">
+                        <span>Producto</span>
+                        <i class="fas fa-plus"></i>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+<!-- /OVERLAYS -->
+
           
 
     <nav id="navbar-principal" class="navbar navbar-expand-md fixed-top">
@@ -118,7 +167,7 @@
             <a href="#"><i class="fas fa-search"></i></a>
          </div>
          <!-- SUBIR PUBLIC -->
-         <div class="btn-header" onclick="ampliarOverlay('overlayPublic')">
+         <div class="btn-header" onclick="ampliarOverlay('overlayUpload')">
                <a href="javascript:void(0)"><i class="fas fa-plus"></i></a>
          </div>
          <!-- CARRITO -->
@@ -280,24 +329,9 @@
    </div>
    
 
-      <!-- overlayPublic -->
-      <div class="overlay overlayPublic">
-         <div class="lightBox lightBox-public">
-            <div id="contenedor-form-subir">
-               <div class="header-public-overlay">
-                  <div><b>Nueva Publicaci&oacute;n</b></div>
-                  <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayPublic').hide();" class="fas fa-times-circle"></i></a></div>
-               </div>
-               <div id="img-subir-pins" class="img-subir">
-                  <div id="mensaje-flotante-imgsp">
-                     <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
-                     <div><span class="hide-mobile">Arrastra una imagen, o </span>Haz click para subir</div>
-                  </div>
-                  <input type="file" name="publicacion_foto" id="imagen-pins" accept="image/x-png, image/gif, image/jpeg" onchange="cargarImgPines(event)" data-target="#modal-cropper" data-toggle="modal-cropper">
-               </div>
-            </div>
-         </div>
-      </div>
+      
+
+
       <!-- subir publicacion -->
       <form id="subir-publicacion-form">
          <div class="modal fade left" id="modal-cropper" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
