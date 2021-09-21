@@ -2205,8 +2205,13 @@ function hideFollow(el){
 }
 
 function ampliarOverlay(clase){
-    var classAmpliar = document.querySelector("."+clase);
-    classAmpliar.style.display = "block"
+    let classAmpliar = $("."+clase);
+    let otrosOverlay = $(".overlay:not(."+clase+")");
+
+
+    classAmpliar.css("display", "block");
+    otrosOverlay.css("display", "none");
+    //cierro si hay otro overlay abierto
 }
 
 function cerrarOverlay(clase){

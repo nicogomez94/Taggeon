@@ -100,6 +100,117 @@
          </div>
       </div>
 
+      <!-- overlayProd -->
+      <div class="overlay overlayProd">
+         <div class="lightBox lightBox-prod">
+            <div id="contenedor-form-subir">
+               <div class="header-public-overlay">
+                  <div><b>Subir Producto</b></div>
+                  <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayPublic').hide();" class="fas fa-times-circle"></i></a></div>
+               </div>
+               <div class="container" id="contenedor-form-subir">
+                  <form id="producto-form">
+                     <input type="hidden" name="accion" value="alta">
+                     <div id="col-foto-upload">
+                           <p class="label-descr">Seleccione al menos una foto para el producto. <span class="info" style="font-size: 0.6em;"><i class="fas fa-question-circle"></i></span></p>
+                           <div class="row">
+                              <div id="contenedor-subir-foto" class="img-subir">
+                                 <div id="uploads"></div>
+                              </div>
+                           </div>
+            
+                           <!-- principales -->
+                           <div class="campos-subir-prod">      
+                              <input type="text" name="titulo" id="titulo-producto" placeholder="Nombre del producto" required>
+                              <!-- <label class="label-text-subir-producto">Nombre del producto</label> -->
+                           </div>
+                           <div class="campos-subir-prod">      
+                              <input type="number" name="precio" id="precio-producto" placeholder="Precio" required>
+                              <!-- <label class="label-text-subir-producto">Precio</label> -->
+                           </div>
+                           <div class="campos-subir-prod"> 
+                              <!-- <p class="label-descr">Descripcion del producto</p> -->
+                              <textarea type="text" name="descr_producto" id="descr-producto" placeholder="Ingrese una descripcion del producuto" required></textarea>
+                           </div>
+                           <!-- /principales -->
+            
+                           <hr>
+            
+                           <!-- secundarios -->
+                           <div class="row">
+                              <div class="col-lg-6">
+                                 <div class="campos-subir-prod">      
+                                    <input type="text" name="marca" id="marca-producto" required placeholder="Marca">
+                                 </div>
+                              </div>
+                              <div class="col-lg-6">
+                                 <div class="campos-subir-prod">      
+                                    <input type="number" name="stock" id="stock-producto" required  placeholder="Stock">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row" style="margin-top: 20px;">
+                              <div id="sels_cat_prod" class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                 <select class="showCat" name="categoria" id="categoria-producto" onchange="getSubCat(this.value,'#categoria-producto','#categoria-producto2')">
+                                    <option value="" selected disabled hidden required>Elija una categor&iacute;a</option>
+                                 </select>
+                                 <select name="subcategoria1" id="categoria-producto2" onchange="getSubCat(this.value,'#categoria-producto2','#categoria-producto3')">
+                                    <option value="" selected disabled hidden required>Elija una subcategor&iacute;a</option>
+                                 </select>
+                                 <select name="subcategoria2" id="categoria-producto3" onchange="getSubCat(this.value,'#categoria-producto3','#categoria-producto4')">
+                                    <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
+                                 </select>
+                                 <select name="subcategoria3" id="categoria-producto4" onchange="getSubCat(this.value,'#categoria-producto4','#categoria-producto5')">
+                                    <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
+                                 </select>
+                              </div>
+                              <div id="sels_cat_prod" class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                 
+                              </div>
+                           </div>
+                           <div class="campos-subir-prod"> 
+                              <select name="color" id="color">
+                                 <option value="" selected disabled hidden required>Elija un color</option>
+                                 <option value="color-negro">Negro</option>
+                                 <option value="color-azul">Azul</option>
+                                 <option value="color-rojo">Rojo</option>
+                                 <option value="color-verde">Verde</option>
+                                 <option value="color-amarillo">Amarillo</option>
+                              </select>
+                           </div>
+                           <div class="campos-subir-prod"> 
+                              <select name="envio" id="envio-producto">
+                                 <option value="" selected disabled hidden required>Env&iacute;o</option>
+                                 <option value="1">Si</option>
+                                 <option value="0">No</option>
+                              </select>
+                           </div>
+                           <div class="campos-subir-prod">
+                              <select name="garantia" id="garantia-producto">
+                                 <option value="" selected disabled hidden required>Garant&iacute;a</option>
+                                 <option value="1">Si</option>
+                                 <option value="0">No</option>
+                              </select>
+                           </div>
+                           <!--  -->
+                           <input type="hidden" name="rubro" value="1">
+            
+                        <!-- /secundarios -->
+            
+                        <div>
+                           <div class="row">
+                              <div class="col-lg-4 mt-5">
+                                 <input type="submit" class="btn btn-warning" value="Guardar Producto">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
       <!-- overlayPublic -->
       <div class="overlay overlayPublic">
          <div class="lightBox lightBox-public">
@@ -127,13 +238,14 @@
                   <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayUpload').hide();" class="fas fa-times-circle"></i></a></div>
                   <div class="button-upload-container">
                      <div>Que desea subir?</div>
-                     <div class="button-upload" id="upload-public" onclick="$('.uploadPublic').show();">
+                     <hr>
+                     <div class="button-upload" id="upload-public" onclick="ampliarOverlay('overlayPublic')">
+                        <i class="fas fa-plus"></i>
                         <span>Publicacion</span>
-                        <i class="fas fa-plus"></i>
                      </div>
-                     <div class="button-upload" id="upload-prod" onclick="$('.uploadProd').show();">
-                        <span>Producto</span>
+                     <div class="button-upload" id="upload-prod" onclick="ampliarOverlay('overlayProd')">
                         <i class="fas fa-plus"></i>
+                        <span>Producto</span>
                      </div>
                   </div>
                </div>

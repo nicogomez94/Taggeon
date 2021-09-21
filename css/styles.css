@@ -1122,13 +1122,14 @@ body{
     text-align: center;
     top: 0;
     left: 0;
-    z-index: 998;
+    z-index: 999;
   }
   
   .lightBox {
     background: white;
     /* width: auto; */
     width: 40%;
+    max-height: 100%;
     padding: 20px;
     text-align: center;
     display: inline-block;

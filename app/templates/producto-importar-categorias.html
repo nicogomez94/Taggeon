@@ -15,6 +15,20 @@
          <hr>
          <div id="result-importar"></div>
       </div>
+      <hr><hr>
+      <div style="margin: 40px">
+         <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <h3>Importar Parametros</h3>
+         <hr>
+         <form id="subir-param" action="/app/producto.php" method="post">
+            <input type="file" id="file-csv-importar-param" name="file-csv-importar-param"><br><br>
+            <div>
+               <button type="submit" class="btn btn-warning">Importar Categor&iacute;as</button>
+            </div>
+         </form>
+         <hr>
+         <div id="result-importar-param"></div>
+      </div>
 
 
 <script>
@@ -55,6 +69,43 @@
          reader.readAsDataURL($("#file-csv-importar").get(0).files[0]);    
          return false;
       });
+
+      $("#subir-param").on('submit', function() {
+         
+         var reader = new FileReader();
+         reader.onload = function(){
+            
+            var dataImport = { 
+               'file': reader.result,
+               'accion':'importar-param'
+            };
+            
+            $.ajax({
+                  type: 'POST',
+                  url: '/app/producto.php',
+                  data: dataImport,
+                  dataType: "json",
+                  async: true,//por la warning
+                  success: function(data, response ) {
+                     if (data.status == 'REDIRECT'){
+                        $("#result-importar-param").html("<p>"+data.mensaje+"</p>")								
+                     }else if(data.status == 'OK'){
+                        $("#result-importar-param").html("<p>"+data.mensaje+"</p>")
+                     }else{
+                        $("#result-importar-param").html("<p>"+data.mensaje+"</p>")
+                     }
+                     
+                  },
+                  error: function(jqXhr, textStatus, errorThrown) {
+                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                     alert(msj);         
+                  }
+            });
+         };
+         reader.readAsDataURL($("#file-csv-importar-param").get(0).files[0]);    
+         return false;
+      });
+
    })
 </script>
 
