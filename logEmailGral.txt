@@ -79,3 +79,85 @@ https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrz
 body: 
 usuario licrzito@gmail.com
 Detalle Respuesta: No se pudo enviar el email. Err: Message body empty
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36190.19.149.175
+Fecha 23/09/2021  18:17:19
+---------------------------------
+Envio enviarEmailRecuperarHtml
+mensajeTexto: Usuario: licrzito@gmail.com
+Haga click para recuperar la clave.
+https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller
+
+body: user name: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller" style="color: #FFF;">click here to reset your password</a><br />
+Sent 23/09/2021<br /><br />
+
+usuario: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller" style="color: #FFF;">haga click aqu&iacute; para recuperar la clave.</a><br />
+enviado el 23/09/2021<br />
+
+usuario licrzito@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36190.19.149.175
+Fecha 23/09/2021  18:17:21
+---------------------------------
+Respuesta OK => Envio enviarEmailRecuperarHtml
+mensajeTexto: Usuario: licrzito@gmail.com
+Haga click para recuperar la clave.
+https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller
+
+body: user name: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller" style="color: #FFF;">click here to reset your password</a><br />
+Sent 23/09/2021<br /><br />
+
+usuario: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller" style="color: #FFF;">haga click aqu&iacute; para recuperar la clave.</a><br />
+enviado el 23/09/2021<br />
+
+usuario licrzito@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36190.19.149.175
+Fecha 23/09/2021  18:18:43
+---------------------------------
+Envio enviarEmailRecuperarHtml
+mensajeTexto: Usuario: licrzito@gmail.com
+Haga click para recuperar la clave.
+https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller
+
+body: user name: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller" style="color: #FFF;">click here to reset your password</a><br />
+Sent 23/09/2021<br /><br />
+
+usuario: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller">haga click aqu&iacute; para recuperar la clave.</a><br />
+enviado el 23/09/2021<br />
+
+usuario licrzito@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36190.19.149.175
+Fecha 23/09/2021  18:18:44
+---------------------------------
+Respuesta OK => Envio enviarEmailRecuperarHtml
+mensajeTexto: Usuario: licrzito@gmail.com
+Haga click para recuperar la clave.
+https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller
+
+body: user name: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller" style="color: #FFF;">click here to reset your password</a><br />
+Sent 23/09/2021<br /><br />
+
+usuario: licrzito@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=licrzito@gmail.com&hash=2400c003e58860c2421dde42d379eabe&idUsuario=239&id=396&perfil=seller">haga click aqu&iacute; para recuperar la clave.</a><br />
+enviado el 23/09/2021<br />
+
+usuario licrzito@gmail.com
+Detalle Respuesta:
