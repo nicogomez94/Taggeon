@@ -532,15 +532,15 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
 
     /*funciones para que se cierre el otro modal atras del otro*/
     $("#recuperaPass").on('show.bs.modal', function (e) {
-        $("#exampleModalCenter").modal("hide");
+        $("#modal-sesion").modal("hide");
     });
     /**/
-    $("#exampleModalCenter2").on('show.bs.modal', function (e) {
-        $("#exampleModalCenter").modal("hide");
+    $("#modal-registro").on('show.bs.modal', function (e) {
+        $("#modal-sesion").modal("hide");
     });
     /**/
-    $("#exampleModalCenter3").on('show.bs.modal', function (e) {
-        $("#exampleModalCenter2").modal("hide");
+    $("#modal-registro-seller").on('show.bs.modal', function (e) {
+        $("#modal-registro").modal("hide");
     });
 
 
@@ -1060,6 +1060,7 @@ $("#form_intereses").submit(function(e){
 });
 
 
+$("")
 
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
@@ -1068,7 +1069,10 @@ $("#form_intereses").submit(function(e){
 
 });
 
-    
+
+
+
+
 function actualizarPantallaEditarUsuario () {
     if (jsonDatosEditar != undefined){
         var nombre = jsonDatosEditar["NOMBRE"] || '';
@@ -1286,9 +1290,11 @@ function activarBuscador(param){
                 data: data_json,
                 dataType: 'json',
                 success:function(response){
-
+                
                 var resp_len = response.mensaje.length;
-                $(".splide__list").empty();
+                var splide_list = $(".splide__prod_public .splide__list");
+                
+                splide_list.empty();
 
                 //if(jsonData.perfil == "Picker"){
                     for(var i=0; i<resp_len; i++){
@@ -1304,7 +1310,7 @@ function activarBuscador(param){
                                     '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
                                     '<div class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</div></li></div>';
                         // var html = '<option class="nombre-producto '+id_prod+' nombre-producto-'+i+'">'+nombre_prod+'</option>'
-                        $(".splide__list").append(html);
+                        splide_list.append(html);
 
                     }
                     new Splide( '.splide__prod_public', {

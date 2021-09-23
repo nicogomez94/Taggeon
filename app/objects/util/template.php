@@ -10,7 +10,7 @@ class Template{
 		
 		if (!($this->fd = @fopen($this->tpl_file, 'r')))
 		{
-			sostenedor_error('error al abrir la plantilla ' . $this->tpl_file);
+			echo "error al abrir la plantilla " . $this->tpl_file;
 		} else{
 			$this->template_file = fread($this->fd, filesize($this->tpl_file));
 			fclose($this->fd);

@@ -64,7 +64,7 @@
 								<button type="submit" class="btn btn-warning">Iniciar Sesi&oacute;n</button>
 						 		<hr>
 						 		<div>
-									<label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Arquipick? <a href="#" id="test11" data-dismiss="exampleModalCenter" data-toggle="modal" data-target="#exampleModalCenter2">Registrate</a></label>
+									<label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Arquipick? <a href="#" id="test11" data-dismiss="modal-sesion" data-toggle="modal" data-target="#modal-registro">Registrate</a></label>
 								</div>
 					  		</form>
 						</div>
@@ -89,32 +89,17 @@
          <!-- <input id="buscador-index-input" class="form-control search" type="text" placeholder="Buscar" aria-label="Buscar" autocomplete="on"> -->
          <!---->
       <div id="sin-log-cont">
-         
-				<div class="ver-perfil" data-toggle="modal" data-target="#exampleModalCenter">
-					<a href="#">Iniciar Sesi&oacute;n</a>
-				</div>
-				<div class="ver-perfil" data-toggle="modal" data-target="#exampleModalCenter2">
-					<a href="#">Registrarse</a>
-				</div>
+		<div class="ver-perfil" data-toggle="modal" data-target="#modal-sesion">
+			<a href="#">Iniciar Sesi&oacute;n</a>
+		</div>
+		<div class="ver-perfil" data-toggle="modal" data-target="#modal-registro">
+			<a href="#">Registrarse</a>
+		</div>
       </div>
    </nav>
-   <!--<nav id="navbar-bottom-responsive" class="navbar fixed-bottom navbar-light bg-light">
-      <div class="navbar-bottom-col-sl">
-         <a href="#" data-toggle="modal" data-target="#exampleModalCenter">
-            <div><i class="fas fa-home"></i></div>
-            <div>Iniciar Sesi&oacute;n</div>
-         </a>
-      </div>
-      <div class="navbar-bottom-col-sl">
-         <a href="#" data-toggle="modal" data-target="#exampleModalCenter2">
-            <div><i class="fas fa-user-circle"></i></div>
-            <div>Registrarse</div>
-         </a>
-      </div>
-   </nav>-->
 	
 	<!-- Modal INICIO DE SESION -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal fade" id="modal-sesion">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
@@ -123,23 +108,14 @@
 					<hr>
 					<div id="form_inicio_sesion_cont" class="forms">
 						<form id="iniciar_sesion">
-							<div>
-								<input type="email" id="mail-login" name="mail" placeholder="Email" autocomplete="on">
-							</div>
-							<div>
-								<input type="password" id="pass-login" name="pass" placeholder="Password" autocomplete="on">
-							</div>
-							<div>
-								<label class="form-check-label" for="exampleCheck1"><a href="#" data-toggle="modal" data-target="#recuperaPass">Olvid&oacute; su contrase&ntilde;a?</a></label>
-							</div>
-                     <br>
+							<div class="form-group"><input type="email" id="mail-login" name="mail" placeholder="Email" autocomplete="on"></div>
+							<div class="form-group"><input type="password" id="pass-login" name="pass" placeholder="Password" autocomplete="on"></div>
+							<div class="form-group"><label class="form-check-label" for="exampleCheck1"><a href="#" data-toggle="modal" data-target="#recuperaPass">Olvid&oacute; su contrase&ntilde;a?</a></label></div>
 					 		<div id="mensaje-sin-login"></div>
 							<button type="submit" class="btn btn-warning">Iniciar Sesi&oacute;n</button>
-                     <hr>
-                     <div>
-								<label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Arquipick? <a href="#" id="test11" data-dismiss="exampleModalCenter" data-toggle="modal" data-target="#exampleModalCenter2">Registrate</a></label>
-							</div>
-                  </form>
+							<hr>
+                     		<div><label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Arquipick? <a href="#" id="test11" data-dismiss="modal-sesion" data-toggle="modal" data-target="#modal-registro">Registrate</a></label></div>
+                  		</form>
 					</div>
 				</div>
 			</div>
@@ -147,7 +123,7 @@
 	</div>
 
 	<!-- Modal REGISTRO -->
-	<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+	<div class="modal fade" id="modal-registro">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
@@ -188,14 +164,14 @@
                   
             </div>
             <div id="registro_seller">
-               <a href="#" id="registro_seller_btn" data-dismiss="exampleModalCenter2" data-toggle="modal" data-target="#exampleModalCenter3">Registrarse como Seller</a>
+               <a href="#" id="registro_seller_btn" data-dismiss="modal-registro" data-toggle="modal" data-target="#modal-registro-seller">Registrarse como Seller</a>
             </div>
 			</div>
 		</div>
    </div>
    
    <!-- Modal REGISTRO-SELLER -->
-	<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle3" aria-hidden="true">
+	<div class="modal fade" id="modal-registro-seller">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->

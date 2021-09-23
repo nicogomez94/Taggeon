@@ -47,17 +47,6 @@
          }
 
 
-        /*$('.share-sm').click(function(e) {
-            e.preventDefault();
-            console.log("overlay")
-            $(".overlay").show();
-        
-            $('#cerrar-light').click(function() {
-            $('.overlay').css("display", "none");
-            });
-        });*/
-
-
         /*buscador*/
         $("#buscador-titulo-input").keyup(function(){
             activarBuscador($(this));
@@ -100,138 +89,10 @@
          </div>
       </div>
 
-      <!-- overlayProd -->
-      <div class="overlay overlayProd">
-         <div class="lightBox lightBox-prod">
-            <div id="contenedor-form-subir">
-               <div class="header-public-overlay">
-                  <div><b>Subir Producto</b></div>
-                  <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayPublic').hide();" class="fas fa-times-circle"></i></a></div>
-               </div>
-               <div class="container" id="contenedor-form-subir">
-                  <form id="producto-form">
-                     <input type="hidden" name="accion" value="alta">
-                     <div id="col-foto-upload">
-                           <p class="label-descr">Seleccione al menos una foto para el producto. <span class="info" style="font-size: 0.6em;"><i class="fas fa-question-circle"></i></span></p>
-                           <div class="row">
-                              <div id="contenedor-subir-foto" class="img-subir">
-                                 <div id="uploads"></div>
-                              </div>
-                           </div>
-            
-                           <!-- principales -->
-                           <div class="campos-subir-prod">      
-                              <input type="text" name="titulo" id="titulo-producto" placeholder="Nombre del producto" required>
-                              <!-- <label class="label-text-subir-producto">Nombre del producto</label> -->
-                           </div>
-                           <div class="campos-subir-prod">      
-                              <input type="number" name="precio" id="precio-producto" placeholder="Precio" required>
-                              <!-- <label class="label-text-subir-producto">Precio</label> -->
-                           </div>
-                           <div class="campos-subir-prod"> 
-                              <!-- <p class="label-descr">Descripcion del producto</p> -->
-                              <textarea type="text" name="descr_producto" id="descr-producto" placeholder="Ingrese una descripcion del producuto" required></textarea>
-                           </div>
-                           <!-- /principales -->
-            
-                           <hr>
-            
-                           <!-- secundarios -->
-                           <div class="row">
-                              <div class="col-lg-6">
-                                 <div class="campos-subir-prod">      
-                                    <input type="text" name="marca" id="marca-producto" required placeholder="Marca">
-                                 </div>
-                              </div>
-                              <div class="col-lg-6">
-                                 <div class="campos-subir-prod">      
-                                    <input type="number" name="stock" id="stock-producto" required  placeholder="Stock">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row" style="margin-top: 20px;">
-                              <div id="sels_cat_prod" class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                 <select class="showCat" name="categoria" id="categoria-producto" onchange="getSubCat(this.value,'#categoria-producto','#categoria-producto2')">
-                                    <option value="" selected disabled hidden required>Elija una categor&iacute;a</option>
-                                 </select>
-                                 <select name="subcategoria1" id="categoria-producto2" onchange="getSubCat(this.value,'#categoria-producto2','#categoria-producto3')">
-                                    <option value="" selected disabled hidden required>Elija una subcategor&iacute;a</option>
-                                 </select>
-                                 <select name="subcategoria2" id="categoria-producto3" onchange="getSubCat(this.value,'#categoria-producto3','#categoria-producto4')">
-                                    <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
-                                 </select>
-                                 <select name="subcategoria3" id="categoria-producto4" onchange="getSubCat(this.value,'#categoria-producto4','#categoria-producto5')">
-                                    <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
-                                 </select>
-                              </div>
-                              <div id="sels_cat_prod" class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                 
-                              </div>
-                           </div>
-                           <div class="campos-subir-prod"> 
-                              <select name="color" id="color">
-                                 <option value="" selected disabled hidden required>Elija un color</option>
-                                 <option value="color-negro">Negro</option>
-                                 <option value="color-azul">Azul</option>
-                                 <option value="color-rojo">Rojo</option>
-                                 <option value="color-verde">Verde</option>
-                                 <option value="color-amarillo">Amarillo</option>
-                              </select>
-                           </div>
-                           <div class="campos-subir-prod"> 
-                              <select name="envio" id="envio-producto">
-                                 <option value="" selected disabled hidden required>Env&iacute;o</option>
-                                 <option value="1">Si</option>
-                                 <option value="0">No</option>
-                              </select>
-                           </div>
-                           <div class="campos-subir-prod">
-                              <select name="garantia" id="garantia-producto">
-                                 <option value="" selected disabled hidden required>Garant&iacute;a</option>
-                                 <option value="1">Si</option>
-                                 <option value="0">No</option>
-                              </select>
-                           </div>
-                           <!--  -->
-                           <input type="hidden" name="rubro" value="1">
-            
-                        <!-- /secundarios -->
-            
-                        <div>
-                           <div class="row">
-                              <div class="col-lg-4 mt-5">
-                                 <input type="submit" class="btn btn-warning" value="Guardar Producto">
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <!-- overlayPublic -->
-      <div class="overlay overlayPublic">
-         <div class="lightBox lightBox-public">
-            <div id="contenedor-form-subir">
-               <div class="header-public-overlay">
-                  <div><b>Nueva Publicaci&oacute;n</b></div>
-                  <div><a href="javascript:void(0)" id="cerrar-light"><i onclick="$('.overlayPublic').hide();" class="fas fa-times-circle"></i></a></div>
-               </div>
-               <div id="img-subir-pins" class="img-subir">
-                  <div id="mensaje-flotante-imgsp">
-                     <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
-                     <div><span class="hide-mobile">Arrastra una imagen, o </span>Haz click para subir</div>
-                  </div>
-                  <input type="file" name="publicacion_foto" id="imagen-pins" accept="image/x-png, image/gif, image/jpeg" onchange="cargarImgPines(event)" data-target="#modal-cropper" data-toggle="modal-cropper">
-               </div>
-            </div>
-         </div>
-      </div>
+      
 
       <!-- overlayUpload -->
-      <div class="overlay overlayUpload">
+      <!-- <div class="overlay overlayUpload">
          <div class="lightBox lightBox-upload">
             <div id="contenedor-form-subir">
                <div class="header-upload-overlay">
@@ -251,7 +112,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
 
 <!-- /OVERLAYS -->
 
@@ -279,7 +140,7 @@
             <a href="#"><i class="fas fa-search"></i></a>
          </div>
          <!-- SUBIR PUBLIC -->
-         <div class="btn-header" onclick="ampliarOverlay('overlayUpload')">
+         <div class="btn-header" data-toggle="modal" data-target="#modal-upload-public">
                <a href="javascript:void(0)"><i class="fas fa-plus"></i></a>
          </div>
          <!-- CARRITO -->
@@ -323,282 +184,178 @@
    
 
    <!-- MODALS -->
-
-	
-	<!-- Modal INICIO DE SESION -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
-				<div class="modal-body">
-					<h1>Bienvenido de vuelta</h1>
-					<hr>
-					<div id="form_inicio_sesion_cont" class="forms">
-						<form action="" method="post">
-							<div>
-								<input type="email" id="mail-login" name="mail" placeholder="Email">
-							</div>
-							<div>
-								<input type="password" id="pass-login" name="pass" placeholder="Password">
-							</div>
-							<div>
-								<label class="form-check-label" for="exampleCheck1"><a href="#">Olvid&oacute; su contrase&ntilde;a?</a></label>
-							</div>
-                     <br>
-							<button type="submit" class="btn btn-warning">Iniciar Sesi&oacute;n</button>
-                     <hr>
-                     <div>
-								<label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Arquipick? <a href="#" id="test11" data-toggle="modal" data-target="#exampleModalCenter2">Registrate</a></label>
-							</div>
-                  </form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal REGISTRO -->
-	<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
-				<div class="modal-body">
-					<h1>Te damos la bienvenida a Arquipick</h1>
-					<hr>
-					<div id="form_registro_cont" class="forms">
-						<form action="https://taggeon.com/app/alta_usuario.php" method="post">
-                     <div>
-								<input type="text" id="nombre" name="nombre" placeholder="Nombre">
-                     </div>
-                     <div>
-								<input type="text" id="apellido" name="apellido" placeholder="Apellido">
-							</div>
-                     <div>
-								<input type="email" id="mail" name="mail" placeholder="Email">
-							</div>
-							<div>
-								<input type="password" id="pass" name="pass" placeholder="Contrase&ntilde;a">
-                     </div>
-                     <div>
-							   <input type="password" id="cpass" name="cpass" placeholder="Repita la Contrase&ntilde;a">
-							</div>
-							<div>
-                        <button type="submit" class="btn btn-warning">Registrarse</button>
-                     </div>
-                     <!-- <div class="or">&Oacute;</div>
-                     <div>
-                        <button type="submit" class="btn btn-warning">Registrarse como Seller</button>
-                     </div> -->
-                     <p class="small-text-form">Al hacer clic en "Registrarse", aceptas nuestras Condiciones, la Pol&iacute;tica de datos y la Pol&iacute;tica de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.</p>
-						</form>
+   
+   <!-- MODAL SUBIR PUBLIC -->
+   <div class="modal fade" id="modal-upload-public">
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+            <div id="contenedor-form-subir">
+               <div class="modal-header modal-header-public">
+                  <div></div>
+                  <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
+                  <div class="cerrarModal text-right" data-dismiss="modal" class="text-right"><i id="cerrar-desde-cropper" class="fas fa-times"></i></div>
                </div>
-                  <hr>
-                  <!--  -->
-                  
+               <div id="img-subir-pins" class="img-subir">
+                  <div id="mensaje-flotante-imgsp">
+                     <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
+                     <div><span class="hide-mobile">Arrastra una imagen, o </span>Haz click para subir</div>
+                  </div>
+                  <input type="file" name="publicacion_foto" id="imagen-pins" accept="image/x-png, image/jpeg" onchange="cargarImgPines(event)" data-target="#modal-cropper" data-toggle="modal-cropper">
+               </div>
             </div>
-            <div id="registro_seller">
-               <a href="#" id="registro_seller_btn" data-toggle="modal" data-target="#exampleModalCenter3">Registrarse como Seller</a>
-            </div>
-			</div>
-		</div>
+         </div>
+      </div>
    </div>
-   
-   <!-- Modal REGISTRO-SELLER -->
-	<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle3" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
-				<div class="modal-body">
-					<h1>Te damos la bienvenida a Arquipick</h1>
-					<h6 style="color: rgb(197, 197, 197);">Hac&eacute; crecer tu negocio</h6>
-					<hr>
-					<div id="form_registro_cont" class="forms">
-						<form action="https://taggeon/app/alta_usuario_seller.php" method="post">
-							<div>
-								<input type="text" id="nombre-seller" name="nombre" placeholder="Nombre">
-							</div>
-							<div>
-								<input type="text" id="apellido-seller" name="apellido" placeholder="Apellido">
-							</div>
-							<div>
-								<input type="email" id="mail-seller" name="mail" placeholder="Email">
-							</div>
-							<div>
-								<input type="password" id="pass-seller" name="pass" placeholder="Contrase&ntilde;a">
-							</div>
-							<div>
-								<input type="password" id="cpass-seller" name="cpass" placeholder="Repita la Contrase&ntilde;a">
-							</div>
-							<div>
-								<button type="submit" class="btn btn-warning">Registrarse como Seller</button>
-							</div>
-							<p class="small-text-form">Al hacer clic en "Registrarte", aceptas nuestras Condiciones, la Pol&iacute;tica de datos y la Pol&iacute;tica de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.</p>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-   </div>
-   
-
       
 
 
       <!-- subir publicacion -->
-      <form id="subir-publicacion-form">
-         <div class="modal fade left" id="modal-cropper" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-               <div class="modal-content">
-                  <div class="modal-header modal-header-public">
-                     <div></div>
-                     <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
-                     <div class="cerrarModal text-right" data-dismiss="modal" class="text-right"><i id="cerrar-desde-cropper" class="fas fa-times"></i></div>
-                  </div>
-                  <div class="modal-body">
-                     <div id="output-container">
-                        <!-- <div id="eliminar-img-flotante">
-                           <i class="fas fa-trash-alt"></i>
-                        </div> -->
-                        <!--  -->
-                        <div class="popup-prod-overlay">
-                           <div id="popup-prod-cont">
-                              <div id="salir-popup" class="test-pop"><a href="#"><i class="fas fa-times"></i></a></div>
-                              <!-- <h6>Elija un producto:</h6> -->
-                              <div class="filtros">
-                                    <span>
-                                       <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
-                                       <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
-                                    </span>
-                                    <br>
-                                    <!-- <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a> -->
-                              </div>
-                              <div class="popup-producto">
-                                 <div class="splide splide__prod_public">
-                                    <div class="splide__track">
-                                       <ul class="splide__list"></ul>
+         <form id="subir-publicacion-form">
+            <div class="modal fade left" id="modal-cropper" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
+               <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header modal-header-public">
+                        <div></div>
+                        <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
+                        <div class="cerrarModal text-right" data-dismiss="modal" class="text-right"><i id="cerrar-desde-cropper" class="fas fa-times"></i></div>
+                     </div>
+                     <div class="modal-body">
+                        <div id="output-container">
+                           <div class="popup-prod-overlay">
+                              <div id="popup-prod-cont">
+                                 <div id="salir-popup" class="test-pop"><a href="#"><i class="fas fa-times"></i></a></div>
+                                 <div class="filtros">
+                                       <span>
+                                          <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
+                                          <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
+                                       </span>
+                                       <br>
+                                 </div>
+                                 <div class="popup-producto">
+                                    <div class="splide splide__prod_public">
+                                       <div class="splide__track">
+                                          <ul class="splide__list"></ul>
+                                       </div>
                                     </div>
                                  </div>
                               </div>
-                              <!-- <div class="popup-prod-cont-galeria"></div> -->
-                              <!-- <select class="lista-prod"></select> -->
+                           </div>
+                           <div class="contenedor-content">
+                              <div class="click-protector-cont"></div>
+                              <!-- <div id="map">
+                                 <img id="img-pines-amapear" src="">
+                              </div> -->
+                           </div>
+
+                           <div class="toggle-aspect-ratio">
+                              <div class="text-center">Elija un Tama&ntilde;o:</div>
+                              <div>
+                                 <label for="f-option" class="l-radio" data-aspect="1.77777">
+                                    <input type="radio" id="f-option" name="aspect-ratio" tabindex="1" >
+                                    <span>Horizontal (16:9)<!--<i class="fas fa-mobile-alt"></i>--></span>
+                                 </label>
+                                 <label for="s-option" class="l-radio" data-aspect="1.33333">
+                                    <input type="radio" id="s-option" name="aspect-ratio" tabindex="2">
+                                    <span>Vertical (4:3)<!--<i class="fas fa-mobile-alt" style="transform: rotate(90deg);"></i>--></span>
+                                 </label>
+                                 <label for="t-option" class="l-radio" data-aspect="1">
+                                    <input type="radio" id="t-option" name="aspect-ratio" tabindex="3">
+                                    <span>Cuadrado (1:1)<!--<i class="far fa-square"></i>--></span>
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="anadir-productos">
+                              <hr>
+                              <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
+                              <a href="#" id="cropear-btn" class="btn btn-warning disabled">Terminar Ajuste</a>
+                              <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
+                              <!-- <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
                            </div>
                         </div>
-                        <div class="contenedor-content">
-                           <div class="click-protector-cont"></div>
-                           <!-- <div id="map">
-                              <img id="img-pines-amapear" src="">
-                           </div> -->
-                        </div>
-                        <!--  -->
-                        <div class="toggle-aspect-ratio">
-                           <!-- <span class="btn btn-warning" data-value="NaN">Original</span> -->
-                           <div class="text-center">Elija un Tama&ntilde;o:</div>
-                           <div>
-                              <label for="f-option" class="l-radio" data-aspect="1.77777">
-                                 <input type="radio" id="f-option" name="aspect-ratio" tabindex="1" >
-                                 <span>Horizontal (16:9)<!--<i class="fas fa-mobile-alt"></i>--></span>
-                              </label>
-                              <label for="s-option" class="l-radio" data-aspect="1.33333">
-                                 <input type="radio" id="s-option" name="aspect-ratio" tabindex="2">
-                                 <span>Vertical (4:3)<!--<i class="fas fa-mobile-alt" style="transform: rotate(90deg);"></i>--></span>
-                              </label>
-                              <label for="t-option" class="l-radio" data-aspect="1">
-                                 <input type="radio" id="t-option" name="aspect-ratio" tabindex="3">
-                                 <span>Cuadrado (1:1)<!--<i class="far fa-square"></i>--></span>
-                              </label>
-                            </div>
-                       </div>
-                        <div class="anadir-productos">
-                           <hr>
-                           <a href="#" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
-                           <a href="#" id="cropear-btn" class="btn btn-warning disabled">Terminar Ajuste</a>
-                           <a href="#" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
-                           <!-- <a href="#" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
-                        </div>
                      </div>
-                  </div>
-                  <div class="modal-footer">
-                     <div id="result"></div>
-                     <button id="btn-siguiente" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-data">Siguiente</button>
-                     <div class="tooltip-nico">Debe añadir por lo menos un pin!</div>
+
+                     <div class="modal-footer">
+                        <div id="result"></div>
+                        <button id="btn-siguiente" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-data">Siguiente</button>
+                        <div class="tooltip-nico">Debe añadir por lo menos un pin!</div>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-         
-         <div class="modal fade" id="modal-data" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-               <div class="modal-content">
-                  <div class="modal-header modal-header-public">
-                     <div class="text-left" data-toggle="modal" data-target="#modal-cropper" onclick="$('#modal-cropper').modal('hide');"><i class="fas fa-chevron-circle-left"></i></div>
-                     <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
-                     <div class="cerrarModal text-right" data-dismiss="modal"><i id="cerrar-desde-data" class="fas fa-times"></i></div>
-                  </div>
-                  <div class="modal-body text-left">
-                        <input type="hidden" name="accion" value="alta">
-                        <div id="col-foto-upload">
-                              <!-- <p class="label-descr">Seleccione al menos una foto para el publicacion.</p> -->
-                              <div class="row">
-                                
-                                 <div class="col-lg-12">
-                                    <div class="group">      
-                                       <input type="text" name="publicacion_nombre" id="titulo-publicacion" required>
-                                       <span class="highlight"></span>
-                                       <span class="bar"></span>
-                                       <label class="label-text-subir-publicacion">Nombre del publicaci&oacute;n</label>
+            
+            <div class="modal fade" id="modal-data" tabindex="-1" role="dialog" aria-labelledby="modalLabelcropper" aria-hidden="true">
+               <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header modal-header-public">
+                        <div class="text-left" data-toggle="modal" data-target="#modal-cropper" onclick="$('#modal-cropper').modal('hide');"><i class="fas fa-chevron-circle-left"></i></div>
+                        <div class="text-center"><b>Nueva Publicaci&oacute;n</b></div>
+                        <div class="cerrarModal text-right" data-dismiss="modal"><i id="cerrar-desde-data" class="fas fa-times"></i></div>
+                     </div>
+                     <div class="modal-body text-left">
+                           <input type="hidden" name="accion" value="alta">
+                           <div id="col-foto-upload">
+                                 <!-- <p class="label-descr">Seleccione al menos una foto para el publicacion.</p> -->
+                                 <div class="row">
+                                 
+                                    <div class="col-lg-12">
+                                       <div class="group">      
+                                          <input type="text" name="publicacion_nombre" id="titulo-publicacion" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="label-text-subir-publicacion">Nombre del publicaci&oacute;n</label>
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <p class="label-descr">Descripcion de la publicaci&oacute;n</p>
-                                    <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
-                                 </div>
-                              </div>
-                              <div class="row">
-                                    <div id="sels_cat_prod" class="col-lg-12">
-                                       <!-- ARQ -->
-                                       <select name="escena_sel" id="escena_sel" onchange="getEscenas(this.value)">
-                                          <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
-                                          <option value="Arquitectura">Arquitectura</option>
-                                          <option value="Indumentaria">Indumentaria</option>
-                                       </select>
-                                       <select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,'#esc_arq','#esc_arq2')">
-                                          <option value="" selected disabled hidden required>Elija otro parametro</option>
-                                       </select>
-                                       <select name="subescena2" id="esc_arq2" onchange="getSubEscena(this.value,'#esc_arq2','#esc_arq3')">
-                                          <option value="" selected disabled hidden required>Elija un parametro</option>
-                                       </select>
-                                       <select name="subescena3" id="esc_arq3" onchange="getSubEscena(this.value,'#esc_arq3','#esc_arq4')">
-                                          <option value="" selected disabled hidden required>Elija otro parametro</option>
-                                       </select>
-                                       <!-- IND -->
-                                       <select name="subescena1" id="esc_ind" onchange="getSubEscena(this.value,'#esc_ind','#esc_ind2')">
-                                          <option value="" selected disabled hidden required>Elija un estilo de indumentaria</option>
-                                       </select>
+                                 <div class="row">
+                                    <div class="col-lg-12">
+                                       <p class="label-descr">Descripcion de la publicaci&oacute;n</p>
+                                       <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
                                     </div>
-                              </div>
-                        </div>
-                        <br><hr>
-                              
-                           <div>
-                              <div class="row">
-                                 <div class="col-lg-4">
-                                    <br>
-                                    <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+                                 </div>
+                                 <div class="row">
+                                       <div id="sels_cat_prod" class="col-lg-12">
+                                          <!-- ARQ -->
+                                          <select name="escena_sel" id="escena_sel" onchange="getEscenas(this.value)">
+                                             <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
+                                             <option value="Arquitectura">Arquitectura</option>
+                                             <option value="Indumentaria">Indumentaria</option>
+                                          </select>
+                                          <select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,'#esc_arq','#esc_arq2')">
+                                             <option value="" selected disabled hidden required>Elija otro parametro</option>
+                                          </select>
+                                          <select name="subescena2" id="esc_arq2" onchange="getSubEscena(this.value,'#esc_arq2','#esc_arq3')">
+                                             <option value="" selected disabled hidden required>Elija un parametro</option>
+                                          </select>
+                                          <select name="subescena3" id="esc_arq3" onchange="getSubEscena(this.value,'#esc_arq3','#esc_arq4')">
+                                             <option value="" selected disabled hidden required>Elija otro parametro</option>
+                                          </select>
+                                          <!-- IND -->
+                                          <select name="subescena1" id="esc_ind" onchange="getSubEscena(this.value,'#esc_ind','#esc_ind2')">
+                                             <option value="" selected disabled hidden required>Elija un estilo de indumentaria</option>
+                                          </select>
+                                       </div>
+                                 </div>
+                           </div>
+                           <br><hr>
+                                 
+                              <div>
+                                 <div class="row">
+                                    <div class="col-lg-4">
+                                       <br>
+                                       <input id="aspect-ratio-input" name="aspect_ratio" type="hidden">
+                                       <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+                                    </div>
                                  </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <div class="modal-footer">
-                        <div id="result"></div>
+                        <div class="modal-footer">
+                           <div id="result"></div>
+                        </div>
                      </div>
                   </div>
-               </div>
-         </div>
+            </div>
          
-         <input id="aspect-ratio-input" name="aspect_ratio" type="hidden">
          </form>
 
          

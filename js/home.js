@@ -1,30 +1,40 @@
-$(document).ready(function(){
+//doc ready vanilla
+document.addEventListener("DOMContentLoaded", function(event) { 
+    
+    window.addEventListener("scroll", () => {
+        //si llega al fondo del scroll
+        if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight){
+            console.log(window.innerHeight)
+            actualizarPublicsHome();
+        }
+    })   
+
     if(typeof jsonData !== "undefined"){
         
         var reverse = jsonData.publicaciones.reverse();
         var sizePublic = reverse.length;
-            
+        
         if(sizePublic>0){
             
             var escena_json = JSON.parse(escena);
             var escena_json_length = escena_json.length;
-
+            
             //recorre todas las cat y primero dibujo el item de cat
             for(var i=0; i<escena_json_length; i++){
-
-
+                
+                
                 var id_padre = escena_json[i].id_padre;
-
+                
                 if(id_padre == null){
                     
                     var json_cat = escena_json[i].id || 0;
                     var json_cat_nombre = escena_json[i].nombre || "";
-
+                    
                     var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
-                                        '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
-                                            '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
-                                        '</div>'
-                                    '</li>'
+                    '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
+                    '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
+                    '</div>'
+                    '</li>'
                     
                     $(".splide__list__home").append(item_html);
                     
@@ -34,9 +44,9 @@ $(document).ready(function(){
                     $(".random-p-"+i).addClass("pattern"+random);
 
                     //recorre solo si la json_cat es igual a la de puid_public_catblic
-
+                    
                     for(var x=0; x<sizePublic; x++){
-
+                        
                         var id_public = jsonData.publicaciones[x].id || '';
                         var id_public_cat = jsonData.publicaciones[x].subescena1 || 0;
                         var nombre_public = jsonData.publicaciones[x].publicacion_nombre || '';
@@ -47,40 +57,40 @@ $(document).ready(function(){
                         var favorito = jsonData.publicaciones[x].favorito || 0;
                         var fav_accion = "";
                         var full_url = '/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat;
-
-
+                        
+                        
                         if(json_cat == id_public_cat){
-
+                            
                             var public_html = 
-                                '<div>'+
+                            '<div>'+
                                     '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                                         '<div class="overlay-public">'+
                                         '<a class="link-ampliar-home" href="'+full_url+'"></a>'+
                                         '<div class="public-title-home">'+nombre_public+'</div>'+
                                         '<div class="text-overlay">'+
-                                            '<span class="text-overlay-link share-sm" onclick="pathShareHome(\''+full_url+'\')">'+
-                                                '<a href="#"><i class="fas fa-share-alt"></i></a>'+
-                                            '</span>'+
-                                            '&nbsp;&nbsp;'+
-                                            '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
-                                            //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                                
-                                            '</span>'+
+                                        '<span class="text-overlay-link share-sm" onclick="pathShareHome(\''+full_url+'\')">'+
+                                        '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                        '</span>'+
+                                        '&nbsp;&nbsp;'+
+                                        '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
+                                        //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                        
+                                        '</span>'+
                                         '</div>'+
                                         '</div>'+
-                                    '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
-                                    '</div>'+
-                                '</div>';
-
-                            $(".item-cat-"+json_cat).append(public_html)
-                            
-                            if (favorito==null || favorito == 0) {
-                                fav_accion="alta";
-                                var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
-                                $(".text-overlay-link-"+id_public).append(fav_html)
-                            }else{
-                                fav_accion="eliminar";
-                                var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                                        '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
+                                        '</div>'+
+                                        '</div>';
+                                        
+                                        $(".item-cat-"+json_cat).append(public_html)
+                                        
+                                        if (favorito==null || favorito == 0) {
+                                            fav_accion="alta";
+                                            var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                                            $(".text-overlay-link-"+id_public).append(fav_html)
+                                        }else{
+                                            fav_accion="eliminar";
+                                            var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
                                 $(".text-overlay-link-"+id_public).append(fav_html)
                             }
 
@@ -89,27 +99,62 @@ $(document).ready(function(){
                     }
                 }
             }
-                
-                    
+            
+            
         }
-
-
+        
+        
         /*$('.share-sm').click(function(e) {
             e.preventDefault();
             console.log("overlay")
             $(".overlay").show();
-        
+            
             $('#cerrar-light').click(function() {
-            $('.overlay').css("display", "none");
+                $('.overlay').css("display", "none");
             });
         });*/
-
-
+        
+        
         /*buscador*/
         $("#buscador-titulo-input").keyup(function(){
             activarBuscador($(this));
         });
-    //fin ready
-    
+        //fin ready
+        
     }
 });
+
+function actualizarPublicsHome(){
+    
+    console.log("se llego al fondo")
+
+    var data_json = {
+        siguiente: "1"
+    }
+
+    $.ajax({
+        url: '/app/publicacion.php',
+        data: data_json,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+           if (dataJ == 'REDIRECT'){
+              console.log("REDIRECT-->"+dataM);												
+           }else if(dataJ == 'OK'){
+              console.log("OK-->"+dataJ+"/"+dataM);
+           }else{
+              console.log("ELSE-->"+dataJ+"/"+dataM);
+              //window.location.replace("/ampliar-carrito.html");
+           }
+        },
+        error: function( data, jqXhr, textStatus, errorThrown ){
+           console.log("ERROR AJAX--> "+response);
+           console.log(data);
+        }
+    });
+    return false;
+}
