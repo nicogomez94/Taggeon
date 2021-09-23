@@ -35,12 +35,22 @@ if ($perfil == 'seller' || $perfil == 'picker'){
         <a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a><br>
         <a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a><br>
         <a href="/mis-ventas.html"><i class="icon-header fas fa-store"></i>Mis Ventas</a>
+        <a href="/metricas.html"><i class="icon-header fas fa-shopping-basket"></i>Métricas</a><br>
 STR;
     }
     if ($perfil == 'picker'){
         $menu = <<<STR
         <a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a><br>
         <a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a><br>
+        <a href="/metricas.html"><i class="icon-header fas fa-shopping-basket"></i>Métricas</a><br>
+
+STR;
+    }
+
+    if ($GLOBALS['sesionG']['usuario'] == 'poepe@gmail.com' || $GLOBALS['sesionG']['usuario'] ==  'nico15@gmail.com'){
+
+      $menu .= <<<STR
+        <a href="/producto-importar-categorias.html"><i class="icon-header fas fa-th-list"></i>Importar categorías</a><br>
 
 STR;
     }

@@ -249,6 +249,114 @@ class  ProductoManager
 		
 		}
 
+		$subcategoria5 = isset($data["subcategoria5"]) ? $data["subcategoria5"] : '';
+		if ($subcategoria5 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria5 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria5,$idSubcategoria4);
+		if ($idSubcategoria5 == 0){
+			$idSubcategoria5 = $this->productoDao->insertarSubCategoria($subcategoria5,$idSubcategoria4);
+		}
+
+		if ($idSubcategoria5 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		
+		}
+
+		$subcategoria6 = isset($data["subcategoria6"]) ? $data["subcategoria6"] : '';
+		if ($subcategoria6 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria6 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria6,$idSubcategoria5);
+		if ($idSubcategoria6 == 0){
+			$idSubcategoria6 = $this->productoDao->insertarSubCategoria($subcategoria6,$idSubcategoria5);
+		}
+
+		if ($idSubcategoria6 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		
+		}
+
+		$subcategoria7 = isset($data["subcategoria7"]) ? $data["subcategoria7"] : '';
+		if ($subcategoria7 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria7 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria7,$idSubcategoria6);
+		if ($idSubcategoria7 == 0){
+			$idSubcategoria7 = $this->productoDao->insertarSubCategoria($subcategoria7,$idSubcategoria6);
+		}
+
+		if ($idSubcategoria7 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		
+		}
+
+		$subcategoria8 = isset($data["subcategoria8"]) ? $data["subcategoria8"] : '';
+		if ($subcategoria8 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria8 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria8,$idSubcategoria7);
+		if ($idSubcategoria8 == 0){
+			$idSubcategoria8 = $this->productoDao->insertarSubCategoria($subcategoria8,$idSubcategoria7);
+		}
+
+		if ($idSubcategoria8 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		
+		}
+
+		$subcategoria9 = isset($data["subcategoria9"]) ? $data["subcategoria9"] : '';
+		if ($subcategoria9 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria9 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria9,$idSubcategoria8);
+		if ($idSubcategoria9 == 0){
+			$idSubcategoria9 = $this->productoDao->insertarSubCategoria($subcategoria9,$idSubcategoria8);
+		}
+
+		if ($idSubcategoria9 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		
+		}
+
+		$subcategoria10 = isset($data["subcategoria10"]) ? $data["subcategoria10"] : '';
+		if ($subcategoria10 == ''){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		}
+		$idSubcategoria10 = $this->productoDao->getIdSubCategoriaByNombre($subcategoria10,$idSubcategoria9);
+		if ($idSubcategoria10 == 0){
+			$idSubcategoria10 = $this->productoDao->insertarSubCategoria($subcategoria10,$idSubcategoria9);
+		}
+
+		if ($idSubcategoria10 == 0){
+			$this->setStatus("OK");
+			$this->setMsj("");
+			return true;
+		
+		}
+
 		$this->setStatus("OK");
 		$this->setMsj("");
 		return true;
@@ -321,7 +429,7 @@ class  ProductoManager
 			foreach($data as &$row) {
 				$fila++;
 				$datacol = str_getcsv($row, ";"); //parse the items in rows
-				if (count($datacol) != 5){
+				if (count($datacol) != 10){
 				    $this->setStatus("error");
 				    $filaSiguiente = $filaImportadas + 1;
 				    $this->setMsj("Se  importo hasta la linea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: categoria;subcategoria1;subcategoria2;subcategoria3 Ejemplo: Indumentaria;Indumentaria Laboral y Escolar; Uniformes y Ropa de Trabajo; Otro => $row");
@@ -334,6 +442,12 @@ class  ProductoManager
 				$dataNew["subcategoria2"] = isset($datacol[2]) ? $datacol[2] : '';
 				$dataNew["subcategoria3"] = isset($datacol[3]) ?  $datacol[3] : '';
 				$dataNew["subcategoria4"] = isset($datacol[4]) ?  $datacol[4] : '';
+				$dataNew["subcategoria5"] = isset($datacol[5]) ?  $datacol[5] : '';
+				$dataNew["subcategoria6"] = isset($datacol[6]) ?  $datacol[6] : '';
+				$dataNew["subcategoria7"] = isset($datacol[7]) ?  $datacol[7] : '';
+				$dataNew["subcategoria8"] = isset($datacol[8]) ?  $datacol[8] : '';
+				$dataNew["subcategoria9"] = isset($datacol[9]) ?  $datacol[9] : '';
+				$dataNew["subcategoria10"] = isset($datacol[10]) ?  $datacol[10] : '';
  				$this->agregarCategoriaProducto($dataNew);
 				if ($this->getStatus() != 'OK') {
 				    $this->setMsj("Se importo hasta la línea $filaImportadas incluida. Error: ".$this->getMsj());
