@@ -429,15 +429,7 @@ class  ProductoManager
 			foreach($data as &$row) {
 				$fila++;
 				$datacol = str_getcsv($row, ";"); //parse the items in rows
-				if (count($datacol) != 10){
-				    $this->setStatus("error");
-				    $filaSiguiente = $filaImportadas + 1;
-				    $this->setMsj("Se  importo hasta la linea $filaImportadas incluida. Error en la linea $filaSiguiente -> El formato correcto es: categoria;subcategoria1;subcategoria2;subcategoria3 Ejemplo: Indumentaria;Indumentaria Laboral y Escolar; Uniformes y Ropa de Trabajo; Otro => $row");
-
-			        return false;
-
-				}
-		        $dataNew["categoria"] = isset($datacol[0]) ? $datacol[0] : '';
+		                $dataNew["categoria"] = isset($datacol[0]) ? $datacol[0] : '';
 				$dataNew["subcategoria1"] = isset($datacol[1]) ? $datacol[1] : '';;
 				$dataNew["subcategoria2"] = isset($datacol[2]) ? $datacol[2] : '';
 				$dataNew["subcategoria3"] = isset($datacol[3]) ?  $datacol[3] : '';
