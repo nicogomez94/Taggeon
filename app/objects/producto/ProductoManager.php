@@ -86,6 +86,104 @@ class  ProductoManager
 	
 		}
 
+		$subcategria4 = isset($data["subcategria4"]) ? $data["subcategria4"] : '';
+		if ($subcategria4 != ''){
+			if ($this->validarCategoria($subcategria4) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategria4) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
+		}
+
+		$subcategria5 = isset($data["subcategria5"]) ? $data["subcategria5"] : '';
+		if ($subcategria5 != ''){
+			if ($this->validarCategoria($subcategria5) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategria5) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
+		}
+
+		$subcategria6 = isset($data["subcategria6"]) ? $data["subcategria6"] : '';
+		if ($subcategria6 != ''){
+			if ($this->validarCategoria($subcategria6) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategria6) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
+		}
+
+		$subcategria7 = isset($data["subcategria7"]) ? $data["subcategria7"] : '';
+		if ($subcategria7 != ''){
+			if ($this->validarCategoria($subcategria7) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategria7) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
+		}
+
+		$subcategria8 = isset($data["subcategria8"]) ? $data["subcategria8"] : '';
+		if ($subcategria8 != ''){
+			if ($this->validarCategoria($subcategria8) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategria8) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
+		}
+
+		$subcategria9 = isset($data["subcategria9"]) ? $data["subcategria9"] : '';
+		if ($subcategria9 != ''){
+			if ($this->validarCategoria($subcategria9) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategria9) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
+		}
+
+		$subcategria10 = isset($data["subcategria10"]) ? $data["subcategria10"] : '';
+		if ($subcategria10 != ''){
+			if ($this->validarCategoria($subcategria10) === false) {
+				return false;
+			}
+
+			if ($this->productoDao->existeCategoria($subcategria10) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoDao->getMsj());
+				return false;
+			}
+	
+		}
+
 		$marca = isset($data["marca"]) ? $data["marca"] : '';
 		if ($this->validarMarca($marca) === false) {
 			return false;

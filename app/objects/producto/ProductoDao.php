@@ -56,6 +56,48 @@ class  ProductoDao
             $subcategoria3DB = Database::escape($subcategoria3);
         }
         
+        $subcategoria4 = isset($data["subcategoria4"]) ? $data["subcategoria4"] : '';
+        $subcategoria4DB = 'null';
+        if ($subcategoria4 != ''){
+            $subcategoria4DB = Database::escape($subcategoria4);
+        }
+        
+        $subcategoria5 = isset($data["subcategoria5"]) ? $data["subcategoria5"] : '';
+        $subcategoria5DB = 'null';
+        if ($subcategoria5 != ''){
+            $subcategoria5DB = Database::escape($subcategoria5);
+        }
+        
+        $subcategoria6 = isset($data["subcategoria6"]) ? $data["subcategoria6"] : '';
+        $subcategoria6DB = 'null';
+        if ($subcategoria6 != ''){
+            $subcategoria6DB = Database::escape($subcategoria6);
+        }
+        
+        $subcategoria7 = isset($data["subcategoria7"]) ? $data["subcategoria7"] : '';
+        $subcategoria7DB = 'null';
+        if ($subcategoria7 != ''){
+            $subcategoria7DB = Database::escape($subcategoria7);
+        }
+        
+        $subcategoria8 = isset($data["subcategoria8"]) ? $data["subcategoria8"] : '';
+        $subcategoria8DB = 'null';
+        if ($subcategoria8 != ''){
+            $subcategoria8DB = Database::escape($subcategoria8);
+        }
+        
+        $subcategoria9 = isset($data["subcategoria9"]) ? $data["subcategoria9"] : '';
+        $subcategoria9DB = 'null';
+        if ($subcategoria9 != ''){
+            $subcategoria9DB = Database::escape($subcategoria9);
+        }
+        
+        $subcategoria10 = isset($data["subcategoria10"]) ? $data["subcategoria10"] : '';
+        $subcategoria10DB = 'null';
+        if ($subcategoria10 != ''){
+            $subcategoria10DB = Database::escape($subcategoria10);
+        }
+        
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';
@@ -73,8 +115,8 @@ class  ProductoDao
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<SQL
-			INSERT INTO producto (titulo, marca, precio, envio, garantia, descr_producto, color,usuario_alta,stock,categoria,subcategoria1,subcategoria2,subcategoria3)  
-			VALUES ($tituloDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB,$usuarioAltaDB,$stockDB,$categoria,$subcategoria1DB,$subcategoria2DB,$subcategoria3DB)
+			INSERT INTO producto (titulo, marca, precio, envio, garantia, descr_producto, color,usuario_alta,stock,categoria,subcategoria1,subcategoria2,subcategoria3,subcategoria4,subcategoria5,subcategoria6,subcategoria7,subcategoria8,subcategoria9,subcategoria10)  
+			VALUES ($tituloDB, $marcaDB, $precioDB, $envioDB, $garantiaDB, $descr_productoDB, $colorDB,$usuarioAltaDB,$stockDB,$categoria,$subcategoria1DB,$subcategoria2DB,$subcategoria3DB,$subcategoria4DB,$subcategoria5DB,$subcategoria6DB,$subcategoria7DB,$subcategoria8DB,$subcategoria9DB,$subcategoria10DB)
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {
@@ -108,6 +150,20 @@ SQL;
         $subcategoria2DB = Database::escape($subcategoria2);
         $subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
         $subcategoria3DB = Database::escape($subcategoria3);
+        $subcategoria4 = isset($data["subcategoria4"]) ? $data["subcategoria4"] : '';
+        $subcategoria4DB = Database::escape($subcategoria4);
+        $subcategoria5 = isset($data["subcategoria5"]) ? $data["subcategoria5"] : '';
+        $subcategoria5DB = Database::escape($subcategoria5);
+        $subcategoria6 = isset($data["subcategoria6"]) ? $data["subcategoria6"] : '';
+        $subcategoria6DB = Database::escape($subcategoria6);
+        $subcategoria7 = isset($data["subcategoria7"]) ? $data["subcategoria7"] : '';
+        $subcategoria7DB = Database::escape($subcategoria7);
+        $subcategoria8 = isset($data["subcategoria8"]) ? $data["subcategoria8"] : '';
+        $subcategoria8DB = Database::escape($subcategoria8);
+        $subcategoria9 = isset($data["subcategoria9"]) ? $data["subcategoria9"] : '';
+        $subcategoria9DB = Database::escape($subcategoria9);
+        $subcategoria10 = isset($data["subcategoria10"]) ? $data["subcategoria10"] : '';
+        $subcategoria10DB = Database::escape($subcategoria10);
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';
@@ -134,6 +190,13 @@ SET
     `subcategoria1` = $subcategoria1DB,
     `subcategoria2` = $subcategoria2DB,
     `subcategoria3` = $subcategoria3DB,
+    `subcategoria4` = $subcategoria4DB,
+    `subcategoria5` = $subcategoria5DB,
+    `subcategoria6` = $subcategoria6DB,
+    `subcategoria7` = $subcategoria7DB,
+    `subcategoria8` = $subcategoria8DB,
+    `subcategoria9` = $subcategoria9DB,
+    `subcategoria10` = $subcategoria10DB,
     `precio` = $precioDB,
     `envio` = $envioDB,
     `garantia` = $garantiaDB,
@@ -724,7 +787,7 @@ sql;
         `producto`.`descr_producto`,
         `producto`.`color`,
 	`producto`.`stock`,
-         producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3,
+         producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3, producto.subcategoria4,producto.subcategoria5,producto.subcategoria6,producto.subcategoria7,producto.subcategoria8,producto.subcategoria9,producto.subcategoria10,
        GROUP_CONCAT(producto_foto.id) as foto
 
     FROM
@@ -745,7 +808,7 @@ sql;
     `producto`.`descr_producto`,
     `producto`.`color`,
     `producto`.`stock`,
-producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3
+producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3, producto.subcategoria4,producto.subcategoria5,producto.subcategoria6,producto.subcategoria7,producto.subcategoria8,producto.subcategoria9,producto.subcategoria10
 sql;
         $resultado = Database::Connect()->query($sql);
         $row_cnt = mysqli_num_rows($resultado);
