@@ -31,18 +31,18 @@ if ($perfil == 'seller' || $perfil == 'picker'){
     $menu = '';
     if ($perfil == 'seller'){
         $menu = <<<STR
-        <a href="/ampliar-producto.html"><i class="icon-header fas fa-tags"></i>Mis Productos</a><br>
-        <a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a><br>
-        <a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a><br>
-        <a href="/mis-ventas.html"><i class="icon-header fas fa-store"></i>Mis Ventas</a>
-        <a href="/metricas.html"><i class="icon-header fas fa-shopping-basket"></i>Métricas</a><br>
+        <div><a href="/ampliar-producto.html"><i class="icon-header fas fa-tags"></i>Mis Productos</a></div>
+        <div><a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a></div>
+        <div><a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a></div>
+        <div><a href="/mis-ventas.html"><i class="icon-header fas fa-store"></i>Mis Ventas</a></div>
+        <div><a href="/metricas.html"><i class="icon-header fas fa-chart-pie"></i>Métricas</a></div>
 STR;
     }
     if ($perfil == 'picker'){
         $menu = <<<STR
-        <a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a><br>
-        <a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a><br>
-        <a href="/metricas.html"><i class="icon-header fas fa-shopping-basket"></i>Métricas</a><br>
+        <div><a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a></div>
+        <div><a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a></div>
+        <div><a href="/metricas.html"><i class="icon-header fas fa-chart-pie"></i>Métricas</a></div>
 
 STR;
     }
