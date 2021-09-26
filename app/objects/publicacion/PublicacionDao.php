@@ -552,6 +552,7 @@ sql;
         favorito,
             usuarios.nombre,
             usuarios.idUsuario
+    LIMIT 3
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);

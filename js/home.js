@@ -1,4 +1,3 @@
-//doc ready vanilla
 document.addEventListener("DOMContentLoaded", function(event) { 
     
     window.addEventListener("scroll", () => {
@@ -125,31 +124,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function actualizarPublicsHome(){
-    
-    console.log("se llego al fondo")
 
-    var data_json = {
-        siguiente: "1"
+    var rdata = {
+        siguiente : "1"
     }
 
     $.ajax({
-        url: '/app/publicacion.php',
-        data: data_json,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        //async: false,
+        url: "/app/paginador_home.php?cant=count(1)",
+        dataType: 'json',
         success: function( data, textStatus, jQxhr ){
-            var dataJ = JSON.parse(data).status;
-            var dataM = JSON.parse(data).mensaje;
-           if (dataJ == 'REDIRECT'){
-              console.log("REDIRECT-->"+dataM);												
-           }else if(dataJ == 'OK'){
-              console.log("OK-->"+dataJ+"/"+dataM);
-           }else{
-              console.log("ELSE-->"+dataJ+"/"+dataM);
-              //window.location.replace("/ampliar-carrito.html");
-           }
+            console.log("OK-->",data)
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
            console.log("ERROR AJAX--> "+response);
