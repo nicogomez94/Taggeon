@@ -2063,16 +2063,32 @@ function getSubEscena(valueParam,source,target){
 
                 var subEscena = data.mensaje || [];
                 var subEscena_length = data.mensaje.length || 0;
-
+                var targetHtml = $(target);
+                var esc_ind = $("#esc_ind");
+                var target_length = targetHtml.find("option").length;
+                var itemsNext = $(source).nextAll().not(esc_ind);
+                
+                console.log("-----------------------------------")
                 console.log("subEscena",subEscena)
                 console.log("source",source)
                 console.log("target",target)
+                console.log("-----------------------------------")
+                
+                //si ya hay options en el select, borra esos 
+                if(target_length > 1){
+                    itemsNext.each(function(){
+                        console.log("estos hay")
+                        console.log($(this))
+                        console.log("-----------------------------------")
+                        $(this).empty()
+                        $(this).removeClass("showCat");
+                    });
+                }
                 
                 for(var i=0; i<subEscena_length; i++) {
                     var cat_id = subEscena[i].id;
                     var cat_nombre = subEscena[i].nombre;
-                    var targetHtml = $(target);
-     
+
                     var cat_select_html = 
                     '<option value="'+cat_id+'">'+cat_nombre+'</option>';
      

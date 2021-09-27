@@ -1,12 +1,33 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     
-    window.addEventListener("scroll", () => {
+    var count = 0;
+    
+    /*window.addEventListener("scroll", () => {
         //si llega al fondo del scroll
         if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight){
-            console.log(window.innerHeight)
-            actualizarPublicsHome();
+            // console.log(window.innerHeight)
+            actualizarPublicsHome(count);
         }
-    })   
+    })   */
+    
+    $(window).scroll(function (){
+        if($(window).scrollTop() >= $(document).height() - $(window).height()){
+            $.ajax({
+                url: "/app/paginador_home.php?cant="+count,
+                dataType: 'json',
+                success: function(data){
+                    let cant = parseInt(data.length);
+                    count += cant; 
+                    console.log(count);
+                    console.log(data);
+                },
+                error: function( data, response){
+                   console.log("ERROR AJAX--> "+response);
+                   console.log(data);
+                }
+            });
+        }
+    })
 
     if(typeof jsonData !== "undefined"){
         
@@ -123,17 +144,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 });
 
-function actualizarPublicsHome(){
+function actualizarPublicsHome(count){
 
-    var rdata = {
-        siguiente : "1"
-    }
+   
+    console.log("afueraajax"+count);
 
     $.ajax({
-        url: "/app/paginador_home.php?cant=count(1)",
+        url: "/app/paginador_home.php?cant="+count,
         dataType: 'json',
-        success: function( data, textStatus, jQxhr ){
-            console.log("OK-->",data)
+        success: function(data){
+            let cant = parseInt(data.length);
+            count += cant; 
+            console.log(count);
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
            console.log("ERROR AJAX--> "+response);
