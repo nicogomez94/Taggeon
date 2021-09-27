@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    
     /***ampliar/editar producto***/ 
     if(typeof jsonData != "undefined" && typeof jsonData.productos != "undefined" ){
         var sizeProductos = jsonData.productos.length || 0;
         
-        var showResultados = document.querySelector(".show-result-num");
+        var showResultados = document.querySelector(".show-result-num") || 0;
         showResultados.innerHTML = sizeProductos; 
 
         if(sizeProductos>0 || typeof sizeProductos != "undefined"){

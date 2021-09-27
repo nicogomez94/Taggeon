@@ -508,6 +508,12 @@ sql;
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+	$offset = isset($_POST["cant"]) ? $_POST["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $input)) {
+		$offset = 0;
+	}
+        $limit = 3;
+
         $sql = <<<sql
         SELECT
         `publicacion`.`id`,
@@ -552,7 +558,8 @@ sql;
         favorito,
             usuarios.nombre,
             usuarios.idUsuario
-    LIMIT 3
+    order by publicacion.fecha_alta desc
+    LIMIT $offset,$limit
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
