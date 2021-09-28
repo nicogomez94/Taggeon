@@ -512,7 +512,8 @@ sql;
 	if (!preg_match('/^[0-9]+$/i', $offset)) {
 		$offset = 0;
 	}
-        $limit = 3;
+        $limit = 50;
+
 
         $sql = <<<sql
         SELECT

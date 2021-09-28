@@ -1,65 +1,36 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     
-    var count = 6;
+    const dataPaging = {cantidad : 50}
+    const url = "/app/paginador_home.php?cant="+dataPaging.cantidad;
+    getData(url,dataPaging);
     
-    /*window.addEventListener("scroll", () => {
-        //si llega al fondo del scroll
-        if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight){
-            // console.log(window.innerHeight)
-            actualizarPublicsHome(count);
-        }
-    })   */
-
-    const URL = "/app/paginador_home.php?cant="+count;
     let options = {
         root: null,
         rootMargins: "0px",
         threshold: 0.5
     };
     const observer = new IntersectionObserver(handleIntersect, options);
-    observer.observe(document.querySelector("footer"));
-
-    getData();
-
+    const footer = document.querySelector("footer")
+    observer.observe(footer);
+    
     function handleIntersect(entries) {
         if (entries[0].isIntersecting) {
             console.warn("intersect viewport");
-            getData();
+            getData(url,dataPaging);
         }
     }
-    function getData() {
+    function getData(url,dataPaging) {
         let main = document.querySelector("main");
         console.log("fetch");
-        fetch(URL)
+        fetch(url)
             .then(response => response.json())
             .then(data => {
-                // data.items[].img, data.items[].name
                 var cant = parseInt(data.length);
-                count = count + cant; 
-                console.log(count);
+                dataPaging.cantidad = data.length;
+                console.log(dataPaging.cantidad);
                 console.log(data);
             });
     }
-    
-    /*$(window).scroll(function (){
-        if($(window).scrollTop() >= $(document).height() - $(window).height()){
-            vacia()
-            $.ajax({
-                url: "/app/paginador_home.php?cant="+count,
-                dataType: 'json',
-                success: function(data){
-                    let cant = parseInt(data.length);
-                    count += cant; 
-                    console.log(count);
-                    console.log(data);
-                },
-                error: function( data, response){
-                   console.log("ERROR AJAX--> "+response);
-                   console.log(data);
-                }
-            });
-        }
-    })*/
 
     if(typeof jsonData !== "undefined"){
         
@@ -94,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     var random = Math.floor(Math.random() * 7);
                     if (random == 0) {random=random+1}
                     $(".random-p-"+i).addClass("pattern"+random);
-
+                    
                     //recorre solo si la json_cat es igual a la de puid_public_catblic
                     
                     for(var x=0; x<sizePublic; x++){
@@ -115,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                             
                             var public_html = 
                             '<div>'+
-                                    '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
+                            '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
                                         '<div class="overlay-public">'+
                                         '<a class="link-ampliar-home" href="'+full_url+'"></a>'+
                                         '<div class="public-title-home">'+nombre_public+'</div>'+
@@ -143,13 +114,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                         }else{
                                             fav_accion="eliminar";
                                             var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
-                                $(".text-overlay-link-"+id_public).append(fav_html)
+                                            $(".text-overlay-link-"+id_public).append(fav_html)
+                                        }
+                                        
+                                        
+                                    }
+                                }
                             }
-
-                            
-                        }
-                    }
-                }
             }
             
             
@@ -175,11 +146,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
         
     }
 });
-
-function actualizarPublicsHome(count){
-   
-   
-
-}
-
-function vacia(){}
