@@ -27,7 +27,7 @@
     #navbar-principal #search-container{
         display: none;
         width: 90%;
-    }
+    } 
     #dropdown-user-menu-responsive{
         display: block !important;
     }
@@ -114,10 +114,10 @@
         margin-top: 10px;
         float: none !important;
     }
-    #search-container{
+    /* #search-container{
         width: 75%;
         margin-left: 10px;
-    }
+    } */
     #cancelar-search {
         width: 20%;
         padding-left: 0;

@@ -12,12 +12,7 @@
 }
 
 
-.btn-warning {
-    color: #000 !important;
-    background-color: transparent !important;
-    border-color: var(--golden-taggeon) !important;;
-    /*font-weight: 500 !important;*/
-}
+
 .overlay-loading{
     display: none;
     position: fixed;
@@ -52,7 +47,6 @@ a:link, a:visited{
     color: #000 !important;
 }
 body{
-    font-family: Helvetica,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
 }
 [role="main"] {
@@ -191,15 +185,29 @@ body{
     background-color: #fff;
     /* box-shadow: 0px 0px 2px #cecece; */
     border-bottom: 1px solid #e2e2e2;
-}
-#navbar-principal a{
-    color: black !important;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 #navbar-principal .form-control{
     background-color: rgb(241, 241, 241);
     color: rgb(184, 184, 184);
     /* border-radius: 20px; */
     height: 50px;
+}
+.btn-warning {
+    color: #000 !important;
+    background-color: transparent !important;
+    border-color: #dedede !important;
+    /* font-weight: 500 !important; */
+    padding: 2px 15px 2px 15px;
+    font-size: 13px;
+}
+.btn-warning:hover{
+    background-color: var(--golden-taggeon) !important;
+    color: #fff !important;
 }
 .header-public-overlay {
     display: flex;
@@ -881,10 +889,19 @@ body{
     cursor: pointer;
 }
 #menu-perfil{
-    font-weight: 500 !important;
+    font-weight: 500;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #fbfbfb;
 }
-#menu-perfil .nav-link:hover{
-
+#menu-perfil a{
+    margin-left: 5px;
+    margin-right: 5px;
 }
 #inside-nav{
     position: absolute;
@@ -2432,12 +2449,6 @@ button:disabled{
 }
 .popup-producto{
     cursor: pointer;
-}
-#salir-popup{
-    position: absolute;
-    right: 10px;
-    margin: 0px;
-    top: -30px;
 }
 .salir-popup-single{
     position: absolute;

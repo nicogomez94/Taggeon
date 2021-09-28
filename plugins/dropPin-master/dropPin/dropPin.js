@@ -187,7 +187,7 @@
 			//para salir de la sel de productos y eliminar pin
 			popup_cont.on("click","#salir-popup", function(){
 				//hago esto porque sino con css() me toma con pixels
-				var data_close = $(this).parent().attr("data-close");
+				var data_close = $(this).parent().parent().attr("data-close");
 				var box_y = data_close.split("-")[0]
 				var box_x = data_close.split("-")[1]
 				var pin_a_borrar = $("#map").find("[data-close='"+box_y+"-"+box_x+"']");

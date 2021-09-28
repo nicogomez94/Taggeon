@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     
-    var count = 0;
+    var count = 6;
     
     /*window.addEventListener("scroll", () => {
         //si llega al fondo del scroll
@@ -9,9 +9,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
             actualizarPublicsHome(count);
         }
     })   */
+
+    const URL = "/app/paginador_home.php?cant="+count;
+    let options = {
+        root: null,
+        rootMargins: "0px",
+        threshold: 0.5
+    };
+    const observer = new IntersectionObserver(handleIntersect, options);
+    observer.observe(document.querySelector("footer"));
+
+    getData();
+
+    function handleIntersect(entries) {
+        if (entries[0].isIntersecting) {
+            console.warn("intersect viewport");
+            getData();
+        }
+    }
+    function getData() {
+        let main = document.querySelector("main");
+        console.log("fetch");
+        fetch(URL)
+            .then(response => response.json())
+            .then(data => {
+                // data.items[].img, data.items[].name
+                var cant = parseInt(data.length);
+                count = count + cant; 
+                console.log(count);
+                console.log(data);
+            });
+    }
     
-    $(window).scroll(function (){
+    /*$(window).scroll(function (){
         if($(window).scrollTop() >= $(document).height() - $(window).height()){
+            vacia()
             $.ajax({
                 url: "/app/paginador_home.php?cant="+count,
                 dataType: 'json',
@@ -27,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }
             });
         }
-    })
+    })*/
 
     if(typeof jsonData !== "undefined"){
         
@@ -145,22 +177,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function actualizarPublicsHome(count){
-
    
-    console.log("afueraajax"+count);
+   
 
-    $.ajax({
-        url: "/app/paginador_home.php?cant="+count,
-        dataType: 'json',
-        success: function(data){
-            let cant = parseInt(data.length);
-            count += cant; 
-            console.log(count);
-        },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-           console.log("ERROR AJAX--> "+response);
-           console.log(data);
-        }
-    });
-    return false;
 }
+
+function vacia(){}
