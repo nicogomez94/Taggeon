@@ -508,8 +508,8 @@ sql;
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
-	$offset = isset($_POST["cant"]) ? $_POST["cant"] : 0;
-	if (!preg_match('/^[0-9]+$/i', $input)) {
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
 		$offset = 0;
 	}
         $limit = 3;
@@ -561,7 +561,7 @@ sql;
     order by publicacion.fecha_alta desc
     LIMIT $offset,$limit
 sql;
-//echo $sql;
+#echo $sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
 

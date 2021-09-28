@@ -27,16 +27,16 @@ function validSqlInjection ($param){
 
 global $menuperfil;
 $menuperfil['picker'] = <<<STR
-<a class="nav-item nav-link"  href="/favoritos.html">Favoritos</a>
-<a class="nav-item nav-link" href="/mis-compras.html">Compras</a>
+<a href="/favoritos.html">Favoritos</a>
+<a href="/mis-compras.html">Compras</a>
 STR;
 
 $menuperfil['seller'] = <<<STR
-<a class="nav-item nav-link"  href="/favoritos.html">Favoritos</a>
-<a class="nav-item nav-link" href="/mis-ventas.html">Ventas</a>
-<a class="nav-item nav-link" href="/mis-compras.html">Compras</a>
-<a class="nav-item nav-link" href="/mis-publicaciones.html">Mis Publicaciones</a>
-<a class="nav-item nav-link" href="/ampliar-producto.html">Mis Productos</a>
+<a href="/favoritos.html">Favoritos</a>
+<a href="/mis-ventas.html">Ventas</a>
+<a href="/mis-compras.html">Compras</a>
+<a href="/mis-publicaciones.html">Mis Publicaciones</a>
+<a href="/ampliar-producto.html">Mis Productos</a>
 <!--<a class="nav-item nav-link" href="/ampliar-publicacion.html">Publicaciones</a>-->
 STR;
 
