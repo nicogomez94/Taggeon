@@ -26,7 +26,7 @@ if ($perfil=='seller'){
         "seguidos"     => $seguidoresManager->getListSeguidos()
         
     );
-    $jsonData = json_encode($jsonData);
+    $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);
     $menuperfil = $GLOBALS['menuperfil'][$perfil];
     $contenido = new Template($nameTemplate);
 	$contenido->asigna_variables(array(

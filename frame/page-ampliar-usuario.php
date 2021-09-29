@@ -24,7 +24,7 @@ if ($perfil=='picker' || $perfil == 'seller'){
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
     );
-    $jsonData = json_encode($jsonData);
+    $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);
     //$urlEditar = ($perfil == 'seller') ? "/editar-usuario-seller.html": '/editar-usuario.html';
     
     $menuperfil = $GLOBALS['menuperfil'][$perfil];

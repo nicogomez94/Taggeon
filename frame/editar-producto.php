@@ -38,7 +38,7 @@ if ($perfil == 'seller') {
     );
 
 
-    $jsonData = json_encode($jsonData);
+    $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);
     //$urlEditar = ($perfil == 'seller') ? "/editar-usuario-seller.html": '/editar-usuario.html';
     $contenido = new Template($nameTemplate);
     $idEditar = isset($_GET["id"]) ? $_GET["id"] : '';

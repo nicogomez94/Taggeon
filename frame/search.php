@@ -34,7 +34,7 @@ echo $contenidoStringHeader;
         "seguidos"     => $seguidoresManager->getListSeguidos()
     );
 
-    $jsonData = json_encode($jsonData);
+    $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);
 echo "<script>var jsonData = $jsonData;</script>";
 echo $htmlContent;
 
