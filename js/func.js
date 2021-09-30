@@ -1,20 +1,20 @@
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     
     //activar notifs
     ampliarNotif();
 
     const dataPaging = {cantidad : 50}
-    const url = "/app/paginador_home.php?cant="+dataPaging.cantidad;
+    const url = `/app/paginador_home.php?cant=${dataPaging.cantidad}`;
     getDataPaging(url,dataPaging);
     
-    let options = {
+    const options = {
         root: null,
         rootMargins: "0px",
         threshold: 0.5
     };
     const observer = new IntersectionObserver(handleIntersect, options);
-    const footer = document.querySelector("footer") || "";
-    observer.observe(footer);
+    const footer = document.querySelector("footer");
+    if(footer !== null) observer.observe(footer)
     
     function handleIntersect(entries) {
         if (entries[0].isIntersecting) {
@@ -722,11 +722,11 @@ $(".modal").on("click", ".btn-carrito", function(){
                console.log("REDIRECT-->"+dataM);
                window.location.replace(dataM);														
             }else if(dataJ == 'OK'){
-                console.log("OK-->"+dataJ+"/"+dataM);
-                window.location.replace("/ampliar-carrito.html");
+                console.log(dataJ);
+                console.log(dataM);
+                window.location.replace("/ampliar-carrito.html?id_carrito="+dataM);	
             }else{
                 console.log("ELSE-->"+dataJ+"/"+dataM);
-                alert(dataJ+"/"+dataM);
                 //window.location.replace("/ampliar-carrito.html");
             }
         },
@@ -2273,4 +2273,19 @@ function ampliarOverlay(clase){
 function cerrarOverlay(clase){
     var el = document.querySelector("."+clase);
     el.style.display = "none";
+}
+
+function fetchIdCarrito(){
+    const URL = "/app/carrito.php"
+
+    let dataCarr = new FormData();
+    dataCarr.append("accion","alta");
+
+    fetch(URL, {
+        method: 'POST',
+        body: dataCarr,
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+
 }

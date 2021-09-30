@@ -645,14 +645,14 @@ body{
     cursor:pointer;
 }
 /****/
-.prod-flex-container{
+.flex-container{
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
 }
-.prod-flex-listado{
+.flex-listado{
     flex-direction: row;
     width: 20%;
     margin: 10px;
@@ -660,7 +660,7 @@ body{
     height: max-content;
     position: relative;
 }
-.prod-flex-listado img{
+.flex-listado img{
     max-width: 100%;
     border-radius: 10px;
 }
@@ -689,7 +689,6 @@ body{
 
 
 .items {
-    margin-top: 300px;
     padding: 15px;
     /* height: 100%; */
     position: relative;
@@ -1749,7 +1748,7 @@ input:focus-visible, .input:focus-within{
     border-radius: 5px;
 }
 .content-col-div:hover .overlay-public, 
-.prod-flex-listado:hover .overlay-public{
+.flex-listado:hover .overlay-public{
     opacity: 1;
 }
 .text-overlay{

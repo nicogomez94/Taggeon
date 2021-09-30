@@ -25,6 +25,10 @@
       </div>
       <hr>
 
+      <div class="flex-container">
+         <div class="flex-listado"></div>
+      </div>
+
 
          <!-- ventas hardcodeado -->
          <!--<div class="row producto venta text-left">
@@ -75,7 +79,8 @@
 <script>
 $(document).ready(function(){
 
-   var sizeVentas = jsonData.ventas.length;
+   const sizeVentas = jsonData.ventas.length;
+   const flex_listado = document.querySelector(".flex-listado")
 
     if(sizeVentas>0){
         for(var i=0; i<sizeVentas; i++){
@@ -89,27 +94,27 @@ $(document).ready(function(){
             var imagen_id = jsonData.ventas[i].foto_id || 0;
             var foto_src = '/productos_img/'+imagen_id+ '.png' || "";
 
-            var ventas_html = 
-            '<div class="overlay-public">'+
-                        '<div class="text-overlay-prod">'+
-                            '<span data-title="'+id_prod+'" class="text-overlay-link share-sm">'+
-                                '<a href="#"><i class="fas fa-trash-alt"></i></a>'+
-                            '</span>'+
-                            '<span data-title="'+id_prod+'" class="text-overlay-link text-overlay-link-'+id_prod+'">'+
-                                '<a href="/ampliar-mis-ventas.html?id='+id_carrito+'"><i class="fas fa-edit"></i></a>'+
-                            '</span>'+
-                        '</div>'+
-                    '</div>'+
-                    '<img src="'+foto_src+'" alt="'+foto_src+'">'+
-                    '<div class="prod-datos">'+
-                    '    <div class="nombre-prod">'+nombre_producto+'</div>'+
-                    '    <div class="precio-prod">$ '+precio_producto+'</div>'+
-                    '</div>';
-
-               $(".inner-ventas").append(ventas_html);
+            `<div class="overlay-public">
+               <div class="text-overlay-prod">
+                     <span data-title="${id}" class="text-overlay-link share-sm">
+                        <a href="#"><i class="fas fa-trash-alt"></i></a>
+                     </span>
+                     <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
+                        <a href="/ampliar-mis-ventas.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
+                     </span>
+               </div>
+            </div>
+            <img src="${foto_src}" alt="${foto_src}">
+            <div class="prod-datos">
+               <div class="nombre-prod">${nombre_producto}</div>
+               <div class="precio-prod">$ ${precio_producto}</div>
+            </div>`;
+               
+            flex_listado.insertAdjacentHTML('beforeend', compras_html) 
         }
       }else{
-         $(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta por el momento<i></h3>')
+         flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>')
+         //$(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta por el momento<i></h3>')
       }
    
 });
