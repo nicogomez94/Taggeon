@@ -43,18 +43,18 @@ class  CarritoManager
 
 	public function agregarCarrito(array $data)
 	{
-		$dataAux = array();
-		$dataAux["estado"] = 2;
-		$carritosHuerfanos = $this->carritoDao->getListCompras($dataAux);
+	#	$dataAux = array();
+	#	$dataAux["estado"] = 2;
+	#	$carritosHuerfanos = $this->carritoDao->getListCompras($dataAux);
 
-		$dataAux["estado"] = 1;
-		$carritosEstado1 = $this->carritoDao->getListCompras($dataAux);
-		
-		if (count($carritosHuerfanos)>0 || count($carritosEstado1)>0){
-			$this->setStatus("ERROR");
-			$this->setMsj("No se puede agregar el producto. Existe un carrito abierto. Cancele o finalice el mismo para poder continuar.");
-			return false;
-		}
+	#	$dataAux["estado"] = 1;
+	#	$carritosEstado1 = $this->carritoDao->getListCompras($dataAux);
+	#	
+	#	if (count($carritosHuerfanos)>0 || count($carritosEstado1)>0){
+	#		$this->setStatus("ERROR");
+	#		$this->setMsj("No se puede agregar el producto. Existe un carrito abierto. Cancele o finalice el mismo para poder continuar.");
+	#		return false;
+	#	}
 
 
 		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
@@ -88,15 +88,15 @@ class  CarritoManager
 			return false;
 		}
 
-		$vendedorActual = $this->carritoDao->getVendedorByIdCarrito($data["id_carrito"]);
-		$vendedorActual = isset($vendedorActual) ? $vendedorActual : '';
+		#$vendedorActual = $this->carritoDao->getVendedorByIdCarrito($data["id_carrito"]);
+		#$vendedorActual = isset($vendedorActual) ? $vendedorActual : '';
 
-		if ( $vendedorActual !=  $data["id_vendedor"] ){
-			$this->setStatus("ERROR");
-			$this->setMsj("El producto que quiere agregar pertenece a otro vendedor. Finalize el carrito y vuelva a intentarlo.");
-			return false;
+		#if ( $vendedorActual !=  $data["id_vendedor"] ){
+		#	$this->setStatus("ERROR");
+		#	$this->setMsj("El producto que quiere agregar pertenece a otro vendedor. Finalize el carrito y vuelva a intentarlo.");
+		#	return false;
 
-		}
+		#}
 
 		#valida el manager de producto el id_producto
 		$data["id_producto"] = isset($data["id"]) ? $data["id"] : '';
