@@ -37,7 +37,6 @@ $menuperfil['seller'] = <<<STR
 <a href="/mis-compras.html">Compras</a>
 <a href="/mis-publicaciones.html">Mis Publicaciones</a>
 <a href="/ampliar-producto.html">Mis Productos</a>
-<!--<a class="nav-item nav-link" href="/ampliar-publicacion.html">Publicaciones</a>-->
 STR;
 
 
