@@ -790,8 +790,9 @@ sql;
 
 
 
+
         $sql = <<<sql
-        SELECT id FROM `producto` WHERE titulo like $inputDB OR descr_producto like '%pc%'
+        SELECT id FROM `producto` WHERE titulo like $inputDB OR descr_producto like $inputDB
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -808,6 +809,13 @@ sql;
         if ($whereProducto != ''){
             $whereProducto = " OR ($whereProducto)";
         }
+	$paginador = '';
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
+		$offset = 0;
+	}
+	$limit = 50;
+        $paginador = " LIMIT $offset,$limit";
 
         $sql = <<<sql
         SELECT
@@ -858,6 +866,7 @@ sql;
         favorito,
             usuarios.nombre,
             usuarios.idUsuario
+	$paginador
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
