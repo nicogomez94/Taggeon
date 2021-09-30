@@ -715,6 +715,11 @@ sql;
 
     public function getListPublicacion()
     {
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
+		$offset = 0;
+	}
+        $limit = 5;
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
@@ -762,6 +767,7 @@ sql;
         favorito,
                 usuarios.nombre,
                 usuarios.idUsuario
+    LIMIT $offset,$limit
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);

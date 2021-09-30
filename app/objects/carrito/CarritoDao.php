@@ -204,10 +204,19 @@ SQL;
 
         $where = "carrito.estado = $estadoDB";
 
+	$paginador = '';
         if ($id != ''){
             $idDB = Database::escape($id);
             $where .= " AND carrito.id = $idDB";
-        }
+	}else{
+		$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+		if (!preg_match('/^[0-9]+$/i', $offset)) {
+			$offset = 0;
+		}
+		$limit = 50;
+                $paginador = " LIMIT $offset,$limit";
+
+	}
 
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -238,6 +247,7 @@ SQL;
                 GROUP BY
 		envio_direccion,envio_numero,
 `envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, producto.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+     $paginador
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
@@ -315,10 +325,19 @@ sql;
 
         $where = " AND carrito.estado = $estadoDB";
 
+	$paginador = '';
         if ($id != ''){
             $idDB = Database::escape($id);
             $where .= " AND carrito.id = $idDB";
-        }
+	}else{
+		$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+		if (!preg_match('/^[0-9]+$/i', $offset)) {
+			$offset = 0;
+		}
+		$limit = 50;
+                $paginador = " LIMIT $offset,$limit";
+
+	}
 
 
         $sql = <<<sql
@@ -346,6 +365,7 @@ sql;
                 GROUP BY
 		envio_direccion,envio_numero,
 `envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, producto.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+$paginador
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
@@ -424,10 +444,19 @@ public function getListVentas(array $data)
 
         $where = "carrito.estado = $estadoDB";
 
+	$paginador = '';
         if ($id != ''){
             $idDB = Database::escape($id);
             $where .= " AND carrito.id = $idDB";
-        }
+	}else{
+		$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+		if (!preg_match('/^[0-9]+$/i', $offset)) {
+			$offset = 0;
+		}
+		$limit = 50;
+                $paginador = " LIMIT $offset,$limit";
+
+	}
 
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -458,6 +487,7 @@ public function getListVentas(array $data)
                 GROUP BY
 		envio_direccion,envio_numero,
 `envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, carrito.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+    LIMIT $offset,$limit
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
@@ -564,10 +594,19 @@ sql;
 
         $where = " AND carrito.estado = $estadoDB";
 
+	$paginador = '';
         if ($id != ''){
             $idDB = Database::escape($id);
             $where .= " AND carrito.id = $idDB";
-        }
+	}else{
+		$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+		if (!preg_match('/^[0-9]+$/i', $offset)) {
+			$offset = 0;
+		}
+		$limit = 50;
+                $paginador = " LIMIT $offset,$limit";
+
+	}
 
 
         $sql = <<<sql
@@ -595,6 +634,7 @@ sql;
                 GROUP BY
 		envio_direccion,envio_numero,
 `envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, carrito.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+           $paginador
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);

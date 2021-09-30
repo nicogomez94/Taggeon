@@ -61,7 +61,7 @@
 </div>
 <!--  -->
 
-<footer></footer>
+<footer>test</footer>
 
 <script>
    var jsonData = {json};
@@ -72,7 +72,7 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=170721-0342"></script>
+   <script src="js/func.js?time=300921-1343"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <!-- <script src="js/popper.js"></script> -->
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
@@ -81,6 +81,39 @@
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <script>
       $(document).ready(function(){
+         
+         getDataPaging();
+         
+         const options = {
+            root: null,
+            rootMargins: "0px",
+            threshold: 0.5
+         };
+         const observer = new IntersectionObserver(handleIntersect, options);
+         const footer = document.querySelector("footer");
+         if(footer !== null) observer.observe(footer)
+         
+         function handleIntersect(entries) {
+            if (entries[0].isIntersecting) {
+                  console.warn("intersect viewport");
+                  getDataPaging();
+            }
+         }
+
+         function getDataPaging() {
+            console.log("fetch");
+            var dataPaging = {cantidad : 5}
+            var url = `/app/paginador_mis-publicaciones.php?cant=${dataPaging.cantidad}`;
+            fetch(url)
+                  .then(response => response.json())
+                  .then(data => {
+                     var cant = parseInt(data.length);
+                     //dataPaging.cantidad = dataPaging.cantidad+5;
+                     console.log(dataPaging.cantidad);
+                     console.log(data);
+                  });
+         }
+
 
          $("img").on("error", function(){//parcheado hard, buscar una mejor solucion con una func que abarque todas las img
             $(this).attr('src', '../../imagen_perfil/generica.png');
