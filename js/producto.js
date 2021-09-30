@@ -19,17 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     let prod_flex_container = document.querySelector(".prod-flex-container");
                     
                     let listadoProducto = 
-                    /* '<div class="row producto">'+
-                    '<div class="col-lg-2 col-md-2 col-sm-2 col-4"><div class="img-producto-container-'+i+'" data-title="'+foto_prod+'"><img class="img-producto" src="'+foto_src+'"></div></div>'+
-                    '<div class="col-lg-3 col-md-3 col-sm-3 col-6 text-left"><span class="titulo-producto">'+nombre_prod+'</span></div>'+
-                    '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="precio-producto">AR$ '+precio_prod+'</span></div>'+
-                    '<div class="col-lg-2 col-md-2 col-sm-2 col-4 "><span class="stock-producto">'+stock_prod+'</span></div>'+
-                    '<div class="col-lg-3 col-md-3 col-sm-3 col-4 text-right"><i data-title="'+i+'" class="fas fa-ellipsis-v ellip"></i></div>'+
-                    '<div class="acciones-producto acciones-producto-'+i+'">'+
-                    '<div class="eliminar-producto" data-title="'+id_prod+'"><a href="#"><i class="fas fa-trash-alt"></i>&nbsp;Eliminar</a></div>'+
-                    '<div class="modificar-producto" data-title="'+id_prod+'"><a href="/editar-producto.html?id='+id_prod+'&accion=editar"><i class="fas fa-edit"></i>&nbsp;Modificar</a></div>'+
-                    '</div>'+
-                    '</div>';*/
                     '<div class="overlay-public">'+
                         '<div class="text-overlay-prod">'+
                             '<span data-title="'+id_prod+'" class="text-overlay-link share-sm">'+

@@ -56,6 +56,7 @@
    </div>
 </div>
 
+<footer></footer>
 
 <script>
    var jsonData = {json};
@@ -89,37 +90,28 @@ $(document).ready(function(){
             var foto_src = '/productos_img/'+imagen_id+ '.png' || "";
 
             var ventas_html = 
-                  '<div class="row producto venta text-left">'+
-                  '   <div class="col-lg-4 col-md-4 col-sm-12 col-12">'+
-                  '      <div class="media">'+
-                  '         <img class="mr-3 img-venta-lista" src="'+foto_src+'" alt="img">'+
-                  '         <div class="media-body">'+
-                  '            <h5 class="mt-0">'+nombre_producto+'</h5>'+
-                  '            <div><span class="estado-pedido-venta-label">Estado de pedido:</span>&nbsp;&nbsp;<span class="estado-pedido-venta estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  '+//hard
-                  '         </div>'+
-                  '      </div>'+
-                  '   </div>'+
-                  '   <div class="col-lg-4 col-md-4 col-sm-12 col-12 col-vendedor">'+
-                  '      <div class="media">'+
-                  '         <img style="border-radius: 50%;" class="mr-3 img-venta-lista" src="../../img/descarga.png" alt="img">'+
-                  '         <div class="media-body">'+
-                  '            <h5 class="mt-0">Comprador</h5>'+
-                  '            <span class="label-compra-vendedor">'+name_comprador+'</span>'+//hard
-                  '         </div>'+
-                  '      </div>'+
-                  '   </div>'+
-                  '   <div class="col-lg-4 col-md-4 col-sm-12 col-12 text-right">'+
-                  '      <span class="ver-detalle-venta-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="/ampliar-mis-ventas.html?id='+id_carrito+'">Ver Detalle</a></span>'+
-                  '      <!-- <i data-title="0" class="fas fa-ellipsis-v ellip"></i> -->'+
-                  '   </div>'+
-                  '</div>';
+            '<div class="overlay-public">'+
+                        '<div class="text-overlay-prod">'+
+                            '<span data-title="'+id_prod+'" class="text-overlay-link share-sm">'+
+                                '<a href="#"><i class="fas fa-trash-alt"></i></a>'+
+                            '</span>'+
+                            '<span data-title="'+id_prod+'" class="text-overlay-link text-overlay-link-'+id_prod+'">'+
+                                '<a href="/ampliar-mis-ventas.html?id='+id_carrito+'"><i class="fas fa-edit"></i></a>'+
+                            '</span>'+
+                        '</div>'+
+                    '</div>'+
+                    '<img src="'+foto_src+'" alt="'+foto_src+'">'+
+                    '<div class="prod-datos">'+
+                    '    <div class="nombre-prod">'+nombre_producto+'</div>'+
+                    '    <div class="precio-prod">$ '+precio_producto+'</div>'+
+                    '</div>';
 
                $(".inner-ventas").append(ventas_html);
         }
-    }
+      }else{
+         $(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta por el momento<i></h3>')
+      }
    
-    //override css main style
-    $(".titulo-producto").css("line-height","initial");
 });
 </script>
    <!-- <script src="js/publicacion.js?time=271220-2243"></script> -->

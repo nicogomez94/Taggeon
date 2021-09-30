@@ -3,6 +3,40 @@ $(document).ready(function() {
     //activar notifs
     ampliarNotif();
 
+    const dataPaging = {cantidad : 50}
+    const url = "/app/paginador_home.php?cant="+dataPaging.cantidad;
+    getDataPaging(url,dataPaging);
+    
+    let options = {
+        root: null,
+        rootMargins: "0px",
+        threshold: 0.5
+    };
+    const observer = new IntersectionObserver(handleIntersect, options);
+    const footer = document.querySelector("footer") || "";
+    observer.observe(footer);
+    
+    function handleIntersect(entries) {
+        if (entries[0].isIntersecting) {
+            console.warn("intersect viewport");
+            getDataPaging(url,dataPaging);
+        }
+    }
+
+    function getDataPaging(url,dataPaging) {
+        let main = document.querySelector("main");
+        console.log("fetch");
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                var cant = parseInt(data.length);
+                dataPaging.cantidad = data.length;
+                console.log(dataPaging.cantidad);
+                console.log(data);
+            });
+    }
+
+
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
     $(".board")

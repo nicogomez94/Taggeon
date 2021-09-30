@@ -1,36 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
-    
-    const dataPaging = {cantidad : 50}
-    const url = "/app/paginador_home.php?cant="+dataPaging.cantidad;
-    getData(url,dataPaging);
-    
-    let options = {
-        root: null,
-        rootMargins: "0px",
-        threshold: 0.5
-    };
-    const observer = new IntersectionObserver(handleIntersect, options);
-    const footer = document.querySelector("footer")
-    observer.observe(footer);
-    
-    function handleIntersect(entries) {
-        if (entries[0].isIntersecting) {
-            console.warn("intersect viewport");
-            getData(url,dataPaging);
-        }
-    }
-    function getData(url,dataPaging) {
-        let main = document.querySelector("main");
-        console.log("fetch");
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                var cant = parseInt(data.length);
-                dataPaging.cantidad = data.length;
-                console.log(dataPaging.cantidad);
-                console.log(data);
-            });
-    }
 
     if(typeof jsonData !== "undefined"){
         
