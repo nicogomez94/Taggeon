@@ -32,7 +32,11 @@ if (sizeof($_POST) > 0) {
         }
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';
-            $mensajeRet = "La solicitud se proceso con éxito";
+	    if  ($var_accion == 'alta') {
+		    $mensajeRet = $objPrincipalManager->getMsj();
+	   }else{
+		    $mensajeRet = "La solicitud se proceso con éxito";
+	   }
         } else {
             $statusRet  = 'ERROR';
             $mensajeRet = $objPrincipalManager->getMsj();
