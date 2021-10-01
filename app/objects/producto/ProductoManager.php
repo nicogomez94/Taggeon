@@ -870,6 +870,23 @@ class  ProductoManager
 		return $producto;
 	}
 	
+	public function getProductosByIdPublicacion(array $data)
+	{
+
+		$id = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarId($id) === false) {
+			return [];
+		}
+	
+		$producto = $this->productoDao->getProductosByIdPublicacion($id);
+		if ($this->productoDao->getStatus() != 'ok') {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoDao->getMsj());
+			return [];
+		}
+		$this->setStatus("ok");
+		return $producto;
+	}
 
 	public function getProducto(array $data)
 	{

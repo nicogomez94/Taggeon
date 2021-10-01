@@ -76,6 +76,9 @@ if ($sesionManager->validar(array('seller','picker'))){
 		}else if (preg_match('/^(get)$/i', $var_accion)){
 			$mensajeRet = $objPrincipalManager->getProducto($_GET);
 			$statusRet = 'OK';
+		}else if (preg_match('/^(getproductos)$/i', $var_accion)){
+			$mensajeRet = $objPrincipalManager->getProductosByIdPublicacion($_GET);
+			$statusRet = 'OK';
 
 		}
 

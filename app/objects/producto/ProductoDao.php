@@ -955,4 +955,60 @@ SQL;
 
         return 0;
     }
+    public function getProductosByIdPublicacion($id)
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $id = isset($id) ?   $id : '';
+        $idDB = Database::escape($id);
+        $sql = <<<sql
+        SELECT
+        `producto`.`id`,
+        `producto`.`titulo`,
+        `producto`.`marca`,
+        `producto`.`precio`,
+        `producto`.`envio`,
+        `producto`.`garantia`,
+        `producto`.`descr_producto`,
+        `producto`.`color`,
+	`producto`.`stock`,
+         producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3, producto.subcategoria4,producto.subcategoria5,producto.subcategoria6,producto.subcategoria7,producto.subcategoria8,producto.subcategoria9,producto.subcategoria10,
+       GROUP_CONCAT(producto_foto.id) as foto
+
+    FROM
+        `producto`
+    LEFT JOIN
+        producto_foto
+    ON
+        `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+    WHERE
+	producto.id=$idDB AND 
+	(`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) 
+    group by         `producto`.`id`,
+    `producto`.`titulo`,
+    `producto`.`marca`,
+    `producto`.`precio`,
+    `producto`.`envio`,
+    `producto`.`garantia`,
+    `producto`.`descr_producto`,
+    `producto`.`color`,
+    `producto`.`stock`,
+producto.categoria,producto.subcategoria1,producto.subcategoria2,producto.subcategoria3, producto.subcategoria4,producto.subcategoria5,producto.subcategoria6,producto.subcategoria7,producto.subcategoria8,producto.subcategoria9,producto.subcategoria10
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $row_cnt = mysqli_num_rows($resultado);
+        $list = array();
+        if ($row_cnt <= 0) {
+            $this->setStatus("ERROR");
+            $this->setMsj("No se encontró el producto o no tiene permisos para editar.");
+            return $list;
+        }
+
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        $this->setStatus("ok");
+        return $list;
+    }
 }
