@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
     ampliarNotif();
 
 
+    
+
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
     $(".board")
@@ -2242,6 +2244,7 @@ function cerrarOverlay(clase){
     el.style.display = "none";
 }
 
+
 function fetchIdCarrito(){
     const URL = "/app/carrito.php"
 
@@ -2255,4 +2258,50 @@ function fetchIdCarrito(){
     .catch(error => console.error('Error:', error))
     .then(response => console.log('Success:', response));
 
+}
+
+function getProdPublic(param){
+    const URL = `/app/productos.php?accion=get&id=${param}`
+
+    let dataCarr = new FormData();
+    dataCarr.append("accion","alta");
+
+    fetch(URL).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+
+}
+
+
+function intObserver(dataPaging){
+    //paginador infinito
+    const options = {
+        root: null,
+        rootMargins: "0px",
+        threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver(handleIntersect, options);
+    const footer = document.querySelector("footer");
+    if(footer !== null) observer.observe(footer)
+
+    function handleIntersect(entries) {
+        if (entries[0].isIntersecting) {
+            console.warn("intersect");
+            getDataPaging(dataPaging);
+        }
+    }
+}
+
+
+function getDataPaging(dataPaging) {
+    var url = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            var cant = parseInt(data.length);
+            dataPaging.cantidad = dataPaging.cantidad+data.length;
+            console.log(dataPaging.cantidad);
+            console.log(data);
+        });
 }

@@ -223,13 +223,14 @@ $(document).ready(function(){
                var xcoord = coords.split("-")[1];
       
                //checkeo si es el mismo id de tag y prod
-               var arr = jsonData.productos;
-               var obj = arr.find(o => o.id === id_prod);
+               //var arr = jsonData.productos;
+               //var obj = arr.find(o => o.id === id_prod);
 
                //checkeo que cat es para mostrar relacionados
                //var objRel = arr.find(o => o.id === cat_actual);
                   //dibujo modales
-                  if(id_prod == obj.id){
+                  // if(id_prod == obj.id){
+                  if(id_prod == null){
       
                      //le saco el index el producto correspondiente
                      var arr2 = jsonData.productos;
@@ -273,8 +274,8 @@ $(document).ready(function(){
                   
             
                   //dibujo tags
-                  var tag_html = '<div href="ancla-'+i+'" class="tagg tagg-'+id_prod+'" style="top:'+ycoord+'%; left: '+xcoord+'%">'+
-                              '<span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>';
+                  var tag_html = `<div href="ancla-${i}" onclick="getProdPublic(${id_prod})" class="tagg tagg-${id_prod}" style="top:${ycoord}%; left: ${xcoord}%">
+                              <span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>`;
                   
                   $(".tag-container-"+i).append(tag_html);
 

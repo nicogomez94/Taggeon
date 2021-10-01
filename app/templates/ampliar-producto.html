@@ -78,6 +78,18 @@
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=130921-1922"></script>
    <script src="js/producto.js?time=130921-1922"></script>
+   <script>
+      document.addEventListener("DOMContentLoaded", function(){
+         /////////paginador/////////////
+         const dataPaging = {
+            cantidad : 5,
+            url: "paginador_ampliar-producto.php"
+         }
+         getDataPaging(dataPaging);
+         intObserver(dataPaging);
+         ///////////////////////////////
+      })
+   </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 
 </body></html>

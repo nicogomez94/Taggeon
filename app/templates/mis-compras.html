@@ -44,6 +44,15 @@
    <script src="js/func.js?time=160321-1633"></script>
    <script>
       document.addEventListener("DOMContentLoaded", function() {
+
+         /////////paginador/////////////
+         const dataPaging = {
+            cantidad : 5,
+            url: "paginador_mis-compras.php"
+         }
+         getDataPaging(dataPaging);
+         intObserver(dataPaging);
+         ///////////////////////////////
       
          const sizeCompras = jsonData.compras.length;
          const flex_listado = document.querySelector(".flex-listado")

@@ -100,7 +100,7 @@
       
 </div>
 <div class="tooltip-nico"></div>
-<footer></footer>
+<footer>test</footer>
 
 <script>
    var jsonData = {json};
@@ -114,37 +114,17 @@
 
    <script>
       
-      $(document).ready(function(){
+      document.addEventListener("DOMContentLoaded", function(){
 
-         const shareData = {
-            title: 'MDN',
-            text: 'Learn web development on MDN!',
-            url: 'https://developer.mozilla.org',
-            }
-
-            const btn = document.querySelector('button');
-            const resultPara = document.querySelector('.result');
-
-            // Must be triggered some kind of "user activation"
-            btn.addEventListener('click', async () => {
-            try {
-               await navigator.share(shareData)
-               resultPara.textContent = 'MDN shared successfully'
-            } catch(err) {
-               resultPara.textContent = 'Error: ' + err
-            }
-            });
-            
-         
-         var le = document.querySelectorAll(".test-col").length;
-         // document.querySelector(".test-col").style.height = randomHeight;
-         // for (let i=0; i<le; i++) {
-         //    randomHeight();
-         // }
-         
-         
-         
-         $("body").css("background-color","#e4e4e4");
+         /////////paginador/////////////
+         const dataPaging = {
+            cantidad : 5,
+            url: "paginador_ampliar-publicacion.php"
+         }
+         getDataPaging(dataPaging);
+         intObserver(dataPaging);
+         ///////////////////////////////
+        
          
          var parentwidth = $(".parent").width();      
          $(".child").toggleClass("fixed").width(parentwidth);    

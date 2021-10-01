@@ -70,9 +70,8 @@
 
 
    <script src="js/jquery-3.5.1.js"></script>
-   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=300921-1343"></script>
+   <script src="js/func.js?time=300921-2001"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <!-- <script src="js/popper.js"></script> -->
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
@@ -80,39 +79,9 @@
 <script src="../../plugins/dropPin-master/dropPin/dropPin.js?time=300821-1657"></script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
    <script>
-      $(document).ready(function(){
-         
-         getDataPaging();
-         
-         const options = {
-            root: null,
-            rootMargins: "0px",
-            threshold: 0.5
-         };
-         const observer = new IntersectionObserver(handleIntersect, options);
-         const footer = document.querySelector("footer");
-         if(footer !== null) observer.observe(footer)
-         
-         function handleIntersect(entries) {
-            if (entries[0].isIntersecting) {
-                  console.warn("intersect viewport");
-                  getDataPaging();
-            }
-         }
+      document.addEventListener("DOMContentLoaded", function(){
 
-         function getDataPaging() {
-            console.log("fetch");
-            var dataPaging = {cantidad : 5}
-            var url = `/app/paginador_mis-publicaciones.php?cant=${dataPaging.cantidad}`;
-            fetch(url)
-                  .then(response => response.json())
-                  .then(data => {
-                     var cant = parseInt(data.length);
-                     //dataPaging.cantidad = dataPaging.cantidad+5;
-                     console.log(dataPaging.cantidad);
-                     console.log(data);
-                  });
-         }
+         paginador_mis-publicaciones.php
 
 
          $("img").on("error", function(){//parcheado hard, buscar una mejor solucion con una func que abarque todas las img
@@ -134,27 +103,6 @@
                var full_url = '/ampliar-publicacion.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat
 
                var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;        
-      
-               // var html_public = '<div class="publicacion">'+
-               //                      '<img class="imagen-public imagen-public-'+imagen_id+'">'+
-               //                      '<div class="overlay-public" onclick="window.location.replace(\'/ampliar-publicacion.html?id='+id_public+'&accion=ampliar\')">'+
-               //                         '<div class="text-overlay">'+
-               //                            '<div>'+
-               //                               '<span>'+nombre_public+'</span>'+
-               //                            '</div>'+
-               //                            '<div>'+
-               //                               //'<span class="text-overlay-link"><a href="/ampliar-publicacion.html?id='+id_public+'&accion=ampliar"><i title="Ver Publicaci&oacute;n" class="fas fa-eye"></i></a></span>&nbsp;'+
-               //                               '<span class="text-overlay-link"><a href="/editar-publicacion.html?id='+id_public+'&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>&nbsp;'+
-               //                               //'<span class="text-overlay-link eliminar-public" data-title="'+id_public+'"><a href="javascript:void(0)"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>'+
-               //                               '<span class="text-overlay-link eliminar-public" data-title="'+id_public+'"><a href="/app/publicacion.php?id='+id_public+'&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>'+
-               //                            '</div>'+
-               //                         '</div>'+
-               //                      '</div>'+
-               //                   '</div>'
-                                 
-               // $(".contenedor-mis-public").append(html_public);
-
-            /***************************/
 
                var public_html2 =
                   '<div class="grid-item">'+
