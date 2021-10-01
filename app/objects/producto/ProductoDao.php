@@ -682,8 +682,7 @@ sql;
                         SELECT * FROM producto
                         WHERE 
                             id = $idDB AND
-                            (eliminar = 0 OR eliminar is null) AND
-                            usuario_alta = $usuarioAltaDB
+			    (eliminar = 0 OR eliminar is null) 
 SQL;
 
         $resultado = mysqli_query(Database::Connect(), $sql);
@@ -807,7 +806,7 @@ sql;
         `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
     WHERE
 	producto.id=$idDB AND 
-        (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) AND `producto`.usuario_alta = $usuarioAltaDB
+	(`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) 
     group by         `producto`.`id`,
     `producto`.`titulo`,
     `producto`.`marca`,

@@ -73,6 +73,10 @@ if ($sesionManager->validar(array('seller','picker'))){
 		    echo $foto;
 		    exit;
 		    } 
+		}else if (preg_match('/^(get)$/i', $var_accion)){
+			$mensajeRet = $objPrincipalManager->getProducto($_GET);
+			$statusRet = 'OK';
+
 		}
 
 	}

@@ -298,12 +298,12 @@ $(document).ready(function(){
                   });
           
             
-            }//fin for prdo
-        }
-        }//fin for principal
+               }//fin for prdo
+            }
+      }//fin if principal
 
        
-   }//fin if principal
+   }//fin for principal
 
    //funcion para que se esconda globocat
    hideGloboCat()

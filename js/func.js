@@ -2261,10 +2261,10 @@ function fetchIdCarrito(){
 }
 
 function getProdPublic(param){
-    const URL = `/app/productos.php?accion=get&id=${param}`
+    const URL = `/app/producto.php?accion=get&id=${param}`
 
-    let dataCarr = new FormData();
-    dataCarr.append("accion","alta");
+    /*let dataCarr = new FormData();
+    dataCarr.append("accion","alta");*/
 
     fetch(URL).then(res => res.json())
     .catch(error => console.error('Error:', error))
