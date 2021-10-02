@@ -86,9 +86,9 @@ $(document).ready(function(){
                               '<div id="ancla-'+i+'" class="productos-public productos-public-'+i+'">'+
                                '<div class="productos-titulo-public">Productos Relacionados:</div><br>'+
                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
-                                     '<div class="splide splide-prod-tag-'+i+'">'+
+                                     '<div class="splide splide-prod-tag-'+id_public+'">'+
                                         '<div class="splide__track">'+
-                                           '<ul class="splide__list splide__list__'+i+'"></ul>'+
+                                           '<ul class="splide__list splide__list__'+id_public+'"></ul>'+
                                         '</div>'+
                                      '</div>'+
                                      /**/
@@ -206,79 +206,26 @@ $(document).ready(function(){
             
             
             //productos
-            var splide = new Splide( '.splide-prod-tag-'+i, {
+            var splide = new Splide( '.splide-prod-tag-'+id_public, {
                perPage: 6,
                rewind : true,
                pagination: false
             } ).mount();
-
+            
             ///DIBUJO PINES
             var producto_parse = JSON.parse(producto);
             var producto_parse_size = producto_parse.length;
-
-            for(var x=0; x<producto_parse_size; x++){
-               var id_prod = producto_parse[x].name;
-               var coords = producto_parse[x].value;
-               var ycoord = coords.split("-")[0];
-               var xcoord = coords.split("-")[1];
-      
-               //checkeo si es el mismo id de tag y prod
-               //var arr = jsonData.productos;
-               //var obj = arr.find(o => o.id === id_prod);
-
-               //checkeo que cat es para mostrar relacionados
-               //var objRel = arr.find(o => o.id === cat_actual);
-                  //dibujo modales
-                  // if(id_prod == obj.id){
-                  if(id_prod == null){
-      
-                     //le saco el index el producto correspondiente
-                     var arr2 = jsonData.productos;
-                     var index = arr2.findIndex(o => o.id === id_prod);
-                     //var test = Object.values(jsonData.productos)[x];
-                     var nombre_prod = jsonData.productos[index].titulo;
-                     var precio_prod = jsonData.productos[index].precio;
-                     var marca_prod = jsonData.productos[index].marca;
-                     var color_prod = jsonData.productos[index].color;
-                     var descr_prod = jsonData.productos[index].descr_producto;
-                     var id_prod_json = jsonData.productos[index].id;
-                     var stock_prod = jsonData.productos[index].stock;
-                     var foto_prod = jsonData.productos[index].foto;
-                     var nombre_completo = jsonData.nombre+""+jsonData.apellido;
-                     var foto_src_prod = '/productos_img/'+foto_prod+'.png';
-                     //var modParam = "modal-producto-rel-"+i;
-                     //var marca_filtro = allprod.find(o => o.marca === "Gucci");
-
-                     var objParamModal = {
-                        id_prod_p : id_prod,
-                        id_public_p : id_public,
-                        foto_src_prod_p : foto_src_prod,
-                        id_prod_json_p : id_prod_json,
-                        marca_prod_p : marca_prod,
-                        color_prod_p : color_prod, 
-                        descr_prod_p : descr_prod,
-                        nombre_prod_p : nombre_prod,
-                        nombre_completo_p : nombre_completo,
-                        precio_prod_p : precio_prod,
-                        i_p : i
-                     }
-
-
-                     traerModalProducto(objParamModal)
-                     dibujarSplideRel(arr2,marca_prod,'marca',splide,id_prod_json);
-                     
-                  }
-                
-                  var splide_fotos = '<li class="splide__slide splide__slide__img splide__prodtag"><img data-toggle="modal" data-target="#modal-producto-'+id_prod+'" src="'+foto_src_prod+'"></li>';
-                  $(".splide__list__"+i).prepend(splide_fotos);
-                  
             
-                  //dibujo tags
-                  var tag_html = `<div href="ancla-${i}" onclick="getProdPublic(${id_prod})" class="tagg tagg-${id_prod}" style="top:${ycoord}%; left: ${xcoord}%">
-                              <span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>`;
+               for(var x=0; x<producto_parse_size; x++){
+                  var id_prod = producto_parse[x].name;
+                  var coords = producto_parse[x].value;
+                  var ycoord = coords.split("-")[0];
+                  var xcoord = coords.split("-")[1];
                   
-                  $(".tag-container-"+i).append(tag_html);
-
+                  let tag_html = `<div href="ancla-${i}" onclick="getProdPublic(${id_public})" class="tagg tagg-${id_public}" style="top:${ycoord}%; left: ${xcoord}%">
+                  <span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>`;
+                  document.querySelector(`.tag-container-${i}`).insertAdjacentHTML("beforeend",tag_html);
+                  
                   //click en tag
                   $(".bodyimg-public-container-"+i).on("click", ".tagg", function(e){
                      e.stopPropagation();
@@ -286,25 +233,25 @@ $(document).ready(function(){
                      
                      var prod_public = $(this).parent().parent().parent().find(".productos-public");
                      prod_public.toggle(100);
-                     prod_public.toggleClass("prods-abierto");
-
-                     if(prod_public.hasClass("prods-abierto")){
-                        $('html,body').animate({
-                           scrollTop: prod_public.offset().top - 130
-                        }, 0)
-
-                     }
-
-                  });
-          
-            
+                        prod_public.toggleClass("prods-abierto");
+                        
+                        if(prod_public.hasClass("prods-abierto")){
+                           $('html,body').animate({
+                              scrollTop: prod_public.offset().top - 130
+                           }, 0)
+                           
+                        }
+                        
+                     });
+                     
+                     
                }//fin for prdo
             }
-      }//fin if principal
-
-       
-   }//fin for principal
-
+         }//fin if principal
+         
+         
+      }//fin for principal
+      
    //funcion para que se esconda globocat
    hideGloboCat()
 
@@ -657,4 +604,62 @@ function appearTooltip(msjParam){
    tooltip.innerHTML = msjParam;*/
 
    //document.getElementsByClassName("tooltip-nico").style.color="blue";
+}
+
+function getProdPublic(param){
+   const URL = `/app/producto.php?accion=getproductos&id=${param}`
+
+   fetch(URL).then(res => res.json())
+   .catch(error => console.error('Error:', error))
+   .then((response) => {
+      
+      let resp_len = response.mensaje.length
+      if(resp_len > 0){
+         for(let i = 0; i < resp_len; i++){
+            let nombre_prod = response.mensaje[i].titulo;
+            let precio_prod = response.mensaje[i].precio;
+            let marca_prod = response.mensaje[i].marca;
+            let color_prod = response.mensaje[i].color;
+            let descr_prod = response.mensaje[i].descr_producto;
+            let id_prod_json = response.mensaje[i].id;
+            let stock_prod = response.mensaje[i].stock;
+            let foto_prod = response.mensaje[i].foto;
+            // nombre_completo = jsonData.nombre+""+jsonData.apellido;
+            let nombre_completo = "test"
+            let foto_src_prod = `/productos_img/${foto_prod}.png`;
+            let splide_list = document.querySelector('.splide__list__'+param)
+
+            var objParamModal = {
+                     id_prod_p : id_prod_json,
+                     id_public_p : param,
+                     foto_src_prod_p : foto_src_prod,
+                     id_prod_json_p : id_prod_json,
+                     marca_prod_p : marca_prod,
+                     color_prod_p : color_prod,
+                     descr_prod_p : descr_prod,
+                     nombre_prod_p : nombre_prod,
+                     nombre_completo_p : nombre_completo,
+                     precio_prod_p : precio_prod,
+                     i_p : i
+                  }
+
+               traerModalProducto(objParamModal)
+               
+      
+            let splide_fotos = `<li class="splide__slide splide__slide__img splide__prodtag">
+               <img data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${foto_src_prod}"></li>`;
+            
+               
+            //dibujo tags y splide galeria
+            splide_list.insertAdjacentHTML("beforeend",splide_fotos);
+            
+            
+         }
+            
+      }else{
+          alert("ERROR")
+      }
+      
+  });
+
 }

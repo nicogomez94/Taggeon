@@ -2260,7 +2260,7 @@ function fetchIdCarrito(){
 
 }
 
-function getProdPublic(param){
+function getProdPublicTest(param){
     const URL = `/app/producto.php?accion=get&id=${param}`
 
     /*let dataCarr = new FormData();
@@ -2268,7 +2268,29 @@ function getProdPublic(param){
 
     fetch(URL).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
+    .then(response => function(){
+        
+        let resp_len = response.mensaje.length
+        let nombre_prod = jsonData.productos[index].titulo;
+        let precio_prod = jsonData.productos[index].precio;
+        let marca_prod = jsonData.productos[index].marca;
+        let color_prod = jsonData.productos[index].color;
+        let descr_prod = jsonData.productos[index].descr_producto;
+        let id_prod_json = jsonData.productos[index].id;
+        let stock_prod = jsonData.productos[index].stock;
+        let foto_prod = jsonData.productos[index].foto;
+        let nombre_completo = jsonData.nombre+""+jsonData.apellido;
+        let foto_src_prod = `/productos_img/${foto_prod}.png`;
+
+        if(resp_len > 0){
+
+
+
+        }else{
+            alert("ERROR")
+        }
+        
+    });
 
 }
 
