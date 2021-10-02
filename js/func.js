@@ -2317,7 +2317,7 @@ function intObserver(dataPaging){
 
 function getMisPublic(data){
     var sizePublic = data.length;
-    console.log(data)
+
     if(sizePublic>0){
         for(let i=0; i<sizePublic; i++){
             let id_public = data[i].id;
@@ -2357,6 +2357,101 @@ function getMisPublic(data){
     }
 }
 
+function getMisCompras(data){
+    const sizeCompras = data.length;
+    const flex_listado = document.querySelector(".flex-listado")
+
+    if(sizeCompras>0){
+        for(var i=0; i<sizeCompras; i++){
+        
+            var nombre_producto = data[i].nombre_producto || "";
+            var precio_producto = data[i].precio || 0;
+            var id = data[i].id || 0;
+            var direccion = data[i].envio_nombre_apellido || "";
+            var localidad = data[i].envio_ciudad_localidad || "";
+            var id_carrito = data[i].id_carrito || 0;
+            var name_comprador = data[i].nombre || "";
+            var imagen_id = data[i].foto_id || 0;
+            var vendedor = data[i].vendedor || "";
+            var sizeVendedor = jsonData.vendedor.length || 0;
+            var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
+            var compras_html = 
+            `<div class="overlay-public">
+                <div class="text-overlay-prod">
+                        <span data-title="${id}" class="text-overlay-link share-sm">
+                            <a href="#"><i class="fas fa-trash-alt"></i></a>
+                        </span>
+                        <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
+                            <a href="/ampliar-compras.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
+                        </span>
+                </div>
+                </div>
+                <img src="${foto_src}" alt="${foto_src}">
+                <div class="prod-datos">
+                <div class="nombre-prod">${nombre_producto}</div>
+                <div class="precio-prod">$ ${precio_producto}</div>
+                </div>`;
+                
+                flex_listado.insertAdjacentHTML('beforeend', compras_html) 
+                
+
+                for(var x=0; x<sizeVendedor; x++){
+                    var arr = jsonData.vendedor; 
+                    var idUsuario = jsonData.vendedor[x].idUsuario;
+                    var obj = arr.find(o => o.idUsuario === idUsuario);
+                    if(obj.idUsuario == vendedor){
+                        $(".label-compra-vendedor").html(obj.nombre/*" "+obj.apellido*/)
+                    }
+                }
+
+        }
+    }else{
+        flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>')
+    }
+
+}
+
+function getMisVentas(data){
+    const sizeVentas = data.length;
+    const flex_listado = document.querySelector(".flex-listado")
+
+    if(sizeVentas>0){
+        for(var i=0; i<sizeVentas; i++){
+            var nombre_producto = data[i].nombre_producto || "";
+            var precio_producto = data[i].precio || 0;
+            var id = data[i].id || 0;
+            var direccion = data[i].envio_nombre_apellido || "";
+            var localidad = data[i].envio_ciudad_localidad || "";
+            var id_carrito = data[i].id_carrito || 0;
+            var name_comprador = data[i].envio_nombre_apellido || "";
+            var imagen_id = data[i].foto_id || 0;
+            var foto_src = '/productos_img/'+imagen_id+ '.png' || "";
+
+            `<div class="overlay-public">
+               <div class="text-overlay-prod">
+                     <span data-title="${id}" class="text-overlay-link share-sm">
+                        <a href="#"><i class="fas fa-trash-alt"></i></a>
+                     </span>
+                     <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
+                        <a href="/ampliar-mis-ventas.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
+                     </span>
+               </div>
+            </div>
+            <img src="${foto_src}" alt="${foto_src}">
+            <div class="prod-datos">
+               <div class="nombre-prod">${nombre_producto}</div>
+               <div class="precio-prod">$ ${precio_producto}</div>
+            </div>`;
+               
+            flex_listado.insertAdjacentHTML('beforeend', compras_html) 
+        }
+      }else{
+         flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>')
+         //$(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta por el momento<i></h3>')
+      }
+
+}
+
 function getDataPaging(dataPaging) {
     //return new Promise((resolve, reject) => {
 
@@ -2376,6 +2471,12 @@ function getDataPaging(dataPaging) {
             switch (url_temp){
                 case "paginador_mis-publicaciones.php":
                     getMisPublic(data);
+                    break;
+                case "paginador_mis-compras.php":
+                    getMisCompras(data);
+                    break;
+                case "paginador_mis-ventas.php":
+                    getMisVentas(data);
                     break;
                 default: console.log("default")
             }

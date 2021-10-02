@@ -54,56 +54,6 @@
          intObserver(dataPaging);
          ///////////////////////////////
       
-         const sizeCompras = jsonData.compras.length;
-         const flex_listado = document.querySelector(".flex-listado")
-      
-         if(sizeCompras>0){
-               for(var i=0; i<sizeCompras; i++){
-               
-                  var nombre_producto = jsonData.compras[i].nombre_producto || "";
-                  var precio_producto = jsonData.compras[i].precio || 0;
-                  var id = jsonData.compras[i].id || 0;
-                  var direccion = jsonData.compras[i].envio_nombre_apellido || "";
-                  var localidad = jsonData.compras[i].envio_ciudad_localidad || "";
-                  var id_carrito = jsonData.compras[i].id_carrito || 0;
-                  var name_comprador = jsonData.compras[i].nombre || "";
-                  var imagen_id = jsonData.compras[i].foto_id || 0;
-                  var vendedor = jsonData.compras[i].vendedor || "";
-                  var sizeVendedor = jsonData.vendedor.length || 0;
-                  var foto_src = '/productos_img/'+imagen_id+ '.png' || 0;
-                  var compras_html = 
-                  `<div class="overlay-public">
-                        <div class="text-overlay-prod">
-                              <span data-title="${id}" class="text-overlay-link share-sm">
-                                 <a href="#"><i class="fas fa-trash-alt"></i></a>
-                              </span>
-                              <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
-                                 <a href="/ampliar-compras.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
-                              </span>
-                        </div>
-                     </div>
-                     <img src="${foto_src}" alt="${foto_src}">
-                     <div class="prod-datos">
-                        <div class="nombre-prod">${nombre_producto}</div>
-                        <div class="precio-prod">$ ${precio_producto}</div>
-                     </div>`;
-                        
-                     flex_listado.insertAdjacentHTML('beforeend', compras_html) 
-                        
-
-                        for(var x=0; x<sizeVendedor; x++){
-                           var arr = jsonData.vendedor; 
-                           var idUsuario = jsonData.vendedor[x].idUsuario;
-                           var obj = arr.find(o => o.idUsuario === idUsuario);
-                           if(obj.idUsuario == vendedor){
-                              $(".label-compra-vendedor").html(obj.nombre/*" "+obj.apellido*/)
-                           }
-                        }
-      
-               }
-            }else{
-               flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>')
-            }
 
       });
       </script>
