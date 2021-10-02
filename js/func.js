@@ -1307,7 +1307,7 @@ function activarBuscador(param){
                         var foto_prod = response.mensaje[i].foto;
                         var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
 
-                        /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+img_base_prod+'"></li>';*/
+                        /*'<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-'+i+'" src="${img_base_prod+'"></li>';*/
 
                         var html = '<li class="splide__slide splide__slide__img '+id_prod+'">'+
                                     '<img data-toggle="modal" data-target="#modal-producto-'+i+'" src="'+foto_src+'">'+
@@ -2315,15 +2315,72 @@ function intObserver(dataPaging){
     }
 }
 
+function getMisPublic(data){
+    var sizePublic = data.length;
+    console.log(data)
+    if(sizePublic>0){
+        for(let i=0; i<sizePublic; i++){
+            let id_public = data[i].id;
+            let id_public_cat = data[i].id_publicacion_categoria;
+            let nombre_public = data[i].publicacion_nombre;
+            let descr_public = data[i].publicacion_descripcion;
+            let imagen_id = data[i].foto;
+            let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
+            let grid = document.querySelector(".grid");
+            //let imagen_public_html = document.querySelector(".imagen-public-"+imagen_id);
+
+            var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;        
+
+            var public_html2 =
+                `<div class="grid-item">
+                    <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                        <div class="overlay-public">
+                            <a class="link-ampliar-home" href="${full_url}"></a>
+                            <div class="public-title-home">${nombre_public}</div>
+                            <div class="text-overlay">
+                                <span class="text-overlay-link"><a href="/editar-publicacion.html?id=${id_public}&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>&nbsp;
+                                <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a href="/app/publicacion.php?id=${id_public}&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
+                            </div>
+                        </div>
+                        <img src="${foto_src}" alt="img-${imagen_id}">
+                    </div>
+                </div>`;
+
+            grid.insertAdjacentHTML("beforeend",public_html2)
+            //imagen_public_html.attr("src", foto_src);
+
+        }
+
+    }else{
+        var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
+        document.querySelector(".contenedor-mis-public").insertAdjacentHTML(html_sin_public);
+    }
+}
 
 function getDataPaging(dataPaging) {
-    var url = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
-    fetch(url)
+    //return new Promise((resolve, reject) => {
+
+    //const {url,dataPaging} = dataPaging;
+    const URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
+    let url_temp = dataPaging.url || "";
+
+    fetch(URL)
         .then(response => response.json())
         .then(data => {
-            var cant = parseInt(data.length);
-            dataPaging.cantidad = dataPaging.cantidad+data.length;
-            console.log(dataPaging.cantidad);
-            console.log(data);
-        });
+            let cant = parseInt(data.length);
+            let dataP_cant = dataPaging.cantidad || 0;
+            let data_len = data.length || 0;
+            dataP_cant = dataP_cant+data_len;
+
+            //dibujo listados
+            switch (url_temp){
+                case "paginador_mis-publicaciones.php":
+                    getMisPublic(data);
+                    break;
+                default: console.log("default")
+            }
+
+        })
+        //.catch(error => console.log("error"))
+        
 }
