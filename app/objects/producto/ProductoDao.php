@@ -959,8 +959,39 @@ SQL;
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+
         $id = isset($id) ?   $id : '';
         $idDB = Database::escape($id);
+	$sql = "select pid from publicacion where id = $idDB LIMIT 1";
+        $resultado = Database::Connect()->query($sql);
+	$productos = '';
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $rowEmp['pid'];
+            $productos = isset($rowEmp['pid']) ? $rowEmp['pid'] : '';
+        }
+
+	if ($productos == ''){
+		return [];
+	}
+
+	$obj = json_decode($productos);
+	$whereProductos = '';
+
+	foreach ($obj as $json){
+		$idProducto = isset($json->{'name'}) ? $json->{'name'} : '';
+		$patron = '/^[1-9][0-9]*$/';
+		if (preg_match($patron, $idProducto)) {
+			if ($whereProductos != ''){
+				$whereProductos .= ","; 
+			}
+                        $whereProductos .= Database::escape($idProducto);
+		}
+	}
+
+	if ($whereProductos == ''){
+		return [];
+	}
+
         $sql = <<<sql
         SELECT
         `producto`.`id`,
@@ -982,7 +1013,7 @@ SQL;
     ON
         `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
     WHERE
-	producto.id=$idDB AND 
+	producto.id IN ($whereProductos) AND 
 	(`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) 
     group by         `producto`.`id`,
     `producto`.`titulo`,

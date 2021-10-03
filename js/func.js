@@ -661,7 +661,7 @@ $("#ordenar").change(function(){
     });
  });
 //AÑADIR AL CARRITO
-$(".modal").on("click", ".btn-carrito", function(){
+$(".modal").on("click", ".btfn-carrito", function(){
     
     var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
     var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
@@ -2245,11 +2245,12 @@ function cerrarOverlay(clase){
 }
 
 
-function fetchIdCarrito(){
+function fetchIdCarrito(id_public){
     const URL = "/app/carrito.php"
 
     let dataCarr = new FormData();
     dataCarr.append("accion","alta");
+    dataCarr.append("id_public",id_public);
 
     fetch(URL, {
         method: 'POST',
@@ -2445,10 +2446,14 @@ function getMisVentas(data){
                
             flex_listado.insertAdjacentHTML('beforeend', compras_html) 
         }
-      }else{
-         flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>')
-         //$(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta por el momento<i></h3>')
-      }
+    }else{
+            flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>')
+            //$(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta por el momento<i></h3>')
+    }
+
+}
+
+function getPublicsAmpliarHome(){
 
 }
 
@@ -2469,6 +2474,15 @@ function getDataPaging(dataPaging) {
 
             //dibujo listados
             switch (url_temp){
+                case "paginador_home.php":
+                    getPublicsHome(data);
+                    break;
+                case "paginador_ampliar-publicacion.php":
+                    getPublicsAmpliar(data);
+                    break;
+                case "paginador_ampliar-publicacion-home.php":
+                    getPublicsAmpliarHome(data);
+                    break;
                 case "paginador_mis-publicaciones.php":
                     getMisPublic(data);
                     break;
@@ -2478,7 +2492,10 @@ function getDataPaging(dataPaging) {
                 case "paginador_mis-ventas.php":
                     getMisVentas(data);
                     break;
-                default: console.log("default")
+                case "paginador_ampliar-producto.php":
+                    getMisVentas(data);
+                    break;
+                default: alert("error")
             }
 
         })

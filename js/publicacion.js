@@ -384,7 +384,7 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
                '</select>'+
                '<input type="hidden" class="id_prod_carrito" name="id" value="'+id_prod_json_p+'">'+
          '</span>&nbsp;'+
-         '<span><button class="btn btn-warning btn-carrito" onclick="fetchIdCarrito()" data-idpublic="'+id_public_p+'" data-idprod="'+id_prod_json_p+'">Añadir a Carrito</button></span>'+
+         '<span><button class="btn btn-warning btn-carrito" onclick="fetchIdCarrito('+id_public_p+',)" data-idpublic="'+id_public_p+'" data-idprod="'+id_prod_json_p+'">Añadir a Carrito</button></span>'+
       '</div>'+
       '</div>'+
       '<hr>'+
@@ -614,6 +614,7 @@ function getProdPublic(param){
    .then((response) => {
       
       let resp_len = response.mensaje.length
+      console.log(response.mensaje)
       if(resp_len > 0){
          for(let i = 0; i < resp_len; i++){
             let nombre_prod = response.mensaje[i].titulo;
@@ -628,6 +629,7 @@ function getProdPublic(param){
             let nombre_completo = "test"
             let foto_src_prod = `/productos_img/${foto_prod}.png`;
             let splide_list = document.querySelector('.splide__list__'+param)
+
 
             var objParamModal = {
                      id_prod_p : id_prod_json,
