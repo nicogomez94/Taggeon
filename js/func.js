@@ -2311,14 +2311,14 @@ function intObserver(dataPaging){
     function handleIntersect(entries) {
         if (entries[0].isIntersecting) {
             console.warn("intersect");
-            getDataPaging(dataPaging);
+            //getDataPaging(dataPaging);
         }
     }
 }
 
 function getMisPublic(data){
     var sizePublic = data.length;
-
+    console.log("publics-->",data)
     if(sizePublic>0){
         for(let i=0; i<sizePublic; i++){
             let id_public = data[i].id;
@@ -2453,8 +2453,165 @@ function getMisVentas(data){
 
 }
 
-function getPublicsAmpliarHome(){
+function getPublicsAmpliarHome(data){
 
+    var sizePublic = data.length;
+    console.log("publics",data)
+    for(var i=0; i<sizePublic; i++){
+       
+        if(sizePublic>0){
+ 
+            let escena_json = JSON.parse(escena);
+            let escena_json_length = escena_json.length;
+            let id_public = data[i].id || 0;
+            let id_public_cat = data[i].subescena1 || "";//que onda esto cuando son mas de una??
+            let nombre_public = data[i].publicacion_nombre || "";
+            let descr_public = data[i].publicacion_descripcion || "";
+            let publicador = data[i].nombre_publicador || "";
+            let id_publicador = data[i].id_publicador || "";
+            let foto_perfil = data[i].foto_perfil || "";
+            let seguidor = "";
+            let imagen_id = data[i].foto || 0;
+            let producto = data[i].pid || 0;
+            let cat_ampliar_home = jsonData.cat || 0;
+            let arrCat = escena_json || 0;
+            let foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
+            let img_publicador = '/imagen_perfil/'+foto_perfil+'.png' || 0;//viene siempre png?
+            let winLoc = window.location.pathname || "";
+            let id_usuario = "1";//hard
+            let favorito = data[i].favorito || 0;
+            let fav_accion = "";
+            let seg_accion = "";
+            let seguidos = jsonData.seguidos || [];
+            let idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
+            let idPublicadorSeguido = idPublicadorSearch.idUsuario;
+            let comentarios_obj = data[i].comentarios || []      
+ 
+
+            if(cat_ampliar_home == id_public_cat){
+ 
+            let html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
+                                  '<div class="header-public header-public-'+id_public+'" onmouseover="showFollow(this)" onmouseout="hideFollow(this)">'+
+                                     '<a class="nombre-perfil-public" href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'">'+
+                                        '<span class="img-perfil-public"><img src="'+img_publicador+'" alt="img-perfil"></span>'+
+                                        '<span class="title-public title-public-'+i+'"></span>'+
+                                     '</a>'+
+                                  '</div>'+
+                             '<div class="bodyimg-public-container bodyimg-public-container-'+i+'">'+
+                                //'<div><img src="../../img/arrrrte.jpg" alt=""></div>'+
+                                   '<img class="imagen-public-'+imagen_id+'" src="'+foto_src+'" alt="">'+
+                                   '<div class="tag-container tag-container-'+i+'"></div>'+
+ 
+                               // '<hr>'+
+                             
+                               '</div>'+
+ 
+ 
+                               '<div id="ancla-'+i+'" class="productos-public productos-public-'+i+'">'+
+                                '<div class="productos-titulo-public">Productos Relacionados:</div><br>'+
+                                   '<div class="productos-titulo-public-gallery productos-titulo-public-gallery-'+i+'">'+
+                                      '<div class="splide splide-prod-tag-'+id_public+'">'+
+                                         '<div class="splide__track">'+
+                                            '<ul class="splide__list splide__list__'+id_public+'"></ul>'+
+                                         '</div>'+
+                                      '</div>'+
+                                      /**/
+                                //'<hr><div class="productos-titulo-public prod-relacionados">Comprar Productos relacionados:</div><br>'+
+                                        '<div class="splide splide-related splide-prod-'+id_public+'">'+
+                                           '<div class="splide__track">'+
+                                              '<ul class="splide__list__'+id_public+' splide_list_related"></ul>'+
+                                           '</div>'+
+                                        '</div>'+
+                                     '</div>'+
+                                  '</div>'+
+ 
+ 
+                               '<div class="info-public">'+
+                                  '<div class="social-public social-public-'+id_public+'">'+
+                                        //'<span><i class="fas fa-heart fav-'+i+'" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'+
+                                        //'<span onclick="seguidores('+id_public+','+id_publicador+','+seg_accion+')"><i class="fas fa-user-plus"></i></span>'+
+                                        // '<span class="comment-icon"><i class="fas fa-comment-dots"></i></span>'+
+                                        '<span class="share-sm"><i class="fas fa-paper-plane"></i></span>'+
+                                        '<span><i class="fas fa-star"></i></span>'+
+                                  '</div>'+
+                                  '<div class="datos-public">'+
+                                  '<div class="info-titulo-public">'+nombre_public+'</div>'+
+                                  // '<div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>'+
+                                  '<div class="info-descr-public">'+descr_public+'</div><hr>'+
+                               '</div>'+
+                               '<div id="ancla-test-'+i+'"></div>'+
+                               '<div class="commentbox-container">'+
+                                  '<div class="commentbox commentbox-id-2">'+
+                                        '<div>'+
+                                           '<img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>'+
+                                           '<div style="flex-grow: 1;">'+
+                                              '<form class="comentario_public comentario_public_'+id_public+'">'+
+                                                 '<input type="text" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">'+
+                                                 '<input type="hidden" name="publicacion" value="'+id_public+'">'+
+                                              '</form>'+
+                                           '</div>'+
+                                           '<div class="ml-1">'+
+                                              '<button onclick="$(\'.comentario_public_'+id_public+'\').submit();console.log(\'test\')" class="btn">Enviar</button>'+
+                                           '</div>'+
+                                        '</div>'+
+                                  //'<div class="comment-count"><span>Comentarios</span></div>'+
+                                  '<div class="commentbox-list-container commentbox-list-container-'+id_public+'"></div>'+
+                               '</div>'+
+                            '</div>';
+ 
+                            
+                document.querySelector(".insert-public").insertAdjacentHTML("beforeend",html_public);
+                document.querySelector(".title-public-"+i).innerHTML = publicador;
+
+                getPublicTags(id_public,producto,i);
+             
+            } 
+        }else{
+            alert("no hay publicaciones")
+        }
+    }//fin for
+}
+
+
+function getPublicTags(id_public,tags,index){
+
+    let splide = new Splide( '.splide-prod-tag-'+id_public, {
+        perPage: 6,
+        rewind : true,
+        pagination: false
+    }).mount();
+
+    let producto_parse = JSON.parse(tags);
+    let producto_parse_size = producto_parse.length;
+     
+    for(let x=0; x<producto_parse_size; x++){
+        let id_prod = producto_parse[x].name;
+        let coords = producto_parse[x].value;
+        let ycoord = coords.split("-")[0];
+        let xcoord = coords.split("-")[1];
+        
+        let tag_html = `<div href="ancla-${index}" onclick="getSplideProdPublic(${id_public})" class="tagg tagg-${id_public}" style="top:${ycoord}%; left: ${xcoord}%">
+        <span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>`;
+        document.querySelector(`.tag-container-${index}`).insertAdjacentHTML("beforeend",tag_html);
+        
+
+        //click en tag ANIMACION
+        $(".bodyimg-public-container-"+index).on("click", ".tagg", function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            
+            let prod_public = $(this).parent().parent().parent().find(".productos-public");
+            prod_public.toggle(100);
+                prod_public.toggleClass("prods-abierto");
+                
+                if(prod_public.hasClass("prods-abierto")){
+                    $('html,body').animate({
+                        scrollTop: prod_public.offset().top - 130
+                    }, 0)
+                }
+        });
+            
+    }
 }
 
 function getDataPaging(dataPaging) {
