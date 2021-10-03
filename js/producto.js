@@ -7,39 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var showResultados = document.querySelector(".show-result-num") || 0;
         showResultados.innerHTML = sizeProductos; 
 
-        if(sizeProductos>0 || typeof sizeProductos != "undefined"){
-            if(window.location.pathname == '/ampliar-producto.html'){
-                for(var i=0; i<sizeProductos; i++){
-                    let nombre_prod = jsonData.productos[i].titulo;
-                    let precio_prod = jsonData.productos[i].precio;
-                    let id_prod = jsonData.productos[i].id;
-                    let stock_prod = jsonData.productos[i].stock;
-                    let foto_prod = jsonData.productos[i].foto;
-                    let foto_src = `/productos_img/${foto_prod}.png`;
-                    let prod_flex_container = document.querySelector(".flex-container");
-                    const flex_listado = document.querySelector(".flex-listado")
-                    
-                    let listadoProducto = 
-                    `<div class="overlay-public">
-                        <div class="text-overlay-prod">
-                            <span data-title="${id_prod}" class="text-overlay-link share-sm">
-                                <a href="#"><i class="fas fa-trash-alt"></i></a>
-                            </span>
-                            <span data-title="${id_prod}" class="text-overlay-link text-overlay-link-id_prod">
-                                <a href="/editar-producto.html?id=${id_prod}&accion=editar"><i class="fas fa-edit"></i></a>
-                            </span>
-                        </div>
-                    </div>
-                    <img src="${foto_src}" alt="${foto_src}">
-                    <div class="prod-datos">
-                        <div class="nombre-prod">${nombre_prod}+</div>
-                        <div class="precio-prod">$ ${precio_prod}+</div>
-                    </div>`;
-
-                    flex_listado.insertAdjacentHTML('beforeend', compras_html) 
-                    
-                }
-            }else if(window.location.pathname == '/editar-producto.html'){
+        if(window.location.pathname == '/editar-producto.html'){
                 for(var i=0; i<sizeProductos; i++){
         
                     var id_prod = jsonData.productos[i].id || 0;
@@ -81,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     $("#categoria-producto").append(html_cat);
             
                 }
-            }
+            
             
         }else{
             var html_nada = '<div class="html-nada">No se han encontrado resultados.</div>';

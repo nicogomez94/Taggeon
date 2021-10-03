@@ -1326,11 +1326,11 @@ function activarBuscador(param){
                 //si es seller
                 /*}else{
                     
-                    for(var i=0; i<jsonData.productos.length; i++){
+                    for(var i=0; i<data.length; i++){
 
-                        var id_prod = jsonData.productos[i].id;
-                        var nombre_prod = jsonData.productos[i].titulo;
-                        var foto_prod = jsonData.productos[i].foto;
+                        var id_prod = data[i].id;
+                        var nombre_prod = data[i].titulo;
+                        var foto_prod = data[i].foto;
                         var foto_src = '/productos_img/'+foto_prod+'.png' || 0;//viene siempre png?
 
                         var html = '<li class="splide__slide">'+
@@ -2453,6 +2453,10 @@ function getMisVentas(data){
 
 }
 
+function getPublicsAmpliar(){
+    console.log("test")
+}
+
 function getPublicsAmpliarHome(data){
 
     var sizePublic = data.length;
@@ -2614,6 +2618,139 @@ function getPublicTags(id_public,tags,index){
     }
 }
 
+function getPublicsHome(data){
+    var sizePublic = data.length;
+        
+    if(sizePublic>0){
+        
+        var escena_json = JSON.parse(escena);
+        var escena_json_length = escena_json.length;
+        
+        //recorre todas las cat y primero dibujo el item de cat
+        for(var i=0; i<escena_json_length; i++){
+            
+            
+            var id_padre = escena_json[i].id_padre;
+            
+            if(id_padre == null){
+                
+                var json_cat = escena_json[i].id || 0;
+                var json_cat_nombre = escena_json[i].nombre || "";
+                
+                var item_html = '<li class="splide__slide item item-cat-'+json_cat+'">'+
+                '<div class="titulo-col-cont" onclick="window.location.replace(\''+window.location.href+'ampliar-publicacion-home.html?accion=ampliar&cat='+json_cat+'\')">'+
+                '<div class="titulo-col random-p-'+i+'"><span class="span-titulo">'+json_cat_nombre+'</span></div>'+
+                '</div>'
+                '</li>';
+                
+                $(".splide__list__home").append(item_html);
+                
+                //numero random pattern por ahora
+                var random = Math.floor(Math.random() * 7);
+                if (random == 0) {random=random+1}
+                $(".random-p-"+i).addClass("pattern"+random);
+                
+                //recorre solo si la json_cat es igual a la de puid_public_catblic
+                
+                for(var x=0; x<sizePublic; x++){
+                    
+                    var id_public = data[x].id || '';
+                    var id_public_cat = data[x].subescena1 || 0;
+                    var nombre_public = data[x].publicacion_nombre || '';
+                    var descr_public = data[x].publicacion_descripcion || '';
+                    var imagen_id = data[x].foto || '';
+                    var producto = data[x].pid || 0;
+                    var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;//viene siempre png?
+                    var favorito = data[x].favorito || 0;
+                    var fav_accion = "";
+                    var full_url = '/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat;
+                    
+                    
+                    if(json_cat == id_public_cat){
+                        
+                        var public_html = 
+                        '<div>'+
+                        '<div class="content-col-div content-col-div-'+id_public+' cat-'+id_public_cat+'">'+
+                                    '<div class="overlay-public">'+
+                                    '<a class="link-ampliar-home" href="'+full_url+'"></a>'+
+                                    '<div class="public-title-home">'+nombre_public+'</div>'+
+                                    '<div class="text-overlay">'+
+                                    '<span class="text-overlay-link share-sm" onclick="pathShareHome(\''+full_url+'\')">'+
+                                    '<a href="#"><i class="fas fa-share-alt"></i></a>'+
+                                    '</span>'+
+                                    '&nbsp;&nbsp;'+
+                                    '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
+                                    //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
+                                    
+                                    '</span>'+
+                                    '</div>'+
+                                    '</div>'+
+                                    '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
+                                    '</div>'+
+                                    '</div>';
+                                    
+                            $(".item-cat-"+json_cat).append(public_html)
+                                    
+                        if (favorito==null || favorito == 0) {
+                            fav_accion="alta";
+                            var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                            $(".text-overlay-link-"+id_public).append(fav_html)
+                        }else{
+                            fav_accion="eliminar";
+                            var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                            $(".text-overlay-link-"+id_public).append(fav_html)
+                        }
+                                    
+                                    
+                    }
+                }
+            }
+        }
+        
+        
+    }
+}
+
+function getMisProductos(data){
+
+    var sizeProductos = data.length || 0; 
+    var showResultados = document.querySelector(".show-result-num") || 0;
+    showResultados.innerHTML = sizeProductos; 
+
+    for(var i=0; i<sizeProductos; i++){
+        let nombre_prod = data[i].titulo;
+        let precio_prod = data[i].precio;
+        let id_prod = data[i].id;
+        let stock_prod = data[i].stock;
+        let foto_prod = data[i].foto;
+        let foto_src = `/productos_img/${foto_prod}.png`;
+        let prod_flex_container = document.querySelector(".flex-container");
+        const flex_listado = document.querySelector(".flex-container")
+        
+        let listadoProducto = 
+        `<div class="flex-listado">
+            <div class="overlay-public">
+                <div class="text-overlay-prod">
+                    <span data-title="${id_prod}" class="text-overlay-link share-sm">
+                        <a href="#"><i class="fas fa-trash-alt"></i></a>
+                    </span>
+                    <span data-title="${id_prod}" class="text-overlay-link text-overlay-link-id_prod">
+                        <a href="/editar-producto.html?id=${id_prod}&accion=editar"><i class="fas fa-edit"></i></a>
+                    </span>
+                </div>
+            </div>
+            <img src="${foto_src}" alt="${foto_src}">
+            <div class="prod-datos">
+                <div class="nombre-prod">${nombre_prod}+</div>
+                <div class="precio-prod">$ ${precio_prod}+</div>
+            </div>
+        </div>`;
+
+        flex_listado.insertAdjacentHTML('beforeend', listadoProducto) 
+        
+    }
+}
+
 function getDataPaging(dataPaging) {
     //return new Promise((resolve, reject) => {
 
@@ -2624,6 +2761,7 @@ function getDataPaging(dataPaging) {
     fetch(URL)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             let cant = parseInt(data.length);
             let dataP_cant = dataPaging.cantidad || 0;
             let data_len = data.length || 0;
@@ -2650,7 +2788,7 @@ function getDataPaging(dataPaging) {
                     getMisVentas(data);
                     break;
                 case "paginador_ampliar-producto.php":
-                    getMisVentas(data);
+                    getMisProductos(data);
                     break;
                 default: alert("error")
             }

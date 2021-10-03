@@ -235,7 +235,6 @@ body{
     color: var(--golden-taggeon);
 }
 .show-result{
-    margin-top: 300px;
     color: rgb(208 208 208);
 }
 .search {
