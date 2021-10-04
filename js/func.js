@@ -2296,29 +2296,11 @@ function getProdPublicTest(param){
 }
 
 
-function intObserver(dataPaging){
-    //paginador infinito
-    const options = {
-        root: null,
-        rootMargins: "0px",
-        threshold: 0.5
-    };
-    
-    const observer = new IntersectionObserver(handleIntersect, options);
-    const footer = document.querySelector("footer");
-    if(footer !== null) observer.observe(footer)
-
-    function handleIntersect(entries) {
-        if (entries[0].isIntersecting) {
-            console.warn("intersect");
-            //getDataPaging(dataPaging);
-        }
-    }
-}
-
 function getMisPublic(data){
     var sizePublic = data.length;
     console.log("publics-->",data)
+    let grid = document.querySelector(".grid");
+
     if(sizePublic>0){
         for(let i=0; i<sizePublic; i++){
             let id_public = data[i].id;
@@ -2327,7 +2309,6 @@ function getMisPublic(data){
             let descr_public = data[i].publicacion_descripcion;
             let imagen_id = data[i].foto;
             let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
-            let grid = document.querySelector(".grid");
             //let imagen_public_html = document.querySelector(".imagen-public-"+imagen_id);
 
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;        
@@ -2353,8 +2334,8 @@ function getMisPublic(data){
         }
 
     }else{
-        var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
-        document.querySelector(".contenedor-mis-public").insertAdjacentHTML(html_sin_public);
+        //var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
+        //grid.insertAdjacentHTML(html_sin_public);
     }
 }
 
@@ -2751,21 +2732,42 @@ function getMisProductos(data){
     }
 }
 
+function intObserver(dataPaging){
+    //paginador infinito
+    const options = {
+        root: null,
+        rootMargins: "0px",
+        threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver(handleIntersect, options);
+    const footer = document.querySelector("footer");
+    if(footer !== null) observer.observe(footer)
+
+    function handleIntersect(entries) {
+        if (entries[0].isIntersecting) {
+            console.warn("intersect");
+            getDataPaging(dataPaging);
+        }
+    }
+}
+
 function getDataPaging(dataPaging) {
     //return new Promise((resolve, reject) => {
 
     //const {url,dataPaging} = dataPaging;
     const URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
     let url_temp = dataPaging.url || "";
+    
+    document.body.classList.add("loading"); 
 
     fetch(URL)
-        .then(response => response.json())
-        .then(data => {
+    .then(response => response.json())
+    .then(data => {
             console.log(data)
-            let cant = parseInt(data.length);
-            let dataP_cant = dataPaging.cantidad || 0;
-            let data_len = data.length || 0;
-            dataP_cant = dataP_cant+data_len;
+            var cant = parseInt(data.length);
+            dataPaging.cantidad = dataPaging.cantidad+cant;
+            console.log(dataPaging.cantidad)
 
             //dibujo listados
             switch (url_temp){
@@ -2793,6 +2795,7 @@ function getDataPaging(dataPaging) {
                 default: alert("error")
             }
 
+            document.body.classList.remove("loading"); 
         })
         //.catch(error => console.log("error"))
         
