@@ -243,7 +243,6 @@ $('#producto-form').submit(function (e) {
             if (data.status == 'ERROR'){
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                $("body").addClass("loading"); 
                 window.location.replace("/ampliar-producto.html");
             }else if(data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);

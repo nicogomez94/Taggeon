@@ -129,12 +129,6 @@
              uploadHBR.reset('#uploads');
          });
          
-         //si no tiene imagen en recuadro (TODO)
-         $(".img-responsive").on("error", function(){
-            console.log("errr")
-            $(this).attr('src', '');
-         });
-         
          var subcats_length = jsonData.productos[0] || [];
       
          for(var i=0; i<subcats_length; i++) {

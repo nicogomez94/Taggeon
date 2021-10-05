@@ -652,7 +652,7 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    margin-bottom: 1000px;
+    margin-bottom: 500px;
 }
 .flex-listado{
     flex-direction: row;

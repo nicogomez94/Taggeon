@@ -80,10 +80,10 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
       '<div class="modal-body">'+
       '<div class="row">'+
       '<div class="col-lg-7">'+
-         '<div class="img-modal-prod"><img style="width: 100%;" src="'+foto_src_prod_p+'" alt="foto_src_prod"></div>'+
+         '<div class="img-modal-prod"><img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" style="width: 100%;" src="'+foto_src_prod_p+'" alt="foto_src_prod"></div>'+
       '<hr>'+
       '<div>'+
-         '<h5 style="text-align:left">Ficha T&eacute;cnica</h5>'+
+         /*'<h5 style="text-align:left">Ficha T&eacute;cnica</h5>'+
          '<table class="tg" style="table-layout: fixed; width: 282px">'+
          '<colgroup>'+
          '<col style="width: 153px">'+
@@ -111,7 +111,7 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
             '<td class="tg-z6p2">15</td>'+//hardcodeado
          '</tr>'+
          '</tbody>'+
-         '</table>'+
+         '</table>'+*/
       '</div></div>'+
       '<div class="col-lg-5 col-datos-producto">'+
       '<div>'+
@@ -238,10 +238,10 @@ function createModalRelAjax(idParam){
          '<div class="modal-body">'+
          '<div class="row">'+
          '<div class="col-lg-7">'+
-            '<div class="img-modal-prod"><img style="width: 100%;" src="'+foto_src_prod_p+'" alt="foto_src_prod"></div>'+
+            '<div class="img-modal-prod"><img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" style="width: 100%;" src="'+foto_src_prod_p+'" alt="foto_src_prod"></div>'+
          '<hr>'+
          '<div>'+
-            '<h5 style="text-align:left">Ficha T&eacute;cnica</h5>'+
+            /*'<h5 style="text-align:left">Ficha T&eacute;cnica</h5>'+
             '<table class="tg" style="table-layout: fixed; width: 282px">'+
             '<colgroup>'+
             '<col style="width: 153px">'+
@@ -269,7 +269,7 @@ function createModalRelAjax(idParam){
                '<td class="tg-z6p2">15</td>'+//hardcodeado
             '</tr>'+
             '</tbody>'+
-            '</table>'+
+            '</table>'+*/
          '</div></div>'+
          '<div class="col-lg-5 col-datos-producto">'+
          '<div>'+
@@ -365,7 +365,7 @@ function getSplideProdPublic(param){
    //si ya clickee una vez, no vuelvas a hacer la llamada
    var el =  document.querySelector('.prod-tag-public');
    if (el == null){
-      
+
       fetch(URL).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then((response) => {
@@ -408,7 +408,7 @@ function getSplideProdPublic(param){
                      
             
                   let splide_fotos = `<li class="prod-tag-public splide__slide splide__slide__img splide__prodtag">
-                     <img data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${foto_src_prod}"></li>`;
+                     <img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${foto_src_prod}"></li>`;
                   
                      
                   //dibujo tags y list de galeria splide

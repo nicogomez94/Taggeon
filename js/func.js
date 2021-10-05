@@ -3,8 +3,13 @@ document.addEventListener("DOMContentLoaded", function() {
     //activar notifs
     ampliarNotif();
 
-
-    
+    //si falla imagen_perfil
+    /*const img = document.querySelector(".img-perfil-public-img")
+    img.addEventListener("error", function(event) {
+        event.target.src = "/imagen_perfil/generica.png"
+        event.onerror = null
+    })
+    */
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -15,19 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
       .mouseleave(function() {
         $(".splide__arrow").css("display","none");
       });
-
-    //icono gif de carga
-    $(document).on({
-        ajaxStart: function(){
-           $("body").addClass("loading"); 
-        },
-        ajaxStop: function(){ 
-           $("body").removeClass("loading"); 
-        }    
-     });
-     $("#dropdown-user-menu").click(function(e){
-        e.stopPropagation();
-    });
 
     //si la img viene con error
     $("img").on("error", function(){
@@ -72,12 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /************************************/
 
-    $('.carousel').carousel({
-        interval: 20001111
-    })
-
     //para que lo inconos de filtro no show
-    $(".icon-sort").hide();
+    //$(".icon-sort").hide();
 
     // abro/cierro menu perfil
     $(function(){
@@ -443,10 +431,6 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
    return false;
 });
 
-/*fin riki*/
-
-/*NICOOOO*//*NICOOOO*//*NICOOOO*/
-
     /********SUBIR IMAGEN*******/
     $("#subir-foto-perfil").on('submit', function() {
 
@@ -531,22 +515,6 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
         $("#terminar-productos-btn").hide();
         $("#anadir-productos-btn").show();
     })
-
-
-    /*funciones para que se cierre el otro modal atras del otro*/
-    $("#recuperaPass").on('show.bs.modal', function (e) {
-        $("#modal-sesion").modal("hide");
-    });
-    /**/
-    $("#modal-registro").on('show.bs.modal', function (e) {
-        $("#modal-sesion").modal("hide");
-    });
-    /**/
-    $("#modal-registro-seller").on('show.bs.modal', function (e) {
-        $("#modal-registro").modal("hide");
-    });
-
-
 
 
 /*FORMULARIO SUBIR PUBLICACION*/
@@ -2019,11 +1987,20 @@ function getSubCat(valueParam,source,target){
 
                 var subcats = data.mensaje || [];
                 var subcats_length = data.mensaje.length || 0;
+                var targetHtml = $(target);
+                var target_length = targetHtml.find("option").length;
+                var itemsNext = $(source).nextAll();
+
+                if(target_length > 1){
+                    itemsNext.each(function(){
+                        $(this).empty()
+                        $(this).removeClass("showCat");
+                    });
+                }
                 
                 for(var i=0; i<subcats_length; i++) {
                     var cat_id = subcats[i].id;
                     var cat_nombre = subcats[i].nombre;
-                    var targetHtml = $(target);
      
                     var cat_select_html = 
                     '<option value="'+cat_id+'">'+cat_nombre+'</option>';
@@ -2071,18 +2048,9 @@ function getSubEscena(valueParam,source,target){
                 var target_length = targetHtml.find("option").length;
                 var itemsNext = $(source).nextAll().not(esc_ind);
                 
-                console.log("-----------------------------------")
-                console.log("subEscena",subEscena)
-                console.log("source",source)
-                console.log("target",target)
-                console.log("-----------------------------------")
-                
                 //si ya hay options en el select, borra esos 
                 if(target_length > 1){
                     itemsNext.each(function(){
-                        console.log("estos hay")
-                        console.log($(this))
-                        console.log("-----------------------------------")
                         $(this).empty()
                         $(this).removeClass("showCat");
                     });
@@ -2478,7 +2446,7 @@ function getPublicsAmpliarHome(data){
             let html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
                                   '<div class="header-public header-public-'+id_public+'" onmouseover="showFollow(this)" onmouseout="hideFollow(this)">'+
                                      '<a class="nombre-perfil-public" href="/ampliar-usuario-redirect.html?id_usuario='+id_publicador+'">'+
-                                        '<span class="img-perfil-public"><img src="'+img_publicador+'" alt="img-perfil"></span>'+
+                                        '<span class="img-perfil-public"><img onerror="this.src=\'/imagen_perfil/generica.png\'" src="'+img_publicador+'" alt="img-perfil"></span>'+
                                         '<span class="title-public title-public-'+i+'"></span>'+
                                      '</a>'+
                                   '</div>'+
@@ -2720,10 +2688,10 @@ function getMisProductos(data){
                     </span>
                 </div>
             </div>
-            <img src="${foto_src}" alt="${foto_src}">
+            <img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" src="${foto_src}" alt="${foto_src}">
             <div class="prod-datos">
-                <div class="nombre-prod">${nombre_prod}+</div>
-                <div class="precio-prod">$ ${precio_prod}+</div>
+                <div class="nombre-prod">${nombre_prod}</div>
+                <div class="precio-prod">$ ${precio_prod}</div>
             </div>
         </div>`;
 

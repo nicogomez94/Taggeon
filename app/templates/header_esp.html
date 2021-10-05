@@ -28,6 +28,19 @@
 			/*$("body").scroll(function(){
 				$(".overlay-welcome-nologin").fadeIn(500);
 			});*/
+
+			 /*funciones para que se cierre el otro modal atras del otro*/
+			$("#recuperaPass").on('show.bs.modal', function (e) {
+				$("#modal-sesion").modal("hide");
+			});
+			/**/
+			$("#modal-registro").on('show.bs.modal', function (e) {
+				$("#modal-sesion").modal("hide");
+			});
+			/**/
+			$("#modal-registro-seller").on('show.bs.modal', function (e) {
+				$("#modal-registro").modal("hide");
+			});
 		});
 	</script>
 

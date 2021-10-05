@@ -397,6 +397,26 @@ SQL;
     }
 
 
+    public function getListCategoriaPadre()
+    {
+        $sql = <<<sql
+SELECT
+                    `id`,
+                    `nombre`
+                FROM
+                    `categoria`
+                WHERE
+                    (eliminar is null OR eliminar = 0) AND usuario_alta is NOT  null AND id_padre is null
+sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+    }
 
     public function getListCategoria()
     {

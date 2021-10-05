@@ -808,6 +808,10 @@ class  ProductoManager
 		return true;
 	}
 
+	public function getListCategoriaPadre()
+	{
+		return $this->productoDao->getListCategoriaPadre();
+	}
 
 	public function getListCategoria()
 	{
