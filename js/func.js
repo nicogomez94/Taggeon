@@ -2358,7 +2358,7 @@ function getMisCompras(data){
 
         }
     }else{
-        flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>')
+        document.querySelector(".inner-compras").innerHTML =  '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>'
     }
 
 }
@@ -2366,7 +2366,7 @@ function getMisCompras(data){
 function getMisVentas(data){
     const sizeVentas = data.length;
     const flex_listado = document.querySelector(".flex-listado")
-
+    console.log(data)
     if(sizeVentas>0){
         for(var i=0; i<sizeVentas; i++){
             var nombre_producto = data[i].nombre_producto || "";
@@ -2379,7 +2379,7 @@ function getMisVentas(data){
             var imagen_id = data[i].foto_id || 0;
             var foto_src = '/productos_img/'+imagen_id+ '.png' || "";
 
-            `<div class="overlay-public">
+            var ventas_html = `<div class="overlay-public">
                <div class="text-overlay-prod">
                      <span data-title="${id}" class="text-overlay-link share-sm">
                         <a href="#"><i class="fas fa-trash-alt"></i></a>
@@ -2395,10 +2395,10 @@ function getMisVentas(data){
                <div class="precio-prod">$ ${precio_producto}</div>
             </div>`;
                
-            flex_listado.insertAdjacentHTML('beforeend', compras_html) 
+            flex_listado.insertAdjacentHTML('beforeend', ventas_html) 
         }
     }else{
-            flex_listado.insertAdjacentHTML('beforeend', '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>')
+        document.querySelector(".inner-ventas").innerHTML = '<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>'
             //$(".inner-compras").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta por el momento<i></h3>')
     }
 
@@ -2411,6 +2411,7 @@ function getPublicsAmpliar(){
 function getPublicsAmpliarHome(data){
 
     var sizePublic = data.length;
+
     //console.log("publics",data)
     for(var i=0; i<sizePublic; i++){
        
@@ -2526,6 +2527,12 @@ function getPublicsAmpliarHome(data){
         }
     }//fin for
     observer()
+
+    var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
+    console.log($("#ancla-desde-home-"+WinLocSplit))
+    var public_pos = $("#ancla-desde-home-"+WinLocSplit).offset().top - 80;
+    //$(document).one(function() {
+    $('html,body').scrollTop(public_pos)
 }
 
 
@@ -2659,6 +2666,15 @@ function getPublicsHome(data){
             }
         }
         
+        //hardcodeado (cada vez que se llame va a volver a crearse)
+        let splide_test = new Splide( '.splide__home', {
+                type     : 'slide',
+                perPage: 2,
+                autoWidth: true,
+                pagination: false,
+                autoHeight: true
+        } ).mount();
+
         
     }
 }
@@ -2769,6 +2785,12 @@ function getDataPaging(dataPaging) {
                     break;
                 case "paginador_ampliar-publicacion-home.php":
                     getPublicsAmpliarHome(data);
+                    var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
+                    console.log($("#ancla-desde-home-"+WinLocSplit));
+                    console.log("test")
+                    var public_pos = $("#ancla-desde-home-"+WinLocSplit).offset().top - 80;
+                    //$(document).one(function() {
+                    $('html,body').scrollTop(public_pos)
                     break;
                 case "paginador_mis-publicaciones.php":
                     getMisPublic(data);

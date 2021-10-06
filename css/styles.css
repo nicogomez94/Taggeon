@@ -1506,11 +1506,11 @@ input:focus-visible, .input:focus-within{
     margin-bottom: 50px;
 }
 .producto, .compra, .venta{
-    background-color: rgb(247, 247, 247);
-    border-radius: 10px;
+    background-color: transparent;
+    border-radius: var(--soft-redondeado);
     text-align: center;
     padding: 20px;
-    box-shadow: 0px 0px 5px rgb(194, 194, 194);
+    box-shadow: var(--soft-shadow);
     font-size: 20px;
     position: relative;
 }
@@ -1536,9 +1536,6 @@ input:focus-visible, .input:focus-within{
 }
 .estado-pedido-compra-label, .estado-pedido-venta-label{
     color: #999;
-}
-.producto{
-    margin-bottom: 10px;
 }
 .estado-preparacion{
     color: rgb(233, 172, 81);
@@ -2574,6 +2571,14 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     top: 2px;
     color: rgb(194, 0, 0);
 }
+.carrito-cant-items{
+    font-size: small;
+    font-weight: lighter;
+    margin-left: 15px;
+}
+.datos-envio-checkout input {
+    width: 80%;
+}
 /*
 .datos-num-checkout{
     margin-bottom: 10px;
@@ -2590,6 +2595,8 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .totales-carrito, .totales-compra, .totales-venta{
     padding: 15px;
     background: rgb(240, 240, 240);
+    box-shadow: var(--soft-shadow);
+    border-radius: var(--soft-redondeado);
 }
 .num-corto-form{
     width: 40%;
@@ -2919,9 +2926,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     display: inline-block;
 }
 .producto {
-    box-shadow: 0px 0px 1px grey;
     padding: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .adress, .fecha, .lista-productos{
     margin-top: 20px;

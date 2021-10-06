@@ -1,5 +1,6 @@
 
    <div class="container" id="contenedor-form-subir">
+      <br><br>
       <h1>Checkout</h1>
       <hr><br>
       <form id="finalizar-orden">
@@ -11,50 +12,26 @@
                <h4>Datos de env&iacute;o</h4>
                <hr>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="envio_nombre_apellido" id="envio_nombre_apellido" required>
-                     <span class="highlight"></span>
-                     <span class="bar"></span>
-                     <!-- BORRAR STYLE -->
-                     <label class="label-text-subir-producto" style="padding-left: 15px;">Nombre y apellido</label>
+                     <input type="text" name="envio_nombre_apellido" id="envio_nombre_apellido" placeholder="Nombre Completo" required>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="number" name="envio_codigo_postal" id="envio_codigo_postal" required>
-                     <span class="highlight"></span>
-                     <span class="bar"></span>
-                     <!-- BORRAR STYLE -->
-                     <label class="label-text-subir-producto" style="padding-left: 15px;">Codigo Postal</label>
+                     <input type="number" name="envio_codigo_postal" id="envio_codigo_postal" placeholder="Codigo Postal" required>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="envio_ciudad_localidad" id="envio_ciudad_localidad" required>
-                     <span class="highlight"></span>
-                     <span class="bar"></span>
-                     <!-- BORRAR STYLE -->
-                     <label class="label-text-subir-producto" style="padding-left: 15px;">Ciudad/Localidad</label>
+                     <input type="text" name="envio_ciudad_localidad" id="envio_ciudad_localidad" placeholder="Ciudad/Localidad" required>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="envio_numero" id="envio_ciudad_localidad" required>
-                     <span class="highlight"></span>
-                     <span class="bar"></span>
-                     <!-- BORRAR STYLE -->
-                     <label class="label-text-subir-producto" style="padding-left: 15px;">Teléfono</label>
+                     <input type="text" name="envio_numero" id="envio_ciudad_localidad" placeholder="Tel&eacute;fono" required>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="envio_direccion" id="envio_ciudad_localidad" required>
-                     <span class="highlight"></span>
-                     <span class="bar"></span>
-                     <!-- BORRAR STYLE -->
-                     <label class="label-text-subir-producto" style="padding-left: 15px;">Direcci&oacute;n</label>
+                     <input type="text" name="envio_direccion" id="envio_ciudad_localidad" placeholder="Direcci&oacute;n" required>
                   </div>
                   <div class="group group-form-checkout">      
-                     <input type="text" name="email" id="email" required>
-                     <span class="highlight"></span>
-                     <span class="bar"></span>
-                     <!-- BORRAR STYLE -->
-                     <label class="label-text-subir-producto" style="padding-left: 15px;">Email</label>
+                     <input type="text" name="email" id="email" placeholder="E-mail" required>
                   </div>
                   <div class="group group-form-checkout">      
                      <p class="label-descr">Notas (opcional)</p>
-                     <textarea type="text" name="notas" id="notas" autocomplete="on">testtest</textarea>
+                     <textarea type="text" name="notas" id="notas" autocomplete="on" placeholder="Ingrese su comentario"></textarea>
                   </div>
             </div>
             <div class="col-lg-6 totales-checkout">
@@ -62,11 +39,11 @@
                <hr>
                <div class="row datos-num-checkout">
                   <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
-                  <div class="col-lg-6 text-right"><span class="subtotal-cant">$32132,00</span></div>
+                  <div class="col-lg-6 text-right"><span class="subtotal-cant">$100,00</span></div>
                </div>
                <div class="row datos-num-checkout">
                   <div class="col-lg-6"><span class="total-titulo">Total</span></div>
-                  <div class="col-lg-6 text-right"><span class="total-cant">$32132,00</span></div>
+                  <div class="col-lg-6 text-right"><span class="total-cant">$100,00</span></div>
                </div>
                <!--
                <div class="row datos-num-checkout">
@@ -79,6 +56,7 @@
                </div>
                -->
                <div>
+                  <br>
                   <button type="submit" href="#" class="btn btn-warning">Finalizar Orden de Compra</button>
                </div>
                <input type="hidden" value="finalizar2" name="accion">

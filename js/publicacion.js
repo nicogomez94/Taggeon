@@ -9,9 +9,7 @@ $(document).ready(function(){
    hideGloboCat()
 
    //lo mando a la public que se selecciono desde home
-   /*var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
-   var public_pos = $("#ancla-desde-home-"+WinLocSplit).offset().top - 80;
-   $('html,body').scrollTop(public_pos)*/
+   
    
 
 

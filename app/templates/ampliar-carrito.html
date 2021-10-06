@@ -2,12 +2,12 @@
 
 <div class="container container-carrito">
    <div class="inner-carrito">
-      <h1>Carrito</h1>
+      <h1>Carrito<span class="carrito-cant-items">1 Item añadido</span></h1>
       <hr>
       <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
-         <div class="header-productos producto row">
+         <!-- <div class="header-productos producto row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
-               <!-- <span class="titulo-header-producto">Imagen</span> -->
+               <span class="titulo-header-producto">Imagen</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
                <span class="titulo-header-producto">
@@ -42,7 +42,7 @@
                   <span class="sort-stock">Subtotal</span>
                </span>
             </div>
-         </div>
+         </div> -->
          <input type="hidden" id="id_carrito" name="id_carrito" value="">
          <!-- producto hardcodeado -->
 
@@ -108,7 +108,7 @@ $(document).ready(function(){
 
             var prods_carrito_html = '<div class="row producto">'+
                               '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
-                              '<div class="img-producto-container-0" data-title="223"><img class="img-producto" src="'+foto_src+'" alt="img"></div>'+
+                              '<div class="img-producto-container-0" data-title="223"><img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" class="img-producto" src="'+foto_src+'" alt="img"></div>'+
                               '</div>'+
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
                               '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
