@@ -138,23 +138,35 @@
 						'left': xval+'%'
 					});
 
-					//si se sale el popup del viewport invierto los css
+					//si se sale el popup del viewport le saco el resto vs wl width del navegdador
+					//si es mobile lo hago que sea todo el ancho
 					var salirPopup = document.getElementById("salir-popup");
 
-					if(!inViewport(salirPopup)){
-						
-						var sp = document.querySelector("#salir-popup");
-						var sp_left = sp.style.display ="left";
-						sp.style.right = sp_left;
-						sp.style.left = "unset";
-
-						var ppc = document.querySelector("#popup-prod-cont");
-						var ppc_left = ppc.style.left.split("px")[0];
-						ppc_left_posta = parseInt(ppc_left) - 300;
-						ppc.style.right = ppc_left_posta+"px";
-						ppc.style.left = "unset";
-						
+					if (window.matchMedia("(max-width: 768px)").matches) {
+						popup_cont.css("width","100%")
+						popup_cont.css("left","unset")
+					}else{
+						if(!inViewport(salirPopup)){
+	
+							let r = salirPopup.getBoundingClientRect();
+							let exceso_left = r.left;
+							let html = document.documentElement;
+							let clientWidth = html.clientWidth;
+							let resta = (exceso_left - clientWidth) * 2;
+	
+							console.log("----SE EXCEDIO-----",resta)
+							   console.log("r.left EN FUNC",r.left)
+							   console.log("clientWidth EN FUNC",html.clientWidth)
+							
+							var ppc = document.querySelector("#popup-prod-cont");
+							var ppc_left = ppc.style.left.split("px")[0];
+							ppc_left_posta = parseInt(ppc_left) - resta;
+							//ppc.style.right = ppc_left_posta+"px";
+							ppc.style.left = ppc_left_posta;
+							
+						}
 					}
+					
 					
 				});
 				

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //activar notifs
     ampliarNotif();
 
+
     //si falla imagen_perfil
     /*const img = document.querySelector(".img-perfil-public-img")
     img.addEventListener("error", function(event) {
@@ -1041,9 +1042,6 @@ $("")
 });
 
 
-
-
-
 function actualizarPantallaEditarUsuario () {
     if (jsonDatosEditar != undefined){
         var nombre = jsonDatosEditar["NOMBRE"] || '';
@@ -1318,8 +1316,7 @@ function activarBuscador(param){
 
                 },
                 error:function(response){
-                
-                alert("ERROR::"+response)
+                    alert("ERROR::"+response)
                 }
             });
         }
@@ -1695,8 +1692,8 @@ function inViewport(el){
     if ( !el || 1 !== el.nodeType ) { return false; }
     html = document.documentElement;
     r = el.getBoundingClientRect();
-    //console.log(r)
-    //console.log(typeof !!r)
+    console.log("r.left",r.left)
+    console.log("widt client",html.clientWidth)
 
     return ( !!r
        && r.bottom >= 0
@@ -2213,19 +2210,24 @@ function cerrarOverlay(clase){
 }
 
 
-function fetchIdCarrito(id_public){
+function fetchIdCarrito(id_public,id_prod){
     const URL = "/app/carrito.php"
 
     let dataCarr = new FormData();
     dataCarr.append("accion","alta");
-    dataCarr.append("id_public",id_public);
+    dataCarr.append("id",id_prod);
+    dataCarr.append("id_publicacion",id_public);
+    dataCarr.append("cantidad","1");//hard
 
     fetch(URL, {
         method: 'POST',
         body: dataCarr,
     }).then(res => res.json())
+    .then(response => {
+        console.log(response)
+        window.location.replace("/ampliar-carrito.html")
+    })
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
 
 }
 
@@ -2266,7 +2268,7 @@ function getProdPublicTest(param){
 
 function getMisPublic(data){
     var sizePublic = data.length;
-    console.log("publics-->",data)
+    //console.log("publics-->",data)
     let grid = document.querySelector(".grid");
 
     if(sizePublic>0){
@@ -2300,7 +2302,7 @@ function getMisPublic(data){
             //imagen_public_html.attr("src", foto_src);
 
         }
-
+        
     }else{
         //var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
         //grid.insertAdjacentHTML(html_sin_public);
@@ -2409,7 +2411,7 @@ function getPublicsAmpliar(){
 function getPublicsAmpliarHome(data){
 
     var sizePublic = data.length;
-    console.log("publics",data)
+    //console.log("publics",data)
     for(var i=0; i<sizePublic; i++){
        
         if(sizePublic>0){
@@ -2523,6 +2525,7 @@ function getPublicsAmpliarHome(data){
             alert("no hay publicaciones")
         }
     }//fin for
+    observer()
 }
 
 
@@ -2661,7 +2664,7 @@ function getPublicsHome(data){
 }
 
 function getMisProductos(data){
-
+    console.log(data)
     var sizeProductos = data.length || 0; 
     var showResultados = document.querySelector(".show-result-num") || 0;
     showResultados.innerHTML = sizeProductos; 
@@ -2673,7 +2676,6 @@ function getMisProductos(data){
         let stock_prod = data[i].stock;
         let foto_prod = data[i].foto;
         let foto_src = `/productos_img/${foto_prod}.png`;
-        let prod_flex_container = document.querySelector(".flex-container");
         const flex_listado = document.querySelector(".flex-container")
         
         let listadoProducto = 
@@ -2696,7 +2698,7 @@ function getMisProductos(data){
         </div>`;
 
         flex_listado.insertAdjacentHTML('beforeend', listadoProducto) 
-        
+        console.log(flex_listado)
     }
 }
 
@@ -2710,15 +2712,35 @@ function intObserver(dataPaging){
     
     const observer = new IntersectionObserver(handleIntersect, options);
     const footer = document.querySelector("footer");
+    const targets = document.querySelectorAll('.public-ampliar');
     if(footer !== null) observer.observe(footer)
 
     function handleIntersect(entries) {
         if (entries[0].isIntersecting) {
-            console.warn("intersect");
-            getDataPaging(dataPaging);
+            //console.warn("intersect");
+            //getDataPaging(dataPaging);
+            //observer.disconnect();
         }
     }
 }
+
+function observer(){
+    const targets = document.querySelectorAll('.public-ampliar');
+    const lazyLoad = target => {
+        const io = new IntersectionObserver((entries, observer) => {
+            
+            entries.forEach(function(i, idx, array){
+                if (idx === array.length - 1){ 
+                    /*console.log("Last callback call at index " + idx + " with value ",i ); */
+                }
+             });
+
+        });
+        io.observe(target)
+    };
+    targets.forEach(lazyLoad);
+}
+
 
 function getDataPaging(dataPaging) {
     //return new Promise((resolve, reject) => {
@@ -2732,10 +2754,10 @@ function getDataPaging(dataPaging) {
     fetch(URL)
     .then(response => response.json())
     .then(data => {
-            console.log(data)
+            //console.log(data)
             var cant = parseInt(data.length);
             dataPaging.cantidad = dataPaging.cantidad+cant;
-            console.log(dataPaging.cantidad)
+            //console.log(dataPaging.cantidad)
 
             //dibujo listados
             switch (url_temp){
@@ -2768,3 +2790,5 @@ function getDataPaging(dataPaging) {
         //.catch(error => console.log("error"))
         
 }
+
+

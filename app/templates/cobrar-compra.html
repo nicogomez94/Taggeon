@@ -110,7 +110,7 @@
             <hr>
             
         <!-- <form action="/mp/process_payment.php" method="post" id="paymentForm"> -->
-            <form id="paymentForm">
+           <!--<form id="paymentForm">
                 <h3>Detalles del comprador</h3>
                     <div class="mp__detalles_comprador">
                     <div class="group group-form-checkout">
@@ -132,7 +132,6 @@
                         </div>
                     </div>
                 </div>
-                <!------------ CARD -------------->
                 <div class="container-card preload">
                     <div class="creditcard">
                         <div class="front">
@@ -231,7 +230,6 @@
                         </div>
                     </div>
                 </div>
-                <!------------ /CARD -------------->
             
             
                 <div class="form-container">
@@ -268,6 +266,15 @@
                     <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
                     <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
                     <input type="hidden" name="description" id="description" />
+                    <input type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth"
+             onselectstart="return false" onpaste="return false"
+             oncopy="return false" oncut="return false"
+             ondrag="return false" ondrop="return false" autocomplete=off>
+           <span class="date-separator">/</span>
+           <input type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear"
+             onselectstart="return false" onpaste="return false"
+             oncopy="return false" oncut="return false"
+             ondrag="return false" ondrop="return false" autocomplete=off>
                     <br>
                     <button  type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
                       Realizar Compra
@@ -275,12 +282,83 @@
                     <br>
                 </div>
             </form>
-            <!-- <form id="realizar-compra">
+             <form id="realizar-compra">
                 <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
                     Realizar Compra
                 </button>
             <img style="float: right; width: 120px;" src="https://calim.com.ar/wp-content/uploads/2020/01/mercado-libre-mercado-pago-percepciones.png" alt="">
             </form> -->
+
+
+
+            <form action="/process_payment" method="post" id="paymentForm">
+                <h3>Detalles del comprador</h3>
+                  <div>
+                    <div>
+                      <label for="email">E-mail</label>
+                      <input id="email" name="email" type="text" value="test@test.com"/>
+                    </div>
+                    <div>
+                      <label for="docType">Tipo de documento</label>
+                      <select id="docType" name="docType" data-checkout="docType" type="text"></select>
+                    </div>
+                    <div>
+                      <label for="docNumber">Número de documento</label>
+                      <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text"/>
+                    </div>
+                  </div>
+                <h3>Detalles de la tarjeta</h3>
+                  <div>
+                    <div>
+                      <label for="cardholderName">Titular de la tarjeta</label>
+                      <input id="cardholderName" data-checkout="cardholderName" type="text">
+                    </div>
+                    <div>
+                      <label for="">Fecha de vencimiento</label>
+                      <div>
+                        <input type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth"
+                          onselectstart="return false" onpaste="return false"
+                          oncopy="return false" oncut="return false"
+                          ondrag="return false" ondrop="return false" autocomplete=off>
+                        <span class="date-separator">/</span>
+                        <input type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear"
+                          onselectstart="return false" onpaste="return false"
+                          oncopy="return false" oncut="return false"
+                          ondrag="return false" ondrop="return false" autocomplete=off>
+                      </div>
+                    </div>
+                    <div>
+                      <label for="cardNumber">Número de la tarjeta</label>
+                      <input type="text" id="cardNumber" data-checkout="cardNumber"
+                        onselectstart="return false" onpaste="return false"
+                        oncopy="return false" oncut="return false"
+                        ondrag="return false" ondrop="return false" autocomplete=off>
+                    </div>
+                    <div>
+                      <label for="securityCode">Código de seguridad</label>
+                      <input id="securityCode" data-checkout="securityCode" type="text"
+                        onselectstart="return false" onpaste="return false"
+                        oncopy="return false" oncut="return false"
+                        ondrag="return false" ondrop="return false" autocomplete=off>
+                    </div>
+                    <div id="issuerInput">
+                      <label for="issuer">Banco emisor</label>
+                      <select id="issuer" name="issuer" data-checkout="issuer"></select>
+                    </div>
+                    <div>
+                      <label for="installments">Cuotas</label>
+                      <select type="text" id="installments" name="installments"></select>
+                    </div>
+                    <div>
+                      <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
+                      <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
+                      <input type="hidden" name="description" id="description" />
+                      <br>
+                      <button type="submit">Pagar</button>
+                      <br>
+                    </div>
+                </div>
+              </form>
         </div>
     </div>
 
@@ -291,8 +369,8 @@
 <script src="js/jquery-3.5.1.js"></script>
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <script src="js/func.js?time=110821-1148"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
-<script src="js/card.js?time=110821-1231"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script> -->
+<!-- <script src="js/card.js?time=110821-1231"></script> -->
 <!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
 <!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
 <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
@@ -364,7 +442,7 @@ $(document).ready(function(){
       /*render: {
             container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
             label: 'Pagar', // Cambia el texto del botón de pago (opcional)
-      }*/ /*NICO si deja de andar fijarse aca*/
+      } /*NICO si deja de andar fijarse aca*/
     });
     /*mp.checkout({
       tokenizer: {
@@ -459,6 +537,25 @@ doSubmit = false;
 document.getElementById('paymentForm').addEventListener('submit', getCardToken);
 function getCardToken(){
    event.preventDefault();
+   //nico
+    //para que interactue el nuevo form con el de mp (hidden)
+    /*let form2 = document.querySelector('.cho-container');
+    let expDateFacha = document.getElementById("expirationdate").value;
+    let expYearFacha = expDateFacha.split("/")[1];
+    let expMonFacha = expDateFacha.split("/")[0];
+
+    let cardExpirationYear = document.createElement('input');
+    cardExpirationYear.setAttribute('value', expYearFacha);
+    cardExpirationYear.setAttribute('name', 'cardExpirationYear');
+    cardExpirationYear.setAttribute('type', 'hidden');
+    form2.appendChild(cardExpirationYear);
+
+    let cardExpirationMonth = document.createElement('input');
+    cardExpirationMonth.setAttribute('value', expMonFacha);
+    cardExpirationMonth.setAttribute('name', 'cardExpirationMonth');
+    cardExpirationMonth.setAttribute('type', 'hidden');
+    form2.appendChild(cardExpirationMonth);*/
+    console.log(this)
    if(!doSubmit){
        let $form = document.getElementById('paymentForm');
        window.Mercadopago.createToken($form, setCardTokenAndPay);
@@ -467,22 +564,7 @@ function getCardToken(){
 };
  
 function setCardTokenAndPay(status, response) {
-    //nico
-    //para que interactue el nuevo form con el de mp (hidden)
-    let form2 = document.getElementById('paymentForm');
-    let expDateFacha = document.getElementById("expirationdate").value;
-    let expYearFacha = expDateFacha.split("/")[1];
-    let expMonFacha = expDateFacha.split("/")[0];
-
-    let cardExpirationYear = document.createElement('input');
-    cardExpirationYear.setAttribute('value', expYearFacha);
-    cardExpirationYear.setAttribute('type', 'hidden');
-    form2.appendChild(cardExpirationYear);
-
-    let cardExpirationMonth = document.createElement('input');
-    cardExpirationMonth.setAttribute('value', expMonFacha);
-    cardExpirationMonth.setAttribute('type', 'hidden');
-    form2.appendChild(cardExpirationMonth);
+    
     
 
    if (status == 200 || status == 201) {   
@@ -517,15 +599,15 @@ function setCardTokenAndPay(status, response) {
                 if(dataJ == 'OK'){
                     console.log(dataParse)
                     alert("success ajax-->"+dataParse);
-                    window.location.replace("/pago-success.html");
+                    //window.location.replace("/pago-success.html");
                 }else if(dataJ == 'ERROR'){
                     console.log(dataParse)
                     alert("success ajax-->"+dataParse);
-                    window.location.replace("/pago-failure.html");
+                    //window.location.replace("/pago-failure.html");
                 }else{
                     console.log(dataParse)
                      alert("success ajax-->"+dataParse);
-                    window.location.replace("/pago-pending.html");
+                    //window.location.replace("/pago-pending.html");
                 }
             },
             error: function( data, jqXhr, textStatus, errorThrown ){
@@ -536,6 +618,7 @@ function setCardTokenAndPay(status, response) {
         return false;
     } else {
         alert("Verify filled data!\n"+JSON.stringify(response, null, 4));
+        console.log(response)
         
     }
 

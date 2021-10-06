@@ -41,8 +41,8 @@ if ($perfil=='seller' || $perfil=='picker'){
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "publicaciones"     => $publicacionManager->getListPublicacion(),
-        "categoria_producto" => $productoManager->getListCategoria(),
+        #"publicaciones"     => $publicacionManager->getListPublicacion(),
+        #"categoria_producto" => $productoManager->getListCategoria(),
         "carrito"     => $carritoManager->getListCarrito(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()

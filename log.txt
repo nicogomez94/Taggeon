@@ -2,4 +2,638 @@ Paso agregar busquedaPaso agregar busqueda
 row_cnt 1
 okPaso agregar busquedaPaso agregar busqueda
 row_cnt 1
-ok
+ok		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '314') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '314') 
+			  AND `eliminar` = 0 AND acces_token is not null{"status":"ERROR","mensaje":"token incorrecto "}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '314') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '314') 
+			  AND `eliminar` = 0 AND acces_token is not null{"status":"ERROR","mensaje":"token incorrecto "}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '314') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '314') 
+			  AND `eliminar` = 0 AND acces_token is not null{"status":"ERROR","mensaje":"token incorrecto "}"{\"access_token\":\"APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-615cf3d280ebdb0009796fac-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-615cf3d280ebdb0009796fac-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-615cf3d280ebdb0009796fac-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '315') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '315') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  21:56:21
+post transactionAmount: 10
+post token: c15a6e7df1a0b825a7c5c2ed40c7399f
+post installments: 1
+post paymentMethodId: master
+post issuer: 12437
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 315
+post id_carrito: 315
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '315') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '315') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  21:57:42
+post transactionAmount: 10
+post token: e0957bd7ae525ab94fa8741997ea0c85
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 315
+post id_carrito: 315
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+"{\"access_token\":\"APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-615cf51e38f79500068e5eea-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-615cf51e38f79500068e5eea-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '420' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-615cf51e38f79500068e5eea-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '420' 
+			  AND `eliminar` = 0 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '316') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '316') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+######################################################
+Fecha 05/10/2021  22:01:52
+post transactionAmount: 100
+post token: a097515869b049cfc46ed5d6b98ea9ef
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 316
+post id_carrito: 316
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '316') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '316') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+######################################################
+Fecha 05/10/2021  22:11:56
+post transactionAmount: 100
+post token: 07ded28fe814b1047435bee527200522
+post installments: 1
+post paymentMethodId: master
+post issuer: 12437
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 316
+post id_carrito: 316
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '316') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '316') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+######################################################
+Fecha 05/10/2021  22:13:58
+post transactionAmount: 100
+post token: 4e73ca8dfa3708b969fd283d56413393
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 316
+post id_carrito: 316
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:18:30
+post transactionAmount: 300
+post token: b9c8ee53bcefaab962f9629611ebebfd
+post installments: 1
+post paymentMethodId: master
+post issuer: 12437
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:22:20
+post transactionAmount: 300
+post token: 4f2704bba2dd7307ad119b0e3c1fa5f9
+post installments: 1
+post paymentMethodId: master
+post issuer: 692
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:23:19
+post transactionAmount: 300
+post token: 11a756338ab50f6e58f2c32c206989c6
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:34:00
+post transactionAmount: 300
+post token: 795b5ea649bb209ac8af283ea93d2fe4
+post installments: 1
+post paymentMethodId: visa
+post issuer: 1044
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:34:47
+post transactionAmount: 300
+post token: 9f4110c5ffff92dda90988637f41d022
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:35:41
+post transactionAmount: 300
+post token: cdd8b1580dd1207c104d16995c9b012b
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:38:44
+post transactionAmount: 300
+post token: 3386e2e415e966002ee60031ebb0b577
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:40:02
+post transactionAmount: 300
+post token: c724125b8adb5f43bea174a358cfc330
+post installments: 1
+post paymentMethodId: master
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:41:06
+post transactionAmount: 300
+post token: 2bbc840746e8f2dcea8d22c514bdf3aa
+post installments: 1
+post paymentMethodId: master
+post issuer: 279
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:44:32
+post transactionAmount: 300
+post token: 2c25cdaa6473b0a79b94fe382abdabcf
+post installments: 1
+post paymentMethodId: master
+post issuer: 12437
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 14884590
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:47:06
+post transactionAmount: 300
+post token: 444a9fc834a9e44fee957f74842a6ce8
+post installments: 1
+post paymentMethodId: visa
+post issuer: 12448
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 14884590
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:49:48
+post transactionAmount: 300
+post token: 1d3f01b73fd5e3dfd5ec451ea935505e
+post installments: 1
+post paymentMethodId: visa
+post issuer: 1044
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:52:56
+post transactionAmount: 300
+post token: 06884e4315b4513aa944aedce0b58277
+post installments: 1
+post paymentMethodId: visa
+post issuer: 1044
+post email: nicolasgomez9441@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: in_process
+response mp status_detail: pending_review_manual
+response mp id: 17366745827
+#---------------------------------------------
+Paso else
+Paso else 1
+Paso else 1
+Paso else 2
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: in_process
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '318') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 05/10/2021  22:55:12
+post transactionAmount: 300
+post token: 4e3ffb6be4e065e0562431796e4d2f14
+post installments: 1
+post paymentMethodId: visa
+post issuer: 1044
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 14884590
+post description: TAGGEON 318
+post id_carrito: 318
+response mp status: approved
+response mp status_detail: accredited
+response mp id: 17366771899
+#---------------------------------------------
+Paso 1
+OK
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: OK mensaje: 17366771899
