@@ -2405,8 +2405,35 @@ function getMisVentas(data){
 
 }
 
-function getPublicsAmpliar(){
-    console.log("test")
+function getCommentsPublic(comentarios_obj){
+    //recorro comentarios en la public
+    for(var y=0; y<comentarios_obj.length; y++){
+        if(comentarios_obj.length>0){
+            var comentario = comentarios_obj[y].comentario || "";
+            var eliminar = comentarios_obj[y].eliminar || "";
+            var fecha_alta = comentarios_obj[y].fecha_alta || "";
+            var fecha_update = comentarios_obj[y].fecha_update || "";
+            var id = comentarios_obj[y].id || 0;
+            var id_publicacion = comentarios_obj[y].id_publicacion || 0;
+            var usuario_alta = comentarios_obj[y].usuario_alta || "";
+            var usuario_editar = comentarios_obj[y].usuario_editar || "";
+            
+            var comentario_html = 
+            '<div class="commentbox-list media commentbox-id-'+y+'">'+
+            '   <span class="comment-name">nicolasgomez94</span>'+//hard
+            '   <span class="comment-text">'+comentario+'</span>'+
+            '</div>';
+            
+            $(".commentbox-list-container-"+id_publicacion).append(comentario_html);
+
+        }else{
+            var comentario_html2 = "<p>No hay comentarios</p>"
+            
+            $(".commentbox-list-container-"+id_publicacion).append(comentario_html2)
+        }
+
+    }
+
 }
 
 function getPublicsAmpliarHome(data){
@@ -2446,6 +2473,27 @@ function getPublicsAmpliarHome(data){
  
 
             if(cat_ampliar_home == id_public_cat){
+
+                //dibujo la cat arriba de todo
+               var objCat = escena_json.find(o => o.id === cat_ampliar_home) || "";
+               var nameCat = objCat.nombre || "";
+               $(".title-cat").html(nameCat);
+
+               //link NEXT cat
+               var cat_ampliar_home_next = parseInt(cat_ampliar_home) + 1;
+               var objCatNext = arrCat.find(o => o.id === cat_ampliar_home_next.toString()) || 0;
+               var objCatNextId = objCatNext.id || 0;
+               var nombre_cat_next = (typeof objCatNext.nombre == "undefined") ? "" : objCatNext.nombre;
+               $(".next-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatNextId);
+               
+
+               //link PREV cat
+               var cat_ampliar_home_prev = parseInt(cat_ampliar_home) - 1;
+               var objCatPrev = arrCat.find(o => o.id === cat_ampliar_home_prev.toString()) || 0;
+               var objCatPrevId = objCatPrev.id || 0;
+               var nombre_cat_pre = (typeof objCatPrev.nombre == "undefined") ? "" : objCatPrev.nombre;
+               $(".prev-cat a").attr("href",'/ampliar-publicacion-home.html?accion=ampliar&cat='+objCatPrevId);
+               if(typeof objCatPrev.nombre == "undefined") $(".prev-cat").hide();
  
             let html_public = '<div id="ancla-desde-home-'+id_public+'" class="public-ampliar public-actual test2">'+
                                   '<div class="header-public header-public-'+id_public+'" onmouseover="showFollow(this)" onmouseout="hideFollow(this)">'+
@@ -2519,21 +2567,48 @@ function getPublicsAmpliarHome(data){
                             
                 document.querySelector(".insert-public").insertAdjacentHTML("beforeend",html_public);
                 document.querySelector(".title-public-"+i).innerHTML = publicador;
-                document.querySelector(".title-cat").innerHTML = id_public_cat;
                 
                 getPublicTags(id_public,producto,i);
+                getCommentsPublic(comentarios_obj);
              
             } 
+            
+            //imgperfil comentarios
+            var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+            $(".commentbox-user-img").attr("src", img_perfil);
+            
+
+            if (favorito==null || favorito == 0) {
+               fav_accion="alta";
+               var fav_html = '<span><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></span>'
+               $(".social-public-"+id_public).prepend(fav_html);
+            }else{
+               fav_accion="eliminar";
+               var fav_html = '<span><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></span>'
+               $(".social-public-"+id_public).prepend(fav_html);
+            }
+            /**/
+               
+
+            if(idPublicadorSeguido==id_publicador) {
+               seg_accion="eliminar";
+               var seg_html = '<span class="follow_public"><i class="fas fa-user-plus seg-eliminar" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></span>'
+               $(".header-public-"+id_public).append(seg_html);
+            }else{
+               seg_accion="alta";
+               var seg_html = '<span class="follow_public"><i class="fas fa-user-plus" onclick="seguidores('+id_public+',\''+id_publicador+'\',\''+seg_accion+'\');$(this).toggleClass(\'seg-eliminar\')"></i></span>'
+               $(".header-public-"+id_public).append(seg_html);
+            }
+
         }else{
             alert("no hay publicaciones")
         }
     }//fin for
     observer()
 
+    //mando a la public correspondiente
     var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
-    console.log($("#ancla-desde-home-"+WinLocSplit))
     var public_pos = $("#ancla-desde-home-"+WinLocSplit).offset().top - 80;
-    //$(document).one(function() {
     $('html,body').scrollTop(public_pos)
 }
 
