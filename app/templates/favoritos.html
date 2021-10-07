@@ -1,34 +1,36 @@
-<div class="overlay-loading"></div>
+
 <div id="info-user" class="container">
-   <div id="icons-upper-perfil">
-      <span><a href="#"><i class="fas fa-plus"></i></a></span>
-      <span><a href="#"><i class="fas fa-user-cog"></i></a></span>      
-      <span><a href="{url_editar}"><i class="fas fa-user-edit"></i></a></span>
-   </div>
    <div id="titulo-perfil">
+      <div id="titulo-perfil-img">
          <img src="{foto-perfil}" alt="foto perfil">
-         <div id="titulo-perfil-datos">
-            <div>{nombre}</div>
-            <div class="fyf"><span class="seguidores">0</span>&nbsp;Seguidores - <span class="siguiendo">0</span>&nbsp; Siguiendo</div>
+      </div>
+      <div id="titulo-perfil-datos">
+         <span id="name_usuario">{nombre}</span>
+         <div class="fyf">
+            <div class="follower_container">
+               <span id="follower_count" class="follower_count">0</span>
+               <span class="follower_label">Seguidores</span>
+            </div>
+            <div class="follower_container" style="margin-left: 15px;">
+               <span id="following_count" class="follower_count">0</span>
+               <span class="follower_label">Seguidos</span>
+            </div>
+            <span class="edit_perfil"><a href="/editar-usuario.html" class="ml-1 btn btn-warning btn-sm">Editar Perfil</a></span>
          </div>
+      </div>
    </div>
    <div id="menu-perfil">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         <div class="navbar-nav navbar-center">
-            {menuperfil}
-         </div>
-       </nav>
+      {menuperfil}
    </div>
-   
+</div>
+
+<div class="container show-result">Mostrando 5 resultados.
+   <!-- <span class="show-result-num"></span> resultados. -->
 </div>
 
 
 <div class="container contenedor-mis-public">
-   <h1>Mis Favoritos</h1>
    <hr>
-   <div class="filtros">
-      
-   </div>
 
    <!--  --><br>
       
@@ -85,7 +87,7 @@
 
             }
          }else{
-            var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
+            var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones faveadas.</p>';
             $(".contenedor-mis-public").append(html_sin_public);
          }
 /*

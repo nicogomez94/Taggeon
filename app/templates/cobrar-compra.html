@@ -1,14 +1,14 @@
 
     <style>
         body{
-            background-color: rgb(216, 216, 216);
             margin: 0;
             padding: 0;
         }
         .mail-container{
-            width: 50%;
+            width: 45%;
             margin: 30px auto 10px auto;
-            box-shadow: 4px 4px 0px #b3b3b3;
+            box-shadow: var(--soft-shadow);
+            padding: 10px;
         }
         .mail-upper, .mail-body, .mail-footer{
             padding: 20px;
@@ -18,7 +18,6 @@
             text-align: center;
         }
         .mail-body{
-            background-color: rgb(239 239 239);
         }
         .mail-footer{
             background-color: transparent;
@@ -46,7 +45,7 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            margin: 4px 2px;
+            margin: 10px;
             cursor: pointer;
             border-radius: 10px;
             -webkit-transition-duration: 0.4s;
@@ -77,19 +76,19 @@
     </style>
     
 </head>
-<body style="background-color: rgb(216, 216, 216);margin: 0;padding: 0;">
-    <div class="mail-container" style="width: 50%;margin: 30px auto 10px auto;box-shadow: 4px 4px 0px #b3b3b3;">
-        <div class="mail-upper" style="padding: 20px;background-color: #cebd8b;text-align: center;">
+<body>
+    <div class="mail-container">
+        <div class="mail-upper">
             <div class="logo-taggeon"></div>
-            <div class="orden-recibida" style="padding: 30px;position: relative;">
-                <div class="logo-flot" style="position: absolute;left: -10px;top: -10px;"><a href="/" style="color: whitesmoke !important;font-size: 20px !important;">
-                    <i class="fab fa-affiliatetheme logo-brand" style="-moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;display: inline-block;font-style: normal;font-variant: normal;text-rendering: auto;line-height: 1;font-family: &quot;Font Awesome 5 Brands&quot;;"></i>
+            <div class="orden-recibida">
+                <div class="logo-flot" ><a href="/">
+                    <i class="fab fa-affiliatetheme logo-brand"></i>
                  </a></div>
                 <h1>Orden generada!</h1>
                 <p style="color: grey;">Orden Nro 1092810928019</p>
             </div>
         </div>
-        <div class="mail-body" style="padding: 20px;background-color: rgb(239 239 239);">
+        <div class="mail-body">
             <h4><span class="nombre-comprador"></span>, Revisa los datos antes de confirmar la compra</h4>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, debitis eveniet cumque incidunt, ab nulla quasi necessitatibus laudantium voluptatum perspiciatis quis modi qui ducimus dolores quisquam accusantium, expedita natus magnam?</p>
             <div class="adress">
@@ -110,27 +109,21 @@
             <hr>
             
         <!-- <form action="/mp/process_payment.php" method="post" id="paymentForm"> -->
-           <!--<form id="paymentForm">
-                <h3>Detalles del comprador</h3>
+           <form id="paymentForm">
+                <h3>Detalles de pago</h3>
                     <div class="mp__detalles_comprador">
                     <div class="group group-form-checkout">
-                        <input id="email" name="email" type="text" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="label-text-subir-producto" style="padding-left: 15px;">E-mail</label>                        
+                        <input id="email" name="email" type="text" placeholder="E-mail" required>                       
                     </div>
-                    <div class="mp__tipo-doc">
-                        <div class="mp__tipo-doc-izq">
-                            <label style="padding-left: 15px;" for="docType">Tipo de documento</label><br>
-                            <select style="margin: 15px;" id="docType" name="docType" data-checkout="docType" type="text"></select>
-                        </div>
-                        <div class="group group-form-checkout mp__tipo-doc-der">
-                            <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" required>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label class="label-text-subir-producto" for="docNumber">Número de documento</label>
-                        </div>
+                    <div class="mp__tipo-doc-izq">
+                        <!-- <label style="padding-left: 15px;" for="docType">Tipo de documento</label><br> -->
+                        <select style="margin: 15px;" id="docType" name="docType" data-checkout="docType" type="text"></select>
                     </div>
+                    <div class="group group-form-checkout mp__tipo-doc-der">
+                        <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" placeholder="Número de documento" required>
+                    </div>
+                    </div>
+                    <h3>Datos de Tarjeta</h3>
                 </div>
                 <div class="container-card preload">
                     <div class="creditcard">
@@ -234,12 +227,10 @@
             
                 <div class="form-container">
                     <div class="field-container">
-                        <label for="cardholderName">Nombre</label>
-                        <input id="cardholderName" data-checkout="cardholderName" type="text" maxlength="20">
+                        <input id="cardholderName" data-checkout="cardholderName" type="text" maxlength="20" placeholder="Nombre">
                     </div>
                     <div class="field-container">
-                        <label for="cardNumber">Numero de Tarjeta</label>
-                        <input id="cardNumber" data-checkout="cardNumber" type="text" autocomplete=off>
+                        <input placeholder="Numero de Tarjeta" id="cardNumber" data-checkout="cardNumber" type="text" autocomplete=off>
                         <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
 
@@ -266,23 +257,14 @@
                     <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
                     <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
                     <input type="hidden" name="description" id="description" />
-                    <input type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth"
-             onselectstart="return false" onpaste="return false"
-             oncopy="return false" oncut="return false"
-             ondrag="return false" ondrop="return false" autocomplete=off>
-           <span class="date-separator">/</span>
-           <input type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear"
-             onselectstart="return false" onpaste="return false"
-             oncopy="return false" oncut="return false"
-             ondrag="return false" ondrop="return false" autocomplete=off>
                     <br>
-                    <button  type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
+                    <button type="submit">
                       Realizar Compra
-                      </button>
+                    </button>
                     <br>
                 </div>
             </form>
-             <form id="realizar-compra">
+             <!-- <form id="realizar-compra">
                 <button type="submit" style="background-color: hsl(199deg 74% 49%);border: none;color: white;padding: 15px 32px;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 10px;-webkit-transition-duration: 0.4s;transition-duration: 0.4s;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: center !important;">
                     Realizar Compra
                 </button>
@@ -291,7 +273,7 @@
 
 
 
-            <form action="/process_payment" method="post" id="paymentForm">
+            <!-- <form action="/process_payment" method="post" id="paymentForm">
                 <h3>Detalles del comprador</h3>
                   <div>
                     <div>
@@ -358,7 +340,7 @@
                       <br>
                     </div>
                 </div>
-              </form>
+              </form> -->
         </div>
     </div>
 
@@ -369,8 +351,8 @@
 <script src="js/jquery-3.5.1.js"></script>
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <script src="js/func.js?time=110821-1148"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script> -->
-<!-- <script src="js/card.js?time=110821-1231"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
+<script src="js/card.js?time=110821-1231"></script>
 <!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
 <!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
 <!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
@@ -410,7 +392,7 @@ $(document).ready(function(){
             '<div class="producto">'+
                 '<div class="row">'+
                     '<div class="col-lg-2 col-md-2 col-sm-2 col-2 cols-prod">'+
-                        '<img class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
+                        '<img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" class="mr-3 img-compra-lista" src="'+foto_src+'" alt="img">'+
                     '</div>'+
                     '<div class="col-lg-8 col-md-8 col-sm-8 col-8 cols-prod">'+nombre_producto+'&nbsp;<span class="pago-cantidad">(x'+cantidad+')</span></div>'+
                     '<div class="col-lg-2 col-md-2 col-sm-2 col-2 cols-prod precio-orden">$. '+precio_producto+'</div>'+

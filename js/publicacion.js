@@ -369,7 +369,7 @@ function getSplideProdPublic(param){
       .then((response) => {
          
          let resp_len = response.mensaje.length
-         console.log(response.mensaje)
+         console.log(response)
          //para que no cree ifninitos items de galeria
          
             if(resp_len > 0){
@@ -382,8 +382,10 @@ function getSplideProdPublic(param){
                   let id_prod_json = response.mensaje[i].id;
                   let stock_prod = response.mensaje[i].stock;
                   let foto_prod = response.mensaje[i].foto;
+                  let primer_img_split = foto_prod.split(",")[0];
+                  let primer_img = "/productos_img/"+primer_img_split+".png";
                   // nombre_completo = jsonData.nombre+""+jsonData.apellido;
-                  let nombre_completo = "test"
+                  let nombre_completo = "test";
                   let foto_src_prod = `/productos_img/${foto_prod}.png`;
                   let splide_list = document.querySelector('.splide__list__'+param)
       
@@ -406,7 +408,7 @@ function getSplideProdPublic(param){
                      
             
                   let splide_fotos = `<li class="prod-tag-public splide__slide splide__slide__img splide__prodtag">
-                     <img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${foto_src_prod}"></li>`;
+                     <img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${primer_img}"></li>`;
                   
                      
                   //dibujo tags y list de galeria splide

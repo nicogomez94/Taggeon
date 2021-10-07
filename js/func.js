@@ -2185,6 +2185,7 @@ function getEscenas(valueParam){
 function showFollow(el){
     var clase = el.classList[0];
     var toShow = $("."+clase).find(".follow_public");
+    console.log(toShow)
     toShow.addClass("showFollow");
 }
 
@@ -2518,7 +2519,8 @@ function getPublicsAmpliarHome(data){
                             
                 document.querySelector(".insert-public").insertAdjacentHTML("beforeend",html_public);
                 document.querySelector(".title-public-"+i).innerHTML = publicador;
-
+                document.querySelector(".title-cat").innerHTML = id_public_cat;
+                
                 getPublicTags(id_public,producto,i);
              
             } 
@@ -2714,7 +2716,6 @@ function getMisProductos(data){
         </div>`;
 
         flex_listado.insertAdjacentHTML('beforeend', listadoProducto) 
-        console.log(flex_listado)
     }
 }
 
@@ -2786,10 +2787,7 @@ function getDataPaging(dataPaging) {
                 case "paginador_ampliar-publicacion-home.php":
                     getPublicsAmpliarHome(data);
                     var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
-                    console.log($("#ancla-desde-home-"+WinLocSplit));
-                    console.log("test")
                     var public_pos = $("#ancla-desde-home-"+WinLocSplit).offset().top - 80;
-                    //$(document).one(function() {
                     $('html,body').scrollTop(public_pos)
                     break;
                 case "paginador_mis-publicaciones.php":

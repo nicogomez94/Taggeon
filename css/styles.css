@@ -2601,9 +2601,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .num-corto-form{
     width: 40%;
 }
-.group-form-checkout{
-    margin-top: 25px;
-}
 .num-big{
     font-weight: 700;
     font-size: 1.5em;
@@ -2813,10 +2810,12 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 /*MP*/
 .mp__detalles_comprador, .mp__detalles_tarjeta{
     padding: 10px;
-    background-color: rgb(241, 241, 241);
     box-shadow: 0px 0px 1px #d9d9d9;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+.mp__detalles_comprador input{
+    width: 40%;
 }
 .mp__detalles_tarjeta{
     padding: 30px;
@@ -2826,15 +2825,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 .mp__tipo-doc{
     padding: 10px;
-}
-.mp__tipo-doc-izq, .mp__tipo-doc-der{
-    display: inline-block;
-}
-.mp__tipo-doc-izq{
-    vertical-align: bottom;
-}
-.mp__tipo-doc-der{
-    vertical-align: baseline;
 }
 .msj_sync_mp{
     margin: 10px;
