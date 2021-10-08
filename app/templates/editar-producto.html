@@ -1,6 +1,7 @@
 <div class="overlay-loading"></div>
 
    <div class="container" id="contenedor-form-subir">
+      <br><br>
       <h1>Editar Producto</h1>
       <hr>
       <form id="producto-form">
@@ -120,15 +121,16 @@
    <script>
       $(document).ready(function(){
          uploadHBR.init({
-             "target": "#uploads",
-             "textNew": "A&ntilde;adir",
-             "textTitle": "Haga click o draguee su imagen",
-             "textTitleRemove": "Haga click para remover imagen"
+               "target": "#uploads",
+               "textNew": "A&ntilde;adir",
+               "textTitle": "Haga click o draguee su imagen",
+               "textTitleRemove": "Haga click para remover imagen"
          });
          $('#reset').click(function () {
-             uploadHBR.reset('#uploads');
-         });
-         
+               uploadHBR.reset('#uploads');
+            });
+            
+         var sizeProductos = jsonData.productos.length || 0;
          var subcats_length = jsonData.productos[0] || [];
       
          for(var i=0; i<subcats_length; i++) {
@@ -142,12 +144,54 @@
             targetHtml.append(cat_select_html)
             targetHtml.addClass("showCat");
          }
-
          
-      });
+         for(var i=0; i<sizeProductos; i++){
+            
+            var id_prod = jsonData.productos[i].id || 0;
+            var nombre_prod = jsonData.productos[i].titulo || "";
+            var marca_prod = jsonData.productos[i].marca || "";
+            var precio_prod = jsonData.productos[i].precio || 0;
+            var envio_prod = jsonData.productos[i].envio || "";
+            var garantia_prod = jsonData.productos[i].garantia || "";
+            var descr_prod = jsonData.productos[i].descr_producto || "";
+            var foto_prod_editar = jsonData.productos[i].foto || "";
+            var color_prod = jsonData.productos[i].color || "";
+            var nombre_cat = jsonData.categoria[i].nombre || "";
+            var stock_prod = jsonData.productos[i].stock || 0;
+            var id_cat = jsonData.categoria[i].id || 0;
+            var fotosArray = foto_prod_editar.split(",") || [];
+                  
+            $("#titulo-producto").val(nombre_prod);
+            $("#precio-producto").val(precio_prod);
+            $("#stock-producto").val(stock_prod);
+            $("#color").val(color_prod);
+            $("#descr-producto").val(descr_prod);
+            $("#marca-producto").val(marca_prod);
+            $("#envio-producto").val(envio_prod);
+            $("#garantia-producto").val(garantia_prod);
+         
+            for(var i=0; i<fotosArray.length; i++){
+   
+               var foto_src = '/productos_img/'+fotosArray[i]+'.png' || 0;
+               var img = $("#prev_"+i).find(".img-responsive");
+               img.attr("onerror","this.src=\'/imagen_perfil/generica_prod.jpg\'");
+               img.attr("onload","$(this).parent().parent().find('.new').addClass('hidden')");
+               img.attr("src",foto_src);
+               img.parent().removeClass("hidden");
+               
+               var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
+               $("#categoria-producto").append(html_cat);
+               
+            }
+            
+         }
+         
+      
+   });
    </script>
    <script src="js/func.js?time=110921-2115"></script>
    <script src="js/producto.js?time=110921-2115"></script>
+   <script src="../../plugins/dropPin-master/dropPin/dropPin.js?time=300821-1657"></script>
    <!-- script para la seleccion de fotos -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 

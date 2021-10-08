@@ -1421,6 +1421,9 @@ function buscadorIndex(paramIndex){
                 $(".splide__home").empty();
                 $("#main-super-container").empty();
                 $("#carousel-index").empty();
+                $(".show-result").empty();
+                $(".grid").empty();
+                $(".container").empty();
 
                     if(sizePublic>0){   
                         var public_cat_size = escena.length;
@@ -2210,6 +2213,14 @@ function cerrarOverlay(clase){
     el.style.display = "none";
 }
 
+function posicionarPublic(){
+    var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
+    var ancla_html = $("#ancla-desde-home-"+WinLocSplit);
+    if(ancla_html.length>0){
+        var public_pos = ancla_html.offset().top - 80;
+        $('html,body').scrollTop(public_pos)
+    }
+}
 
 function fetchIdCarrito(id_public,id_prod){
     const URL = "/app/carrito.php"
@@ -2556,7 +2567,7 @@ function getPublicsAmpliarHome(data){
                                               '</form>'+
                                            '</div>'+
                                            '<div class="ml-1">'+
-                                              '<button onclick="$(\'.comentario_public_'+id_public+'\').submit();console.log(\'test\')" class="btn">Enviar</button>'+
+                                              '<button onclick="$(\'.comentario_public_'+id_public+'\').submit();" class="btn">Enviar</button>'+
                                            '</div>'+
                                         '</div>'+
                                   //'<div class="comment-count"><span>Comentarios</span></div>'+
@@ -2605,11 +2616,8 @@ function getPublicsAmpliarHome(data){
         }
     }//fin for
     observer()
+    posicionarPublic();
 
-    //mando a la public correspondiente
-    var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
-    var public_pos = $("#ancla-desde-home-"+WinLocSplit).offset().top - 80;
-    $('html,body').scrollTop(public_pos)
 }
 
 
@@ -2775,10 +2783,10 @@ function getMisProductos(data){
         `<div class="flex-listado">
             <div class="overlay-public">
                 <div class="text-overlay-prod">
-                    <span data-title="${id_prod}" class="text-overlay-link share-sm">
+                    <span onclick="eliminarProd('${id_prod}')" class="eliminar-producto text-overlay-link share-sm">
                         <a href="#"><i class="fas fa-trash-alt"></i></a>
                     </span>
-                    <span data-title="${id_prod}" class="text-overlay-link text-overlay-link-id_prod">
+                    <span class="text-overlay-link text-overlay-link-id_prod">
                         <a href="/editar-producto.html?id=${id_prod}&accion=editar"><i class="fas fa-edit"></i></a>
                     </span>
                 </div>
@@ -2861,9 +2869,7 @@ function getDataPaging(dataPaging) {
                     break;
                 case "paginador_ampliar-publicacion-home.php":
                     getPublicsAmpliarHome(data);
-                    var WinLocSplit = window.location.href.split("=")[1].split("&")[0] || "";
-                    var public_pos = $("#ancla-desde-home-"+WinLocSplit).offset().top - 80;
-                    $('html,body').scrollTop(public_pos)
+                    posicionarPublic();
                     break;
                 case "paginador_mis-publicaciones.php":
                     getMisPublic(data);
