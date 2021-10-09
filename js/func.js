@@ -1466,9 +1466,7 @@ function buscadorIndex(paramIndex){
                                                 '<span class="text-overlay-link share-sm" onclick="pathShareHome(\''+full_url+'\')">'+
                                                     '<a href="#"><i class="fas fa-share-alt" ></i></a>'+
                                                 '</span>'+
-                                                '<span class="text-overlay-link text-overlay-link-'+id_public+'">'+
-                                                //'<label><input onclick="favoritos('+id_public+',\''+fav_accion+'\')" type="checkbox"><div class="like-btn-svg"></div></label>'+
-                                                '</span>'+
+                                                '<span class="text-overlay-link text-overlay-link-'+id_public+'"></span>'+
                                             '</div>'+
                                         '</div>'+
                                         '<img src="'+foto_src+'" alt="img-'+imagen_id+'">'+
@@ -2891,5 +2889,34 @@ function getDataPaging(dataPaging) {
         //.catch(error => console.log("error"))
         
 }
+/*
 
+function getSeguidoresPopup(){
+var seguidosHtml =
+`<div class="overlay overlay-seguidores" style="display: none;">
+   <div style="width: 400px;" class="lightBox lightBox-seguidores">
+      <div>
+         <a href="javascript:void(0)" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <h3 class="count-seguidores"></h3>
+         <hr>
+           <div class="container-seguidores"></div>
+         </div>
+      </div>
+   </div>
+</div>`
+}
 
+function getSeguidosPopup(){
+var seguidosHtml =
+`<div class="overlay overlay-seguidos" style="display: none;">
+   <div style="width: 400px;" class="lightBox lightBox-seguidos">
+      <div>
+         <a href="javascript:void(0)" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+         <h3 class="count-seguidos"></h3>
+         <hr>
+         <div class="container-seguidos"></div>
+         </div>
+      </div>
+   </div>
+</div>`
+}*/

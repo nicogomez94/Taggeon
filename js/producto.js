@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
+
 /**apertura y cierre las opciones*/ 
 /*$(function(){
     $(".ellip").on("click", function(e) {

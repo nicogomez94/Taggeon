@@ -1,76 +1,13 @@
-<div class="overlay-loading"></div>
 
 <div class="container container-carrito">
    <div class="inner-carrito">
       <h1>TEST Carritos</h1>
       <hr>
       <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
-         <div class="header-productos producto row">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-left">
-               <!-- <span class="titulo-header-producto">Imagen</span> -->
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-               <span class="titulo-header-producto">
-                  <span class="fa-stack icon-sort" style="width: 1em;vertical-align: sub;">
-                     <i class="fas fa-sort-down"></i>
-                  </span>
-                  <span class="sort-nombre"></span>Producto</span>
-               </span>
-            </div>
-            
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <span class="titulo-header-producto">
-                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
-                     <i class="fas fa-sort-down"></i>
-                  </span>
-                  <span class="sort-precio">Precio Unitario</span>
-               </span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <span class="titulo-header-producto">
-                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
-                     <i class="fas fa-sort-down"></i>
-                  </span>
-                  <span class="sort-stock">Cantidad</span>
-               </span>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-               <span class="titulo-header-producto">
-                  <span class="fa-stack icon-sort" style="width: 1em; vertical-align: sub;">
-                     <i class="fas fa-sort-down"></i>
-                  </span>
-                  <span class="sort-stock">Subtotal</span>
-               </span>
-            </div>
-         </div>
-         <input type="hidden" id="id_carrito" name="id_carrito" value="">
-         <!-- producto hardcodeado -->
+      </div>
+   </div>
+</div>
 
-         <!-- /producto hardcodeado -->
-      </div>
-   </div>
-</div>
-<div class="container totales-cont">
-   <div class="row">
-      <div class="col-6 col-lg-6"></div>
-      <div class="col-6 col-lg-6 totales-carrito">
-         <h4>Totales</h4>
-         <hr>
-         <div class="row datos-num-checkout">
-            <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
-            <div class="col-lg-6 text-right"><span class="subtotal-cant"></span></div>
-         </div>
-         <div class="row datos-num-checkout">
-            <div class="col-lg-6"><span class="total-titulo">Total</span></div>
-            <div class="col-lg-6 text-right"><span class="total-cant"></span></div>
-         </div>
-         <br>
-         <div>
-            <button class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
-         </div>
-      </div>
-   </div>
-</div>
 
 
 
@@ -122,7 +59,8 @@ $(document).ready(function(){
                               '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
                               '</div>'+
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
-                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
+                                 '<button class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>'+
+                              //'<span class="precio-producto">'+total_prod_carrito+'</span>'+
                               //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
                               '<div class="cerrar-prod-carrito">'+
                                  '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+

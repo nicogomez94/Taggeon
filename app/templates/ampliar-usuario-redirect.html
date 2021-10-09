@@ -12,23 +12,35 @@
  </div>
  <!--  -->
  
-<div id="info-user" class="container">
+ <div id="info-user" class="container">
    <div id="titulo-perfil">
+      <div id="titulo-perfil-img">
          <img src="{foto-perfil}" alt="foto perfil">
-         <div id="titulo-perfil-datos">
-            <div>{nombrepublic}</div>
-            <div class="fyf">
-               <span class="seguidores-count">0</span>
-               <span class="seguidores-label">&nbsp;Seguidores</span> - 
-               <span class="siguiendo-count">0</span>
-               <span class="siguiendo-label">&nbsp; Siguiendo</span>
+      </div>
+      <div id="titulo-perfil-datos">
+         <span id="name_usuario">{nombre}</span>
+         <div class="fyf">
+            <div class="follower_container">
+               <span id="follower_count" class="follower_count">0</span>
+               <span class="follower_label">Seguidores</span>
             </div>
+            <div class="follower_container" style="margin-left: 15px;">
+               <span id="following_count" class="follower_count">0</span>
+               <span class="follower_label">Seguidos</span>
+            </div>
+            <span class="edit_perfil"><a href="/editar-usuario.html" class="ml-1 btn btn-warning btn-sm">Editar Perfil</a></span>
          </div>
+      </div>
    </div>
+   <div id="menu-perfil">
+      {menuperfil}
+   </div>
+</div>
+
 <!-- <div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. <a href="/editar-usuario.html">Edítalo aqu&iacute;</a>
-     <span style="position:absolute;right: 15;color: white !important;"><i class="fas fa-times"></i></span>
- </div>-->
- <!--
+   <span style="position:absolute;right: 15;color: white !important;"><i class="fas fa-times"></i></span>
+</div>-->
+<!--
    <div id="menu-perfil">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
          <div class="navbar-nav navbar-center">
@@ -37,7 +49,7 @@
       </nav>
    </div>
 -->
-    
+
 </div>
 
 <div class="container contenedor-usuario-redirect">
@@ -45,9 +57,18 @@
    <hr>
    <!--  -->
    <hr><br>
-      
+   
 </div>
- 
+
+<div class="container show-result">Mostrando 5 resultados.
+   <!-- <span class="show-result-num"></span> resultados. -->
+</div>
+
+<!--  -->
+<div class="grid" style="margin-top: 20px;">
+   <div class="grid-sizer"></div>
+</div>
+<!--  -->
  
  
      <script>
@@ -59,6 +80,65 @@
     <!-- <script src="js/popper.js"></script> -->
     <script src="js/func.js?time=140920-1829"></script>
     <script src="../../plugins/dropPin-master/dropPin/dropPin.js?time=300821-1657"></script>
+    <script>
+       document.addEventListener("DOMContentLoaded", function(){
+
+         var sizePublic = jsonData.publicaciones.length;
+         //console.log("publics-->",data)
+         let grid = document.querySelector(".grid");
+
+         if(sizePublic>0){
+            for(let i=0; i<sizePublic; i++){
+                  let id_public = jsonData.publicaciones[i].id;
+                  let id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
+                  let nombre_public = jsonData.publicaciones[i].publicacion_nombre;
+                  let descr_public = jsonData.publicaciones[i].publicacion_descripcion;
+                  let imagen_id = jsonData.publicaciones[i].foto;
+                  var favorito = jsonData.publicaciones[i].favorito || 0;
+                  var fav_accion = "";
+                  var full_url = '/ampliar-publicacion-home.html?id='+id_public+'&accion=ampliar&cat='+id_public_cat
+                  //let imagen_public_html = document.querySelector(".imagen-public-"+imagen_id);
+
+                  var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;        
+
+                  var public_html2 =
+                     `<div class="grid-item">
+                        <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                           <div class="overlay-public">
+                              <a class="link-ampliar-home" href="${full_url}"></a>
+                              <div class="public-title-home">${nombre_public}</div>
+                              <div class="text-overlay">
+                                 <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}'')"><a href="javascript:void(0)"><i title="Editar Publicaci&oacute;n" class="fas fa-share-alt"></i></a></span>&nbsp;
+                                 <span class="text-overlay-link text-overlay-link-${id_public}" data-title="${id_public}"></span>
+                              </div>
+                           </div>
+                           <img src="${foto_src}" alt="img-${imagen_id}">
+                        </div>
+                     </div>`;
+
+                     
+                     grid.insertAdjacentHTML("beforeend",public_html2)
+                     //imagen_public_html.attr("src", foto_src);
+                     
+                     if(favorito==null || favorito == 0){
+                        fav_accion="alta";
+                        var fav_html = '<a href="#"><i class="fas fa-heart" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                        $(".text-overlay-link-"+id_public).append(fav_html)
+                     }else{
+                        fav_accion="eliminar";
+                        var fav_html = '<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos('+id_public+',\''+fav_accion+'\');$(this).toggleClass(\'fav-eliminar\')"></i></a>'
+                        $(".text-overlay-link-"+id_public).append(fav_html)
+                     }  
+            }
+            
+         }else{
+            //var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
+            //grid.insertAdjacentHTML(html_sin_public);
+         }
+
+
+});
+    </script>
      <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
  
  </body></html>
