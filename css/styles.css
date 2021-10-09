@@ -696,26 +696,12 @@ body{
 
 .items {
     padding: 15px;
-    /* height: 100%; */
+    height: max-content;/*o fit-content*/
     position: relative;
-    /* overflow-x: scroll; */
-    /* overflow-y: scroll; */
     white-space: nowrap;
-    /*transition: all 0.2s;*/
-    /*transform: scale(0.996);/*LO QUE HACE EL EFECTO DE ESCALA MAS GRANDE
-    will-change: transform;*/
-    /*cursor: pointer;*/
 }
 .item {
-    /*vertical-align: top;
-    height: 100vh;
-    display: inline-block;*/
     width: 315px;
-    /*overflow-y: scroll;
-    overflow-x: hidden;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;*/
 }
 .img-lp{
     width: 100%;

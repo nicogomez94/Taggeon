@@ -470,6 +470,12 @@ SQL;
 		return true;
 	}
 
+	public function getListCarritoAll()
+	{
+		$ret =  $this->carritoDao->getListCarritoAll();
+		return $ret;
+	}
+
 	public function getListCarrito()
 	{
 		$ret =  $this->carritoDao->getListCarrito();

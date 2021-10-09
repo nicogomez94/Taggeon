@@ -7,13 +7,12 @@ document.addEventListener("DOMContentLoaded", function() {
         var showResultados = document.querySelector(".show-result-num") || 0;
         showResultados.innerHTML = sizeProductos; 
             
-        }else{
-            var html_nada = '<div class="html-nada">No se han encontrado resultados.</div>';
-            $("#listado-mis-productos").html(html_nada);
-        }
+    }else{
+        var html_nada = '<div class="html-nada">No se han encontrado resultados.</div>';
+        $("#listado-mis-productos").html(html_nada);
     }
 
-});
+
 
 /**apertura y cierre las opciones*/ 
 /*$(function(){
@@ -219,4 +218,7 @@ $('#producto-form').submit(function (e) {
    return false;
 });
 
-});
+
+
+
+});//finready

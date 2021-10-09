@@ -1,4 +1,4 @@
-<div class="overlay-loading"></div>
+
 
 <div class="container container-ventas">
    <div class="bc-container">
@@ -10,54 +10,21 @@
       <h1>Mis Ventas</h1>
       <hr>
       <div class="filtros">
-         <select name="ordenar" id="ordenar">
-            <option value="" selected disabled hidden required>Ordenar por</option>
-            <option value="recientes">Mas recientes</option>
-            <option value="titulo">T&iacute;tulo</option>
-         </select>
-         &nbsp;&nbsp;
-         <span>
-            <input id="buscador-titulo-input" type="text" placeholder="Filtre por titulo">
-            <i class="fas fa-times limpiar-buscador" style="display: none;"></i>
-         </span>
-         
-         <a id="buscador-titulo" class="btn"><i class="fas fa-search"></i></a>
+         <div id="search-container" class="search-container" style="width: 25%">
+            <input id="buscador-prod" autocomplete="off" class="search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
+            <i class="fas fa-search fa-search-header"></i>
+         </div>
+         <div>
+            <!-- <a href="/formu-subir.html" class="btn btn-warning">Nuevo producto</a> -->
+         </div>
       </div>
-      <hr>
-
-      <div class="flex-container">
-         <div class="flex-listado"></div>
-      </div>
-
-
-         <!-- ventas hardcodeado -->
-         <!--<div class="row producto venta text-left">
-            <div class="col-lg-4">
-               <div class="media">
-                  <img class="mr-3 img-venta-lista" src="https://blaisten.vteximg.com.br/arquivos/ids/166930-960-960/1253373.png?v=637211937504270000" alt="img">
-                  <div class="media-body">
-                     <h5 class="mt-0">Ibanez Ib-10</h5>
-                     <div><span class="estado-pedido-venta-label" style="font-size: 13px;">Estado de pedido:</span>&nbsp;&nbsp;<span style="font-size: 13px;" class="estado-pedido-venta estado-preparacion"><i class="fas fa-truck-loading"></i>&nbsp;En preparaci&oacute;n</span></div>  
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 col-vendedor">
-               <div class="media">
-                  <img style="border-radius: 50%;" class="mr-3 img-venta-lista" src="https://pbs.twimg.com/profile_images/595999703965278208/j10-AYp5_400x400.png" alt="img">
-                  <div class="media-body">
-                     <h5 class="mt-0">Comprador</h5>
-                     <span class="label-venta-vendedor">Nicolás Gómez</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-4 text-right">
-               <span class="ver-detalle-venta-lista"><i class="fas fa-eye"></i>&nbsp;&nbsp;<a href="#">Ver Detalle</a></span>
-               <i data-title="0" class="fas fa-ellipsis-v ellip"></i>
-            </div>
-         </div>-->
-
-         <!-- /ventas hardcodeado -->
    </div>
+</div>
+
+<hr>
+<div class="container show-result">Mostrando <span class="show-result-num"></span> resultados.</div>
+<div class="flex-container">
+   <div class="flex-listado"></div>
 </div>
 
 <footer></footer>
@@ -70,11 +37,7 @@
 
 <script src="js/jquery-3.5.1.js"></script>
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-   <!-- <script src="js/publicacion.js?time=03022021-1656"></script> -->
-<!-- <script src="js/popper.js"></script> -->
-
-   <script src="js/func.js?time=160321-1633"></script>
+<script src="js/func.js?time=160321-1633"></script>
 
 <script>
 $(document).ready(function(){
