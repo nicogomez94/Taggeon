@@ -808,6 +808,8 @@ sql;
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+	$id = isset($_GET["id_carrito"]) ? $_GET["id_carrito"] : '';
+        $idDB = Database::escape($id);
         $sql = <<<sql
 SELECT
                carrito_detalle.id_publicacion, carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
@@ -825,7 +827,8 @@ SELECT
                 WHERE
         (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
         `carrito`.usuario_alta = $usuarioAltaDB                AND
-        (estado is null OR estado <= 0 )
+        (estado is null OR estado !=4  )
+         AND carrito.id = $idDB
         GROUP BY
         carrito_detalle.id_publicacion, carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
 sql;

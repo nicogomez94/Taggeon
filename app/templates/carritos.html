@@ -59,7 +59,7 @@ $(document).ready(function(){
                               '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
                               '</div>'+
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
-                                 '<button class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>'+
+                                 '<button class="boton-checkout-carrito boton-checkout-carrito-'+i+' btn btn-warning">Continuar Compra</button>'+
                               //'<span class="precio-producto">'+total_prod_carrito+'</span>'+
                               //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
                               '<div class="cerrar-prod-carrito">'+
@@ -82,6 +82,40 @@ $(document).ready(function(){
                      $(".producto:not(.header-productos)").hide();
                      $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
                   }
+
+                  $(".boton-checkout-carrito-"+i).click(function(){
+
+                     //var dataCheckout = new FormData();
+                     //dataCheckout.append("id_carrito",id_carrito);
+                     window.location.replace("/ampliar-carrito.html?id_carrito="+id_carrito);
+                     // $.ajax({
+                     //    url: '/app/carrito.php',
+                     //    data: dataCheckout,
+                     //    type: 'GET',
+                     //    processData: false,
+                     //    contentType: false,
+                     //    //dataType: "json",
+                     //    //async: false,
+                     //    success: function( data, textStatus, jQxhr ){
+                     //          var dataJ = JSON.parse(data).status;
+                     //          var dataM = JSON.parse(data).mensaje;
+                     //       if (dataJ == 'REDIRECT'){
+                     //          console.log("REDIRECT-->"+dataM);
+                     //          window.location.replace(dataM);														
+                     //       }else if(dataJ == 'OK'){
+                     //          console.log("OK-->"+dataJ+"/"+dataM);
+                     //          window.location.replace("/ampliar-carrito.html?id_carrito="+id_carrito);
+                     //       }else{
+                     //          console.log("ELSE-->"+dataJ+"/"+dataM);
+                     //          //window.location.replace("/ampliar-carrito.html");
+                     //       }
+                     //    },
+                     //    error: function( data, jqXhr, textStatus, errorThrown ){
+                     //          alert(data);
+                     //    }
+                     // });
+                     //return false;
+                  });
 
             }
       }else{

@@ -478,9 +478,17 @@ SQL;
 
 	public function getListCarrito()
 	{
+
+		$id = isset($_GET["id_carrito"]) ? $_GET["id_carrito"] : '';
+                if (!is_numeric($id)){
+                    return [];
+                }
+
+
 		$ret =  $this->carritoDao->getListCarrito();
 		return $ret;
 	}
+
 
 	public function getListCarrito2()
 	{

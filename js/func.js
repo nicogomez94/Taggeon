@@ -2233,8 +2233,8 @@ function fetchIdCarrito(id_public,id_prod){
         body: dataCarr,
     }).then(res => res.json())
     .then(response => {
-        console.log(response)
-        window.location.replace("/ampliar-carrito.html")
+        let id_carrito = response.mensaje;
+        window.location.replace("/ampliar-carrito.html?id_carrito="+id_carrito)
     })
     .catch(error => console.error('Error:', error))
 

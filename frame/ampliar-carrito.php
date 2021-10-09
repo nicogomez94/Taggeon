@@ -1,7 +1,7 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+#include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+#include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
@@ -9,28 +9,10 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/Seg
 
 if ($perfil=='seller' || $perfil=='picker'){
 
-    $publicacionManager = new PublicacionManager();
-    $productoManager = new ProductoManager();
+    #$publicacionManager = new PublicacionManager();
+    #$productoManager = new ProductoManager();
     $carritoManager = new CarritoManager();
     $seguidoresManager = new SeguidoresManager();
-
-    $dataHuerfanos = $carritoManager->getListCarritoHuerfano(array()); #PANTALLA PAGO
-
-   if (count($dataHuerfanos)>0){
-       $id_carrito = $dataHuerfanos[0]['id_carrito'];
-       header("Location: /cobrar-compra.html?id=$id_carrito");
-       Database::Connect()->close();
-       exit;
-   }
-
-   
-	$dataAux["estado"] = 1;
-	$carritosEstado1 = $carritoManager->getListCarritoPantallaDomicilio($dataAux);
-    if (count($carritosEstado1)>0){
-        header("Location: /ampliar-checkout.html");
-        Database::Connect()->close();
-        exit;
-    }
     $tokenMercadoPago = 0;
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
@@ -43,8 +25,8 @@ if ($perfil=='seller' || $perfil=='picker'){
         "contacto"      => $GLOBALS['sesionG']['email'],
         #"publicaciones"     => $publicacionManager->getListPublicacion(),
         #"categoria_producto" => $productoManager->getListCategoria(),
-        "carrito"     => $carritoManager->getListCarrito(),
-        "seguidores"     => $seguidoresManager->getListSeguidores(),
+        "carrito"      => $carritoManager->getListCarrito(),
+        "seguidores"   => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
         
     );
@@ -59,7 +41,7 @@ if ($perfil=='seller' || $perfil=='picker'){
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
-	         "id"          => $idEditar,
+	    "id"          => $idEditar,
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
     $contenidoString = $contenido->muestra();
