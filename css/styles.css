@@ -270,6 +270,9 @@ body{
 .splide__search{
     /* display: none; */
 }
+.splide__list{
+    height: unset !important; /*height: 100%*/
+}
 .fa-search-header{
     position: absolute;
     top: 35%;

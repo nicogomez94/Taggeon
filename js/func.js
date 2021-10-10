@@ -718,7 +718,7 @@ $(".modal").on("click", ".btfn-carrito", function(){
 
 ///finalizar orden
 $("#finalizar-orden").submit(function(){
-
+    console.log("test")
     var id_carrito = jsonData.carrito[0].id_carrito;
 
     var dataForden = new FormData($(this)[0]);
@@ -736,11 +736,17 @@ $("#finalizar-orden").submit(function(){
             var dataJ = JSON.parse(data).status;
             var dataM = JSON.parse(data).mensaje;
            if (dataJ == "REDIRECT"){
+               alert(data)
               console.log("REDIRECT-->"+dataM);
+              console.log(data)
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
-              window.location.replace("/cobrar-compra.html?id="+id_carrito);
+               console.log(data)
+              alert(data)
+               window.location.replace("/cobrar-compra.html?id="+id_carrito);
            }else{
+               alert(data)
+            console.log(data)
               //window.location.replace("/ampliar-carrito.html");
            }
         },
@@ -753,50 +759,7 @@ $("#finalizar-orden").submit(function(){
 
 
 ///eliminar de carrito
-$(".eliminar-carrito").bind("click", function(e){//cochinada
-    e.preventDefault();
-    var id_prod = $(this).parent().find("input.prod-id").val() || 0;
-    var carrito_id = $(this).parent().find("input.carrito-id").val() || 0;
-    var id_publicacion = $(this).parent().find("input.id-publicacion").val() || 0;
-    var id_carrito = jsonData.carrito[0].id_carrito;
 
-    var dataEliminar = new FormData();
-    // dataEliminar.append("accion","eliminar");
-    dataEliminar.append("accion","alta");
-    dataEliminar.append("id",id_prod);
-    dataEliminar.append("cantidad","0");
-    dataEliminar.append("id_prod",id_prod);
-    dataEliminar.append("id_publicacion",id_publicacion);
-
-    $.ajax({
-       url: '/app/carrito.php',
-       data: dataEliminar,
-       type: 'POST',
-       processData: false,
-       contentType: false,
-       //async: false,
-       success: function( data, textStatus, jQxhr ){
-           var dataJ = JSON.parse(data).status;
-           var dataM = JSON.parse(data).mensaje;
-          if (dataJ == 'REDIRECT'){
-             console.log("REDIRECT-->"+dataM);
-             window.location.replace(dataM);														
-          }else if(dataJ == 'OK'){
-             console.log("OK-->"+dataJ+"/"+dataM);
-             window.location.replace("/ampliar-carrito.html");
-          }else{
-             console.log("ELSE-->"+dataJ+"/"+dataM);
-             //window.location.replace("/ampliar-carrito.html");
-          }
-       },
-       error: function( data, jqXhr, textStatus, errorThrown ){
-          console.log("ERROR AJAX--> "+response);
-          console.log(data);
-       }
-    });
-    return false;
-
-});
 
 $("#cropear-btn").click(function(){
     $(this).hide();
@@ -2231,7 +2194,26 @@ function fetchIdCarrito(id_public,id_prod){
     }).then(res => res.json())
     .then(response => {
         let id_carrito = response.mensaje;
-        window.location.replace("/ampliar-carrito.html?id_carrito="+id_carrito)
+        window.location.replace("/carritos.html?id_carrito="+id_carrito)
+    })
+    .catch(error => console.error('Error:', error))
+
+}
+
+function checkout(id_public,id_prod){
+    const URL = "/app/carrito.php"
+
+    let dataCarr = new FormData();
+    dataCarr.append("accion","alta");
+
+    fetch(URL, {
+        method: 'POST',
+        body: dataCarr,
+    }).then(res => res.json())
+    .then(response => {
+        let id_carrito = response.mensaje;
+        console.log(id_carrito)
+        //window.location.replace("/cobrar-compra.html?id="+id_carrito)
     })
     .catch(error => console.error('Error:', error))
 
@@ -2916,3 +2898,26 @@ var seguidosHtml =
    </div>
 </div>`
 }*/
+
+function eliminarCarrito(id_prod,id_publicacion,tipo_carrito){
+
+    const URL = "/app/carrito.php"
+
+    var dataEliminar = new FormData();
+    dataEliminar.append("accion","alta");
+    dataEliminar.append("id",id_prod);
+    dataEliminar.append("cantidad","0");
+    dataEliminar.append("id_prod",id_prod);
+    dataEliminar.append("id_publicacion",id_publicacion);
+    
+    fetch(URL, {
+        method: 'POST',
+        body: dataEliminar,
+    }).then(res => res.json())
+    .then(response => {
+        console.log(response)
+        window.location.replace(tipo_carrito)
+    })
+    .catch(error => console.error('Error:', error))
+
+}

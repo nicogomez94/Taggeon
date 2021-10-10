@@ -86,32 +86,6 @@ sql;
 
         return $id_carrito;
     }
-	public function getIdCarrito2()
-    {
-        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
-        $usuarioAltaDB = Database::escape($usuarioAlta);
-        $sql = <<<sql
-		SELECT
-		*
-    	FROM
-        `carrito`
-    	WHERE
-        `carrito`.usuario_alta = $usuarioAltaDB AND
-        (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
-        estado = 1
-        ORDER BY id desc
-        LIMIT 1
-sql;
-        $resultado = Database::Connect()->query($sql);
-
-        $id_carrito = 0;
-        if ($rowEmp = mysqli_fetch_array($resultado)){
-            $id_carrito = isset($rowEmp["id"]) ? $rowEmp["id"] : 0;
-        }
-
-
-        return $id_carrito;
-    }
     
 	public function getIdCarritoByVendedor($id)
     {

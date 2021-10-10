@@ -65,7 +65,7 @@
             <div class="col-lg-6 text-right"><span class="total-cant"></span></div>
          </div>
          <br>
-         <div>
+         <div id="test">
             <!-- <button class="boton-checkout-carrito btn btn-warning">Continuar Compra</button> -->
          </div>
       </div>
@@ -104,35 +104,31 @@ $(document).ready(function(){
             var subtotal = jsonData.carrito[i].subtotal;
             var total = jsonData.carrito[i].total;
             var foto_id = jsonData.carrito[i].foto;
-            var foto_src = '/productos_img/'+foto_id+'.png' || 0;//viene siempre png?
+            var foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
 
-            var prods_carrito_html = '<div class="row producto">'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2">'+
-                              '<div class="img-producto-container-0" data-title="223"><img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" class="img-producto" src="'+foto_src+'" alt="img"></div>'+
-                              '</div>'+
-                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">'+
-                              '<span class="titulo-producto">'+nombre_prod_carrito+'</span>'+
-                              //'<input type="hidden" name="id_carrito" value="'+id_carrito+'">'+
-                              '</div>'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
-                              '<span class="precio-producto">'+precio_prod_carrito+'</span>'+
-                              //'<input type="hidden" name="precio" value="'+precio_prod_carrito+'">'+
-                              '</div>'+
-                              '<div class="col-lg-2 col-md-2 col-sm-2 col-2 ">'+
-                              '<input type="number" id="precio-producto-'+i+'" class="num-corto-form" required="" autocomplete="on" value="'+cantidad+'">'+
-                              '</div>'+
-                              '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
-                              '<span class="precio-producto">'+total_prod_carrito+'</span>'+
-                              '<a href="/ampliar-checkout.html?id_carrito='+id_carrito+
-                              //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
-                              '<div class="cerrar-prod-carrito">'+
-                                 '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
-                                 '<input type="hidden" class="carrito-id" name="id_carrito" value="'+id_carrito+'">'+
-                                 '<input type="hidden" class="id-publicacion" name="id_publicacion" value="'+id_publicacion+'">'+
-                                 '<i class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>'+
-                              '</div>'+
-                              '</div>'+
-                              '</div>';
+            var prods_carrito_html = `<div class="row producto">
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                                 <div class="img-producto-container-0" data-title="223"><img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" class="img-producto" src="${foto_src}" alt="img"></div>
+                              </div>
+                              <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                                 <span class="titulo-producto">${nombre_prod_carrito}</span>
+                              </div>
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                                 <span class="precio-producto">${precio_prod_carrito}</span>
+                              </div>
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                                 <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
+                              </div>
+                              <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                                 
+                              <div class="cerrar-prod-carrito">
+                                 <input type="hidden" class="prod-id" name="id_producto" value="${prod_id}">
+                                 <input type="hidden" class="carrito-id" name="id_carrito" value="${id_carrito}">
+                                 <input type="hidden" class="id-publicacion" name="id_publicacion" value="${id_publicacion}">
+                                 <i onclick="eliminarCarrito(${prod_id},${id_publicacion},'ampliar-carrito.html')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
+                              </div>
+                              </div>
+                              </div>`;
 
                   $("#listado-mis-productos").append(prods_carrito_html);
                   $(".subtotal-cant").html("AR$"+total);
@@ -145,12 +141,10 @@ $(document).ready(function(){
                      $(".producto:not(.header-productos)").hide();
                      $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
                   }
+                  
+                  //boton checkout
+                  $("#test").html(`<button onclick="window.location.replace('/ampliar-checkout.html?id_carrito=${id_carrito}')" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>`)
 
-                  $(".boton-checkout-carrito-"+i).click(function(){
-
-                     window.location.replace();
-
-                  });
 
             }
       }else{
@@ -163,7 +157,7 @@ $(document).ready(function(){
       
 });
 </script>
-   <script src="js/func.js?time=290421-1227"></script>
+   <script src="js/func.js?time=101021-1259"></script>
    <script src="../../plugins/dropPin-master/dropPin/dropPin.js?time=300821-1657"></script>
    <!-- <script src="js/publicacion.js?time=290421-1227"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->

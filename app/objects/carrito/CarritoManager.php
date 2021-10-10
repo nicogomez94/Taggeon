@@ -254,7 +254,8 @@ class  CarritoManager
 			return false;
 		}
 		$idCarrito = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
-		$data["id_carrito"] = $this->carritoDao->getIdCarrito2();
+
+		$data["id_carrito"] = $this->carritoDao->getIdCarrito($idCarrito);
 
 		if (!is_numeric($data["id_carrito"])){
 			$this->setStatus("ERROR");
