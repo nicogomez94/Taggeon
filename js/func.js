@@ -783,8 +783,9 @@ $("#btn-siguiente").click(function(){
 });
 
 
+
 ///submit comentario_public
-$(".comentario_public").submit(function(){
+$("#comentario_public_send").click(function(){
     console.log("test")
     var dataComentario = new FormData($(this)[0]);
     dataComentario.append("accion","alta");
@@ -804,7 +805,7 @@ $(".comentario_public").submit(function(){
     /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
     $(".commentbox-user-img").attr("src", img_perfil);*/
 
-    $.ajax({
+    /*$.ajax({
         url: '/app/comentario.php',
         data: dataComentario,
         type: 'POST',
@@ -821,8 +822,6 @@ $(".comentario_public").submit(function(){
             }else if(dataJ == 'OK'){
                 //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
                 console.log(dataJ+"--"+dataM);
-                /*var appendeo = $(this).find("commentbox-list-container");
-                $("appendeo")*/
             }else{
                 //window.location.replace("/ampliar-carrito.html");
                 //alert(dataJ+"--"+dataM);
@@ -831,12 +830,10 @@ $(".comentario_public").submit(function(){
         },
         error: function( data ){
             console.log(data)
-            /*var dataJ2 = JSON.parse(data).status;
-            var dataM2 = JSON.parse(data).mensaje;*/
             alert("error->"+data.status);
         }
     });
-    return false;
+    return false;*/
 });
 
 ///submit comentario_prod
@@ -2537,13 +2534,17 @@ function getPublicsAmpliarHome(data){
                                         '<div>'+
                                             '<img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>'+
                                             '<div style="flex-grow: 1;">'+
-                                                '<form class="comentario_public comentario_public_'+id_public+'">'+
+                                                /*'<form id="comentario_public">'+
                                                     '<input type="text" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">'+
                                                     '<input type="hidden" name="publicacion" value="'+id_public+'">'+
-                                                '</form>'+
+                                                    '<input type="submit" value="enviar" class="btn">'+
+                                                '</form>'+*/
+                                                    '<input type="text" id="comentario-'+i+'" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">'+
+                                                    //'<input type="hidden" name="publicacion" value="'+id_public+'">'+
+                                                    '<button onclick="sendComentarioPublic(\''+id_public+'\',$(this),\''+i+'\')" value="enviar" class="btn">fsdfd</button'+
+                                                
                                             '</div>'+
                                             '<div class="ml-1">'+
-                                                '<button onclick="$(\'.comentario_public_'+id_public+'\').submit();" class="btn">Enviar</button>'+
                                             '</div>'+
                                         '</div>'+
                                   //'<div class="comment-count"><span>Comentarios</span></div>'+
@@ -2920,4 +2921,58 @@ function eliminarCarrito(id_prod,id_publicacion,tipo_carrito){
     })
     .catch(error => console.error('Error:', error))
 
+}
+
+function sendComentarioPublic(id_public,thisParam,indexParam){
+
+    let val = $("#comentario-"+indexParam).val();
+
+    var dataComentario = new FormData();
+    dataComentario.append("publicacion",id_public);
+    dataComentario.append("comentario",val);
+    
+    var appendeo = thisParam.parent().parent().parent().find(".commentbox-list-container");
+    console.log(appendeo)
+    console.log(val)
+
+    var content_html =
+    '<div class="commentbox-list media commentbox-id">'+
+    '   <span class="comment-name">nicolasgomez94</span>'+//hard
+    '   <span class="comment-text">'+val+'</span>'+
+    '</div>';
+
+    $(appendeo).append(content_html);
+
+    /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+    $(".commentbox-user-img").attr("src", img_perfil);*/
+
+    $.ajax({
+        url: '/app/comentario.php',
+        data: dataComentario,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+            if (dataJ == "REDIRECT"){
+                console.log("REDIRECT-->"+dataM);
+                //window.location.replace(dataM);														
+            }else if(dataJ == 'OK'){
+                //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+                console.log(dataJ+"--"+dataM);
+            }else{
+                //window.location.replace("/ampliar-carrito.html");
+                //alert(dataJ+"--"+dataM);
+                console.log(dataJ+"--"+dataM);
+            }
+        },
+        error: function( data ){
+            console.log(data)
+            alert("error->"+data.status);
+        }
+    });
+    return false;
 }
