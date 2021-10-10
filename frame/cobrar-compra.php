@@ -1,7 +1,7 @@
 <?php
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+#include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+#include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
@@ -9,8 +9,8 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/Seg
 
 if ($perfil=='seller' || $perfil=='picker'){
 
-    $publicacionManager = new PublicacionManager();
-    $productoManager = new ProductoManager();
+    #$publicacionManager = new PublicacionManager();
+    #$productoManager = new ProductoManager();
     $carritoManager = new CarritoManager();
     $seguidoresManager = new SeguidoresManager();
 
@@ -25,8 +25,8 @@ if ($perfil=='seller' || $perfil=='picker'){
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "publicaciones"     => $publicacionManager->getListPublicacion(),
-        "categoria_producto" => $productoManager->getListCategoria(),
+        #"publicaciones"     => $publicacionManager->getListPublicacion(),
+        #"categoria_producto" => $productoManager->getListCategoria(),
         "compras"     => $carritoManager->getAmpliarCompra($_GET),
         "vendedor"    => $carritoManager->getMsj(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),

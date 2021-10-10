@@ -55,9 +55,9 @@
                   <span class="opciones-checkout" style="line-height: 12px;">Opcion 2</span>
                </div>
                -->
-               <div>
+               <div id="finalizar">
                   <br>
-                  <button type="submit" href="#" class="btn btn-warning">Finalizar Orden de Compra</button>
+
                </div>
                <input type="hidden" value="finalizar2" name="accion">
                <!-- <input type="hidden" value="" name="id_carrito"> -->
@@ -88,9 +88,13 @@
             for(var i=0; i<sizeCarrito; i++){
                   var subtotal = jsonData.carrito[i].subtotal;
                   var total = jsonData.carrito[i].total;
-                  
+                  var id_carrito = jsonData.carrito[i].id_carrito;
+                  let orden_url = "/cobrar-compra.html?id="+id_carrito;
+
                   $(".subtotal-cant").html("$"+total);
                   $(".total-cant").html("$"+total);
+
+                  $("#finalizar").append('<a href="'+orden_url+'" class="btn btn-warning">Siguiente</a>');
             }
          }
       })

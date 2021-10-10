@@ -57,7 +57,29 @@ class  CarritoManager
 	#	}
 
 
-		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
+		#$vendedorActual = $this->carritoDao->getVendedorByIdCarrito($data["id_carrito"]);
+		#$vendedorActual = isset($vendedorActual) ? $vendedorActual : '';
+
+		#if ( $vendedorActual !=  $data["id_vendedor"] ){
+		#	$this->setStatus("ERROR");
+		#	$this->setMsj("El producto que quiere agregar pertenece a otro vendedor. Finalize el carrito y vuelva a intentarlo.");
+		#	return false;
+
+		#}
+
+		#valida el manager de producto el id_producto
+		$data["id_producto"] = isset($data["id"]) ? $data["id"] : '';
+		$dataProducto = $this->productoManager->getProductoCarrito($data);
+		if ($this->productoManager->getStatus() != 'ok'){
+			$this->setStatus("ERROR");
+			$this->setMsj($this->productoManager->getMsj());
+			return false;
+		}
+
+		$data["id_publicacion"] = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
+		$data["id_vendedor"] = isset($dataProducto["usuario_alta"]) ? $dataProducto["usuario_alta"] : '';
+
+		$data["id_carrito"] = $this->carritoDao->getIdCarritoByVendedor($data["id_vendedor"]);
 
 		if (!is_numeric($data["id_carrito"])){
 			$this->setStatus("ERROR");
@@ -87,28 +109,6 @@ class  CarritoManager
 			$this->setMsj("El id ". $data["id_carrito"] ."de carrito generado es incorrecto.");
 			return false;
 		}
-
-		#$vendedorActual = $this->carritoDao->getVendedorByIdCarrito($data["id_carrito"]);
-		#$vendedorActual = isset($vendedorActual) ? $vendedorActual : '';
-
-		#if ( $vendedorActual !=  $data["id_vendedor"] ){
-		#	$this->setStatus("ERROR");
-		#	$this->setMsj("El producto que quiere agregar pertenece a otro vendedor. Finalize el carrito y vuelva a intentarlo.");
-		#	return false;
-
-		#}
-
-		#valida el manager de producto el id_producto
-		$data["id_producto"] = isset($data["id"]) ? $data["id"] : '';
-		$dataProducto = $this->productoManager->getProductoCarrito($data);
-		if ($this->productoManager->getStatus() != 'ok'){
-			$this->setStatus("ERROR");
-			$this->setMsj($this->productoManager->getMsj());
-			return false;
-		}
-
-		$data["id_publicacion"] = isset($data["id_publicacion"]) ? $data["id_publicacion"] : '';
-		$data["id_vendedor"] = isset($dataProducto["usuario_alta"]) ? $dataProducto["usuario_alta"] : '';
 
 		if (!is_numeric($data["id_publicacion"])){
 			$this->setStatus("ERROR");
@@ -292,29 +292,20 @@ class  CarritoManager
 	public function finalizarCarrito(array $data)
 	{
 		$idCarrito = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
-		$data["id_carrito"] = $this->carritoDao->getIdCarrito();
 
+		$data["id_carrito"] = $this->carritoDao->getIdCarrito($idCarrito);
 		if (!is_numeric($data["id_carrito"])){
 			$this->setStatus("ERROR");
 			$this->setMsj("El id de carrito es incorrecto.");
 			return false;
 		}
+		
 
 		if ($data["id_carrito"] <= 0){
 			$this->setStatus("ERROR");
 			$this->setMsj("No se encontro el carrito.");
 			return false;
  		}
-
-		if ($this->validarId($idCarrito) === false){
-			return false;
-		}
-
-		if ($data["id_carrito"] != $idCarrito){
-			$this->setStatus("ERROR");
-			$this->setMsj("El id ". $idCarrito ."de carrito  es incorrecto.");
-			return false;
-		}
 
 		$data["estado"] = 1;
 
@@ -485,13 +476,16 @@ SQL;
                 }
 
 
-		$ret =  $this->carritoDao->getListCarrito();
+		$ret =  $this->carritoDao->getListCarrito($id);
 		return $ret;
 	}
 
 
-	public function getListCarrito2()
-	{
+	public function getListCarrito2(){
+		$id = isset($_GET["id_carrito"]) ? $_GET["id_carrito"] : '';
+                if (!is_numeric($id)){
+                    return [];
+                }
 		$ret =  $this->carritoDao->getListCarrito2();
 		return $ret;
 	}

@@ -33,12 +33,14 @@ class  CarritoDao
 	public function altaCarrito(array $data)
 	{
 
+        	$idVendedor = isset($data["id_vendedor"]) ? $data["id_vendedor"] : '';
+        	$idVendedorBD = Database::escape($idVendedor);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
-			INSERT INTO carrito (usuario_alta)  
-			VALUES ($usuarioAltaDB)
+			INSERT INTO carrito (usuario_alta,id_vendedor)  
+			VALUES ($usuarioAltaDB,$idVendedorBD)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -111,10 +113,11 @@ sql;
         return $id_carrito;
     }
     
-	public function getIdCarrito()
+	public function getIdCarritoByVendedor($id)
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+        $idDB = Database::escape($id);
         $sql = <<<sql
 		SELECT
 		*
@@ -123,7 +126,34 @@ sql;
     	WHERE
         `carrito`.usuario_alta = $usuarioAltaDB AND
         (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
-        (estado is null OR estado <= 0 )
+        (estado is null OR estado != 4) AND carrito.id_vendedor = $idDB
+        ORDER BY id desc
+        LIMIT 1
+sql;
+        $resultado = Database::Connect()->query($sql);
+
+        $id_carrito = 0;
+        if ($rowEmp = mysqli_fetch_array($resultado)){
+            $id_carrito = isset($rowEmp["id"]) ? $rowEmp["id"] : 0;
+        }
+
+
+        return $id_carrito;
+    }
+	public function getIdCarrito($id)
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $idDB = Database::escape($id);
+        $sql = <<<sql
+		SELECT
+		*
+    	FROM
+        `carrito`
+    	WHERE
+        `carrito`.usuario_alta = $usuarioAltaDB AND
+        (`carrito`.eliminar IS NULL OR `carrito`.eliminar = 0) AND 
+        (estado is null OR estado != 4) AND carrito.id = $idDB
         ORDER BY id desc
         LIMIT 1
 sql;
@@ -738,6 +768,8 @@ sql;
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+	$id = isset($_GET["id_carrito"]) ? $_GET["id_carrito"] : '';
+        $idDB = Database::escape($id);
         $sql = <<<sql
         SELECT
                 carrito_detalle.id_publicacion, carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
@@ -755,7 +787,7 @@ sql;
                 WHERE
         (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
         `carrito`.usuario_alta = $usuarioAltaDB                AND
-        estado = 1 
+        (estado is null OR estado != 4) AND carrito.id = $idDB
         GROUP BY
         carrito_detalle.id_publicacion, carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
         order by id_carrito desc limit 1

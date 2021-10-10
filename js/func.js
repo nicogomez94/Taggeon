@@ -679,7 +679,7 @@ $(".modal").on("click", ".btfn-carrito", function(){
 
 
 ///crear orden de compra carrito
-$(".boton-checkout-carrito").click(function(){
+/*$(".boton-checkout-carrito").click(function(){
     
     var id_carrito = jsonData.carrito[0].id_carrito || 0;
     var cantidad = jsonData.carrito[0].cantidad || 0;
@@ -695,8 +695,6 @@ $(".boton-checkout-carrito").click(function(){
         type: 'POST',
         processData: false,
         contentType: false,
-        //dataType: "json",
-        //async: false,
         success: function( data, textStatus, jQxhr ){
             var dataJ = JSON.parse(data).status;
             var dataM = JSON.parse(data).mensaje;
@@ -708,7 +706,6 @@ $(".boton-checkout-carrito").click(function(){
               window.location.replace("/ampliar-checkout.html");
            }else{
               console.log("ELSE-->"+dataJ+"/"+dataM);
-              //window.location.replace("/ampliar-carrito.html");
            }
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
@@ -716,7 +713,7 @@ $(".boton-checkout-carrito").click(function(){
         }
     });
     return false;
-});
+});*/
 
 
 ///finalizar orden
@@ -841,8 +838,8 @@ $(".comentario_public").submit(function(){
 
     $(appendeo).append(content_html);
 
-    var img_perfil = $(".img-perfil-usuario-drop").attr("src");
-    $(".commentbox-user-img").attr("src", img_perfil);
+    /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+    $(".commentbox-user-img").attr("src", img_perfil);*/
 
     $.ajax({
         url: '/app/comentario.php',
@@ -2556,16 +2553,16 @@ function getPublicsAmpliarHome(data){
                                '<div class="commentbox-container">'+
                                   '<div class="commentbox commentbox-id-2">'+
                                         '<div>'+
-                                           '<img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>'+
-                                           '<div style="flex-grow: 1;">'+
-                                              '<form class="comentario_public comentario_public_'+id_public+'">'+
-                                                 '<input type="text" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">'+
-                                                 '<input type="hidden" name="publicacion" value="'+id_public+'">'+
-                                              '</form>'+
-                                           '</div>'+
-                                           '<div class="ml-1">'+
-                                              '<button onclick="$(\'.comentario_public_'+id_public+'\').submit();" class="btn">Enviar</button>'+
-                                           '</div>'+
+                                            '<img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>'+
+                                            '<div style="flex-grow: 1;">'+
+                                                '<form class="comentario_public comentario_public_'+id_public+'">'+
+                                                    '<input type="text" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">'+
+                                                    '<input type="hidden" name="publicacion" value="'+id_public+'">'+
+                                                '</form>'+
+                                            '</div>'+
+                                            '<div class="ml-1">'+
+                                                '<button onclick="$(\'.comentario_public_'+id_public+'\').submit();" class="btn">Enviar</button>'+
+                                            '</div>'+
                                         '</div>'+
                                   //'<div class="comment-count"><span>Comentarios</span></div>'+
                                   '<div class="commentbox-list-container commentbox-list-container-'+id_public+'"></div>'+

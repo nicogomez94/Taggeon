@@ -66,7 +66,7 @@
          </div>
          <br>
          <div>
-            <button class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
+            <!-- <button class="boton-checkout-carrito btn btn-warning">Continuar Compra</button> -->
          </div>
       </div>
    </div>
@@ -123,6 +123,7 @@ $(document).ready(function(){
                               '</div>'+
                               '<div class="col-lg-3 col-md-3 col-sm-3 col-3">'+
                               '<span class="precio-producto">'+total_prod_carrito+'</span>'+
+                              '<a href="/ampliar-checkout.html?id_carrito='+id_carrito+
                               //'<input type="hidden" class="total" name="total" value="'+precio_prod_carrito+'">'+
                               '<div class="cerrar-prod-carrito">'+
                                  '<input type="hidden" class="prod-id" name="id_producto" value="'+prod_id+'">'+
@@ -144,6 +145,12 @@ $(document).ready(function(){
                      $(".producto:not(.header-productos)").hide();
                      $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
                   }
+
+                  $(".boton-checkout-carrito-"+i).click(function(){
+
+                     window.location.replace();
+
+                  });
 
             }
       }else{
