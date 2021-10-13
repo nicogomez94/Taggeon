@@ -4,13 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ampliarNotif();
 
 
-    //si falla imagen_perfil
-    /*const img = document.querySelector(".img-perfil-public-img")
-    img.addEventListener("error", function(event) {
-        event.target.src = "/imagen_perfil/generica.png"
-        event.onerror = null
-    })
-    */
+
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -1227,13 +1221,13 @@ function activarBuscador(param){
                         var id_prod = response.mensaje[i].id;
                         var nombre_prod = response.mensaje[i].titulo;
                         var foto_prod = response.mensaje[i].foto;
-                        var foto_src = '/productos_img/${foto_prod}.png' || 0;//viene siempre png?
+                        var foto_src = `/productos_img/${foto_prod}.png` || 0;//viene siempre png?
 
                         /*<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-${i}" src="${img_base_prod}"></li>';*/
 
                         var html = `<li class="splide__slide splide__slide__img ${id_prod}">
                                     <img data-toggle="modal" data-target="#modal-producto-${i}" src="${foto_src}">
-                                    <div class="nombre-producto ${id_prod} nombre-producto-${i}">nombre_prod+</div></li></div>`;
+                                    <div class="nombre-producto ${id_prod} nombre-producto-${i}">${nombre_prod}</div></li></div>`;
                         // var html = <option class="nombre-producto ${id_prod} nombre-producto-${i}">nombre_prod+</option>'
                         splide_list.append(html);
 
@@ -1406,10 +1400,10 @@ function buscadorIndex(paramIndex){
                             var descr_public = jsonData.publicaciones[x].publicacion_descripcion || '';
                             var imagen_id = jsonData.publicaciones[x].foto || '';
                             var producto = jsonData.publicaciones[x].pid || 0;
-                            var foto_src = '/publicaciones_img/${imagen_id}.png' || 0;//viene siempre png?
+                            var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
                             var favorito = jsonData.publicaciones[x].favorito || 0;
                             var fav_accion = "";
-                            var full_url = '/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat
+                            var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
 
                             var public_html2 =
                                 `<div class="grid-item">
@@ -1420,7 +1414,7 @@ function buscadorIndex(paramIndex){
                                             <div class="public-title-home">${nombre_public}</div>
                                             <div class="text-overlay">
                                                 <span class="text-overlay-link share-sm" onclick="pathShareHome(\'${full_url}\')">
-                                                    <a href="#"><i class="fas fa-share-alt" ></i></a>
+                                                    <a href="javascript:void(0)"><i class="fas fa-share-alt" ></i></a>
                                                 </span>
                                                 <span class="text-overlay-link text-overlay-link-${id_public}"></span>
                                             </div>
@@ -1434,11 +1428,11 @@ function buscadorIndex(paramIndex){
                             
                             if (favorito==null || favorito == 0) {
                                 fav_accion="alta";
-                                var fav_html = `<a href="#"><i class="fas fa-heart" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
+                                var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
                                 $(".text-overlay-link-"+id_public).append(fav_html)
                             }else{
                                 fav_accion="eliminar";
-                                var fav_html = `<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
+                                var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
                                 $(".text-overlay-link-"+id_public).append(fav_html)
                             }  
                             
@@ -1650,7 +1644,7 @@ function inViewport(el){
     html = document.documentElement;
     r = el.getBoundingClientRect();
     /*console.log("r.left",r.left)
-    console.log("widt client",html.clientWidth)*/</img>
+    console.log("widt client",html.clientWidth)*/
 
     return ( !!r
        && r.bottom >= 0
@@ -2143,7 +2137,6 @@ function getEscenas(valueParam){
 function showFollow(el){
     var clase = el.classList[0];
     var toShow = $("."+clase).find(".follow_public");
-    console.log(toShow)
     toShow.addClass("showFollow");
 }
 
@@ -2317,7 +2310,7 @@ function getMisCompras(data){
             `<div class="overlay-public">
                 <div class="text-overlay-prod">
                         <span data-title="${id}" class="text-overlay-link share-sm">
-                            <a href="#"><i class="fas fa-trash-alt"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
                         </span>
                         <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
                             <a href="/ampliar-compras.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
@@ -2369,7 +2362,7 @@ function getMisVentas(data){
             `<div class="overlay-public">
                 <div class="text-overlay-prod">
                     <span data-title="${id}" class="text-overlay-link share-sm">
-                        <a href="#"><i class="fas fa-trash-alt"></i></a>
+                        <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
                     </span>
                     <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
                         <a href="/ampliar-mis-ventas.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
@@ -2423,15 +2416,15 @@ function getCommentsPublic(comentarios_obj){
 
 function getPublicsAmpliarHome(data){
 
-    var sizePublic = data.length;
+    const sizePublic = data.length;
+    const escena_json = JSON.parse(escena);
+    const escena_json_length = escena_json.length;
 
     //console.log("publics",data)
     for(var i=0; i<sizePublic; i++){
        
         if(sizePublic>0){
  
-            let escena_json = JSON.parse(escena);
-            let escena_json_length = escena_json.length;
             let id_public = data[i].id || 0;
             let id_public_cat = data[i].subescena1 || "";//que onda esto cuando son mas de una??
             let nombre_public = data[i].publicacion_nombre || "";
@@ -2444,8 +2437,8 @@ function getPublicsAmpliarHome(data){
             let producto = data[i].pid || 0;
             let cat_ampliar_home = jsonData.cat || 0;
             let arrCat = escena_json || 0;
-            let foto_src = '/publicaciones_img/${imagen_id}.png' || 0;//viene siempre png?
-            let img_publicador = '/imagen_perfil/${foto_perfil}.png' || 0;//viene siempre png?
+            let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
+            let img_publicador = `/imagen_perfil/${foto_perfil}.png` || 0;//viene siempre png?
             let winLoc = window.location.pathname || "";
             let id_usuario = "1";//hard
             let favorito = data[i].favorito || 0;
@@ -2463,22 +2456,6 @@ function getPublicsAmpliarHome(data){
                var objCat = escena_json.find(o => o.id === cat_ampliar_home) || "";
                var nameCat = objCat.nombre || "";
                $(".title-cat").html(nameCat);
-
-               //link NEXT cat
-               var cat_ampliar_home_next = parseInt(cat_ampliar_home) + 1;
-               var objCatNext = arrCat.find(o => o.id === cat_ampliar_home_next.toString()) || 0;
-               var objCatNextId = objCatNext.id || 0;
-               var nombre_cat_next = (typeof objCatNext.nombre == "undefined") ? "" : objCatNext.nombre;
-               $(".next-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${objCatNextId}`);
-               
-
-               //link PREV cat
-               var cat_ampliar_home_prev = parseInt(cat_ampliar_home) - 1;
-               var objCatPrev = arrCat.find(o => o.id === cat_ampliar_home_prev.toString()) || 0;
-               var objCatPrevId = objCatPrev.id || 0;
-               var nombre_cat_pre = (typeof objCatPrev.nombre == "undefined") ? "" : objCatPrev.nombre;
-               $(".prev-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${objCatPrevId}`);
-               if(typeof objCatPrev.nombre == "undefined") $(".prev-cat").hide();
  
             let html_public = `<div id="ancla-desde-home-${id_public}" class="public-ampliar public-actual test2">
                                 <div class="header-public header-public-${id_public}" onmouseover="showFollow(this)" onmouseout="hideFollow(this)">
@@ -2517,7 +2494,6 @@ function getPublicsAmpliarHome(data){
                                   </div>
                                   <div class="datos-public">
                                   <div class="info-titulo-public">${nombre_public}</div>
-                                  // <div class="info-tipo-public"><a href="#">Arte</a> | <a href="#">Diseño</a> | <a href="#">Ambientes</a></div>
                                   <div class="info-descr-public">${descr_public}</div><hr>
                                </div>
                                <div id="ancla-test-${i}"></div>
@@ -2527,10 +2503,9 @@ function getPublicsAmpliarHome(data){
                                             <img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
                                             <div style="flex-grow: 1;">
                                                 <input type="text" id="comentario-${i}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">
-                                                //<input type="hidden" name="publicacion" value="${id_public}">
-                                                <button onclick="sendComentarioPublic('${id_public}',$(this),'${i}')" value="enviar" class="btn">fsdfd</button>
                                             </div>
                                             <div class="ml-1">
+                                                <button onclick="sendComentarioPublic('${id_public}',$(this),'${i}')" value="enviar" class="btn">Enviar</button>
                                             </div>
                                         </div>
                                   <div class="commentbox-list-container commentbox-list-container-${id_public}"></div>
@@ -2577,6 +2552,38 @@ function getPublicsAmpliarHome(data){
             alert("no hay publicaciones")
         }
     }//fin for
+    
+    //navegacion de categorias
+
+    //hago un array con las escenas posta
+    //------ Despues cambiarlo con la estructura posta de ESCENA - SUBSECENA - ETC
+    let id_padres_array = []
+    for(var i=0; i<escena_json_length; i++){
+        let id_padre = escena_json[i].id_padre;
+        let id = escena_json[i].id;
+        
+        if(id_padre==null){
+            id_padres_array.push(id); 
+        }
+    }
+    console.table(id_padres_array)
+
+    //busco la cat que es gual a la que ya estamos, dependiendo del index que tenga en el nuevo array
+    let cat_index = id_padres_array.findIndex(el => el === jsonData.cat);
+    let cat_index_next = cat_index + 1;
+    let cat_index_prev = cat_index - 1;
+
+    let id_cat_next = id_padres_array[cat_index_next]
+    let id_cat_prev = id_padres_array[cat_index_prev]
+    
+    //link NEXT cat
+    let cat_ampliar_home_next = cat_index + 1;
+    $(".next-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_next}`);
+
+    //link PREV cat
+    let cat_ampliar_home_prev = cat_index - 1;
+    $(".prev-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_prev}`);
+
     observer()
     posicionarPublic();
 
@@ -2585,7 +2592,7 @@ function getPublicsAmpliarHome(data){
 
 function getPublicTags(id_public,tags,index){
 
-    let splide = new Splide( '.splide-prod-tag-${id_public, {
+    let splide = new Splide( `.splide-prod-tag-${id_public}`, {
         perPage: 6,
         rewind : true,
         pagination: false
@@ -2631,6 +2638,7 @@ function getPublicsHome(data){
         
         var escena_json = JSON.parse(escena);
         var escena_json_length = escena_json.length;
+    
         
         //recorre todas las cat y primero dibujo el item de cat
         for(var i=0; i<escena_json_length; i++){
@@ -2644,9 +2652,9 @@ function getPublicsHome(data){
                 var json_cat_nombre = escena_json[i].nombre || "";
                 
                 var item_html = `<li class="splide__slide item item-cat-${json_cat}">
-                <div class="titulo-col-cont" onclick="window.location.replace(\'${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${json_cat}\')">
+                <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${json_cat}')">
                 <div class="titulo-col random-p-${i}"><span class="span-titulo">${json_cat_nombre}</span></div>
-                </div>'
+                </div>
                 </li>`;
                 
                 $(".splide__list__home").append(item_html);
@@ -2666,10 +2674,10 @@ function getPublicsHome(data){
                     var descr_public = data[x].publicacion_descripcion || '';
                     var imagen_id = data[x].foto || '';
                     var producto = data[x].pid || 0;
-                    var foto_src = '/publicaciones_img/${imagen_id}.png' || 0;//viene siempre png?
+                    var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
                     var favorito = data[x].favorito || 0;
                     var fav_accion = "";
-                    var full_url = '/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat;
+                    var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;
                     
                     
                     if(json_cat == id_public_cat){
@@ -2682,7 +2690,7 @@ function getPublicsHome(data){
                                     <div class="public-title-home">${nombre_public}</div>
                                     <div class="text-overlay">
                                     <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                    <a href="#"><i class="fas fa-share-alt"></i></a>
+                                    <a href="javascript:void(0)"><i class="fas fa-share-alt"></i></a>
                                     </span>
                                     &nbsp;&nbsp;
                                     <span class="text-overlay-link text-overlay-link-${id_public}">
@@ -2698,11 +2706,11 @@ function getPublicsHome(data){
                                     
                         if (favorito==null || favorito == 0) {
                             fav_accion="alta";
-                            var fav_html = `<a href="#"><i class="fas fa-heart" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
+                            var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
                             $(".text-overlay-link-"+id_public).append(fav_html)
                         }else{
                             fav_accion="eliminar";
-                            var fav_html = `<a href="#"><i class="fas fa-heart fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
+                            var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
                             $(".text-overlay-link-"+id_public).append(fav_html)
                         }
                                     
@@ -2745,7 +2753,7 @@ function getMisProductos(data){
             <div class="overlay-public">
                 <div class="text-overlay-prod">
                     <span onclick="eliminarProd('${id_prod}')" class="eliminar-producto text-overlay-link share-sm">
-                        <a href="#"><i class="fas fa-trash-alt"></i></a>
+                        <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
                     </span>
                     <span class="text-overlay-link text-overlay-link-id_prod">
                         <a href="/editar-producto.html?id=${id_prod}&accion=editar"><i class="fas fa-edit"></i></a>
@@ -2921,10 +2929,10 @@ function sendComentarioPublic(id_public,thisParam,indexParam){
     console.log(val)
 
     var content_html =
-    <div class="commentbox-list media commentbox-id">
-    '   <span class="comment-name">nicolasgomez94</span>//hard
-    '   <span class="comment-text">val+</span>
-    </div>';
+    `<div class="commentbox-list media commentbox-id">
+       <span class="comment-name">nicolasgomez94</span>
+       <span class="comment-text">${val}</span>
+    </div>`;
 
     $(appendeo).append(content_html);
 
