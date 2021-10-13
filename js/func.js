@@ -2552,37 +2552,6 @@ function getPublicsAmpliarHome(data){
             alert("no hay publicaciones")
         }
     }//fin for
-    
-    //navegacion de categorias
-
-    //hago un array con las escenas posta
-    //------ Despues cambiarlo con la estructura posta de ESCENA - SUBSECENA - ETC
-    let id_padres_array = []
-    for(var i=0; i<escena_json_length; i++){
-        let id_padre = escena_json[i].id_padre;
-        let id = escena_json[i].id;
-        
-        if(id_padre==null){
-            id_padres_array.push(id); 
-        }
-    }
-    console.table(id_padres_array)
-
-    //busco la cat que es gual a la que ya estamos, dependiendo del index que tenga en el nuevo array
-    let cat_index = id_padres_array.findIndex(el => el === jsonData.cat);
-    let cat_index_next = cat_index + 1;
-    let cat_index_prev = cat_index - 1;
-
-    let id_cat_next = id_padres_array[cat_index_next]
-    let id_cat_prev = id_padres_array[cat_index_prev]
-    
-    //link NEXT cat
-    let cat_ampliar_home_next = cat_index + 1;
-    $(".next-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_next}`);
-
-    //link PREV cat
-    let cat_ampliar_home_prev = cat_index - 1;
-    $(".prev-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_prev}`);
 
     observer()
     posicionarPublic();
@@ -2811,6 +2780,43 @@ function observer(){
 }
 
 
+function navCats(){
+    //navegacion de categorias
+    //hago un array con las escenas posta
+    //------ Despues cambiarlo con la estructura posta de ESCENA - SUBSECENA - ETC
+        const escena_json = JSON.parse(escena);
+    const escena_json_length = escena_json.length;
+    
+    let id_padres_array = []
+    for(var i=0; i<escena_json_length; i++){
+        let id_padre = escena_json[i].id_padre;
+        let id = escena_json[i].id;
+        let nombre = escena_json[i].nombre;
+        let obj = {}
+        
+        if(id_padre==null){
+            obj = {"id" : id,"nombre" : nombre}
+            id_padres_array.push(obj); 
+        }
+    }
+
+    //busco la cat que es gual a la que ya estamos, dependiendo del index que tenga en el nuevo array
+    let cat_index = id_padres_array.findIndex(el => el.id === jsonData.cat);
+    let cat_index_next = cat_index + 1;
+    let cat_index_prev = cat_index - 1;
+    let id_cat_next = id_padres_array[cat_index_next].id;
+    let id_cat_prev = id_padres_array[cat_index_prev].id;
+    let name_cat_next = id_padres_array[cat_index_next].nombre;
+    let name_cat_prev = id_padres_array[cat_index_prev].nombre;
+
+    $(".next-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_next}`);
+    $(".up_relleno_1_der").html(name_cat_next);
+
+    $(".prev-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_prev}`);
+    $(".up_relleno_2_izq").html(name_cat_prev);
+
+}
+
 function getDataPaging(dataPaging) {
     //return new Promise((resolve, reject) => {
 
@@ -2839,6 +2845,7 @@ function getDataPaging(dataPaging) {
                 case "paginador_ampliar-publicacion-home.php":
                     getPublicsAmpliarHome(data);
                     posicionarPublic();
+                    navCats();
                     break;
                 case "paginador_mis-publicaciones.php":
                     getMisPublic(data);
