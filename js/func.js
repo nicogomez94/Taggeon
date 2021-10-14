@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
     //activar notifs
     ampliarNotif();
 
-
-
-
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
     $(".board")
@@ -1411,7 +1408,7 @@ function buscadorIndex(paramIndex){
                                             <a class="link-ampliar-home" href="${full_url}"></a>
                                             <div class="public-title-home">${nombre_public}</div>
                                             <div class="text-overlay">
-                                                <span class="text-overlay-link share-sm" onclick="pathShareHome(\'${full_url}\')">
+                                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
                                                     <a href="javascript:void(0)"><i class="fas fa-share-alt" ></i></a>
                                                 </span>
                                                 <span class="text-overlay-link text-overlay-link-${id_public}"></span>
@@ -1896,7 +1893,7 @@ function activarBuscadorRelated(param){
 function pathShareHome(param){
     /*link a public para copiar*/
     var Url = window.location.href;
-	var UrlEncoded = encodeURIComponent(Url);
+    var UrlEncoded = encodeURIComponent(Url);
     var title = "taggeon";
     
     $(".overlayShare").show();
@@ -1904,12 +1901,16 @@ function pathShareHome(param){
     $('#cerrar-light').click(function() {
         $('.overlayShare').css("display", "none");
     });
-
-    console.log(Url+param)
-    $("#inputCopiarLink").val(Url+param)
-	document.getElementById("fa-facebook-square").href="http://www.facebook.com/share.php?u=" + UrlEncoded;
+    console.log(param)
+    if(param == ""){
+        $("#inputCopiarLink").val("https://taggeon.com/")
+    }else{
+        $("#inputCopiarLink").val(Url+param)
+    }
+    
+	/*document.getElementById("fa-facebook-square").href="http://www.facebook.com/share.php?u=" + UrlEncoded;
 	document.getElementById("fa-twitter-square").href="http://twitter.com/home?status=" + title + " " + UrlEncoded;
-	//document.getElementById("fa-instagram-square").href="http://twitter.com/home?status=" + title + " " + UrlEncoded;
+	//document.getElementById("fa-instagram-square").href="http://twitter.com/home?status=" + title + " " + UrlEncoded;*/
 	//document.getElementById("fa-pinterest-square").href="mailto:?body=Take a look at this page I found: " + title + ". You can read it here: " + Url;
 }
 
@@ -2307,7 +2308,7 @@ function getMisCompras(data){
             var compras_html = 
             `<div class="overlay-public">
                 <div class="text-overlay-prod">
-                        <span data-title="${id}" class="text-overlay-link share-sm">
+                        <span data-title="${id}" class="text-overlay-link">
                             <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
                         </span>
                         <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
@@ -2359,7 +2360,7 @@ function getMisVentas(data){
             var ventas_html = 
             `<div class="overlay-public">
                 <div class="text-overlay-prod">
-                    <span data-title="${id}" class="text-overlay-link share-sm">
+                    <span data-title="${id}" class="text-overlay-link">
                         <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
                     </span>
                     <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
@@ -2445,7 +2446,8 @@ function getPublicsAmpliarHome(data){
             let seguidos = jsonData.seguidos || [];
             let idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
             let idPublicadorSeguido = idPublicadorSearch.idUsuario;
-            let comentarios_obj = data[i].comentarios || []      
+            let comentarios_obj = data[i].comentarios || [];
+            let full_url = window.location.href;      
  
 
             if(cat_ampliar_home == id_public_cat){
@@ -2487,7 +2489,7 @@ function getPublicsAmpliarHome(data){
  
                                <div class="info-public">
                                   <div class="social-public social-public-${id_public}">
-                                        <span class="share-sm"><i class="fas fa-paper-plane"></i></span>
+                                        <span class="share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-paper-plane"></i></span>
                                         <span><i class="fas fa-star"></i></span>
                                   </div>
                                   <div class="datos-public">
