@@ -1365,7 +1365,6 @@ function buscadorIndex(paramIndex){
             success:function(response){
 
                 var sizePublic = response.publicaciones.length;
-                console.log(response)
                 var jsonData = response;
                 
                 $(".splide__home").empty();
@@ -1377,11 +1376,11 @@ function buscadorIndex(paramIndex){
 
                     if(sizePublic>0){   
                         var public_cat_size = escena.length;
-                        
-                        /*si encontro publics, creo la grid*/
                         var grid_ = '<div class="grid"></div>';
                         var board_el = document.querySelector(".board");
                         var mscontainer = document.querySelector("#main-super-container")
+                        var escena_json = JSON.parse(escena);
+                        var escena_json_length = escena_json.length;
                         
                         if(board_el == null){
                             var board_new = document.createElement("div");
@@ -1392,10 +1391,10 @@ function buscadorIndex(paramIndex){
                             board_el.innerHTML = grid_
                         }
 
-                        for(var x=0; x<sizePublic; x++){
-                            
+                        for(var x=0; x<sizePublic; x++){           
                             var id_public = jsonData.publicaciones[x].id || '';
                             var id_public_cat = jsonData.publicaciones[x].id_publicacion_categoria || 0;
+                            var subescena1 = jsonData.publicaciones[x].subescena1;
                             var nombre_public = jsonData.publicaciones[x].publicacion_nombre || '';
                             var descr_public = jsonData.publicaciones[x].publicacion_descripcion || '';
                             var imagen_id = jsonData.publicaciones[x].foto || '';
@@ -1403,14 +1402,13 @@ function buscadorIndex(paramIndex){
                             var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
                             var favorito = jsonData.publicaciones[x].favorito || 0;
                             var fav_accion = "";
-                            var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
+                            var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${subescena1}`
 
                             var public_html2 =
                                 `<div class="grid-item">
                                     <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
                                         <div class="overlay-public">
                                             <a class="link-ampliar-home" href="${full_url}"></a>
-                                            // <a class="link-ampliar-home"></a>
                                             <div class="public-title-home">${nombre_public}</div>
                                             <div class="text-overlay">
                                                 <span class="text-overlay-link share-sm" onclick="pathShareHome(\'${full_url}\')">
@@ -2784,7 +2782,7 @@ function navCats(){
     //navegacion de categorias
     //hago un array con las escenas posta
     //------ Despues cambiarlo con la estructura posta de ESCENA - SUBSECENA - ETC
-        const escena_json = JSON.parse(escena);
+    const escena_json = JSON.parse(escena);
     const escena_json_length = escena_json.length;
     
     let id_padres_array = []
@@ -2804,16 +2802,25 @@ function navCats(){
     let cat_index = id_padres_array.findIndex(el => el.id === jsonData.cat);
     let cat_index_next = cat_index + 1;
     let cat_index_prev = cat_index - 1;
-    let id_cat_next = id_padres_array[cat_index_next].id;
-    let id_cat_prev = id_padres_array[cat_index_prev].id;
-    let name_cat_next = id_padres_array[cat_index_next].nombre;
-    let name_cat_prev = id_padres_array[cat_index_prev].nombre;
+    
+    if(cat_index_prev >= 0){
+        let id_cat_prev = id_padres_array[cat_index_prev].id || 0;
+        let name_cat_prev = id_padres_array[cat_index_prev].nombre || "";
+
+        $(".prev-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_prev}`);
+        $(".up_relleno_2_izq").html(name_cat_prev);
+    }else{
+        $(".prev-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${jsonData.cat}`);
+        $(".up_relleno_2_izq").html("");
+    }
+
+    let id_cat_next = id_padres_array[cat_index_next].id || 0;
+    let name_cat_next = id_padres_array[cat_index_next].nombre || "";
 
     $(".next-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_next}`);
     $(".up_relleno_1_der").html(name_cat_next);
 
-    $(".prev-cat a").attr("href",`/ampliar-publicacion-home.html?accion=ampliar&cat=${id_cat_prev}`);
-    $(".up_relleno_2_izq").html(name_cat_prev);
+    
 
 }
 
