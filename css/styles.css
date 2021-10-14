@@ -1237,6 +1237,9 @@ body{
 #file-upload{
     display: none;
 }
+#inputCopiarLink{
+    width: 80%;
+}
 .custom-file-upload {
     border: 1px solid #ccc;
     display: inline-block;
@@ -2148,7 +2151,7 @@ button:disabled{
     line-height: 50px;
     position: fixed;
     width: 50%;
-    z-index: 999;
+    z-index: 998;
     font-size: 1.2em;
     font-weight: 500;
     border-radius: var(--redondeado);

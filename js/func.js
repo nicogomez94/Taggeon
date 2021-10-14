@@ -834,7 +834,7 @@ $(".comentario_prod").submit(function(){
     dataComentario.append("accion","alta");
 
     $.ajax({
-        url: '/app/comentario.php',
+        url: '/app/comentarioproducto.php',
         data: dataComentario,
         type: 'POST',
         processData: false,
@@ -2413,6 +2413,37 @@ function getCommentsPublic(comentarios_obj){
 
 }
 
+function getCommentsProd(comentarios_obj){
+    //recorro comentarios en la public
+    for(var y=0; y<comentarios_obj.length; y++){
+        if(comentarios_obj.length>0){
+            var comentario = comentarios_obj[y].comentario || "";
+            var eliminar = comentarios_obj[y].eliminar || "";
+            var fecha_alta = comentarios_obj[y].fecha_alta || "";
+            var fecha_update = comentarios_obj[y].fecha_update || "";
+            var id = comentarios_obj[y].id || 0;
+            var id_publicacion = comentarios_obj[y].id_publicacion || 0;
+            var usuario_alta = comentarios_obj[y].usuario_alta || "";
+            var usuario_editar = comentarios_obj[y].usuario_editar || "";
+            
+            var comentario_html = 
+            `<div class="commentbox-list media commentbox-id-${y}">
+               <span class="comment-name">nicolasgomez94</span>
+               <span class="comment-text">${comentario}</span>
+            </div>`;
+            
+            $(".commentbox-list-container-"+id_publicacion).append(comentario_html);
+
+        }else{
+            var comentario_html2 = "<p>No hay comentarios</p>"
+            
+            $(".commentbox-list-container-"+id_publicacion).append(comentario_html2)
+        }
+
+    }
+
+}
+
 function getPublicsAmpliarHome(data){
 
     const sizePublic = data.length;
@@ -2932,6 +2963,62 @@ function eliminarCarrito(id_prod,id_publicacion,tipo_carrito){
 }
 
 function sendComentarioPublic(id_public,thisParam,indexParam){
+
+    let val = $("#comentario-"+indexParam).val();
+
+    var dataComentario = new FormData();
+    dataComentario.append("accion","alta");
+    dataComentario.append("publicacion",id_public);
+    dataComentario.append("comentario",val);
+    
+    var appendeo = thisParam.parent().parent().parent().find(".commentbox-list-container");
+    console.log(appendeo)
+    console.log(val)
+
+    var content_html =
+    `<div class="commentbox-list media commentbox-id">
+       <span class="comment-name">nicolasgomez94</span>
+       <span class="comment-text">${val}</span>
+    </div>`;
+
+    $(appendeo).append(content_html);
+
+    /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+    $(".commentbox-user-img").attr("src", img_perfil);*/
+
+    $.ajax({
+        url: '/app/comentario.php',
+        data: dataComentario,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        //dataType: "json",
+        async: false,
+        success: function( data, textStatus, jQxhr ){
+            var dataJ = JSON.parse(data).status;
+            var dataM = JSON.parse(data).mensaje;
+            if (dataJ == "REDIRECT"){
+                console.log("REDIRECT-->"+dataM);
+                //window.location.replace(dataM);														
+            }else if(dataJ == 'OK'){
+                //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
+                console.log(dataJ+"--"+dataM);
+            }else{
+                //window.location.replace("/ampliar-carrito.html");
+                //alert(dataJ+"--"+dataM);
+                console.log(dataJ+"--"+dataM);
+            }
+        },
+        error: function( data ){
+            console.log(data)
+            alert("error->"+data.status);
+        }
+    });
+    return false;
+}
+
+
+function sendComentarioProd(id_public,thisParam,indexParam){
 
     let val = $("#comentario-"+indexParam).val();
 
