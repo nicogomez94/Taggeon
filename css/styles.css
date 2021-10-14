@@ -861,6 +861,7 @@ body{
 .follower_container {
     display: inline-block;
     min-width: 70px;
+    cursor: pointer;
 }
 
 

@@ -1421,15 +1421,7 @@ function buscadorIndex(paramIndex){
                             $(".grid").append(public_html2)
             
                             
-                            if (favorito==null || favorito == 0) {
-                                fav_accion="alta";
-                                var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
-                                $(".text-overlay-link-"+id_public).append(fav_html)
-                            }else{
-                                fav_accion="eliminar";
-                                var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
-                                $(".text-overlay-link-"+id_public).append(fav_html)
-                            }  
+                            toggleFav(favorito,id_public,"buscador",fav_accion);
                             
                         }//end for
 
@@ -1690,11 +1682,10 @@ function mostrarSeguidores(){
     var sizeSeguidores = jsonData.seguidores.length;
     var seguidos = jsonData.seguidos || [];
     var sizeSeguidos = jsonData.seguidos.length || 0;
-    console.log("teset",sizeSeguidos)
 
     //perfil
-    $(".seguidos-label").html(sizeSeguidos+" Seguidos");
-    $(".seguidores-label").html(sizeSeguidores+" Seguidores");
+    $("#following_count").html(sizeSeguidores);
+    $("#follower_count").html(sizeSeguidos);
 
     //popup
     $(".count-seguidos-num").html(sizeSeguidos);
@@ -2444,6 +2435,42 @@ function getCommentsProd(comentarios_obj){
 
 }
 
+function toggleFav(favorito,id_public,desde,fav_accion){
+
+    let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
+    /*console.log(favorito)
+    console.log(id_public)
+    console.log(desde)
+    console.log(fav_accion)*/
+    
+    if (favorito==null || favorito == 0) {
+        fav_accion="alta";
+        var fav_html = `<span><i class="fas fa-star" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></span>`
+        appendeo.prepend(fav_html);
+    }else{
+        fav_accion="eliminar";
+        var fav_html = `<span><i class="fas fa-star fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></span>`
+        appendeo.prepend(fav_html);
+    }
+
+    return fav_accion;
+}
+
+function toggleFollow(idPublicadorSeguido,id_publicador,id_public){
+    
+    if(idPublicadorSeguido==id_publicador) {
+        seg_accion="eliminar";
+        var seg_html = `<span class="follow_public"><i class="fas fa-user-plus seg-eliminar" onclick="seguidores(${id_public},'${id_publicador}','${seg_accion}');$(this).toggleClass('seg-eliminar')"></span>`
+        $(".header-public-"+id_public).append(seg_html);
+    }else{
+        seg_accion="alta";
+        var seg_html = `<span class="follow_public"><i class="fas fa-user-plus" onclick="seguidores(${id_public},'${id_publicador}','${seg_accion}');$(this).toggleClass('seg-eliminar')"></i></span>`
+        $(".header-public-"+id_public).append(seg_html);
+    }
+
+    return seg_accion;
+}
+
 function getPublicsAmpliarHome(data){
 
     const sizePublic = data.length;
@@ -2479,7 +2506,6 @@ function getPublicsAmpliarHome(data){
             let idPublicadorSeguido = idPublicadorSearch.idUsuario;
             let comentarios_obj = data[i].comentarios || [];
             let full_url = window.location.href;      
- 
 
             if(cat_ampliar_home == id_public_cat){
 
@@ -2542,7 +2568,6 @@ function getPublicsAmpliarHome(data){
                                   <div class="commentbox-list-container commentbox-list-container-${id_public}"></div>
                                </div>
                             </div>`;
- 
                             
                 document.querySelector(".insert-public").insertAdjacentHTML("beforeend",html_public);
                 document.querySelector(".title-public-"+i).innerHTML = publicador;
@@ -2556,29 +2581,11 @@ function getPublicsAmpliarHome(data){
             var img_perfil = $(".img-perfil-usuario-drop").attr("src");
             $(".commentbox-user-img").attr("src", img_perfil);
             
-
-            if (favorito==null || favorito == 0) {
-               fav_accion="alta";
-               var fav_html = `<span><i class="fas fa-heart" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></span>`
-               $(".social-public-"+id_public).prepend(fav_html);
-            }else{
-               fav_accion="eliminar";
-               var fav_html = `<span><i class="fas fa-heart fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></span>`
-               $(".social-public-"+id_public).prepend(fav_html);
-            }
             /**/
-               
-
-            if(idPublicadorSeguido==id_publicador) {
-               seg_accion="eliminar";
-               var seg_html = `<span class="follow_public"><i class="fas fa-user-plus seg-eliminar" onclick="seguidores(${id_public},'${id_publicador}','${seg_accion}');$(this).toggleClass('seg-eliminar')"></span>`
-               $(".header-public-"+id_public).append(seg_html);
-            }else{
-               seg_accion="alta";
-               var seg_html = `<span class="follow_public"><i class="fas fa-user-plus" onclick="seguidores(${id_public},'${id_publicador}','${seg_accion}');$(this).toggleClass('seg-eliminar')"></i></span>`
-               $(".header-public-"+id_public).append(seg_html);
-            }
-
+            toggleFav(favorito,id_public,"ampliar",fav_accion);
+            toggleFollow(idPublicadorSeguido,id_publicador,id_public)
+            /**/
+            
         }else{
             alert("no hay publicaciones")
         }
@@ -2675,7 +2682,7 @@ function getPublicsHome(data){
                     var imagen_id = data[x].foto || '';
                     var producto = data[x].pid || 0;
                     var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
-                    var favorito = data[x].favorito || 0;
+                    var favorito = data[x].favorito;
                     var fav_accion = "";
                     var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;
                     
@@ -2704,15 +2711,7 @@ function getPublicsHome(data){
                                     
                             $(".item-cat-"+json_cat).append(public_html)
                                     
-                        if (favorito==null || favorito == 0) {
-                            fav_accion="alta";
-                            var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
-                            $(".text-overlay-link-"+id_public).append(fav_html)
-                        }else{
-                            fav_accion="eliminar";
-                            var fav_html = `<a href="javascript:void(0)"><i class="fas fa-heart fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></a>`
-                            $(".text-overlay-link-"+id_public).append(fav_html)
-                        }
+                            toggleFav(favorito,id_public,"",fav_accion);
                                     
                                     
                     }
@@ -2873,6 +2872,9 @@ function getDataPaging(dataPaging) {
             var cant = parseInt(data.length);
             dataPaging.cantidad = dataPaging.cantidad+cant;
             //console.log(dataPaging.cantidad)
+            //let test = data[12].favorito || 0;
+            console.log("desde --> ",url_temp)
+           // console.table(test)
 
             //dibujo listados
             switch (url_temp){
@@ -2893,6 +2895,7 @@ function getDataPaging(dataPaging) {
                 case "paginador_mis-compras.php":
                     getMisCompras(data);
                     break;
+
                 case "paginador_mis-ventas.php":
                     getMisVentas(data);
                     break;
