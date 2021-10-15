@@ -2571,6 +2571,11 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     font-weight: lighter;
     margin-left: 15px;
 }
+.carrito_varios{
+    padding: 10px 30px 10px 30px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
 .datos-envio-checkout input {
     width: 80%;
 }

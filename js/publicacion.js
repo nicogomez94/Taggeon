@@ -320,69 +320,60 @@ function appearTooltip(msjParam){
    //document.getElementsByClassName("tooltip-nico").style.color="blue";
 }
 
+
 function getSplideProdPublic(param){
+      
    const URL = `/app/producto.php?accion=getproductos&id=${param}`
 
-   //si ya clickee una vez, no vuelvas a hacer la llamada
-   var el =  document.querySelector('.prod-tag-public');
-   if (el == null){
-
-      fetch(URL).then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then((response) => {
+   fetch(URL).then(res => res.json())
+   .catch(error => console.error('Error:', error))
+   .then((response) => {
+      
+      let resp_len = response.mensaje.length
+      console.log(response)
+      
+         if(resp_len > 0){
+            for(let i = 0; i < resp_len; i++){
+               let nombre_prod = response.mensaje[i].titulo;
+               let precio_prod = response.mensaje[i].precio;
+               let marca_prod = response.mensaje[i].marca;
+               let color_prod = response.mensaje[i].color;
+               let descr_prod = response.mensaje[i].descr_producto;
+               let id_prod_json = response.mensaje[i].id;
+               let stock_prod = response.mensaje[i].stock;
+               let foto_prod = response.mensaje[i].foto;
+               let primer_img_split = foto_prod.split(",")[0];
+               let primer_img = "/productos_img/"+primer_img_split+".png";
+               let nombre_completo = "test";
+               let foto_src_prod = `/productos_img/${foto_prod}.png`;
+               let splide_list = document.querySelector('.splide__list__'+param)
+   
+               var objParamModal = {
+                        id_prod_p : id_prod_json,
+                        id_public_p : param,
+                        foto_src_prod_p : foto_src_prod,
+                        id_prod_json_p : id_prod_json,
+                        marca_prod_p : marca_prod,
+                        color_prod_p : color_prod,
+                        descr_prod_p : descr_prod,
+                        nombre_prod_p : nombre_prod,
+                        nombre_completo_p : nombre_completo,
+                        precio_prod_p : precio_prod,
+                        i_p : i
+                     }
+   
+               traerModalProducto(objParamModal)
          
-         let resp_len = response.mensaje.length
-         console.log(response)
-         //para que no cree ifninitos items de galeria
-         
-            if(resp_len > 0){
-               for(let i = 0; i < resp_len; i++){
-                  let nombre_prod = response.mensaje[i].titulo;
-                  let precio_prod = response.mensaje[i].precio;
-                  let marca_prod = response.mensaje[i].marca;
-                  let color_prod = response.mensaje[i].color;
-                  let descr_prod = response.mensaje[i].descr_producto;
-                  let id_prod_json = response.mensaje[i].id;
-                  let stock_prod = response.mensaje[i].stock;
-                  let foto_prod = response.mensaje[i].foto;
-                  let primer_img_split = foto_prod.split(",")[0];
-                  let primer_img = "/productos_img/"+primer_img_split+".png";
-                  // nombre_completo = jsonData.nombre+""+jsonData.apellido;
-                  let nombre_completo = "test";
-                  let foto_src_prod = `/productos_img/${foto_prod}.png`;
-                  let splide_list = document.querySelector('.splide__list__'+param)
-                  console.log(response)
-      
-      
-                  var objParamModal = {
-                           id_prod_p : id_prod_json,
-                           id_public_p : param,
-                           foto_src_prod_p : foto_src_prod,
-                           id_prod_json_p : id_prod_json,
-                           marca_prod_p : marca_prod,
-                           color_prod_p : color_prod,
-                           descr_prod_p : descr_prod,
-                           nombre_prod_p : nombre_prod,
-                           nombre_completo_p : nombre_completo,
-                           precio_prod_p : precio_prod,
-                           i_p : i
-                        }
-      
-                     traerModalProducto(objParamModal)
-                     
-            
-                  let splide_fotos = `<li class="prod-tag-public splide__slide splide__slide__img splide__prodtag">
-                     <img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${primer_img}"></li>`;
+               let splide_fotos = `<li class="prod-tag-public splide__slide splide__slide__img splide__prodtag">
+                  <img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${primer_img}"></li>`;
                   
-                     
-                  //dibujo tags y list de galeria splide
-                  splide_list.insertAdjacentHTML("beforeend",splide_fotos);
-      
-               }   
+               //dibujo tags y list de galeria splide
+               splide_list.insertAdjacentHTML("beforeend",splide_fotos);
+   
+            }   
 
-            }else{
-               alert("error publics")
-            }
-      });//then
-   }
+         }else{
+            alert("error publics")
+         }
+   });//then
 }

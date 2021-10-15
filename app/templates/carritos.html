@@ -24,62 +24,89 @@
 $(document).ready(function(){
 
    var carrito = jsonData.carrito || [];
-   var sizeCarrito = jsonData.carrito.length;
+   //
+   let carritos_agrupados = carrito.reduce((r, a) => {
+      r[a.id_carrito] = [...r[a.id_carrito] || [], a];
+      return r;
+   }, {});
+   var sizeCarrito = carrito.length;
+   
+   let test = Object.values(carritos_agrupados)
 
-   if(sizeCarrito>0){
-      // if($(".form-orden-compra").html().length > 0){
-         for(var i=0; i<sizeCarrito; i++){
+   let test_param = 0;
+
+      for(let i=0; i<sizeCarrito; i++){
+         let id_carrito = carrito[i].id_carrito;
+         let nombre_prod_carrito = carrito[i].nombre_producto;
+         let precio_prod_carrito = carrito[i].precio;
+         let id_publicacion = carrito[i].id_publicacion;
+         let total_prod_carrito = carrito[i].total;
+         let prod_id = carrito[i].id_producto;
+         let cantidad = carrito[i].cantidad;
+         let producto = carrito[i].pid;
+         let subtotal = carrito[i].subtotal;
+         let total = carrito[i].total;
+         let foto_id = carrito[i].foto;
+         let foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
+
          
-            var id_carrito = jsonData.carrito[i].id_carrito;
-            var nombre_prod_carrito = jsonData.carrito[i].nombre_producto;
-            var precio_prod_carrito = jsonData.carrito[i].precio;
-            var id_publicacion = jsonData.carrito[i].id_publicacion;
-            var total_prod_carrito = jsonData.carrito[i].total;
-            var prod_id = jsonData.carrito[i].id_producto;
-            var cantidad = jsonData.carrito[i].cantidad;
-            var producto = jsonData.carrito[i].pid;
-            var subtotal = jsonData.carrito[i].subtotal;
-            var total = jsonData.carrito[i].total;
-            var foto_id = jsonData.carrito[i].foto;
-            var foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
-
-            var prods_carrito_html = `<div class="row producto">
-                              <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-                              <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="${foto_src}" alt="img"></div>
-                              </div>
-                              <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-                              <span class="titulo-producto">${nombre_prod_carrito}</span>
-                              </div>
-                              <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-                              <span class="precio-producto">${precio_prod_carrito}</span>
-                              </div>
-                              <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-                              <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
-                              </div>
-                              <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-                                 <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
-                              <div class="cerrar-prod-carrito">
-                                 <input type="hidden" class="prod-id" name="id_producto" value="${prod_id}">
-                                 <input type="hidden" class="carrito-id" name="id_carrito" value="${id_carrito}">
-                                 <input type="hidden" class="id-publicacion" name="id_publicacion" value="${id_publicacion}">
-                                 <i onclick="eliminarCarrito(${prod_id},${id_publicacion},'carritos.html')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
+         let prods_carrito_html = `<div class="row producto">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+               <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="${foto_src}" alt="img"></div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">${nombre_prod_carrito}</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                     <span class="precio-producto">${precio_prod_carrito}</span>
+                     </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                        <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                           <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
+                           <div class="cerrar-prod-carrito">
+                              <input type="hidden" class="prod-id" name="id_producto" value="${prod_id}">
+                              <input type="hidden" class="carrito-id" name="id_carrito" value="${id_carrito}">
+                              <input type="hidden" class="id-publicacion" name="id_publicacion" value="${id_publicacion}">
+                              <i onclick="eliminarCarrito(${prod_id},${id_publicacion},'carritos.html')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
                               </div>
                               </div>
                               </div>`;
-
-                  $("#listado-mis-productos").append(prods_carrito_html);
-                  $(".subtotal-cant").html("AR$"+total);
+                              
+               if(test_param != id_carrito){
+                  test_param =+ id_carrito
+                  let test = document.createElement("div");
+                  test.setAttribute("class","id_carrito-"+id_carrito)
+                  test.innerHTML = prods_carrito_html;
+                  $("#listado-mis-productos").append(test);
+               }else{
+                  //appendeo a el class existente, en ves de crear un objeto nuevo
+                  let carrito_varios = $(".id_carrito-"+id_carrito);
+                  carrito_varios.append(prods_carrito_html)
+                  carrito_varios.addClass("carrito_varios")
+               }
+                  /*$(".subtotal-cant").html("AR$"+total);
                   $(".total-cant").html("AR$"+total);
-                  $("#id_carrito").val(id_carrito);
+                  $("#id_carrito").val(id_carrito);*/
+
+         //console.log(id_carrito)
+      }
+   //}  
+
+   /*if(sizeCarrito>0){
+      // if($(".form-orden-compra").html().length > 0){
+         for(var i=0; i<sizeCarrito; i++){
+         
+           
 
                  /* if(cantidad == null || id_carrito == null){
                      $(".header-productos").hide();
                      $(".totales-cont").hide();
                      $(".producto:not(.header-productos)").hide();
                      $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
-                  }*/
-                  console.log($(".boton-checkout-carrito"));
-                  console.log("idcarrito arriba"+id_carrito);
+                  }
+
 
                   
 
@@ -121,12 +148,12 @@ $(document).ready(function(){
          $(".totales-cont").hide();
          $(".producto:not(.header-productos)").hide();
          $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
-      }
+      }*/
 
       
 });
 </script>
-   <script src="js/func.js?time=290421-1227"></script>
+   <script src="js/func.js?time=1624-1510"></script>
    <!-- <script src="js/publicacion.js?time=290421-1227"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
 

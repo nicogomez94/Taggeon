@@ -2614,7 +2614,7 @@ function getPublicTags(id_public,tags,index){
         let ycoord = coords.split("-")[0];
         let xcoord = coords.split("-")[1];
         
-        let tag_html = `<div href="ancla-${index}" onclick="getSplideProdPublic(${id_public})" class="tagg tagg-${id_public}" style="top:${ycoord}%; left: ${xcoord}%">
+        let tag_html = `<div href="ancla-${index}" onclick="getSplideProdPublic(${id_public});this.removeAttribute('onclick')" class="tagg tagg-${id_public}" style="top:${ycoord}%; left: ${xcoord}%">
         <span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>`;
         document.querySelector(`.tag-container-${index}`).insertAdjacentHTML("beforeend",tag_html);
         
@@ -2959,7 +2959,7 @@ function eliminarCarrito(id_prod,id_publicacion,tipo_carrito){
     }).then(res => res.json())
     .then(response => {
         console.log(response)
-        window.location.replace(tipo_carrito)
+        //window.location.replace(tipo_carrito)
     })
     .catch(error => console.error('Error:', error))
 
