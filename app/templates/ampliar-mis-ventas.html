@@ -122,11 +122,10 @@
 <script>
 $(document).ready(function(){
 
-var sizeVentas = jsonData.ventas.length;
+   var sizeVentas = jsonData.ventas.length;
 
    if(sizeVentas>0){
-      console.log("andentro if")
-      // if($(".form-orden-venta").html().length > 0){
+
          for(var i=0; i<sizeVentas; i++){
             var nombre_producto = jsonData.ventas[i].nombre_producto || "";
             var precio_producto = jsonData.ventas[i].precio || 0;
@@ -154,7 +153,7 @@ var sizeVentas = jsonData.ventas.length;
 
          }
    }else{
-      $(".inner-ventas").append('<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>')
+      $(".inner-ventas").html('<hr class="mt-5"><h3 class="text-center"><i>Ha ocurrido un error con esta venta<i></h3>')
    }
    
 });

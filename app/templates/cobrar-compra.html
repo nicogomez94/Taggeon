@@ -521,7 +521,7 @@ function getCardToken(){
    event.preventDefault();
    //nico
     //para que interactue el nuevo form con el de mp (hidden)
-    /*let form2 = document.querySelector('.cho-container');
+    let form2 = document.querySelector('.cho-container');
     let expDateFacha = document.getElementById("expirationdate").value;
     let expYearFacha = expDateFacha.split("/")[1];
     let expMonFacha = expDateFacha.split("/")[0];
@@ -536,7 +536,7 @@ function getCardToken(){
     cardExpirationMonth.setAttribute('value', expMonFacha);
     cardExpirationMonth.setAttribute('name', 'cardExpirationMonth');
     cardExpirationMonth.setAttribute('type', 'hidden');
-    form2.appendChild(cardExpirationMonth);*/
+    form2.appendChild(cardExpirationMonth);
     console.log(this)
    if(!doSubmit){
        let $form = document.getElementById('paymentForm');

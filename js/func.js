@@ -1305,6 +1305,39 @@ function favoritos(id_publicacion,accion){
     return false;
  }
 
+ function likes(id_publicacion,accion){
+
+    var data = new FormData();
+    data.append("accion",accion);
+    data.append("id",id_publicacion);
+ 
+    $.ajax({
+       url: '/app/favorito.php',
+       data: data,
+       type: 'POST',
+       processData: false,
+       contentType: false,
+       //async: false,
+       success: function(data){
+          var dataJ = JSON.parse(data).status;
+          var dataM = JSON.parse(data).mensaje;
+ 
+          if (dataJ == 'REDIRECT'){
+             console.log("REDIRECT-->"+dataM);							
+          }else if(dataJ == 'OK'){
+             console.log("OK-->"+dataJ+"/"+dataM);
+          }else{
+             console.log("ELSE-->"+dataJ+"/"+dataM);
+          }
+       },
+       error: function( data, jqXhr, textStatus, errorThrown ){
+          ajax("ERROR AJAX--> "+data);
+          console.log(data);
+       }
+    });
+    return false;
+}
+
 function seguidores(id_publicacion,idPublicadorParam,accionParam){
 
     var data = new FormData();
@@ -2297,21 +2330,23 @@ function getMisCompras(data){
             var sizeVendedor = jsonData.vendedor.length || 0;
             var foto_src = `/productos_img/${imagen_id}.png` || 0;
             var compras_html = 
-            `<div class="overlay-public">
-                <div class="text-overlay-prod">
-                        <span data-title="${id}" class="text-overlay-link">
+            `<div>
+                <div class="overlay-public">
+                    <div class="text-overlay-prod">
+                        <!--<span data-title="${id}" class="text-overlay-link">
                             <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
-                        </span>
+                        </span>-->
                         <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
-                            <a href="/ampliar-compras.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
+                            <a href="/ampliar-compras.html?id=${id_carrito}"><i class="fas fa-eye"></i></a>
                         </span>
-                </div>
+                    </div>
                 </div>
                 <img src="${foto_src}" alt="${foto_src}">
                 <div class="prod-datos">
-                <div class="nombre-prod">${nombre_producto}</div>
-                <div class="precio-prod">$ ${precio_producto}</div>
-                </div>`;
+                    <div class="nombre-prod">${nombre_producto}</div>
+                    <div class="precio-prod">$ ${precio_producto}</div>
+                </div>
+            </div>`;
                 
                 flex_listado.insertAdjacentHTML('beforeend', compras_html) 
                 
@@ -2335,7 +2370,7 @@ function getMisCompras(data){
 function getMisVentas(data){
     const sizeVentas = data.length;
     const flex_listado = document.querySelector(".flex-listado")
-    console.log(data)
+
     if(sizeVentas>0){
         for(var i=0; i<sizeVentas; i++){
             var nombre_producto = data[i].nombre_producto || "";
@@ -2349,20 +2384,22 @@ function getMisVentas(data){
             var foto_src = `/productos_img/${imagen_id}.png` || "";
 
             var ventas_html = 
-            `<div class="overlay-public">
-                <div class="text-overlay-prod">
-                    <span data-title="${id}" class="text-overlay-link">
-                        <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
-                    </span>
-                    <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
-                        <a href="/ampliar-mis-ventas.html?id=${id_carrito}"><i class="fas fa-edit"></i></a>
-                    </span>
+            `<div>
+                <div class="overlay-public">
+                    <div class="text-overlay-prod">
+                        <!--<span data-title="${id}" class="text-overlay-link">
+                            <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
+                        </span>-->
+                        <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
+                            <a href="/ampliar-mis-ventas.html?id=${id_carrito}"><i class="fas fa-eye"></i></a>
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <img src="${foto_src}" alt="${foto_src}">
-            <div class="prod-datos">
-               <div class="nombre-prod">${nombre_producto}</div>
-               <div class="precio-prod">$ ${precio_producto}</div>
+                <img src="${foto_src}" alt="${foto_src}">
+                <div class="prod-datos">
+                    <div class="nombre-prod">${nombre_producto}</div>
+                    <div class="precio-prod">$ ${precio_producto}</div>
+                </div>
             </div>`;
                
             flex_listado.insertAdjacentHTML('beforeend', ventas_html) 
@@ -2438,10 +2475,6 @@ function getCommentsProd(comentarios_obj){
 function toggleFav(favorito,id_public,desde,fav_accion){
 
     let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
-    /*console.log(favorito)
-    console.log(id_public)
-    console.log(desde)
-    console.log(fav_accion)*/
     
     if (favorito==null || favorito == 0) {
         fav_accion="alta";
@@ -2469,6 +2502,23 @@ function toggleFollow(idPublicadorSeguido,id_publicador,id_public){
     }
 
     return seg_accion;
+}
+
+function toggleLike(like,id_public,desde,like_accion){
+    
+    let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
+
+    if (favorito==null || favorito == 0) {
+        like_accion="alta";
+        var like_html = `<span><i class="fas fa-heart" onclick="likes(${id_public},'${fav_accion}');$(this).toggleClass('like-eliminar')"></i></span>`
+        appendeo.prepend(like_html);
+    }else{
+        like_accion="eliminar";
+        var like_html = `<span><i class="fas fa-heart like-eliminar" onclick="likes(${id_public},'${fav_accion}');$(this).toggleClass('like-eliminar')"></span>`
+        appendeo.prepend(like_html);
+    }
+
+    return like_accion;
 }
 
 function getPublicsAmpliarHome(data){
@@ -2501,6 +2551,8 @@ function getPublicsAmpliarHome(data){
             let favorito = data[i].favorito || 0;
             let fav_accion = "";
             let seg_accion = "";
+            let like_accion = "";
+            let like="";
             let seguidos = jsonData.seguidos || [];
             let idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
             let idPublicadorSeguido = idPublicadorSearch.idUsuario;
@@ -2583,6 +2635,7 @@ function getPublicsAmpliarHome(data){
             
             /**/
             toggleFav(favorito,id_public,"ampliar",fav_accion);
+            toggleLike(like,id_public,"ampliar",fav_accion);
             toggleFollow(idPublicadorSeguido,id_publicador,id_public)
             /**/
             
