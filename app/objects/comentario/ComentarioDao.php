@@ -163,12 +163,33 @@ SQL;
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
-        SELECT
-		*
-    	FROM
-		`comentario`
-		WHERE
-        (`comentario`.eliminar = 0 OR `comentario`.eliminar IS NULL) 
+SELECT
+    `comentario`.*,
+    u.*
+FROM
+    `comentario`
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentario`.`usuario_alta`
+WHERE
+    (
+        `comentario`.eliminar = 0 OR `comentario`.eliminar IS NULL
+    )
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
@@ -187,9 +208,28 @@ sql;
         $idDB = Database::escape($id);
         $sql = <<<sql
 		SELECT
-		*
+		`comentario`.*,
+    u.*
     	FROM
         `comentario`
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentario`.`usuario_alta`
     	WHERE
 			comentario.id=$idDB AND 
         (`comentario`.eliminar = 0 OR `comentario`.eliminar IS NULL) AND `comentario`.usuario_alta = $usuarioAltaDB

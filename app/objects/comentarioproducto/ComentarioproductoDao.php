@@ -157,9 +157,28 @@ SQL;
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
         SELECT
-		*
+		`comentarioproducto`.*,
+    u.*
     	FROM
 		`comentarioproducto`
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentarioproducto`.`usuario_alta`
 		WHERE
         (`comentarioproducto`.eliminar = 0 OR `comentarioproducto`.eliminar IS NULL) AND `comentarioproducto`.usuario_alta = $usuarioAltaDB
 sql;
@@ -180,9 +199,28 @@ sql;
         $idDB = Database::escape($id);
         $sql = <<<sql
 		SELECT
-		*
+		`comentarioproducto`.*,
+    u.*
     	FROM
         `comentarioproducto`
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentarioproducto`.`usuario_alta`
     	WHERE
 			comentarioproducto.id=$idDB AND 
         (`comentarioproducto`.eliminar = 0 OR `comentarioproducto`.eliminar IS NULL) AND `comentarioproducto`.usuario_alta = $usuarioAltaDB
