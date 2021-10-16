@@ -1206,7 +1206,7 @@ function activarBuscador(param){
                 data: data_json,
                 dataType: 'json',
                 success:function(response){
-                
+                console.log(response)
                 var resp_len = response.mensaje.length;
                 var splide_list = $(".splide__prod_public .splide__list");
                 
@@ -1218,11 +1218,12 @@ function activarBuscador(param){
                         var id_prod = response.mensaje[i].id;
                         var nombre_prod = response.mensaje[i].titulo;
                         var foto_prod = response.mensaje[i].foto;
+                        var marca = response.mensaje[i].marca;
                         var foto_src = `/productos_img/${foto_prod}.png` || 0;//viene siempre png?
 
                         /*<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-${i}" src="${img_base_prod}"></li>';*/
 
-                        var html = `<li class="splide__slide splide__slide__img ${id_prod}">
+                        var html = `<li title="Por: ${marca}" class="splide__slide splide__slide__img ${id_prod}">
                                     <img data-toggle="modal" data-target="#modal-producto-${i}" src="${foto_src}">
                                     <div class="nombre-producto ${id_prod} nombre-producto-${i}">${nombre_prod}</div></li></div>`;
                         // var html = <option class="nombre-producto ${id_prod} nombre-producto-${i}">nombre_prod+</option>'
@@ -2508,13 +2509,13 @@ function toggleLike(like,id_public,desde,like_accion){
     
     let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
 
-    if (favorito==null || favorito == 0) {
+    if (like==null || like == 0) {
         like_accion="alta";
-        var like_html = `<span><i class="fas fa-heart" onclick="likes(${id_public},'${fav_accion}');$(this).toggleClass('like-eliminar')"></i></span>`
+        var like_html = `<span><i class="fas fa-heart" onclick="likes(${id_public},'${like_accion}');$(this).toggleClass('like-eliminar')"></i></span>`
         appendeo.prepend(like_html);
     }else{
         like_accion="eliminar";
-        var like_html = `<span><i class="fas fa-heart like-eliminar" onclick="likes(${id_public},'${fav_accion}');$(this).toggleClass('like-eliminar')"></span>`
+        var like_html = `<span><i class="fas fa-heart like-eliminar" onclick="likes(${id_public},'${like_accion}');$(this).toggleClass('like-eliminar')"></span>`
         appendeo.prepend(like_html);
     }
 

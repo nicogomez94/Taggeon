@@ -70,6 +70,7 @@ function showRelated(){
 function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_p,marca_prod_p,color_prod_p,descr_prod_p,
    nombre_prod_p,nombre_completo_p,precio_prod_p,i_p}){
 
+
    var modal_producto_html =  
       `<div class="modal fade" id="modal-producto-${id_prod_p}" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -77,7 +78,30 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
       <div class="modal-body">
       <div class="row">
       <div class="col-lg-7">
-         <div class="img-modal-prod"><img onerror="this.src='/imagen_perfil/generica_prod.jpg'" style="width: 100%;" src="${foto_src_prod_p}" alt="foto_src_prod"></div>
+         <div class="img-modal-prod">
+            <!--<img onerror="this.src='/imagen_perfil/generica_prod.jpg'" style="width: 100%;" src="${foto_src_prod_p}" alt="foto_src_prod">-->
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                        <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
+                           <!-- slides -->
+                           <div class="carousel-inner">
+                              <div class="carousel-item active"> <img src="https://i.imgur.com/weXVL8M.jpg" alt="Hills"> </div>
+                              <div class="carousel-item"> <img src="https://i.imgur.com/Rpxx6wU.jpg" alt="Hills"> </div>
+                              <div class="carousel-item"> <img src="https://i.imgur.com/83fandJ.jpg" alt="Hills"> </div>
+                              <div class="carousel-item"> <img src="https://i.imgur.com/JiQ9Ppv.jpg" alt="Hills"> </div>
+                           </div> <!-- Left right --> <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
+                           <ol class="carousel-indicators list-inline">
+                              <li class="list-inline-item active"> <a id="carousel-selector-0" data-slide-to="0" data-target="#custCarousel"> <img src="https://i.imgur.com/weXVL8M.jpg" class="img-fluid"> </a> </li>
+                              <li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="https://i.imgur.com/Rpxx6wU.jpg" class="img-fluid"> </a> </li>
+                              <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="https://i.imgur.com/83fandJ.jpg" class="img-fluid"> </a> </li>
+                              <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="3" data-target="#custCarousel"> <img src="https://i.imgur.com/JiQ9Ppv.jpg" class="img-fluid"> </a> </li>
+                           </ol>
+                        </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       <hr>
       <div>
          <h5 style="text-align:left">Ficha T&eacute;cnica</h5>
@@ -155,6 +179,8 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
 
       // document.body.appendChild(modal_producto_html);
       $("body").append(modal_producto_html)
+
+      
 
       //getCommentsProd();
 }

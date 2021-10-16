@@ -581,7 +581,7 @@ body{
     top: 50%;
     left: 50%;
 }
-.carousel-inner{
+.carousel-inner-index{
     height: 250px !important;/*provisorio*/
 }
 .side-shadow{
@@ -3367,4 +3367,42 @@ input {
 }
 .h2_pp{
     margin: 40px 0 30px 0;
+}
+
+
+/*************/
+.img-modal-prod .container {
+    /* margin-top: 100px; */
+    /* margin-bottom: 100px */
+}
+
+.img-modal-prod .carousel-inner img {
+    /* width: 100%; */
+    /* height: 100% */
+}
+
+#custCarousel .carousel-indicators {
+    position: static;
+    margin-top: 20px
+}
+
+#custCarousel .carousel-indicators>li {
+    width: 100px
+}
+
+#custCarousel .carousel-indicators li img {
+    display: block;
+    opacity: 0.5
+}
+
+#custCarousel .carousel-indicators li.active img {
+    opacity: 1
+}
+
+#custCarousel .carousel-indicators li:hover img {
+    opacity: 0.75
+}
+
+.carousel-item img {
+    width: 80%
 }
