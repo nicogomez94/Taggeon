@@ -574,9 +574,30 @@ sql;
             $idPublicacion = isset($rowEmp["id"]) ? $rowEmp["id"] : '';
             $idPublicacionBD = Database::escape($idPublicacion);
             $sql2 = <<<sql
-                SELECT *
+                SELECT 
+		`comentario`.*,
+    u.*
                 FROM comentario
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentario`.`usuario_alta`
                 WHERE id_publicacion=$idPublicacionBD
+order by fecha_alta desc
 sql;
             //echo $sql2;
     

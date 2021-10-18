@@ -1057,6 +1057,44 @@ sql;
 
 
         while ($rowEmp = mysqli_fetch_array($resultado)) {
+            #INICIO COMENTARIOS
+            $idProducto = isset($rowEmp["id"]) ? $rowEmp["id"] : '';
+            $idProductoBD = Database::escape($idProducto);
+            $sql2 = <<<sql
+                SELECT 
+		`comentarioproducto`.*,
+    u.*
+                FROM comentarioproducto
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentarioproducto`.`usuario_alta`
+WHERE id_producto=$idProductoBD
+order by fecha_alta desc
+sql;
+//            echo $sql2;
+    
+            $resultado2 = Database::Connect()->query($sql2);
+            $list2 = array();
+            while ($rowEmp2 = mysqli_fetch_array($resultado2)) {
+                $list2[] = $rowEmp2;
+            }
+            #FIN COMENTARIOS
+            $rowEmp['comentarios'] = $list2;
             $list[] = $rowEmp;
         }
         $this->setStatus("ok");

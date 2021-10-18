@@ -208,7 +208,7 @@ class  ComentarioManager
       
             private function validarComentarioPrivate($comentario)
             {
-                if (! preg_match('/^\w+$/i', $comentario)){
+                if (! preg_match('/^.+$/i', $comentario)){
                     $this->setStatus("ERROR");
                     $this->setMsj("El campo comentario es incorrecto.");
                     return false;
