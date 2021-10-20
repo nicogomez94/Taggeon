@@ -1337,6 +1337,11 @@ textarea{
     font-size: 0.8rem;
     margin-top: 15px;
     text-align: left;
+    width: 100%;
+}
+#test{
+    box-shadow: inset 0px -15px 4px -4px white;
+    z-index: 999;
 }
 .commentbox-actions{
     color: #848484;

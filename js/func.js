@@ -668,45 +668,6 @@ $(".modal").on("click", ".btfn-carrito", function(){
 });
 
 
-
-///crear orden de compra carrito
-/*$(".boton-checkout-carrito").click(function(){
-    
-    var id_carrito = jsonData.carrito[0].id_carrito || 0;
-    var cantidad = jsonData.carrito[0].cantidad || 0;
-
-    var dataCheckout = new FormData();
-    dataCheckout.append("accion","finalizar");
-    dataCheckout.append("id_carrito",id_carrito);
-    dataCheckout.append("cantidad",cantidad);
-
-    $.ajax({
-        url: '/app/carrito.php',
-        data: dataCheckout,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        success: function( data, textStatus, jQxhr ){
-            var dataJ = JSON.parse(data).status;
-            var dataM = JSON.parse(data).mensaje;
-           if (dataJ == 'REDIRECT'){
-              console.log("REDIRECT-->"+dataM);
-              window.location.replace(dataM);														
-           }else if(dataJ == 'OK'){
-              console.log("OK-->"+dataJ+"/"+dataM);
-              window.location.replace("/ampliar-checkout.html");
-           }else{
-              console.log("ELSE-->"+dataJ+"/"+dataM);
-           }
-        },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-            alert(data);
-        }
-    });
-    return false;
-});*/
-
-
 ///finalizar orden
 $("#finalizar-orden").submit(function(){
     console.log("test")
@@ -749,9 +710,6 @@ $("#finalizar-orden").submit(function(){
 });
 
 
-///eliminar de carrito
-
-
 $("#cropear-btn").click(function(){
     $(this).hide();
     $(".toggle-aspect-ratio").hide();
@@ -774,116 +732,6 @@ $("#btn-siguiente").click(function(){
 });
 
 
-
-///submit comentario_public
-$("#comentario_public_send").click(function(){
-    console.log("test")
-    var dataComentario = new FormData($(this)[0]);
-    dataComentario.append("accion","alta");
-
-    var comentario = dataComentario.get("comentario");
-    
-    var appendeo = $(this).parent().parent().parent().find(".commentbox-list-container");
-
-    var content_html =
-    `<div class="commentbox-list media commentbox-id">
-       <span class="comment-name">nicolasgomez94</span>//hard
-       <span class="comment-text">${comentario}</span>
-    </div>`;
-
-    $(appendeo).append(content_html);
-
-    /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
-    $(".commentbox-user-img").attr("src", img_perfil);*/
-
-    /*$.ajax({
-        url: '/app/comentario.php',
-        data: dataComentario,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        //dataType: "json",
-        async: false,
-        success: function( data, textStatus, jQxhr ){
-            var dataJ = JSON.parse(data).status;
-            var dataM = JSON.parse(data).mensaje;
-            if (dataJ == "REDIRECT"){
-                console.log("REDIRECT-->"+dataM);
-                //window.location.replace(dataM);														
-            }else if(dataJ == 'OK'){
-                //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
-                console.log(dataJ+"--"+dataM);
-            }else{
-                //window.location.replace("/ampliar-carrito.html");
-                //alert(dataJ+"--"+dataM);
-                console.log(dataJ+"--"+dataM);
-            }
-        },
-        error: function( data ){
-            console.log(data)
-            alert("error->"+data.status);
-        }
-    });
-    return false;*/
-});
-
-///submit comentario_prod
-$(".comentario_prod").submit(function(){
-
-    var dataComentario = new FormData($(this)[0]);
-    dataComentario.append("accion","alta");
-
-    $.ajax({
-        url: '/app/comentarioproducto.php',
-        data: dataComentario,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        //dataType: "json",
-        async: false,
-        success: function( data, textStatus, jQxhr ){
-            var dataJ = JSON.parse(data).status;
-            var dataM = JSON.parse(data).mensaje;
-           if (dataJ == "REDIRECT"){
-              console.log("REDIRECT-->"+dataM);
-              //window.location.replace(dataM);														
-           }else if(dataJ == 'OK'){
-              //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
-              alert(dataJ)
-           }else{
-              //window.location.replace("/ampliar-carrito.html");
-           }
-        },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-            alert(data);
-        }
-    });
-    return false;
-});
-
-
-/*func para que al subir un puin no se vaya de contexto
-#container {
-    border: 1px solid #ccc;
-    height:300px;
-    width:400px;
-}
-#el {
-    background-color:#ccc;
-    height:200px;
-    left: 800px;
-    position:absolute;
-    width:200px;
-}
-#el.over {
-    background-color: #c00;
-}
-
-
-    <div id="el">ELEMENT</div>
-
-
-*/
 
 $('.seguidores-label').click(function(e) {
     e.preventDefault();
@@ -927,11 +775,9 @@ $("#buscador-index-input").keyup(function(e){
     }
 });
 
-//test
-//$("#modalFirstLogin").modal('show')
 
 //form intereses
-$("#form_intereses").submit(function(e){
+/*$("#form_intereses").submit(function(e){
 
     e.preventDefault();
     var formData = new FormData($(this)[0]);
@@ -964,20 +810,8 @@ $("#form_intereses").submit(function(e){
         }
     });
     return false;
-    //data.append("")
 
-    /*fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-            'Content-Type': 'application/json'
-        }
-    }).then(res => res.json())
-    .then(response => console.log('Success:', JSON.stringify(response)))
-    .catch(error => console.log('Error:', error));*/
-
-
-});
+});*/
 
 
 
@@ -2413,37 +2247,47 @@ function getMisVentas(data){
 
 function getCommentsPublic(comentarios_obj){
     //recorro comentarios en la public
-    for(var y=0; y<comentarios_obj.length; y++){
-        if(comentarios_obj.length>0){
-            var comentario = comentarios_obj[y].comentario || "";
-            var eliminar = comentarios_obj[y].eliminar || "";
-            var fecha_alta = comentarios_obj[y].fecha_alta || "";
-            var fecha_update = comentarios_obj[y].fecha_update || "";
-            var id = comentarios_obj[y].id || 0;
-            var id_publicacion = comentarios_obj[y].id_publicacion || 0;
-            var usuario_alta = comentarios_obj[y].usuario_alta || "";
-            var usuario_editar = comentarios_obj[y].usuario_editar || "";
-            
-            var comentario_html = 
-            `<div class="commentbox-list media commentbox-id-${y}">
-               <span class="comment-name">nicolasgomez94</span>
-               <span class="comment-text">${comentario}</span>
-            </div>`;
-            
-            $(".commentbox-list-container-"+id_publicacion).append(comentario_html);
-
-        }else{
-            var comentario_html2 = "<p>No hay comentarios</p>"
-            
-            $(".commentbox-list-container-"+id_publicacion).append(comentario_html2)
+    let comment_length = comentarios_obj.length;
+    if(comment_length>0){
+        for(var y=0; y<comment_length; y++){
+            if(comentarios_obj.length>0){
+                var comentario = comentarios_obj[y].comentario || "";
+                var eliminar = comentarios_obj[y].eliminar || "";
+                var fecha_alta = comentarios_obj[y].fecha_alta || "";
+                var fecha_update = comentarios_obj[y].fecha_update || "";
+                var id = comentarios_obj[y].id || 0;
+                var id_publicacion = comentarios_obj[y].id_publicacion || 0;
+                var usuario_alta = comentarios_obj[y].usuario_alta || "";
+                var usuario_editar = comentarios_obj[y].usuario_editar || "";
+                var nombre_usuario = comentarios_obj[y].nombre_usuario || "";
+                
+                var comentario_html = 
+                `<div class="commentbox-list media commentbox-id-${y}">
+                    <span class="comment-name">${nombre_usuario}</span>
+                   <span class="comment-text">${comentario}</span>
+                </div>`;
+                
+                $(".commentbox-list-container-"+id_publicacion).append(comentario_html);
+    
+            }else{
+                var comentario_html2 = "<p>No hay comentarios</p>"
+                
+                $(".commentbox-list-container-"+id_publicacion).append(comentario_html2)
+            }
+    
         }
 
+    }else if(comment_length>5){
+        
     }
 
 }
 
 function getCommentsProd(comentarios_obj){
     //recorro comentarios en la public
+    console.log("-----------------")
+    console.log(comentarios_obj)
+    console.log("-----------------")
     for(var y=0; y<comentarios_obj.length; y++){
         if(comentarios_obj.length>0){
             var comentario = comentarios_obj[y].comentario || "";
@@ -2454,10 +2298,11 @@ function getCommentsProd(comentarios_obj){
             var id_publicacion = comentarios_obj[y].id_publicacion || 0;
             var usuario_alta = comentarios_obj[y].usuario_alta || "";
             var usuario_editar = comentarios_obj[y].usuario_editar || "";
+            var nombre_usuario = comentarios_obj[y].nombre_usuario || "";
             
             var comentario_html = 
             `<div class="commentbox-list media commentbox-id-${y}">
-               <span class="comment-name">nicolasgomez94</span>
+               <span class="comment-name">${nombre_usuario}</span>
                <span class="comment-text">${comentario}</span>
             </div>`;
             
@@ -2615,10 +2460,10 @@ function getPublicsAmpliarHome(data){
                                                 <input type="text" id="comentario-${i}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">
                                             </div>
                                             <div class="ml-1">
-                                                <button onclick="sendComentarioPublic('${id_public}',$(this),'${i}')" value="enviar" class="btn">Enviar</button>
+                                                <button onclick="sendComentarioPublic('${id_public}','${i}')" value="enviar" class="btn">Enviar</button>
                                             </div>
                                         </div>
-                                  <div class="commentbox-list-container commentbox-list-container-${id_public}"></div>
+                                  <div id="test" class="commentbox-list-container commentbox-list-container-${id_public}"></div>
                                </div>
                             </div>`;
                             
@@ -2996,15 +2841,15 @@ var seguidosHtml =
 </div>`
 }*/
 
-function eliminarCarrito(id_prod,id_publicacion,tipo_carrito){
+function eliminarCarrito(id_carrito,id_publicacion,tipo_carrito){
 
     const URL = "/app/carrito.php"
 
     var dataEliminar = new FormData();
     dataEliminar.append("accion","alta");
-    dataEliminar.append("id",id_prod);
+    dataEliminar.append("id",id_carrito);
     dataEliminar.append("cantidad","0");
-    dataEliminar.append("id_prod",id_prod);
+    dataEliminar.append("id_carrito",id_carrito);
     dataEliminar.append("id_publicacion",id_publicacion);
     
     fetch(URL, {
@@ -3019,7 +2864,7 @@ function eliminarCarrito(id_prod,id_publicacion,tipo_carrito){
 
 }
 
-function sendComentarioPublic(id_public,thisParam,indexParam){
+function sendComentarioPublic(id_public,indexParam){
 
     let val = $("#comentario-"+indexParam).val();
 
@@ -3028,20 +2873,10 @@ function sendComentarioPublic(id_public,thisParam,indexParam){
     dataComentario.append("publicacion",id_public);
     dataComentario.append("comentario",val);
     
-    var appendeo = thisParam.parent().parent().parent().find(".commentbox-list-container");
+    var appendeo = $(".commentbox-list-container"+id_public);
+    var nombre_usuario = jsonData.nombre;
     console.log(appendeo)
     console.log(val)
-
-    var content_html =
-    `<div class="commentbox-list media commentbox-id">
-       <span class="comment-name">nicolasgomez94</span>
-       <span class="comment-text">${val}</span>
-    </div>`;
-
-    $(appendeo).append(content_html);
-
-    /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
-    $(".commentbox-user-img").attr("src", img_perfil);*/
 
     $.ajax({
         url: '/app/comentario.php',
@@ -3060,6 +2895,13 @@ function sendComentarioPublic(id_public,thisParam,indexParam){
             }else if(dataJ == 'OK'){
                 //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
                 console.log(dataJ+"--"+dataM);
+                var content_html =
+                `<div class="commentbox-list media commentbox-id">
+                   <span class="comment-name">${nombre_usuario}</span>
+                   <span class="comment-text">${val}</span>
+                </div>`;
+            
+                $(appendeo).append(content_html);
             }else{
                 //window.location.replace("/ampliar-carrito.html");
                 //alert(dataJ+"--"+dataM);
@@ -3075,32 +2917,22 @@ function sendComentarioPublic(id_public,thisParam,indexParam){
 }
 
 
-function sendComentarioProd(id_public,thisParam,indexParam){
-
+function sendComentarioProd(id_prod,indexParam){
+    console.log(indexParam)
     let val = $("#comentario-"+indexParam).val();
 
     var dataComentario = new FormData();
     dataComentario.append("accion","alta");
-    dataComentario.append("publicacion",id_public);
+    dataComentario.append("producto",id_prod);
     dataComentario.append("comentario",val);
     
-    var appendeo = thisParam.parent().parent().parent().find(".commentbox-list-container");
+    var appendeo = $(".commentbox-list-container-"+id_prod);
+    var nombre_usuario = jsonData.nombre;
     console.log(appendeo)
     console.log(val)
 
-    var content_html =
-    `<div class="commentbox-list media commentbox-id">
-       <span class="comment-name">nicolasgomez94</span>
-       <span class="comment-text">${val}</span>
-    </div>`;
-
-    $(appendeo).append(content_html);
-
-    /*var img_perfil = $(".img-perfil-usuario-drop").attr("src");
-    $(".commentbox-user-img").attr("src", img_perfil);*/
-
     $.ajax({
-        url: '/app/comentario.php',
+        url: '/app/comentarioproducto.php',
         data: dataComentario,
         type: 'POST',
         processData: false,
@@ -3116,6 +2948,13 @@ function sendComentarioProd(id_public,thisParam,indexParam){
             }else if(dataJ == 'OK'){
                 //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
                 console.log(dataJ+"--"+dataM);
+                var content_html =
+                `<div class="commentbox-list media commentbox-id">
+                   <span class="comment-name">${nombre_usuario}</span>
+                   <span class="comment-text">${val}</span>
+                </div>`;
+            
+                $(appendeo).append(content_html);
             }else{
                 //window.location.replace("/ampliar-carrito.html");
                 //alert(dataJ+"--"+dataM);

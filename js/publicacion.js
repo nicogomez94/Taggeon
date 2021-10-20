@@ -68,7 +68,7 @@ function showRelated(){
 }*/
 
 function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_p,marca_prod_p,color_prod_p,descr_prod_p,
-   nombre_prod_p,nombre_completo_p,precio_prod_p,i_p}){
+   nombre_prod_p,nombre_completo_p,precio_prod_p,i_p,comentarios_obj_p}){
 
 
    var modal_producto_html =  
@@ -162,24 +162,26 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
       </div>
       <hr>
       </div>
-
-      <div class="commentbox-container" style="display:none">
-         <div>
-            <img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
-            <div style="flex-grow: 1;">
-               <input type="text" id="comentario-${i_p}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">
-            </div>
-            <div class="ml-1">
-               <button onclick="sendComentarioProd('${id_public_p}',$(this),'${i_p}')" value="enviar" class="btn">Enviar</button>
+      <hr>
+      <div class="commentbox-container">
+         <div class="commentbox commentbox-id-2">
+            <div>
+               <img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
+               <div style="flex-grow: 1;">
+                  <input type="text" id="comentario-${i_p}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">
+               </div>
+               <div class="ml-1">
+                  <button onclick="sendComentarioProd('${id_prod_p}','${i_p}')" value="enviar" class="btn">Enviar</button>
+               </div>
             </div>
          </div>
-         <div class="commentbox-list-container commentbox-list-container-prod"></div>
+         <div class="commentbox-list-container commentbox-list-container-${id_prod_p} commentbox-list-container-prod"></div>
       </div>
       </div></div></div></div></div>`;
 
       // document.body.appendChild(modal_producto_html);
       $("body").append(modal_producto_html)
-
+      getCommentsProd(comentarios_obj_p)
       
 
       //getCommentsProd();
@@ -332,6 +334,7 @@ function createModalRelAjax(idParam){
          </div></div></div></div></div>`;
 
          $("body").append(modal_producto_html)
+
    }
       
 
@@ -356,25 +359,27 @@ function getSplideProdPublic(param){
    .then((response) => {
       
       let resp_len = response.mensaje.length
-      console.log(response)
+      console.log(response.mensaje)
       
          if(resp_len > 0){
             for(let i = 0; i < resp_len; i++){
-               let nombre_prod = response.mensaje[i].titulo;
-               let precio_prod = response.mensaje[i].precio;
-               let marca_prod = response.mensaje[i].marca;
-               let color_prod = response.mensaje[i].color;
-               let descr_prod = response.mensaje[i].descr_producto;
-               let id_prod_json = response.mensaje[i].id;
-               let stock_prod = response.mensaje[i].stock;
-               let foto_prod = response.mensaje[i].foto;
-               let primer_img_split = foto_prod.split(",")[0];
-               let primer_img = "/productos_img/"+primer_img_split+".png";
+               let nombre_prod = response.mensaje[i].titulo || 0;
+               let precio_prod = response.mensaje[i].precio || 0;
+               let marca_prod = response.mensaje[i].marca || "";
+               let color_prod = response.mensaje[i].color || "";
+               let descr_prod = response.mensaje[i].descr_producto || "";
+               let id_prod_json = response.mensaje[i].id || 0;
+               let stock_prod = response.mensaje[i].stock || 0;
+               let foto_prod = response.mensaje[i].foto || "";
+               let comentarios_obj = response.mensaje[i].comentarios || "";
+               let primer_img_split = foto_prod.split(",")[0] || "";
+               let primer_img = "/productos_img/"+primer_img_split+".png" || "";
                let nombre_completo = "test";
-               let foto_src_prod = `/productos_img/${foto_prod}.png`;
-               let splide_list = document.querySelector('.splide__list__'+param)
+               let foto_src_prod = `/productos_img/${foto_prod}.png` || "";
+               let splide_list = document.querySelector('.splide__list__'+param) || ""
    
-               var objParamModal = {
+               var objParamModal = 
+                     {
                         id_prod_p : id_prod_json,
                         id_public_p : param,
                         foto_src_prod_p : foto_src_prod,
@@ -385,7 +390,8 @@ function getSplideProdPublic(param){
                         nombre_prod_p : nombre_prod,
                         nombre_completo_p : nombre_completo,
                         precio_prod_p : precio_prod,
-                        i_p : i
+                        i_p : i,
+                        comentarios_obj_p : comentarios_obj
                      }
    
                traerModalProducto(objParamModal)
