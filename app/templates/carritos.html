@@ -50,29 +50,21 @@ $(document).ready(function(){
          let foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
 
          
-         let prods_carrito_html = `<div class="row producto">
+         let prods_carrito_html = 
+         `<div class="row producto producto-${id_carrito}">
             <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="${foto_src}" alt="img"></div>
-               </div>
-               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-                  <span class="titulo-producto">${nombre_prod_carrito}</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-                     <span class="precio-producto">${precio_prod_carrito}</span>
-                     </div>
-                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-                        <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-                           <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
-                           <div class="cerrar-prod-carrito">
-                              <input type="hidden" class="prod-id" name="id_producto" value="${prod_id}">
-                              <input type="hidden" class="carrito-id" name="id_carrito" value="${id_carrito}">
-                              <input type="hidden" class="id-publicacion" name="id_publicacion" value="${id_publicacion}">
-                              <i onclick="eliminarCarrito(${prod_id},${id_publicacion},'carritos.html')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
-                              </div>
-                              </div>
-                              </div>`;
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+               <span class="titulo-producto">${nombre_prod_carrito}</span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+               <span class="precio-producto">${precio_prod_carrito}</span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+               <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
+            </div>
+         </div>`;
                               
                if(test_param != id_carrito){
                   test_param =+ id_carrito
@@ -86,6 +78,15 @@ $(document).ready(function(){
                   carrito_varios.append(prods_carrito_html)
                   carrito_varios.addClass("carrito_varios")
                }
+               let añadir_carr = 
+               `<div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                  <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
+                  <div class="cerrar-prod-carrito">
+                     <i onclick="eliminarCarrito(${id_carrito},${id_publicacion},${prod_id})" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
+                  </div>
+               </div>`
+
+               document.querySelector(".producto-"+id_carrito).insertAdjacentHTML("beforeend",añadir_carr)
                   /*$(".subtotal-cant").html("AR$"+total);
                   $(".total-cant").html("AR$"+total);
                   $("#id_carrito").val(id_carrito);*/

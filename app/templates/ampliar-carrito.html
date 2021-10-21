@@ -125,7 +125,7 @@ $(document).ready(function(){
                                  <input type="hidden" class="prod-id" name="id_producto" value="${prod_id}">
                                  <input type="hidden" class="carrito-id" name="id_carrito" value="${id_carrito}">
                                  <input type="hidden" class="id-publicacion" name="id_publicacion" value="${id_publicacion}">
-                                 <i onclick="eliminarCarrito(${prod_id},${id_publicacion},'ampliar-carrito.html')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
+                                 <i onclick="eliminarProdAmpliarCarrito(${id_carrito},${id_publicacion},'${prod_id}')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
                               </div>
                               </div>
                               </div>`;
@@ -157,7 +157,7 @@ $(document).ready(function(){
       
 });
 </script>
-   <script src="js/func.js?time=101021-1259"></script>
+   <script src="js/func.js?time=201021-1145"></script>
    <script src="../../plugins/dropPin-master/dropPin/dropPin.js?time=300821-1657"></script>
    <!-- <script src="js/publicacion.js?time=290421-1227"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
