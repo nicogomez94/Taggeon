@@ -395,6 +395,11 @@ function getSplideProdPublic(param){
                      }
    
                traerModalProducto(objParamModal)
+
+               //si no tiene stock
+               if(stock_prod == 0){
+                  document.querySelector(".btn-carrito").classList.add("disabled");
+               }
          
                let splide_fotos = `<li class="prod-tag-public splide__slide splide__slide__img splide__prodtag">
                   <img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" data-toggle="modal" data-target="#modal-producto-${id_prod_json}" src="${primer_img}"></li>`;

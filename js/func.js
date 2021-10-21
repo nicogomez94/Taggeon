@@ -2841,16 +2841,36 @@ var seguidosHtml =
 </div>`
 }*/
 
-function eliminarCarrito(id_carrito,id_publicacion,tipo_carrito){
+function eliminarProdAmpliarCarrito(id_carrito,id_publicacion,id_prod){
 
     const URL = "/app/carrito.php"
 
-    var dataEliminar = new FormData();
+    let dataEliminar = new FormData();
     dataEliminar.append("accion","alta");
-    dataEliminar.append("id",id_carrito);
+    dataEliminar.append("id",id_prod);
     dataEliminar.append("cantidad","0");
     dataEliminar.append("id_carrito",id_carrito);
     dataEliminar.append("id_publicacion",id_publicacion);
+    
+    fetch(URL, {
+        method: 'POST',
+        body: dataEliminar,
+    }).then(res => res.json())
+    .then(response => {
+        console.log(response)
+        //window.location.replace(tipo_carrito)
+    })
+    .catch(error => console.error('Error:', error))
+
+}
+
+function eliminarCarrito(id_carrito,id_publicacion,id_prod){
+
+    const URL = "/app/carrito.php"
+
+    let dataEliminar = new FormData();
+    dataEliminar.append("accion","eliminarCarrito");
+    dataEliminar.append("id_carrito",id_carrito);
     
     fetch(URL, {
         method: 'POST',

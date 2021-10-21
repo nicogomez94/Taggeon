@@ -1912,6 +1912,9 @@ button:disabled{
     opacity: 0;
     pointer-events: none;
 }
+.disabled{
+    pointer-events: none;
+}
 .splide__slide{
     margin-right: 10px !important;
 }

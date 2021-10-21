@@ -180,9 +180,18 @@ $("#subir-csv").on('submit', function() {
 $('#producto-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
-
     
-    var formData = new FormData($(this)[0]);
+    let formData = new FormData($(this)[0]);
+    let el_foto_hidden = document.querySelectorAll(".base_input");
+    
+    el_foto_hidden.forEach((el) => {
+        if(el.value==""){
+            console.log("foreach-->"+el.name+el.value)
+            formData.delete(el.name)
+        }else{
+            console.log("else-->"+el.name+el.value)
+        }
+    })
         
     $.ajax({
         url: '/app/producto.php',
@@ -199,9 +208,9 @@ $('#producto-form').submit(function (e) {
             if (data.status == 'ERROR'){
                 alert(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                window.location.replace("/ampliar-producto.html");
+                //window.location.replace("/ampliar-producto.html");
             }else if(data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);
+                //window.location.replace(data.mensaje);
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
