@@ -157,7 +157,7 @@ SET
     `eliminar` = 1
 WHERE
 `id` = $idDB AND
-`usuario_alta` = $usuarioDB
+`usuario_alta` = $usuarioDB 
 SQL;
 
         if (!mysqli_query(Database::Connect(), $sql)) {

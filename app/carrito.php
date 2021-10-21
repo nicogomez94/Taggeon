@@ -14,7 +14,7 @@ if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar|finalizar|pago|finalizar2|finalizar4|finalizar5)$/i', $var_accion)) {
+    if (preg_match('/^(alta|editar|listar|get|eliminar|eliminarCarrito|finalizar|pago|finalizar2|finalizar4|finalizar5)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarCarrito($_POST);
         } else if ($var_accion == 'finalizar5') {
@@ -27,7 +27,7 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->finalizarCarrito2($_POST);
         } else if ($var_accion == 'finalizar') {
             $objPrincipalManager->finalizarCarrito($_POST);
-        } else if ($var_accion == 'eliminar') {
+        } else if ($var_accion == 'eliminar' || $var_accion == 'eliminarCarrito') {
             $objPrincipalManager->eliminarCarrito($_POST);
         }
         if ($objPrincipalManager->getStatus() == 'OK') {

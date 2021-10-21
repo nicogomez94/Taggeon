@@ -185,11 +185,12 @@ class  CarritoManager
 
 	public function eliminarCarrito(array $data)
 	{
-		$id = isset($data["id"]) ? $data["id"] : '';
+		$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
 		if ($this->validarId($id) === false){
 			return false;
 		}
 
+		$data["id"]= $id;
 
 		if ($this->carritoDao->eliminarCarrito($data) === false) {
 			$this->setStatus("ERROR");
@@ -204,6 +205,7 @@ class  CarritoManager
 			$this->setMsj($this->carritoDao->getMsj());
 		}
 	}
+
 
 	public function finalizarPago (array $data)
 	{
