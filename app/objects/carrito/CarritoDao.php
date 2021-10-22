@@ -782,24 +782,56 @@ sql;
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
 SELECT
-               carrito_detalle.id_publicacion, carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal, carrito.id_vendedor
-        FROM
-        `carrito`
-        INNER JOIN
-        carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
-        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
-            LEFT JOIN
-        producto_foto
-    ON
-        `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
-        
-        
-                WHERE
-        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
-        `carrito`.usuario_alta = $usuarioAltaDB                AND
-        (estado is null OR estado != 4 )
-        GROUP BY
-        carrito_detalle.id_publicacion, carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,carrito.id_vendedor
+    carrito_detalle.id_publicacion,
+    carrito.id AS id_carrito,
+    carrito_detalle.cantidad,
+    carrito_detalle.precio,
+    carrito_detalle.nombre_producto,
+    carrito_detalle.id_producto,
+    carrito_detalle.total,
+    MIN(producto_foto.id) AS foto,
+    SUM(carrito_detalle.total) AS carrito_total,
+    SUM(carrito_detalle.total) AS carrito_subtotal,
+    carrito.id_vendedor,
+	v.nombre_vendedor,
+	v.apellido_vendedor
+
+FROM
+    `carrito`
+INNER JOIN
+    carrito_detalle
+ON
+    carrito.id = carrito_detalle.id_carrito AND(
+        carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL
+    )
+INNER JOIN (
+			SELECT idUsuario,nombre as nombre_vendedor,apellido as apellido_vendedor
+			FROM usuario_seller
+			UNION
+			SELECT idUsuario,nombre,apellido
+			FROM usuario_picker
+           ) as v ON carrito.id_vendedor = v.idUsuario
+LEFT JOIN
+    producto_foto
+ON
+    `carrito_detalle`.id_producto = producto_foto.id_producto AND(
+        producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL
+    )
+WHERE
+    (
+        `carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL
+    ) AND `carrito`.usuario_alta =  $usuarioAltaDB AND(estado IS NULL OR estado != 4)
+GROUP BY
+    carrito_detalle.id_publicacion,
+    carrito.id,
+    carrito_detalle.cantidad,
+    carrito_detalle.precio,
+    carrito_detalle.nombre_producto,
+    carrito_detalle.id_producto,
+    carrito_detalle.total,
+    carrito.id_vendedor,
+    v.nombre_vendedor,
+    v.apellido_vendedor
 sql;
 	//echo $sql;
 
