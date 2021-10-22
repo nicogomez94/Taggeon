@@ -286,3 +286,22 @@ Datos del envio: codigo postal 1416. Localidad: CABA.
 Notas: testtest
 usuario nicolasgomez94@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36200.127.53.81
+Fecha 21/10/2021  19:12:07
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario licrzito3@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36200.127.53.81
+Fecha 21/10/2021  19:12:08
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario licrzito3@gmail.com
+Detalle Respuesta:

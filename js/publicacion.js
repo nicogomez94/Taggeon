@@ -68,7 +68,7 @@ function showRelated(){
 }*/
 
 function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_p,marca_prod_p,color_prod_p,descr_prod_p,
-   nombre_prod_p,nombre_completo_p,precio_prod_p,i_p,comentarios_obj_p}){
+   nombre_prod_p,nombre_completo_p,precio_prod_p,i_p,comentarios_obj_p,foto_prod_p}){
 
 
    var modal_producto_html =  
@@ -84,19 +84,16 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
                <div class="row">
                   <div class="col-md-12">
                         <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
-                           <!-- slides -->
-                           <div class="carousel-inner">
-                              <div class="carousel-item active"> <img src="https://i.imgur.com/weXVL8M.jpg" alt="Hills"> </div>
-                              <div class="carousel-item"> <img src="https://i.imgur.com/Rpxx6wU.jpg" alt="Hills"> </div>
-                              <div class="carousel-item"> <img src="https://i.imgur.com/83fandJ.jpg" alt="Hills"> </div>
-                              <div class="carousel-item"> <img src="https://i.imgur.com/JiQ9Ppv.jpg" alt="Hills"> </div>
-                           </div> <!-- Left right --> <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
-                           <ol class="carousel-indicators list-inline">
-                              <li class="list-inline-item active"> <a id="carousel-selector-0" data-slide-to="0" data-target="#custCarousel"> <img src="https://i.imgur.com/weXVL8M.jpg" class="img-fluid"> </a> </li>
-                              <li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="https://i.imgur.com/Rpxx6wU.jpg" class="img-fluid"> </a> </li>
-                              <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="https://i.imgur.com/83fandJ.jpg" class="img-fluid"> </a> </li>
-                              <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="3" data-target="#custCarousel"> <img src="https://i.imgur.com/JiQ9Ppv.jpg" class="img-fluid"> </a> </li>
-                           </ol>
+                           <div class="carousel-inner carousel-inner-${id_prod_p}"></div>
+                           <!-- Controles --> 
+                           <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> 
+                              <span class="carousel-control-prev-icon"></span> 
+                           </a> 
+                           <a class="carousel-control-next" href="#custCarousel" data-slide="next"> 
+                              <span class="carousel-control-next-icon"></span>
+                           </a> 
+                           <!-- Thumbnails -->
+                           <ol class="carousel-indicators carousel-indicators-${id_prod_p} list-inline"></ol>
                         </div>
                   </div>
                </div>
@@ -182,9 +179,10 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
       // document.body.appendChild(modal_producto_html);
       $("body").append(modal_producto_html)
       getCommentsProd(comentarios_obj_p)
+      dibujarCarousel(id_prod_p,foto_prod_p)
+
       
 
-      //getCommentsProd();
 }
 
 function dibujarSplideRel(array,key,prop,splideParam,idProdTag){
@@ -391,7 +389,8 @@ function getSplideProdPublic(param){
                         nombre_completo_p : nombre_completo,
                         precio_prod_p : precio_prod,
                         i_p : i,
-                        comentarios_obj_p : comentarios_obj
+                        comentarios_obj_p : comentarios_obj,
+                        foto_prod_p: foto_prod 
                      }
    
                traerModalProducto(objParamModal)

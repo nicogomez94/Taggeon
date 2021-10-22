@@ -2988,3 +2988,38 @@ function sendComentarioProd(id_prod,indexParam){
     });
     return false;
 }
+
+function dibujarCarousel(id_prod,foto_obj){
+
+    let split = foto_obj.split(',');
+    let carousel_inner = document.querySelector(".carousel-inner-"+id_prod)
+    let carousel_indicators = document.querySelector(".carousel-indicators-"+id_prod)
+
+    for(let i = 0; i <split.length; i++){     
+        
+        let foto = split[i]; 
+        
+        let carousel_item_html = 
+        `<div class="carousel-item carousel-item-${i}"> 
+            <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/${foto}.png" alt="carousel-item"> 
+        </div>`;
+
+        let carousel_thumb_html =
+        `<li class="list-inline-item list-inline-item-${i}"> 
+            <a id="carousel-selector-${i}" data-slide-to="${i}" data-target="#custCarousel">
+                <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/${foto}.png" class="list-inline-item">
+            </a> 
+        </li>`;
+
+        
+        carousel_inner.insertAdjacentHTML("beforeend",carousel_item_html)
+        carousel_indicators.insertAdjacentHTML("beforeend",carousel_thumb_html)
+
+        //a la primera imagen solamente le agrego "active"
+        if(i==0){
+            document.querySelector(".carousel-item-"+i).classList.add("active")
+            document.querySelector(".list-inline-item-"+i).classList.add("active")
+        }
+    }
+    
+}
