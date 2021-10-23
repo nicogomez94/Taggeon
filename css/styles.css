@@ -1534,6 +1534,17 @@ input:focus-visible, .input:focus-within{
     width: 60px; 
     object-fit: contain;
 }
+.carritos-flex{
+    display: flex;
+    box-shadow: none !important;
+}
+.carrito_{
+    /*display: flex;*/
+    padding: 10px;
+    box-shadow: var(--soft-shadow);
+    border-radius: var(--soft-redondeado);
+    margin-bottom: 15px;
+}
 .estado-pedido-compra-label, .estado-pedido-venta-label{
     color: #999;
 }

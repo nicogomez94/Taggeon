@@ -47,51 +47,62 @@ $(document).ready(function(){
          let subtotal = carrito[i].subtotal;
          let total = carrito[i].total;
          let foto_id = carrito[i].foto;
+         let seller_name = carrito[i].foto;
          let foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
-
+         let listado = document.querySelector("#listado-mis-productos");
+         let carrito_varios = document.querySelector(".carritos-rows-"+id_carrito);
          
-         let prods_carrito_html = 
-         `<div class="row producto producto-${id_carrito}">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2">
-               <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="${foto_src}" alt="img"></div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
-               <span class="titulo-producto">${nombre_prod_carrito}</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <span class="precio-producto">${precio_prod_carrito}</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-               <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
-            </div>
-         </div>`;
+         
+         
+         //este se dibuja de por si
+         let struc_carrito = 
+               `<div class="carrito_">
+                  <div class="carritos-rows carritos-rows-${id_carrito}">
+                     
+                  </div>
+                  <div class="carritos-btn">
+                     <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
+                     <div class="cerrar-prod-carrito">
+                        <i onclick="eliminarCarrito(${id_carrito},${id_publicacion},${prod_id})" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
+                     </div>
+                  </div>
+               </div>`;
+         
+         
+         //este inserta las "rows" de producto
+         let appendeo = 
+               `<div class="carritos-flex producto producto-${id_carrito}">
+                  <div>
+                     <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="${foto_src}" alt="img"></div>
+                  </div>
+                  <div>
+                     <span class="titulo-producto">${nombre_prod_carrito}</span>
+                  </div>
+                  <div>
+                     <span class="precio-producto">${precio_prod_carrito}</span>
+                  </div>
+                  <div>
+                     <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
+                  </div>   
+               </div>`;
+
                               
                if(test_param != id_carrito){
+                  //entro por aca si es un prodcuto individual, para no generar dos botones
                   test_param =+ id_carrito
-                  let test = document.createElement("div");
-                  test.setAttribute("class","id_carrito-"+id_carrito)
-                  test.innerHTML = prods_carrito_html;
-                  $("#listado-mis-productos").append(test);
+      
+                  listado.insertAdjacentHTML("beforeend",struc_carrito)
+
+                  let el = document.createElement("div");
+                  el.setAttribute("class","id_carrito-"+id_carrito)
+                  el.innerHTML = appendeo;
+                  $(".carritos-rows-"+id_carrito).append(el);
                }else{
                   //appendeo a el class existente, en ves de crear un objeto nuevo
-                  let carrito_varios = $(".id_carrito-"+id_carrito);
-                  carrito_varios.append(prods_carrito_html)
-                  carrito_varios.addClass("carrito_varios")
+                  carrito_varios.insertAdjacentHTML("beforeend",appendeo)
+                  //carrito_varios.classList.add("carrito_varios")
                }
-               let añadir_carr = 
-               `<div class="col-lg-3 col-md-3 col-sm-3 col-3">
-                  <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
-                  <div class="cerrar-prod-carrito">
-                     <i onclick="eliminarCarrito(${id_carrito},${id_publicacion},${prod_id})" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
-                  </div>
-               </div>`
 
-               document.querySelector(".producto-"+id_carrito).insertAdjacentHTML("beforeend",añadir_carr)
-                  /*$(".subtotal-cant").html("AR$"+total);
-                  $(".total-cant").html("AR$"+total);
-                  $("#id_carrito").val(id_carrito);*/
-
-         //console.log(id_carrito)
       }
    //}  
 

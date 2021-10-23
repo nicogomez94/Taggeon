@@ -2445,7 +2445,6 @@ function getPublicsAmpliarHome(data){
                                <div class="info-public">
                                   <div class="social-public social-public-${id_public}">
                                         <span class="share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-paper-plane"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
                                   </div>
                                   <div class="datos-public">
                                   <div class="info-titulo-public">${nombre_public}</div>
