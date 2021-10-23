@@ -36,6 +36,20 @@ if ($sesionManager->validar(array('seller','picker'))){
         fclose($fp);
     }
     if (sizeof($_POST) > 0) {
+        $objPrincipalManager = new CarritoManager();
+	if ($objPrincipalManager->validarStock() == false){
+		$objRet = array(
+		    "status"  => "ERROR",
+		    "mensaje" => "Los siguientes productos se encuentran sin stock:".$objPrincipalManager->getMsj();
+		);
+		$ret = json_encode($objRet);
+		$fp = fopen("/var/www/html/log.txt", 'a');
+		fwrite($fp, $ret);
+		fclose($fp);
+		Database::Connect()->close();
+		echo $ret;
+		exit;
+	}
         $objResponse = pagar($tokenMP);
         $statusRet  = $objResponse['status'];
         $mensajeRet = $objResponse['mensaje'];
@@ -45,6 +59,7 @@ if ($sesionManager->validar(array('seller','picker'))){
         fwrite($fp, $str);
         fclose($fp);
         
+
         #$objResponse = pagar('TEST-3352741419059189-050618-af87bf11b26552b6b21a12aebad985b6-755113315');
         #$statusRet  = $objResponse['status'];
         #$mensajeRet = $objResponse['mensaje'];
@@ -125,7 +140,6 @@ function pagar ($token){
                 $fp = fopen("/var/www/html/log.txt", 'a');
                 fwrite($fp, $str);
                 fclose($fp);
-                $objPrincipalManager = new CarritoManager();
                 $objPrincipalManager->cambiarEstadoMayor3($_POST,4);
                 if ($objPrincipalManager->getStatus() == 'OK') {
                     $str = "OK\n";

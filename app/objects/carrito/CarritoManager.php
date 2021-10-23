@@ -183,6 +183,18 @@ class  CarritoManager
 		$this->setMsj($data["id_carrito"]);
 	}
 
+	public function validarStock(array $data)
+	{
+		$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+		if ($this->validarId($id) === false){
+			return false;
+		}
+		$this->setStatus("ERROR");
+		$this->setMsj("Este metodo se encuntra programando");
+		return false;
+
+	}
+
 	public function eliminarCarrito(array $data)
 	{
 		$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
