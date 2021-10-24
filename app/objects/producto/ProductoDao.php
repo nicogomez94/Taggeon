@@ -759,6 +759,7 @@ SQL;
         `producto`.`color`,
 	`producto`.`stock`,
 	producto.usuario_alta,
+	producto.stock,
        GROUP_CONCAT(producto_foto.id) as foto
 
     FROM
@@ -779,12 +780,13 @@ SQL;
     `producto`.`descr_producto`,
     `producto`.`color`,
     `producto`.`stock`,
+	producto.stock,
     producto.usuario_alta
     LIMIT 1
 sql;
 
 
-
+//echo $sql;
         $resultado = Database::Connect()->query($sql);
 
         $row_cnt = mysqli_num_rows($resultado);

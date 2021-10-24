@@ -843,6 +843,43 @@ sql;
         }
         return $list;
 	}
+
+	public function getCarritoMP($id,$usuarioAlta)
+    {
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $idDB = Database::escape($id);
+        $sql = <<<sql
+SELECT
+               carrito_detalle.id_publicacion, carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
+        FROM
+        `carrito`
+        LEFT JOIN
+        carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
+        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
+            LEFT JOIN
+        producto_foto
+    ON
+        `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
+        
+        
+                WHERE
+        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
+        `carrito`.usuario_alta = $usuarioAltaDB                AND
+        (estado is null OR estado !=4  )
+         AND carrito.id = $idDB
+        GROUP BY
+        carrito_detalle.id_publicacion, carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+sql;
+	//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
 	public function getListCarrito()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];

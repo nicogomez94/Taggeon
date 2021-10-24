@@ -183,15 +183,40 @@ class  CarritoManager
 		$this->setMsj($data["id_carrito"]);
 	}
 
-	public function validarStock(array $data)
+	public function validarStock($id,$usuarioAlta)
 	{
-		$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+		if (!isset($id)){
+			$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+		}
 		if ($this->validarId($id) === false){
 			return false;
 		}
-		$this->setStatus("ERROR");
-		$this->setMsj("Este metodo se encuntra programando");
-		return false;
+		$carrito =  $this->carritoDao->getCarritoMP($id,$usuarioAlta);
+		$str = '';
+		foreach ($carrito as $hashAux){
+			$cantidad = $hashAux['cantidad'];
+			$nombreProducto =  $hashAux['nombre_producto'];
+			$idProd   = $hashAux['id_producto'];
+			$data["id_producto"] = isset($idProd) ? $idProd : '';
+			$dataProducto = $this->productoManager->getProductoCarrito($data);
+			if ($this->productoManager->getStatus() != 'ok'){
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoManager->getMsj());
+				return false;
+			}else{
+				$stock = isset($dataProducto['stock']) ? $dataProducto['stock'] : 0;
+				if ($stock < 0 || $cantidad > $stock){
+					$this->setStatus("ERROR");
+					$this->setMsj("El producto $nombreProducto no tiene el stock sufuciente que desea comprar. Stock disponible: $stock");
+					return false;
+					
+				}
+			}
+
+		}
+		$this->setStatus("ok");
+		$this->setMsj("");
+		return true;
 
 	}
 
