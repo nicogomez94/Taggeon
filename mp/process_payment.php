@@ -150,6 +150,25 @@ function pagar ($token){
                     fclose($fp);
                     $statusRet  = 'OK';
                     $mensajeRet = $payment->id;
+
+
+
+			$actualizarStock = $objPrincipalManager->actualizarStock($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario']);
+			if ($objPrincipalManager->getStatus() != 'ok'){
+				$objRet = array(
+				    "status"  => "ERROR",
+				    "mensaje" => "Error al descontar el stock:".$objPrincipalManager->getMsj()
+				);
+				$ret = json_encode($objRet);
+				$fp = fopen("/var/www/html/log.txt", 'a');
+				fwrite($fp, $ret);
+				fclose($fp);
+				Database::Connect()->close();
+				echo $ret;
+				exit;
+			}
+
+		    
                 } else {
                     $str = "ERROR\n";
                     $fp = fopen("/var/www/html/log.txt", 'a');

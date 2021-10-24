@@ -917,6 +917,33 @@ sql;
         }
         return $list;
 	}
+                public function actualizarStock($id_producto,$cantidad)
+                {
+                    $idProductoDB = Database::escape($id_producto);
+                    $cantidadDB = Database::escape($cantidad);
+                    $sql = <<<SQL
+            UPDATE
+                `producto`
+            SET
+                `stock` = stock - $cantidad
+            WHERE
+            `id` = $idProductoDB 
+SQL;
+            
+                    if (!mysqli_query(Database::Connect(), $sql)) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj(Database::Connect()->error);
+                        //$this->setMsj("$sql" . Database::Connect()->error);
+                        return false;
+
+                        
+                    } else {
+                        $this->setStatus("OK");
+                        return true;
+                    }
+            
+                    return false;
+                }
                 public function eliminarDetalle(array $data)
                 {
                     $id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
