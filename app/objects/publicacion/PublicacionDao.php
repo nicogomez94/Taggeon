@@ -527,6 +527,7 @@ sql;
             publicacion_publicacion_foto.id
         ) AS foto,
         f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
                usuarios.nombre AS nombre_publicador,
             usuarios.idUsuario AS id_publicador
     FROM
@@ -541,6 +542,10 @@ sql;
         favorito f
     ON
         `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
+    LEFT JOIN
+        megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario =  $usuarioAltaDB
         LEFT JOIN
             (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
         ON
@@ -557,6 +562,7 @@ sql;
         pid,
         aspect_ratio,
         favorito,
+        megusta,
             usuarios.nombre,
             usuarios.idUsuario
     order by publicacion.fecha_alta desc
@@ -631,6 +637,7 @@ sql;
             publicacion_publicacion_foto.id
         ) AS foto,
         f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
            usuarios.nombre AS nombre_publicador,
         usuarios.idUsuario AS id_publicador
     FROM
@@ -641,10 +648,14 @@ sql;
         `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
             publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
         )
-    INNER JOIN
+    LEFT JOIN
         favorito f
     ON
         `publicacion`.id = f.id_publicacion AND f.id_usuario = $usuarioAltaDB
+    LEFT JOIN
+        megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario = $usuarioAltaDB
     LEFT JOIN
         (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
     ON
@@ -661,6 +672,7 @@ sql;
         pid,
         aspect_ratio,
         favorito,
+        megusta,
         usuarios.nombre,
         usuarios.idUsuario
 sql;
@@ -690,6 +702,7 @@ sql;
             publicacion_publicacion_foto.id
         ) AS foto,
         f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
                    usuarios.nombre AS nombre_publicador,
                 usuarios.idUsuario AS id_publicador
     FROM
@@ -704,6 +717,10 @@ sql;
         favorito f
     ON
         `publicacion`.id = f.id_publicacion AND f.id_usuario = $usuarioAltaDB
+    LEFT JOIN
+	megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario = $usuarioAltaDB
         
             LEFT JOIN
                 (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
@@ -721,6 +738,7 @@ sql;
         pid,
         aspect_ratio,
         favorito,
+	megusta,
                 usuarios.nombre,
                 usuarios.idUsuario
 sql;
@@ -755,6 +773,7 @@ sql;
             publicacion_publicacion_foto.id
         ) AS foto,
         f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
                    usuarios.nombre AS nombre_publicador,
                 usuarios.idUsuario AS id_publicador
     FROM
@@ -769,6 +788,10 @@ sql;
         favorito f
     ON
         `publicacion`.id = f.id_publicacion AND f.id_usuario = $usuarioAltaDB
+    LEFT JOIN
+        megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario = $usuarioAltaDB
         
             LEFT JOIN
                 (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
@@ -785,7 +808,8 @@ sql;
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
-        favorito,
+	favorito,
+	megusta,
                 usuarios.nombre,
                 usuarios.idUsuario
     LIMIT $offset,$limit
@@ -850,6 +874,7 @@ sql;
             publicacion_publicacion_foto.id
         ) AS foto,
         f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
                usuarios.nombre AS nombre_publicador,
             usuarios.idUsuario AS id_publicador
     FROM
@@ -864,6 +889,10 @@ sql;
         favorito f
     ON
         `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
+    LEFT JOIN
+        megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario =  $usuarioAltaDB
         LEFT JOIN
             (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
         ON
@@ -885,6 +914,7 @@ sql;
         pid,
         aspect_ratio,
         favorito,
+        megusta,
             usuarios.nombre,
             usuarios.idUsuario
 	$paginador
