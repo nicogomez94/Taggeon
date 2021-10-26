@@ -33,16 +33,16 @@ class  MegustaDao
 	public function altaMegusta(array $data)
 	{
 
-        $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
-        $usuarioDB = Database::escape($usuario);
-        $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
+        //$usuario = isset($data["usuario"]) ? $data["usuario"] : '';
+        //$usuarioDB = Database::escape($usuario);
+        $publicacion = isset($data["id"]) ? $data["id"] : '';
         $publicacionDB = Database::escape($publicacion);
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         
 		$sql = <<<SQL
 			INSERT INTO megusta (id_usuario, id_publicacion,usuario_alta)  
-			VALUES ($usuarioDB, $publicacionDB,$usuarioAltaDB)
+			VALUES ($usuarioAltaDB, $publicacionDB,$usuarioAltaDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -103,6 +103,15 @@ SQL;
         $usuarioDB = Database::escape($usuario);
 
         $sql = <<<SQL
+delete from 
+    `megusta`
+WHERE
+    `id_publicacion` = $idDB AND
+    `usuario_alta` = $usuarioDB
+SQL;
+
+/*
+        $sql = <<<SQL
 UPDATE
     `megusta`
 SET
@@ -111,7 +120,7 @@ SET
 WHERE
 `id` = $idDB AND
 `usuario_alta` = $usuarioDB
-SQL;
+SQL;*/
 
         if (!mysqli_query(Database::Connect(), $sql)) {
             $this->setStatus("ERROR");

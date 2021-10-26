@@ -132,7 +132,7 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
       </div>
       <hr>
       <div>
-      <div class="precio-producto-modal"><span data-precio="${precio_prod_p}'">AR$ ${precio_prod_p}</span></div>
+      <div class="precio-producto-modal"><span>AR$ ${precio_prod_p}</span></div>
       <div class="shipment-modal-producto">
          <i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles
       </div>
@@ -149,7 +149,7 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
                </select>
                <input type="hidden" class="id_prod_carrito" name="id" value="${id_prod_json_p}">
          </span>&nbsp;
-         <span><button class="btn btn-warning btn-carrito" onclick="fetchIdCarrito('${id_public_p}','${id_prod_p}')" data-idpublic="${id_public_p}" data-idprod="${id_prod_json_p}">Añadir a Carrito</button></span>
+         <span><button class="btn btn-warning btn-carrito" onclick="fetchIdCarrito('${id_public_p}','${id_prod_p}','1')" data-idpublic="${id_public_p}" data-idprod="${id_prod_json_p}">Añadir a Carrito</button></span>
       </div>
       </div>
       <hr>
@@ -181,7 +181,16 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
       getCommentsProd(comentarios_obj_p)
       dibujarCarousel(id_prod_p,foto_prod_p)
 
-      
+      let cant = document.querySelector(".cantidad_value");
+      let value_cant = document.querySelector(".cantidad_value").value;
+      let btn_carr = document.querySelector(".btn-carrito")
+
+      cant.addEventListener("change",function(){
+         let attr = "fetchIdCarrito('"+id_public_p+"','"+id_prod_p+"','"+this.value+"')";
+         console.log(attr);
+         console.log(typeof attr);
+         btn_carr.setAttribute("onclick", attr)
+      })
 
 }
 
@@ -289,7 +298,7 @@ function createModalRelAjax(idParam){
                   </select>
                   <input type="hidden" class="id_prod_carrito" name="id" value="${id_prod_json_p}">
             </span>&nbsp;
-            <span><button class="btn btn-warning btn-carrito" data-idpublic="${id_public_p}" data-idprod="${id_prod_json_p}">Añadir a Carrito</button></span>
+            <span><button class="btn btn-warning" data-idpublic="${id_public_p}" data-idprod="${id_prod_json_p}">Añadir a Carrito</button></span>
          </div>
          </div>
          <hr>

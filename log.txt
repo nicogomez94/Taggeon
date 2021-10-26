@@ -761,3 +761,37 @@ Paso else
 Paso else 1
 token APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
  status: ERROR mensaje: 
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:El campo id es incorrecto."}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:El campo id es incorrecto."}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:No se encontr\u00f3 el producto."}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:No se encontr\u00f3 el producto."}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:No se encontr\u00f3 el producto."}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:Este metodo se encuntra programando"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:El producto Adidas Supernova no tiene el stock sufuciente que desea comprar. Stock disponible: 0"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:El producto Adidas Supernova no tiene el stock sufuciente que desea comprar. Stock disponible: 0"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:            UPDATE\n                `producto`\n            SET\n                `stock` = stock - 1,\n            WHERE\n            `id_producto` = '' You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE\n            `id_producto` = ''' at line 5"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:            UPDATE\n                `producto`\n            SET\n                `stock` = stock - 1,\n            WHERE\n            `id_producto` = '159' You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE\n            `id_producto` = '159'' at line 5"}{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:            UPDATE\n                `producto`\n            SET\n                `stock` = stock - 1,\n            WHERE\n            `id` = '159' You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE\n            `id` = '159'' at line 5"}{"status":"ERROR","mensaje":"Error al descontar el stock:            UPDATE\n                `producto`\n            SET\n                `stock` = stock - 1,\n            WHERE\n            `id` = '159' You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE\n            `id` = '159'' at line 5"}{"status":"ERROR","mensaje":"Error al descontar el stock:            UPDATE\n                `producto`\n            SET\n                `stock` = stock - 1,\n            WHERE\n            `id` = '159' You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE\n            `id` = '159'' at line 5"}{"status":"ERROR","mensaje":"Error al descontar el stock:"}{"status":"ERROR","mensaje":"Error al descontar el stock:"}{"status":"ERROR","mensaje":"Error al descontar el stock:"}{"status":"ERROR","mensaje":"Error al descontar el stock:"}{"status":"ERROR","mensaje":"Error al descontar el stock:"}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '336') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '336') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+######################################################
+Fecha 24/10/2021  19:14:30
+post transactionAmount: 100
+post token: f147967f7f7360e0a7edb2f3f863ea8a
+post installments: 1
+post paymentMethodId: visa
+post issuer: 279
+post email: nicolasgomez94@gmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 336
+post id_carrito: 336
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+ status: ERROR mensaje: 
+Paso agregar busquedaPaso agregar busqueda
+row_cnt 1
+ok

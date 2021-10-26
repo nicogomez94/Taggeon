@@ -33,32 +33,34 @@ class  MegustaManager
 
 	private function validarMegusta(array $data) {
 		$var_accion = isset($data["accion"]) ? $data["accion"] : '';
-		if ($var_accion == 'editar') {
+
+		$publicacion = isset($data["id"]) ? $data["id"] : '';
+		if ($this->validarPublicacion($publicacion) === false){
+			return false;
+		}
+
+		if ($this->megustaDao->existePublicacion($publicacion) === false) {
+			$this->setStatus("ERROR");
+			$this->setMsj($this->megustaDao->getMsj());
+			return false;
+		}
+		
+		/*if ($var_accion == 'editar') {
 			$id = isset($data["id"]) ? $data["id"] : '';
 			if ($this->existeId($id) === false) {
 				return false;
 			}
-		}
-
-	    $usuario = isset($data["usuario"]) ? $data["usuario"] : '';
+		}*/
+	    /*$usuario = isset($data["usuario"]) ? $data["usuario"] : '';
 	    if ($this->validarUsuario($usuario) === false){
 	     return false;
-	    }
-	    $publicacion = isset($data["publicacion"]) ? $data["publicacion"] : '';
-	    if ($this->validarPublicacion($publicacion) === false){
-	     return false;
-	    }
+	    }*/
 
-        if ($this->megustaDao->existeUsuario($usuario) === false) {
+        /*if ($this->megustaDao->existeUsuario($usuario) === false) {
             $this->setStatus("ERROR");
             $this->setMsj($this->megustaDao->getMsj());
             return false;
-        }
-        if ($this->megustaDao->existePublicacion($publicacion) === false) {
-            $this->setStatus("ERROR");
-            $this->setMsj($this->megustaDao->getMsj());
-            return false;
-        }
+        }*/
 
 	}
 
@@ -117,7 +119,7 @@ class  MegustaManager
 		} else {
 
 			$this->setStatus("OK");
-			$this->setMsj($this->megustaDao->getMsj());
+			$this->setMsj($this->megustaDao->getMsj() . "entro");
 		}
 	}
 

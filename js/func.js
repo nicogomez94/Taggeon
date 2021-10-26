@@ -620,52 +620,6 @@ $("#ordenar").change(function(){
        }
     });
  });
-//AÑADIR AL CARRITO
-$(".modal").on("click", ".btfn-carrito", function(){
-    
-    var id_value = $(this).parent().parent().find(".id_prod_carrito").val();
-    var cantidad_value = $(this).parent().parent().find(".cantidad_value").val();
-    var id_prod = $(this).data("idprod");
-    var id_publicacion = $(this).data("idpublic");
-
-    //console.log(id_publicacion)
-    var dataCarr = new FormData();
-    dataCarr.append("accion","alta");
-    dataCarr.append("id",id_value);
-    dataCarr.append("cantidad",cantidad_value);
-    dataCarr.append("id_prod",id_prod);
-    dataCarr.append("id_publicacion",id_publicacion);
-    
-    $.ajax({
-        url: '/app/carrito.php',
-        data: dataCarr,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        //dataType: "json",
-        //async: false,
-        success: function( data, textStatus, jQxhr ){
-            var dataJ = JSON.parse(data).status;
-            var dataM = JSON.parse(data).mensaje;
-           if (dataJ == 'REDIRECT'){
-               console.log("REDIRECT-->"+dataM);
-               window.location.replace(dataM);														
-            }else if(dataJ == 'OK'){
-                console.log(dataJ);
-                console.log(dataM);
-                window.location.replace("/ampliar-carrito.html?id_carrito="+dataM);	
-            }else{
-                console.log("ELSE-->"+dataJ+"/"+dataM);
-                //window.location.replace("/ampliar-carrito.html");
-            }
-        },
-        error: function( data, jqXhr, textStatus, errorThrown ){
-            console.log(dat);
-        }
-    });
-    return false;
-    
-});
 
 
 ///finalizar orden
@@ -1147,7 +1101,7 @@ function favoritos(id_publicacion,accion){
     data.append("id",id_publicacion);
  
     $.ajax({
-       url: '/app/favorito.php',
+       url: '/app/megusta.php',
        data: data,
        type: 'POST',
        processData: false,
@@ -2028,15 +1982,20 @@ function posicionarPublic(){
     }
 }
 
-function fetchIdCarrito(id_public,id_prod){
+function fetchIdCarrito(id_public,id_prod,value_cant){
     const URL = "/app/carrito.php"
 
     let dataCarr = new FormData();
     dataCarr.append("accion","alta");
     dataCarr.append("id",id_prod);
     dataCarr.append("id_publicacion",id_public);
-    dataCarr.append("cantidad","1");//hard
+    dataCarr.append("cantidad",value_cant);//hard
 
+    for (var value of dataCarr.values()) {
+        console.log(value);
+    }
+
+    
     fetch(URL, {
         method: 'POST',
         body: dataCarr,
@@ -2321,7 +2280,7 @@ function getCommentsProd(comentarios_obj){
 function toggleFav(favorito,id_public,desde,fav_accion){
 
     let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
-    
+
     if (favorito==null || favorito == 0) {
         fav_accion="alta";
         var fav_html = `<span><i class="fas fa-star" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></span>`
@@ -2332,7 +2291,7 @@ function toggleFav(favorito,id_public,desde,fav_accion){
         appendeo.prepend(fav_html);
     }
 
-    return fav_accion;
+    //return fav_accion;
 }
 
 function toggleFollow(idPublicadorSeguido,id_publicador,id_public){
@@ -2353,6 +2312,7 @@ function toggleFollow(idPublicadorSeguido,id_publicador,id_public){
 function toggleLike(like,id_public,desde,like_accion){
     
     let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
+    console.log(like)
 
     if (like==null || like == 0) {
         like_accion="alta";
@@ -2385,20 +2345,20 @@ function getPublicsAmpliarHome(data){
             let publicador = data[i].nombre_publicador || "";
             let id_publicador = data[i].id_publicador || "";
             let foto_perfil = data[i].foto_perfil || "";
-            let seguidor = "";
+            let like = data[i].megusta || "";
             let imagen_id = data[i].foto || 0;
             let producto = data[i].pid || 0;
             let cat_ampliar_home = jsonData.cat || 0;
+            let favorito = data[i].favorito || 0;
             let arrCat = escena_json || 0;
             let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
             let img_publicador = `/imagen_perfil/${foto_perfil}.png` || 0;//viene siempre png?
             let winLoc = window.location.pathname || "";
             let id_usuario = "1";//hard
-            let favorito = data[i].favorito || 0;
+            let seguidor = "";
             let fav_accion = "";
             let seg_accion = "";
             let like_accion = "";
-            let like="";
             let seguidos = jsonData.seguidos || [];
             let idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
             let idPublicadorSeguido = idPublicadorSearch.idUsuario;
@@ -2538,7 +2498,6 @@ function getPublicTags(id_public,tags,index){
 
 function getPublicsHome(data){
     var sizePublic = data.length;
-        
     if(sizePublic>0){
         
         var escena_json = JSON.parse(escena);
@@ -2609,7 +2568,7 @@ function getPublicsHome(data){
                                     
                             $(".item-cat-"+json_cat).append(public_html)
                                     
-                            toggleFav(favorito,id_public,"",fav_accion);
+                            toggleFav(favorito,id_public,"getPublicsHome",fav_accion);
                                     
                                     
                     }

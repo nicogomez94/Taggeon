@@ -62,7 +62,7 @@ $(document).ready(function(){
                   </div>
                   <div class="carritos-btn">
                      <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
-                     <div class="cerrar-prod-carrito">
+                     <div>
                         <i onclick="eliminarCarrito(${id_carrito},${id_publicacion},${prod_id})" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
                      </div>
                   </div>
@@ -82,7 +82,8 @@ $(document).ready(function(){
                      <span class="precio-producto">${precio_prod_carrito}</span>
                   </div>
                   <div>
-                     <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
+                     <!--<input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">-->
+                     <span>Cantidad: ${cantidad}</span>
                   </div>   
                </div>`;
 
