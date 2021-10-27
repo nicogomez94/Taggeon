@@ -133,7 +133,7 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
                   <input type="text" id="comentario-${i_p}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">
                </div>
                <div class="ml-1">
-                  <button onclick="sendComentarioProd('${id_prod_p}','${i_p}')" value="enviar" class="btn">Enviar</button>
+                  <button onclick="sendComentario('${id_prod_p}','${i_p}','prod')" value="enviar" class="btn">Enviar</button>
                </div>
             </div>
          </div>
@@ -143,7 +143,7 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
 
       // document.body.appendChild(modal_producto_html);
       $("body").append(modal_producto_html)
-      getCommentsProd(comentarios_obj_p)
+      getComentarios(comentarios_obj_p,"prod")
       dibujarCarousel(id_prod_p,foto_prod_p)
 
       let cant = document.querySelector(".cantidad_value");
