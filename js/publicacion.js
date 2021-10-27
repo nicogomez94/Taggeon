@@ -32,41 +32,6 @@ function hideGloboCat(){
    });
 }
 
-/* CUANDO VENAGN BIEN PROD
-function showRelated(){
-
-   var data = new FormData();
-   data.append("accion","eliminar");
-   data.append("id",id_notif);
- 
-   $.ajax({
-      url: '/app/notificaciones.php',
-      data: data,
-      type: 'POST',
-      processData: false,
-      contentType: false,
-      success: function(data){
-         var dataJ = JSON.parse(data).status;
-         var dataM = JSON.parse(data).mensaje;
-
-         if (dataJ == 'REDIRECT'){
-               console.log("REDIRECT-->"+dataM);									
-         }else if(dataJ == 'OK'){
-               console.log("OK-->"+dataJ+"/"+dataM);
-               $(".notif-id-"+id_notif).remove();
-         }else{
-               console.log("ELSE-->"+dataJ+"/"+dataM);
-         }
-      },
-      error: function( data, jqXhr, textStatus, errorThrown ){
-         ajax("ERROR AJAX--> "+data);
-         console.log(data);
-      }
-   });
-   return false;
-
-}*/
-
 function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_p,marca_prod_p,color_prod_p,descr_prod_p,
    nombre_prod_p,nombre_completo_p,precio_prod_p,i_p,comentarios_obj_p,foto_prod_p}){
 
@@ -212,7 +177,7 @@ function dibujarSplideRel(array,key,prop,splideParam,idProdTag){
       }
    }
 }
-
+/*
 function createModalRelAjax(idParam){
 
    var arr = jsonData.productos;
@@ -346,15 +311,7 @@ function createModalRelAjax(idParam){
       
 
 }
-
-function appearTooltip(msjParam){
-   
-   /*var tooltip = document.querySelector(".tooltip-nico");
-   tooltip.style.right="blue";
-   tooltip.innerHTML = msjParam;*/
-
-   //document.getElementsByClassName("tooltip-nico").style.color="blue";
-}
+*/
 
 
 function getSplideProdPublic(param){

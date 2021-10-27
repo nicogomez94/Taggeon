@@ -3,6 +3,11 @@ document.addEventListener("DOMContentLoaded", function() {
     //activar notifs
     ampliarNotif();
 
+    /*buscador*/
+    $("#buscador-titulo-input").keyup(function(){
+        activarBuscador($(this));
+    });
+
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
     $(".board")
@@ -2204,7 +2209,7 @@ function getMisVentas(data){
 
 }
 
-function getCommentsPublic(comentarios_obj){
+function getComentarios(comentarios_obj){
     //recorro comentarios en la public
     let comment_length = comentarios_obj.length;
     if(comment_length>0){
@@ -2238,41 +2243,6 @@ function getCommentsPublic(comentarios_obj){
 
     }else if(comment_length>5){
         
-    }
-
-}
-
-function getCommentsProd(comentarios_obj){
-    //recorro comentarios en la public
-    console.log("-----------------")
-    console.log(comentarios_obj)
-    console.log("-----------------")
-    for(var y=0; y<comentarios_obj.length; y++){
-        if(comentarios_obj.length>0){
-            var comentario = comentarios_obj[y].comentario || "";
-            var eliminar = comentarios_obj[y].eliminar || "";
-            var fecha_alta = comentarios_obj[y].fecha_alta || "";
-            var fecha_update = comentarios_obj[y].fecha_update || "";
-            var id = comentarios_obj[y].id || 0;
-            var id_publicacion = comentarios_obj[y].id_publicacion || 0;
-            var usuario_alta = comentarios_obj[y].usuario_alta || "";
-            var usuario_editar = comentarios_obj[y].usuario_editar || "";
-            var nombre_usuario = comentarios_obj[y].nombre_usuario || "";
-            
-            var comentario_html = 
-            `<div class="commentbox-list media commentbox-id-${y}">
-               <span class="comment-name">${nombre_usuario}</span>
-               <span class="comment-text">${comentario}</span>
-            </div>`;
-            
-            $(".commentbox-list-container-"+id_publicacion).append(comentario_html);
-
-        }else{
-            var comentario_html2 = "<p>No hay comentarios</p>"
-            
-            $(".commentbox-list-container-"+id_publicacion).append(comentario_html2)
-        }
-
     }
 
 }
@@ -2430,7 +2400,7 @@ function getPublicsAmpliarHome(data){
                 document.querySelector(".title-public-"+i).innerHTML = publicador;
                 
                 getPublicTags(id_public,producto,i);
-                getCommentsPublic(comentarios_obj);
+                getComentarios(comentarios_obj);
              
             } 
             
@@ -2500,7 +2470,7 @@ function getPublicsHome(data){
     var sizePublic = data.length;
     if(sizePublic>0){
         
-        var escena_json = escena;
+        var escena_json = JSON.parse(escena);
         var escena_json_length = escena_json.length;
     
         
