@@ -16,13 +16,14 @@
    <!-- <link rel="manifest" href="../favicon/img/manifest.json"> -->
 
    <script>
-      var escena ='{escena}';
-      var escena2 = '{escena2}';
+      var escena ={escena};
+      var escena2 = {escena2};
+      var notificaciones = {notificaciones};
 
       $(document).ready(function(){
          //jsonData.
          var url_mp = "{url-mp}";
-         var intereses = "{intereses}";
+         var intereses = {intereses};
 
          if(typeof jsonData != "undefined"){
             if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){

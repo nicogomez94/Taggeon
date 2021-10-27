@@ -3,7 +3,6 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
-include_once($GLOBALS['configuration']['path_app_admin_objects']."notificaciones/NotificacionesManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
 echo $contenidoStringHeader;
@@ -18,9 +17,7 @@ echo $contenidoStringHeader;
         $tokenMercadoPago = 1;
     }
     
-    $notificacionesManager = new NotificacionesManager();
     $jsonData = array(
-        "notificaciones" => $notificacionesManager->getListNotificaciones(),
         "tokenMercadoPago" => $tokenMercadoPago,
     	"perfil"        => $perfil,
         "usuario"       => $GLOBALS['sesionG']['usuario'],

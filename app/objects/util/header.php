@@ -3,6 +3,7 @@ include_once("template.php");
 include_once("configuration.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."intereses/InteresesManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."notificaciones/NotificacionesManager.php");
 
 
 $perfil   = isset($perfil) ? $perfil : '';
@@ -60,11 +61,16 @@ STR;
 	
     $objIntereses = new InteresesManager();
     $intereses = $objIntereses->getListIntereses();
-    $intereses = json_encode($intereses);
+    $intereses = json_encode($intereses,JSON_INVALID_UTF8_IGNORE);
 
+
+    $notificacionesManager = new NotificacionesManager();
+    $notificaciones = $notificacionesManager->getListNotificaciones();
+    $notificaciones = json_encode($notificaciones,JSON_INVALID_UTF8_IGNORE);
 
 
 	$contenidoHeader->asigna_variables(array(
+        "notificaciones" => $notificaciones,
         "url-mp"     => $urlMP,
 		"perfil"         => $reemplazoPerfil,
 		"foto-perfil"    => $fotoPerfil,
