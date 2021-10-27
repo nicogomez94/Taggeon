@@ -2500,7 +2500,7 @@ function getPublicsHome(data){
     var sizePublic = data.length;
     if(sizePublic>0){
         
-        var escena_json = JSON.parse(escena);
+        var escena_json = escena;
         var escena_json_length = escena_json.length;
     
         
