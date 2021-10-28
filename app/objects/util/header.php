@@ -14,6 +14,7 @@ $perfil   = isset($perfil) ? $perfil : '';
     $escena = json_encode($escena,JSON_INVALID_UTF8_IGNORE);
     $escena2 = $publicacionManager->getListEscena2(); 
     $escena2 = json_encode($escena2);
+    $randomtime=time();
 if ($perfil == 'seller' || $perfil == 'picker'){
 	$contenidoHeader = new Template('header_esp_usuario');
 	$reemplazoPerfil = ($perfil == 'seller') ? ' Seller' : '';
@@ -68,8 +69,11 @@ STR;
     $notificaciones = $notificacionesManager->getListNotificaciones();
     $notificaciones = json_encode($notificaciones,JSON_INVALID_UTF8_IGNORE);
 
+    //$test = "1213"
 
 	$contenidoHeader->asigna_variables(array(
+        //"test"           => $test
+        "randomtime" => $randomtime,
         "notificaciones" => $notificaciones,
         "url-mp"     => $urlMP,
 		"perfil"         => $reemplazoPerfil,
@@ -83,6 +87,7 @@ STR;
 }else{
 	$contenidoHeader = new Template('header_esp');
 	$contenidoHeader->asigna_variables(array(
+        "randomtime" => $randomtime,
 		"escena"         => $escena,
 		"escena2"         => $escena2
 		));
