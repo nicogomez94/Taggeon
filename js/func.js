@@ -2815,8 +2815,9 @@ function sendComentario(idParam,indexParam,desde){
 
     const URL = (desde == "prod") ? '/app/comentarioproducto.php' : '/app/comentario.php';
     let pop = (desde == "prod") ? "producto" : "publicacion";
-    let val = $("#comentario-"+indexParam).val();
-
+    let val = document.querySelector("#comentario-"+indexParam).value;
+    console.log(val)
+/*
     let dataComentario = new FormData();
     dataComentario.append("accion","alta");
     dataComentario.append(pop,idParam);
@@ -2900,13 +2901,13 @@ function dibujarCarousel(id_prod,foto_obj){
         let foto = split[i]; 
         
         let carousel_item_html = 
-        `<div class="carousel-item carousel-item-${i}"> 
+        `<div class="carousel-item carousel-item-${id_prod}"> 
             <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/${foto}.png" alt="carousel-item"> 
         </div>`;
 
         let carousel_thumb_html =
-        `<li class="list-inline-item list-inline-item-${i}"> 
-            <a id="carousel-selector-${i}" data-slide-to="${i}" data-target="#custCarousel">
+        `<li class="list-inline-item list-inline-item-${id_prod}"> 
+            <a id="carousel-selector-${i}" data-slide-to="${i}" data-target="#custCarousel-${id_prod}">
                 <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/${foto}.png" class="list-inline-item">
             </a> 
         </li>`;
@@ -2917,8 +2918,8 @@ function dibujarCarousel(id_prod,foto_obj){
 
         //a la primera imagen solamente le agrego "active"
         if(i==0){
-            document.querySelector(".carousel-item-"+i).classList.add("active")
-            document.querySelector(".list-inline-item-"+i).classList.add("active")
+            document.querySelector(".carousel-item-"+id_prod).classList.add("active")
+            document.querySelector(".list-inline-item-"+id_prod).classList.add("active")
         }
     }
     

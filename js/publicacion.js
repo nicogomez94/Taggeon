@@ -48,13 +48,13 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
             <div class="container">
                <div class="row">
                   <div class="col-md-12">
-                        <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
+                        <div id="custCarousel-${id_prod_p}" class="carousel slide custCarousel" data-ride="carousel" align="center">
                            <div class="carousel-inner carousel-inner-${id_prod_p}"></div>
                            <!-- Controles --> 
-                           <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> 
+                           <a class="carousel-control-prev" href="#custCarousel-${id_prod_p}" data-slide="prev"> 
                               <span class="carousel-control-prev-icon"></span> 
                            </a> 
-                           <a class="carousel-control-next" href="#custCarousel" data-slide="next"> 
+                           <a class="carousel-control-next" href="#custCarousel-${id_prod_p}" data-slide="next"> 
                               <span class="carousel-control-next-icon"></span>
                            </a> 
                            <!-- Thumbnails -->
