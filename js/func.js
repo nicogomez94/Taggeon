@@ -3,6 +3,45 @@ document.addEventListener("DOMContentLoaded", function() {
     //activar notifs
     ampliarNotif();
 
+    let grids = [...document.querySelectorAll('.grid--masonry')];
+
+    if(grids.length && getComputedStyle(grids[0]).gridTemplateRows !== 'masonry') {
+        grids = grids.map(/* same as before */);
+          
+        function layout() {
+          grids.forEach(grid => {
+            /* get the post-resize/ load number of columns */
+            let ncol = getComputedStyle(grid._el).gridTemplateColumns.split(' ').length;
+      
+            if(grid.ncol !== ncol) {
+                /* update number of columns */
+                grid.ncol = ncol;
+              
+                /* revert to initial positioning, no margin */
+                grid.items.forEach(c => c.style.removeProperty('margin-top'));
+              
+                /* if we have more than one column */
+                if(grid.ncol > 1) {
+                  grid.items.slice(ncol).forEach((c, i) => {
+                    let prev_fin = grid.items[i].getBoundingClientRect().bottom /* bottom edge of item above */, 
+                        curr_ini = c.getBoundingClientRect().top /* top edge of current item */;
+                                      
+                    c.style.marginTop = `${prev_fin + grid.gap - curr_ini}px`
+                  })
+                }
+              }
+          });
+        }
+          
+        addEventListener('load', e => {		
+          layout(); /* initial load */
+          addEventListener('resize', layout, false)
+        }, false);
+
+    }else{ 
+        //console.log('yay, do nothing!')
+    }
+
     /*buscador*/
     $("#buscador-titulo-input").keyup(function(){
         activarBuscador($(this));
@@ -1284,18 +1323,19 @@ function ampliarNotif(){
     //var jsonData = jsonData || [];
     //console.log(jsonData)
     if(typeof jsonData !== "undefined"){
-        if(typeof jsonData.usuario !== "undefined"){
-            var notifs = jsonData.notificaciones || [];
+        console.log(notificaciones)
+        if(typeof jsonData.usuario !== "undefined" || typeof notificaciones !== "undefined"){
+            var notifs = notificaciones || [];
             var sizeNotifs = notifs.length || 0;
 
             if(sizeNotifs>0){
                 for(var i=0; i<sizeNotifs; i++){
                     
-                    var compracompra = jsonData.notificaciones[i].compracompra || 0;
-                    var json_notif = jsonData.notificaciones[i].json_notificacion || "";
+                    var compracompra = notifs[i].compracompra || 0;
+                    var json_notif = notifs[i].json_notificacion || "";
                     var json_notif_p = JSON.parse(json_notif) || [];
-                    var tipo_notif = jsonData.notificaciones[i].tipo_notificacion || "";
-                    var id = jsonData.notificaciones[i].id || 0;
+                    var tipo_notif = notifs[i].tipo_notificacion || "";
+                    var id = notifs[i].id || 0;
                     var json_notif_p_l = Object.keys(json_notif_p).length || 0;
                     
                     //console.log(json_notif_p)
@@ -2816,8 +2856,8 @@ function sendComentario(idParam,indexParam,desde){
     const URL = (desde == "prod") ? '/app/comentarioproducto.php' : '/app/comentario.php';
     let pop = (desde == "prod") ? "producto" : "publicacion";
     let val = document.querySelector("#comentario-"+indexParam).value;
-    console.log(val)
-/*
+
+
     let dataComentario = new FormData();
     dataComentario.append("accion","alta");
     dataComentario.append(pop,idParam);

@@ -600,6 +600,19 @@ body{
 /***/
 
 .grid{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: masonry;
+}
+.grid-item img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/*
+.grid{
     width: 100%;
 }
 .grid:after {
@@ -632,7 +645,7 @@ body{
 }
 @media only screen and (min-width: 1440px)  {
 	.grid-sizer, .grid-item { width: calc(100% / 5); }
-}
+}*/
 
 
 /* .grid-item img{
