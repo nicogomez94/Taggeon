@@ -2293,11 +2293,11 @@ function toggleFav(favorito,id_public,desde,fav_accion){
 
     if (favorito==null || favorito == 0) {
         fav_accion="alta";
-        var fav_html = `<span><i class="fas fa-star" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i></span>`
+        var fav_html = `<i class="fas fa-star" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i>`
         appendeo.prepend(fav_html);
     }else{
         fav_accion="eliminar";
-        var fav_html = `<span><i class="fas fa-star fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></span>`
+        var fav_html = `<i class="fas fa-star fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')">`
         appendeo.prepend(fav_html);
     }
 
@@ -2561,15 +2561,12 @@ function getPublicsHome(data){
                                     <div class="overlay-public">
                                     <a class="link-ampliar-home" href="${full_url}"></a>
                                     <div class="public-title-home">${nombre_public}</div>
-                                    <div class="text-overlay">
-                                    <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                    <a href="javascript:void(0)"><i class="fas fa-share-alt"></i></a>
-                                    </span>
-                                    &nbsp;&nbsp;
-                                    <span class="text-overlay-link text-overlay-link-${id_public}">
-                                    
-                                    </span>
-                                    </div>
+                                        <div class="text-overlay">
+                                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
+                                                <i class="fas fa-share-alt"></i>
+                                            </span>
+                                            <span class="text-overlay-link text-overlay-link-${id_public}"></span>
+                                        </div>
                                     </div>
                                     <img src="${foto_src}" alt="img-${imagen_id}">
                                     </div>

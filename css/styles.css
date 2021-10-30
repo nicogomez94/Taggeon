@@ -1791,17 +1791,13 @@ input:focus-visible, .input:focus-within{
     border-radius: 10px;
     z-index: 999;
 }
-.text-overlay a:link, 
-.text-overlay a:visited,
-.text-overlay-prod a:link, 
-.text-overlay-prod a:visited{
-    color: #cacacab8 !important;
-    z-index: 999;
-    font-size: 1.3em;
-    margin-right: 5px;
+.text-overlay-link i{
+    cursor: pointer;
+    margin-right: 10px;
+    color: rgba(190, 190, 190, 0.527);
 }
-.text-overlay-link a:hover{
-    color: rgb(196, 196, 196) !important;
+.text-overlay-link i:hover{
+    color: rgb(226, 226, 226);
 }
 .link-ampliar-home{
     height: 100%; 
