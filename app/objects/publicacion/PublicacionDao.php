@@ -315,6 +315,34 @@ SQL;
                     return $list;
                 }
 
+                public function getPublicacionByIdNoti($id)
+                {
+                    $id = isset($id) ?   $id : '';
+                    $idDB = Database::escape($id);
+                    $sql =<<<sql
+                    SELECT
+		    `publicacion`.`id`, `publicacion_nombre`,
+                   `publicacion`.usuario_alta,usuarios.nombre
+            
+                FROM
+                    `publicacion`
+        LEFT JOIN
+            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
+        ON
+            `publicacion`.usuario_alta = usuarios.idUsuario    
+                WHERE
+                publicacion.id=$idDB AND 
+                    (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
+sql;
+                    $resultado = Database::Connect()->query($sql);
+                    $list = array();
+            
+            
+                    while ($rowEmp = mysqli_fetch_array($resultado)) {
+                        $list[] = $rowEmp;
+                    }
+                    return $list;
+                }
                 public function getPublicacionById($id)
                 {
                     $id = isset($id) ?   $id : '';

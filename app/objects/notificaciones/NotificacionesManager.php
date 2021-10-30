@@ -52,7 +52,7 @@ class  NotificacionesManager
 		$tipo = $data['tipo_notificacion'];
 		if ($tipo == 'favorito'){
 			$publicacionManager = new PublicacionManager();
-			$publicacion = $publicacionManager->getPublicacionById($data);
+			$publicacion = $publicacionManager->getPublicacionByIdNoti($data);
 			if (isset($publicacion[0])){
 				$data['json_notificacion'] = $publicacion[0];
 				$data['usuario_notificacion'] = $publicacion[0]['usuario_alta'];
@@ -62,7 +62,7 @@ class  NotificacionesManager
 		}else if ($tipo == 'comentario'){
 			$data["id_publicacion"] = $data["publicacion"];
 			$publicacionManager = new PublicacionManager();
-			$publicacion = $publicacionManager->getPublicacionById($data);
+			$publicacion = $publicacionManager->getPublicacionByIdNoti($data);
 			if (isset($publicacion[0])){
 				$data['json_notificacion'] = $publicacion[0];
 				$comentario = isset($data["comentario"]) ? $data["comentario"] : '';

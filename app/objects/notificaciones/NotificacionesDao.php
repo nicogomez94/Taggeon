@@ -189,9 +189,8 @@ SQL;
 		WHERE
         (`notificaciones`.eliminar = 0 OR `notificaciones`.eliminar IS NULL) 
 AND usuario_notificacion= $usuarioAltaDB
-and tipo_notificacion in ('seguidores')
 sql;
-	echo $sql;
+	//echo $sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
