@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     
+    let sizeSeguidores = jsonData.seguidores.length;
+    let sizeSeguidos = jsonData.seguidos.length || 0;
+
+    //perfil
+    $("#seguidores_count").html(sizeSeguidores);
+    $("#seguidos_count").html(sizeSeguidos);
+
     //activar notifs
     ampliarNotif();
 
@@ -727,27 +734,6 @@ $("#btn-siguiente").click(function(){
     }else{
         $('.tooltip-nico').show(500);
     }
-});
-
-
-
-$('.seguidores-label').click(function(e) {
-    e.preventDefault();
-
-    $(".overlay-seguidores").show();
-
-    $('#cerrar-light').click(function() {
-      $('.overlay-seguidores').css("display", "none");
-    });
-});
-$('.seguidos-label').click(function(e) {
-    e.preventDefault();
-
-    $(".overlay-seguidos").show();
-
-    $('#cerrar-light').click(function() {
-      $('.overlay-seguidos').css("display", "none");
-    });
 });
 
 
@@ -1543,68 +1529,44 @@ function appearSelect(){
     
 }
 
-function mostrarSeguidores(){
+function showSeguidoresSeguidos(tipo){
+    
+    let obj = (tipo=="seguidores") ? jsonData.seguidores : jsonData.seguidos;
+    let sizeObj = obj.length;
 
-    var seguidores = jsonData.seguidores || [];
-    var sizeSeguidores = jsonData.seguidores.length;
-    var seguidos = jsonData.seguidos || [];
-    var sizeSeguidos = jsonData.seguidos.length || 0;
+    if(sizeObj>0){
+        for(var i=0; i<sizeObj; i++){
 
-    //perfil
-    $("#following_count").html(sizeSeguidores);
-    $("#follower_count").html(sizeSeguidos);
-
-    //popup
-    $(".count-seguidos-num").html(sizeSeguidos);
-    $(".seguidores-count").html(sizeSeguidores);
-
-    if(sizeSeguidores>0){
-        for(var i=0; i<sizeSeguidores; i++){
-            
-            var apellido = jsonData.seguidores[i].apellido || "";
-            var email = jsonData.seguidores[i].email || "";
-            var idUsuario = jsonData.seguidores[i].idUsuario || 0;
-            var nombre = jsonData.seguidores[i].nombre || "";
-
-            var seguidores_html = 
-            `<div class="media seguidor">
-                <img class="mr-3 img-seg" src="unknown" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0">${nombre}</h5>
-                    <span>${email}</span>'
+            let apellido = obj[i].apellido || "";
+            let email = obj[i].email || "";
+            let idUsuario = obj[i].idUsuario || 0;
+            let nombre = obj[i].nombre || "";
+            let body = document.querySelector("body");
+            let overlay_html = 
+            `<div class="overlay overlay-${tipo}">
+                <div style="width: 400px;" class="lightBox lightBox-${tipo}">
+                    <a href="javascript:void(0)" id="cerrar-light" onclick="cerrarOverlay('overlay-${tipo}')"><i class="fas fa-times-circle"></i></a>
+                    <h3 class="count-${tipo}">Tus ${tipo}</h3>
+                    <hr>
+                    <div class="container-${tipo}">
+                        <div class="media seguidor">
+                            <img class="mr-3 img-seg" src="/imagen_perfil/generica.png" alt="${nombre}">
+                            <div class="media-body">
+                                <h5 class="mt-0">${nombre}</h5>
+                                <span>${email}</span>'
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>`;
+            </div>`
             
-            $(".container-seguidores").append(seguidores_html);
+            body.insertAdjacentHTML("afterbegin",overlay_html)
+            document.querySelector(".overlay-"+tipo).style.display = "block"
         }
     }else{
-        var sin_seg = "<div>Por el momento, nadie te esta siguiendo</div>";
-        $(".container-seguidores").html(sin_seg);
+        alert("No ten&eacute;s ning&uacute;n"+tipo)
     }
-
-    if(sizeSeguidos>0){
-        for(var i=0; i<sizeSeguidos; i++){
-
-            var apellido = jsonData.seguidos[i].apellido || "";
-            var email = jsonData.seguidos[i].email || "";
-            var idUsuario = jsonData.seguidos[i].idUsuario || 0;
-            var nombre = jsonData.seguidos[i].nombre || "";
-
-            var seguidos_html = 
-            `<div class="media seguido">
-                <img class="mr-3 img-seg" src="unknown" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0">${nombre}</h5>
-                    <span>${email}</span>'
-                </div>
-            </div>`;
-            
-            $(".container-seguidos").append(seguidos_html);
-        }
-    }else{
-        var sin_seg = "<div>Por el momento, no sigues a nadie</div>";
-        $(".container-seguidos").html(sin_seg);
-    }
+    
 }
 
   
@@ -2015,7 +1977,7 @@ function ampliarOverlay(clase){
 
 function cerrarOverlay(clase){
     var el = document.querySelector("."+clase);
-    el.style.display = "none";
+    el.remove();
 }
 
 function posicionarPublic(){

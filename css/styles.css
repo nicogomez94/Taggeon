@@ -502,6 +502,10 @@ body{
 .seguidores-label, .seguidos-label{
     cursor: pointer;
 }
+.container-seguidos, .container-seguidores{
+    max-height: 325px;
+    overflow-y: auto;
+}
 .seguidor-img img{
     width: 45px;
     height: 45px;
@@ -874,14 +878,14 @@ body{
     margin-top: 10px;
     margin-bottom: 30px;
 }
-.follower_container {
+.seguidos_container,.seguidores_container {
     display: inline-block;
     min-width: 70px;
     cursor: pointer;
 }
 
 
-.follower_count{
+.seguidos_count,.seguidores_count{
     text-align: center;
     /* padding-left: 5px; */
     font-size: 1.3em;
@@ -1154,7 +1158,8 @@ body{
   }
   
   .overlay {
-    display: none;
+    /*display: none;*/
+    display: none; /*TODO: cambiar despues, esta mal asi*/
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.7);
