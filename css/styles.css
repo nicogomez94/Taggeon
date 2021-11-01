@@ -1555,6 +1555,17 @@ input:focus-visible, .input:focus-within{
 .carritos-flex{
     display: flex;
     box-shadow: none !important;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.carritos-btn{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-end;
 }
 .carrito_{
     /*display: flex;*/

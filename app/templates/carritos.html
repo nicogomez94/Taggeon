@@ -1,7 +1,7 @@
 
 <div class="container container-carrito">
    <div class="inner-carrito">
-      <h1>TEST Carritos</h1>
+      <h1>Listado de Carritos</h1>
       <hr>
       <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
       </div>
@@ -32,7 +32,7 @@ $(document).ready(function(){
    var sizeCarrito = carrito.length;
    
    let test = Object.values(carritos_agrupados)
-
+   console.log(carrito)
    let test_param = 0;
 
       for(let i=0; i<sizeCarrito; i++){
@@ -47,12 +47,10 @@ $(document).ready(function(){
          let subtotal = carrito[i].subtotal;
          let total = carrito[i].total;
          let foto_id = carrito[i].foto;
-         let seller_name = carrito[i].foto;
+         let nombre_vendedor = carrito[i].nombre_vendedor;
          let foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
          let listado = document.querySelector("#listado-mis-productos");
          let carrito_varios = document.querySelector(".carritos-rows-"+id_carrito);
-         
-         
          
          //este se dibuja de por si
          let struc_carrito = 
@@ -61,10 +59,9 @@ $(document).ready(function(){
                      
                   </div>
                   <div class="carritos-btn">
-                     <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
-                     <div>
-                        <i onclick="eliminarCarrito(${id_carrito},${id_publicacion},${prod_id})" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i>
-                     </div>
+                     <span style="flex-grow: 1">By: <b>${nombre_vendedor}</b></span>
+                     <button onclick="window.location.replace('/ampliar-carrito.html?id_carrito=${id_carrito}');" class="boton-checkout-carrito btn btn-warning mr-1">Continuar Compra</button>
+                     <button onclick="eliminarCarrito(${id_carrito},${id_publicacion},${prod_id})" class="boton-checkout-carrito btn btn-warning">Cancelar Carrito</button>
                   </div>
                </div>`;
          
@@ -73,19 +70,17 @@ $(document).ready(function(){
          let appendeo = 
                `<div class="carritos-flex producto producto-${id_carrito}">
                   <div>
-                     <div class="img-producto-container-0" data-title="223"><img class="img-producto" src="${foto_src}" alt="img"></div>
-                  </div>
-                  <div>
+                     <span class="img-producto-container-0" data-title="223"><img class="img-producto" src="${foto_src}" alt="img"></span>
                      <span class="titulo-producto">${nombre_prod_carrito}</span>
-                  </div>
-                  <div>
-                     <span class="precio-producto">${precio_prod_carrito}</span>
                   </div>
                   <div>
                      <!--<input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">-->
                      <span>Cantidad: ${cantidad}</span>
                   </div>   
-               </div>`;
+                  <div>
+                     <span class="precio-producto">$. ${precio_prod_carrito}</span>
+                  </div>
+               </div><hr>`;
 
                               
                if(test_param != id_carrito){
@@ -105,63 +100,6 @@ $(document).ready(function(){
                }
 
       }
-   //}  
-
-   /*if(sizeCarrito>0){
-      // if($(".form-orden-compra").html().length > 0){
-         for(var i=0; i<sizeCarrito; i++){
-         
-           
-
-                 /* if(cantidad == null || id_carrito == null){
-                     $(".header-productos").hide();
-                     $(".totales-cont").hide();
-                     $(".producto:not(.header-productos)").hide();
-                     $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
-                  }
-
-
-                  
-
-                     //var dataCheckout = new FormData();
-                     //dataCheckout.append("id_carrito",id_carrito);
-                     
-                     // $.ajax({
-                     //    url: '/app/carrito.php',
-                     //    data: dataCheckout,
-                     //    type: 'GET',
-                     //    processData: false,
-                     //    contentType: false,
-                     //    //dataType: "json",
-                     //    //async: false,
-                     //    success: function( data, textStatus, jQxhr ){
-                     //          var dataJ = JSON.parse(data).status;
-                     //          var dataM = JSON.parse(data).mensaje;
-                     //       if (dataJ == 'REDIRECT'){
-                     //          console.log("REDIRECT-->"+dataM);
-                     //          window.location.replace(dataM);														
-                     //       }else if(dataJ == 'OK'){
-                     //          console.log("OK-->"+dataJ+"/"+dataM);
-                     //          window.location.replace("/ampliar-carrito.html?id_carrito="+id_carrito);
-                     //       }else{
-                     //          console.log("ELSE-->"+dataJ+"/"+dataM);
-                     //          //window.location.replace("/ampliar-carrito.html");
-                     //       }
-                     //    },
-                     //    error: function( data, jqXhr, textStatus, errorThrown ){
-                     //          alert(data);
-                     //    }
-                     // });
-                     //return false;
-                  
-
-            }
-      }else{
-         $(".header-productos").hide();
-         $(".totales-cont").hide();
-         $(".producto:not(.header-productos)").hide();
-         $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
-      }*/
 
       
 });
