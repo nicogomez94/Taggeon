@@ -1306,10 +1306,8 @@ function buscadorIndex(paramIndex){
 }
 
 function ampliarNotif(){
-    //var jsonData = jsonData || [];
-    //console.log(jsonData)
+
     if(typeof jsonData !== "undefined"){
-        console.log(notificaciones)
         if(typeof jsonData.usuario !== "undefined" || typeof notificaciones !== "undefined"){
             var notifs = notificaciones || [];
             var sizeNotifs = notifs.length || 0;
@@ -1533,35 +1531,38 @@ function showSeguidoresSeguidos(tipo){
     
     let obj = (tipo=="seguidores") ? jsonData.seguidores : jsonData.seguidos;
     let sizeObj = obj.length;
+    let body = document.querySelector("body");
+    let overlay_html =
+        `<div class="overlay overlay-${tipo}">
+            <div style="width: 400px;" class="lightBox lightBox-${tipo}">
+                <a href="javascript:void(0)" id="cerrar-light" onclick="cerrarOverlay('overlay-${tipo}')"><i class="fas fa-times-circle"></i></a>
+                <h3 class="count-${tipo}">Tus ${tipo}</h3>
+                <hr>
+                <div class="container-${tipo}"></div>
+            </div>
+        </div>`
+
+    body.insertAdjacentHTML("afterbegin",overlay_html)
+    document.querySelector(".overlay-"+tipo).style.display = "block";
 
     if(sizeObj>0){
         for(var i=0; i<sizeObj; i++){
 
-            let apellido = obj[i].apellido || "";
+            //let idUsuario = obj[i].idUsuario || 0;
             let email = obj[i].email || "";
-            let idUsuario = obj[i].idUsuario || 0;
+            let apellido = obj[i].apellido || "";
             let nombre = obj[i].nombre || "";
-            let body = document.querySelector("body");
-            let overlay_html = 
-            `<div class="overlay overlay-${tipo}">
-                <div style="width: 400px;" class="lightBox lightBox-${tipo}">
-                    <a href="javascript:void(0)" id="cerrar-light" onclick="cerrarOverlay('overlay-${tipo}')"><i class="fas fa-times-circle"></i></a>
-                    <h3 class="count-${tipo}">Tus ${tipo}</h3>
-                    <hr>
-                    <div class="container-${tipo}">
-                        <div class="media seguidor">
-                            <img class="mr-3 img-seg" src="/imagen_perfil/generica.png" alt="${nombre}">
-                            <div class="media-body">
-                                <h5 class="mt-0">${nombre}</h5>
-                                <span>${email}</span>'
-                            </div>
-                        </div>
+            let container_append = document.querySelector(".container-"+tipo);
+            let overlay_html_media = 
+                `<div class="media seguidor">
+                    <img class="mr-3 img-seg" src="/imagen_perfil/generica.png" alt="${nombre}">
+                    <div class="media-body">
+                        <h5 class="mt-0">${nombre} ${apellido}</h5>
+                        <span>${email}</span>'
                     </div>
-                </div>
-            </div>`
+                </div>`
             
-            body.insertAdjacentHTML("afterbegin",overlay_html)
-            document.querySelector(".overlay-"+tipo).style.display = "block"
+            container_append.insertAdjacentHTML("beforeend",overlay_html_media)
         }
     }else{
         alert("No ten&eacute;s ning&uacute;n"+tipo)
