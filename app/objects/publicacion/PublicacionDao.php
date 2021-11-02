@@ -534,8 +534,37 @@ sql;
                
     public function getListPublicacionIndex()
     {
+        $id = isset($data["id"]) ? $data["id"] : '';
+        $idDB = Database::escape($id);
+
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+
+
+        $sql = <<<SQL
+			UPDATE
+			    `click`
+			SET `contador` = `contador` + 1
+			    WHERE
+                `id_publicacion` = $idDB AND usuario_alta = $usuarioAltaDB
+SQL;
+
+$mysqli = Database::Connect();
+
+// Perform queries and print out affected rows
+$mysqli->query($sql);
+    $row_cnt =  $mysqli->affected_rows;
+
+    
+    if ($row_cnt <= 0) {
+        $sql = <<<SQL
+        INSERT INTO click (id_publicacion, contador,usuario_alta)  
+        VALUES ($idDB, '1',$usuarioAltaDB)
+SQL;
+
+
+    }
+
 	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
 	if (!preg_match('/^[0-9]+$/i', $offset)) {
 		$offset = 0;
