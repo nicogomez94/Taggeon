@@ -1360,12 +1360,6 @@ textarea{
     text-align: left;
     width: 100%;
 }
-#test{
-    box-shadow: inset 0px -15px 4px -4px white;
-    z-index: 999;
-    max-height: 135px;
-    overflow-y: auto;
-}
 .commentbox-actions{
     color: #848484;
 }
@@ -1374,6 +1368,8 @@ textarea{
 }
 .commentbox-list-container{
     padding-top: 20px;
+    max-height: 135px;
+    overflow-y: auto;
 }
 .comment-name{
     font-weight: 600;
