@@ -531,10 +531,242 @@ sql;
 
         return false;
     }
+    public function getListPublicacionIndexPaginador()
+    {
+
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
+		$offset = 0;
+	}
+        $limit = 50;
+
+
+        $sql = <<<sql
+        SELECT
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        MIN(
+            publicacion_publicacion_foto.id
+        ) AS foto,
+        f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
+               usuarios.nombre AS nombre_publicador,
+            usuarios.idUsuario AS id_publicador
+    FROM
+        `publicacion`
+    LEFT JOIN
+        publicacion_publicacion_foto
+    ON
+        `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
+            publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
+        )
+    LEFT JOIN
+        favorito f
+    ON
+        `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
+    LEFT JOIN
+        megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario =  $usuarioAltaDB
+        LEFT JOIN
+            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
+        ON
+            `publicacion`.usuario_alta = usuarios.idUsuario    
+    WHERE
+        (
+            `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
+        ) AND
+    `publicacion`.`id` not in (select id_publicacion from click where usuario_alta = $usuarioAltaDB)
+    GROUP BY
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        favorito,
+        megusta,
+            usuarios.nombre,
+            usuarios.idUsuario
+    order by publicacion.fecha_alta desc
+    LIMIT $offset,$limit
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $id_publicador = isset($rowEmp["id_publicador"]) ? $rowEmp["id_publicador"] : '';
+            $rowEmp['foto_perfil'] = $id_publicador;
+
+            #INICIO COMENTARIOS
+            $idPublicacion = isset($rowEmp["id"]) ? $rowEmp["id"] : '';
+            $idPublicacionBD = Database::escape($idPublicacion);
+            $sql2 = <<<sql
+                SELECT 
+		`comentario`.*,
+    u.*
+                FROM comentario
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentario`.`usuario_alta`
+                WHERE id_publicacion=$idPublicacionBD
+order by fecha_alta desc
+sql;
+            //echo $sql2;
+    
+            $resultado2 = Database::Connect()->query($sql2);
+            $list2 = array();
+            while ($rowEmp2 = mysqli_fetch_array($resultado2)) {
+                $list2[] = $rowEmp2;
+            }
+            #FIN COMENTARIOS
+            $rowEmp['comentarios'] = $list2;
+            $list[] = $rowEmp;
+        }
+        return $list;
+    }
                
+    public function getListPublicacionIndexDinamico()
+    {
+
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
+		$offset = 0;
+	}
+        $limit = 50;
+
+
+        $sql = <<<sql
+        SELECT
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        MIN(
+            publicacion_publicacion_foto.id
+        ) AS foto,
+        f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
+               usuarios.nombre AS nombre_publicador,
+            usuarios.idUsuario AS id_publicador
+    FROM
+        `publicacion`
+    LEFT JOIN
+        publicacion_publicacion_foto
+    ON
+        `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
+            publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
+        )
+    LEFT JOIN
+        favorito f
+    ON
+        `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
+    LEFT JOIN
+        megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario =  $usuarioAltaDB
+        LEFT JOIN
+            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
+        ON
+            `publicacion`.usuario_alta = usuarios.idUsuario    
+    WHERE
+        (
+            `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
+        ) AND
+    `publicacion`.`id` in (select id_publicacion from click where usuario_alta = $usuarioAltaDB)
+    GROUP BY
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        favorito,
+        megusta,
+            usuarios.nombre,
+            usuarios.idUsuario
+    order by publicacion.fecha_alta desc
+    LIMIT $offset,$limit
+sql;
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $id_publicador = isset($rowEmp["id_publicador"]) ? $rowEmp["id_publicador"] : '';
+            $rowEmp['foto_perfil'] = $id_publicador;
+
+            #INICIO COMENTARIOS
+            $idPublicacion = isset($rowEmp["id"]) ? $rowEmp["id"] : '';
+            $idPublicacionBD = Database::escape($idPublicacion);
+            $sql2 = <<<sql
+                SELECT 
+		`comentario`.*,
+    u.*
+                FROM comentario
+INNER JOIN
+    (
+    SELECT
+        idUsuario AS idUsuarioComentario,
+        nombre AS nombre_usuario,
+        apellido AS apellido_usuario
+    FROM
+        usuario_picker
+    UNION
+SELECT
+    idUsuario AS idUsuarioComentario,
+    nombre AS nombre_usuario,
+    apellido AS apellido_usuario
+FROM
+    usuario_seller
+) AS u
+ON
+    u.idUsuarioComentario = `comentario`.`usuario_alta`
+                WHERE id_publicacion=$idPublicacionBD
+order by fecha_alta desc
+sql;
+            //echo $sql2;
+    
+            $resultado2 = Database::Connect()->query($sql2);
+            $list2 = array();
+            while ($rowEmp2 = mysqli_fetch_array($resultado2)) {
+                $list2[] = $rowEmp2;
+            }
+            #FIN COMENTARIOS
+            $rowEmp['comentarios'] = $list2;
+            $list[] = $rowEmp;
+        }
+        return $list;
+    }
     public function getListPublicacionIndex()
     {
-        $id = isset($data["id"]) ? $data["id"] : '';
+        $id = isset($_GET["id"]) ? $_GET["id"] : '';
         $idDB = Database::escape($id);
 
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
@@ -544,7 +776,7 @@ sql;
         $sql = <<<SQL
 			UPDATE
 			    `click`
-			SET `contador` = `contador` + 1
+			SET `contador` = `contador` + 1,usuario_editar = $usuarioAltaDB
 			    WHERE
                 `id_publicacion` = $idDB AND usuario_alta = $usuarioAltaDB
 SQL;
@@ -562,7 +794,9 @@ $mysqli->query($sql);
         VALUES ($idDB, '1',$usuarioAltaDB)
 SQL;
 
-
+        if (!mysqli_query(Database::Connect(), $sql)) {
+	
+    	}
     }
 
 	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;

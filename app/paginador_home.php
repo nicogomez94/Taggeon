@@ -11,7 +11,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/Pu
 #exit;
 #}
     $publicacionManager = new PublicacionManager();
-   $jsonData = json_encode($publicacionManager->getListPublicacionIndex(),JSON_INVALID_UTF8_IGNORE);
+   $jsonData = json_encode($publicacionManager->getListPublicacionIndexPaginador(),JSON_INVALID_UTF8_IGNORE);
    Database::Connect()->close();
    echo $jsonData;
 ?>

@@ -24,7 +24,7 @@ echo $contenidoStringHeader;
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "publicaciones"     => $publicacionManager->getListPublicacionIndex(),
+        "publicaciones"     => $publicacionManager->getListPublicacionIndexDinamico(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()

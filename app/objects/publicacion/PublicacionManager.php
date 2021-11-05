@@ -370,6 +370,17 @@ class  PublicacionManager
                                $ret =  $this->publicacionDao->getListPublicacionPublic($id_usuario);
                                return $ret;
                        }
+			public function getListPublicacionIndexPaginador()
+			{
+				$ret =  $this->publicacionDao->getListPublicacionIndexPaginador();
+				return $ret;
+			}
+
+			public function getListPublicacionIndexDinamico()
+			{
+				$ret =  $this->publicacionDao->getListPublicacionIndexDinamico();
+				return $ret;
+			}
 
 			public function getListPublicacionIndex()
 			{
