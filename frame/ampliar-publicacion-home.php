@@ -6,8 +6,7 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/Produ
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
 
-if ($perfil=='seller' || $perfil='picker'){
-
+if ($perfil=='seller' || $perfil=='picker'){
     $publicacionManager = new PublicacionManager();
     $productoManager = new ProductoManager();
     #$comentarioManager = new ComentarioManager();

@@ -545,7 +545,10 @@ sql;
 
 
         $sql = <<<sql
+	SELECT * from 
+(
         SELECT
+        1 as orden,
         `publicacion`.`id`,
         `publicacion_nombre`,
         subescena1,subescena2,subescena3,escena_sel,
@@ -583,8 +586,14 @@ sql;
         (
             `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
         ) AND
-    `publicacion`.`id` not in (select id_publicacion from click where usuario_alta = $usuarioAltaDB)
+    `publicacion`.`id` in (
+SELECT distinct p1.id FROM publicacion p1 INNER JOIN 
+(select p.escena_sel,p.subescena1,p.subescena2,p.subescena3 from click c INNER JOIN publicacion p ON p.id = c.id_publicacion where c.usuario_alta = $usuarioAltaDB) as p2
+ON p1.subescena3= p2.subescena3 OR p1.subescena2= p2.subescena2
+)
+
     GROUP BY
+	orden,
         `publicacion`.`id`,
         `publicacion_nombre`,
         subescena1,subescena2,subescena3,escena_sel,
@@ -595,9 +604,69 @@ sql;
         megusta,
             usuarios.nombre,
             usuarios.idUsuario
-    order by publicacion.fecha_alta desc
+UNION
+        SELECT
+        2 as orden,
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        MIN(
+            publicacion_publicacion_foto.id
+        ) AS foto,
+        f.id_publicacion AS favorito,
+        mg.id_publicacion AS megusta,
+               usuarios.nombre AS nombre_publicador,
+            usuarios.idUsuario AS id_publicador
+    FROM
+        `publicacion`
+    LEFT JOIN
+        publicacion_publicacion_foto
+    ON
+        `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
+            publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
+        )
+    LEFT JOIN
+        favorito f
+    ON
+        `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
+    LEFT JOIN
+        megusta mg
+    ON
+        `publicacion`.id = mg.id_publicacion AND mg.id_usuario =  $usuarioAltaDB
+        LEFT JOIN
+            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
+        ON
+            `publicacion`.usuario_alta = usuarios.idUsuario    
+    WHERE
+        (
+            `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
+        ) AND
+    `publicacion`.`id` not in (
+SELECT distinct p1.id FROM publicacion p1 INNER JOIN 
+(select p.escena_sel,p.subescena1,p.subescena2,p.subescena3 from click c INNER JOIN publicacion p ON p.id = c.id_publicacion where c.usuario_alta = $usuarioAltaDB) as p2
+ON p1.subescena3= p2.subescena3 OR p1.subescena2= p2.subescena2
+)
+
+    GROUP BY
+	orden,
+        `publicacion`.`id`,
+        `publicacion_nombre`,
+        subescena1,subescena2,subescena3,escena_sel,
+        `publicacion_descripcion`,
+        pid,
+        aspect_ratio,
+        favorito,
+        megusta,
+            usuarios.nombre,
+            usuarios.idUsuario
+ ) 
+as s
     LIMIT $offset,$limit
 sql;
+	//echo $sql;exit;
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
@@ -632,7 +701,7 @@ FROM
 ON
     u.idUsuarioComentario = `comentario`.`usuario_alta`
                 WHERE id_publicacion=$idPublicacionBD
-order by fecha_alta desc
+order by orden asc,fecha_alta desc
 sql;
             //echo $sql2;
     
@@ -651,6 +720,7 @@ sql;
     public function getListPublicacionIndexDinamico()
     {
 
+	   return [];
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
 

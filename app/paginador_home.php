@@ -4,14 +4,14 @@ include_once("objects/sesion/sesionManagerImpl.php");
 include_once("objects/util/database.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 
-#$sesionManager = new SesionManagerImpl();
-#if (!$sesionManager->validar(array('seller','picker'))){
-#Database::Connect()->close();
-#echo '{}';
-#exit;
-#}
-    $publicacionManager = new PublicacionManager();
+$sesionManager = new SesionManagerImpl();
+if (!$sesionManager->validar(array('seller','picker'))){
+}
+   $publicacionManager = new PublicacionManager();
    $jsonData = json_encode($publicacionManager->getListPublicacionIndexPaginador(),JSON_INVALID_UTF8_IGNORE);
    Database::Connect()->close();
    echo $jsonData;
+Database::Connect()->close();
+#echo '{}';
+#exit;
 ?>
