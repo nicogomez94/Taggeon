@@ -1370,6 +1370,7 @@ textarea{
     padding-top: 20px;
     max-height: 135px;
     overflow-y: auto;
+    width: 100%;
 }
 .comment-name{
     font-weight: 600;
@@ -1378,6 +1379,11 @@ textarea{
 .comment-count{
     margin: 25px 0;
     font-size: 1.4em;
+}
+.nombre-modal-producto{
+    font-size: 0.8em; 
+    color: grey; 
+    font-style: italic;
 }
 /*  
 		 * Rating styles

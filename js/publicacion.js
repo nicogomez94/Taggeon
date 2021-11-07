@@ -32,7 +32,7 @@ function hideGloboCat(){
    });
 }
 
-function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_p,marca_prod_p,color_prod_p,descr_prod_p,
+function traerModalProducto({id_prod_p,id_public_p,id_publicador_p,foto_src_prod_p,id_prod_json_p,marca_prod_p,color_prod_p,descr_prod_p,
    nombre_prod_p,nombre_completo_p,precio_prod_p,i_p,comentarios_obj_p,foto_prod_p}){
 
 
@@ -93,7 +93,7 @@ function traerModalProducto({id_prod_p,id_public_p,foto_src_prod_p,id_prod_json_
       <div class="col-lg-5 col-datos-producto">
       <div>
          <h2>${nombre_prod_p}</h2>
-         <p style="font-size: 0.8em; color: grey; font-style: italic">Por: ${nombre_completo_p}</p>
+         <a href="/ampliar-usuario-redirect.html?id_usuario=${id_publicador_p}" class="nombre_modal_producto">Por: ${nombre_completo_p}</a>
       </div>
       <hr>
       <div>
@@ -314,7 +314,7 @@ function createModalRelAjax(idParam){
 */
 
 
-function getSplideProdPublic(param){
+function getSplideProdPublic(param,name_publicador,id_publicador_param){
       
    const URL = `/app/producto.php?accion=getproductos&id=${param}`
 
@@ -338,14 +338,16 @@ function getSplideProdPublic(param){
                let comentarios_obj = response.mensaje[i].comentarios || "";
                let primer_img_split = foto_prod.split(",")[0] || "";
                let primer_img = "/productos_img/"+primer_img_split+".png" || "";
-               let nombre_completo = "test";
+               let nombre_completo = name_publicador;
+               let id_publicador = id_publicador_param;
                let foto_src_prod = `/productos_img/${foto_prod}.png` || "";
                let splide_list = document.querySelector('.splide__list__'+param) || ""
-   
+               console.log("en getsplideprodpublic",param)
                var objParamModal = 
                      {
                         id_prod_p : id_prod_json,
                         id_public_p : param,
+                        id_publicador_p : id_publicador,
                         foto_src_prod_p : foto_src_prod,
                         id_prod_json_p : id_prod_json,
                         marca_prod_p : marca_prod,
@@ -356,7 +358,7 @@ function getSplideProdPublic(param){
                         precio_prod_p : precio_prod,
                         i_p : i,
                         comentarios_obj_p : comentarios_obj,
-                        foto_prod_p: foto_prod 
+                        foto_prod_p: foto_prod,
                      }
    
                traerModalProducto(objParamModal)
