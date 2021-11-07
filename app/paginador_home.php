@@ -11,7 +11,6 @@ if (!$sesionManager->validar(array('seller','picker'))){
    $jsonData = json_encode($publicacionManager->getListPublicacionIndexPaginador(),JSON_INVALID_UTF8_IGNORE);
    Database::Connect()->close();
    echo $jsonData;
-Database::Connect()->close();
 #echo '{}';
 #exit;
 ?>

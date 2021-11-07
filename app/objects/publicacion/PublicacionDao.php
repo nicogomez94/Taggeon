@@ -545,7 +545,7 @@ sql;
 
 
         $sql = <<<sql
-	SELECT * from 
+SELECT distinct s.*,pc1.nombre_subescena2, pc2.nombre_subescena3,pc3.nombre_subescena1  from 
 (
         SELECT
         1 as orden,
@@ -663,7 +663,11 @@ ON p1.subescena3= p2.subescena3 OR p1.subescena2= p2.subescena2
             usuarios.nombre,
             usuarios.idUsuario
  ) 
-as s
+as s INNER JOIN (select id, id_padre, nombre as nombre_subescena2 from publicacion_categoria UNION select id, id_padre, nombre as nombre_subescena2  from publicacion_categoria2) as pc1 ON pc1.id_padre = s.subescena1 AND s.subescena2 = pc1.id
+
+INNER JOIN (select id, id_padre, nombre as nombre_subescena3 from publicacion_categoria UNION select id,id_padre, nombre as nombre_subescena3  from publicacion_categoria2) as pc2 ON pc2.id_padre = s.subescena2  AND s.subescena3 = pc2.id
+
+INNER JOIN (select id, id_padre, nombre as nombre_subescena1 from publicacion_categoria UNION select id,id_padre, nombre as nombre_subescena1  from publicacion_categoria2) as pc3 ON pc3.id_padre is null  AND s.subescena1 = pc3.id
     LIMIT $offset,$limit
 sql;
 	//echo $sql;exit;
@@ -701,9 +705,9 @@ FROM
 ON
     u.idUsuarioComentario = `comentario`.`usuario_alta`
                 WHERE id_publicacion=$idPublicacionBD
-order by orden asc,fecha_alta desc
+order by fecha_alta desc
 sql;
-            //echo $sql2;
+   //         echo $sql2;
     
             $resultado2 = Database::Connect()->query($sql2);
             $list2 = array();
