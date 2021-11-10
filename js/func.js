@@ -1316,8 +1316,6 @@ function ampliarNotif(){
             var notifs = notificaciones || [];
             var sizeNotifs = notifs.length || 0;
 
-            console.log(notificaciones)
-
             if(sizeNotifs>0){
                 for(var i=0; i<sizeNotifs; i++){
                     
@@ -1327,8 +1325,6 @@ function ampliarNotif(){
                     var tipo_notif = notifs[i].tipo_notificacion || "";
                     var id = notifs[i].id || 0;
                     var json_notif_p_l = Object.keys(json_notif_p).length || 0;
-
-                    console.log(json_notif_p)
                     
                     var foto = json_notif_p.foto || 0;
                     var id_jn = json_notif_p.id || 0;
@@ -2482,80 +2478,81 @@ function getPublicTags(id_public,tags,index,publicador,id_publicador){
 
 function getPublicsHome(data){
     var sizePublic = data.length;
+    console.log(data)
     if(sizePublic>0){
         
-        var escena_json = JSON.parse(escena);
-        var escena_json_length = escena_json.length;
-    
-        
-        //recorre todas las cat y primero dibujo el item de cat
-        for(var i=0; i<escena_json_length; i++){
+        let arrayCats = [];
+
+        for(var i=0; i<sizePublic; i++){
+            let id_public = data[i].id || '';
+            let id_public_cat = data[i].subescena1 || 0;
+            let nombre_public = data[i].publicacion_nombre || '';
+            let descr_public = data[i].publicacion_descripcion || '';
+            let imagen_id = data[i].foto || '';
+            let producto = data[i].pid || 0;
+            let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
+            let favorito = data[i].favorito;
+            let fav_accion = "";
+            let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;
             
+            let id_subes1 = data[i].subescena1;
+            let id_subes2 = data[i].subescena2;
+            let id_subes3 = data[i].subescena3;
+
+            let nombre_subes1 = data[i].nombre_subescena1;
+            let nombre_subes2 = data[i].nombre_subescena2;
+            let nombre_subes3 = data[i].nombre_subescena3;
+
+            let esc_full_id = id_subes1+id_subes2+id_subes3;
+            let esc_full_name = `${nombre_subes1} ${nombre_subes2} ${nombre_subes3}`
             
-            var id_padre = escena_json[i].id_padre;
+            if(arrayCats.length <= 0){
+                arrayCats.push(esc_full_id);
+            }
+            let checkArray = arrayCats.find(element => element == esc_full_id);
+            let item_html = `<li class="splide__slide item item-cat-${esc_full_id}">
+            <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${esc_full_id}')">
+            <div class="titulo-col random-p-${i}"><span class="span-titulo">${esc_full_name}</span></div>
+            </div>
+            </li>`;
             
-            if(id_padre == null){
-                
-                var json_cat = escena_json[i].id || 0;
-                var json_cat_nombre = escena_json[i].nombre || "";
-                
-                var item_html = `<li class="splide__slide item item-cat-${json_cat}">
-                <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${json_cat}')">
-                <div class="titulo-col random-p-${i}"><span class="span-titulo">${json_cat_nombre}</span></div>
-                </div>
-                </li>`;
+            var public_html = 
+            `<div>
+            <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                        <div class="overlay-public">
+                        <a class="link-ampliar-home" href="${full_url}"></a>
+                        <div class="public-title-home">${nombre_public}</div>
+                            <div class="text-overlay">
+                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
+                                    <i class="fas fa-share-alt"></i>
+                                </span>
+                                <span class="text-overlay-link text-overlay-link-${id_public}"></span>
+                            </div>
+                        </div>
+                        <img src="${foto_src}" alt="img-${imagen_id}">
+                        </div>
+                        </div>`;
+
+
+            if(checkArray == undefined){
+
+                console.log("checkarray",checkArray)
+                arrayCats.push(esc_full_id);
                 
                 $(".splide__list__home").append(item_html);
-                
-                //numero random pattern por ahora
-                var random = Math.floor(Math.random() * 7);
-                if (random == 0) {random=random+1}
-                $(".random-p-"+i).addClass("pattern"+random);
-                
-                //recorre solo si la json_cat es igual a la de puid_public_catblic
-                
-                for(var x=0; x<sizePublic; x++){
-                    
-                    var id_public = data[x].id || '';
-                    var id_public_cat = data[x].subescena1 || 0;
-                    var nombre_public = data[x].publicacion_nombre || '';
-                    var descr_public = data[x].publicacion_descripcion || '';
-                    var imagen_id = data[x].foto || '';
-                    var producto = data[x].pid || 0;
-                    var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
-                    var favorito = data[x].favorito;
-                    var fav_accion = "";
-                    var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;
-                    
-                    
-                    if(json_cat == id_public_cat){
-                        
-                        var public_html = 
-                        `<div>
-                        <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
-                                    <div class="overlay-public">
-                                    <a class="link-ampliar-home" href="${full_url}"></a>
-                                    <div class="public-title-home">${nombre_public}</div>
-                                        <div class="text-overlay">
-                                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                                <i class="fas fa-share-alt"></i>
-                                            </span>
-                                            <span class="text-overlay-link text-overlay-link-${id_public}"></span>
-                                        </div>
-                                    </div>
-                                    <img src="${foto_src}" alt="img-${imagen_id}">
-                                    </div>
-                                    </div>`;
-                                    
-                            $(".item-cat-"+json_cat).append(public_html)
-                                    
-                            toggleFav(favorito,id_public,"getPublicsHome",fav_accion);
-                                    
-                                    
-                    }
-                }
+                $(".item-cat-"+esc_full_id).append(public_html)
+
+            }else{
+
+                console.log("else checkarray",checkArray)
+
+                $(".item-cat-"+esc_full_id).append(public_html)
             }
+
+            //toggleFav(favorito,id_public,etc)
+
         }
+
         
         //hardcodeado (cada vez que se llame va a volver a crearse)
         let splide_test = new Splide( '.splide__home', {

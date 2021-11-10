@@ -135,8 +135,8 @@ function pagar ($token){
             fwrite($fp, $str);
             fclose($fp);
             #fin debug post y response mp
-        
-            if (isset($payment) && isset($payment->status) && $payment->status == 'approved'){
+       	$debug = 1; 
+            if ($debug || isset($payment) && isset($payment->status) && $payment->status == 'approved'){
                 $str = "Paso 1\n";
                 $fp = fopen("/var/www/html/log.txt", 'a');
                 fwrite($fp, $str);

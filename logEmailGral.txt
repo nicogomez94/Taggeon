@@ -305,3 +305,60 @@ Respuesta OK => Envio enviarEmailAltaUsuario
 mensajeTexto: Se dio de alta
 usuario licrzito3@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0200.89.186.155
+Fecha 04/11/2021  18:59:10
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nicolastestq@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0200.89.186.155
+Fecha 04/11/2021  18:59:12
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nicolastestq@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 05/11/2021  17:46:31
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario agulleiro@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 05/11/2021  17:46:32
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario agulleiro@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 05/11/2021  17:47:11
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario agulleiro2@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 05/11/2021  17:47:12
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario agulleiro2@gmail.com
+Detalle Respuesta:
