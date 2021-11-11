@@ -1095,7 +1095,11 @@ function activarBuscador(param){
 
 
 
-function favoritos(id_publicacion,accion){
+function toggleFav(id_publicacion,accion,icon){
+
+    //reemplazo la clase para que se vea como faveado
+    let classToggle = (accion == "eliminar") ? "fav-alta" : "fav-eliminar";
+    icon.classList.replace("fav-"+accion,classToggle);
 
     var data = new FormData();
     data.append("accion",accion);
@@ -1128,7 +1132,11 @@ function favoritos(id_publicacion,accion){
     return false;
  }
 
- function likes(id_publicacion,accion){
+ function toggleLikes(id_publicacion,accion,icon){
+
+    //reemplazo la clase para que se vea como faveado
+    let classToggle = (accion == "eliminar") ? "like-alta" : "like-eliminar";
+    icon.classList.replace("like-"+accion,classToggle);
 
     var data = new FormData();
     data.append("accion",accion);
@@ -1161,10 +1169,14 @@ function favoritos(id_publicacion,accion){
     return false;
 }
 
-function seguidores(id_publicacion,idPublicadorParam,accionParam){
+function toggleFollow(id_publicacion,idPublicadorParam,accion,icon){
+
+    //reemplazo la clase para que se vea como faveado
+    let classToggle = (accion == "eliminar") ? "seg-alta" : "seg-eliminar";
+    icon.classList.replace("seg-"+accion,classToggle);
 
     var data = new FormData();
-    data.append("accion",accionParam);
+    data.append("accion",accion);
     data.append("id_publicacion",id_publicacion);
     data.append("id_publicador",idPublicadorParam);
  
@@ -1277,7 +1289,7 @@ function buscadorIndex(paramIndex){
                             $(".grid").append(public_html2)
             
                             
-                            toggleFav(favorito,id_public,"buscador",fav_accion);
+                            //toggleFav(favorito,id_public,"buscador");
                             
                         }//end for
 
@@ -1565,7 +1577,7 @@ function showSeguidoresSeguidos(tipo){
                     <img class="mr-3 img-seg" src="/imagen_perfil/generica.png" alt="${nombre}">
                     <div class="media-body">
                         <h5 class="mt-0">${nombre} ${apellido}</h5>
-                        <span>${email}</span>'
+                        <span>${email}</span>
                     </div>
                 </div>`
             
@@ -2257,55 +2269,6 @@ function getComentarios(comentarios_obj,desde){
 
 }
 
-function toggleFav(favorito,id_public,desde,fav_accion){
-
-    let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
-
-    if (favorito==null || favorito == 0) {
-        fav_accion="alta";
-        var fav_html = `<i class="fas fa-star" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')"></i>`
-        appendeo.prepend(fav_html);
-    }else{
-        fav_accion="eliminar";
-        var fav_html = `<i class="fas fa-star fav-eliminar" onclick="favoritos(${id_public},'${fav_accion}');$(this).toggleClass('fav-eliminar')">`
-        appendeo.prepend(fav_html);
-    }
-
-    //return fav_accion;
-}
-
-function toggleFollow(idPublicadorSeguido,id_publicador,id_public){
-    
-    if(idPublicadorSeguido==id_publicador) {
-        seg_accion="eliminar";
-        var seg_html = `<span class="follow_public"><i class="fas fa-user-plus seg-eliminar" onclick="seguidores(${id_public},'${id_publicador}','${seg_accion}');$(this).toggleClass('seg-eliminar')"></span>`
-        $(".header-public-"+id_public).append(seg_html);
-    }else{
-        seg_accion="alta";
-        var seg_html = `<span class="follow_public"><i class="fas fa-user-plus" onclick="seguidores(${id_public},'${id_publicador}','${seg_accion}');$(this).toggleClass('seg-eliminar')"></i></span>`
-        $(".header-public-"+id_public).append(seg_html);
-    }
-
-    return seg_accion;
-}
-
-function toggleLike(like,id_public,desde,like_accion){
-    
-    let appendeo = (desde=="ampliar") ? $(".social-public-"+id_public) : $(".text-overlay-link-"+id_public);
-
-    if (like==null || like == 0) {
-        like_accion="alta";
-        var like_html = `<span><i class="fas fa-heart" onclick="likes(${id_public},'${like_accion}');$(this).toggleClass('like-eliminar')"></i></span>`
-        appendeo.prepend(like_html);
-    }else{
-        like_accion="eliminar";
-        var like_html = `<span><i class="fas fa-heart like-eliminar" onclick="likes(${id_public},'${like_accion}');$(this).toggleClass('like-eliminar')"></span>`
-        appendeo.prepend(like_html);
-    }
-
-    return like_accion;
-}
-
 function getPublicsAmpliarHome(data){
 
     const sizePublic = data.length;
@@ -2335,14 +2298,14 @@ function getPublicsAmpliarHome(data){
             let winLoc = window.location.pathname || "";
             let id_usuario = "1";//hard
             let seguidor = "";
-            let fav_accion = "";
-            let seg_accion = "";
-            let like_accion = "";
             let seguidos = jsonData.seguidos || [];
             let idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
             let idPublicadorSeguido = idPublicadorSearch.idUsuario;
             let comentarios_obj = data[i].comentarios || [];
             let full_url = window.location.href;      
+            let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
+            let like_sw = (like == null || like == 0) ? 'alta' : 'eliminar';
+            let seg_sw = (idPublicadorSeguido==id_publicador) ? 'eliminar' : 'alta';
 
             if(cat_ampliar_home == id_public_cat){
 
@@ -2357,6 +2320,7 @@ function getPublicsAmpliarHome(data){
                                     <span class="img-perfil-public"><img onerror="this.src=\'/imagen_perfil/generica.png\'" src="${img_publicador}" alt="img-perfil"></span>
                                     <span class="title-public title-public-${i}"></span>
                                     </a>
+                                    <span class="follow_public"><i class="fas fa-user-plus seg-${seg_sw}" onclick="toggleFollow(${id_public},'${id_publicador}','${seg_sw}',this);"></i></span>
                                 </div>
                                 <div class="bodyimg-public-container bodyimg-public-container-${i}">
                                    <img class="imagen-public-${imagen_id}" src="${foto_src}" alt="">
@@ -2383,7 +2347,8 @@ function getPublicsAmpliarHome(data){
  
                                <div class="info-public">
                                   <div class="social-public social-public-${id_public}">
-                                        <span class="share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-paper-plane"></i></span>
+                                        <span><i class="fas fa-heart like-${like_sw}" onclick="toggleLikes(${id_public},'${like_sw}',this)"></i></span>
+                                        <span><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
                                         <span class="share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-paper-plane"></i></span>
                                   </div>
                                   <div class="datos-public">
@@ -2417,12 +2382,6 @@ function getPublicsAmpliarHome(data){
             //imgperfil comentarios
             var img_perfil = $(".img-perfil-usuario-drop").attr("src");
             $(".commentbox-user-img").attr("src", img_perfil);
-            
-            /**/
-            toggleFav(favorito,id_public,"ampliar",fav_accion);
-            toggleLike(like,id_public,"ampliar",fav_accion);
-            toggleFollow(idPublicadorSeguido,id_publicador,id_public)
-            /**/
             
         }else{
             alert("no hay publicaciones")
@@ -2549,7 +2508,7 @@ function getPublicsHome(data){
                 $(".item-cat-"+esc_full_id).append(public_html)
             }
 
-            //toggleFav(favorito,id_public,etc)
+            //toggleFav(favorito,id_public,desde)
 
         }
 

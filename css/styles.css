@@ -3014,8 +3014,11 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     font-size: 5em;
     margin-bottom: 10px;
 }
-
+.fav-alta, .seg-alta, .like-alta{
+    color: #aab8c2 !important;
+}
 .fav-eliminar{
+    cursor: pointer;
     color: var(--golden-taggeon) !important;
 }
 .seg-eliminar{
