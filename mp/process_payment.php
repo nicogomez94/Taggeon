@@ -42,7 +42,7 @@ $validarStock = $objPrincipalManager->validarStock($_POST['id_carrito'],$GLOBALS
 if ($objPrincipalManager->getStatus() != 'ok'){
 	$objRet = array(
 	    "status"  => "ERROR",
-	    "mensaje" => "Los siguientes productos se encuentran sin stock:".$objPrincipalManager->getMsj()
+	    "mensaje" => $objPrincipalManager->getMsj()
 	);
 	$ret = json_encode($objRet);
 	$fp = fopen("/var/www/html/log.txt", 'a');
@@ -98,11 +98,11 @@ function pagar ($token){
         
     $payment = new MercadoPago\Payment();
     $payment->transaction_amount = (float)$_POST['transactionAmount'];
-    $payment->token = $_POST['token'];
+    $payment->token = isset($_POST["token"]) ? $_POST["token"] : '';
     $payment->description = "TAGGEON ".$_POST['id_carrito'];
-    $payment->installments = (int)$_POST['installments'];
-    $payment->payment_method_id = $_POST['paymentMethodId'];
-    $payment->issuer_id = (int)$_POST['issuer'];
+    $payment->installments = isset($_POST["installments"]) ? (int)$_POST['installments'] : 0;
+    $payment->payment_method_id = isset($_POST["payment_method_id"]) ? $_POST['paymentMethodId'] : '';
+    $payment->issuer_id = isset($_POST["issuer"]) ? (int)$_POST['issuer'] : 0;
       
 
 
@@ -116,31 +116,35 @@ function pagar ($token){
 
     $payment->save();
 
-            #debug post y response mp
-            $str = "Fecha " . date('d/m/Y  H:i:s', time())."\n";
-            $str .= "post transactionAmount: ".$_POST['transactionAmount']."\n";
-            $str .= "post token: ".$_POST['token']."\n";
-            $str .= "post installments: ".$_POST['installments']."\n";
-            $str .= "post paymentMethodId: ".$_POST['paymentMethodId']."\n";
-            $str .= "post issuer: ".$_POST['issuer']."\n";
-            $str .= "post email: ".$_POST['email']."\n";
-            $str .= "post docType: ".$_POST['docType']."\n";
-            $str .= "post docNumber: ".$_POST['docNumber']."\n";
-            $str .= "post description: TAGGEON ".$_POST['id_carrito']."\n";
-            $str .= "post id_carrito: ".$_POST['id_carrito']."\n";
-            $str .= "response mp status: ".$payment->status."\n";
-            $str .= "response mp status_detail: ".$payment->status_detail."\n";
-            $str .= "response mp id: ".$payment->id."\n";
-            $str .= "#---------------------------------------------\n";
-            $fp = fopen("/var/www/html/log.txt", 'a');
-            fwrite($fp, $str);
-            fclose($fp);
+       	$debug = 1; 
+    	   if (!$debug){
+               #debug post y response mp
+               $str = "Fecha " . date('d/m/Y  H:i:s', time())."\n";
+               $str .= "post transactionAmount: ".$_POST['transactionAmount']."\n";
+               $str .= "post token: ".$_POST['token']."\n";
+               $str .= "post installments: ".$_POST['installments']."\n";
+               $str .= "post paymentMethodId: ".$_POST['paymentMethodId']."\n";
+               $str .= "post issuer: ".$_POST['issuer']."\n";
+               $str .= "post email: ".$_POST['email']."\n";
+               $str .= "post docType: ".$_POST['docType']."\n";
+               $str .= "post docNumber: ".$_POST['docNumber']."\n";
+               $str .= "post description: TAGGEON ".$_POST['id_carrito']."\n";
+               $str .= "post id_carrito: ".$_POST['id_carrito']."\n";
+               $str .= "response mp status: ".$payment->status."\n";
+               $str .= "response mp status_detail: ".$payment->status_detail."\n";
+               $str .= "response mp id: ".$payment->id."\n";
+               $str .= "#---------------------------------------------\n";
+               $fp = fopen("/var/www/html/log.txt", 'a');
+               fwrite($fp, $str);
+               fclose($fp);
+            }
             #fin debug post y response mp
             if ($debug || (isset($payment) && isset($payment->status) && $payment->status == 'approved')){
                 $str = "Paso 1\n";
                 $fp = fopen("/var/www/html/log.txt", 'a');
                 fwrite($fp, $str);
                 fclose($fp);
+        $objPrincipalManager = new CarritoManager();
                 $objPrincipalManager->cambiarEstadoMayor3($_POST,4);
                 if ($objPrincipalManager->getStatus() == 'OK') {
                     $str = "OK\n";
