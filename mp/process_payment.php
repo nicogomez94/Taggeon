@@ -6,6 +6,7 @@ include_once("../app/objects/carrito/CarritoManager.php");
 require_once 'vendor/autoload.php';
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
+       	$debug = 1; 
 
 $statusRet  = 'ERROR';
 $mensajeRet = 'ERROR'; 
@@ -17,7 +18,7 @@ if ($sesionManager->validar(array('seller','picker'))){
     $usuarioManager = new UsuarioManagerImpl();
     $tokenMP = $usuarioManager->getTokenMP();
 
-    if (!isset($tokenMP) || $tokenMP == ''){
+    if (!$debug && (!isset($tokenMP) || $tokenMP == '')){
         $objRet = array(
             "status"  => "ERROR",
             "mensaje" => "token incorrecto $tokenMP"
@@ -32,7 +33,7 @@ if ($sesionManager->validar(array('seller','picker'))){
     }else{
 
         $fp = fopen("/var/www/html/log.txt", 'a');
-        fwrite($fp, "\n######################################################\njson $tokenMP\n######################################################\n");
+        fwrite($fp, "\n######################################################\njson debug $debug; $tokenMP\n######################################################\n");
         fclose($fp);
     }
     if (sizeof($_POST) > 0) {
@@ -135,8 +136,7 @@ function pagar ($token){
             fwrite($fp, $str);
             fclose($fp);
             #fin debug post y response mp
-       	$debug = 1; 
-            if ($debug || isset($payment) && isset($payment->status) && $payment->status == 'approved'){
+            if ($debug || (isset($payment) && isset($payment->status) && $payment->status == 'approved')){
                 $str = "Paso 1\n";
                 $fp = fopen("/var/www/html/log.txt", 'a');
                 fwrite($fp, $str);
