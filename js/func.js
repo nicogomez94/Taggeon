@@ -393,10 +393,7 @@ $('#registro_usuario_seller').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert (data.mensaje);
-                console.log(data)
                 iniciar_sesion(mail,pass)
-                //window.location.replace("/");
             }else{
                 alert (data.mensaje);
             }
@@ -828,7 +825,6 @@ function iniciar_sesion(mail,pass){
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                alert("entro iniciar_sesion "+data.mensaje)
                 window.location.replace("/");
             }else{
                 $("#mensaje-sin-login").css("display","block");
@@ -2565,11 +2561,14 @@ function getPublicsHome(data){
     }
 }
 
+function showCantResult(length){
+    var showResultados = document.querySelector(".show-result-num") || 0;
+    showResultados.innerHTML = length; 
+}
+
 function getMisProductos(data){
     console.log(data)
     var sizeProductos = data.length || 0; 
-    var showResultados = document.querySelector(".show-result-num") || 0;
-    showResultados.innerHTML = sizeProductos; 
 
     for(var i=0; i<sizeProductos; i++){
         let nombre_prod = data[i].titulo;
@@ -2728,7 +2727,6 @@ function getDataPaging(dataPaging) {
                 case "paginador_mis-compras.php":
                     getMisCompras(data);
                     break;
-
                 case "paginador_mis-ventas.php":
                     getMisVentas(data);
                     break;
@@ -2738,9 +2736,10 @@ function getDataPaging(dataPaging) {
                 default: alert("error")
             }
 
+            showCantResult(data.length)
             document.body.classList.remove("loading"); 
         })
-        //.catch(error => console.log("error"))
+        .catch(error => console.error("error"))
         
 }
 /*
