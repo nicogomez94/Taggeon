@@ -362,3 +362,179 @@ Respuesta OK => Envio enviarEmailAltaUsuario
 mensajeTexto: Se dio de alta
 usuario agulleiro2@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.127.53.81
+Fecha 12/11/2021  11:42:55
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Cum sed consequuntur, se creo la orden 335.
+
+Datos del envio: codigo postal 27. Localidad: Nisi ut nostrum comm.
+
+Notas: Consequat Voluptate
+usuario kaziwic@mailinator.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.127.53.81
+Fecha 12/11/2021  11:42:57
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Cum sed consequuntur, se creo la orden 335.
+
+Datos del envio: codigo postal 27. Localidad: Nisi ut nostrum comm.
+
+Notas: Consequat Voluptate
+usuario kaziwic@mailinator.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.127.53.81
+Fecha 12/11/2021  11:48:18
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Officia earum in sol, se creo la orden 334.
+
+Datos del envio: codigo postal 6. Localidad: A nulla aliqua Laud.
+
+Notas: Voluptas sed culpa 
+usuario seditik@mailinator.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.127.53.81
+Fecha 12/11/2021  11:48:19
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Officia earum in sol, se creo la orden 334.
+
+Datos del envio: codigo postal 6. Localidad: A nulla aliqua Laud.
+
+Notas: Voluptas sed culpa 
+usuario seditik@mailinator.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 12/11/2021  13:37:46
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 346.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: fdsfdsfds
+usuario nicolasgomez94@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 12/11/2021  13:37:48
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 346.
+
+Datos del envio: codigo postal 1416. Localidad: CABA.
+
+Notas: fdsfdsfds
+usuario nicolasgomez94@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:19:42
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico1999@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:19:44
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico1999@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:55:58
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico155555@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:55:59
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico155555@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:57:07
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario agulleiro255@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:57:08
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario agulleiro255@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:57:26
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico199455@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  16:57:27
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico199455@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  17:08:28
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico1994fgfgf@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36200.89.186.155
+Fecha 13/11/2021  17:08:29
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico1994fgfgf@gmail.com
+Detalle Respuesta:

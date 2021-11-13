@@ -794,4 +794,565 @@ token APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
  status: ERROR mensaje: 
 Paso agregar busquedaPaso agregar busqueda
 row_cnt 1
-ok
+okEl id  de carrito  es incorrecto.
+######################################################
+json debug 1; 0
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:El campo id es incorrecto."}El id  de carrito  es incorrecto.
+######################################################
+json debug 1; 0
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:El campo id es incorrecto."}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '347') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '347') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; 
+######################################################
+Fecha 11/11/2021  17:38:11
+post transactionAmount: 20000
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 347
+post id_carrito: 347
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token 
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '347') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '347') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; 
+######################################################
+Fecha 11/11/2021  17:38:33
+post transactionAmount: 20000
+post token: 
+post installments: 1
+post paymentMethodId: visa
+post issuer: 288
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 38783978
+post description: TAGGEON 347
+post id_carrito: 347
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token 
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:13:17
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: qedaqytuk@mailinator.com
+post docType: LE
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:13:34
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:test"}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:15:28
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:test"}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:test"}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:16:47
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:17:18
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: 
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:test"}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:test"}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:"}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:20:39
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:23:31
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:26:07
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Fecha 12/11/2021  11:39:36
+post transactionAmount: 10
+post token: 
+post installments: 
+post paymentMethodId: 
+post issuer: 
+post email: agulleiroliliana@hotmail.com
+post docType: DNI
+post docNumber: 640
+post description: TAGGEON 335
+post id_carrito: 335
+response mp status: 
+response mp status_detail: 
+response mp id: 
+#---------------------------------------------
+Paso else
+Paso else 1
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: ERROR mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Paso 1
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '335') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Paso 1
+OK
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: OK mensaje: 
+El id  de carrito  es incorrecto.
+######################################################
+json debug 1; 0
+######################################################
+{"status":"ERROR","mensaje":"Los siguientes productos se encuentran sin stock:El campo id es incorrecto."}		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '334') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '334') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+######################################################
+Paso 1
+OK
+token APP_USR-8374534224864099-100601-e62a4612277237f4095c1d841e8cfef3-141510028
+ status: OK mensaje: 
+El id 346 de carrito  es incorrecto.
+######################################################
+json debug 1; 0
+######################################################
+Paso 1
+OK
+token 0
+ status: OK mensaje: 

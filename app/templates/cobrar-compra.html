@@ -107,9 +107,9 @@
                 <b>Total: </b><span class="totales-num"></span>
             </div>
             <hr>
-            
-        <!-- <form action="/mp/process_payment.php" method="post" id="paymentForm"> -->
-           <!-- <form id="paymentForm">
+            <div id="paymentForm"></div>
+        <form action="/mp/process_payment.php" method="post">
+            <!-- <form id="paymentForm"> -->
                 <h3>Detalles de pago</h3>
                     <div class="mp__detalles_comprador">
                     <div class="group group-form-checkout">
@@ -261,8 +261,9 @@
                       Realizar Compra
                     </button>
                     <br>
+                    <input id="testcarr" type="hidden" name="id_carrito" value="">
                 </div>
-            </form> -->
+            </form> 
 
             <!--  -->
             <!--  -->
@@ -271,7 +272,7 @@
             <!--  -->
             <!--  -->
 
-             <form id="paymentForm">
+             <!-- <form id="paymentForm">
                 <h3>Detalles del comprador</h3>
                   <div>
                     <div>
@@ -332,7 +333,7 @@
                       <br>
                     </div>
                 </div>
-              </form>  
+              </form>   -->
         </div>
     </div>
 
@@ -367,7 +368,7 @@ $(document).ready(function(){
   },
 });*/
 
-    
+    $("#testcarr").attr("value",jsonData.compras[0].id_carrito)
     var sizeCompras = jsonData.compras.length;
 
     if(sizeCompras>0){

@@ -379,12 +379,11 @@ $('#form_registro_cont_pass').submit(function (e) {
 $('#registro_usuario_seller').submit(function (e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
+    var mail = formData.get("mail");
+    var pass = formData.get("pass");
         
     $.ajax({
         url: '/app/alta_seller.php',
-        //type: 'post',
-        //data: $("#registro_usuario_seller").serialize(), 
-        //dataType : "json",
         data: formData,
         type: 'POST',
         processData: false,
@@ -395,7 +394,9 @@ $('#registro_usuario_seller').submit(function (e) {
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
                 alert (data.mensaje);
-                window.location.replace("/");
+                console.log(data)
+                iniciar_sesion(mail,pass)
+                //window.location.replace("/");
             }else{
                 alert (data.mensaje);
             }
@@ -810,6 +811,39 @@ $("#buscador-index-input").keyup(function(e){
 
 });
 
+function iniciar_sesion(mail,pass){
+
+    var formData2 = new FormData();
+    formData2.append("mail",mail)
+    formData2.append("pass",pass)
+    
+    $.ajax({
+        url: '/app/login.php',
+        data: formData2,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function( data, textStatus, jQxhr ){
+            if (data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);														
+            }else if(data.status == 'OK' || data.status == 'ok'){
+                alert("entro iniciar_sesion "+data.mensaje)
+                window.location.replace("/");
+            }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(data.mensaje);
+                //alert (data.mensaje);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            $("#mensaje-sin-login").css("display","block");
+            $("#mensaje-sin-login").html(msj);
+        }
+    });
+    return false;
+}
 
 function actualizarPantallaEditarUsuario () {
     if (jsonDatosEditar != undefined){
@@ -1098,8 +1132,9 @@ function activarBuscador(param){
 function toggleFav(id_publicacion,accion,icon){
 
     //reemplazo la clase para que se vea como faveado
-    let classToggle = (accion == "eliminar") ? "fav-alta" : "fav-eliminar";
-    icon.classList.replace("fav-"+accion,classToggle);
+    let classToggle = (accion == "eliminar") ? "alta" : "eliminar";
+    icon.classList.replace("fav-"+accion,"fav-"+classToggle);
+    icon.setAttribute("onclick",`toggleFav(${id_publicacion},'${classToggle}',this)`)
 
     var data = new FormData();
     data.append("accion",accion);
@@ -1120,23 +1155,28 @@ function toggleFav(id_publicacion,accion,icon){
              console.log("REDIRECT-->"+dataM);							
           }else if(dataJ == 'OK'){
              console.log("OK-->"+dataJ+"/"+dataM);
+            if(accion=="eliminar"){
+                alertify.error("Sacaste la publicacion a tus favoritos")
+            }else{
+                alertify.success("Agregaste la publicacion a tus favoritos")
+            }
           }else{
              console.log("ELSE-->"+dataJ+"/"+dataM);
           }
        },
        error: function( data, jqXhr, textStatus, errorThrown ){
-          ajax("ERROR AJAX--> "+data);
+          alert("ERROR AJAX--> "+data);
           console.log(data);
        }
     });
     return false;
  }
 
- function toggleLikes(id_publicacion,accion,icon){
+function toggleLikes(id_publicacion,accion,icon){
 
-    //reemplazo la clase para que se vea como faveado
-    let classToggle = (accion == "eliminar") ? "like-alta" : "like-eliminar";
-    icon.classList.replace("like-"+accion,classToggle);
+    let classToggle = (accion == "eliminar") ? "alta" : "eliminar";
+    icon.classList.replace("like-"+accion,"like-"+classToggle);
+    icon.setAttribute("onclick",`toggleLikes(${id_publicacion},'${classToggle}',this)`)
 
     var data = new FormData();
     data.append("accion",accion);
@@ -1169,11 +1209,11 @@ function toggleFav(id_publicacion,accion,icon){
     return false;
 }
 
-function toggleFollow(id_publicacion,idPublicadorParam,accion,icon){
+function toggleFollow(id_publicacion,idPublicadorParam,accion,nombre_publicador,icon){
 
-    //reemplazo la clase para que se vea como faveado
-    let classToggle = (accion == "eliminar") ? "seg-alta" : "seg-eliminar";
-    icon.classList.replace("seg-"+accion,classToggle);
+    let classToggle = (accion == "eliminar") ? "alta" : "eliminar";
+    icon.classList.replace("seg-"+accion,"seg-"+classToggle);
+    icon.setAttribute("onclick",`toggleFollow(${id_publicacion},'${idPublicadorParam}','${classToggle}','${nombre_publicador}',this)`)
 
     var data = new FormData();
     data.append("accion",accion);
@@ -1194,7 +1234,11 @@ function toggleFollow(id_publicacion,idPublicadorParam,accion,icon){
             if (dataJ == 'REDIRECT'){
                 console.log("REDIRECT-->"+dataM);									
             }else if(dataJ == 'OK'){
-                console.log("OK-->"+dataJ+"/"+dataM);
+                if(accion=="eliminar"){
+                    alertify.error("Dejaste de seguir a "+nombre_publicador)
+                }else{
+                    alertify.success("Estás siguiendo a "+nombre_publicador)
+                }
             }else{
                 console.log("ELSE-->"+dataJ+"/"+dataM);
             }
@@ -1288,8 +1332,6 @@ function buscadorIndex(paramIndex){
 
                             $(".grid").append(public_html2)
             
-                            
-                            //toggleFav(favorito,id_public,"buscador");
                             
                         }//end for
 
@@ -2135,7 +2177,7 @@ function getMisPublic(data){
 function getMisCompras(data){
     const sizeCompras = data.length;
     const flex_listado = document.querySelector(".flex-listado")
-
+    console.log(data)
     if(sizeCompras>0){
         for(var i=0; i<sizeCompras; i++){
         
@@ -2320,7 +2362,7 @@ function getPublicsAmpliarHome(data){
                                     <span class="img-perfil-public"><img onerror="this.src=\'/imagen_perfil/generica.png\'" src="${img_publicador}" alt="img-perfil"></span>
                                     <span class="title-public title-public-${i}"></span>
                                     </a>
-                                    <span class="follow_public"><i class="fas fa-user-plus seg-${seg_sw}" onclick="toggleFollow(${id_public},'${id_publicador}','${seg_sw}',this);"></i></span>
+                                    <span class="follow_public"><i class="fas fa-user-plus seg-${seg_sw}" onclick="toggleFollow(${id_public},'${id_publicador}','${seg_sw}','${publicador}',this);"></i></span>
                                 </div>
                                 <div class="bodyimg-public-container bodyimg-public-container-${i}">
                                    <img class="imagen-public-${imagen_id}" src="${foto_src}" alt="">
@@ -2453,6 +2495,7 @@ function getPublicsHome(data){
             let favorito = data[i].favorito;
             let fav_accion = "";
             let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;
+            let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
             
             let id_subes1 = data[i].subescena1;
             let id_subes2 = data[i].subescena2;
@@ -2485,7 +2528,7 @@ function getPublicsHome(data){
                                 <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
                                     <i class="fas fa-share-alt"></i>
                                 </span>
-                                <span class="text-overlay-link text-overlay-link-${id_public}"></span>
+                                <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
                             </div>
                         </div>
                         <img src="${foto_src}" alt="img-${imagen_id}">
@@ -2494,21 +2537,17 @@ function getPublicsHome(data){
 
 
             if(checkArray == undefined){
-
-                console.log("checkarray",checkArray)
+                //console.log("checkarray",checkArray)
                 arrayCats.push(esc_full_id);
                 
                 $(".splide__list__home").append(item_html);
                 $(".item-cat-"+esc_full_id).append(public_html)
 
             }else{
-
-                console.log("else checkarray",checkArray)
-
+                //console.log("else checkarray",checkArray)
                 $(".item-cat-"+esc_full_id).append(public_html)
             }
 
-            //toggleFav(favorito,id_public,desde)
 
         }
 
