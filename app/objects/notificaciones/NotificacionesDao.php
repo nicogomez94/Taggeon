@@ -179,6 +179,13 @@ SQL;
 	
 	public function getListNotificaciones()
     {
+	$paginador = '';
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
+		$offset = 0;
+	}
+	$limit = 50;
+        $paginador = " LIMIT $offset,$limit";
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $sql = <<<sql
@@ -189,6 +196,7 @@ SQL;
 		WHERE
         (`notificaciones`.eliminar = 0 OR `notificaciones`.eliminar IS NULL) 
 AND usuario_notificacion= $usuarioAltaDB
+$paginador
 sql;
 	//echo $sql;
         $resultado = Database::Connect()->query($sql);
