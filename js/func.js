@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-    let sizeSeguidores = jsonData.seguidores.length;
-    let sizeSeguidos = jsonData.seguidos.length || 0;
 
-    //perfil
-    $("#seguidores_count").html(sizeSeguidores);
-    $("#seguidos_count").html(sizeSeguidos);
+    if(typeof jsonData !== undefined){
+        let sizeSeguidores = jsonData.seguidores.length;
+        let sizeSeguidos = jsonData.seguidos.length || 0;
+    
+        //perfil
+        $("#seguidores_count").html(sizeSeguidores);
+        $("#seguidos_count").html(sizeSeguidos);
+    }
 
     //activar notifs
     ampliarNotif();
@@ -2504,10 +2506,11 @@ function getPublicsHome(data){
             let esc_full_id = id_subes1+id_subes2+id_subes3;
             let esc_full_name = `${nombre_subes1} ${nombre_subes2} ${nombre_subes3}`
             
-            if(arrayCats.length <= 0){
-                arrayCats.push(esc_full_id);
-            }
+            // if(arrayCats.length <= 0){
+            //     arrayCats.push(esc_full_id);
+            // }
             let checkArray = arrayCats.find(element => element == esc_full_id);
+            
             let item_html = `<li class="splide__slide item item-cat-${esc_full_id}">
             <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${esc_full_id}')">
             <div class="titulo-col random-p-${i}"><span class="span-titulo">${esc_full_name}</span></div>
@@ -2533,15 +2536,16 @@ function getPublicsHome(data){
 
 
             if(checkArray == undefined){
-                //console.log("checkarray",checkArray)
+                //NO EXISTE EN EL ARRAY ENTONCES DIBUJO OTRA CAT
                 arrayCats.push(esc_full_id);
-                
                 $(".splide__list__home").append(item_html);
                 $(".item-cat-"+esc_full_id).append(public_html)
+                console.log(nombre_public+" - "+esc_full_name+" "+esc_full_id)
 
             }else{
-                //console.log("else checkarray",checkArray)
+                //existe en el array entonces lo dibujo en la cat que ya esta
                 $(".item-cat-"+esc_full_id).append(public_html)
+                console.log("(E) "+nombre_public+" - "+esc_full_name+" "+esc_full_id)
             }
 
 

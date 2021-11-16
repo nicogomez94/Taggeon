@@ -106,7 +106,7 @@ $(document).ready(function(){
          var total_vendedor = jsonData.metricas[i].total_vendedor || 0;
          var usuario_alta = jsonData.metricas[i].usuario_alta || 0;
          
-         //por ahora esta como la suma de todo
+         //por ahora esta como la suma de todo TODO
          var a_liquidar = precio++;
 
          var el = document.querySelector("#detalle_compras_metricas");
@@ -131,6 +131,9 @@ $(document).ready(function(){
 
 
       }
+   }else{
+      var no_metricas = '<h2>Metricas</h2><hr><h1 class="text-center">Todavía no hay datos para mostrar</h1>'
+      $(".inner-compras").html(no_metricas)
    }
       
 });
