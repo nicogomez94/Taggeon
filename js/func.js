@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     //activar notifs
-    ampliarNotif();
+    ///ampliarNotif();
 
     let grids = [...document.querySelectorAll('.grid--masonry')];
 
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // abro/cierro menu perfil
     $(document).click(function () {
         $("#dropdown-user-menu").hide();
-        $(".notifs-button-ampliar").hide();
+        //$(".notifs-button-ampliar").hide();
     });
     //dropdown del user
     $("#drop").on("click", function(e) {
@@ -123,14 +123,14 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
 
         $("#dropdown-user-menu").toggle();
-        $(".notifs-button-ampliar").hide();
+        //$(".notifs-button-ampliar").hide();
     });
     //notifs
     $(".notifs-button").click(function(e){
         e.stopPropagation();
         e.preventDefault();
 
-        $(".notifs-button-ampliar").toggle();
+        //$(".notifs-button-ampliar").toggle();
         $("#dropdown-user-menu").hide();
     });
     // drop de 
@@ -1042,6 +1042,14 @@ function copiarLink(){
     document.execCommand("copy");
 }
 
+function activarNotifs(cant){
+    const dataPaging = {
+        cantidad : cant,
+        url: "paginador_notificaciones.php"
+    }
+    getDataPaging(dataPaging);
+}
+
 //buscador productos en publicaciones
 function activarBuscador(param){
     var search = param.val();
@@ -1361,11 +1369,11 @@ function buscadorIndex(paramIndex){
     }
 }
 
-function ampliarNotif(){
+function ampliarNotif(notifs){
 
     if(typeof jsonData !== "undefined"){
         if(typeof jsonData.usuario !== "undefined" || typeof notificaciones !== "undefined"){
-            var notifs = notificaciones || [];
+
             var sizeNotifs = notifs.length || 0;
 
             if(sizeNotifs>0){
@@ -1390,6 +1398,7 @@ function ampliarNotif(){
                     var foto_prod = json_notif_p.foto_id;
                     var comentario = json_notif_p.comentario;
                     var foto_src = `/productos_img/${foto_prod}.png`;
+                    var id_special = id+i;//parqa que no se matchee con los que viene en la otra paginacion
                     
                     let html_favorito = `<div>${nombre} a&ntilde;adi&oacute; tu publicaci&oacute;n "${publicacion_nombre}" como favorita</div>`;
                     let html_seg = `<div>${nombre} te esta siguiendo</div>`;
@@ -1397,37 +1406,38 @@ function ampliarNotif(){
                     let html_foto_prod = `<img class="mr-3 img-notifs" src="${foto_src}" alt="img_notif">`;
                     let html_comentario = `<div><a href="/ampliar-publicacion-home.html?id=${id_jn}&accion=ampliar&cat=${id_publicacion_categoria}">${nombre} coment&oacute; "${comentario}" en tu public.: "${publicacion_nombre}"</a></div>`;
                     let html_notif = 
-                                `<div class="media notif-id-${id}">
-                                    <i class="notif-icon notif-icon-${id} mr-3 fas fa-heart heart-notif"></i>
-                                    <div class="media-body media-body-${id}"></div>
-                                    <i onclick="eliminarNotif('${id}')" class="eliminar-notif fas fa-times"></i>
+                                `<div class="media notif-id-${id_special}">
+                                    <i class="notif-icon notif-icon-${id_special} mr-3 fas fa-heart heart-notif"></i>
+                                    <div class="media-body media-body-${id_special}"></div>
+                                    <i onclick="eliminarNotif('${id_special}')" class="eliminar-notif fas fa-times"></i>
                                 </div>`;
                     
-                    let notif_id_media = $(".media-body-"+id);
-                    let notif_icon = $(".notif-icon-"+id);
-                    let notif_id = $(".notif-id-"+id);
-                    
+                                
+                                let notif_id_media = $(".media-body-"+id_special);
+                                let notif_icon = $(".notif-icon-"+id_special);
+                                let notif_id = $(".notif-id-"+id_special);
+                                
                     //aparece el contador de notifs con nro
                     $(".count-notif").show();
                     $(".count-notif").text(sizeNotifs)
                     //
         
-                    $(".notifs-button-ampliar").append(html_notif)
+                    $(".notifs-listado").append(html_notif)
 
                     switch(tipo_notif){
                         case "favorito" : 
-                            $(".media-body-"+id).append(html_favorito)
+                            $(".media-body-"+id_special).append(html_favorito)
                             break;
                         case "seguidores" : 
-                            $(".media-body-"+id).append(html_seg)
+                            $(".media-body-"+id_special).append(html_seg)
                             break;
                         case "vendedor" : 
-                            $(".notif-id-"+id).prepend(html_foto_prod);
-                            $(".notif-icon-"+id).remove();
-                            $(".media-body-"+id).html(html_vendedor);
+                            $(".notif-id-"+id_special).prepend(html_foto_prod);
+                            $(".notif-icon-"+id_special).remove();
+                            $(".media-body-"+id_special).html(html_vendedor);
                             break;
                         case "comentario" : 
-                            $(".media-body-"+id).append(html_comentario)
+                            $(".media-body-"+id_special).append(html_comentario)
                             break;
                         default: alert("error en notificaciones")
                     }
@@ -2736,6 +2746,12 @@ function getDataPaging(dataPaging) {
                     break;
                 case "paginador_ampliar-producto.php":
                     getMisProductos(data);
+                    break;
+                case "paginador_notificaciones.php":
+                    ampliarNotif(data);
+                    break;
+                case "paginador_comentarios.php":
+                    ampliarNotif(data);
                     break;
                 default: alert("error")
             }

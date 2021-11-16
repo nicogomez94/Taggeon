@@ -184,7 +184,7 @@ SQL;
 	if (!preg_match('/^[0-9]+$/i', $offset)) {
 		$offset = 0;
 	}
-	$limit = 50;
+	$limit = 5;
         $paginador = " LIMIT $offset,$limit";
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);

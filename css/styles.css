@@ -346,6 +346,7 @@ body{
     width: 400px;
     overflow-y: auto;
     max-height: 160px;
+    display: block;
 }
 .notifs-header{
     font-weight: 500;
