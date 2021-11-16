@@ -171,6 +171,13 @@ sql;
 
 	public function getFavorito($id)
     {
+	$paginador = '';
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
+		$offset = 0;
+	}
+	$limit = 50;
+        $paginador = " LIMIT $offset,$limit";
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $id = isset($id) ?   $id : '';
@@ -183,6 +190,7 @@ sql;
     	WHERE
 			favorito.id=$idDB AND 
         (`favorito`.eliminar = 0 OR `favorito`.eliminar IS NULL) AND `favorito`.usuario_alta = $usuarioAltaDB
+$paginador
 sql;
         $resultado = Database::Connect()->query($sql);
         $row_cnt = mysqli_num_rows($resultado);

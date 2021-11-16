@@ -175,6 +175,10 @@ class  FavoritoManager
                 {
                     return $this->claseDao->getListPublicacion();
                 }                
+                public function getListFavorito()
+                {
+                    return $this->claseDao->getListFavorito();
+                }                
 
         
             private function validarUsuario($usuario)
