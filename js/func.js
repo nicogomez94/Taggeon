@@ -113,9 +113,9 @@ document.addEventListener("DOMContentLoaded", function() {
     //$(".icon-sort").hide();
 
     // abro/cierro menu perfil
-    $(document).click(function () {
+    $(document).not(".notifs-button-ampliar").click(function () {
         $("#dropdown-user-menu").hide();
-        //$(".notifs-button-ampliar").hide();
+        $(".notifs-button-ampliar").hide();
     });
     //dropdown del user
     $("#drop").on("click", function(e) {
@@ -123,14 +123,14 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
 
         $("#dropdown-user-menu").toggle();
-        //$(".notifs-button-ampliar").hide();
+        $(".notifs-button-ampliar").hide();
     });
     //notifs
     $(".notifs-button").click(function(e){
         e.stopPropagation();
         e.preventDefault();
 
-        //$(".notifs-button-ampliar").toggle();
+        $(".notifs-button-ampliar").toggle();
         $("#dropdown-user-menu").hide();
     });
     // drop de 
@@ -1042,7 +1042,11 @@ function copiarLink(){
     document.execCommand("copy");
 }
 
-function activarNotifs(cant){
+function activarNotifs(cant,el){
+    let new_cant = cant+5;
+    console.log(new_cant)
+    el.setAttribute("onclick",`activarNotifs(${new_cant},this)`)
+
     const dataPaging = {
         cantidad : cant,
         url: "paginador_notificaciones.php"
@@ -1371,85 +1375,87 @@ function buscadorIndex(paramIndex){
 
 function ampliarNotif(notifs){
 
-    if(typeof jsonData !== "undefined"){
-        if(typeof jsonData.usuario !== "undefined" || typeof notificaciones !== "undefined"){
+    let sizeNotifs = notifs.length || 0;
+    let sizeContenedorNotifs = document.querySelector(".notifs-button-ampliar").childElementCount;
 
-            var sizeNotifs = notifs.length || 0;
+    if(sizeNotifs>0){
+        for(var i=0; i<sizeNotifs; i++){
+            
+            let compracompra = notifs[i].compracompra || 0;
+            let json_notif = notifs[i].json_notificacion || "";
+            let json_notif_p = JSON.parse(json_notif) || [];
+            let tipo_notif = notifs[i].tipo_notificacion || "";
+            let id = notifs[i].id || 0;
+            let json_notif_p_l = Object.keys(json_notif_p).length || 0;
 
-            if(sizeNotifs>0){
-                for(var i=0; i<sizeNotifs; i++){
-                    
-                    var compracompra = notifs[i].compracompra || 0;
-                    var json_notif = notifs[i].json_notificacion || "";
-                    var json_notif_p = JSON.parse(json_notif) || [];
-                    var tipo_notif = notifs[i].tipo_notificacion || "";
-                    var id = notifs[i].id || 0;
-                    var json_notif_p_l = Object.keys(json_notif_p).length || 0;
-                    
-                    var foto = json_notif_p.foto || 0;
-                    var id_jn = json_notif_p.id || 0;
-                    var id_publicacion_categoria = json_notif_p.id_publicacion_categoria || "";
-                    var pid = json_notif_p.pid || "";
-                    var publicacion_descripcion = json_notif_p.publicacion_descripcion || "";
-                    var nombre = json_notif_p.nombre || "";
-                    var nombre_producto = json_notif_p.nombre_producto || "";
-                    var publicacion_nombre = json_notif_p.publicacion_nombre || "";
-                    var usuario_alta = json_notif_p.usuario_alta || 0;
-                    var foto_prod = json_notif_p.foto_id;
-                    var comentario = json_notif_p.comentario;
-                    var foto_src = `/productos_img/${foto_prod}.png`;
-                    var id_special = id+i;//parqa que no se matchee con los que viene en la otra paginacion
-                    
-                    let html_favorito = `<div>${nombre} a&ntilde;adi&oacute; tu publicaci&oacute;n "${publicacion_nombre}" como favorita</div>`;
-                    let html_seg = `<div>${nombre} te esta siguiendo</div>`;
-                    let html_vendedor = `<div><a href="/mis-ventas.html">Vendiste ${nombre_producto}!</a></div>`;
-                    let html_foto_prod = `<img class="mr-3 img-notifs" src="${foto_src}" alt="img_notif">`;
-                    let html_comentario = `<div><a href="/ampliar-publicacion-home.html?id=${id_jn}&accion=ampliar&cat=${id_publicacion_categoria}">${nombre} coment&oacute; "${comentario}" en tu public.: "${publicacion_nombre}"</a></div>`;
-                    let html_notif = 
-                                `<div class="media notif-id-${id_special}">
-                                    <i class="notif-icon notif-icon-${id_special} mr-3 fas fa-heart heart-notif"></i>
-                                    <div class="media-body media-body-${id_special}"></div>
-                                    <i onclick="eliminarNotif('${id_special}')" class="eliminar-notif fas fa-times"></i>
-                                </div>`;
-                    
-                                
-                                let notif_id_media = $(".media-body-"+id_special);
-                                let notif_icon = $(".notif-icon-"+id_special);
-                                let notif_id = $(".notif-id-"+id_special);
-                                
-                    //aparece el contador de notifs con nro
-                    $(".count-notif").show();
-                    $(".count-notif").text(sizeNotifs)
-                    //
-        
-                    $(".notifs-listado").append(html_notif)
+            let foto = json_notif_p.foto || 0;
+            let id_jn = json_notif_p.id || 0;
+            let id_publicacion_categoria = json_notif_p.id_publicacion_categoria || "";
+            let pid = json_notif_p.pid || "";
+            let publicacion_descripcion = json_notif_p.publicacion_descripcion || "";
+            let nombre = json_notif_p.nombre || "";
+            let nombre_producto = json_notif_p.nombre_producto || "";
+            let publicacion_nombre = json_notif_p.publicacion_nombre || "";
+            let usuario_alta = json_notif_p.usuario_alta || 0;
+            let foto_prod = json_notif_p.foto_id;
+            let comentario = json_notif_p.comentario;
+            let foto_src = `/productos_img/${foto_prod}.png`;
+            let id_special = id+i;//parqa que no se matchee con los que viene en la otra paginacion
+            
+            let html_favorito = `<div>${nombre} a&ntilde;adi&oacute; tu publicaci&oacute;n "${publicacion_nombre}" como favorita</div>`;
+            let html_seg = `<div>${nombre} te esta siguiendo</div>`;
+            let html_vendedor = `<div><a href="/mis-ventas.html">Vendiste ${nombre_producto}!</a></div>`;
+            let html_foto_prod = `<img class="mr-3 img-notifs" src="${foto_src}" alt="img_notif">`;
+            let html_comentario = `<div><a href="/ampliar-publicacion-home.html?id=${id_jn}&accion=ampliar&cat=${id_publicacion_categoria}">${nombre} coment&oacute; "${comentario}" en tu public.: "${publicacion_nombre}"</a></div>`;
+            let html_notif = 
+                        `<div class="media notif-id-${id_special}">
+                            <i class="notif-icon notif-icon-${id_special} mr-3 fas fa-heart heart-notif"></i>
+                            <div class="media-body media-body-${id_special}"></div>
+                            <i onclick="eliminarNotif('${id_special}')" class="eliminar-notif fas fa-times"></i>
+                        </div>`;
+            
+                        
+                        let notif_id_media = $(".media-body-"+id_special);
+                        let notif_icon = $(".notif-icon-"+id_special);
+                        let notif_id = $(".notif-id-"+id_special);
+                        
+            //aparece el contador de notifs con nro
+            $(".count-notif").show();
+            $(".count-notif").text(sizeNotifs)
+            //
 
-                    switch(tipo_notif){
-                        case "favorito" : 
-                            $(".media-body-"+id_special).append(html_favorito)
-                            break;
-                        case "seguidores" : 
-                            $(".media-body-"+id_special).append(html_seg)
-                            break;
-                        case "vendedor" : 
-                            $(".notif-id-"+id_special).prepend(html_foto_prod);
-                            $(".notif-icon-"+id_special).remove();
-                            $(".media-body-"+id_special).html(html_vendedor);
-                            break;
-                        case "comentario" : 
-                            $(".media-body-"+id_special).append(html_comentario)
-                            break;
-                        default: alert("error en notificaciones")
-                    }
+            $(".notifs-listado").append(html_notif)
 
-                }
-
-            }else{
-                var no_notif = `<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay notificaciones por el momento.</div>`
-                $(".notifs-button-ampliar").html(no_notif)
+            switch(tipo_notif){
+                case "favorito" : 
+                    $(".media-body-"+id_special).append(html_favorito)
+                    break;
+                case "seguidores" : 
+                    $(".media-body-"+id_special).append(html_seg)
+                    break;
+                case "vendedor" : 
+                    $(".notif-id-"+id_special).prepend(html_foto_prod);
+                    $(".notif-icon-"+id_special).remove();
+                    $(".media-body-"+id_special).html(html_vendedor);
+                    break;
+                case "comentario" : 
+                    $(".media-body-"+id_special).append(html_comentario)
+                    break;
+                default: alert("error en notificaciones")
             }
+
         }
+
+    }else if(sizeContenedorNotifs<0){
+        //si no hay ninguna dibujada
+        let no_notif = `<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay notificaciones por el momento.</div>`
+        $(".notifs-button-ampliar").html(no_notif);
+    }else{
+        let no_notif2 = `<div class="no_notif"><i class="fas fa-flag"></i>&nbsp;&nbsp;No hay m&aacute;s notificaciones por el momento.</div>`
+        $(".notifs-vermas").css("display","none");
+        $(".notifs-button-ampliar").append(no_notif2);
     }
+        
 }
 
 function eliminarNotif(id_notif){
@@ -2281,8 +2287,16 @@ function getMisVentas(data){
 
 }
 
+function activarComentarios(cant){
+    const dataPaging = {
+        cantidad : cant,
+        url: "paginador_comentarios.php"
+    }
+    getDataPaging(dataPaging);
+}
+
 function getComentarios(comentarios_obj,desde){
-    
+
     //recorro comentarios en la public
     let comment_length = comentarios_obj.length;
 
@@ -2417,7 +2431,9 @@ function getPublicsAmpliarHome(data){
                                                 <button onclick="sendComentario('${id_public}','${i}')" value="enviar" class="btn">Enviar</button>
                                             </div>
                                         </div>
-                                  <div class="commentbox-list-container commentbox-list-container-${id_public}"></div>
+                                        <span class="vm-comentarios" onclick="activarComentarios(5)"><a href="javascript:void(0)">Ver Comentarios</a></span>
+                                  <div class="commentbox-list-container commentbox-list-container-${id_public}">
+                                  </div>
                                </div>
                             </div>`;
                             
@@ -2425,7 +2441,8 @@ function getPublicsAmpliarHome(data){
                 document.querySelector(".title-public-"+i).innerHTML = publicador;
                 console.log(id_public)
                 getPublicTags(id_public,producto,i,publicador,id_publicador);
-                getComentarios(comentarios_obj,"public");
+            
+                
              
             } 
             
@@ -2487,7 +2504,7 @@ function getPublicTags(id_public,tags,index,publicador,id_publicador){
 
 function getPublicsHome(data){
     var sizePublic = data.length;
-    console.log(data)
+    //console.log(data)
     if(sizePublic>0){
         
         let arrayCats = [];
@@ -2550,12 +2567,12 @@ function getPublicsHome(data){
                 arrayCats.push(esc_full_id);
                 $(".splide__list__home").append(item_html);
                 $(".item-cat-"+esc_full_id).append(public_html)
-                console.log(nombre_public+" - "+esc_full_name+" "+esc_full_id)
+                //console.log(nombre_public+" - "+esc_full_name+" "+esc_full_id)
 
             }else{
                 //existe en el array entonces lo dibujo en la cat que ya esta
                 $(".item-cat-"+esc_full_id).append(public_html)
-                console.log("(E) "+nombre_public+" - "+esc_full_name+" "+esc_full_id)
+                //console.log("(E) "+nombre_public+" - "+esc_full_name+" "+esc_full_id)
             }
 
 
@@ -2719,8 +2736,7 @@ function getDataPaging(dataPaging) {
             dataPaging.cantidad = dataPaging.cantidad+cant;
             //console.log(dataPaging.cantidad)
             //let test = data[12].favorito || 0;
-            console.log("desde --> ",url_temp)
-           // console.table(test)
+            //console.log("desde --> ",url_temp)
 
             //dibujo listados
             switch (url_temp){
@@ -2749,9 +2765,10 @@ function getDataPaging(dataPaging) {
                     break;
                 case "paginador_notificaciones.php":
                     ampliarNotif(data);
+                    console.log(data)
                     break;
                 case "paginador_comentarios.php":
-                    ampliarNotif(data);
+                    getComentarios(data);
                     break;
                 default: alert("error")
             }

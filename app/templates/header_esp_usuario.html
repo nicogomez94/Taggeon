@@ -151,14 +151,14 @@
          <!-- NOTIFS -->
          <div class="btn-header">
             <div class="count-notif">1</div>
-            <div onclick="activarNotifs(1)" class="notifs-button">
+            <div onclick="activarNotifs(5,this);this.removeAttribute('onclick')" class="notifs-button">
                <a href="javascript:void(0)"><i class="fas fa-bell"></i></a>
             </div>
             <div class="notifs-button-ampliar">
                <div class="flechita"></div>
                <div class="notifs-header">Notificaciones</div><hr>
                <div class="notifs-listado"></div><hr>
-               <div onclick="activarNotifs(2)" class="notifs-vermas"><a href="javascript:void(0)">Ver Mas</a></div><hr>
+               <div onclick="activarNotifs(10,this)" class="notifs-vermas"><a href="javascript:void(0)">Ver Mas</a></div><hr>
             </div>
          </div>
          <!-- USER MENU -->
