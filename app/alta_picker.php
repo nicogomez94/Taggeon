@@ -5,7 +5,15 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."cliente/client
 
 $statusRet  = 'ERROR';
 
-$mensajeRet = 'ERROR';
+$mensajeRet = 'No se permiten altas nuevas de usuarios pickers';
+$objRet = array(
+	"status"  => $statusRet,
+	"mensaje" => $mensajeRet
+);
+$ret = json_encode($objRet);
+Database::Connect()->close();
+echo $ret;
+exit;
 
 $sesionManager = new SesionManagerImpl();
 $clienteManager = new ClienteManagerImpl();
