@@ -87,10 +87,6 @@ while($rowEmp=mysqli_fetch_array($resultado)){
 
 if($idTemplateContent == 1){
 	require('./frame/page-index.php');
-}else if ($idTemplateContent == 2){
-	require('./frame/page-editar-usuario.php');
-}else if ($idTemplateContent == 3){
-	require('./frame/page-editar-usuario-seller.php');
 }else if ($idTemplateContent == 4){
 	require('./frame/page-ampliar-usuario.php');
 }else if ($idTemplateContent == 99){
