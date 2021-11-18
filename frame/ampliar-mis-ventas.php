@@ -25,7 +25,7 @@ if ($perfil=='seller'){
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "publicaciones"     => $publicacionManager->getListPublicacion(),
+        //"publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "ventas"     => $carritoManager->getListVentas($_GET),
         "comprador"    => $carritoManager->getMsj(),

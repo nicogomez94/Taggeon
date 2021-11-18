@@ -24,7 +24,7 @@ if ($perfil=='seller' || $perfil=='picker'){
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "publicaciones"     => $publicacionManager->getListPublicacion(),
+        //"publicaciones"     => $publicacionManager->getListPublicacion(),
         "categoria_producto" => $productoManager->getListCategoria(),
         "compras"     => $carritoManager->getAmpliarCompraFinalizada($_GET),
         "vendedor"    => $carritoManager->getMsj(),

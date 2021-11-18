@@ -649,7 +649,7 @@ SQL;
 		if ($this->validarId($id) === false){
 			return false;
 		}
-		$data["estado"] = 3;
+		$data["estado"] = 4;
 
 		$ret =  $this->carritoDao->getListCompras($data);
 		$this->setMsj($this->carritoDao->getMsj());
