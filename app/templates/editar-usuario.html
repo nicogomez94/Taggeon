@@ -1,0 +1,300 @@
+<div id="contenedor-editar" class="container">
+    <div class="row">
+       <div class="col-sm-12 col-md-12 col-md-12 col-lg-4">
+          <ul id="menu-editar">
+             <li>
+                <div class="mr-3 inline-block"><i class="fas fa-cog"></i></div>
+                <div class="inline-block"><a href="#">General</a></div>
+             </li>
+             <li>
+                <div class="mr-3 inline-block"><i class="fas fa-bell"></i></div>
+                <div class="inline-block"><a href="#">Notificaciones</a></div>
+             </li>
+             <li>
+                <div class="mr-3 inline-block"><i class="fas fa-user-lock"></i></div>
+                <div class="inline-block"><a href="#">Privacidad</a></div>
+             </li>
+             <li>
+                <div class="mr-3 inline-block"><i class="fas fa-key"></i></div>
+                <div class="inline-block"><a href="#">Seguridad</a></div>
+             </li>
+          </ul>
+       </div>
+       
+       <div id="datos-editar" class="col-sm-12 col-md-12 col-md-12 col-lg-8">
+          <hr class="hr-dinamica" style="display: none;">
+          <h1>Editar Perfil</h1>
+          <p class="subtitulo-perfil">Los usuarios de Arquipick te conocer&aacute;n a trav&eacute;s de la siguiente informaci&oacute;n.</p>
+          
+          <br>
+          <!-- IMAGEN -->
+          <div class="row cambiar-foto">
+             <div id="img-perfil-cont"><img src="" alt="foto perfil"></div>
+          </div>
+ 
+
+ 
+          <!-- FORM EDITAR FOTO -->
+          <div id="edit-btn">
+             <div class="botonera-editar">
+                <span><a href="#">Cambiar</a></span>
+             </div>
+          </div>
+          <div class="overlay" style="display: none;">
+             <div class="lightBox lightBox-foto-perfil">
+                <div>
+                   <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+                   <h3>Cambiar tu Imagen</h3>
+                   <hr>
+                   <form id="subir-foto-perfil">
+                        <label for="file-upload" class="custom-file-upload">
+    <i class="fa fa-cloud-upload"></i> Haga Click para Subir Foto
+  </label>
+  <input id="file-upload" type="file"/>
+  <div id="result-file-upload"></div>
+                      <div>
+                         <button type="submit" class="btn btn-warning btn-cambiar-foto-perfil">Cambiar Foto</button>
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+          <!-- /FORM EDITAR FOTO -->
+          
+ 
+          <br><hr>
+<div class="token_mp"></div>
+
+<br><hr>
+
+ 
+          <!-- FORM EDITAR DATOS CUENTA -->
+          <form id="datos-cuenta">
+            <input type="hidden" name="accion" value="guardar">
+             <div class="row">
+                <div class="col-lg-2 titulo-datos-editar">Nombre</div>
+                <div class="col-lg-8 data-datos-editar"><input type="text" name="nombre-editar" id="nombre-completo" value=""></div>
+             </div>
+             <div class="row">
+                <div class="col-lg-2 titulo-datos-editar">Apellido</div>
+                <div class="col-lg-8 data-datos-editar"><input type="text" name="apellido-editar" id="contacto-apellido" value=""></div>
+             </div>
+             <div class="row">
+                <div class="col-lg-2 titulo-datos-editar">Nombre de Usuario</div>
+                <div class="col-lg-8 data-datos-editar"><input type="text" name="nombre-usuario" id="nombre-usuario" value=""></div>
+             </div>
+             <div class="row">
+                <div class="col-lg-2 titulo-datos-editar">Contacto</div>
+                <div class="col-lg-8 data-datos-editar"><input type="text" name="contacto-mail" id="contacto-mail" value=""></div>
+             </div>
+ 
+             <div class="botonera-editar">
+                <span><input id="reset-form-editar" class="btn btn-danger botones-editar" type="button" value="Cancelar" disabled></span>
+                <span><input id="submit-editar" class="btn btn-secondary botones-editar" type="submit" value="Hecho" disabled></span>
+             </div>
+          </form>
+          <!-- /FORM EDITAR DATOS CUENTA -->
+ 
+ 
+          <hr><br>
+          <h3>Cambios en la cuenta</h3>
+          <br>
+          <div class="row">
+             <div class="col-lg-8">
+                <span>Convi&eacute;rtela en una cuenta para empresas. Conservar&aacute;s tus tableros y Pines, y cambiar&aacute;s a una cuenta solo para empresas.</span>
+             </div>
+             <div class="col-lg-4">
+                <div class="botonera-editar">
+                   <span><a href="#" data-target="#cambiarPass" data-toggle="modal">Cambiar Contrase&ntilde;a</a></span>
+                </div>
+             </div>
+          </div>
+          <hr>
+          <div class="row">
+             <div class="col-lg-8">
+                <span>Elimina tu cuenta y los datos de la cuenta</span>
+             </div>
+             <div class="col-lg-4">
+                <div class="botonera-editar">
+                   <span><a href="#" data-toggle="modal" data-target="#eliminarCuenta">Eliminar la cuenta</a></span>
+                </div>
+             </div>
+          </div>
+          <hr><br>
+          <h3>Sincronizar con Mercado Pago</h3>
+          <br>
+          <div class="row">
+            <div class="col-lg-8">
+                <span>Crea tu token de Mercado Pago &reg; para poder recibir y enviar pagos</span>
+                <span id="estado-sync-mp">Esta cuenta no esta sincronizada para recibir pagos</span>
+             </div>
+             <div class="col-lg-4">
+                <div class="botonera-editar">
+                   <span><a id="btn-sync-mp" href="">Sincronizar</a></span>
+                </div>
+             </div>
+          </div>
+        <hr><br>
+       <!--
+       <h3>Gestionar Notificaciones</h3>
+       <br>
+        <div class="row">
+            <div class="span-notif">Cuando alguien compra un porducto tagueado &nbsp;</div>
+            <label class="switch">
+               <input type="checkbox" checked="">
+               <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="row">
+            <div class="span-notif">Cuando vend&eacute;s un producto &nbsp;</div>
+            <label class="switch">
+               <input type="checkbox" checked="">
+               <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="row">
+            <div class="span-notif">Cuando alguien favea tu publicaci&oacute;n &nbsp;</div>
+            <label class="switch">
+               <input type="checkbox" checked="">
+               <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="row">
+            <div class="span-notif">Cuando alguien comenta en tu publicaci&oacute;n &nbsp;</div>
+            <label class="switch">
+               <input type="checkbox" checked="">
+               <span class="slider round"></span>
+            </label>
+          </div>
+          -->
+       </div>
+    </div>
+ </div>
+    
+ </div>
+ 
+ 
+ <!-- MODALES --><!-- MODALES --><!-- MODALES -->
+ <!-- MODALES --><!-- MODALES --><!-- MODALES -->
+ <!-- MODALES --><!-- MODALES --><!-- MODALES -->
+ 
+ 
+ <!-- Modal CAMBIAR PASS -->
+ <div class="modal fade" id="cambiarPass" tabindex="-1" role="dialog" aria-labelledby="cambiarPass" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
+          <div class="modal-body">
+             <h3>Cambiar Contrase&ntilde;a</h3>
+             <hr>
+             <div id="form_registro_cont" class="forms">
+                <form id="form_registro_cont_pass">
+                  <input type="hidden" name="accion" value="guardar">
+
+                   <div>
+                      <!-- <label for="nomnbre">Ingresa tu anterior contraseña</label> -->
+                      <input type="password" id="cambiar_pass" name="cambiar_pass_ant" placeholder="Ingresa tu anterior contrase&ntilde;a">
+                      <br>
+                      <!-- <label for="rec_pass" data-toggle="modal" data-target="#recuperaPass"><a href="#">Olvid&oacute; su contraseña anterior?</a></label> -->
+                   </div>
+                   <div>
+                      <!-- <label for="nomnbre">Ingresa tu nueva contraseña</label> -->
+                      <input type="password" id="cambiar_pass1" name="cambiar_pass_new" placeholder="Ingresa tu nueva contrase&ntilde;a">
+                   </div>
+                   <div>
+                      <!-- <label for="nomnbre">Repite tu nueva contraseña</label> -->
+                      <input type="password" id="cambiar_pass2" name="cambiar_pass_new2" placeholder="Repite tu nueva contrase&ntilde;a">
+                   </div>
+                   <hr>
+                   <div>
+                      <button type="submit" class="btn btn-info">Cambiar Contrase&ntilde;a</button>
+                   </div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ 
+ <!-- Modal ELIMINAR CUENTA -->
+ <div class="modal fade" id="eliminarCuenta" tabindex="-1" role="dialog" aria-labelledby="eliminarCuenta" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
+          <div class="modal-body">
+             <div style="text-align: left;">
+                <form id="eliminar_usuario_{perfil}">
+                   <input type="hidden" name="accion" value="eliminar">
+                   <div>
+                      <h2><u>Seguro?</u></h2>
+                      <hr>
+                      <br>
+                      <p>Si cierras tu cuenta, no podr&aacute;s recuperar tus Pines ni tus tableros. </p>
+                      <p>Se eliminar&aacute;n todos los datos de tu cuenta de Arquipick.</p> 
+                      <p>Si est&aacute;s seguro de querer irte para siempre, te enviaremos un correo con el &uacute;ltimo paso al mail registrado.</p>     
+                   </div>
+                   <div>
+                      <br>
+                      <button type="submit" class="btn btn-info">Abandonar Arquipick</button>
+                   </div>
+                </form>
+          </div>
+       </div>
+    </div>
+ </div>
+ 
+ 
+ <!-- <div id="contenido-perfil">
+    Contenido Proximamente...
+ </div> -->
+ 
+ <!-- -->
+ 
+ <script>
+    var jsonDatosEditar = {
+          "NOMBRE"  : "{nombre}",
+          "APELLIDO" : "{apellido}",
+          "USUARIO" : "{usuario}",
+          "CONTACTO": "{contacto}",
+          "FOTO-PERFIL": "{foto-perfil}"
+       };
+  </script>
+ 
+ 
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+    <!-- <script src="js/popper.js"></script> -->
+    <script src="js/func.js?time=151121-2003"></script>
+     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+   <script>
+        actualizarPantallaEditarUsuario();
+   </script>
+<script>
+    document.addEventListener("DOMContentLoaded",function(){
+        var url_mp = "{url-mp}";
+        const btn = document.querySelector("#btn-sync-mp");
+        const estado = document.querySelector("#estado-sync-mp");
+
+    if(typeof jsonData != "undefined"){
+        if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
+            var html_test = 
+            '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
+                '<a href="'+url_mp+'">Edítalo aqu&iacute;&middot;</a>'+
+                '<a href="javascript:void(0)" onclick="cerrarOverlay(\'overlayImportar\')">Cerrar</a>'+
+            '</div>';
+
+            btn.setAttribute("href",url_mp)
+            estado.innerHTML("Su cuenta no esta sincronizada con Mercado Pago")
+            
+        }else{
+            btn.setAttribute("href",url_mp)
+            estado.innerHTML("Su cuenta esta sincronizada con Mercado Pago")
+        }
+    }else{
+        console.warning("no esta jsondata")
+    }
+
+    });
+</script>
+
+ </body></html>
