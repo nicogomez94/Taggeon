@@ -1840,30 +1840,13 @@ input:focus-visible, .input:focus-within{
     width: 292px;
     display: inline-block;
 }
-.fixed-grid-lr{
-    position: fixed;
-    width: 24%;
-}
-.row.test-row {
-    /* padding: 13px 13px 13px 20px; */
-    margin: 10px 10px 10px 30px;
-}
 .relleno {
     width: 100%;
     height: 100%;
     background: #c5c5c5;
     border-radius: 8px;
 }
-.test-col {
-    /* border: 1px solid blue; */
-    height: var(--random-test-col);
-    padding: 0 5px 0 5px !important;
-    /* padding: 0px; */
-    /* background: gainsboro; */
-    /* max-width: 47%; */
-    /* margin-left: 10px; */
-    /* margin: 11px; */
-}
+
 
 /*  */
 .parent {
@@ -1906,13 +1889,9 @@ input:focus-visible, .input:focus-within{
 
 /********ampliar*******/
 .public-ampliar{
-    /* border: 1px solid #b9b9b9; */
-    /* box-shadow: 3px 3px 0px 0px #d0d0d0; */
     border: 1px solid #ececec;
-    border-right: none;
     margin-top: 20px;
     margin-bottom: 10px;
-    /* background: #f4f5ff; */
     background: #fff;
     width: 100%;
     border-radius: 10px;
@@ -2194,12 +2173,9 @@ button:disabled{
 }
 .globo-cat{
     text-align: center;
-    /* padding: 10px; */
     color: #656565;
     height: 50px;
     line-height: 50px;
-    position: fixed;
-    width: 50%;
     z-index: 998;
     font-size: 1.2em;
     font-weight: 500;
@@ -2219,9 +2195,6 @@ button:disabled{
 }
 .globo-escenario:hover{
     box-shadow: 0 0 7px gray;
-}
-.insert-public{
-    margin-top: 50px;
 }
 .prev-cat a:link, .prev-cat a:visited, .next-cat a:link, .next-cat a:visited{
     color: #fff !important;
@@ -2251,36 +2224,7 @@ button:disabled{
     float: right;
 }
 
-.up_relleno {
-    height: 20px;
-    background: gainsboro;
-    /* margin-bottom: 10px; */
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 2px 2px 0px 0px #d0d0d0;
-}
-.inside_up_relleno{
-    text-align: center;
-    color: rgb(156, 156, 156);
-    font-size: 12px;
-    font-weight: 100;
-}
-.relleno-izq{
-    background: rgb(228,228,228);
-    background: linear-gradient(90deg, rgba(228,228,228,1) 0%, rgba(197,197,197,1) 100%);
-}
-.relleno-der{
-    background: rgb(228,228,228);
-    background: linear-gradient(267deg, rgba(228,228,228,1) 0%, rgba(197,197,197,1) 100%);
-}
-.up_relleno_1_izq{
-    background: rgb(228,228,228);
-    background: linear-gradient(90deg, rgba(228,228,228,1) 0%, rgba(220,220,220,1) 100%);
-}
-.up_relleno_2_der{
-    background: rgb(228,228,228);
-    background: linear-gradient(267deg, rgba(228,228,228,1) 0%, rgba(220,220,220,1) 100%);
-}
+
 .span-arriba{
     height: 20px;
 }
@@ -2821,17 +2765,67 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     display: flex;
     flex-direction: row; 
     height: 100%;
+    overflow: hidden; /*para que solo pueda scrollear el medio*/
 }
-.col-home-izq, .col-home-der{
+.test-col {
+    height: var(--random-test-col);
+    padding: 0 5px 0 5px !important;
+}
+.globos-extremos{
+    height: 70px;
+}
+.col-extremos{
     flex-grow: 1;
-    height: 100%;
-}   
-.col-home-centro{
-    /* width: 700px; */
-    width: 50%;
-    flex-grow: 0;
+    overflow: hidden; /*para que solo pueda scrollear el medio*/
 }
-
+.col-extremos div{
+    display: flex;
+    width: 100%;
+    padding: 10px 0px;
+}
+.col-home-centro::-webkit-scrollbar {
+    display: none;
+}
+.col-home-centro{
+    flex-grow: 0;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    width: 40%;
+    margin: 10px;
+}
+.up_relleno {
+    height: 40px;
+    background: gainsboro;
+    /* margin-bottom: 10px; */
+    border-radius: 40px;
+    margin: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 0px 0px #d0d0d0;
+    display: block !important;
+}
+.inside_up_relleno{
+    text-align: center;
+    color: rgb(156, 156, 156);
+    font-size: 12px;
+    font-weight: 100;
+}
+.relleno-izq{
+    background: rgb(228,228,228);
+    background: linear-gradient(90deg, rgba(228,228,228,1) 0%, rgba(197,197,197,1) 100%);
+}
+.relleno-der{
+    background: rgb(228,228,228);
+    background: linear-gradient(267deg, rgba(228,228,228,1) 0%, rgba(197,197,197,1) 100%);
+}
+.up_relleno_1_izq{
+    background: rgb(228,228,228);
+    background: linear-gradient(90deg, rgba(228,228,228,1) 0%, rgba(220,220,220,1) 100%);
+}
+.up_relleno_2_der{
+    background: rgb(228,228,228);
+    background: linear-gradient(267deg, rgba(228,228,228,1) 0%, rgba(220,220,220,1) 100%);
+}
 /*SHARE*/
 .share-links{
     display: flex;

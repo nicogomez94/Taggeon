@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    if(typeof jsonData !== undefined){
-        let sizeSeguidores = jsonData.seguidores.length;
+    /*if(typeof jsonData !== undefined){
+        let sizeSeguidores = jsonData.seguidores.length || 0;
         let sizeSeguidos = jsonData.seguidos.length || 0;
     
         //perfil
         $("#seguidores_count").html(sizeSeguidores);
         $("#seguidos_count").html(sizeSeguidos);
-    }
+    }TODO pasar bien a pedido*/
 
     //activar notifs
     ///ampliarNotif();
@@ -461,7 +461,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                window.location.replace("/");
+                window.location.replace("/index.html");
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
@@ -1063,7 +1063,7 @@ function activarBuscador(param){
             var data_json = {
                 "input": search, 
                 "accion": "search",
-                "perfil": jsonData.perfil
+                "perfil": "seller"
             }
 
             $.ajax({
@@ -2246,7 +2246,7 @@ function getMisCompras(data){
 
 function getMisVentas(data){
     const sizeVentas = data.length;
-    const flex_listado = document.querySelector(".flex-listado")
+    const flex_container = document.querySelector(".flex-container")
 
     if(sizeVentas>0){
         for(var i=0; i<sizeVentas; i++){
@@ -2261,7 +2261,7 @@ function getMisVentas(data){
             var foto_src = `/productos_img/${imagen_id}.png` || "";
 
             var ventas_html = 
-            `<div>
+            `<div class="flex-listado">
                 <div class="overlay-public">
                     <div class="text-overlay-prod">
                         <!--<span data-title="${id}" class="text-overlay-link">
@@ -2279,7 +2279,7 @@ function getMisVentas(data){
                 </div>
             </div>`;
                
-            flex_listado.insertAdjacentHTML('beforeend', ventas_html) 
+            flex_container.insertAdjacentHTML('beforeend', ventas_html) 
         }
     }else{
         document.querySelector(".inner-ventas").innerHTML = `<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>`
@@ -2310,9 +2310,10 @@ function getComentarios(comentarios_obj,desde){
                 let id = comentarios_obj[y].id || 0;
                 let id_publicacion = comentarios_obj[y].id_publicacion || 0;
                 let id_producto = comentarios_obj[y].id_producto || 0;
-                let id_switch = (desde == "prod") ? id_producto : id_publicacion;
+                // let id_switch = (desde == "prod") ? id_producto : id_publicacion;
                 let nombre_usuario = comentarios_obj[y].nombre_usuario || "";
-                let list_container = document.querySelector(".commentbox-list-container-"+id_switch);
+                let list_container = document.querySelector(".commentbox-list-container-"+id_publicacion);
+                console.log(id_publicacion)
                 
                 let comentario_html = 
                 `<div class="commentbox-list media commentbox-id-${y}">
@@ -2776,7 +2777,7 @@ function getDataPaging(dataPaging) {
             showCantResult(data.length)
             document.body.classList.remove("loading"); 
         })
-        .catch(error => console.error("error"))
+        //.catch(error => console.error("error en fetch"))
         
 }
 /*
