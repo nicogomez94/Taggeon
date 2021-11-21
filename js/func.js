@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-
+    
+    
     /*if(typeof jsonData !== undefined){
         let sizeSeguidores = jsonData.seguidores.length || 0;
         let sizeSeguidos = jsonData.seguidos.length || 0;
@@ -118,13 +119,6 @@ document.addEventListener("DOMContentLoaded", function() {
         $(".notifs-button-ampliar").hide();
     });
     //dropdown del user
-    $("#drop").on("click", function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-
-        $("#dropdown-user-menu").toggle();
-        $(".notifs-button-ampliar").hide();
-    });
     //notifs
     $(".notifs-button").click(function(e){
         e.stopPropagation();
@@ -1259,6 +1253,11 @@ function toggleFollow(id_publicacion,idPublicadorParam,accion,nombre_publicador,
        }
     });
     return false;
+}
+
+function appearDataUsuario(){
+    $("#dropdown-user-menu").toggle();
+    $(".notifs-button-ampliar").hide();
 }
 
 function atrasHistory(){
