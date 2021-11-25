@@ -175,7 +175,7 @@ class  ComentarioproductoManager
 
                 public function getListProducto()
                 {
-                    return $this->claseDao->getListProducto();
+                    return $this->comentarioproductoDao->getListProducto();
                 }                
 
         

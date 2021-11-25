@@ -153,9 +153,15 @@ SQL;
 	
 	public function getListComentarioproducto()
     {
-        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
-        $usuarioAltaDB = Database::escape($usuarioAlta);
+	$paginador = '';
+	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+	if (!preg_match('/^[0-9]+$/i', $offset)) {
+		$offset = 0;
+	}
+	$limit = 50;
+        $paginador = " LIMIT $offset,$limit";
         $sql = <<<sql
+SELECT * FROM (
         SELECT
 		`comentarioproducto`.*,
     u.*
@@ -181,6 +187,8 @@ ON
     u.idUsuarioComentario = `comentarioproducto`.`usuario_alta`
 		WHERE
         (`comentarioproducto`.eliminar = 0 OR `comentarioproducto`.eliminar IS NULL) AND `comentarioproducto`.usuario_alta = $usuarioAltaDB
+) as paginadorcomentarios
+$paginador
 sql;
         $resultado = Database::Connect()->query($sql);
         $list = array();
