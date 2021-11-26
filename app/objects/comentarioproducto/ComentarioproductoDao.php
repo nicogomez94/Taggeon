@@ -160,6 +160,7 @@ SQL;
 	}
 	$limit = 50;
         $paginador = " LIMIT $offset,$limit";
+	$id = isset($_GET["id_producto"]) ? $_GET["id_producto"] : '';
         $sql = <<<sql
 SELECT * FROM (
         SELECT
@@ -186,7 +187,8 @@ FROM
 ON
     u.idUsuarioComentario = `comentarioproducto`.`usuario_alta`
 		WHERE
-        (`comentarioproducto`.eliminar = 0 OR `comentarioproducto`.eliminar IS NULL) AND `comentarioproducto`.usuario_alta = $usuarioAltaDB
+     id_producto = $id AND
+	(`comentarioproducto`.eliminar = 0 OR `comentarioproducto`.eliminar IS NULL) 
 ) as paginadorcomentarios
 $paginador
 sql;

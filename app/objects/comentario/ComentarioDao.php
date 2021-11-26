@@ -169,6 +169,7 @@ SQL;
         $paginador = " LIMIT $offset,$limit";
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+	$id = isset($_GET["id_publicacion"]) ? $_GET["id_publicacion"] : '';
         $sql = <<<sql
 SELECT * FROM (
 SELECT
@@ -195,6 +196,7 @@ FROM
 ON
     u.idUsuarioComentario = `comentario`.`usuario_alta`
 WHERE
+     id_publicacion = $id AND
     (
         `comentario`.eliminar = 0 OR `comentario`.eliminar IS NULL
     )

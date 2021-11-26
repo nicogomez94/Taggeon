@@ -177,6 +177,10 @@ class  ComentarioManager
 
 	public function getListComentario()
 	{
+		$id = isset($_GET["id_publicacion"]) ? $_GET["id_publicacion"] : '';
+		if ($this->validarId($id) === false){
+			return false;
+		}
 		$ret =  $this->comentarioDao->getListComentario();
 		return $ret;
 	}

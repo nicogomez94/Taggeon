@@ -168,6 +168,10 @@ class  ComentarioproductoManager
 
 	public function getListComentarioproducto()
 	{
+		$id = isset($_GET["id_producto"]) ? $_GET["id_producto"] : '';
+		if ($this->validarId($id) === false){
+			return false;
+		}
 		$ret =  $this->comentarioproductoDao->getListComentarioproducto();
 		return $ret;
 	}
