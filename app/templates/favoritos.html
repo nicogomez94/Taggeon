@@ -48,71 +48,17 @@
    <!-- <script src="js/popper.js"></script> -->
    <script src="js/func.js?time=031120-1749"></script>
    <script>
-      $(document).ready(function(){
-         var sizePublic = jsonData.publicaciones.length;
+      document.addEventListener("DOMContentLoaded", function(){
 
-         if(sizePublic>0){
-            for(var i=0; i<sizePublic; i++){
-               var id_public = jsonData.publicaciones[i].id;
-               var id_public_cat = jsonData.publicaciones[i].id_publicacion_categoria;
-               var nombre_public = jsonData.publicaciones[i].publicacion_nombre;
-               var descr_public = jsonData.publicaciones[i].publicacion_descripcion;
-               var imagen_id = jsonData.publicaciones[i].foto;
-               var full_url = '/ampliar-publicacion.html?id='+id_public+'&accion=ampliar';
-               var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;  
-               let grid = document.querySelector(".grid");      
-      
-               var html_public =
-               `<div class="grid-item">
-                    <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
-                        <div class="overlay-public">
-                            <a class="link-ampliar-home" href="${full_url}"></a>
-                            <div class="public-title-home">${nombre_public}</div>
-                            <div class="text-overlay">
-                                <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a href="/app/publicacion.php?id=${id_public}&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
-                            </div>
-                        </div>
-                        <img src="${foto_src}" alt="img-${imagen_id}">
-                    </div>
-                </div>`;
-                                 
-               grid.insertAdjacentHTML("beforeend",html_public)
-
-            }
-         }else{
-            var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones faveadas.</p>';
-            $(".contenedor-mis-public").append(html_sin_public);
+         /////////paginador/////////////
+         const dataPaging = {
+            cantidad : 5,
+            url: "paginador_favorito.php"
          }
-/*
-         $(".eliminar-public").on("click", function() {  
-            console.log("enttro")
-            //href="/app/publicacion.php?id='+id_public+'&accion=eliminar"
-            var $this = $(this);
-            var id_public = $this.data('title');
+         getDataPaging(dataPaging);
+         intObserver(dataPaging);
+         ///////////////////////////////
 
-            $.post('/app/publicacion.php', {id: id_public, accion: "eliminar"})
-               .done(function(data) {
-                     var jsonp = JSON.parse(data)
-                     if (jsonp.status == 'ERROR'){
-                        alert(data);														
-                     }else if(jsonp.status == 'OK' || jsonp.status == 'ok'){
-                        window.location.replace("/mis-publicaciones.html");
-                     }else if(jsonp.status == 'REDIRECT'){
-                        window.location.replace(jsonp.mensaje);
-                     }else{
-                        $("#mensaje-sin-login").css("display","block");
-                        $("#mensaje-sin-login").html(jsonp.mensaje);
-                        //alert (data.mensaje);
-                     }
-               })
-               .fail(function() {
-                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                     alert(msj)
-               }); 
-
-            return false;
-
-         });*/
       });
    </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->

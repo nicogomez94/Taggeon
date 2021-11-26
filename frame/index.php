@@ -3,7 +3,7 @@
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
-echo $contenidoStringHeader;
+//echo $contenidoStringHeader;
 //FIN HEADER
 
     $publicacionManager = new PublicacionManager();

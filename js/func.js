@@ -2187,6 +2187,43 @@ function getMisPublic(data){
     }
 }
 
+function getMisFavoritos(data){
+    var sizePublic = data.length;
+    let grid = document.querySelector(".grid");      
+
+    if(sizePublic>0){
+        for(var i=0; i<sizePublic; i++){
+            var id_public = data[i].id;
+            var id_public_cat = data[i].id_publicacion_categoria;
+            var nombre_public = data[i].publicacion_nombre;
+            var descr_public = data[i].publicacion_descripcion;
+            var imagen_id = data[i].foto;
+            var full_url = '/ampliar-publicacion.html?id='+id_public+'&accion=ampliar';
+            var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;  
+
+            var html_public =
+            `<div class="grid-item">
+                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                    <div class="overlay-public">
+                        <a class="link-ampliar-home" href="${full_url}"></a>
+                        <div class="public-title-home">${nombre_public}</div>
+                        <div class="text-overlay">
+                            <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a href="/app/publicacion.php?id=${id_public}&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
+                        </div>
+                    </div>
+                    <img src="${foto_src}" alt="img-${imagen_id}">
+                </div>
+            </div>`;
+                                
+            grid.insertAdjacentHTML("beforeend",html_public)
+
+        }
+    }else{
+        var html_sin_public = '<p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones faveadas.</p>';
+        $(".contenedor-mis-public").append(html_sin_public);
+    }
+}
+
 function getMisCompras(data){
     const sizeCompras = data.length;
     const flex_listado = document.querySelector(".flex-listado")
@@ -2770,6 +2807,9 @@ function getDataPaging(dataPaging) {
                 case "paginador_comentarios.php":
                     getComentarios(data);
                     break;
+                case "paginador_favorito.php":
+                    getMisFavoritos(data);
+                    break;
                 default: alert("error")
             }
 
@@ -2779,37 +2819,7 @@ function getDataPaging(dataPaging) {
         //.catch(error => console.error("error en fetch"))
         
 }
-/*
 
-function getSeguidoresPopup(){
-var seguidosHtml =
-`<div class="overlay overlay-seguidores" style="display: none;">
-   <div style="width: 400px;" class="lightBox lightBox-seguidores">
-      <div>
-         <a href="javascript:void(0)" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-         <h3 class="count-seguidores"></h3>
-         <hr>
-           <div class="container-seguidores"></div>
-         </div>
-      </div>
-   </div>
-</div>`
-}
-
-function getSeguidosPopup(){
-var seguidosHtml =
-`<div class="overlay overlay-seguidos" style="display: none;">
-   <div style="width: 400px;" class="lightBox lightBox-seguidos">
-      <div>
-         <a href="javascript:void(0)" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
-         <h3 class="count-seguidos"></h3>
-         <hr>
-         <div class="container-seguidos"></div>
-         </div>
-      </div>
-   </div>
-</div>`
-}*/
 
 function eliminarProdAmpliarCarrito(id_carrito,id_publicacion,id_prod){
 

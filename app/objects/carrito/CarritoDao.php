@@ -491,7 +491,7 @@ public function getListVentas(array $data)
                 GROUP BY
 		envio_direccion,envio_numero,
 `envio_nombre_apellido`, `envio_codigo_postal`, `envio_ciudad_localidad`, `estado`, `email`, `notas`, carrito.usuario_alta,carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
-    LIMIT $offset,$limit
+    $paginador
 sql;
 //echo $sql;
         $resultado = Database::Connect()->query($sql);
