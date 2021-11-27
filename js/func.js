@@ -1036,18 +1036,6 @@ function copiarLink(){
     document.execCommand("copy");
 }
 
-function activarNotifs(cant,el){
-    let new_cant = cant+5;
-    console.log(new_cant)
-    el.setAttribute("onclick",`activarNotifs(${new_cant},this)`)
-
-    const dataPaging = {
-        cantidad : cant,
-        url: "paginador_notificaciones.php"
-    }
-    getDataPaging(dataPaging);
-}
-
 //buscador productos en publicaciones
 function activarBuscador(param){
     var search = param.val();
@@ -2323,10 +2311,28 @@ function getMisVentas(data){
 
 }
 
-function activarComentarios(cant){
+function activarNotifs(cant,el){
+    let new_cant = cant+5;
+    console.log(new_cant)
+    el.setAttribute("onclick",`activarNotifs(${new_cant},this)`)
+
     const dataPaging = {
         cantidad : cant,
-        url: "paginador_comentarios.php"
+        url: "paginador_notificaciones.php"
+    }
+    getDataPaging(dataPaging);
+}
+
+function activarComentarios(cant,tipoParam,idParam,el){
+    let new_cant = cant+5;
+    el.setAttribute("onclick",`activarComentarios(${new_cant},this)`)
+
+    let tipo = (tipoParam == "producto") ? "paginador_comentarios_producto.php" : "paginador_comentarios.php";
+
+    const dataPaging = {
+        cantidad : cant,
+        url: tipo,
+        id: idParam
     }
     getDataPaging(dataPaging);
 }
@@ -2346,9 +2352,9 @@ function getComentarios(comentarios_obj,desde){
                 let id = comentarios_obj[y].id || 0;
                 let id_publicacion = comentarios_obj[y].id_publicacion || 0;
                 let id_producto = comentarios_obj[y].id_producto || 0;
-                // let id_switch = (desde == "prod") ? id_producto : id_publicacion;
+                let id_switch = (desde == "paginador_comentarios_producto.php") ? id_producto : id_publicacion;
                 let nombre_usuario = comentarios_obj[y].nombre_usuario || "";
-                let list_container = document.querySelector(".commentbox-list-container-"+id_publicacion);
+                let list_container = document.querySelector(".commentbox-list-container-"+id_switch);
                 console.log(id_publicacion)
                 
                 let comentario_html = 
@@ -2468,7 +2474,7 @@ function getPublicsAmpliarHome(data){
                                                 <button onclick="sendComentario('${id_public}','${i}')" value="enviar" class="btn">Enviar</button>
                                             </div>
                                         </div>
-                                        <span class="vm-comentarios" onclick="activarComentarios(5)"><a href="javascript:void(0)">Ver Comentarios</a></span>
+                                        <span class="vm-comentarios" onclick="activarComentarios('5','publicacion','${id_public}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></span>
                                   <div class="commentbox-list-container commentbox-list-container-${id_public}">
                                   </div>
                                </div>
@@ -2757,13 +2763,21 @@ function navCats(){
 }
 
 function getDataPaging(dataPaging) {
-    //return new Promise((resolve, reject) => {
 
-    //const {url,dataPaging} = dataPaging;
-    const URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
     let url_temp = dataPaging.url || "";
-    
+    let URL = "";
     document.body.classList.add("loading"); 
+    
+
+    if(dataPaging.hasOwnProperty("id")){
+        //si tiene id entonces es un comentario
+        let tipo_comentario = (url_temp=="paginador_comentarios_producto.php") ? "id_producto" : "id_publicacion";
+        let id_comentario = dataPaging.id || 0;
+        URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}&${tipo_comentario}=${id_comentario}`;
+    }else{
+        URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
+    }
+    
 
     fetch(URL)
     .then(response => response.json())
@@ -2805,7 +2819,10 @@ function getDataPaging(dataPaging) {
                     console.log(data)
                     break;
                 case "paginador_comentarios.php":
-                    getComentarios(data);
+                    getComentarios(data,url_temp);
+                    break;
+                case "paginador_comentarios_producto.php":
+                    getComentarios(data,url_temp);
                     break;
                 case "paginador_favorito.php":
                     getMisFavoritos(data);

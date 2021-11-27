@@ -136,14 +136,15 @@ function traerModalProducto({id_prod_p,id_public_p,id_publicador_p,foto_src_prod
                   <button onclick="sendComentario('${id_prod_p}','${i_p}','prod')" value="enviar" class="btn">Enviar</button>
                </div>
             </div>
+            <span class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></span>
          </div>
          <div class="commentbox-list-container commentbox-list-container-${id_prod_p} commentbox-list-container-prod"></div>
+         <div class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this)"><a href="javascript:void(0)">Ver Mas</a></div><hr>
       </div>
       </div></div></div></div></div>`;
 
       // document.body.appendChild(modal_producto_html);
       $("body").append(modal_producto_html)
-      getComentarios(comentarios_obj_p,"prod")
       dibujarCarousel(id_prod_p,foto_prod_p)
 
       let cant = document.querySelector(".cantidad_value");
