@@ -2105,7 +2105,8 @@ function getMisPublic(data){
             let nombre_public = data[i].publicacion_nombre;
             let descr_public = data[i].publicacion_descripcion;
             let imagen_id = data[i].foto;
-            let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
+            // let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
+            let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar`
             //let imagen_public_html = document.querySelector(".imagen-public-"+imagen_id);
 
             var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;        
@@ -2334,6 +2335,131 @@ function getComentarios(comentarios_obj,desde){
     }else{
         //alert("No hay comentarios")
     }
+
+}
+
+
+function getPublicsAmpliar(data){
+
+    const sizePublic = data.length;
+    const escena_json = JSON.parse(escena);
+    const escena_json_length = escena_json.length;
+
+    //console.log("publics",data)
+    for(var i=0; i<sizePublic; i++){
+       
+        if(sizePublic>0){
+ 
+            let id_public = data[i].id || 0;
+            let id_public_cat = data[i].subescena1 || "";//que onda esto cuando son mas de una??
+            let nombre_public = data[i].publicacion_nombre || "";
+            let descr_public = data[i].publicacion_descripcion || "";
+            let publicador = data[i].nombre_publicador || "";
+            let id_publicador = data[i].id_publicador || "";
+            let foto_perfil = data[i].foto_perfil || "";
+            let like = data[i].megusta || "";
+            let imagen_id = data[i].foto || 0;
+            let producto = data[i].pid || 0;
+            let cat_ampliar_home = jsonData.cat || 0;
+            let favorito = data[i].favorito || 0;
+            let arrCat = escena_json || 0;
+            let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
+            let img_publicador = `/imagen_perfil/${foto_perfil}.png` || 0;//viene siempre png?
+            let winLoc = window.location.pathname || "";
+            let id_usuario = "1";//hard
+            let seguidor = "";
+            let seguidos = jsonData.seguidos || [];
+            let idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
+            let idPublicadorSeguido = idPublicadorSearch.idUsuario;
+            let comentarios_obj = data[i].comentarios || [];
+            let full_url = window.location.href;      
+            let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
+            let like_sw = (like == null || like == 0) ? 'alta' : 'eliminar';
+            let seg_sw = (idPublicadorSeguido==id_publicador) ? 'eliminar' : 'alta';
+
+
+                //dibujo la cat arriba de todo
+               var objCat = escena_json.find(o => o.id === cat_ampliar_home) || "";
+               var nameCat = objCat.nombre || "";
+               $(".title-cat").html(nameCat);
+ 
+            let html_public = `<div id="ancla-desde-home-${id_public}" class="public-ampliar public-actual test2">
+                                <div class="header-public header-public-${id_public}" onmouseover="showFollow(this)" onmouseout="hideFollow(this)">
+                                    <a class="nombre-perfil-public" href="/ampliar-usuario-redirect.html?id_usuario=${id_publicador}">
+                                    <span class="img-perfil-public"><img onerror="this.src=\'/imagen_perfil/generica.png\'" src="${img_publicador}" alt="img-perfil"></span>
+                                    <span class="title-public title-public-${i}"></span>
+                                    </a>
+                                    <span class="follow_public"><i class="fas fa-user-plus seg-${seg_sw}" onclick="toggleFollow(${id_public},'${id_publicador}','${seg_sw}','${publicador}',this);"></i></span>
+                                </div>
+                                <div class="bodyimg-public-container bodyimg-public-container-${i}">
+                                   <img class="imagen-public-${imagen_id}" src="${foto_src}" alt="">
+                                   <div class="tag-container tag-container-${i}"></div>
+                                </div>
+ 
+ 
+                               <div id="ancla-${i}" class="productos-public productos-public-${i}">
+                                <div class="productos-titulo-public">Productos Relacionados:</div><br>
+                                   <div class="productos-titulo-public-gallery productos-titulo-public-gallery-${i}">
+                                      <div class="splide splide-prod-tag-${id_public}">
+                                         <div class="splide__track">
+                                            <ul class="splide__list splide__list__${id_public}"></ul>
+                                         </div>
+                                      </div>
+                                        <div class="splide splide-related splide-prod-${id_public}">
+                                           <div class="splide__track">
+                                              <ul class="splide__list__${id_public} splide_list_related"></ul>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+ 
+ 
+                               <div class="info-public">
+                                  <div class="social-public social-public-${id_public}">
+                                        <span><i class="fas fa-heart like-${like_sw}" onclick="toggleLikes(${id_public},'${like_sw}',this)"></i></span>
+                                        <span><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                                        <span class="share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-paper-plane"></i></span>
+                                  </div>
+                                  <div class="datos-public">
+                                  <div class="info-titulo-public">${nombre_public}</div>
+                                  <div class="info-descr-public">${descr_public}</div><hr>
+                               </div>
+                               <div id="ancla-test-${i}"></div>
+                               <div class="commentbox-container">
+                                  <div class="commentbox commentbox-id-2">
+                                        <div>
+                                            <img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
+                                            <div style="flex-grow: 1;">
+                                                <input type="text" id="comentario-${i}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">
+                                            </div>
+                                            <div class="ml-1">
+                                                <button onclick="sendComentario('${id_public}','${i}')" value="enviar" class="btn">Enviar</button>
+                                            </div>
+                                        </div>
+                                        <span class="vm-comentarios" onclick="activarComentarios('5','publicacion','${id_public}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></span>
+                                  <div class="commentbox-list-container commentbox-list-container-${id_public}">
+                                  </div>
+                               </div>
+                            </div>`;
+                            
+                document.querySelector(".insert-public").insertAdjacentHTML("beforeend",html_public);
+                document.querySelector(".title-public-"+i).innerHTML = publicador;
+                console.log(id_public)
+                getPublicTags(id_public,producto,i,publicador,id_publicador);
+            
+            
+            
+            //imgperfil comentarios
+            var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+            $(".commentbox-user-img").attr("src", img_perfil);
+            
+        }else{
+            alert("no hay publicaciones")
+        }
+    }//fin for
+
+    observer()
+    posicionarPublic();
 
 }
 
