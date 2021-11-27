@@ -557,3 +557,30 @@ Respuesta OK => Envio enviarEmailAltaUsuario
 mensajeTexto: Se dio de alta
 usuario nico199411@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:03:04
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 348.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: kjhjlkhg
+usuario shop@gonelake.com.ar
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:03:05
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 348.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: kjhjlkhg
+usuario shop@gonelake.com.ar
+Detalle Respuesta:

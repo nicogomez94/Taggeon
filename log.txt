@@ -1356,3 +1356,19 @@ Paso 1
 OK
 token 0
  status: OK mensaje: 
+		SELECT `acces_token`
+		FROM usuario_seller
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '348') 
+			  AND `eliminar` = 0 AND acces_token is not null
+		UNION
+		SELECT `acces_token`
+		FROM `usuario_picker`
+		WHERE `idUsuario` IN (SELECT distinct id_vendedor FROM carrito_detalle WHERE id_carrito = '348') 
+			  AND `eliminar` = 0 AND acces_token is not null
+######################################################
+json debug 1; APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+######################################################
+Paso 1
+OK
+token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
+ status: OK mensaje: 

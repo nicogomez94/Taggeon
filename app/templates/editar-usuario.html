@@ -270,31 +270,31 @@
         actualizarPantallaEditarUsuario();
    </script>
 <script>
-    document.addEventListener("DOMContentLoaded",function(){
-        var url_mp = "{url-mp}";
-        const btn = document.querySelector("#btn-sync-mp");
-        const estado = document.querySelector("#estado-sync-mp");
+   document.addEventListener("DOMContentLoaded",function(){
+      var url_mp = "{url-mp}";
+      const btn = document.querySelector("#btn-sync-mp");
+      const estado = document.querySelector("#estado-sync-mp");
 
-    if(typeof jsonData != "undefined"){
-        if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
+   if(typeof jsonData != "undefined"){
+      if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
             var html_test = 
             '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
-                '<a href="'+url_mp+'">Edítalo aqu&iacute;&middot;</a>'+
-                '<a href="javascript:void(0)" onclick="cerrarOverlay(\'overlayImportar\')">Cerrar</a>'+
+               '<a href="'+url_mp+'">Edítalo aqu&iacute;&middot;</a>'+
+               '<a href="javascript:void(0)" onclick="cerrarOverlay(\'overlayImportar\')">Cerrar</a>'+
             '</div>';
 
             btn.setAttribute("href",url_mp)
             estado.innerHTML("Su cuenta no esta sincronizada con Mercado Pago")
             
-        }else{
+      }else{
             btn.setAttribute("href",url_mp)
             estado.innerHTML("Su cuenta esta sincronizada con Mercado Pago")
-        }
-    }else{
-        console.warning("no esta jsondata")
-    }
+      }
+   }else{
+      console.warn("no esta jsondata")
+   }
 
-    });
+   });
 </script>
 
  </body></html>
