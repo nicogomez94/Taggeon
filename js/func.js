@@ -1,56 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     
-    /*if(typeof jsonData !== undefined){
+    if(typeof jsonData !== 'undefined'){
         let sizeSeguidores = jsonData.seguidores.length || 0;
         let sizeSeguidos = jsonData.seguidos.length || 0;
     
         //perfil
         $("#seguidores_count").html(sizeSeguidores);
         $("#seguidos_count").html(sizeSeguidos);
-    }TODO pasar bien a pedido*/
+    }/*TODO pasar bien a pedido*/
 
     //activar notifs
     ///ampliarNotif();
-
-    let grids = [...document.querySelectorAll('.grid--masonry')];
-
-    if(grids.length && getComputedStyle(grids[0]).gridTemplateRows !== 'masonry') {
-        grids = grids.map(/* same as before */);
-          
-        function layout() {
-          grids.forEach(grid => {
-            /* get the post-resize/ load number of columns */
-            let ncol = getComputedStyle(grid._el).gridTemplateColumns.split(' ').length;
-      
-            if(grid.ncol !== ncol) {
-                /* update number of columns */
-                grid.ncol = ncol;
-              
-                /* revert to initial positioning, no margin */
-                grid.items.forEach(c => c.style.removeProperty('margin-top'));
-              
-                /* if we have more than one column */
-                if(grid.ncol > 1) {
-                  grid.items.slice(ncol).forEach((c, i) => {
-                    let prev_fin = grid.items[i].getBoundingClientRect().bottom /* bottom edge of item above */, 
-                        curr_ini = c.getBoundingClientRect().top /* top edge of current item */;
-                                      
-                    c.style.marginTop = `${prev_fin + grid.gap - curr_ini}px`
-                  })
-                }
-              }
-          });
-        }
-          
-        addEventListener('load', e => {		
-          layout(); /* initial load */
-          addEventListener('resize', layout, false)
-        }, false);
-
-    }else{ 
-        //console.log('yay, do nothing!')
-    }
 
     /*buscador*/
     $("#buscador-titulo-input").keyup(function(){
@@ -2214,8 +2175,8 @@ function getMisFavoritos(data){
 
 function getMisCompras(data){
     const sizeCompras = data.length;
-    const flex_listado = document.querySelector(".flex-listado")
-    console.log(data)
+    const flex_container = document.querySelector(".flex-container")
+
     if(sizeCompras>0){
         for(var i=0; i<sizeCompras; i++){
         
@@ -2231,7 +2192,7 @@ function getMisCompras(data){
             var sizeVendedor = jsonData.vendedor.length || 0;
             var foto_src = `/productos_img/${imagen_id}.png` || 0;
             var compras_html = 
-            `<div>
+            `<div class="flex-listado">
                 <div class="overlay-public">
                     <div class="text-overlay-prod">
                         <!--<span data-title="${id}" class="text-overlay-link">
@@ -2249,7 +2210,7 @@ function getMisCompras(data){
                 </div>
             </div>`;
                 
-                flex_listado.insertAdjacentHTML('beforeend', compras_html) 
+            flex_container.insertAdjacentHTML('beforeend', compras_html) 
                 
 
                 for(var x=0; x<sizeVendedor; x++){
