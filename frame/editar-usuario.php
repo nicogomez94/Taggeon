@@ -31,7 +31,7 @@ if ($perfil == 'seller' || $perfil == 'picker') {
     $contenido->asigna_variables(array(
         "json" => $jsonData,
         "usuario" => $GLOBALS['sesionG']['usuario'],
-        "nombre" => $GLOBALS['sesionG']['nombre'] . " " . $GLOBALS['sesionG']['apellido'],
+        "nombre" => $GLOBALS['sesionG']['nombre'],
         "apellido" => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "url_editar" => "/editar-usuario.html",
