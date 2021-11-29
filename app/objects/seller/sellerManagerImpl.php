@@ -507,7 +507,7 @@ class SellerManagerImpl implements  SellerManager{
 			}else if(strlen($param)>30){
 				$this->setMsj(getMsjConf('125'));
 			}else{
-				$patron = '/^([a-z ]+)$/i';
+				$patron = '/^.+$/i';
 				if (preg_match($patron, $param)){
 					$this->setStatus("ok");
 				}else{
@@ -530,7 +530,7 @@ class SellerManagerImpl implements  SellerManager{
 			}else if(strlen($param)>30){
 				$this->setMsj(getMsjConf('129'));
 			}else{
-				$patron = '/^([a-z ]+)$/i';
+				$patron = '/^.+$/i';
 				if (preg_match($patron, $param)){
 					$this->setStatus("ok");
 				}else{
@@ -576,7 +576,7 @@ class SellerManagerImpl implements  SellerManager{
 			}else if(strlen($param)>30){
 				$this->setMsj(getMsjConf('137'));
 			}else{
-				$patron = '/^(.+)$/i';
+				$patron = '/^.+$/i';
 				if (preg_match($patron, $param)){
 					$this->setStatus("ok");
 				}else{
@@ -599,7 +599,7 @@ class SellerManagerImpl implements  SellerManager{
 			}else if(strlen($param)>30){
 				$this->setMsj(getMsjConf('141'));
 			}else{
-				$patron = '/^(.+)$/i';
+				$patron = '/^.+$/i';
 				if (preg_match($patron, $param)){
 					$this->setStatus("ok");
 				}else{

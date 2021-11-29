@@ -503,7 +503,7 @@ private function validarNombre ($param){
 			}else if(strlen($param)>30){
 				$this->setMsj(getMsjConf('125'));
 			}else{
-				$patron = '/^([a-z ]+)$/i';
+				$patron = '/^.+$/i';
 				if (preg_match($patron, $param)){
 					$this->setStatus("ok");
 				}else{
@@ -526,7 +526,7 @@ private function validarNombre ($param){
 			}else if(strlen($param)>30){
 				$this->setMsj(getMsjConf('129'));
 			}else{
-				$patron = '/^([a-z ]+)$/i';
+				$patron = '/^.+$/i';
 				if (preg_match($patron, $param)){
 					$this->setStatus("ok");
 				}else{
@@ -743,7 +743,7 @@ private function validarNombre ($param){
 			}else if(strlen($param)>12){
 				$this->setMsj(getMsjConf('330'));
 			}else{
-				$patron = '/^([a-z0-9]+)$/i';
+				$patron = '/^.+$/i';
 				if (preg_match($patron, $param)){
 					$this->setStatus("ok");
 				}else{
