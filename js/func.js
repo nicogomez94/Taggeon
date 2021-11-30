@@ -158,7 +158,7 @@ $('#datos-cuenta').submit(function (e) {
             },
             error: function( jqXhr, textStatus, errorThrown ){
                        var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                       alert(msj);
+                       alertify.error(msj);
             }
        });
        return false;
@@ -182,15 +182,15 @@ $('#form_recuperar_pass_paso1').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert (data.mensaje);
+                console.log (data.mensaje);
                 window.location.replace("/app/logout.php");
             }else{
-                alert (data.mensaje);
+                console.log (data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   alert(msj);
+                   console.log(msj);
         }
    });
    return false;
@@ -217,15 +217,15 @@ $('#form_recuperar_clave_mail').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert (data.mensaje);
+                console.log (data.mensaje);
                 window.location.replace("/app/logout.php");
             }else{
-                alert (data.mensaje);
+                console.log (data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   alert(msj);
+                   console.log(msj);
         }
    });
    return false;
@@ -251,15 +251,15 @@ $('#eliminar_usuario_seller').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert (data.mensaje);
+                console.log (data.mensaje);
                 window.location.replace("/app/logout.php");
             }else{
-                alert (data.mensaje);
+                console.log (data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   alert(msj);
+                   console.log(msj);
         }
    });
    return false;
@@ -283,15 +283,15 @@ $('#eliminar_usuario_picker').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert (data.mensaje);
+                console.log (data.mensaje);
                 window.location.replace("/app/logout.php");
             }else{
-                alert (data.mensaje);
+                console.log (data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   alert(msj);
+                   console.log(msj);
         }
    });
    return false;
@@ -315,19 +315,19 @@ $('#form_registro_cont_pass').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert (data.mensaje);
+                console.log (data.mensaje);
                 window.location.replace("/");
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
-                // alert (data.mensaje);
+                // console.log (data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
                    $("#mensaje-sin-login").css("display","block");
                    $("#mensaje-sin-login").html(msj);
-                   //    alert(msj);
+                   //    console.log(msj);
         }
    });
    return false;
@@ -352,12 +352,12 @@ $('#registro_usuario_seller').submit(function (e) {
             }else if(data.status == 'OK'){
                 iniciar_sesion(mail,pass)
             }else{
-                alert (data.mensaje);
+                console.log (data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   alert(msj);
+                   console.log(msj);
         }
    });
    return false;
@@ -381,15 +381,15 @@ $('#registro-comun').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alert (data.mensaje);
+                console.log (data.mensaje);
                 window.location.replace("/");
             }else{
-                alert (data.mensaje);
+                alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   alert(msj);
+                   alertify.error(msj);
         }
    });
    return false;
@@ -420,14 +420,14 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
-                //alert (data.mensaje);
+                //alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
                     $("#mensaje-sin-login").css("display","block");
                     $("#mensaje-sin-login").html(msj);
-                //    alert(msj);
+                //    alertify.error(msj);
         }
    });
    return false;
@@ -437,7 +437,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
     $("#subir-foto-perfil").on('submit', function() {
 
         if(['image/jpeg', 'image/jpg', 'image/png', 'image/gif'].indexOf($("#file-upload").get(0).files[0].type) == -1) {
-            alert('Error : Solo JPEG, PNG & GIF permitidos');
+            alertify.error('Error : Solo JPEG, PNG & GIF permitidos');
             return false;
         }
     
@@ -458,17 +458,17 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
                     if (data.status == 'REDIRECT'){
                         window.location.replace(data.mensaje);														
                     }else if(data.status == 'OK'){
-                        //alert (data.mensaje);
+                        //alertify.error(data.mensaje);
                         $(".btn-cambiar-foto-perfil").hide();
                         window.location.replace("/editar-usuario.html");
                     }else{
-                        alert(data.mensaje);
+                        alertify.error(data.mensaje);
                     }
 
                 },
                 error: function(jqXhr, textStatus, errorThrown) {
                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                    alert(msj);         
+                    alertify.error(msj);         
                }
             });
         };
@@ -535,7 +535,7 @@ $('#subir-publicacion-form').submit(function (e) {
     formData.append("data_pines",pin_object_str);
     formData.delete("publicacion_foto");
 
-    //alert(formData.get("data_pines"))
+    //alertify.error(formData.get("data_pines"))
 
     $.ajax({
         url: '/app/publicacion.php',
@@ -547,7 +547,7 @@ $('#subir-publicacion-form').submit(function (e) {
         async: false,
         success: function( data, textStatus, jQxhr ){
             if (data.status == 'ERROR'){
-                alert(data.mensaje);														
+                alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 //$("body").addClass("loading");
                 window.location.replace("/mis-publicaciones.html");
@@ -556,14 +556,14 @@ $('#subir-publicacion-form').submit(function (e) {
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
-                //alert (data.mensaje);
+                //alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
                     $("#mensaje-sin-login").css("display","block");
                     $("#mensaje-sin-login").html(msj);
-                //    alert(msj);
+                //    alertify.error(msj);
         }
    });
    return false;
@@ -591,7 +591,7 @@ $('#editar-publicacion-form').submit(function (e) {
         async: false,
         success: function( data, textStatus, jQxhr ){
             if (data.status == 'ERROR'){
-                alert(data.mensaje);														
+                alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 $("body").addClass("loading"); 
                 window.location.replace("/mis-publicaciones.html");
@@ -600,14 +600,14 @@ $('#editar-publicacion-form').submit(function (e) {
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
-                //alert (data.mensaje);
+                //alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
                     $("#mensaje-sin-login").css("display","block");
                     $("#mensaje-sin-login").html(msj);
-                //    alert(msj);
+                //    alertify.error(msj);
         }
    });
    return false;
@@ -652,22 +652,22 @@ $("#finalizar-orden").submit(function(){
             var dataJ = JSON.parse(data).status;
             var dataM = JSON.parse(data).mensaje;
            if (dataJ == "REDIRECT"){
-               alert(data)
+               alertify.error(data)
               console.log("REDIRECT-->"+dataM);
               console.log(data)
               //window.location.replace(dataM);														
            }else if(dataJ == 'OK'){
                console.log(data)
-              alert(data)
+              alertify.success(data)
                window.location.replace("/cobrar-compra.html?id="+id_carrito);
            }else{
-               alert(data)
+               alertify.error(data)
             console.log(data)
               //window.location.replace("/ampliar-carrito.html");
            }
         },
         error: function( data, jqXhr, textStatus, errorThrown ){
-            alert(data);
+            alertify.error(data);
         }
     });
     return false;
@@ -748,7 +748,7 @@ $("#buscador-index-input").keyup(function(e){
            }
         },
         error: function(data,response){
-            alert(data);
+            alertify.error(data);
             console.log(data,response)
         }
     });
@@ -786,7 +786,7 @@ function iniciar_sesion(mail,pass){
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
-                //alert (data.mensaje);
+                //alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
@@ -855,7 +855,7 @@ function sortProducto(paramTitulo, paramSort, page){
         }else if(page == "ampliar-producto.html"){
             $('.container-sorteable').append(lista[i].parentNode.parentNode);
         }else{
-            alert("Ha ocurrido un error. Recargue la p&aacute;gina")
+            alertify.error("Ha ocurrido un error. Recargue la p&aacute;gina")
         }
         
     }
@@ -984,7 +984,7 @@ function cargarImgPines(event){
         reader.readAsDataURL(event.target.files[0]);
 
     }else{
-        alert("archivo erroneo")
+        alertify.error("archivo erroneo")
     }
             
 }
@@ -1073,7 +1073,7 @@ function activarBuscador(param){
 
                 },
                 error:function(response){
-                    alert("ERROR::"+response)
+                    alertify.error("ERROR::"+response)
                 }
             });
         }
@@ -1118,7 +1118,7 @@ function toggleFav(id_publicacion,accion,icon){
           }
        },
        error: function( data, jqXhr, textStatus, errorThrown ){
-          alert("ERROR AJAX--> "+data);
+          alertify.error("ERROR AJAX--> "+data);
           console.log(data);
        }
     });
@@ -1311,7 +1311,7 @@ function buscadorIndex(paramIndex){
                     }
             },
             error:function(response,data){
-                alert("ERROR::"+response)
+                alertify.error("ERROR::"+response)
                 console.log(response)
                 console.log(data)
             }
@@ -1389,7 +1389,7 @@ function ampliarNotif(notifs){
                 case "comentario" : 
                     $(".media-body-"+id_special).append(html_comentario)
                     break;
-                default: alert("error en notificaciones")
+                default: alertify.error("error en notificaciones")
             }
 
         }
@@ -1588,7 +1588,7 @@ function showSeguidoresSeguidos(tipo){
             container_append.insertAdjacentHTML("beforeend",overlay_html_media)
         }
     }else{
-        alert("No ten&eacute;s ning&uacute;n"+tipo)
+        alertify.error("No ten&eacute;s ning&uacute;n"+tipo)
     }
     
 }
@@ -1728,7 +1728,7 @@ function activarBuscadorRelated(param){
                 }
             },
             error:function(response){
-                alert("ERROR::"+response)
+                alertify.error("ERROR::"+response)
             }
         });
     }
@@ -1809,7 +1809,7 @@ function getSubCat(valueParam,source,target){
         },
         error: function( jqXhr, textStatus, errorThrown ){
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-            alert(msj);
+            alertify.error(msj);
         }
     });
     return false;
@@ -1867,7 +1867,7 @@ function getSubEscena(valueParam,source,target){
         },
         error: function( jqXhr, textStatus, errorThrown ){
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-            alert(msj);
+            alertify.error(msj);
         }
     });
     return false;
@@ -1918,7 +1918,7 @@ function getSubEscenaTest(valueParam,source,target){
         },
         error: function( jqXhr, textStatus, errorThrown ){
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-            alert(msj);
+            alertify.error(msj);
         }
     });
     return false;
@@ -2085,7 +2085,7 @@ function getProdPublicTest(param){
 
 
         }else{
-            alert("ERROR")
+            alertify.error("ERROR")
         }
         
     });
@@ -2333,7 +2333,7 @@ function getComentarios(comentarios_obj,desde){
             }
         }
     }else{
-        //alert("No hay comentarios")
+        //alertify.error("No hay comentarios")
     }
 
 }
@@ -2454,7 +2454,7 @@ function getPublicsAmpliar(data){
             $(".commentbox-user-img").attr("src", img_perfil);
             
         }else{
-            alert("no hay publicaciones")
+            alertify.error("no hay publicaciones")
         }
     }//fin for
 
@@ -2581,7 +2581,7 @@ function getPublicsAmpliarHome(data){
             $(".commentbox-user-img").attr("src", img_perfil);
             
         }else{
-            alert("no hay publicaciones")
+            alertify.error("no hay publicaciones")
         }
     }//fin for
 
@@ -2914,7 +2914,7 @@ function getDataPaging(dataPaging) {
                 case "paginador_favorito.php":
                     getMisFavoritos(data);
                     break;
-                default: alert("error")
+                default: alertify.error("error")
             }
 
             showCantResult(data.length)
@@ -3004,7 +3004,7 @@ function sendComentario(idParam,indexParam,desde){
         
             appendeo.insertAdjacentHTML("afterbegin",content_html);
         }else{
-            alert(resp_msj);
+            alertify.error(resp_msj);
         }
     })
     .catch(error => console.error('Error:', error))
@@ -3035,13 +3035,13 @@ function sendComentario(idParam,indexParam,desde){
                 appendeo.insertAdjacentHTML("beforeend",content_html);
             }else{
                 //window.location.replace("/ampliar-carrito.html");
-                //alert(dataJ+"--"+dataM);
+                //alertify.error(dataJ+"--"+dataM);
                 console.log(dataJ+"--"+dataM);
             }
         },
         error: function( data ){
             console.log(data)
-            alert("error->"+data.status);
+            alertify.error("error->"+data.status);
         }
     });
     return false;*/
