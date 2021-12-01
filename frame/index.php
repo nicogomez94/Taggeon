@@ -44,5 +44,6 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/Seg
     //FIN HEADER
 
     echo $contenidoString;
+echo $contenidoStringFooter;
 Database::Connect()->close();
 exit;

@@ -17,6 +17,7 @@ if ($perfil == 'seller' || $perfil=='picker') {
         //FIN HEADER
         $contenidoString = Template::sostenedor_error($publicacionManager->getMsj());
         echo $contenidoString;
+echo $contenidoStringFooter;
         Database::Connect()->close();
         exit;
     }
@@ -62,6 +63,7 @@ if ($perfil == 'seller' || $perfil=='picker') {
     //FIN HEADER
 
     echo $contenidoString;
+echo $contenidoStringFooter;
 } else {
     header("Location: ".$GLOBALS['configuration']['redirect_home']);
 }

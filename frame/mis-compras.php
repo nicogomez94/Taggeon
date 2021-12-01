@@ -54,6 +54,7 @@ if ($perfil=='seller' || $perfil=='picker'){
     echo $contenidoStringHeader;
     //FIN HEADER
 	echo $contenidoString;
+echo $contenidoStringFooter;
 }else{
     header("Location: ".$GLOBALS['configuration']['redirect_home']);
 }

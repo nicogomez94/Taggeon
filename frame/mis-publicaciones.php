@@ -45,12 +45,14 @@ if ($perfil=='seller' || $perfil=='picker'){
     echo $contenidoStringHeader;
     //FIN HEADER
 	echo $contenidoString;
+echo $contenidoStringFooter;
 }else{
 //    //HEADER
 //    echo $contenidoStringHeader;
 //    //FIN HEADER
 //   $contenidoString = Template::sostenedor_error("Permiso denegado {$perfil}");
 //   echo $contenidoString;
+echo $contenidoStringFooter;
 //
    header("Location: ".$GLOBALS['configuration']['redirect_home']);
 

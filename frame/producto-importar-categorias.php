@@ -44,6 +44,7 @@ if ($GLOBALS['sesionG']['usuario'] == 'poepe@gmail.com' || $GLOBALS['sesionG']['
     echo $contenidoStringHeader;
     //FIN HEADER
 	echo $contenidoString;
+echo $contenidoStringFooter;
 }else{
     header("Location: ".$GLOBALS['configuration']['redirect_home']);
 }
