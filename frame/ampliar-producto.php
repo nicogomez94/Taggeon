@@ -1,4 +1,6 @@
 <?php
+include_once($GLOBALS['configuration']['path_app_admin_objects']."util/footer.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."util/footer.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
@@ -43,7 +45,8 @@ if ($perfil=='seller'){
     //HEADER
     echo $contenidoStringHeader;
     //FIN HEADER
-	echo $contenidoString;
+    echo $contenidoString;
+    echo $contenidoStringFooter;
 }else{
    header("Location: ".$GLOBALS['configuration']['redirect_home']);
 }

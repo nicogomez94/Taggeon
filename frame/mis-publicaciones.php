@@ -1,4 +1,5 @@
 <?php
+include_once($GLOBALS['configuration']['path_app_admin_objects']."util/footer.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");

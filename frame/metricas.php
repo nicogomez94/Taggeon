@@ -1,4 +1,5 @@
 <?php
+include_once($GLOBALS['configuration']['path_app_admin_objects']."util/footer.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."metrica/MetricaManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
@@ -23,6 +24,10 @@ if ($perfil=='seller' || $perfil=='picker'){
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "metricas"     => $metricaManager->getListMetrica(),
+        "totalhoy"     => "1020",
+        "totaldias"     => "1021",
+        "totalmes"     => "1022",
+        "totalliquidar"     => "1023",
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
         
