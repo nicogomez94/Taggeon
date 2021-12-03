@@ -141,6 +141,7 @@ function pagar ($token){
                 $fp = fopen("/var/www/html/log.txt", 'a');
                 fwrite($fp, $str);
                 fclose($fp);
+        	$objPrincipalManager = new CarritoManager();
                 $objPrincipalManager->cambiarEstadoMayor3($_POST,4);
                 if ($objPrincipalManager->getStatus() == 'OK') {
                     $str = "OK\n";
