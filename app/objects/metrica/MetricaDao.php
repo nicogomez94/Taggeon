@@ -163,6 +163,88 @@ SQL;
         return false;
 	}
 	
+	public function getListMetricaTotal()
+    {
+        $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+        SELECT
+        publicacion.publicacion_nombre,
+        MAX(carrito.fecha_update) AS fecha,
+        carrito_detalle.total_vendedor,
+        carrito_detalle.total_taggeador,
+        carrito_detalle.total_tienda,
+        carrito_detalle.comision_porcentaje_taggeador,
+        carrito_detalle.comision_porcentaje_tienda,
+        carrito_detalle.id_vendedor,
+        carrito_detalle.id_usuario_publicador,
+        carrito_detalle.id_publicacion,
+        carrito_detalle.usuario_alta,
+        carrito.id AS id_carrito,
+        carrito_detalle.cantidad,
+        carrito_detalle.precio,
+        carrito_detalle.nombre_producto,
+        carrito_detalle.id_producto,
+        carrito_detalle.total,
+        MIN(producto_foto.id) AS foto,
+        SUM(carrito_detalle.total) AS carrito_total,
+        SUM(carrito_detalle.total) AS carrito_subtotal
+    FROM
+        `carrito`
+    INNER JOIN
+        carrito_detalle
+    ON
+        carrito.id = carrito_detalle.id_carrito AND(
+            carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL
+        )
+    INNER JOIN
+        publicacion
+    ON
+        publicacion.id = carrito_detalle.id_publicacion AND(
+            publicacion.eliminar = 0 OR publicacion.eliminar IS NULL
+        )
+    LEFT JOIN
+        producto_foto
+    ON
+        `carrito_detalle`.id_producto = producto_foto.id_producto AND(
+            producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL
+        )
+    WHERE
+        (
+            `carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL
+        ) AND(
+            `carrito_detalle`.usuario_alta = $usuarioAltaDB OR `carrito_detalle`.id_usuario_publicador = $usuarioAltaDB OR `carrito_detalle`.id_vendedor = $usuarioAltaDB
+        ) AND(
+            estado IS NOT NULL AND estado = 4
+        )
+    GROUP BY
+        carrito_detalle.total_vendedor,
+        carrito_detalle.total_taggeador,
+        carrito_detalle.total_tienda,
+        carrito_detalle.comision_porcentaje_taggeador,
+        carrito_detalle.comision_porcentaje_tienda,
+        carrito_detalle.id_vendedor,
+        carrito_detalle.id_usuario_publicador,
+        carrito_detalle.usuario_alta,
+        carrito_detalle.id_publicacion,
+        carrito.id,
+        carrito_detalle.cantidad,
+        carrito_detalle.precio,
+        carrito_detalle.nombre_producto,
+        carrito_detalle.id_producto,
+        carrito_detalle.total
+
+sql;
+//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
 	public function getListMetrica()
     {
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];

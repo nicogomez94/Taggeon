@@ -36,8 +36,8 @@ if ($perfil=='seller'){
         
     );
     $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);
-    $menuperfil = '';
     $idEditar = isset($_GET["id"]) ? $_GET["id"] : '';
+    $menuperfil = $GLOBALS['menuperfil'][$perfil];
     $contenido = new Template($nameTemplate);
 	$contenido->asigna_variables(array(
             "json" => $jsonData,
@@ -46,7 +46,8 @@ if ($perfil=='seller'){
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
-	        "id"          => $idEditar,
+	    "id"          => $idEditar,
+            "menu-perfil" => _menuPerfil($fotoPerfil,$menuperfil),
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
     $contenidoString = $contenido->muestra();

@@ -1,6 +1,17 @@
 <?php
 include_once("/var/www/configuration_pass.php");
 
+function _menuPerfil ($fotoPerfilParam,$menuperfilParam){
+    $contenido = new Template("menu-perfil");
+	$contenido->asigna_variables(array(
+            "nombre" => $GLOBALS['sesionG']['nombre']." ".$GLOBALS['sesionG']['apellido'],
+            "menuperfil" => $menuperfilParam
+
+			));
+    $retcontenidoString = $contenido->muestra();
+    return $retcontenidoString;
+}
+
 function _trim ($param){
 	$patrones = array ('/(\t+)/','/(\n+)/','/(\r+)/','/(\0+)/','/(\x0B+)/','/( +)/');
 	$cadena = preg_replace($patrones, " ", $param);

@@ -36,7 +36,7 @@ if ($GLOBALS['sesionG']['usuario'] == 'poepe@gmail.com' || $GLOBALS['sesionG']['
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
-            "menuperfil" => $menuperfil,
+            "menu-perfil" => _menuPerfil($fotoPerfil,$menuperfil),
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));
     $contenidoString = $contenido->muestra();

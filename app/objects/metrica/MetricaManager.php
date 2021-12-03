@@ -178,6 +178,11 @@ class  MetricaManager
 		return $metrica;
 	}
 
+	public function getListMetricaTotal()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotal();
+		return $ret;
+	}
 	public function getListMetrica()
 	{
 		$ret =  $this->metricaDao->getListMetrica();

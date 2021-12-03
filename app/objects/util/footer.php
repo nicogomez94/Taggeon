@@ -14,8 +14,7 @@ $contenidoFooter = new Template($templateFooter);
 
 $contenidoFooter->asigna_variables(array(
         "randomtime" => $randomtime,
-		"myaccount" => $myAccount,
-		"cierrefooter" => $GLOBALS['configuration']['scriptCierreFoot']
+		"myaccount" => $myAccount
 		));
 $contenidoStringFooter = $contenidoFooter->muestra();
 ?>

@@ -41,11 +41,8 @@ class  PublicacionDao
         $subescena1 = isset($data["subescena1"]) ? $data["subescena1"] : '';
         $subescena1DB = Database::escape($subescena1);
 
-        $subescena2 = isset($data["subescena2"]) ? $data["subescena2"] : '';
-        $subescena2DB = Database::escape($subescena2);
-
-        $subescena3 = isset($data["subescena3"]) ? $data["subescena3"] : '';
-        $subescena3DB = Database::escape($subescena3);
+        $subescena_json = isset($data["subescena_json"]) ? $data["subescena_json"] : '';
+        $subescena_jsonDB = Database::escape($subescena_json);
 
         $publicacion_descripcion = isset($data["publicacion_descripcion"]) ? $data["publicacion_descripcion"] : '';
         $publicacion_descripcionDB = Database::escape($publicacion_descripcion);
@@ -57,8 +54,8 @@ class  PublicacionDao
         $aspect_ratioDB = Database::escape($aspect_ratio);
         
 		$sql = <<<SQL
-INSERT INTO publicacion (publicacion_nombre, publicacion_descripcion,usuario_alta,pid,aspect_ratio,subescena1,subescena2,subescena3,escena_sel)  
-VALUES ($publicacion_nombreDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB,$subescena1DB,$subescena2DB,$subescena3,$escena_selDB)
+INSERT INTO publicacion (publicacion_nombre, publicacion_descripcion,usuario_alta,pid,aspect_ratio,subescena1,subescena_json,escena_sel)  
+VALUES ($publicacion_nombreDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB,$subescena1DB,$subescena_jsonDB,$escena_selDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -94,18 +91,15 @@ SQL;
         $subescena1 = isset($data["subescena1"]) ? $data["subescena1"] : '';
         $subescena1DB = Database::escape($subescena1);
 
-        $subescena2 = isset($data["subescena2"]) ? $data["subescena2"] : '';
-        $subescena2DB = Database::escape($subescena2);
-
-        $subescena3 = isset($data["subescena3"]) ? $data["subescena3"] : '';
-        $subescena3DB = Database::escape($subescena3);
+        $subescena_json = isset($data["subescena_json"]) ? $data["subescena_json"] : '';
+        $subescena_jsonDB = Database::escape($subescena_json);
 
         $sql = <<<SQL
 			UPDATE
 			    `publicacion`
 			SET
 			    `usuario_editar` = $usuarioDB, pid=$publicacion_pidDB,
-`publicacion_nombre` = $publicacion_nombreDB, subescena1=$subescena1DB,subescena2=$subescena2DB,subescena3=$subescena3DB,escena_sel=$escena_selDB, `publicacion_descripcion` = $publicacion_descripcionDB
+`publicacion_nombre` = $publicacion_nombreDB, subescena1=$subescena1DB,subescena_json=$subescena_jsonDB,escena_sel=$escena_selDB, `publicacion_descripcion` = $publicacion_descripcionDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB
@@ -282,7 +276,7 @@ SQL;
                     $idDB = Database::escape($id);
                     $sql = <<<sql
                     SELECT
-                    `publicacion`.`id`, `publicacion_nombre`,subescena1,subescena2,subescena3,escena_sel, 
+                    `publicacion`.`id`, `publicacion_nombre`,subescena1,subescena_json,escena_sel, 
                     `publicacion_descripcion`,pid,aspect_ratio
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto
             
@@ -296,7 +290,7 @@ SQL;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, `publicacion_descripcion`,pid,aspect_ratio
+                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena_json,escena_sel, `publicacion_descripcion`,pid,aspect_ratio
             sql;
                     $resultado = Database::Connect()->query($sql);
                     $row_cnt = mysqli_num_rows($resultado);
@@ -349,7 +343,7 @@ sql;
                     $idDB = Database::escape($id);
                     $sql =<<<sql
                     SELECT
-                    `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, 
+                    `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena_json,escena_sel, 
                     `publicacion_descripcion`,pid,aspect_ratio,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto,`publicacion`.usuario_alta
             
@@ -363,7 +357,7 @@ sql;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
+                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena_json,escena_sel, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
 sql;
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
@@ -385,7 +379,7 @@ sql;
 
                     $sql =<<<sql
                     SELECT
-                    `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, 
+                    `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena_json,escena_sel, 
                     `publicacion_descripcion`,pid,aspect_ratio,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto,`publicacion`.usuario_alta
             
@@ -400,7 +394,7 @@ sql;
                 publicacion.id=$idDB AND 
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL)
                 group by         
-                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena2,subescena3,escena_sel, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
+                `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena_json,escena_sel, `publicacion_descripcion`,pid,usuario_alta,aspect_ratio
 sql;
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
@@ -545,13 +539,13 @@ sql;
 
 
         $sql = <<<sql
-SELECT distinct s.*,pc1.nombre_subescena2, pc2.nombre_subescena3,pc3.nombre_subescena1  from 
+SELECT distinct s.*,pc3.nombre_subescena1  from 
 (
         SELECT
         1 as orden,
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -587,16 +581,14 @@ SELECT distinct s.*,pc1.nombre_subescena2, pc2.nombre_subescena3,pc3.nombre_sube
             `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
         ) AND
     `publicacion`.`id` in (
-SELECT distinct p1.id FROM publicacion p1 INNER JOIN 
-(select p.escena_sel,p.subescena1,p.subescena2,p.subescena3 from click c INNER JOIN publicacion p ON p.id = c.id_publicacion where c.usuario_alta = $usuarioAltaDB) as p2
-ON p1.subescena3= p2.subescena3 OR p1.subescena2= p2.subescena2
+SELECT distinct c.id_publicacion FROM click c where c.usuario_alta = $usuarioAltaDB
 )
 
     GROUP BY
 	orden,
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -609,7 +601,7 @@ UNION
         2 as orden,
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -645,16 +637,14 @@ UNION
             `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
         ) AND
     `publicacion`.`id` not in (
-SELECT distinct p1.id FROM publicacion p1 INNER JOIN 
-(select p.escena_sel,p.subescena1,p.subescena2,p.subescena3 from click c INNER JOIN publicacion p ON p.id = c.id_publicacion where c.usuario_alta = $usuarioAltaDB) as p2
-ON p1.subescena3= p2.subescena3 OR p1.subescena2= p2.subescena2
+SELECT distinct c.id_publicacion FROM click c where c.usuario_alta = $usuarioAltaDB
 )
 
     GROUP BY
 	orden,
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -663,14 +653,11 @@ ON p1.subescena3= p2.subescena3 OR p1.subescena2= p2.subescena2
             usuarios.nombre,
             usuarios.idUsuario
  ) 
-as s INNER JOIN (select id, id_padre, nombre as nombre_subescena2 from publicacion_categoria UNION select id, id_padre, nombre as nombre_subescena2  from publicacion_categoria2) as pc1 ON pc1.id_padre = s.subescena1 AND s.subescena2 = pc1.id
-
-INNER JOIN (select id, id_padre, nombre as nombre_subescena3 from publicacion_categoria UNION select id,id_padre, nombre as nombre_subescena3  from publicacion_categoria2) as pc2 ON pc2.id_padre = s.subescena2  AND s.subescena3 = pc2.id
-
+as s 
 INNER JOIN (select id, id_padre, nombre as nombre_subescena1 from publicacion_categoria UNION select id,id_padre, nombre as nombre_subescena1  from publicacion_categoria2) as pc3 ON pc3.id_padre is null  AND s.subescena1 = pc3.id
     LIMIT $offset,$limit
 sql;
-	//echo $sql;exit;
+//	echo $sql;exit;
         $resultado = Database::Connect()->query($sql);
         $list = array();
 
@@ -739,7 +726,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -778,7 +765,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -884,7 +871,7 @@ SQL;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -922,7 +909,7 @@ SQL;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -994,7 +981,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -1032,7 +1019,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -1059,7 +1046,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -1098,7 +1085,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -1130,7 +1117,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -1169,7 +1156,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -1231,7 +1218,7 @@ sql;
         SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,
@@ -1274,7 +1261,7 @@ sql;
     GROUP BY
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena2,subescena3,escena_sel,
+        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
         pid,
         aspect_ratio,

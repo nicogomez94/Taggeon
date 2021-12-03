@@ -37,7 +37,7 @@ if (($perfil=='seller' || $perfil=='picker') && $usuarioManager->isAdmin()){
         
     );
     $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);
-    $menuperfil = '';
+    $menuperfil = $GLOBALS['menuperfil'][$perfil];
     $idEditar = isset($_GET["id"]) ? $_GET["id"] : '';
     $contenido = new Template($nameTemplate);
 	$contenido->asigna_variables(array(
@@ -47,6 +47,7 @@ if (($perfil=='seller' || $perfil=='picker') && $usuarioManager->isAdmin()){
             "apellido" => $GLOBALS['sesionG']['apellido'],
             "contacto" => $GLOBALS['sesionG']['email'],
             "url_editar" => "/editar-usuario.html",
+            "menu-perfil" => _menuPerfil($fotoPerfil,$menuperfil),
 	        "id"          => $idEditar,
             "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
 			));

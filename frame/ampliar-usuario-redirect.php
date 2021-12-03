@@ -24,7 +24,7 @@ if ($perfil=='picker' || $perfil == 'seller'){
     );
     
     $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);
-    $menuperfil = '';
+    $menuperfil = $GLOBALS['menuperfil'][$perfil];
     $idEditar = isset($_GET["id"]) ? $_GET["id"] : '';
     $contenido = new Template($nameTemplate);
 
@@ -47,7 +47,7 @@ if ($perfil=='picker' || $perfil == 'seller'){
         "apellidopublic" => $apellidopublic,
         "contacto" => $GLOBALS['sesionG']['email'],
         "url_editar" => "/editar-usuario.html",
-        "menuperfil" => $menuperfil,
+            "menu-perfil" => _menuPerfil($fotoPerfil,$menuperfil),
         "foto-perfil" => $fotoPerfil
         
         ));

@@ -1,0 +1,25 @@
+<div id="info-user" class="container">
+    <div id="titulo-perfil">
+       <div id="titulo-perfil-img">
+          <img src="{foto-perfil}" alt="foto perfil">
+       </div>
+       <div id="titulo-perfil-datos">
+          <span id="name_usuario">{nombre}</span>
+          <div class="fyf">
+             <div class="seguidores_container">
+                <span id="seguidores_count" class="seguidores_count"></span>
+                <span class="seguidores_label" onclick="showSeguidoresSeguidos('seguidores')">Seguidores</span>
+             </div>
+             <div class="seguidos_container ml-2">
+                <span id="seguidos_count" class="seguidos_count"></span>
+                <span class="seguidos_label" onclick="showSeguidoresSeguidos('seguidos')">Seguidos</span>
+             </div>
+             <span class="edit_perfil"><a href="/editar-usuario.html" class="ml-1 btn btn-warning btn-sm">Editar Perfil</a></span>
+          </div>
+       </div>
+    </div>
+    <div id="menu-perfil">
+    {menuperfil}
+    </div>
+ </div>
+ <div class="container show-result">Mostrando <span class="show-result-num"></span> resultados.</div>
