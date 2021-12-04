@@ -56,7 +56,14 @@
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=616783374564d200122a7e21&product=inline-share-buttons" async="async"></script>
 </head>
 <body>
-	
+	<div class="backdrop">
+		<div class="bouncing-loader">
+		  <div></div>
+		  <div></div>
+		  <div></div>
+		  <div></div>
+		</div>
+	  </div>
 	<!-- mensaje welcome -->
 	<div class="overlay overlay-welcome-nologin" style="display: none;">
 		<div class="lightBox">
@@ -87,7 +94,7 @@
 								<button type="submit" class="btn btn-warning">Iniciar Sesi&oacute;n</button>
 						 		<hr>
 						 		<div>
-									<label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Taggeon? <a href="javascript:void(0)" id="test11" data-dismiss="modal-sesion" data-toggle="modal" data-target="#modal-registro">Registrate</a></label>
+									<label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Taggeon? <a href="javascript:void(0)" id="test11" data-dismiss="modal-sesion" data-toggle="modal" data-target="#modal-registro-seller">Registrate</a></label>
 								</div>
 
 					  		</form>
@@ -116,7 +123,7 @@
 		<div class="ver-perfil" data-toggle="modal" data-target="#modal-sesion">
 			<a href="javascript:void(0)" class="btn btn-warning">Iniciar Sesi&oacute;n</a>
 		</div>
-		<div class="ver-perfil" data-toggle="modal" data-target="#modal-registro">
+		<div class="ver-perfil" data-toggle="modal" data-target="#modal-registro-seller">
 			<a href="javascript:void(0)" class="btn btn-warning">Registrarse</a>
 		</div>
       </div>
@@ -138,7 +145,7 @@
 					 		<div id="mensaje-sin-login"></div>
 							<button type="submit" class="btn btn-warning">Iniciar Sesi&oacute;n</button>
 							<hr>
-                     		<div><label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Taggeon? <a href="javascript:void(0)" id="test11" data-dismiss="modal-sesion" data-toggle="modal" data-target="#modal-registro">Registrate</a></label></div>
+                     		<div><label class="form-check-label" for="exampleCheck1">Todav&iacute;a no est&aacute;s en Taggeon? <a href="javascript:void(0)" id="test11" data-dismiss="modal-sesion" data-toggle="modal" data-target="#modal-registro-seller">Registrate</a></label></div>
                   		</form>
 					</div>
 				</div>
@@ -147,15 +154,14 @@
 	</div>
 
 	<!-- Modal REGISTRO -->
-	<div class="modal fade" id="modal-registro">
+	<div class="modal fade" id="modal-registro-seller">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
 				<div class="modal-body">
 					<h1>Te damos la bienvenida a Taggeon</h1>
 					<hr>
 					<div id="form_registro_cont" class="forms">
-						<form id="registro-comun">
+						<form id="registro_usuario_seller">
 					<input type="hidden" name="accion" value="guardar" autocomplete="on">
 
                      <div>
@@ -176,29 +182,19 @@
 							<div>
                         <button type="submit" class="btn btn-warning">Registrarse</button>
                      </div>
-                     <!-- <div class="or">&Oacute;</div>
-                     <div>
-                        <button type="submit" class="btn btn-warning">Registrarse como Seller</button>
-                     </div> -->
                      <p class="small-text-form">Al hacer clic en "Registrarse", aceptas nuestras Condiciones, la Pol&iacute;tica de datos y la Pol&iacute;tica de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.</p>
 						</form>
-               </div>
-                  <hr>
-                  <!--  -->
-                  
-            </div>
-            <div id="registro_seller">
-               <a href="javascript:void(0)" id="registro_seller_btn" data-dismiss="modal-registro" data-toggle="modal" data-target="#modal-registro-seller">Registrarse como Seller</a>
-            </div>
+              		</div>
+                  	<hr>
+            	</div>
 			</div>
 		</div>
    </div>
    
    <!-- Modal REGISTRO-SELLER -->
-	<div class="modal fade" id="modal-registro-seller">
+	<!-- <div class="modal fade" id="modal-registro-seller">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
 				<div class="modal-body">
 					<h1>Te damos la bienvenida a Taggeon</h1>
 					<h6 style="color: rgb(197, 197, 197);">Hac&eacute; crecer tu negocio</h6>
@@ -230,7 +226,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
 <div>

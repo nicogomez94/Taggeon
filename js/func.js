@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    
     if(typeof jsonData !== 'undefined'){
         let sizeSeguidores = jsonData.seguidores.length || 0;
         let sizeSeguidos = jsonData.seguidos.length || 0;
@@ -236,9 +235,6 @@ $('#eliminar_usuario_seller').submit(function (e) {
         
     $.ajax({
         url: '/app/eliminar_usuario_seller.php',
-        //type: 'post',
-        //data: $("#registro_usuario_seller").serialize(), 
-        //dataType : "json",
         data: formData,
         type: 'POST',
         processData: false,
@@ -268,9 +264,6 @@ $('#eliminar_usuario_picker').submit(function (e) {
         
     $.ajax({
         url: '/app/eliminar_usuario_picker.php',
-        //type: 'post',
-        //data: $("#registro_usuario_seller").serialize(), 
-        //dataType : "json",
         data: formData,
         type: 'POST',
         processData: false,
@@ -300,9 +293,6 @@ $('#form_registro_cont_pass').submit(function (e) {
         
     $.ajax({
         url: '/app/editar_pass.php',
-        //type: 'post',
-        //data: $("#registro_usuario_seller").serialize(), 
-        //dataType : "json",
         data: formData,
         type: 'POST',
         processData: false,
@@ -347,7 +337,7 @@ $('#registro_usuario_seller').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                alertify.success(data.mensaje)
+                //alertify.success(data.mensaje)
                 iniciar_sesion(mail,pass)
             }else{
                 alertify.error(data.mensaje)
@@ -361,40 +351,6 @@ $('#registro_usuario_seller').submit(function (e) {
    });
    return false;
 });
-
-$('#registro-comun').submit(function (e) {
-    e.preventDefault();
-    var formData = new FormData($(this)[0]);
-        
-    $.ajax({
-        url: '/app/alta_picker.php',
-        //type: 'post',
-        //data: $("#registro-comun").serialize(), 
-        //dataType : "json",
-        data: formData,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        dataType: "json",
-        success: function( data, textStatus, jQxhr ){
-            if (data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);														
-            }else if(data.status == 'OK'){
-                console.log (data.mensaje);
-                window.location.replace("/");
-            }else{
-                alertify.error(data.mensaje);
-            }
-        },
-        error: function( jqXhr, textStatus, errorThrown ){
-                   var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   alertify.error(msj);
-        }
-   });
-   return false;
-});
-
-
 
 
 $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
@@ -415,8 +371,8 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                alertify.success(data.mensaje)
-                window.location.replace("/index.html");
+                //alertify.success(data.mensaje)
+                window.location.replace("/");
             }else{
                 alertify.error(data.mensaje)
                 //alertify.error(data.mensaje);
@@ -532,13 +488,10 @@ $('#subir-publicacion-form').submit(function (e) {
     console.log(pin_object)
 
     formData.append("foto_base64",url_imagen_64);
-    formData.append("escena_sel",url_imagen_64);
     formData.append("data_pines",pin_object_str);
     formData.append("subescena_json",subescenas_obj);
     formData.delete("publicacion_foto");
 
-    console.log(formData.get("escena_sel"))
-    return 0;
     $.ajax({
         url: '/app/publicacion.php',
         data: formData,
@@ -553,13 +506,9 @@ $('#subir-publicacion-form').submit(function (e) {
             }else if(data.status == 'OK' || data.status == 'ok'){
                 //$("body").addClass("loading");
                 alertify.success(data.mensaje);	
-                //window.location.replace("/mis-publicaciones.html");
-            }else if(data.status == 'REDIRECT'){
-                //window.location.replace(data.mensaje);
+                window.location.replace("/mis-publicaciones.html");
             }else{
-                $("#mensaje-sin-login").css("display","block");
-                $("#mensaje-sin-login").html(data.mensaje);
-                //alertify.error(data.mensaje);
+                alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
@@ -768,6 +717,15 @@ $("#buscador-index-input").keyup(function(e){
 
 });
 
+function loadingScreen(){
+    $(document).ajaxStart( function() {
+        $(".backdrop").css("display","grid")
+    });
+    $(document).ajaxStop( function() {
+        $(".backdrop").css("display","none")
+    });
+}
+
 function cambiarCant(select,target){
     let selected_value = this.value;
     target.innerHTML = selected_value
@@ -790,7 +748,8 @@ function iniciar_sesion(mail,pass){
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                window.location.replace("/");
+                alertify.success(data.mensaje)
+                //window.location.replace("/");
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
