@@ -528,14 +528,17 @@ $('#subir-publicacion-form').submit(function (e) {
     var url_imagen_64 = $("#img-pines-amapear").attr("src")
     var pin_object = $(".pin").serializeArray();
     var pin_object_str = JSON.stringify(pin_object)
+    var subescenas_obj = JSON.stringify($(".tipo_esp").serializeArray());
     console.log(pin_object)
 
     formData.append("foto_base64",url_imagen_64);
+    formData.append("escena_sel",url_imagen_64);
     formData.append("data_pines",pin_object_str);
+    formData.append("subescena_json",subescenas_obj);
     formData.delete("publicacion_foto");
 
-    //alertify.error(formData.get("data_pines"))
-
+    console.log(formData.get("escena_sel"))
+    return 0;
     $.ajax({
         url: '/app/publicacion.php',
         data: formData,
@@ -549,9 +552,10 @@ $('#subir-publicacion-form').submit(function (e) {
                 alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 //$("body").addClass("loading");
-                window.location.replace("/mis-publicaciones.html");
+                alertify.success(data.mensaje);	
+                //window.location.replace("/mis-publicaciones.html");
             }else if(data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);
+                //window.location.replace(data.mensaje);
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);
@@ -1873,25 +1877,23 @@ function getSubEscenaTest(valueParam,source,target){
 function getEscenas(valueParam){
     
     let escena_parse = (valueParam=="arq") ? JSON.parse(escena) : JSON.parse(escena2);
-    var escena_length = escena_parse.length || 0;
-    const esc_arq = document.querySelector("#esc_arq");
+    let escena_length = escena_parse.length || 0;
+    const espacio_container = document.querySelector(".tipo-espacio-container");
+    const sel_tipo_esp = document.querySelector("#sel_tipo_esp");
+    var cat_select_html = '';
     
     for(var i=0; i<escena_length; i++) {
-        var id_padre = escena_parse[i].id_padre;
+        let id_padre = escena_parse[i].id_padre;
 
         if(id_padre == null){
-            var cat_id = escena_parse[i].id;
-            var cat_nombre = escena_parse[i].nombre;
-    
-            var cat_select_html = 
-            `<option value="${cat_id}">${cat_nombre}</option>`;
-    
-            esc_arq.insertAdjacentHTML("beforeend",cat_select_html)
-            esc_arq.style.display = "block"
-
+            let cat_id = escena_parse[i].id;
+            let cat_nombre = escena_parse[i].nombre;
+            cat_select_html += '<option value="'+cat_id+'">'+cat_nombre+'</option>';
         }
     }
 
+    sel_tipo_esp.innerHTML = cat_select_html;
+    espacio_container.style.display = "block";
 }
 
 function getSubEscena(valueParam,source,target){
@@ -1913,20 +1915,18 @@ function getSubEscena(valueParam,source,target){
                 var subEscena = data.mensaje || [];
                 var subEscena_length = data.mensaje.length || 0;
                 var targetHtml = $(target);
-                
+                var cat_select_html = '';
+
                 for(var i=0; i<subEscena_length; i++) {
                     var cat_id = subEscena[i].id;
                     var cat_nombre = subEscena[i].nombre;
-
-                    var cat_select_html = 
-                    `<div><select name="subescena${i}" id="esc_${cat_id}" onclick="getParamTipoEspacio(${cat_id},esc_${cat_id})">
-                        <option value="" selected disabled hidden required>${cat_nombre}</option>
-                    </select></div>`;
-     
-                    targetHtml.append(cat_select_html)
-                    targetHtml.addClass("showCat");
+                    cat_select_html += 
+                    '<div><select class="tipo_esp" name="'+cat_nombre+'" id="esc_'+cat_id+'" onclick="getParamTipoEspacio('+cat_id+',esc_'+cat_id+');this.removeAttribute(\'onclick\')">'+
+                       '<option value="" selected disabled hidden required>'+cat_nombre+'</option>'+
+                    '</select></div>';
                 }
-
+                targetHtml.html(cat_select_html)
+                
             }else{
                 console.log("else")
                 console.log(response)
@@ -1942,7 +1942,7 @@ function getSubEscena(valueParam,source,target){
 }
 
 function getParamTipoEspacio(valueParam,target){
-
+    $(this).removeA
     var catData = new FormData();
     catData.append("accion","subescena");
     catData.append("id",valueParam);
@@ -1956,21 +1956,17 @@ function getParamTipoEspacio(valueParam,target){
         dataType: "json",
         success: function(data,response){
             if(data.status == 'OK'){
-                console.log(data)
                 var subEscena = data.mensaje || [];
                 var subEscena_length = data.mensaje.length || 0;
                 var targetHtml = $(target);
+                var cat_select_html = '';
                 
                 for(var i=0; i<subEscena_length; i++) {
                     var cat_id = subEscena[i].id;
                     var cat_nombre = subEscena[i].nombre;
-
-                    var cat_select_html = 
-                    `<option value="${cat_id}">${cat_nombre}</option>`;
-     
-                    targetHtml.append(cat_select_html)
-                    //targetHtml.addClass("showCat");
+                    cat_select_html += '<option value="'+cat_id+'-'+cat_nombre+'">'+cat_nombre+'</option>';
                 }
+                targetHtml.html(cat_select_html)
 
             }else{
                 console.log("else")
@@ -2737,7 +2733,6 @@ function getPublicsHome(data){
                     ]    
                 }
             ];
-            console.log(subescena_json)
 
             let tipo_escena = data[i].escena_sel || "";
             let id_public = data[i].id || '';
@@ -2796,11 +2791,11 @@ function getPublicsHome(data){
                 arrayCats.push(esc_full_id);
                 $(".splide__list__home").append(item_html);
                 $(".item-cat-"+esc_full_id).append(public_html)
-                console.log(nombre_public+" - "+esc_full_name+" ",arrayCats)
+                //console.log(nombre_public+" - "+esc_full_name+" ",arrayCats)
             }else{
                 //existe en el array entonces lo dibujo en la cat que ya esta
                 $(".item-cat-"+esc_full_id).append(public_html)
-                console.log("(E) "+nombre_public+" - "+esc_full_name+" "+tipo_escena)
+                //console.log("(E) "+nombre_public+" - "+esc_full_name+" "+tipo_escena)
             }
 
 

@@ -311,22 +311,19 @@
                                  </div>
                                  <div class="row">
                                        <div id="sels_cat_prod" class="col-lg-12">
-                                          <hr>
-                                          <h4>Seleccione el tipo de escena:</h4>
                                           <div class="tipo-escena-container">
-                                             <div onclick="getEscenas('arq')">Arquitectura</div>
-                                             <div onclick="getEscenas('ind')">Indumentaria</div>
+                                             <hr>
+                                             <h4>Seleccione el tipo de escena:</h4>
+                                             <input id="radio1" value="Arquitectura" name="escena_sel" type="radio"><label for="radio1" onclick="getEscenas('arq')">Arquitectura</label>
+                                             <input id="radio2" value="Indumentaria" name="escena_sel" type="radio"><label for="radio2" onclick="getEscenas('arq')">Indumentaria</label>
                                           </div>
-                                          <hr>
-                                          <hr>
-                                          <h4>Seleccione el tipo de espacio:</h4>
                                           <div class="tipo-espacio-container">
-                                             <select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,this.id,'#testselects')">
+                                             <hr>
+                                             <h4>Seleccione el tipo de espacio:</h4>
+                                             <select name="subescena1" id="sel_tipo_esp" onchange="getSubEscena(this.value,this.id,'#testselects')">
                                                 <option value="" selected disabled hidden required>Elija el tipo de espacio</option>
                                              </select>
-                                             <div class="text-left" id="testselects">
-                                                <p>test selects</p>
-                                             </div>
+                                             <div class="text-left" id="testselects"></div>
                                              <!-- <div>
                                                 <select name="test1" id="test1">
                                                    <option value="" selected disabled hidden required>Tam</option>

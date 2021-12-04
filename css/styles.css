@@ -466,11 +466,11 @@ body{
     max-width: 100%;
     margin: 100px 30px 30px 30px;
 }*/
-.showCat{
-    display: block !important;
-}
 #sels_cat_prod{
     text-align: center;
+}
+#radio1,#radio2{
+    visibility: hidden;
 }
 #sels_cat_prod select:not(:first-child){
     /* display: none; */
@@ -2338,6 +2338,9 @@ button:disabled{
     background: #f7f7f7;
     margin-top: 15px;
 }
+.tipo-espacio-container{
+    display: none;
+}
 .tipo-escena-container{
     display: flex;
     justify-content: center;
@@ -2345,15 +2348,16 @@ button:disabled{
     align-content: center;
     flex-wrap: nowrap;
     text-align: center;
-    transition: 1s all ease-in;
-    box-shadow: var(--soft-shadow);
+    transition: .4s all ease-in;
 }
-.tipo-escena-container div {
+.tipo-escena-container label{
     padding: 30px;
     font-weight: 500;
     border-radius: 25px;
     background-color: var(--golden-taggeon);
     margin: 20px;
+    box-shadow: var(--soft-shadow);
+    cursor: pointer;
 }
 .tipo-escena-container div:hover{
     box-shadow: none;
