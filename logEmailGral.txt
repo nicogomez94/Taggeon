@@ -584,3 +584,103 @@ Datos del envio: codigo postal 1416. Localidad: Capital Federal.
 Notas: kjhjlkhg
 usuario shop@gonelake.com.ar
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:16:42
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 349.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: fhdgfdgfdg
+usuario shop@gonelake.com.ar
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:16:44
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 349.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: fhdgfdgfdg
+usuario shop@gonelake.com.ar
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:18:17
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 350.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: tdtrfdggfd
+usuario shop@gonelake.com.ar
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:18:18
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 350.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: tdtrfdggfd
+usuario shop@gonelake.com.ar
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:21:40
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 351.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: hfgtfghfgh
+usuario shop@gonelake.com.ar
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.89.186.155
+Fecha 27/11/2021  20:21:41
+---------------------------------
+Respuesta OK => Envio enviarEmailCarrito
+mensajeTexto: Hola Nicoals Gomez, se creo la orden 351.
+
+Datos del envio: codigo postal 1416. Localidad: Capital Federal.
+
+Notas: hfgtfghfgh
+usuario shop@gonelake.com.ar
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.127.53.81
+Fecha 29/11/2021  13:06:36
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario riki@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36200.127.53.81
+Fecha 29/11/2021  13:06:38
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario riki@gmail.com
+Detalle Respuesta:

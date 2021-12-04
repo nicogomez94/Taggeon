@@ -1,33 +1,4 @@
-<!--  -->
-<div id="info-user" class="container">
-   <div id="titulo-perfil">
-      <div id="titulo-perfil-img">
-         <img src="{foto-perfil}" alt="foto perfil">
-      </div>
-      <div id="titulo-perfil-datos">
-         <span id="name_usuario">{nombre}</span>
-         <div class="fyf">
-            <div class="seguidores_container">
-               <span id="seguidores_count" class="seguidores_count"></span>
-               <span class="seguidores_label" onclick="showSeguidoresSeguidos('seguidores')">Seguidores</span>
-            </div>
-            <div class="seguidos_container ml-2">
-               <span id="seguidos_count" class="seguidos_count"></span>
-               <span class="seguidos_label" onclick="showSeguidoresSeguidos('seguidos')">Seguidos</span>
-            </div>
-            <span class="edit_perfil"><a href="/editar-usuario.html" class="ml-1 btn btn-warning btn-sm">Editar Perfil</a></span>
-         </div>
-      </div>
-   </div>
-   <div id="menu-perfil">
-      <a href="/favoritos.html">Favoritos</a>
-      <a href="/mis-ventas.html">Ventas</a>
-      <a href="/mis-compras.html">Compras</a>
-      <a href="/mis-publicaciones.html">Mis Publicaciones</a>
-      <a href="/ampliar-producto.html">Mis Productos</a>
-   </div>
-</div>
-<div class="container show-result">Mostrando <span class="show-result-num"></span> resultados.</div>
+{menu-perfil}
 
 <!--  -->
 <div class="grid" style="margin-top: 20px;">
@@ -35,49 +6,33 @@
 </div>
 <!--  -->
 
-<footer>----------------------------------------------------------------</footer>
-
 <script>
    var jsonData = {json};
 </script>
 
+<script>
+   document.addEventListener("DOMContentLoaded", function(){
 
+      /////////paginador/////////////
+      const dataPaging = {
+         cantidad : 5,
+         url: "paginador_mis-publicaciones.php"
+      }
+      getDataPaging(dataPaging);
+      intObserver(dataPaging);
+      ///////////////////////////////
 
-   <script src="js/jquery-3.5.1.js"></script>
-   <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=011121-11111"></script>
-   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-<!-- <script src="js/popper.js"></script> -->
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
-<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
-<script src="../../plugins/dropPin-master/dropPin/dropPin.js?time=141021-1937"></script>
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-   <script>
-      document.addEventListener("DOMContentLoaded", function(){
-
-         /////////paginador/////////////
-         const dataPaging = {
-            cantidad : 5,
-            url: "paginador_mis-publicaciones.php"
-         }
-         getDataPaging(dataPaging);
-         intObserver(dataPaging);
-         ///////////////////////////////
-   
-         var $grid = $('.grid').imagesLoaded( function() {
-            $grid.masonry({
-                itemSelector: '.grid-item',
-                columnWidth: '.grid-sizer',
-                // percentPosition: true,
-                // columnWidth: 220,
-                // gutter: 10,
-                // horizontalOrder: true
-            });
+      var $grid = $('.grid').imagesLoaded( function() {
+         $grid.masonry({
+               itemSelector: '.grid-item',
+               columnWidth: '.grid-sizer',
+               // percentPosition: true,
+               // columnWidth: 220,
+               // gutter: 10,
+               // horizontalOrder: true
          });
-
       });
-   </script>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+   });
+</script>
 
-</body></html>

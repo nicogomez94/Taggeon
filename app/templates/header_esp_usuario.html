@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../../plugins/alertify/css/themes/default.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/jquery-3.5.1.js"></script>
-
    <script>
       var escena ='{escena}';
       var escena2 = '{escena2}';
@@ -59,11 +58,7 @@
  
    </script>
    
-<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
-<script src="../../plugins/alertify/alertify.js"></script>
-<script src="https://sdk.mercadopago.com/js/v2"></script>
-<script src="../../plugins/cropperjs-master/dist/cropper.js"></script>
-<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=616783374564d200122a7e21&product=inline-share-buttons" async="async"></script>
+
 </head>
 <body>
    <!-- OVERLAYS -->
@@ -316,7 +311,46 @@
                                  </div>
                                  <div class="row">
                                        <div id="sels_cat_prod" class="col-lg-12">
-                                          <!-- ARQ -->
+                                          <hr>
+                                          <h4>Seleccione el tipo de escena:</h4>
+                                          <div class="tipo-escena-container">
+                                             <div onclick="getEscenas('arq')">Arquitectura</div>
+                                             <div onclick="getEscenas('ind')">Indumentaria</div>
+                                          </div>
+                                          <hr>
+                                          <hr>
+                                          <h4>Seleccione el tipo de espacio:</h4>
+                                          <div class="tipo-espacio-container">
+                                             <select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,this.id,'#testselects')">
+                                                <option value="" selected disabled hidden required>Elija el tipo de espacio</option>
+                                             </select>
+                                             <div class="text-left" id="testselects">
+                                                <p>test selects</p>
+                                             </div>
+                                             <!-- <div>
+                                                <select name="test1" id="test1">
+                                                   <option value="" selected disabled hidden required>Tam</option>
+                                                </select>
+                                             </div>
+                                             <div>
+                                                <select name="test2" id="test2">
+                                                   <option value="" selected disabled hidden required>Elija otro parametro</option>
+                                                </select>
+                                             </div>
+                                             <div>
+                                                <select name="test3" id="test3">
+                                                   <option value="" selected disabled hidden required>Elija otro parametro</option>
+                                                </select>
+                                             </div>
+                                             <div>
+                                                <select name="test4" id="test4">
+                                                   <option value="" selected disabled hidden required>Elija otro parametro</option>
+                                                </select>
+                                             </div> -->
+                                          </div>
+
+
+                                          <!-- ARQ 
                                           <select name="escena_sel" id="escena_sel" onchange="getEscenas(this.value)">
                                              <option value="" selected disabled hidden required>Elija una categoria de escenario</option>
                                              <option value="Arquitectura">Arquitectura</option>
@@ -331,10 +365,10 @@
                                           <select name="subescena3" id="esc_arq3" onchange="getSubEscena(this.value,'#esc_arq3','#esc_arq4')">
                                              <option value="" selected disabled hidden required>Elija otro parametro</option>
                                           </select>
-                                          <!-- IND -->
+                                           IND 
                                           <select name="subescena1" id="esc_ind" onchange="getSubEscena(this.value,'#esc_ind','#esc_ind2')">
                                              <option value="" selected disabled hidden required>Elija un estilo de indumentaria</option>
-                                          </select>
+                                          </select>-->
                                        </div>
                                  </div>
                            </div>

@@ -182,7 +182,7 @@ $('#form_recuperar_pass_paso1').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                console.log (data.mensaje);
+                alertify.success(data.mensaje);
                 window.location.replace("/app/logout.php");
             }else{
                 console.log (data.mensaje);
@@ -205,9 +205,6 @@ $('#form_recuperar_clave_mail').submit(function (e) {
         
     $.ajax({
         url: '/app/public_recuperar_pass_post.php',
-        //type: 'post',
-        //data: $("#registro_usuario_seller").serialize(), 
-        //dataType : "json",
         data: formData,
         type: 'POST',
         processData: false,
@@ -251,7 +248,7 @@ $('#eliminar_usuario_seller').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                console.log (data.mensaje);
+                alertify.success(data.mensaje)
                 window.location.replace("/app/logout.php");
             }else{
                 console.log (data.mensaje);
@@ -283,7 +280,7 @@ $('#eliminar_usuario_picker').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                console.log (data.mensaje);
+                alertify.success(data.mensaje)
                 window.location.replace("/app/logout.php");
             }else{
                 console.log (data.mensaje);
@@ -315,7 +312,7 @@ $('#form_registro_cont_pass').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
-                console.log (data.mensaje);
+                alertify.success(data.mensaje)
                 window.location.replace("/");
             }else{
                 $("#mensaje-sin-login").css("display","block");
@@ -350,14 +347,16 @@ $('#registro_usuario_seller').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK'){
+                alertify.success(data.mensaje)
                 iniciar_sesion(mail,pass)
             }else{
+                alertify.error(data.mensaje)
                 console.log (data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   console.log(msj);
+                   alertify.error(data.mensaje)
         }
    });
    return false;
@@ -416,10 +415,10 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
+                alertify.success(data.mensaje)
                 window.location.replace("/index.html");
             }else{
-                $("#mensaje-sin-login").css("display","block");
-                $("#mensaje-sin-login").html(data.mensaje);
+                alertify.error(data.mensaje)
                 //alertify.error(data.mensaje);
             }
         },
@@ -764,6 +763,11 @@ $("#buscador-index-input").keyup(function(e){
 
 
 });
+
+function cambiarCant(select,target){
+    let selected_value = this.value;
+    target.innerHTML = selected_value
+}
 
 function iniciar_sesion(mail,pass){
 
@@ -1815,6 +1819,173 @@ function getSubCat(valueParam,source,target){
     return false;
 }
 
+function getSubEscenaTest(valueParam,source,target){
+
+    var catData = new FormData();
+    catData.append("accion","subescena");
+    catData.append("id",valueParam);
+    
+    $.ajax({
+        url: '/app/publicacion.php',
+        data: catData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function(data,response){
+            if (data.status == 'REDIRECT'){
+                window.location.replace(data.mensaje);														
+            }else if(data.status == 'OK'){
+
+                var subEscena = data.mensaje || [];
+                var subEscena_length = data.mensaje.length || 0;
+
+                console.log("subEscena",subEscena)
+                console.log("source",source)
+                console.log("target",target)
+                
+                for(var i=0; i<subEscena_length; i++) {
+                    var cat_id = subEscena[i].id;
+                    var cat_nombre = subEscena[i].nombre;
+                    var targetHtml = $('<select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,\'#esc_arq\',\'#esc_arq2\')">');
+     
+                    var cat_select_html = 
+                    `<option value="${cat_id}">${cat_nombre}</option>`;
+     
+                    targetHtml.append(cat_select_html)
+                    targetHtml.addClass("showCat");
+                }
+
+            }else{
+                console.log("else")
+                console.log(response)
+                console.log(data)
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alertify.error(msj);
+        }
+    });
+    return false;
+}
+
+function getEscenas(valueParam){
+    
+    let escena_parse = (valueParam=="arq") ? JSON.parse(escena) : JSON.parse(escena2);
+    var escena_length = escena_parse.length || 0;
+    const esc_arq = document.querySelector("#esc_arq");
+    
+    for(var i=0; i<escena_length; i++) {
+        var id_padre = escena_parse[i].id_padre;
+
+        if(id_padre == null){
+            var cat_id = escena_parse[i].id;
+            var cat_nombre = escena_parse[i].nombre;
+    
+            var cat_select_html = 
+            `<option value="${cat_id}">${cat_nombre}</option>`;
+    
+            esc_arq.insertAdjacentHTML("beforeend",cat_select_html)
+            esc_arq.style.display = "block"
+
+        }
+    }
+
+}
+
+function getSubEscena(valueParam,source,target){
+
+    var catData = new FormData();
+    catData.append("accion","subescena");
+    catData.append("id",valueParam);
+    
+    $.ajax({
+        url: '/app/publicacion.php',
+        data: catData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function(data,response){
+            if(data.status == 'OK'){
+                console.log(data)
+                var subEscena = data.mensaje || [];
+                var subEscena_length = data.mensaje.length || 0;
+                var targetHtml = $(target);
+                
+                for(var i=0; i<subEscena_length; i++) {
+                    var cat_id = subEscena[i].id;
+                    var cat_nombre = subEscena[i].nombre;
+
+                    var cat_select_html = 
+                    `<div><select name="subescena${i}" id="esc_${cat_id}" onclick="getParamTipoEspacio(${cat_id},esc_${cat_id})">
+                        <option value="" selected disabled hidden required>${cat_nombre}</option>
+                    </select></div>`;
+     
+                    targetHtml.append(cat_select_html)
+                    targetHtml.addClass("showCat");
+                }
+
+            }else{
+                console.log("else")
+                console.log(response)
+                console.log(data)
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alertify.error(msj);
+        }
+    });
+    return false;
+}
+
+function getParamTipoEspacio(valueParam,target){
+
+    var catData = new FormData();
+    catData.append("accion","subescena");
+    catData.append("id",valueParam);
+    
+    $.ajax({
+        url: '/app/publicacion.php',
+        data: catData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function(data,response){
+            if(data.status == 'OK'){
+                console.log(data)
+                var subEscena = data.mensaje || [];
+                var subEscena_length = data.mensaje.length || 0;
+                var targetHtml = $(target);
+                
+                for(var i=0; i<subEscena_length; i++) {
+                    var cat_id = subEscena[i].id;
+                    var cat_nombre = subEscena[i].nombre;
+
+                    var cat_select_html = 
+                    `<option value="${cat_id}">${cat_nombre}</option>`;
+     
+                    targetHtml.append(cat_select_html)
+                    //targetHtml.addClass("showCat");
+                }
+
+            }else{
+                console.log("else")
+                console.log(response)
+                console.log(data)
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alertify.error(msj);
+        }
+    });
+    return false;
+}
+/*
 function getSubEscena(valueParam,source,target){
 
     var catData = new FormData();
@@ -1871,111 +2042,7 @@ function getSubEscena(valueParam,source,target){
         }
     });
     return false;
-}
-
-function getSubEscenaTest(valueParam,source,target){
-
-    var catData = new FormData();
-    catData.append("accion","subescena");
-    catData.append("id",valueParam);
-    
-    $.ajax({
-        url: '/app/publicacion.php',
-        data: catData,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        dataType: "json",
-        success: function(data,response){
-            if (data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);														
-            }else if(data.status == 'OK'){
-
-                var subEscena = data.mensaje || [];
-                var subEscena_length = data.mensaje.length || 0;
-
-                console.log("subEscena",subEscena)
-                console.log("source",source)
-                console.log("target",target)
-                
-                for(var i=0; i<subEscena_length; i++) {
-                    var cat_id = subEscena[i].id;
-                    var cat_nombre = subEscena[i].nombre;
-                    var targetHtml = $('<select name="subescena1" id="esc_arq" onchange="getSubEscena(this.value,\'#esc_arq\',\'#esc_arq2\')">');
-     
-                    var cat_select_html = 
-                    `<option value="${cat_id}">${cat_nombre}</option>`;
-     
-                    targetHtml.append(cat_select_html)
-                    targetHtml.addClass("showCat");
-                }
-
-            }else{
-                console.log("else")
-                console.log(response)
-                console.log(data)
-            }
-        },
-        error: function( jqXhr, textStatus, errorThrown ){
-            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-            alertify.error(msj);
-        }
-    });
-    return false;
-}
-
-function getEscenas(valueParam){
-
-    if(valueParam == "Arquitectura"){
-        var arq = $("#esc_arq");
-        arq.addClass("showCat");
-        $("#esc_ind").removeClass("showCat")
-
-        var escena_parse = JSON.parse(escena)
-        var escena_length = escena_parse.length || 0;
-        
-        for(var i=0; i<escena_length; i++) {
-            var id_padre = escena_parse[i].id_padre;
-
-            if(id_padre == null){
-                var cat_id = escena_parse[i].id;
-                var cat_nombre = escena_parse[i].nombre;
-        
-                var cat_select_html = 
-                `<option value="${cat_id}">${cat_nombre}</option>`;
-        
-                arq.append(cat_select_html)
-
-            }
-        }
-
-    }else if(valueParam == "Indumentaria"){
-
-        var ind = $("#esc_ind");
-        ind.addClass("showCat");
-        $("#esc_arq").removeClass("showCat")
-
-        var escena2_parse = JSON.parse(escena2)
-        var escena_length = escena2_parse.length || 0;
-        
-        for(var i=0; i<escena_length; i++) {
-            var id_padre2 = escena2_parse[i].id_padre;
-            
-            if(id_padre2 == null){
-                var cat_id = escena2_parse[i].id;
-                var cat_nombre = escena2_parse[i].nombre;
-        
-                var cat_select_html = 
-                `<option value="${cat_id}">${cat_nombre}</option>`;
-        
-                ind.append(cat_select_html)
-            }
-        }
-
-    }
-
-}
-
+}*/
 
 function showFollow(el){
     var clase = el.classList[0];
@@ -2100,6 +2167,8 @@ function getMisPublic(data){
 
     if(sizePublic>0){
         for(let i=0; i<sizePublic; i++){
+
+
             let id_public = data[i].id;
             let id_public_cat = data[i].id_publicacion_categoria;
             let nombre_public = data[i].publicacion_nombre;
@@ -2436,7 +2505,7 @@ function getPublicsAmpliar(data){
                                                 <button onclick="sendComentario('${id_public}','${i}')" value="enviar" class="btn">Enviar</button>
                                             </div>
                                         </div>
-                                        <span class="vm-comentarios" onclick="activarComentarios('5','publicacion','${id_public}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></span>
+                                        <div class="vm-comentarios" onclick="activarComentarios('5','publicacion','${id_public}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></div>
                                   <div class="commentbox-list-container commentbox-list-container-${id_public}">
                                   </div>
                                </div>
@@ -2561,7 +2630,7 @@ function getPublicsAmpliarHome(data){
                                                 <button onclick="sendComentario('${id_public}','${i}')" value="enviar" class="btn">Enviar</button>
                                             </div>
                                         </div>
-                                        <span class="vm-comentarios" onclick="activarComentarios('5','publicacion','${id_public}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></span>
+                                        <div class="vm-comentarios" onclick="activarComentarios('5','publicacion','${id_public}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></div>
                                   <div class="commentbox-list-container commentbox-list-container-${id_public}">
                                   </div>
                                </div>
@@ -2635,11 +2704,42 @@ function getPublicTags(id_public,tags,index,publicador,id_publicador){
 function getPublicsHome(data){
     var sizePublic = data.length;
     //console.log(data)
+    console.log(data)
     if(sizePublic>0){
         
         let arrayCats = [];
 
         for(var i=0; i<sizePublic; i++){
+
+            let subescena_json = [
+                {
+                    "id":"32",
+                    "tipo_escena":"COCINA",
+                    "tipo_espacio": [
+                        {
+                            "id":"656",
+                            "nombre":"TAMAÑO",
+                            "id_atributo":"879",
+                            "atributo":"GRANDE"
+                        },
+                        {
+                            "id":"651",
+                            "nombre":"COLOR",
+                            "id_atributo":"872",
+                            "atributo":"ROJO"
+                        },
+                        {
+                            "id":"653",
+                            "nombre":"ESTILO",
+                            "id_atributo":"871",
+                            "atributo":"MODERNO"
+                        }
+                    ]    
+                }
+            ];
+            console.log(subescena_json)
+
+            let tipo_escena = data[i].escena_sel || "";
             let id_public = data[i].id || '';
             let id_public_cat = data[i].subescena1 || 0;
             let nombre_public = data[i].publicacion_nombre || '';
@@ -2660,12 +2760,11 @@ function getPublicsHome(data){
             let nombre_subes2 = data[i].nombre_subescena2;
             let nombre_subes3 = data[i].nombre_subescena3;
 
+            //esto habria que ver como hago para que no me choque con los otros
             let esc_full_id = id_subes1+id_subes2+id_subes3;
+
             let esc_full_name = `${nombre_subes1} ${nombre_subes2} ${nombre_subes3}`
             
-            // if(arrayCats.length <= 0){
-            //     arrayCats.push(esc_full_id);
-            // }
             let checkArray = arrayCats.find(element => element == esc_full_id);
             
             let item_html = `<li class="splide__slide item item-cat-${esc_full_id}">
@@ -2691,18 +2790,17 @@ function getPublicsHome(data){
                         </div>
                         </div>`;
 
-
+            
             if(checkArray == undefined){
                 //NO EXISTE EN EL ARRAY ENTONCES DIBUJO OTRA CAT
                 arrayCats.push(esc_full_id);
                 $(".splide__list__home").append(item_html);
                 $(".item-cat-"+esc_full_id).append(public_html)
-                //console.log(nombre_public+" - "+esc_full_name+" "+esc_full_id)
-
+                console.log(nombre_public+" - "+esc_full_name+" ",arrayCats)
             }else{
                 //existe en el array entonces lo dibujo en la cat que ya esta
                 $(".item-cat-"+esc_full_id).append(public_html)
-                //console.log("(E) "+nombre_public+" - "+esc_full_name+" "+esc_full_id)
+                console.log("(E) "+nombre_public+" - "+esc_full_name+" "+tipo_escena)
             }
 
 
@@ -2761,6 +2859,33 @@ function getMisProductos(data){
 
         flex_listado.insertAdjacentHTML('beforeend', listadoProducto) 
     }
+}
+
+function eliminarProd(idParam) {  
+
+    $.post('/app/producto.php', {accion: "eliminar", id: idParam})
+       .done(function(data) {
+             var jsonp = JSON.parse(data)
+             if (jsonp.status == 'ERROR'){
+                alert(jsonp.mensaje);														
+             }else if(jsonp.status == 'OK' || jsonp.status == 'ok'){
+                window.location.replace("/ampliar-producto.html");
+             }else if(jsonp.status == 'REDIRECT'){
+                window.location.replace(jsonp.mensaje);
+             }else{
+                $("#mensaje-sin-login").css("display","block");
+                $("#mensaje-sin-login").html(jsonp.mensaje);
+                //alert (data.mensaje);
+             }
+       })
+       .fail(function() {
+             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+             $("#mensaje-sin-login").css("display","block");
+             $("#mensaje-sin-login").html(msj);
+       }); 
+
+    return false;
+
 }
 
 function intObserver(dataPaging){

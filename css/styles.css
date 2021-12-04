@@ -2,6 +2,11 @@
 @import "media.css";
 
 
+/*tests**/
+.modal{
+    overflow: scroll !important;
+}
+
 /*VARS*/
 :root{
     --golden-taggeon: #cebd8b;
@@ -81,6 +86,9 @@ body{
 }
 .comentario_public{
     margin-bottom: unset;
+}
+.vm-comentarios{
+    margin-top: 10px;
 }
 #flotante-subir{
     position: fixed;
@@ -461,8 +469,11 @@ body{
 .showCat{
     display: block !important;
 }
+#sels_cat_prod{
+    text-align: center;
+}
 #sels_cat_prod select:not(:first-child){
-    display: none;
+    /* display: none; */
 }
 .content-col-div{
     display: inline-block;
@@ -2326,6 +2337,26 @@ button:disabled{
     padding: 20px;
     background: #f7f7f7;
     margin-top: 15px;
+}
+.tipo-escena-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    text-align: center;
+    transition: 1s all ease-in;
+    box-shadow: var(--soft-shadow);
+}
+.tipo-escena-container div {
+    padding: 30px;
+    font-weight: 500;
+    border-radius: 25px;
+    background-color: var(--golden-taggeon);
+    margin: 20px;
+}
+.tipo-escena-container div:hover{
+    box-shadow: none;
 }
 #eliminar-img-flotante{
     position: absolute;

@@ -1,5 +1,3 @@
-<div class="overlay-loading"></div>
-
 <div class="container container-compras">
    <div class="bc-container">
       <span class="bc-origin">Mi Perfil</span>
@@ -29,30 +27,25 @@
 </div>
 <div class="flex-container"></div>
 
-<footer></footer>
 
 <script>
    var jsonData = {json};
 </script>
 
 
-<script src="js/jquery-3.5.1.js"></script>
-<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-<script src="../../plugins/dropPin-master/dropPin/dropPin.js?time=300821-1657"></script>
-   <script src="js/func.js?time=151021-1449"></script>
-   <script>
-      document.addEventListener("DOMContentLoaded", function() {
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
 
-         /////////paginador/////////////
-         const dataPaging = {
-            cantidad : 0,
-            url: "paginador_mis-compras.php"
-         }
-         getDataPaging(dataPaging);
-         intObserver(dataPaging);
-         ///////////////////////////////
-      
+      /////////paginador/////////////
+      const dataPaging = {
+         cantidad : 0,
+         url: "paginador_mis-compras.php"
+      }
+      getDataPaging(dataPaging);
+      intObserver(dataPaging);
+      ///////////////////////////////
+   
 
-      });
-      </script>
-</body></html>
+   });
+</script>
+

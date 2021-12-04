@@ -1,28 +1,4 @@
-
-<div id="info-user" class="container">
-   <div id="titulo-perfil">
-      <div id="titulo-perfil-img">
-         <img src="{foto-perfil}" alt="foto perfil">
-      </div>
-      <div id="titulo-perfil-datos">
-         <span id="name_usuario">{nombre}</span>
-         <div class="fyf">
-            <div class="follower_container">
-               <span id="follower_count" class="follower_count">0</span>
-               <span class="follower_label">Seguidores</span>
-            </div>
-            <div class="follower_container" style="margin-left: 15px;">
-               <span id="following_count" class="follower_count">0</span>
-               <span class="follower_label">Seguidos</span>
-            </div>
-            <span class="edit_perfil"><a href="/editar-usuario.html" class="ml-1 btn btn-warning btn-sm">Editar Perfil</a></span>
-         </div>
-      </div>
-   </div>
-   <div id="menu-perfil">
-      {menuperfil}
-   </div>
-</div>
+{menuperfil}
 
 <div class="container show-result">Mostrando 5 resultados.
    <!-- <span class="show-result-num"></span> resultados. -->
@@ -41,26 +17,18 @@
   //
 </script>
 
+<script>
+   document.addEventListener("DOMContentLoaded", function(){
 
+      /////////paginador/////////////
+      const dataPaging = {
+         cantidad : 5,
+         url: "paginador_favorito.php"
+      }
+      getDataPaging(dataPaging);
+      intObserver(dataPaging);
+      ///////////////////////////////
 
-   <script src="js/jquery-3.5.1.js"></script>
-   <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-   <!-- <script src="js/popper.js"></script> -->
-   <script src="js/func.js?time=031120-1749"></script>
-   <script>
-      document.addEventListener("DOMContentLoaded", function(){
+   });
+</script>
 
-         /////////paginador/////////////
-         const dataPaging = {
-            cantidad : 5,
-            url: "paginador_favorito.php"
-         }
-         getDataPaging(dataPaging);
-         intObserver(dataPaging);
-         ///////////////////////////////
-
-      });
-   </script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-
-</body></html>
