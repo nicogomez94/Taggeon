@@ -726,10 +726,29 @@ function loadingScreen(){
     });
 }
 
-function cambiarCant(select,target){
-    let selected_value = this.value;
-    target.innerHTML = selected_value
+function cambiarCant(val,precio,target,target2,target3){
+    let precio_multiplicado = val*precio;
+    let target_html = document.querySelector(target)
+    let target_html2 = document.querySelector(target2)
+    let selected_value2 = this.value;
+    let target_html3 = document.querySelector(target3)
+    let selected_value3 = this.value;
+
+    target_html.innerHTML = precio_multiplicado;
+    target_html2.innerHTML = precio_multiplicado;
+    target_html3.innerHTML = precio_multiplicado;
 }
+
+/*
+function cambiarCant(obj){
+    for (var i=0; i<obj.length; i++) {
+        let obj_el = obj[i] || [];
+        let target_html = document.querySelector(obj_el)
+        let selected_value = this.value
+
+        target_html.innerHTML = selected_value;
+    }
+}*/
 
 function iniciar_sesion(mail,pass){
 
@@ -2666,32 +2685,10 @@ function getPublicsHome(data){
 
         for(var i=0; i<sizePublic; i++){
 
-            let subescena_json = [
-                {
-                    "id":"32",
-                    "tipo_escena":"COCINA",
-                    "tipo_espacio": [
-                        {
-                            "id":"656",
-                            "nombre":"TAMAÑO",
-                            "id_atributo":"879",
-                            "atributo":"GRANDE"
-                        },
-                        {
-                            "id":"651",
-                            "nombre":"COLOR",
-                            "id_atributo":"872",
-                            "atributo":"ROJO"
-                        },
-                        {
-                            "id":"653",
-                            "nombre":"ESTILO",
-                            "id_atributo":"871",
-                            "atributo":"MODERNO"
-                        }
-                    ]    
-                }
-            ];
+            /*let subescena_json = JSON.parse(data[i].subescena_json);
+            let tipo_esp_param_padre = subescena_json[i].name;
+            let tipo_esp_param_id = subescena_json.split("-")[0];
+            let tipo_esp_param_child =  subescena_json.split("-")[1];*/
 
             let tipo_escena = data[i].escena_sel || "";
             let id_public = data[i].id || '';

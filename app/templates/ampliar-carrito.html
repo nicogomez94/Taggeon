@@ -66,7 +66,8 @@ $(document).ready(function(){
             var total = jsonData.carrito[i].total;
             var foto_id = jsonData.carrito[i].foto;
             var foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
-
+            var changeObj = '[".precio-producto",".subtotal-cant",".total-cant"]';
+            console.log(changeObj)
             var prods_carrito_html = `<div class="row producto">
                               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
                                  <div class="img-producto-container-0" data-title="223"><img onerror="this.src=\'/imagen_perfil/generica_prod.jpg\'" class="img-producto" src="${foto_src}" alt="img"></div>
@@ -78,7 +79,7 @@ $(document).ready(function(){
                                  <span class="precio-producto">${precio_prod_carrito}</span>
                               </div>
                               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
-                                 <input type="number" id="precio-producto-${i}" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
+                                 <input type="number" id="precio-producto-${i}" onchange="cambiarCant(this.value,${precio_prod_carrito},'.precio-producto','.subtotal-cant','.total-cant')" class="num-corto-form" required="" autocomplete="on" value="${cantidad}">
                               </div>
                               <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                                  
