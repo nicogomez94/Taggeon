@@ -1002,34 +1002,41 @@ function activarBuscador(param){
                 dataType: 'json',
                 success:function(response){
                 console.log(response)
-                var resp_len = response.mensaje.length;
+                var resp_len = response.mensaje.length || 0;
                 var splide_list = $(".splide__prod_public .splide__list");
+                var msj_no_result = $(".msj-no-result");
                 
                 splide_list.empty();
+                msj_no_result.empty();
 
-                //if(jsonData.perfil == "Picker"){
-                    for(var i=0; i<resp_len; i++){
+                if(resp_len>0){
+                    //if(jsonData.perfil == "Picker"){
+                        for(var i=0; i<resp_len; i++){
+    
+                            var id_prod = response.mensaje[i].id;
+                            var nombre_prod = response.mensaje[i].titulo;
+                            var foto_prod = response.mensaje[i].foto;
+                            var marca = response.mensaje[i].marca;
+                            var foto_src = `/productos_img/${foto_prod}.png` || 0;//viene siempre png?
+    
+                            /*<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-${i}" src="${img_base_prod}"></li>';*/
+    
+                            var html = `<li title="Por: ${marca}" class="splide__slide splide__slide__img ${id_prod}">
+                                        <img data-toggle="modal" data-target="#modal-producto-${i}" src="${foto_src}">
+                                        <div class="nombre-producto ${id_prod} nombre-producto-${i}">${nombre_prod}</div></li></div>`;
+                            // var html = <option class="nombre-producto ${id_prod} nombre-producto-${i}">nombre_prod+</option>'
+                            splide_list.append(html);
+    
+                        }
+                        new Splide( '.splide__prod_public', {
+                                perPage: 4,
+                                rewind : true,
+                                pagination: false
+                            } ).mount();
 
-                        var id_prod = response.mensaje[i].id;
-                        var nombre_prod = response.mensaje[i].titulo;
-                        var foto_prod = response.mensaje[i].foto;
-                        var marca = response.mensaje[i].marca;
-                        var foto_src = `/productos_img/${foto_prod}.png` || 0;//viene siempre png?
-
-                        /*<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-${i}" src="${img_base_prod}"></li>';*/
-
-                        var html = `<li title="Por: ${marca}" class="splide__slide splide__slide__img ${id_prod}">
-                                    <img data-toggle="modal" data-target="#modal-producto-${i}" src="${foto_src}">
-                                    <div class="nombre-producto ${id_prod} nombre-producto-${i}">${nombre_prod}</div></li></div>`;
-                        // var html = <option class="nombre-producto ${id_prod} nombre-producto-${i}">nombre_prod+</option>'
-                        splide_list.append(html);
-
-                    }
-                    new Splide( '.splide__prod_public', {
-                            perPage: 4,
-                            rewind : true,
-                            pagination: false
-                        } ).mount();
+                }else{
+                    msj_no_result.html('<span class="msj-chico">No se encontraron productos.</span>')
+                }
 
                 
                 //si es seller

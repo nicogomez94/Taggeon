@@ -1338,7 +1338,11 @@ body{
     padding: 5px;
     display: none;
 }
-
+.msj-chico-gris{
+    font-size: small;
+    color: #a5a5a5;
+    font-style: italic;
+}
 .navbar-bottom-col{
     width: 50%;/*me hincho bootstrap*/
     text-align: center;
