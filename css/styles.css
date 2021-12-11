@@ -518,7 +518,7 @@ body{
     visibility: hidden;
 }
 #sels_cat_prod select:not(:first-child){
-    /* display: none; */
+    display: none;
 }
 .content-col-div{
     display: inline-block;
@@ -2088,6 +2088,9 @@ button:disabled{
     height: 100%;
     width: 100%;
     top: 0;
+}
+.showCat{
+    display: inline;
 }
 .tagg{
     font-size: 1.5em;

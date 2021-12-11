@@ -1,27 +1,4 @@
-<div id="info-user" class="container">
-   <div id="titulo-perfil">
-      <div id="titulo-perfil-img">
-         <img src="{foto-perfil}" alt="foto perfil">
-      </div>
-      <div id="titulo-perfil-datos">
-         <span id="name_usuario">{nombre}</span>
-         <div class="fyf">
-            <div class="follower_container">
-               <span id="follower_count" class="follower_count">0</span>
-               <span class="follower_label">Seguidores</span>
-            </div>
-            <div class="follower_container" style="margin-left: 15px;">
-               <span id="following_count" class="follower_count">0</span>
-               <span class="follower_label">Seguidos</span>
-            </div>
-            <span class="edit_perfil"><a href="/editar-usuario.html" class="ml-1 btn btn-warning btn-sm">Editar Perfil</a></span>
-         </div>
-      </div>
-   </div>
-   <div id="menu-perfil">
-      {menuperfil}
-   </div>
-</div>
+{menuperfil}
 
 <div class="container contenedor-productos">
    <div class="filtros">
@@ -45,20 +22,19 @@
    var jsonData = {json};
 </script>
 
+<script>
+   document.addEventListener("DOMContentLoaded", function(){
+      /////////paginador/////////////
+      const dataPaging = {
+         cantidad : 0,
+         url: "paginador_ampliar-producto.php"
+      }
+      getDataPaging(dataPaging);
+      intObserver(dataPaging);
+      ///////////////////////////////
 
-   <script>
-      document.addEventListener("DOMContentLoaded", function(){
-         /////////paginador/////////////
-         const dataPaging = {
-            cantidad : 0,
-            url: "paginador_ampliar-producto.php"
-         }
-         getDataPaging(dataPaging);
-         intObserver(dataPaging);
-         ///////////////////////////////
+      
 
-         
-
-      });
-   </script>
+   });
+</script>
 

@@ -21,7 +21,7 @@
       $(document).ready(function(){
          //jsonData.
 
-         var url_mp = "{url-mp}";
+         const url_mp = "{url-mp}";
          var intereses = {intereses};
 
          if(typeof jsonData != "undefined"){
@@ -45,6 +45,21 @@
                $(".token_mp").hide();
             }
          }
+         /*else if(jsonDatosEditar.hasOwnProperty("NOMBRE")){
+            //si estas en el editar
+            const btn = document.querySelector("#btn-sync-mp");
+            const estado = document.querySelector("#estado-sync-mp");
+
+            if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
+               btn.setAttribute("href",url_mp);
+               estado.innerHTML = "Su cuenta no esta sincronizada con Mercado Pago";
+            }else{
+               btn.setAttribute("href",url_mp);
+               estado.innerHTML = "Su cuenta esta sincronizada con Mercado Pago";
+            }
+
+   
+         }*/
 
 
         /*buscador*/

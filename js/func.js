@@ -2678,18 +2678,13 @@ function getPublicTags(id_public,tags,index,publicador,id_publicador){
 function getPublicsHome(data){
     var sizePublic = data.length;
     //console.log(data)
-    console.log(data)
     if(sizePublic>0){
         
-        let arrayCats = [];
-
+        let arrayAll = [];
+        
         for(var i=0; i<sizePublic; i++){
-
-            /*let subescena_json = JSON.parse(data[i].subescena_json);
-            let tipo_esp_param_padre = subescena_json[i].name;
-            let tipo_esp_param_id = subescena_json.split("-")[0];
-            let tipo_esp_param_child =  subescena_json.split("-")[1];*/
-
+            
+            let objSubescena = [];
             let tipo_escena = data[i].escena_sel || "";
             let id_public = data[i].id || '';
             let id_public_cat = data[i].subescena1 || 0;
@@ -2702,62 +2697,75 @@ function getPublicsHome(data){
             let fav_accion = "";
             let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;
             let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
-            
-            let id_subes1 = data[i].subescena1;
-            let id_subes2 = data[i].subescena2;
-            let id_subes3 = data[i].subescena3;
-
+            let subescena_json = JSON.parse(data[i].subescena_json);
             let nombre_subes1 = data[i].nombre_subescena1;
-            let nombre_subes2 = data[i].nombre_subescena2;
-            let nombre_subes3 = data[i].nombre_subescena3;
-
-            //esto habria que ver como hago para que no me choque con los otros
-            let esc_full_id = id_subes1+id_subes2+id_subes3;
-
-            let esc_full_name = `${nombre_subes1} ${nombre_subes2} ${nombre_subes3}`
-            
-            let checkArray = arrayCats.find(element => element == esc_full_id);
-            
-            let item_html = `<li class="splide__slide item item-cat-${esc_full_id}">
-            <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${esc_full_id}')">
-            <div class="titulo-col random-p-${i}"><span class="span-titulo">${esc_full_name}</span></div>
-            </div>
-            </li>`;
-            
-            var public_html = 
+            const public_html = 
             `<div>
-            <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
-                        <div class="overlay-public">
-                        <a class="link-ampliar-home" href="${full_url}"></a>
-                        <div class="public-title-home">${nombre_public}</div>
-                            <div class="text-overlay">
-                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                    <i class="fas fa-share-alt"></i>
-                                </span>
-                                <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
-                            </div>
+                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                    <div class="overlay-public">
+                    <a class="link-ampliar-home" href="${full_url}"></a>
+                    <div class="public-title-home">${nombre_public}</div>
+                        <div class="text-overlay">
+                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
+                                <i class="fas fa-share-alt"></i>
+                            </span>
+                            <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
                         </div>
-                        <img src="${foto_src}" alt="img-${imagen_id}">
-                        </div>
-                        </div>`;
-
+                    </div>
+                    <img src="${foto_src}" alt="img-${imagen_id}">
+                </div>
+            </div>`;
             
-            if(checkArray == undefined){
-                //NO EXISTE EN EL ARRAY ENTONCES DIBUJO OTRA CAT
-                arrayCats.push(esc_full_id);
-                $(".splide__list__home").append(item_html);
-                $(".item-cat-"+esc_full_id).append(public_html)
-                //console.log(nombre_public+" - "+esc_full_name+" ",arrayCats)
-            }else{
-                //existe en el array entonces lo dibujo en la cat que ya esta
-                $(".item-cat-"+esc_full_id).append(public_html)
-                //console.log("(E) "+nombre_public+" - "+esc_full_name+" "+tipo_escena)
+            
+            //1. primero lleno un array con los subesc que vengan con esta public
+            for(var y=0; y<subescena_json.length; y++){
+                let tipo_esp_param_padre = subescena_json[y].name
+                let tipo_esp_param_id = subescena_json[y].value.split("-")[0]
+                let tipo_esp_param_child =  subescena_json[y].value.split("-")[1]
+                //let full_name_array = [`${nombre_subes1} ${tipo_esp_param_child}`] //le pego el nombre principal adelante
+                let full_name = `${nombre_subes1} ${tipo_esp_param_child}`
+                let full_id = id_public_cat+tipo_esp_param_id
+
+                const newObj = {
+                    id : full_id,
+                    subesc : full_name
+                }
+
+                objSubescena.push(newObj)
+
+                //antes de pushear al array principal, checkeo si ya existe esa combinacion
+                let find_array = arrayAll.find(o => o.id === full_id)
+                if(find_array == undefined){
+                    arrayAll.push(newObj)
+                }
+                
             }
 
+            let se_length = objSubescena.length;
 
-        }
+            //leo el array generado arriba y le apendeo la publicacion
+            if(se_length>0){
+                for(var x=0; x<se_length; x++){
+                    let nombre_sub = objSubescena[x].subesc || "";
+                    let id_sub = objSubescena[x].id || 0;
 
-        
+                    const globos_html = `<li class="splide__slide item item-cat-${id_sub}">
+                    <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${id_sub}')">
+                    <div class="titulo-col random-p-${x}"><span class="span-titulo">${nombre_sub}</span></div>
+                    </div>
+                    </li>`
+                    
+                    $(".splide__list__home").append(globos_html)
+                    $(".item-cat-"+id_sub).append(public_html)
+                }
+            }else{
+                alertify.error("error con publics")
+            }
+            
+
+            
+
+        }    
         //hardcodeado (cada vez que se llame va a volver a crearse)
         let splide_test = new Splide( '.splide__home', {
                 type     : 'slide',
@@ -2766,9 +2774,17 @@ function getPublicsHome(data){
                 pagination: false,
                 autoHeight: true
         } ).mount();
-
+    
+    }//fin for principal
         
-    }
+        /*if(checkArray == undefined){
+            //NO EXISTE EN EL ARRAY ENTONCES DIBUJO OTRA CAT
+            arrayCats.push(esc_full_id);
+            $(".splide__list__home").append(globos_html);
+            $(".item-cat-"+esc_full_id).append(public_html)
+        }else{
+            $(".item-cat-"+esc_full_id).append(public_html)
+        }*/
 }
 
 function showCantResult(length){

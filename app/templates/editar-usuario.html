@@ -48,10 +48,10 @@
                    <hr>
                    <form id="subir-foto-perfil">
                         <label for="file-upload" class="custom-file-upload">
-    <i class="fa fa-cloud-upload"></i> Haga Click para Subir Foto
-  </label>
-  <input id="file-upload" type="file"/>
-  <div id="result-file-upload"></div>
+                           <i class="fa fa-cloud-upload"></i> Haga Click para Subir Foto
+                        </label>
+                        <input id="file-upload" type="file"/>
+                        <div id="result-file-upload"></div>
                       <div>
                          <button type="submit" class="btn btn-warning btn-cambiar-foto-perfil">Cambiar Foto</button>
                       </div>
@@ -130,7 +130,7 @@
              </div>
              <div class="col-lg-4">
                 <div class="botonera-editar">
-                   <span><a id="btn-sync-mp" href="">Sincronizar</a></span>
+                   <span><a id="btn-sync-mp" href="javascript:void(0)">Sincronizar</a></span>
                 </div>
              </div>
           </div>
@@ -244,43 +244,12 @@
  </div>
  
  
- <script>
-    var jsonDatosEditar = {
-          "NOMBRE"  : "{nombre}",
-          "APELLIDO" : "{apellido}",
-          "USUARIO" : "{usuario}",
-          "CONTACTO": "{contacto}",
-          "FOTO-PERFIL": "{foto-perfil}"
-       };
-  </script>
- 
-   <script>
-        actualizarPantallaEditarUsuario();
-   </script>
 <script>
-   document.addEventListener("DOMContentLoaded",function(){
-      var url_mp = "{url-mp}";
-      const btn = document.querySelector("#btn-sync-mp");
-      const estado = document.querySelector("#estado-sync-mp");
-
-   if(typeof jsonData != "undefined"){
-      if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
-            var html_test = 
-            '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
-               '<a href="'+url_mp+'">Edítalo aqu&iacute;&middot;</a>'+
-               '<a href="javascript:void(0)" onclick="cerrarOverlay(\'overlayImportar\')">Cerrar</a>'+
-            '</div>';
-
-            btn.setAttribute("href",url_mp)
-            estado.innerHTML("Su cuenta no esta sincronizada con Mercado Pago")
-            
-      }else{
-            btn.setAttribute("href",url_mp)
-            estado.innerHTML("Su cuenta esta sincronizada con Mercado Pago")
-      }
-   }else{
-      console.warn("no esta jsondata")
-   }
-
-   });
+   var jsonDatosEditar = {
+         "NOMBRE"  : "{nombre}",
+         "APELLIDO" : "{apellido}",
+         "USUARIO" : "{usuario}",
+         "CONTACTO": "{contacto}",
+         "FOTO-PERFIL": "{foto-perfil}"
+      };
 </script>
