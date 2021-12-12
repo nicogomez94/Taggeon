@@ -1861,9 +1861,15 @@ function getEscenas(valueParam){
     
     let escena_parse = (valueParam=="arq") ? JSON.parse(escena) : JSON.parse(escena2);
     let escena_length = escena_parse.length || 0;
+    let cat_select_html = '';
     const espacio_container = document.querySelector(".tipo-espacio-container");
     const sel_tipo_esp = document.querySelector("#sel_tipo_esp");
-    var cat_select_html = '';
+    const label_hidden = document.querySelector(".label-hidden")
+    const subescenas_container = document.querySelector("#subescenas-container")
+
+    //escondo por si se abre indumentaria TODO
+
+
     for(var i=0; i<escena_length; i++) {
         let id_padre = escena_parse[i].id_padre;
         
@@ -1875,6 +1881,14 @@ function getEscenas(valueParam){
     }
     sel_tipo_esp.innerHTML = cat_select_html;
     espacio_container.style.display = "block";
+
+    if(valueParam=="ind"){
+        label_hidden.style.display = "none";
+        subescenas_container.style.display = "none";
+
+        sel_tipo_esp.removeAttribute("onchange");
+    }
+
     
 }
 
