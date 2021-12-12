@@ -851,7 +851,6 @@ function sortProducto(paramTitulo, paramSort, page){
 function cargarImgPines(event){
     
     var tipoFile = event.target.files[0].type || "";
-    console.log(event)
 
     if(tipoFile=="image/jpeg" || tipoFile=="image/png" || tipoFile=="image/jpg"){
 
@@ -1001,7 +1000,6 @@ function activarBuscador(param){
                 data: data_json,
                 dataType: 'json',
                 success:function(response){
-                console.log(response)
                 var resp_len = response.mensaje.length || 0;
                 var splide_list = $(".splide__prod_public .splide__list");
                 var msj_no_result = $(".msj-no-result");
@@ -1866,19 +1864,18 @@ function getEscenas(valueParam){
     const espacio_container = document.querySelector(".tipo-espacio-container");
     const sel_tipo_esp = document.querySelector("#sel_tipo_esp");
     var cat_select_html = '';
-    
     for(var i=0; i<escena_length; i++) {
         let id_padre = escena_parse[i].id_padre;
-
+        
         if(id_padre == null){
             let cat_id = escena_parse[i].id;
             let cat_nombre = escena_parse[i].nombre;
             cat_select_html += '<option value="'+cat_id+'">'+cat_nombre+'</option>';
         }
     }
-
     sel_tipo_esp.innerHTML = cat_select_html;
     espacio_container.style.display = "block";
+    
 }
 
 function getSubEscena(valueParam,source,target){
@@ -1896,9 +1893,10 @@ function getSubEscena(valueParam,source,target){
         dataType: "json",
         success: function(data,response){
             if(data.status == 'OK'){
-                console.log(data)
                 var subEscena = data.mensaje || [];
                 var subEscena_length = data.mensaje.length || 0;
+                var subesc_container = $("#subescenas-container");
+                var label_hidden = $(".label-hidden")
                 var targetHtml = $(target);
                 var cat_select_html = '';
 
@@ -1906,11 +1904,13 @@ function getSubEscena(valueParam,source,target){
                     var cat_id = subEscena[i].id;
                     var cat_nombre = subEscena[i].nombre;
                     cat_select_html += 
-                    '<div><select class="tipo_esp" name="'+cat_nombre+'" id="esc_'+cat_id+'" onclick="getParamTipoEspacio('+cat_id+',esc_'+cat_id+');this.removeAttribute(\'onclick\')">'+
-                       '<option value="" selected disabled hidden required>'+cat_nombre+'</option>'+
+                    '<div><label for="esc_'+cat_id+'">'+cat_nombre+'</label><select class="tipo_esp" name="'+cat_nombre+'" id="esc_'+cat_id+'" onchange="showSelected(\'esc_'+cat_id+'\');this.removeAttribute(\'onchange\')" onclick="getParamTipoEspacio('+cat_id+',esc_'+cat_id+');this.removeAttribute(\'onclick\')">'+
+                       '<option value="" selected disabled hidden required>Seleccione un par&aacute;metro</option>'+
                     '</select></div>';
                 }
                 targetHtml.html(cat_select_html)
+                subesc_container.css("display","block");
+                label_hidden.css("display","block");
                 
             }else{
                 console.log("else")
@@ -1926,6 +1926,13 @@ function getSubEscena(valueParam,source,target){
     return false;
 }
 
+function showSelected(thisParam){
+    let obj = document.querySelector("#"+thisParam)
+    console.log(obj)
+    let temp = '&nbsp;<i class="fas fa-check-double"></i>'
+    obj.insertAdjacentHTML("afterend",temp)
+    obj.style.backgroundColor = "beige";
+}
 function getParamTipoEspacio(valueParam,target){
     $(this).removeA
     var catData = new FormData();
@@ -1966,6 +1973,7 @@ function getParamTipoEspacio(valueParam,target){
     });
     return false;
 }
+
 /*
 function getSubEscena(valueParam,source,target){
 

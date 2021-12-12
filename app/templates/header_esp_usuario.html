@@ -316,19 +316,17 @@
                            <div id="col-foto-upload">
                                  <!-- <p class="label-descr">Seleccione al menos una foto para el publicacion.</p> -->
                                  <div class="row">
-                                 
                                     <div class="col-lg-12">
                                        <div class="group">      
+                                          <div class="label-descr">Nombre del publicaci&oacute;n</div>
                                           <input type="text" name="publicacion_nombre" id="titulo-publicacion" required>
-                                          <span class="highlight"></span>
-                                          <span class="bar"></span>
-                                          <label class="label-text-subir-publicacion">Nombre del publicaci&oacute;n</label>
                                        </div>
                                     </div>
                                  </div>
+                                 <hr>
                                  <div class="row">
                                     <div class="col-lg-12">
-                                       <p class="label-descr">Descripcion de la publicaci&oacute;n</p>
+                                       <p class="label-descr">Descripci&oacute;n de la publicaci&oacute;n</p>
                                        <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
                                     </div>
                                  </div>
@@ -336,37 +334,18 @@
                                        <div id="sels_cat_prod" class="col-lg-12">
                                           <div class="tipo-escena-container">
                                              <hr>
-                                             <h4>Seleccione el tipo de escena:</h4>
+                                             <h5>Seleccione el tipo de escena:</h5>
                                              <input id="radio1" value="Arquitectura" name="escena_sel" type="radio"><label for="radio1" onclick="getEscenas('arq')">Arquitectura</label>
-                                             <input id="radio2" value="Indumentaria" name="escena_sel" type="radio"><label for="radio2" onclick="getEscenas('arq')">Indumentaria</label>
+                                             <input id="radio2" value="Indumentaria" name="escena_sel" type="radio"><label for="radio2" onclick="getEscenas('ind')">Indumentaria</label>
                                           </div>
                                           <div class="tipo-espacio-container">
                                              <hr>
-                                             <h4>Seleccione el tipo de espacio:</h4>
-                                             <select name="subescena1" id="sel_tipo_esp" onchange="getSubEscena(this.value,this.id,'#testselects')">
+                                             <h5>1. Seleccione el tipo de espacio:</h5>
+                                             <select name="subescena1" id="sel_tipo_esp" onchange="getSubEscena(this.value,this.id,'#subescenas-container')">
                                                 <option value="" selected disabled hidden required>Elija el tipo de espacio</option>
                                              </select>
-                                             <div class="text-left" id="testselects"></div>
-                                             <!-- <div>
-                                                <select name="test1" id="test1">
-                                                   <option value="" selected disabled hidden required>Tam</option>
-                                                </select>
-                                             </div>
-                                             <div>
-                                                <select name="test2" id="test2">
-                                                   <option value="" selected disabled hidden required>Elija otro parametro</option>
-                                                </select>
-                                             </div>
-                                             <div>
-                                                <select name="test3" id="test3">
-                                                   <option value="" selected disabled hidden required>Elija otro parametro</option>
-                                                </select>
-                                             </div>
-                                             <div>
-                                                <select name="test4" id="test4">
-                                                   <option value="" selected disabled hidden required>Elija otro parametro</option>
-                                                </select>
-                                             </div> -->
+                                             <h5 class="label-hidden"><hr>2. Seleccione el tipo de parametro:</h5>
+                                             <div class="text-left" id="subescenas-container" style="display: none;"></div>
                                           </div>
 
 

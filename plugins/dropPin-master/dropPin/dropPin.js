@@ -181,13 +181,10 @@
 				var id_producto = $(this).find('.nombre-producto').attr('class').split(' ')[1];//lo saco del splide
 				var box_y_prod = popup_cont.attr("data-close").split('-')[0];
 				var box_x_prod = popup_cont.attr("data-close").split('-')[1];
-				console.log(box_y_prod,box_x_prod)
 
 				var pin_a_namear = $("#map").find("."+box_y_prod+"-"+box_x_prod);
 				var click_protector = '<div class="click-protector '+box_y_prod+"-"+box_x_prod+'">'+
 										'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
-				console.log(id_producto)
-				console.log("pinanamear",pin_a_namear)
 
 				pin_a_namear.attr("name",id_producto);
 				$(".click-protector-cont").append(click_protector);
