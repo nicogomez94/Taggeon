@@ -1806,6 +1806,24 @@ function getSubCat(valueParam,source,target){
     return false;
 }
 
+function showLoadingSvg(thisParam){
+    let html = `<div class="loading-wrap">
+    <div class="loading-hole">&nbsp;</div>
+    </div>`
+    console.log(thisParam)
+    thisParam.insertAdjacentHTML("afterbegin",html)
+}
+
+function hideLoadingSvg(thisParam){
+
+    let parent = thisParam.parentElement; 
+    console.log("parent",parent)
+    let loading = parent.querySelector(".loading-wrap");
+    console.log("loading",loading)
+    
+    loading.remove();
+}
+
 function getSubEscenaTest(valueParam,source,target){
 
     var catData = new FormData();
@@ -1866,33 +1884,30 @@ function getEscenas(valueParam){
     const sel_tipo_esp = document.querySelector("#sel_tipo_esp");
     const label_hidden = document.querySelector(".label-hidden")
     const subescenas_container = document.querySelector("#subescenas-container")
-
-    //escondo por si se abre indumentaria TODO
-
+    
+    if(valueParam=="ind"){
+        label_hidden.style.display = "none";
+        subescenas_container.style.display = "none";
+        sel_tipo_esp.removeAttribute("onchange")
+    }else{
+        sel_tipo_esp.setAttribute("onchange","getSubEscena(this.value)")
+    }
 
     for(var i=0; i<escena_length; i++) {
         let id_padre = escena_parse[i].id_padre;
+        let cat_id = escena_parse[i].id;
+        let cat_nombre = escena_parse[i].nombre;
         
         if(id_padre == null){
-            let cat_id = escena_parse[i].id;
-            let cat_nombre = escena_parse[i].nombre;
             cat_select_html += '<option value="'+cat_id+'">'+cat_nombre+'</option>';
         }
     }
     sel_tipo_esp.innerHTML = cat_select_html;
     espacio_container.style.display = "block";
-
-    if(valueParam=="ind"){
-        label_hidden.style.display = "none";
-        subescenas_container.style.display = "none";
-
-        sel_tipo_esp.removeAttribute("onchange");
-    }
-
     
 }
 
-function getSubEscena(valueParam,source,target){
+function getSubEscena(valueParam){
 
     var catData = new FormData();
     catData.append("accion","subescena");
@@ -1911,7 +1926,7 @@ function getSubEscena(valueParam,source,target){
                 var subEscena_length = data.mensaje.length || 0;
                 var subesc_container = $("#subescenas-container");
                 var label_hidden = $(".label-hidden")
-                var targetHtml = $(target);
+                var targetHtml = $("#subescenas-container");
                 var cat_select_html = '';
 
                 for(var i=0; i<subEscena_length; i++) {
@@ -1960,6 +1975,12 @@ function getParamTipoEspacio(valueParam,target){
         processData: false,
         contentType: false,
         dataType: "json",
+        beforeSend: function() {
+            showLoadingSvg(target)
+        },
+        /*complete: function(){
+            hideLoadingSvg(target)
+        },*/
         success: function(data,response){
             if(data.status == 'OK'){
                 var subEscena = data.mensaje || [];
