@@ -18,25 +18,33 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->agregarPublicacion($_POST);
             $statusRet  = 'OK';
             $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
-	} else if ($var_accion == 'subescena') {
-	    $objPrincipalManager->searchSubEscena($_POST);
+	    }else if($var_accion == 'subescena') {
+            $objPrincipalManager->searchSubEscena($_POST);
             $statusRet  = 'OK';
-	    $mensajeRet = $objPrincipalManager->getMsj();
-	} else if ($var_accion == 'subescena2') {
-	    $objPrincipalManager->searchSubEscena2($_POST);
+            $mensajeRet = $objPrincipalManager->getMsj();
+	    }else if($var_accion == 'subescena2') {
+            $objPrincipalManager->searchSubEscena2($_POST);
             $statusRet  = 'OK';
-	    $mensajeRet = $objPrincipalManager->getMsj();
-        } else if ($var_accion == 'editar') {
+            $mensajeRet = $objPrincipalManager->getMsj();
+        }else if($var_accion == 'editar') {
             $objPrincipalManager->modificarPublicacion($_POST);
             $statusRet  = 'OK';
             $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
-        }
-        if ($objPrincipalManager->getStatus() != 'OK') {
-            $statusRet  = 'ERROR';
+        }else if($var_accion == 'eliminar'){
+            $objPrincipalManager->eliminarPublicacion($_POST);
+            if ($objPrincipalManager->getStatus() == 'OK') {
+                $statusRet  = 'OK';
+                $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+            } else {
+                $statusRet  = 'ERROR post';
+                $mensajeRet = $objPrincipalManager->getMsj();
+            }
+        }else if($objPrincipalManager->getStatus() != 'OK') {
+            $statusRet  = 'ERROR1';
             $mensajeRet = $objPrincipalManager->getMsj();
         }
-    } else {
-        $statusRet  = 'ERROR';
+    }else {
+        $statusRet  = 'ERROR2';
         $mensajeRet = "Acción incorrecta.";
     }
 } else {
@@ -47,17 +55,17 @@ if (sizeof($_POST) > 0) {
             $statusRet  = 'OK';
             $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
         } else {
-            $statusRet  = 'ERROR';
+            $statusRet  = 'ERROR3';
             $mensajeRet = $objPrincipalManager->getMsj();
         }
 
     }else{
-    	$statusRet  = 'ERROR';
+    	$statusRet  = 'ERROR4';
     	$mensajeRet = "Error post.";
     }
 }
 }else{
-	$statusRet  = 'ERROR';
+	$statusRet  = 'ERROR6';
 	$mensajeRet = $sesionManager->getMsj();
 }
 

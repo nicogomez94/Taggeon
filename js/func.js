@@ -1750,6 +1750,7 @@ function pathShareHome(param){
 }
 
 
+
 function getSubCat(valueParam,source,target){
 
     var catData = new FormData();
@@ -2130,6 +2131,25 @@ function fetchIdCarrito(id_public,id_prod,value_cant){
 
 }
 
+function llamadaSimple(idParam,accionParam,urlParam){
+
+    let data = new FormData();
+    data.append('id',idParam)
+    data.append('accion',accionParam)
+
+    fetch(urlParam, {
+        method: 'POST',
+        body: data,
+    })
+    .then(res => res.json())
+    .then(response => {
+        let path = window.location.pathname;
+        console.log(path)
+        //window.location.replace(path)
+    })
+    .catch(error => alertify.error("No se pudo borrar publicacion"+error))
+}
+
 function checkout(id_public,id_prod){
     const URL = "/app/carrito.php"
 
@@ -2201,6 +2221,7 @@ function getMisPublic(data){
             // let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
             let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar`
             //let imagen_public_html = document.querySelector(".imagen-public-"+imagen_id);
+            ///app/publicacion.php?id=${id_public}&accion=eliminar"
 
             var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;        
 
@@ -2212,7 +2233,7 @@ function getMisPublic(data){
                             <div class="public-title-home">${nombre_public}</div>
                             <div class="text-overlay">
                                 <span class="text-overlay-link"><a href="/editar-publicacion.html?id=${id_public}&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>&nbsp;
-                                <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a href="/app/publicacion.php?id=${id_public}&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
+                                <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a onclick="llamadaSimple('${id_public}','eliminar','/app/publicacion.php')" href="javascript:void(0)"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
                             </div>
                         </div>
                         <img src="${foto_src}" alt="img-${imagen_id}">
