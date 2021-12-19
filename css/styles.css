@@ -3538,7 +3538,20 @@ select{
     transition: all 850ms ease;
 }
 /***********/
-
+.no-content{
+    color: gray;
+    text-align: center;
+    width: 80%;
+    height: 200px;
+    background-color: #cebd8b8a;
+    border-radius: var(--soft-redondeado);
+    display: flex;
+    margin: auto;
+    font-style: italic;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
 
 .loading-wrap {
   width: 5em;
@@ -3560,3 +3573,11 @@ select{
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+
+/****MAIL****/

@@ -339,35 +339,10 @@
 
     <script>
         var jsonData = {json};
-     </script>
-
-<script src="js/jquery-3.5.1.js"></script>
-<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
-<script src="js/func.js?time=101021-1244"></script>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
-<script src="js/card.js?time=110821-1231"></script> -->
-
-<!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
-<!-- <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script> -->
-<!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-<!-- <script src="js/publicacion.js?time=190321-2055"></script> -->
-<!-- <script src="js/popper.js"></script> -->
+    </script>
 
 <script>
 $(document).ready(function(){
-   /* $('#expirationdate').keyup(function() {
-        var value = $(this).val();
-        $("#cardExpirationMonth").val(value);
-    });*/
-    /*const checkout = mp.checkout({
-  tokenizer: {
-    totalAmount: 4000,
-    backUrl: 'https://www.mi-sitio.com/process'
-  },
-});*/
-
 
     $("#testcarr").attr("value",jsonData.compras[0].id_carrito)
     var sizeCompras = jsonData.compras.length;
@@ -406,7 +381,7 @@ $(document).ready(function(){
 
 });
 </script>
-<!-- <script src="https://sdk.mercadopago.com/js/v2"></script> -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
 <script>
     // Agrega credenciales de SDK 
     // const mp = new MercadoPago('APP_USR-31427082-1223-4141-9ae8-c30f8404c448', {locale: 'es-AR'});
@@ -613,6 +588,3 @@ function setCardTokenAndPay(status, response) {
 
 };
 	</script>
-
-</body>
-</html>

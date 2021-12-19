@@ -2246,8 +2246,8 @@ function getMisPublic(data){
         }
         
     }else{
-        //var html_sin_public = <p style="color:gray; font-style: italic; text-align: center">No hay Publicaciones subidas.</p>';
-        //grid.insertAdjacentHTML(html_sin_public);
+        var html_sin_public = `<div class="no-content">No hay Publicaciones subidas.<br>Haz click en "+" en el menu principal para crear una.</div>`;
+        grid.insertAdjacentHTML("afterend",html_sin_public);
     }
 }
 
@@ -3028,16 +3028,13 @@ function getDataPaging(dataPaging) {
         URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
     }
     
-
+    console.log(URL)
     fetch(URL)
     .then(response => response.json())
     .then(data => {
             //console.log(data)
             var cant = parseInt(data.length);
             dataPaging.cantidad = dataPaging.cantidad+cant;
-            //console.log(dataPaging.cantidad)
-            //let test = data[12].favorito || 0;
-            //console.log("desde --> ",url_temp)
 
             //dibujo listados
             switch (url_temp){
