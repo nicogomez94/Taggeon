@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
         activarBuscador($(this));
     });
 
+    //*datos editar/
+    actualizarPantallaEditarUsuario();
+
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
     $(".board")
@@ -512,14 +515,15 @@ $('#subir-publicacion-form').submit(function (e) {
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
-                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                    $("#mensaje-sin-login").css("display","block");
-                    $("#mensaje-sin-login").html(msj);
-                //    alertify.error(msj);
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            $("#mensaje-sin-login").css("display","block");
+            $("#mensaje-sin-login").html(msj);
+            //    alertify.error(msj);
         }
-   });
-   return false;
+    });
+    return false;
 });
+
 
 $('#editar-publicacion-form').submit(function (e) {
     e.preventDefault();
@@ -670,10 +674,9 @@ $("#buscador-index-input").keyup(function(e){
     }
 });
 
-
 //form intereses
 /*$("#form_intereses").submit(function(e){
-
+    
     e.preventDefault();
     var formData = new FormData($(this)[0]);
     var checkbox = $(this).find("input[type=checkbox]");
@@ -767,8 +770,8 @@ function iniciar_sesion(mail,pass){
             if (data.status == 'REDIRECT'){
                 window.location.replace(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                alertify.success(data.mensaje)
-                //window.location.replace("/");
+                alertify.success("El usuario se registro con exito!")
+                window.location.replace("/");
             }else{
                 $("#mensaje-sin-login").css("display","block");
                 $("#mensaje-sin-login").html(data.mensaje);

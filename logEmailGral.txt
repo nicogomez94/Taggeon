@@ -684,3 +684,41 @@ Respuesta OK => Envio enviarEmailAltaUsuario
 mensajeTexto: Se dio de alta
 usuario riki@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36200.127.53.81
+Fecha 19/12/2021  15:26:20
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario riki19@yopmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36200.127.53.81
+Fecha 19/12/2021  15:26:22
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario riki19@yopmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36200.127.53.81
+Fecha 19/12/2021  15:36:03
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario riki192@yopmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36200.127.53.81
+Fecha 19/12/2021  15:36:05
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario riki192@yopmail.com
+Detalle Respuesta:
