@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     //*datos editar/
-    actualizarPantallaEditarUsuario();
+    //actualizarPantallaEditarUsuario();
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -788,7 +788,7 @@ function iniciar_sesion(mail,pass){
 }
 
 function actualizarPantallaEditarUsuario () {
-    if (jsonDatosEditar != undefined){
+    if (typeof jsonDatosEditar != undefined){
         var nombre = jsonDatosEditar["NOMBRE"] || '';
         var apellido = jsonDatosEditar["APELLIDO"] || '';
         var usuario = jsonDatosEditar["USUARIO"] || '';

@@ -243,15 +243,30 @@
     </div>
  </div>
  
-
  
 <script>
-   var jsonDatosEditar = {
-         "NOMBRE"  : "{nombre}",
-         "APELLIDO" : "{apellido}",
-         "USUARIO" : "{usuario}",
-         "CONTACTO": "{contacto}",
-         "FOTO-PERFIL": "{foto-perfil}"
+    var jsonDatosEditar = {
+       "NOMBRE"  : "{nombre}",
+       "APELLIDO" : "{apellido}",
+       "USUARIO" : "{usuario}",
+       "CONTACTO": "{contacto}",
+       "FOTO-PERFIL": "{foto-perfil}"
       };
       var jsonData = {json};
+
+      var nombre = jsonDatosEditar["NOMBRE"] || '';
+      var apellido = jsonDatosEditar["APELLIDO"] || '';
+      var usuario = jsonDatosEditar["USUARIO"] || '';
+      var contacto = jsonDatosEditar["CONTACTO"] || '';
+      var img_perfil = jsonDatosEditar["FOTO-PERFIL"] || '';
+      $("#nombre-completo").val(nombre);
+      $("#contacto-apellido").val(apellido);
+      $("#nombre-usuario").val(usuario);
+      $("#contacto-mail").val(contacto);
+      if (img_perfil != ''){
+         $("#img-perfil-cont").html(
+               `<img src="${img_perfil}" alt="profile_pic">`
+               );
+      }
+
 </script>

@@ -722,3 +722,63 @@ Respuesta OK => Envio enviarEmailAltaUsuario
 mensajeTexto: Se dio de alta
 usuario riki192@yopmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36200.89.186.155
+Fecha 19/12/2021  16:16:48
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico152312342@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36200.89.186.155
+Fecha 19/12/2021  16:16:50
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario nico152312342@gmail.com
+Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36181.229.148.152
+Fecha 19/12/2021  16:18:09
+---------------------------------
+Envio enviarEmailRecuperarHtml
+mensajeTexto: Usuario: christiannayar@gmail.com
+Haga click para recuperar la clave.
+https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=christiannayar@gmail.com&hash=f7bbdb122034cfd9da22e84a21e2c86e&idUsuario=245&id=379&perfil=picker
+
+body: user name: christiannayar@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=christiannayar@gmail.com&hash=f7bbdb122034cfd9da22e84a21e2c86e&idUsuario=245&id=379&perfil=picker" style="color: #FFF;">click here to reset your password</a><br />
+Sent 19/12/2021<br /><br />
+
+usuario: christiannayar@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=christiannayar@gmail.com&hash=f7bbdb122034cfd9da22e84a21e2c86e&idUsuario=245&id=379&perfil=picker">haga click aqu&iacute; para recuperar la clave.</a><br />
+enviado el 19/12/2021<br />
+
+usuario christiannayar@gmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36181.229.148.152
+Fecha 19/12/2021  16:18:11
+---------------------------------
+Respuesta OK => Envio enviarEmailRecuperarHtml
+mensajeTexto: Usuario: christiannayar@gmail.com
+Haga click para recuperar la clave.
+https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=christiannayar@gmail.com&hash=f7bbdb122034cfd9da22e84a21e2c86e&idUsuario=245&id=379&perfil=picker
+
+body: user name: christiannayar@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=christiannayar@gmail.com&hash=f7bbdb122034cfd9da22e84a21e2c86e&idUsuario=245&id=379&perfil=picker" style="color: #FFF;">click here to reset your password</a><br />
+Sent 19/12/2021<br /><br />
+
+usuario: christiannayar@gmail.com<br />
+<a href="https://taggeon.com/app/public_recuperar_pass.php?action=recuperar&usuario=christiannayar@gmail.com&hash=f7bbdb122034cfd9da22e84a21e2c86e&idUsuario=245&id=379&perfil=picker">haga click aqu&iacute; para recuperar la clave.</a><br />
+enviado el 19/12/2021<br />
+
+usuario christiannayar@gmail.com
+Detalle Respuesta:
