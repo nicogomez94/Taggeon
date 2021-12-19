@@ -501,6 +501,7 @@ body{
 }
 .forms input{
     width: 70%;
+    margin-top: 10px;
 }
 /*form div{cochinada
     margin-bottom: 10px;

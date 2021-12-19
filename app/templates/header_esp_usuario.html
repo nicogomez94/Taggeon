@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="../../plugins/alertify/css/alertify.css" type="text/css" />
     <link rel="stylesheet" href="../../plugins/alertify/css/themes/default.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <script src="js/jquery-3.5.1.js"></script>
    <script>
+      var time_random = '{randomtime}';
       var escena ='{escena}';
       var escena2 = '{escena2}';
       var notificaciones = {notificaciones};
@@ -24,6 +26,13 @@
          const url_mp = "{url-mp}";
          var intereses = {intereses};
 
+         var img_perfil = document.querySelector(".img-perfil-usuario-drop");
+         var img_perfil_drop = document.querySelector("#img-perfil-drop");
+         var attr = `{foto-perfil}?random=${time_random}`;
+
+         img_perfil.setAttribute("src",attr);
+         img_perfil_drop.setAttribute("src",attr);
+
          if(typeof jsonData != "undefined"){
             if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
                var html_test = 
@@ -33,7 +42,6 @@
                '</div>';
                   
                   $(".close-mp").bind('click',function(e){
-                     console.log("test")
                      e.stopPropagation();
                      e.preventDefault();
                      $(".token_mp").hide(300);
@@ -181,12 +189,12 @@
          <!-- USER MENU -->
          <div id="dropdown-user-menu-cont" class="btn-header" onclick="appearDataUsuario()">
             <div id="drop" class="nav-item-icon">
-               <img class="img-perfil-usuario-drop" src="{foto-perfil}" alt="img-perfil"> 
+               <img class="img-perfil-usuario-drop" src="" alt="img-perfil"> 
             </div>
             <div id="dropdown-user-menu">
                <div class="flechita"></div>
                <div class="media">
-                  <img id="img-perfil-drop" class="mr-3" src="{foto-perfil}" alt="Generic placeholder image"> 
+                  <img id="img-perfil-drop" class="mr-3" src="" alt="Generic placeholder image"> 
                   <div class="media-body">
                      <h5 class="mt-4 user-name-perfil"><a href="/mis-publicaciones.html">{nombre-usuario}</a></h5>
                      <!-- <a href="/mis-publicaciones.html">Ver Perfil{perfil}</a> -->

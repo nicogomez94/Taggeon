@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     //*datos editar/
-    //actualizarPantallaEditarUsuario();
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
@@ -126,10 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //         slidesToScroll: 3,
     //   });
 
-/*riki*/
-$( "#reset-form-editar" ).click(function() {
-    actualizarPantallaEditarUsuario();
-  });
+
 
 
 $('#datos-cuenta').submit(function (e) {
@@ -414,10 +410,9 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
                 dataType: "json",
                 success: function(data, textStatus, jQxhr ) {
                     if (data.status == 'REDIRECT'){
-                        window.location.replace(data.mensaje);														
+                        //window.location.replace(data.mensaje);														
                     }else if(data.status == 'OK'){
-                        //alertify.error(data.mensaje);
-                        $(".btn-cambiar-foto-perfil").hide();
+                        alertify.success(data.mensaje);
                         window.location.replace("/editar-usuario.html");
                     }else{
                         alertify.error(data.mensaje);
@@ -437,12 +432,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
     /**modal casero editar para foto*/
     $('#edit-btn').click(function(e) {
         e.preventDefault();
-        console.log("overlay")
-        $(".overlay").show();
-    
-        $('#cerrar-light').click(function() {
-          $('.overlay').css("display", "none");
-        });
+        $(".overlay-foto-perfil").show();
     });
 
     
@@ -785,26 +775,6 @@ function iniciar_sesion(mail,pass){
         }
     });
     return false;
-}
-
-function actualizarPantallaEditarUsuario () {
-    if (typeof jsonDatosEditar != undefined){
-        var nombre = jsonDatosEditar["NOMBRE"] || '';
-        var apellido = jsonDatosEditar["APELLIDO"] || '';
-        var usuario = jsonDatosEditar["USUARIO"] || '';
-        var contacto = jsonDatosEditar["CONTACTO"] || '';
-        var img_perfil = jsonDatosEditar["FOTO-PERFIL"] || '';
-        $("#nombre-completo").val(nombre);
-        $("#contacto-apellido").val(apellido);
-        $("#nombre-usuario").val(usuario);
-        $("#contacto-mail").val(contacto);
-        if (img_perfil != ''){
-            $("#img-perfil-cont").html(
-                `<img src="${img_perfil}" alt="profile_pic">`
-                );
-        }
-    }
-            
 }
 
 function sortProducto(paramTitulo, paramSort, page){
@@ -2096,7 +2066,7 @@ function ampliarOverlay(clase){
 
 function cerrarOverlay(clase){
     var el = document.querySelector("."+clase);
-    el.remove();
+    el.style.display = "none"
 }
 
 function posicionarPublic(){

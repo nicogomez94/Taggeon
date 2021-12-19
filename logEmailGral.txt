@@ -782,3 +782,22 @@ enviado el 19/12/2021<br />
 
 usuario christiannayar@gmail.com
 Detalle Respuesta:
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36181.229.148.152
+Fecha 19/12/2021  16:24:22
+---------------------------------
+Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario christian_nayar@hotmail.com
+
+
+---------------------------------
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36181.229.148.152
+Fecha 19/12/2021  16:24:23
+---------------------------------
+Respuesta OK => Envio enviarEmailAltaUsuario
+mensajeTexto: Se dio de alta
+usuario christian_nayar@hotmail.com
+Detalle Respuesta:

@@ -29,7 +29,7 @@
           <br>
           <!-- IMAGEN -->
           <div class="row cambiar-foto">
-             <div id="img-perfil-cont"><img src="" alt="foto perfil"></div>
+             <div id="img-perfil-cont"></div>
           </div>
  
 
@@ -40,10 +40,10 @@
                 <span><a href="#">Cambiar</a></span>
              </div>
           </div>
-          <div class="overlay" style="display: none;">
+          <div class="overlay overlay-foto-perfil" style="display: none;">
              <div class="lightBox lightBox-foto-perfil">
                 <div>
-                   <a href="#" id="cerrar-light"><i class="fas fa-times-circle"></i></a>
+                   <a href="#" id="cerrar-light" onclick="cerrarOverlay('overlay-foto-perfil')"><i class="fas fa-times-circle"></i></a>
                    <h3>Cambiar tu Imagen</h3>
                    <hr>
                    <form id="subir-foto-perfil">
@@ -207,7 +207,7 @@
                    </div>
                    <hr>
                    <div>
-                      <button type="submit" class="btn btn-info">Cambiar Contrase&ntilde;a</button>
+                      <button type="submit" class="btn btn-warning">Cambiar Contrase&ntilde;a</button>
                    </div>
                 </form>
              </div>
@@ -265,8 +265,13 @@
       $("#contacto-mail").val(contacto);
       if (img_perfil != ''){
          $("#img-perfil-cont").html(
-               `<img src="${img_perfil}" alt="profile_pic">`
+               `<img src="${img_perfil}?random=${time_random}" alt="profile_pic">`
                );
       }
+
+      /*riki*/
+   $( "#reset-form-editar" ).click(function() {
+      actualizarPantallaEditarUsuario();
+   });
 
 </script>
