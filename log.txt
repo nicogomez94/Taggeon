@@ -1422,4 +1422,193 @@ token APP_USR-8374534224864099-100600-3777d437d479af440de9eceeddc27c79-141510028
  status: OK mensaje: 
 Paso agregar busquedaPaso agregar busqueda
 row_cnt 1
-ok
+ok"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '421' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '421' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '435' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+"{\"message\":\"the client_id does not match the original\",\"error\":\"invalid_grant\",\"status\":400,\"cause\":[]}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='',`jsonmercadopago`='\"{\\\"message\\\":\\\"the client_id does not match the original\\\",\\\"error\\\":\\\"invalid_grant\\\",\\\"status\\\":400,\\\"cause\\\":[]}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+Paso agregar busquedaPaso agregar busqueda
+row_cnt 1
+ok"{\"access_token\":\"APP_USR-8374534224864099-122021-7dd92eacf70ff01db61c120bfcdeb4f9-22602582\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":22602582,\"refresh_token\":\"TG-61c0f9c7d46ccd001a6ba46a-22602582\",\"public_key\":\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-122021-7dd92eacf70ff01db61c120bfcdeb4f9-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122021-7dd92eacf70ff01db61c120bfcdeb4f9-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61c0f9c7d46ccd001a6ba46a-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-122021-7dd92eacf70ff01db61c120bfcdeb4f9-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122021-7dd92eacf70ff01db61c120bfcdeb4f9-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61c0f9c7d46ccd001a6ba46a-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"APP_USR-8374534224864099-122021-fe2f16b9b9092cb16929dd377ffe493b-22602582\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":22602582,\"refresh_token\":\"TG-61c0f9e3d34e7c001b138700-22602582\",\"public_key\":\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-122021-fe2f16b9b9092cb16929dd377ffe493b-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122021-fe2f16b9b9092cb16929dd377ffe493b-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61c0f9e3d34e7c001b138700-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-122021-fe2f16b9b9092cb16929dd377ffe493b-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122021-fe2f16b9b9092cb16929dd377ffe493b-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61c0f9e3d34e7c001b138700-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"APP_USR-8374534224864099-122021-9ee8d9c57ad981cd9a750e2de7b10744-22602582\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":22602582,\"refresh_token\":\"TG-61c0f9f7edf67d001ceb3a35-22602582\",\"public_key\":\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-122021-9ee8d9c57ad981cd9a750e2de7b10744-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122021-9ee8d9c57ad981cd9a750e2de7b10744-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61c0f9f7edf67d001ceb3a35-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-122021-9ee8d9c57ad981cd9a750e2de7b10744-22602582',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122021-9ee8d9c57ad981cd9a750e2de7b10744-22602582\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":22602582,\\\"refresh_token\\\":\\\"TG-61c0f9f7edf67d001ceb3a35-22602582\\\",\\\"public_key\\\":\\\"APP_USR-31427082-1223-4141-9ae8-c30f8404c448\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '414' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"APP_USR-8374534224864099-122022-4ad0e27a1ce49e9390db3855ed6150d7-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-61c10155c5e86e001b614838-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-122022-4ad0e27a1ce49e9390db3855ed6150d7-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122022-4ad0e27a1ce49e9390db3855ed6150d7-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-61c10155c5e86e001b614838-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-122022-4ad0e27a1ce49e9390db3855ed6150d7-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122022-4ad0e27a1ce49e9390db3855ed6150d7-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-61c10155c5e86e001b614838-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_seller` SET
+				 `acces_token`=null,`jsonmercadopago`=null
+		WHERE `idUsuario` = '377' 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`=null,`jsonmercadopago`=null
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"APP_USR-8374534224864099-122022-f53e32e0d430a5a1083eeed5b82bc35f-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-61c103d6bbd777001c9debf2-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-122022-f53e32e0d430a5a1083eeed5b82bc35f-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122022-f53e32e0d430a5a1083eeed5b82bc35f-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-61c103d6bbd777001c9debf2-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-122022-f53e32e0d430a5a1083eeed5b82bc35f-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122022-f53e32e0d430a5a1083eeed5b82bc35f-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-61c103d6bbd777001c9debf2-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_seller` SET
+				 `acces_token`=null,`jsonmercadopago`=null
+		WHERE `idUsuario` = '377' 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`=null,`jsonmercadopago`=null
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+"{\"access_token\":\"APP_USR-8374534224864099-122022-005de82704ca64df50ce9dd2729359d6-141510028\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":141510028,\"refresh_token\":\"TG-61c1069508b1ba001adb7dd1-141510028\",\"public_key\":\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-122022-005de82704ca64df50ce9dd2729359d6-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122022-005de82704ca64df50ce9dd2729359d6-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-61c1069508b1ba001adb7dd1-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-122022-005de82704ca64df50ce9dd2729359d6-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122022-005de82704ca64df50ce9dd2729359d6-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-61c1069508b1ba001adb7dd1-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '377' 
+			  AND `eliminar` = 0 

@@ -228,41 +228,12 @@ $('#form_recuperar_clave_mail').submit(function (e) {
 
 
 
-$('#eliminar_usuario_seller').submit(function (e) {
+$('#eliminar_usuario').submit(function (e) {
     e.preventDefault();
     var formData = new FormData($(this)[0]);
         
     $.ajax({
         url: '/app/eliminar_usuario_seller.php',
-        data: formData,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        dataType: "json",
-        success: function( data, textStatus, jQxhr ){
-            if (data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);														
-            }else if(data.status == 'OK'){
-                alertify.success(data.mensaje)
-                window.location.replace("/app/logout.php");
-            }else{
-                console.log (data.mensaje);
-            }
-        },
-        error: function( jqXhr, textStatus, errorThrown ){
-                   var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   console.log(msj);
-        }
-   });
-   return false;
-});
-
-$('#eliminar_usuario_picker').submit(function (e) {
-    e.preventDefault();
-    var formData = new FormData($(this)[0]);
-        
-    $.ajax({
-        url: '/app/eliminar_usuario_picker.php',
         data: formData,
         type: 'POST',
         processData: false,
@@ -2102,6 +2073,22 @@ function fetchIdCarrito(id_public,id_prod,value_cant){
     })
     .catch(error => console.error('Error:', error))
 
+}
+
+function desvincularMp(urlParam,accionParam){
+
+    let data = new FormData();
+    data.append('accion',accionParam)
+
+    fetch(urlParam, {
+        method: 'POST',
+        body: data,
+    })
+    .then(res => res.json())
+    .then(response => {
+        window.location.replace("/editar-usuario.html")
+    })
+    .catch(error => alertify.error("No se pudo desvincular"+error))    
 }
 
 function llamadaSimple(idParam,accionParam,urlParam){

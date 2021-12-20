@@ -207,6 +207,48 @@ return $tokenMP;
 
 }
 
+public function desvincularTokenMP ($idUsuario){
+	$idUsuarioBD = Database::escape($idUsuario);
+
+	$sql =<<<SQL
+		UPDATE `usuario_seller` SET
+				 `acces_token`=null,`jsonmercadopago`=null
+		WHERE `idUsuario` = $idUsuarioBD 
+SQL;
+
+$fp = fopen("/var/www/html/log.txt", 'a');
+fwrite($fp, "\n$sql\n");
+fclose($fp);
+
+    if (!mysqli_query(Database::Connect(), $sql)) {
+		$this->setStatus("error");
+		$this->setMsj("error al desvincular token");
+   }else{
+		$this->setStatus("ok");
+		$this->setMsj("");
+		$sql =<<<SQL
+		UPDATE `usuario_picker` SET
+				 `acces_token`=null,`jsonmercadopago`=null
+		WHERE `idUsuario` = $idUsuarioBD 
+			  AND `eliminar` = 0 
+SQL;
+
+$fp = fopen("/var/www/html/log.txt", 'a');
+fwrite($fp, "\n$sql\n");
+fclose($fp);
+    	if (!mysqli_query(Database::Connect(), $sql)) {
+
+
+				$this->setStatus("error");
+				$this->setMsj("error al desvincular token");
+   		}else{
+				$this->setStatus("ok");
+				$this->setMsj("");
+   		}
+	   
+   }
+}
+
 public function actualizarTokenMP ($json,$token){
 	$idUsuario = $_GET['state'];
 	$tokenBD      = Database::escape($token);

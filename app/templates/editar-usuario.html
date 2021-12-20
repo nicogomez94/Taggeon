@@ -24,7 +24,7 @@
        <div id="datos-editar" class="col-sm-12 col-md-12 col-md-12 col-lg-8">
           <hr class="hr-dinamica" style="display: none;">
           <h1>Editar Perfil</h1>
-          <p class="subtitulo-perfil">Los usuarios de Arquipick te conocer&aacute;n a trav&eacute;s de la siguiente informaci&oacute;n.</p>
+          <p class="subtitulo-perfil">Los usuarios de Taggeon te conocer&aacute;n a trav&eacute;s de la siguiente informaci&oacute;n.</p>
           
           <br>
           <!-- IMAGEN -->
@@ -125,12 +125,12 @@
           <br>
           <div class="row" id="ancla-editar">
             <div class="col-lg-8">
-                <span>Crea tu token de Mercado Pago &reg; para poder recibir y enviar pagos</span>
-                <span id="estado-sync-mp">Esta cuenta no esta sincronizada para recibir pagos</span>
+                <div>Crea tu token de Mercado Pago &reg; para poder recibir y enviar pagos</div>
+                <div id="estado-sync-mp"></div>
              </div>
              <div class="col-lg-4">
                 <div class="botonera-editar">
-                   <span><a id="btn-sync-mp" href="javascript:void(0)">Sincronizar</a></span>
+                   <span><a id="btn-sync-mp" href="javascript:void(0)"></a></span>
                 </div>
              </div>
           </div>
@@ -223,19 +223,19 @@
           <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button> -->
           <div class="modal-body">
              <div style="text-align: left;">
-                <form id="eliminar_usuario_{perfil}">
+                <form id="eliminar_usuario">
                    <input type="hidden" name="accion" value="eliminar">
                    <div>
                       <h2><u>Seguro?</u></h2>
                       <hr>
                       <br>
                       <p>Si cierras tu cuenta, no podr&aacute;s recuperar tus Pines ni tus tableros. </p>
-                      <p>Se eliminar&aacute;n todos los datos de tu cuenta de Arquipick.</p> 
+                      <p>Se eliminar&aacute;n todos los datos de tu cuenta de Taggeon.</p> 
                       <p>Si est&aacute;s seguro de querer irte para siempre, te enviaremos un correo con el &uacute;ltimo paso al mail registrado.</p>     
                    </div>
                    <div>
                       <br>
-                      <button type="submit" class="btn btn-info">Abandonar Arquipick</button>
+                      <button type="submit" class="btn btn-warning">Abandonar Taggeon</button>
                    </div>
                 </form>
           </div>
@@ -245,33 +245,27 @@
  
  
 <script>
-    var jsonDatosEditar = {
-       "NOMBRE"  : "{nombre}",
-       "APELLIDO" : "{apellido}",
-       "USUARIO" : "{usuario}",
-       "CONTACTO": "{contacto}",
-       "FOTO-PERFIL": "{foto-perfil}"
-      };
-      var jsonData = {json};
-
-      var nombre = jsonDatosEditar["NOMBRE"] || '';
-      var apellido = jsonDatosEditar["APELLIDO"] || '';
-      var usuario = jsonDatosEditar["USUARIO"] || '';
-      var contacto = jsonDatosEditar["CONTACTO"] || '';
-      var img_perfil = jsonDatosEditar["FOTO-PERFIL"] || '';
-      $("#nombre-completo").val(nombre);
-      $("#contacto-apellido").val(apellido);
-      $("#nombre-usuario").val(usuario);
-      $("#contacto-mail").val(contacto);
-      if (img_perfil != ''){
-         $("#img-perfil-cont").html(
-               `<img src="${img_perfil}?random=${time_random}" alt="profile_pic">`
-               );
-      }
-
-      /*riki*/
-   $( "#reset-form-editar" ).click(function() {
-      actualizarPantallaEditarUsuario();
-   });
-
+   var jsonDatosEditar = {
+      "NOMBRE"  : "{nombre}",
+      "APELLIDO" : "{apellido}",
+      "USUARIO" : "{usuario}",
+      "CONTACTO": "{contacto}",
+      "FOTO-PERFIL": "{foto-perfil}"
+   };
+   var jsonData = {json};
+   
+   var nombre = jsonDatosEditar["NOMBRE"] || '';
+   var apellido = jsonDatosEditar["APELLIDO"] || '';
+   var usuario = jsonDatosEditar["USUARIO"] || '';
+   var contacto = jsonDatosEditar["CONTACTO"] || '';
+   var img_perfil = jsonDatosEditar["FOTO-PERFIL"] || '';
+   $("#nombre-completo").val(nombre);
+   $("#contacto-apellido").val(apellido);
+   $("#nombre-usuario").val(usuario);
+   $("#contacto-mail").val(contacto);
+   if (img_perfil != ''){
+      $("#img-perfil-cont").html(
+         `<img src="${img_perfil}?random=${time_random}" alt="profile_pic">`
+      );
+   }
 </script>

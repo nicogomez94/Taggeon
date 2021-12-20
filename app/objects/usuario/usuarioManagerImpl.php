@@ -134,6 +134,14 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		return 	$this->getUsuarioDao()->getTokenMP($idCarrito);
 
 	}
+	public function desvincularTokenMP(){
+		//validar
+		$idUserMP = $GLOBALS['sesionG']['idUsuario'];
+
+			$this->getUsuarioDao()->desvincularTokenMP($idUserMP);
+		$this->setMsj($this->getUsuarioDao()->getMsj());
+		$this->setStatus($this->getUsuarioDao()->getStatus());
+	}
 
 	public function actualizarTokenMP(){
 		//validar

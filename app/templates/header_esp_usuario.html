@@ -21,7 +21,6 @@
       var foto_perfil = '{foto-perfil}';
 
       $(document).ready(function(){
-         //jsonData.
 
          const url_mp = "{url-mp}";
          var intereses = {intereses};
@@ -32,7 +31,6 @@
 
          img_perfil.setAttribute("src",attr);
          img_perfil_drop.setAttribute("src",attr);
-
          if(typeof jsonData != "undefined"){
             if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
                var html_test = 
@@ -52,21 +50,23 @@
             }else{
                $(".token_mp").hide();
             }
-         }/*else if(jsonDatosEditar.hasOwnProperty("NOMBRE")){
-            //si estas en el editar
+         }
+         if(typeof jsonDatosEditar != "undefined"){
             const btn = document.querySelector("#btn-sync-mp");
             const estado = document.querySelector("#estado-sync-mp");
-
-            if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
+            
+            if(jsonData.tokenMercadoPago == 0){
                btn.setAttribute("href",url_mp);
+               btn.innerText = "Sincronizar"
                estado.innerHTML = "Su cuenta no esta sincronizada con Mercado Pago";
             }else{
-               btn.setAttribute("href",url_mp);
+               btn.setAttribute("href","javascript:void(0)");
+               btn.setAttribute("onclick","desvincularMp('/app/usuario.php','desvincular')");
+               btn.innerText = "Desvincular"
                estado.innerHTML = "Su cuenta esta sincronizada con Mercado Pago";
             }
-
          }
-*/
+
 
         /*buscador*/
         $("#buscador-titulo-input").keyup(function(){

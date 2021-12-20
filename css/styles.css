@@ -726,6 +726,9 @@ body{
     color: white !important; 
     cursor:pointer;
 }
+#estado-sync-mp{
+    font-weight: 500;
+}
 /****/
 .flex-container{
     margin-top: 10px;

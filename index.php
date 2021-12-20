@@ -21,7 +21,7 @@ if (preg_match($patron, $url)){
 			$usuarioManager = new UsuarioManagerImpl();
 			$usuarioManager->actualizarTokenMP();
 		
-			header("Location: https://taggeon.com/");
+			header("Location: https://taggeon.com/editar-usuario.html");
 			Database::Connect()->close();
 			exit;
 		}
