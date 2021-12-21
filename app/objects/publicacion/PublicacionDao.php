@@ -277,7 +277,7 @@ SQL;
                     $sql = <<<sql
                     SELECT
                     `publicacion`.`id`, `publicacion_nombre`,subescena1,subescena_json,escena_sel, 
-                    `publicacion_descripcion`,pid,aspect_ratio
+                    `publicacion_descripcion`,pid,aspect_ratio,
                    GROUP_CONCAT(publicacion_publicacion_foto.id) as foto
             
                 FROM
@@ -291,7 +291,8 @@ SQL;
                     (`publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL) AND `publicacion`.usuario_alta = $usuarioAltaDB
                 group by         
                 `publicacion`.`id`, `publicacion_nombre`, subescena1,subescena_json,escena_sel, `publicacion_descripcion`,pid,aspect_ratio
-            sql;
+sql;
+		    //echo $sql;
                     $resultado = Database::Connect()->query($sql);
                     $row_cnt = mysqli_num_rows($resultado);
                     $list = array();

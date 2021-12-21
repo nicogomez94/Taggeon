@@ -21,7 +21,7 @@ if ($perfil=='seller' || $perfil=='picker'){
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
-        "publicaciones"     => $publicacionManager->getListPublicacion(),
+      #  "publicaciones"     => $publicacionManager->getListPublicacion(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
         
