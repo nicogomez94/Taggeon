@@ -145,25 +145,64 @@ SQL;
         $categoria = isset($data["categoria"]) ? $data["categoria"] : '';
         $categoriaDB = Database::escape($categoria);
         $subcategoria1 = isset($data["subcategoria1"]) ? $data["subcategoria1"] : '';
-        $subcategoria1DB = Database::escape($subcategoria1);
+        $subcategoria1DB = 'null';
+        if ($subcategoria1 != ''){
+            $subcategoria1DB = Database::escape($subcategoria1);
+        }
+
         $subcategoria2 = isset($data["subcategoria2"]) ? $data["subcategoria2"] : '';
-        $subcategoria2DB = Database::escape($subcategoria2);
+        $subcategoria2DB = 'null';
+        if ($subcategoria2 != ''){
+            $subcategoria2DB = Database::escape($subcategoria2);
+        }
+        
         $subcategoria3 = isset($data["subcategoria3"]) ? $data["subcategoria3"] : '';
-        $subcategoria3DB = Database::escape($subcategoria3);
+        $subcategoria3DB = 'null';
+        if ($subcategoria3 != ''){
+            $subcategoria3DB = Database::escape($subcategoria3);
+        }
+        
         $subcategoria4 = isset($data["subcategoria4"]) ? $data["subcategoria4"] : '';
-        $subcategoria4DB = Database::escape($subcategoria4);
+        $subcategoria4DB = 'null';
+        if ($subcategoria4 != ''){
+            $subcategoria4DB = Database::escape($subcategoria4);
+        }
+        
         $subcategoria5 = isset($data["subcategoria5"]) ? $data["subcategoria5"] : '';
-        $subcategoria5DB = Database::escape($subcategoria5);
+        $subcategoria5DB = 'null';
+        if ($subcategoria5 != ''){
+            $subcategoria5DB = Database::escape($subcategoria5);
+        }
+        
         $subcategoria6 = isset($data["subcategoria6"]) ? $data["subcategoria6"] : '';
-        $subcategoria6DB = Database::escape($subcategoria6);
+        $subcategoria6DB = 'null';
+        if ($subcategoria6 != ''){
+            $subcategoria6DB = Database::escape($subcategoria6);
+        }
+        
         $subcategoria7 = isset($data["subcategoria7"]) ? $data["subcategoria7"] : '';
-        $subcategoria7DB = Database::escape($subcategoria7);
+        $subcategoria7DB = 'null';
+        if ($subcategoria7 != ''){
+            $subcategoria7DB = Database::escape($subcategoria7);
+        }
+        
         $subcategoria8 = isset($data["subcategoria8"]) ? $data["subcategoria8"] : '';
-        $subcategoria8DB = Database::escape($subcategoria8);
+        $subcategoria8DB = 'null';
+        if ($subcategoria8 != ''){
+            $subcategoria8DB = Database::escape($subcategoria8);
+        }
+        
         $subcategoria9 = isset($data["subcategoria9"]) ? $data["subcategoria9"] : '';
-        $subcategoria9DB = Database::escape($subcategoria9);
+        $subcategoria9DB = 'null';
+        if ($subcategoria9 != ''){
+            $subcategoria9DB = Database::escape($subcategoria9);
+        }
+        
         $subcategoria10 = isset($data["subcategoria10"]) ? $data["subcategoria10"] : '';
-        $subcategoria10DB = Database::escape($subcategoria10);
+        $subcategoria10DB = 'null';
+        if ($subcategoria10 != ''){
+            $subcategoria10DB = Database::escape($subcategoria10);
+        }
         $marca = isset($data["marca"]) ? $data["marca"] : '';
         $marcaDB = Database::escape($marca);
         $precio = isset($data["precio"]) ? $data["precio"] : '';
