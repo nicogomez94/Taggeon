@@ -2104,8 +2104,7 @@ function llamadaSimple(idParam,accionParam,urlParam){
     .then(res => res.json())
     .then(response => {
         let path = window.location.pathname;
-        console.log(path)
-        //window.location.replace(path)
+        window.location.replace(path)
     })
     .catch(error => alertify.error("No se pudo borrar publicacion"+error))
 }
@@ -2708,7 +2707,7 @@ function getPublicTags(id_public,tags,index,publicador,id_publicador){
 
 function getPublicsHome(data){
     var sizePublic = data.length;
-    //console.log(data)
+    console.log(data)
     if(sizePublic>0){
         
         let arrayAll = [];
@@ -2726,7 +2725,7 @@ function getPublicsHome(data){
             let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
             let favorito = data[i].favorito;
             let fav_accion = "";
-            let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;
+            let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;//tipo de escena,json
             let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
             let subescena_json = JSON.parse(data[i].subescena_json);
             let nombre_subes1 = data[i].nombre_subescena1;
@@ -2806,21 +2805,32 @@ function getPublicsHome(data){
                 autoHeight: true
         } ).mount();
     
-    }//fin for principal
-        
-        /*if(checkArray == undefined){
-            //NO EXISTE EN EL ARRAY ENTONCES DIBUJO OTRA CAT
-            arrayCats.push(esc_full_id);
-            $(".splide__list__home").append(globos_html);
-            $(".item-cat-"+esc_full_id).append(public_html)
-        }else{
-            $(".item-cat-"+esc_full_id).append(public_html)
-        }*/
+    }
 }
 
 function showCantResult(length){
     var showResultados = document.querySelector(".show-result-num") || 0;
     showResultados.innerHTML = length; 
+}
+
+function toDataURL(src, callback, outputFormat) {
+    var img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = function() {
+       var canvas = document.createElement('CANVAS');
+       var ctx = canvas.getContext('2d');
+       var dataURL;
+       canvas.height = this.naturalHeight;
+       canvas.width = this.naturalWidth;
+       ctx.drawImage(this, 0, 0);
+       dataURL = canvas.toDataURL(outputFormat);
+       callback(dataURL);
+    };
+    img.src = src;
+    if (img.complete || img.complete === undefined) {
+       img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+       img.src = src;
+    }
 }
 
 function getMisProductos(data){
@@ -2983,9 +2993,9 @@ function getDataPaging(dataPaging) {
         //si tiene id entonces es un comentario
         let tipo_comentario = (url_temp=="paginador_comentarios_producto.php") ? "id_producto" : "id_publicacion";
         let id_comentario = dataPaging.id || 0;
-        URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}&${tipo_comentario}=${id_comentario}`;
+        URL = `/app/${url_temp}?cant=${dataPaging.cantidad}&${tipo_comentario}=${id_comentario}`;
     }else{
-        URL = `/app/${dataPaging.url}?cant=${dataPaging.cantidad}`;
+        URL = `/app/${url_temp}?cant=${dataPaging.cantidad}`;
     }
     
     console.log(URL)

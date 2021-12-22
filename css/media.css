@@ -3,6 +3,12 @@
     /* .navbar-brand-container{
         width: 10%;
     } */
+    #recuperar-pass-cont{
+        width: 90%;
+    }
+    #form_recuperar_clave_mail input{
+        width: 90%;
+    }
     .btn-header{
         margin-left: 15px;
     }

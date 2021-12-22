@@ -114,6 +114,7 @@
 
    <script>
       $(document).ready(function(){
+       
          uploadHBR.init({
                "target": "#uploads",
                "textNew": "A&ntilde;adir",
@@ -127,6 +128,8 @@
          var sizeProductos = jsonData.productos.length || 0;
          var subcats_length = jsonData.productos[0] || [];
       
+         //dibujo select de cats
+         //primero prreguntar si existedibujarle valor por valoir a cada select
          for(var i=0; i<subcats_length; i++) {
             var cat_id = subcats[i].id;
             var cat_nombre = subcats[i].nombre;
@@ -154,6 +157,7 @@
             var stock_prod = jsonData.productos[i].stock || 0;
             var id_cat = jsonData.categoria[i].id || 0;
             var fotosArray = foto_prod_editar.split(",") || [];
+            var base = $("#base64_"+i);
                   
             $("#titulo-producto").val(nombre_prod);
             $("#precio-producto").val(precio_prod);
@@ -168,18 +172,28 @@
    
                var foto_src = '/productos_img/'+fotosArray[i]+'.png' || 0;
                var img = $("#prev_"+i).find(".img-responsive");
+
                img.attr("onerror","this.src=\'/imagen_perfil/generica_prod.jpg\'");
-               img.attr("onload","$(this).parent().parent().find('.new').addClass('hidden')");
+               //img.attr("onload","$(this).parent().parent().find('.new').addClass('hidden')");
                img.attr("src",foto_src);
                img.parent().removeClass("hidden");
                
                var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
                $("#categoria-producto").append(html_cat);
                
+               //paso imagenes existentes a base64
+               toDataURL(
+                  foto_src,
+                  function(dataUrl) {
+                     console.log(base)
+                     base.val(dataUrl);
+                  }
+               )
+                  
             }
             
          }
          
-      
+
    });
    </script>

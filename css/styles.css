@@ -2091,7 +2091,7 @@ button:disabled{
     top: 0;
 }
 .showCat{
-    display: inline;
+    display: inline !important;
 }
 .tagg{
     font-size: 1.5em;

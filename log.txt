@@ -1612,3 +1612,13 @@ ok"{\"access_token\":\"APP_USR-8374534224864099-122021-7dd92eacf70ff01db61c120bf
 				 `acces_token`='APP_USR-8374534224864099-122022-005de82704ca64df50ce9dd2729359d6-141510028',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122022-005de82704ca64df50ce9dd2729359d6-141510028\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":141510028,\\\"refresh_token\\\":\\\"TG-61c1069508b1ba001adb7dd1-141510028\\\",\\\"public_key\\\":\\\"APP_USR-90b6716e-79f5-4384-8c52-312f5afda111\\\",\\\"live_mode\\\":true}\"'
 		WHERE `idUsuario` = '377' 
 			  AND `eliminar` = 0 
+"{\"access_token\":\"APP_USR-8374534224864099-122121-6322875f5c178ff230d1cb5ed7232324-212263691\",\"token_type\":\"bearer\",\"expires_in\":15552000,\"scope\":\"offline_access payments read write\",\"user_id\":212263691,\"refresh_token\":\"TG-61c24cabd0dbdc001a103627-212263691\",\"public_key\":\"APP_USR-fe35353c-a368-4ea3-a682-8648a82b724e\",\"live_mode\":true}"
+		UPDATE `usuario_seller` SET
+				 `acces_token`='APP_USR-8374534224864099-122121-6322875f5c178ff230d1cb5ed7232324-212263691',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122121-6322875f5c178ff230d1cb5ed7232324-212263691\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":212263691,\\\"refresh_token\\\":\\\"TG-61c24cabd0dbdc001a103627-212263691\\\",\\\"public_key\\\":\\\"APP_USR-fe35353c-a368-4ea3-a682-8648a82b724e\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '379' 
+			  AND `eliminar` = 0 
+
+		UPDATE `usuario_picker` SET
+				 `acces_token`='APP_USR-8374534224864099-122121-6322875f5c178ff230d1cb5ed7232324-212263691',`jsonmercadopago`='\"{\\\"access_token\\\":\\\"APP_USR-8374534224864099-122121-6322875f5c178ff230d1cb5ed7232324-212263691\\\",\\\"token_type\\\":\\\"bearer\\\",\\\"expires_in\\\":15552000,\\\"scope\\\":\\\"offline_access payments read write\\\",\\\"user_id\\\":212263691,\\\"refresh_token\\\":\\\"TG-61c24cabd0dbdc001a103627-212263691\\\",\\\"public_key\\\":\\\"APP_USR-fe35353c-a368-4ea3-a682-8648a82b724e\\\",\\\"live_mode\\\":true}\"'
+		WHERE `idUsuario` = '379' 
+			  AND `eliminar` = 0 
