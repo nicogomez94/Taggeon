@@ -47,22 +47,27 @@
                   </div>
                </div>
                <div class="row" style="margin-top: 20px;">
-                  <div id="sels_cat_prod" class="col-lg-6 col-md-6 col-sm-12 col-12">
-                     <select class="showCat" name="categoria" id="categoria-producto" onchange="getSubCat(this.value,'#categoria-producto','#categoria-producto2')">
-                        <option value="" selected disabled hidden required>Elija una categor&iacute;a</option>
-                     </select>
-                     <select name="subcategoria1" id="categoria-producto2" onchange="getSubCat(this.value,'#categoria-producto2','#categoria-producto3')">
-                        <option value="" selected disabled hidden required>Elija una subcategor&iacute;a</option>
-                     </select>
-                     <select name="subcategoria2" id="categoria-producto3" onchange="getSubCat(this.value,'#categoria-producto3','#categoria-producto4')">
-                        <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
-                     </select>
-                     <select name="subcategoria3" id="categoria-producto4" onchange="getSubCat(this.value,'#categoria-producto4','#categoria-producto5')">
-                        <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option>
-                     </select>
-                  </div>
-                  <div id="sels_cat_prod" class="col-lg-6 col-md-6 col-sm-12 col-12">
-                     
+                  <div id="sels_cat_prod">
+                     <div>
+                        <select class="showCat" name="categoria" id="categoria-producto" onchange="getSubCat(this.value,'#categoria-producto','#categoria-producto2')">
+                           <option value="" selected disabled hidden required>Elija una categor&iacute;a</option>
+                        </select>
+                     </div>
+                     <div>
+                        <select style="display: none;" name="subcategoria1" id="categoria-producto2" onchange="getSubCat(this.value,'#categoria-producto2','#categoria-producto3')">
+                           <!-- <option value="" selected disabled hidden required>Elija una subcategor&iacute;a</option> -->
+                        </select>
+                     </div>
+                     <div>
+                        <select style="display: none;" name="subcategoria2" id="categoria-producto3" onchange="getSubCat(this.value,'#categoria-producto3','#categoria-producto4')">
+                           <!-- <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option> -->
+                        </select>
+                     </div>
+                     <div>
+                        <select style="display: none;" name="subcategoria3" id="categoria-producto4" onchange="getSubCat(this.value,'#categoria-producto4','#categoria-producto5')">
+                           <!-- <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option> -->
+                        </select>
+                     </div>
                   </div>
                </div>
                <div class="campos-subir-prod"> 
@@ -114,30 +119,31 @@
 
    <script>
       $(document).ready(function(){
-       
+         
+         
          uploadHBR.init({
-               "target": "#uploads",
-               "textNew": "A&ntilde;adir",
-               "textTitle": "Haga click o draguee su imagen",
-               "textTitleRemove": "Haga click para remover imagen"
+            "target": "#uploads",
+            "textNew": "A&ntilde;adir",
+            "textTitle": "Haga click o draguee su imagen",
+            "textTitleRemove": "Haga click para remover imagen"
          });
          $('#reset').click(function () {
-               uploadHBR.reset('#uploads');
-            });
-            
+            uploadHBR.reset('#uploads');
+         });
+         
          var sizeProductos = jsonData.productos.length || 0;
          var subcats_length = jsonData.productos[0] || [];
-      
+         
          //dibujo select de cats
          //primero prreguntar si existedibujarle valor por valoir a cada select
          for(var i=0; i<subcats_length; i++) {
             var cat_id = subcats[i].id;
             var cat_nombre = subcats[i].nombre;
             var targetHtml = $(target);
-
+            
             var cat_select_html = 
             '<option value="'+cat_id+'">'+cat_nombre+'</option>';
-
+            
             targetHtml.append(cat_select_html)
             targetHtml.addClass("showCat");
          }
@@ -155,10 +161,15 @@
             var color_prod = jsonData.productos[i].color || "";
             var nombre_cat = jsonData.categoria[i].nombre || "";
             var stock_prod = jsonData.productos[i].stock || 0;
+            var subcat1 = jsonData.productos[i].subcategoria1 || "";
+            var subcat2 = jsonData.productos[i].subcategoria2 || "";
+            var subcat3 = jsonData.productos[i].subcategoria3 || "";
+            var cat_main = jsonData.productos[i].categoria || "";
             var id_cat = jsonData.categoria[i].id || 0;
             var fotosArray = foto_prod_editar.split(",") || [];
             var base = $("#base64_"+i);
-                  
+            var cats = jsonData.categoria.length;
+            
             $("#titulo-producto").val(nombre_prod);
             $("#precio-producto").val(precio_prod);
             $("#stock-producto").val(stock_prod);
@@ -167,19 +178,31 @@
             $("#marca-producto").val(marca_prod);
             $("#envio-producto").val(envio_prod);
             $("#garantia-producto").val(garantia_prod);
-         
+            
+            //dibujo las cats principales
+            for(var i=0; i<cats; i++) {
+               var cat_id = jsonData.categoria[i].id;
+               var cat_nombre = jsonData.categoria[i].nombre;
+               var cat_select_html = 
+               '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+               
+               $("#categoria-producto").append(cat_select_html)
+            }
+
+            $("#categoria-producto [value='"+cat_main+"']").attr("selected", true);
+            //inicializo las categorias asi se van trayendo en cadena
+            getSubEditar(cat_main,subcat1,subcat2,subcat3)
+            
             for(var i=0; i<fotosArray.length; i++){
-   
+               
                var foto_src = '/productos_img/'+fotosArray[i]+'.png' || 0;
                var img = $("#prev_"+i).find(".img-responsive");
-
+               
                img.attr("onerror","this.src=\'/imagen_perfil/generica_prod.jpg\'");
                //img.attr("onload","$(this).parent().parent().find('.new').addClass('hidden')");
                img.attr("src",foto_src);
                img.parent().removeClass("hidden");
                
-               var html_cat = '<option class="option-cat" value="'+id_cat+'" selected>'+nombre_cat+'</option>';
-               $("#categoria-producto").append(html_cat);
                
                //paso imagenes existentes a base64
                toDataURL(
@@ -196,4 +219,29 @@
          
 
    });
+
+
+   function getSubEditar(subcatParam_1,subcatParam_2,subcatParam_3,subcatParam_4){
+      var param1 = $("#categoria-producto [value='"+subcatParam_1+"']")
+      var param2 = $("#categoria-producto2 [value='"+subcatParam_2+"']")
+      var param3 = $("#categoria-producto3 [value='"+subcatParam_3+"']")
+      var param4 = $("#categoria-producto4 [value='"+subcatParam_4+"']")
+      
+      //primero dibijo la primera que si o si viene, y despues pregunto si vienen otras
+      getSubCat(subcatParam_1,'#categoria-producto','#categoria-producto2')
+      param1.attr("selected", true);
+
+      if(subcatParam_2){
+         getSubCat(subcatParam_2,'#categoria-producto2','#categoria-producto3')
+         param2.attr("selected", true);
+         if(subcatParam_3){
+            getSubCat(subcatParam_3,'#categoria-producto3','#categoria-producto4')
+            param3.attr("selected", true);
+            if(subcatParam_4){
+               getSubCat(subcatParam_4,'#categoria-producto4','#categoria-producto5')
+               param4.attr("selected", true);
+            }
+         }
+      }
+   }
    </script>

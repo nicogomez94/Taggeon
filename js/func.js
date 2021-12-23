@@ -1693,8 +1693,6 @@ function pathShareHome(param){
 	//document.getElementById("fa-pinterest-square").href="mailto:?body=Take a look at this page I found: " + title + ". You can read it here: " + Url;
 }
 
-
-
 function getSubCat(valueParam,source,target){
 
     var catData = new FormData();
@@ -1718,6 +1716,7 @@ function getSubCat(valueParam,source,target){
                 var targetHtml = $(target);
                 var target_length = targetHtml.find("option").length;
                 var itemsNext = $(source).nextAll();
+                var cat_select_html = ''
 
                 if(target_length > 1){
                     itemsNext.each(function(){
@@ -1730,17 +1729,14 @@ function getSubCat(valueParam,source,target){
                     var cat_id = subcats[i].id;
                     var cat_nombre = subcats[i].nombre;
      
-                    var cat_select_html = 
-                    `<option value="${cat_id}">${cat_nombre}</option>`;
+                    cat_select_html += '<option value="'+cat_id+'">'+cat_nombre+'</option>';
      
-                    targetHtml.append(cat_select_html)
-                    targetHtml.addClass("showCat");
                 }
+                targetHtml.html(cat_select_html)
+                targetHtml.addClass("showCat");
 
             }else{
-                console.log("else")
-                console.log(response)
-                console.log(data)
+                alertify.error("En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.")
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
@@ -1908,7 +1904,7 @@ function showSelected(thisParam){
     obj.style.backgroundColor = "beige";
 }
 function getParamTipoEspacio(valueParam,target){
-    $(this).removeA
+    //$(this).removeA
     var catData = new FormData();
     catData.append("accion","subescena");
     catData.append("id",valueParam);
@@ -1920,7 +1916,8 @@ function getParamTipoEspacio(valueParam,target){
         processData: false,
         contentType: false,
         dataType: "json",
-        beforeSend: function() {
+        beforeSend: function(data,response) {
+            console.log(data,response)
             showLoadingSvg(target)
         },
         /*complete: function(){
