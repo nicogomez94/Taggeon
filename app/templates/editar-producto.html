@@ -48,19 +48,19 @@
                </div>
                <div class="row" style="margin-top: 20px;">
                   <div id="sels_cat_prod">
-                     <select class="showCat" name="categoria" id="categoria-producto" onchange="getSubCat(this.value,'#categoria-producto','#categoria-producto2')">
+                     <select class="cats" required class="showCat" name="categoria" id="categoria-producto" onchange="getSubCat(this.value,'#categoria-producto','#categoria-producto2')">
                         <option value="" selected disabled hidden required>Elija una categor&iacute;a</option>
                      </select>
                      <br>   
-                     <select style="display: none;" name="subcategoria1" id="categoria-producto2" onchange="getSubCat(this.value,'#categoria-producto2','#categoria-producto3')">
+                     <select class="cats" style="display: none;" name="subcategoria1" id="categoria-producto2" onchange="getSubCat(this.value,'#categoria-producto2','#categoria-producto3')">
                         <!-- <option value="" selected disabled hidden required>Elija una subcategor&iacute;a</option> -->
                      </select>
                      <br>   
-                     <select style="display: none;" name="subcategoria2" id="categoria-producto3" onchange="getSubCat(this.value,'#categoria-producto3','#categoria-producto4')">
+                     <select class="cats" style="display: none;" name="subcategoria2" id="categoria-producto3" onchange="getSubCat(this.value,'#categoria-producto3','#categoria-producto4')">
                         <!-- <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option> -->
                      </select>
                      <br>   
-                     <select style="display: none;" name="subcategoria3" id="categoria-producto4" onchange="getSubCat(this.value,'#categoria-producto4','#categoria-producto5')">
+                     <select class="cats" style="display: none;" name="subcategoria3" id="categoria-producto4" onchange="getSubCat(this.value,'#categoria-producto4','#categoria-producto5')">
                         <!-- <option value="" selected disabled hidden required>Elija otra subcategor&iacute;a</option> -->
                      </select>
                   </div>
@@ -114,49 +114,74 @@
 
    <script>
       $(document).ready(function(){
-         
+   
+
          //esta aca porque en producto.js se me mandaba dos veces
          $('#producto-form').submit(function (e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             let formData = new FormData($(this)[0]);
             let el_foto_hidden = document.querySelectorAll(".base_input");
-            
+            let cats = document.querySelectorAll(".cats");
+            let cat4 = "subcategoria3";
+            var allin = true;
+
+            //si hay una foto que viene vacia, la saco del objeto
             el_foto_hidden.forEach((el) => {
                if(el.value==""){
-                     console.log("foreach-->"+el.name+el.value)
-                     formData.delete(el.name)
-               }else{
-                     console.log("else-->"+el.name+el.value)
+                  formData.delete(el.name)
                }
             })
-               
-            $.ajax({
-               url: '/app/producto.php',
-               data: formData,
-               type: 'POST',
-               processData: false,
-               contentType: false,
-               dataType: "json",
-               async: false,
-               success: function( data, textStatus, jQxhr ){
-                     if (data.status == 'ERROR'){
-                        alertify.error(data.mensaje);														
-                     }else if(data.status == 'OK' || data.status == 'ok'){
-                        alertify.success("Producto editado con exito!")
-                        window.location.replace("/ampliar-producto.html");
+            
+            //recorro las cats para ver si hay alguno que no se mando...
+            try{
+               cats.forEach((elem) => {
+                  let value = elem.value;
+                  let name = elem.name;
+                  if(value=="" || value==null){
+                     console.log("este no tiene value-->"+elem.name+elem.value)
+                     //...si la que viene vacia es 4, pasa el peaje
+                     //esto pasa porque algunas cats no tienen un cuarto valor
+                     if(name=="subcategoria3"){
+                        allin = true;
                      }else{
-                        var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                        alertify.error(msj)
+                        allin = false;
+                        throw "Exit Error";
                      }
-               },
-               error: function( jqXhr, textStatus, errorThrown ){
-                  var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                  alertify.error(msj)
-               }
-            });
-            return false;
+                  }
+               })
+            }catch(e){
+               console.log(e)
+            }
+
+            if(allin == true){
+               $.ajax({
+                  url: '/app/producto.php',
+                  data: formData,
+                  type: 'POST',
+                  processData: false,
+                  contentType: false,
+                  dataType: "json",
+                  async: false,
+                  success: function( data, textStatus, jQxhr ){
+                        if (data.status == 'ERROR'){
+                           alertify.error(data.mensaje);														
+                        }else if(data.status == 'OK' || data.status == 'ok'){
+                           alertify.success("Producto editado con exito!")
+                           window.location.replace("/ampliar-producto.html");
+                        }else{
+                           var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                           alertify.error(msj)
+                        }
+                  },
+                  error: function( jqXhr, textStatus, errorThrown ){
+                     var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                     alertify.error(msj)
+                  }
+               });
+            }
+
          });
 
          uploadHBR.init({
@@ -207,6 +232,7 @@
             var fotosArray = foto_prod_editar.split(",") || [];
             var base = $("#base64_"+i);
             var cats = jsonData.categoria.length;
+            let arrayCats = [cat_main,subcat1,subcat2,subcat3]
             
             $("#titulo-producto").val(nombre_prod);
             $("#precio-producto").val(precio_prod);
@@ -224,12 +250,13 @@
                var cat_select_html = 
                '<option value="'+cat_id+'">'+cat_nombre+'</option>';
                
-               $("#categoria-producto").append(cat_select_html)
+               $("#categoria-producto1").append(cat_select_html)
             }
 
-            $("#categoria-producto [value='"+cat_main+"']").attr("selected", true);
+            $("#categoria-producto1 [value='"+cat_main+"']").attr("selected", true);
             //inicializo las categorias asi se van trayendo en cadena
             getSubEditar(cat_main,subcat1,subcat2,subcat3)
+            //getSubEditar(arrayCats)
             
             for(var i=0; i<fotosArray.length; i++){
                
@@ -282,4 +309,16 @@
          }
       }
    }
+
+   /*function getSubEditar(obj){
+      
+      for(var i=1; i<obj.length; i++){
+         let el = obj[i];
+         let param = $("#categoria-producto"+i+" [value='"+el+"']");
+
+         getSubCat(el,'#categoria-producto','#categoria-producto2')
+         param.attr("selected", true);
+      }
+
+   }*/
    </script>

@@ -1718,9 +1718,13 @@ function getSubCat(valueParam,source,target){
                 var itemsNext = $(source).nextAll();
                 var cat_select_html = ''
 
+                if(subcats=="" || subcats==null){
+                    return 0;
+                }
+
                 //si hay options en el select proximo, lo borro
                 if(target_length > 1){
-                    console.log(itemsNext)
+                    //console.log(itemsNext)
                     itemsNext.each(function(){
                         $(this).empty()
                         $(this).removeClass("showCat");
