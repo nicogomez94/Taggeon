@@ -1711,22 +1711,20 @@ input:focus-visible, .input:focus-within{
 }
 .hidden{
     visibility: hidden;
-    /* display: none; */
 }
 .uploadArea{
-    border:dashed #c7c7c7;
-    text-align:center;
-    /* line-height:30px;
-    font-size:18px; */
-    cursor:pointer;
-    max-width:130px;
-    /* padding: 10px; */
+    border: 1px #e3e3e3 solid;
+    text-align: center;
+    cursor: pointer;
+    max-width: 130px;
+    border-radius: var(--soft-redondeado);
 }
 .uploadArea.selected{
     border:dashed #FA623F!important;
 }
 .uploadArea .new{
-    padding-top:15px!important
+    padding-top:15px!important;
+    color: #8f8f8f;
 }
 .uploadArea input[type='file']{
     height:0px;/*para que no ocupe espacio al pedo arriba*/
@@ -1735,38 +1733,37 @@ input:focus-visible, .input:focus-within{
 }
 .uploadArea i{
     font-size:25px;
-    padding-top:15px
+    padding-top:15px;
 }
 .image-preview img{
-    padding-top:0px!important;
-    /* width:130px; */
-    /* border-radius: 10px; */
-    /* margin-bottom: 10px; */
-    /* max-height: 130px; */
-    max-height: 130px;
     position: absolute;
     left: 0;
     top: 0;
-    min-width: 70px;
-    max-width: 70px;
-    height: 60px;
-    margin: 10px;
-    z-index: 998;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: var(--soft-redondeado);
+    cursor: initial;
 }
 .image-preview .remove{
-    /* text-align: right; */
     color: white;
     position: absolute;
     top: 0;
     right: 0;
-    /* width: 100%; */
-    /* margin: auto; */
     background-color: #373435;
-    opacity: .4;
-    /* height: 25px; */
+    opacity: .3;
     padding: 5px;
-    z-index: 999;
+    margin: 7px;
+    border-radius: 5px;
+    transition: .2s all ease-in;
+    cursor: pointer;
+    z-index: 2;
+}
+.image-preview .remove:hover{
+    opacity: .9;
+}
+.image-preview .remove:active{
+    opacity: .1;
 }
 .image-preview .remove i{
     font-size:22px;
@@ -1775,7 +1772,8 @@ input:focus-visible, .input:focus-within{
     opacity:1!important;
 }
 .item-box,.box-drag{
-    float:left;display:block
+    float:left;
+    display:block;
 }
 .no-margin{
     margin:0px!important

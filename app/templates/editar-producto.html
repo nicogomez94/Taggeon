@@ -250,13 +250,12 @@
                var cat_select_html = 
                '<option value="'+cat_id+'">'+cat_nombre+'</option>';
                
-               $("#categoria-producto1").append(cat_select_html)
+               $("#categoria-producto").append(cat_select_html)
             }
 
-            $("#categoria-producto1 [value='"+cat_main+"']").attr("selected", true);
+            $("#categoria-producto [value='"+cat_main+"']").attr("selected", true);
             //inicializo las categorias asi se van trayendo en cadena
             getSubEditar(cat_main,subcat1,subcat2,subcat3)
-            //getSubEditar(arrayCats)
             
             for(var i=0; i<fotosArray.length; i++){
                
@@ -309,16 +308,4 @@
          }
       }
    }
-
-   /*function getSubEditar(obj){
-      
-      for(var i=1; i<obj.length; i++){
-         let el = obj[i];
-         let param = $("#categoria-producto"+i+" [value='"+el+"']");
-
-         getSubCat(el,'#categoria-producto','#categoria-producto2')
-         param.attr("selected", true);
-      }
-
-   }*/
    </script>
