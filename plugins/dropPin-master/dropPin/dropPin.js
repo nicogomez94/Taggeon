@@ -154,9 +154,9 @@
 							let clientWidth = html.clientWidth;
 							let resta = (exceso_left - clientWidth) * 2;
 	
-							console.log("----SE EXCEDIO-----",resta)
-							   console.log("r.left EN FUNC",r.left)
-							   console.log("clientWidth EN FUNC",html.clientWidth)
+							// console.log("----SE EXCEDIO-----",resta)
+							//console.log("r.left EN FUNC",r.left)
+							//console.log("clientWidth EN FUNC",html.clientWidth)
 							
 							var ppc = document.querySelector("#popup-prod-cont");
 							var ppc_left = ppc.style.left.split("px")[0];

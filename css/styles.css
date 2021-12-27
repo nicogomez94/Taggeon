@@ -2436,7 +2436,7 @@ button:disabled{
     color: #848484;
 }
 #anadir-productos-btn, #limpiar-productos-btn, #terminar-productos-btn, #cropear-btn{
-    display: none;
+    /* display: none; */
 }
 .anadir-prod-img-container{
     width: 90vw;
