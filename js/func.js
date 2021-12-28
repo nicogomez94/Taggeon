@@ -963,9 +963,9 @@ function activarBuscador(param){
     
                             /*<li class="splide__slide"><img data-toggle="modal" data-target="#modal-producto-${i}" src="${img_base_prod}"></li>';*/
     
-                            var html = `<li title="Por: ${marca}" class="splide__slide splide__slide__img ${id_prod}">
+                            var html = `<li data-id-prod="${id_prod}" title="Por: ${marca}" class="splide__slide splide__slide__img ${id_prod}">
                                         <img data-toggle="modal" data-target="#modal-producto-${i}" src="${foto_src}">
-                                        <div class="nombre-producto ${id_prod} nombre-producto-${i}">${nombre_prod}</div></li></div>`;
+                                        <div class="nombre-producto nombre-producto-${i}">${nombre_prod}</div></li></div>`;
                             // var html = <option class="nombre-producto ${id_prod} nombre-producto-${i}">nombre_prod+</option>'
                             splide_list.append(html);
     
@@ -1629,7 +1629,7 @@ function autocomplete(inp, arr) {
   }
 
 
-  
+
 function activarBuscadorRelated(param){
     var search = param.val();
 
@@ -2727,7 +2727,7 @@ function toDataURL(src, callback, outputFormat) {
 }
 
 function getMisProductos(data){
-    console.log(data)
+    //console.log(data)
     var sizeProductos = data.length || 0; 
 
     for(var i=0; i<sizeProductos; i++){

@@ -75,6 +75,9 @@
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
 			var popup_cont = $("#popup-prod-cont");
+			var protector_cont = $(".click-protector-cont");
+			var xval;
+			var yval;
 
 			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
@@ -87,8 +90,8 @@
 				var y = ev.pageY - offset.top;
 
 				//parseado por mi para que x no hinchee
-				var xval = parseInt(x - options.xoffset);
-				var yval = parseInt(y - options.yoffset);
+				xval = parseInt(x - options.xoffset);
+				yval = parseInt(y - options.yoffset);
 
 				//para pasarlo a porcentaje y despues integer -funca
 				xval = parseInt(xval/$("#map").width() * 100);
@@ -170,53 +173,30 @@
 					
 				});
 				
-				
+
 
 			});
+
 			//genera tag con producto y futuro click protector
 			popup_cont.on("click", ".splide__slide", function(){
-				            
-				$(".popup-prod-overlay").hide();
-				// var segunda_clase = $(this).attr('class').split(' ')[1];
-				var id_producto = $(this).find('.nombre-producto').attr('class').split(' ')[1];//lo saco del splide
-				var box_y_prod = popup_cont.attr("data-close").split('-')[0];
-				var box_x_prod = popup_cont.attr("data-close").split('-')[1];
-
-				var pin_a_namear = $("#map").find("."+box_y_prod+"-"+box_x_prod);
-				var click_protector = '<div class="click-protector '+box_y_prod+"-"+box_x_prod+'">'+
-										'<div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>';
-
-				pin_a_namear.attr("name",id_producto);
-				$(".click-protector-cont").append(click_protector);
-				$("."+box_y_prod+"-"+box_x_prod).css("top",box_y_prod+"%");
-				$("."+box_y_prod+"-"+box_x_prod).css("left",box_x_prod+"%");
-				$("."+box_y_prod+"-"+box_x_prod+" .salir-popup-single").css("display","none");
-
+				//le paso el id prod ahora porque sino despues no puede hacer this
+				let id_prod_data = $(this).data("id-prod");
+				enlazarTag(yval,xval,id_prod_data);
 			});
 			//para salir de la sel de productos y eliminar pin
 			popup_cont.on("click","#salir-popup", function(){
-				//hago esto porque sino con css() me toma con pixels
-				var data_close = $(this).parent().parent().attr("data-close");
-				var box_y = data_close.split("-")[0]
-				var box_x = data_close.split("-")[1]
-				var pin_a_borrar = $("#map").find("[data-close='"+box_y+"-"+box_x+"']");
-
-				pin_a_borrar.remove();
-				$(".popup-prod-overlay").hide();
-
+				salirPopupProd(yval,xval)
 			});
+
 			//click para que aparezca la cruz
-			$(".click-protector-cont").on('click', '.click-protector', function() {
+			protector_cont.on('click', '.click-protector', function() {
 				$(this).find(".salir-popup-single").show();
 			});
-			//para borrar el single pin
-			$(".click-protector-cont").on("click",".salir-popup-single", function(){
-				var class_parent = $(this).parent().attr("class").split(" ")[1];
-				var pin_a_borrar = $("#map").find("[data-close='"+class_parent+"']");
-
-				pin_a_borrar.remove();
+			//para borrar el single pin y su protector
+			protector_cont.on("click",".salir-popup-single", function(){
+				//borro el protector en el que esta
 				$(this).parent().remove();
-
+				borrarTag(yval,xval)
 			});
 		},
 		showPin: function(options) {
@@ -294,3 +274,31 @@
 }
 
 })( jQuery );
+
+
+function enlazarTag(yval,xval,id_prod){
+    $(".popup-prod-overlay").hide();
+
+    var pin_a_namear = $("#map").find("."+yval+"-"+xval);
+    var click_protector_html = `<div style="top:${yval}%; left:${xval}%" class="click-protector ${yval}-${xval}"><div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>`;
+    
+    pin_a_namear.attr("name",id_prod);
+
+    //añado y doy estilo a click protector
+    $(".click-protector-cont").append(click_protector_html);
+
+    //boton de cerrar
+    $("."+yval+"-"+xval+" .salir-popup-single").css("display","none");
+}
+  
+function salirPopupProd(yval,xval){
+    var pin_a_borrar = $("#map").find("[data-close='"+yval+"-"+xval+"']");
+    pin_a_borrar.remove();
+    $(".popup-prod-overlay").hide();
+}
+
+function borrarTag(yval,xval){
+    var pin_a_borrar = $("#map").find("[data-close='"+yval+"-"+xval+"']");
+    pin_a_borrar.remove();
+    $(this).parent().remove();
+}
