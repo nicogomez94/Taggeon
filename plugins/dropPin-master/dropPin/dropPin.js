@@ -118,15 +118,18 @@
 				// add hidden fields - can use these to save to database
 				//name vacio porque se llena despues con el idproducto
 				var hiddenCtl= $('<input type="hidden" name="" class="pin '+yval+"-"+xval+'" data-close="'+yval+'-'+xval+'">');
-		        hiddenCtl.css('top', y);
-		        hiddenCtl.css('left', x);
+		        //hiddenCtl.css('top', y);
+		        //hiddenCtl.css('left', x);
 		        hiddenCtl.val(yval+"-"+xval);
 				hiddenCtl.appendTo(thisObj);
-				
-				// muestro popup para producto
+
 				var popup_overlay = $(".popup-prod-overlay");
 				var popup_cont = $("#popup-prod-cont");
 				var popup_prod = $(".popup-producto");
+				var salirPopup = document.getElementById("salir-popup");
+				
+				//hago esto porque nescesito sacar el valor de una etiqueta,m porque por js siemnpre va venir uno distinto
+				salirPopup.setAttribute("data-close",yval+'-'+xval)
 
 				popup_overlay.show(0,function(){
 					
@@ -143,7 +146,6 @@
 
 					//si se sale el popup del viewport le saco el resto vs wl width del navegdador
 					//si es mobile lo hago que sea todo el ancho
-					var salirPopup = document.getElementById("salir-popup");
 
 					if (window.matchMedia("(max-width: 768px)").matches) {
 						popup_cont.css("width","100%")
@@ -185,39 +187,40 @@
 			});
 			//para salir de la sel de productos y eliminar pin
 			popup_cont.on("click","#salir-popup", function(){
-				salirPopupProd(yval,xval)
+				var data_close = $(this).data("close");
+				popup_cont.parent().hide();//no lo elimino
+				borrarContenido(data_close)
 			});
 
-			//click para que aparezca la cruz
+			//click para que aparezca la cruz en el tag
 			protector_cont.on('click', '.click-protector', function() {
 				$(this).find(".salir-popup-single").show();
 			});
-			//para borrar el single pin y su protector
+			//para borrar tag y su protector
 			protector_cont.on("click",".salir-popup-single", function(){
-				//borro el protector en el que esta
-				$(this).parent().remove();
-				borrarTag(yval,xval)
+				var data_close = $(this).data("close");
+				borrarContenido(data_close)
 			});
 		},
-		showPin: function(options) {
+		// showPin: function(options) {
 
-			var options =  $.extend(defaults, options);
+		// 	var options =  $.extend(defaults, options);
 
-			this.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : "url('"+options.backgroundImage+"')",'height' : options.fixedHeight , 'width' : options.fixedWidth});
+		// 	this.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : "url('"+options.backgroundImage+"')",'height' : options.fixedHeight , 'width' : options.fixedWidth});
 
-			var xval = (options.pinX);
-			var yval = (options.pinY);
-			var imgC = $('<img class="pin">');
-			imgC.css('top', yval+'%');
-			imgC.css('left', xval+'%');
+		// 	var xval = (options.pinX);
+		// 	var yval = (options.pinY);
+		// 	var imgC = $('<img class="pin">');
+		// 	imgC.css('top', yval+'%');
+		// 	imgC.css('left', xval+'%');
 
-			imgC.attr('src',  options.pin);
+		// 	imgC.attr('src',  options.pin);
 
-			imgC.appendTo(this);
-			$(options.hiddenXid).val(xval);
-			$(options.hiddenYid).val(yval);
+		// 	imgC.appendTo(this);
+		// 	$(options.hiddenXid).val(xval);
+		// 	$(options.hiddenYid).val(yval);
 
-		},
+		// },
 		showPins: function(options) {
 
 			var options =  $.extend(defaults, options);
@@ -252,10 +255,6 @@
 		}
 	};
 
-	// $("#map").click(function(){
-	// 	$("#popup-prod").show();
-	// })
-
 	if (methods[method]) {
 
 		return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -280,25 +279,19 @@ function enlazarTag(yval,xval,id_prod){
     $(".popup-prod-overlay").hide();
 
     var pin_a_namear = $("#map").find("."+yval+"-"+xval);
-    var click_protector_html = `<div style="top:${yval}%; left:${xval}%" class="click-protector ${yval}-${xval}"><div class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>`;
+    var click_protector_html = `<div style="top:${yval}%; left:${xval}%" data-close="${yval}-${xval}" class="click-protector ${yval}-${xval}"><div data-close="${yval}-${xval}" class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>`;
     
     pin_a_namear.attr("name",id_prod);
 
-    //añado y doy estilo a click protector
+    //añado click protector
     $(".click-protector-cont").append(click_protector_html);
 
     //boton de cerrar
     $("."+yval+"-"+xval+" .salir-popup-single").css("display","none");
 }
-  
-function salirPopupProd(yval,xval){
-    var pin_a_borrar = $("#map").find("[data-close='"+yval+"-"+xval+"']");
-    pin_a_borrar.remove();
-    $(".popup-prod-overlay").hide();
-}
 
-function borrarTag(yval,xval){
-    var pin_a_borrar = $("#map").find("[data-close='"+yval+"-"+xval+"']");
-    pin_a_borrar.remove();
-    $(this).parent().remove();
+function borrarContenido(data_close){
+	//#popup-prod-cont, #salir-popup no los toco porque siempre tienen que estar
+	var a_borrar = $("[data-close='"+data_close+"']").not("#popup-prod-cont, #salir-popup");
+	a_borrar.remove();
 }
