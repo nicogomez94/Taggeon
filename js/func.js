@@ -871,7 +871,7 @@ function cargarImgPines(event){
                 });
             });
 
-            //toggle de aspect ratio
+            //toggle del aspect ratio
             $("#modal-cropper").on('click', '.l-radio', function (e) {
                 e.stopPropagation();
                 options.aspectRatio = this.dataset.aspect; 
@@ -883,6 +883,9 @@ function cargarImgPines(event){
 
                 button.classList.remove("disabled");
                 
+                //click en el boton de "terminar ajuste"
+                //lo hago canvas y despues lo paso a img para que siempre quede bien la proporcion
+                //despues de eso se elimina el contenedor del cropper y queda solo el "map" para taggear
                 button.onclick = function (e) {
                     e.stopPropagation();
 

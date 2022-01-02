@@ -15,7 +15,7 @@
                      <input id="buscador-titulo-input" class="busq-prod-subir-public" type="text" name="prod_search_seller" placeholder="Busque el producto en la lista">
                      <i class="fas fa-times-circle limpiar-buscador" style="display: none;"></i>
                      <br>
-                     <div id="salir-popup" class="test-pop"><a href="javascript:void(0)"><i class="fas fa-times"></i></a></div>
+                     <div id="salir-popup"><a href="javascript:void(0)"><i class="fas fa-times"></i></a></div>
                   </div>
                   <div class="popup-producto">
                      <div class="splide splide__prod_public">
@@ -29,10 +29,29 @@
             </div>
             <div class="contenedor-content">
                <div class="click-protector-cont"></div>
+               <!-- va solo en el editar -->
                <div id="map">
                   <img id="img-pines-amapear" src="">
                </div>
             </div>
+
+            <!-- <div class="toggle-aspect-ratio">
+               <div class="text-center">Elija un Tama&ntilde;o:</div>
+               <div>
+                  <label for="f-option" class="l-radio" data-aspect="1.77777">
+                     <input type="radio" id="f-option" name="aspect-ratio" tabindex="1" >
+                     <span>Horizontal (16:9)</span>
+                  </label>
+                  <label for="s-option" class="l-radio" data-aspect="1.33333">
+                     <input type="radio" id="s-option" name="aspect-ratio" tabindex="2">
+                     <span>Vertical (4:3)</span>
+                  </label>
+                  <label for="t-option" class="l-radio" data-aspect="1">
+                     <input type="radio" id="t-option" name="aspect-ratio" tabindex="3">
+                     <span>Cuadrado (1:1)</span>
+                  </label>
+               </div>
+            </div> -->
             <div class="anadir-productos">
                <hr>
                <a href="javascript:void(0)" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
@@ -108,12 +127,6 @@ var sizePublic = jsonData.publicaciones.length;
          document.querySelector("#titulo-publicacion").value = nombre_public;
          document.querySelector("#descr-publicacion").value = descr_public;
 
-         // $('#map').dropPin('showPins',{
-         //    cursor: 'crosshair',
-         //    pinclass: 'qtipinfo',
-         //    pin: '../../plugins/dropPin-master/dropPin/dot-circle-solid.svg',
-         //    pinDataSet: {"markers":producto_parse}
-         // });
          $('#map').dropPin('dropMulti',{
             cursor: 'crosshair',
             pinclass: 'qtipinfo',

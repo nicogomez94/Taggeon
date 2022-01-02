@@ -31,7 +31,7 @@
 	
 
 	var methods = {
-		init: function(options) {
+		/*init: function(options) {
 
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
@@ -61,7 +61,6 @@
 				$(options.hiddenXid).val(xval);
 				$(options.hiddenYid).val(yval);
 
-				// add hidden fields - can use these to save to database
 				var hiddenCtl= $('<input type="hidden" name="hiddenpin" class="pin '+options.pinclass+'">');
 		        hiddenCtl.css('top', y);
 		        hiddenCtl.css('left', x);
@@ -70,7 +69,7 @@
 
 			});
 
-		},
+		},*/
 		dropMulti: function(options) {
 			var options =  $.extend(defaults, options);
 			var thisObj = this;
@@ -78,6 +77,43 @@
 			var protector_cont = $(".click-protector-cont");
 			var xval;
 			var yval;
+
+			//primero checkeo si viene algo por el param "pinDataSet", si viene dibujo tags
+			//si pinDataSet viene como string es que no tiene data
+
+			if(typeof options.pinDataSet !== "string"){
+				var tagg_length = (options.pinDataSet).markers.length;
+				if(tagg_length>0){
+					for(var i=0; i<tagg_length; i++){
+						var dataPin = options.pinDataSet.markers[i];
+						var id_prod = dataPin.name;
+						var coords = dataPin.value;
+						var ycoord = coords.split("-")[0];
+						var xcoord = coords.split("-")[1];
+		
+						//img
+						var imgC = $('<img data-close="'+ycoord+'-'+xcoord+'" class="pin '+ycoord+"-"+xcoord+'">');
+						imgC.css('top', ycoord+'%');
+						imgC.css('left', xcoord+'%');
+						imgC.css('z-index', i);
+						imgC.attr('src',  options.pin);
+						imgC.attr('title',  dataPin.title);
+						imgC.appendTo(this);
+
+						//input
+						var hiddenCtl= $('<input type="hidden" name="" class="pin '+ycoord+"-"+xcoord+'" data-close="'+ycoord+'-'+xcoord+'">');
+						hiddenCtl.val(ycoord+"-"+xcoord);
+						hiddenCtl.appendTo(this);
+						
+						var click_protector_html = `<div style="top:${ycoord}%; left:${xcoord}%" data-close="${ycoord}-${xcoord}" class="click-protector ${ycoord}-${xcoord}">
+						<div data-close="${ycoord}-${xcoord}" class="salir-popup-single"><i class="fas fa-times-circle"></i></div></div>`;
+		
+						//añado click protector
+						$(".click-protector-cont").append(click_protector_html);
+		
+					}
+				}
+			}
 
 			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
@@ -202,26 +238,7 @@
 				borrarContenido(data_close)
 			});
 		},
-		// showPin: function(options) {
-
-		// 	var options =  $.extend(defaults, options);
-
-		// 	this.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : "url('"+options.backgroundImage+"')",'height' : options.fixedHeight , 'width' : options.fixedWidth});
-
-		// 	var xval = (options.pinX);
-		// 	var yval = (options.pinY);
-		// 	var imgC = $('<img class="pin">');
-		// 	imgC.css('top', yval+'%');
-		// 	imgC.css('left', xval+'%');
-
-		// 	imgC.attr('src',  options.pin);
-
-		// 	imgC.appendTo(this);
-		// 	$(options.hiddenXid).val(xval);
-		// 	$(options.hiddenYid).val(yval);
-
-		// },
-		showPins: function(options) {
+		/*showPins: function(options) {
 
 			var options =  $.extend(defaults, options);
 
@@ -235,8 +252,6 @@
 				var ycoord = coords.split("-")[0];
 				var xcoord = coords.split("-")[1];
 
-				//console.log(ycoord)
-				//style="top:'+ycoord+'%; left:'+xcoord+'%;"
 				var imgC = $('<img class="pin '+ycoord+'-'+xcoord+'">');
 				imgC.attr('src',  options.pin);
 				imgC.attr('title',  dataPin.title);
@@ -252,7 +267,7 @@
 
 			}
 
-		}
+		}*/
 	};
 
 	if (methods[method]) {
@@ -285,9 +300,6 @@ function enlazarTag(yval,xval,id_prod){
 
     //añado click protector
     $(".click-protector-cont").append(click_protector_html);
-
-    //boton de cerrar
-    $("."+yval+"-"+xval+" .salir-popup-single").css("display","none");
 }
 
 function borrarContenido(data_close){

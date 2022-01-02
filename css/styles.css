@@ -2540,6 +2540,7 @@ button:disabled{
     right: 10px;
     margin: 0px;
     top: 0px;
+    display: none;
 }
 .fa-times{
     color: #c9c9c9 !important;
