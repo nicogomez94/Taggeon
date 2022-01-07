@@ -223,7 +223,8 @@
 			});
 			//para salir de la sel de productos y eliminar pin
 			popup_cont.on("click","#salir-popup", function(){
-				var data_close = $(this).data("close");
+				var data_close = this.dataset.close
+				console.log(data_close)
 				popup_cont.parent().hide();//no lo elimino
 				borrarContenido(data_close)
 			});

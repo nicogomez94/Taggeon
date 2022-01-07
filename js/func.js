@@ -407,14 +407,10 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
     });
 
     
-
-    /**modal casero editar para ediat foto con pins/productos*/
-    $('#anadir-productos-btn').click(function(e) {
+    //boton de añadir productos
+    /*$('#anadir-productos-btn').click(function(e) {
         e.preventDefault();
 
-        // var src_output = $("#output-imgpins").attr("src");
-      /*  $("#imagen-productos-pin").attr("src",src_output);*/
-        //$("#map").css("pointer-events","all");
         $("#terminar-productos-btn").show();
         //$("#limpiar-productos-btn").show();
         $("#anadir-productos-btn").hide();
@@ -429,7 +425,7 @@ $('#iniciar_sesion, #iniciar_sesion_welcome').submit(function (e) {
             pin: '../../plugins/dropPin-master/dropPin/dot-circle-solid.svg'
         });
 
-    });
+    });*/
 
     $("#terminar-productos-btn").click(function(){
         $("#map").css("pointer-events","none");
@@ -680,6 +676,23 @@ $("#buscador-index-input").keyup(function(e){
 
 
 });
+
+function btnAnadirTag(){
+
+    $("#terminar-productos-btn").show();
+    //$("#limpiar-productos-btn").show();
+    $("#anadir-productos-btn").hide();
+    $("#map").css("pointer-events","all");
+    
+    //$(".overlay-prod").show(); //TODO
+    $("#eliminar-img-flotante").hide();
+
+    $('#map').dropPin('dropMulti',{
+        cursor: 'crosshair',
+        pinclass: 'qtipinfo',
+        pin: '../../plugins/dropPin-master/dropPin/dot-circle-solid.svg'
+    });
+}
 
 function loadingScreen(){
     $(document).ajaxStart( function() {

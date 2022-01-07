@@ -54,7 +54,7 @@
             </div> -->
             <div class="anadir-productos">
                <hr>
-               <a href="javascript:void(0)" id="anadir-productos-btn" class="btn btn-warning">Añadir productos</a>
+               <a href="javascript:void(0)" id="anadir-productos-btn" class="btn btn-warning" onclick="btnAnadirTag()">Añadir productos</a>
                <a href="javascript:void(0)" id="cropear-btn" class="btn btn-warning disabled">Terminar Ajuste</a>
                <a href="javascript:void(0)" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
                <!-- <a href="javascript:void(0)" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
@@ -108,6 +108,20 @@
    
 <script>
 $(document).ready(function(){
+   
+   $('#anadir-productos-btn').click(function(e) {
+      e.preventDefault();
+   
+      $("#terminar-productos-btn").show();
+      //$("#limpiar-productos-btn").show();
+      $("#anadir-productos-btn").hide();
+      $("#map").css("pointer-events","all");
+      
+      //$(".overlay-prod").show(); //TODO
+      //$("#eliminar-img-flotante").hide();
+      
+   
+   });
 
 var sizePublic = jsonData.publicaciones.length;
    if(sizePublic>0){
@@ -134,16 +148,9 @@ var sizePublic = jsonData.publicaciones.length;
             pinDataSet: {"markers":producto_parse}
          });
       
-         //mods del map
-         // $("#img-subir-pins").hide();
+         //seteo la imagen
          img_mapear.attr("src",foto_src);
-         //map.css("pointer-events","all");
          
-         // $("#map").css("width","700px");
-         // $("#map").css("margin","auto");//para que este centrado
-         // $("#map").css("z-index","999");//para que este centrado
-         // $("#eliminar-img-flotante").show();
-         // $("#anadir-productos-btn").show();
 
          //buscador de prod
          $("#buscador-titulo-input").keyup(function(){
