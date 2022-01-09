@@ -75,9 +75,12 @@
 			var thisObj = this;
 			var popup_cont = $("#popup-prod-cont");
 			var protector_cont = $(".click-protector-cont");
+			var popup_overlay = $(".popup-prod-overlay");
+			var popup_prod = $(".popup-producto");
+			var salirPopup = document.getElementById("salir-popup");
 			var xval;
 			var yval;
-
+			
 			//primero checkeo si viene algo por el param "pinDataSet", si viene dibujo tags
 			//si pinDataSet viene como string es que no tiene data
 
@@ -114,7 +117,7 @@
 					}
 				}
 			}
-
+			
 			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
 			thisObj.on(options.userevent, function (ev) {
@@ -158,11 +161,6 @@
 		        //hiddenCtl.css('left', x);
 		        hiddenCtl.val(yval+"-"+xval);
 				hiddenCtl.appendTo(thisObj);
-
-				var popup_overlay = $(".popup-prod-overlay");
-				var popup_cont = $("#popup-prod-cont");
-				var popup_prod = $(".popup-producto");
-				var salirPopup = document.getElementById("salir-popup");
 				
 				//hago esto porque nescesito sacar el valor de una etiqueta,m porque por js siemnpre va venir uno distinto
 				salirPopup.setAttribute("data-close",yval+'-'+xval)

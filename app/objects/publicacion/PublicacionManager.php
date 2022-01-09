@@ -370,6 +370,11 @@ class  PublicacionManager
                                $ret =  $this->publicacionDao->getListPublicacionPublic($id_usuario);
                                return $ret;
                        }
+			public function getListAmpliarublicacionIndexPaginador()
+			{
+				$ret =  $this->publicacionDao->getListAmpliarPublicacionIndexPaginador();
+				return $ret;
+			}
 			public function getListPublicacionIndexPaginador()
 			{
 				$ret =  $this->publicacionDao->getListPublicacionIndexPaginador();
@@ -382,8 +387,18 @@ class  PublicacionManager
 				return $ret;
 			}
 
+			public function getListAmpliarPublicacionIndex()
+			{
+				$ret =  $this->publicacionDao->getListAmpliarPublicacionIndex();
+				return $ret;
+			}
+
 			public function getListPublicacionIndex()
 			{
+				$id = isset($data["id"]) ? $data["id"] : '';
+				if ($this->existeId($id) === false) {
+					return [];
+				}
 				$ret =  $this->publicacionDao->getListPublicacionIndex();
 				return $ret;
 			}
