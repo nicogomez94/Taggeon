@@ -114,6 +114,9 @@ body{
 #registro-comun input,#registro_usuario_seller input{
     margin-bottom: 10px;
 }
+#contenedor-form-subir{
+    padding-top: 25px;
+}
 .welcome-form{
     padding: 20px;
     background-color: white;
@@ -672,42 +675,6 @@ body{
     height: auto;
 }
 
-/*
-.grid{
-    width: 100%;
-}
-.grid:after {
-    content: '';
-    display: block;
-    clear: both;
-}
-.grid-item{
-    height: auto;
-    float: left;
-    padding: 5px;
-    position: relative !important;
-}
-.grid-item img {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-@media only screen and (max-width: 479px) {
-	.grid-sizer, .grid-item { width: 100%; }
-}
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-	.grid-sizer, .grid-item { width: calc(100% / 2); }
-}
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-	.grid-sizer, .grid-item { width: calc(100% / 3); }
-}
-@media only screen and (min-width: 1024px) and (max-width: 1439px) {
-	.grid-sizer, .grid-item { width: calc(100% / 4); }
-}
-@media only screen and (min-width: 1440px)  {
-	.grid-sizer, .grid-item { width: calc(100% / 5); }
-}*/
-
 
 /* .grid-item img{
     width: 100%;
@@ -815,59 +782,6 @@ body{
   scrollbar-width: none;  /* Firefox */
 }
 /***/
-
-  /* .card1 {
-    height: 200px;
-    background: #F00;
-    margin-bottom: 5px;
-  } */
-/*
-#logo, #search-bar, #dropdown{
-    display: inline-block;
-    padding: 5px;
-}
-#header{
-    width: 100%;
-    position: fixed;
-    padding: 10px;
-    top: 0;
-    text-align: center;
-    border: 1px solid grey;
-     z-index: 999;
-    margin-bottom: 50px;
-    background-color: bisque;
-}
-#main-body{
-    margin-top: 50px;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-}*/
-
-/* 
-    position: absolute;
-    top: 225px;
-    z-index: 999;
-    left: 139px;
-    background: #efefef;
-    padding: 10px;
-    color: grey;
-
-
-    
-    position: absolute;
-    top: 225px;
-    z-index: 999;
-    left: 110px;
-    background: #efefef;
-    padding: 10px 30px 10px 30px;
-    color: grey;
-    border-radius: 50px;
-    border: 1px solid cadetblue;
-
- */
-
  
 
  /*PERFIL/AMPLIAR USUARIO*/
@@ -1290,28 +1204,7 @@ body{
 .selected{
     border: 3px solid #cebd8b;;
 }
-/* .navbar-bottom-col{
-      width: 25%;
-      text-align: center;
-}
-.data-datos-editar input{
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #d3d3d3;
-    line-height: 1.5em;
-}
-.titulo-datos-editar{
-    line-height: 2em;
-}
-#img-perfil-cont img{
-    border-radius: 50%;
-    border: 1px solid #d3d3d3;
-    margin-left: 12px;
-} */
-/* .active-custom:link, .active-custom:visited{
-    color: white !important;
-} */
+
 #file-upload{
     display: none;
 }
@@ -2447,6 +2340,7 @@ button:disabled{
 .anadir-productos{
     z-index: 998;/*igual que map*/
     position: relative;
+    text-align: center;
 }
 .overlay-prod{
     display: none;

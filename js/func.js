@@ -1836,7 +1836,7 @@ function getSubEscena(valueParam,subescena_json){
                     var cat_id = subEscena[i].id;
                     var cat_nombre = subEscena[i].nombre;
                     cat_select_html += 
-                    '<div><label for="esc_'+cat_id+'">'+cat_nombre+'</label><select class="tipo_esp" name="'+cat_nombre+'" id="esc_'+cat_id+'" onchange="showSelected(\'esc_'+cat_id+'\');this.removeAttribute(\'onchange\')" onclick="getParamTipoEspacio('+cat_id+',\'esc_'+cat_id+'\');this.removeAttribute(\'onclick\')">'+
+                    '<div><label for="esc_'+cat_id+'">'+cat_nombre+'</label><select data-name-sel="'+cat_nombre+'" class="tipo_esp" name="'+cat_nombre+'" id="esc_'+cat_id+'" onchange="showSelected(\'esc_'+cat_id+'\');this.removeAttribute(\'onchange\')" onclick="getParamTipoEspacio('+cat_id+',\'esc_'+cat_id+'\');this.removeAttribute(\'onclick\')">'+
                        '<option value="" selected disabled hidden required>Seleccione un par&aacute;metro</option>'+
                     '</select></div>';
                 }
@@ -1850,13 +1850,21 @@ function getSubEscena(valueParam,subescena_json){
                 console.log(data)
             }
         },
-        complete: function(data){
-            subescena_json.forEach(el => {
-                let value_id = el.value.split("-")[0];
-                console.log(value_id)
-                getParamTipoEspacio(value_id,"esc_"+value_id);
-            });
-            //getParamTipoEspacio(649,"esc_649");
+        complete: function(data){//para el editar
+            if(window.location.pathname=="/editar-publicacion.html"){
+                subescena_json.forEach(el => {
+                    let value_id = el.value.split("-")[0];
+                    let value_name = el.value.split("-")[1];
+                    let name = el.name;
+                    let name_sel = $("#subescenas-container").find("[data-name-sel='"+name+"']");
+                    let option = '<option value="'+value_id+'-'+value_name+'" selected>'+value_name+'</option>'
+                    
+                    //le apendeo el option que fue antes seleccionado. si quiere cambiarlo se refresca el select
+                    name_sel.html(option);
+                    name_sel.css("background-color","beige");
+                    
+                });
+            }
         },
         error: function( jqXhr, textStatus, errorThrown ){
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
@@ -1892,9 +1900,6 @@ function getParamTipoEspacio(valueParam,target){
                 var subEscena_length = data.mensaje.length || 0;
                 var targetHtml = $("#"+target);
                 var cat_select_html = '';
-                console.log(target)
-                console.log(targetHtml)
-                console.log('$("#esc_649")',$("#esc_649"))
                 
                 for(var i=0; i<subEscena_length; i++) {
                     var cat_id = subEscena[i].id;
@@ -1909,7 +1914,45 @@ function getParamTipoEspacio(valueParam,target){
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
-            var msj = "1En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alertify.error(msj);
+        }
+    });
+    return false;
+}
+
+function getParamTipoEspacioEditar(titulo_sel,id_option,tipo_espacio){
+    var catData = new FormData();
+    catData.append("accion","subescena");
+    catData.append("id",tipo_espacio);
+
+    $.ajax({
+        url: '/app/publicacion.php',
+        data: catData,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function(data,response){
+            if(data.status == 'OK'){
+                var subEscena = data.mensaje || [];
+                var subEscena_length = data.mensaje.length || 0;
+                var name_sel = $("#subescenas-container").find("[data-name-sel='"+titulo_sel+"']");
+                var cat_select_html = '';
+                //name_sel.prop("onclick", null)
+                //spolo seleccionooooo SIN AJAXXXXX
+                for(var i=0; i<subEscena_length; i++) {
+                    var cat_id = subEscena[i].id;
+                    var cat_nombre = subEscena[i].nombre;
+                    cat_select_html += '<option value="'+cat_id+'-'+cat_nombre+'">'+cat_nombre+'</option>';
+                }
+                name_sel.html(cat_select_html)
+            }else{
+                alertify.error(data);
+            }
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
             alertify.error(msj);
         }
     });

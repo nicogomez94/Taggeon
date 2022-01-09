@@ -34,30 +34,10 @@
                   <img id="img-pines-amapear" src="">
                </div>
             </div>
-
-            <!-- <div class="toggle-aspect-ratio">
-               <div class="text-center">Elija un Tama&ntilde;o:</div>
-               <div>
-                  <label for="f-option" class="l-radio" data-aspect="1.77777">
-                     <input type="radio" id="f-option" name="aspect-ratio" tabindex="1" >
-                     <span>Horizontal (16:9)</span>
-                  </label>
-                  <label for="s-option" class="l-radio" data-aspect="1.33333">
-                     <input type="radio" id="s-option" name="aspect-ratio" tabindex="2">
-                     <span>Vertical (4:3)</span>
-                  </label>
-                  <label for="t-option" class="l-radio" data-aspect="1">
-                     <input type="radio" id="t-option" name="aspect-ratio" tabindex="3">
-                     <span>Cuadrado (1:1)</span>
-                  </label>
-               </div>
-            </div> -->
             <div class="anadir-productos">
                <hr>
                <a href="javascript:void(0)" id="anadir-productos-btn" class="btn btn-warning" onclick="btnAnadirTag()">Añadir productos</a>
-               <a href="javascript:void(0)" id="cropear-btn" class="btn btn-warning disabled">Terminar Ajuste</a>
                <a href="javascript:void(0)" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
-               <!-- <a href="javascript:void(0)" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
             </div>
          </div>
 
@@ -78,25 +58,21 @@
                   <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
                </div>
             </div>
-            <div class="row">
-               <div class="col-lg-3">
-                  <div id="sels_cat_prod" class="col-lg-12">
-                     <div class="tipo-escena-container">
-                        <hr>
-                        <h5>Tipo de escena:</h5>
-                        <input id="radio1" value="Arquitectura" name="escena_sel" type="radio"><label for="radio1" onclick="getEscenas('Arquitectura')">Arquitectura</label>
-                        <input id="radio2" value="Indumentaria" name="escena_sel" type="radio"><label for="radio2" onclick="getEscenas('Indumentaria')">Indumentaria</label>
-                     </div>
-                     <div class="tipo-espacio-container">
-                        <hr>
-                        <h5>1. Seleccione el tipo de espacio:</h5>
-                        <select name="subescena1" id="sel_tipo_esp" onchange="getSubEscena(this.value)">
-                           <option value="" selected disabled hidden required>Elija el tipo de espacio</option>
-                        </select>
-                        <h5 class="label-hidden"><hr>2. Seleccione el tipo de parametro:</h5>
-                        <div class="text-left" id="subescenas-container" style="display: none;"></div>
-                     </div>
-                  </div>
+            <div id="sels_cat_prod">
+               <div class="tipo-escena-container">
+                  <hr>
+                  <h5>Tipo de escena:</h5>
+                  <input id="radio1" value="Arquitectura" name="escena_sel" type="radio"><label for="radio1" onclick="getEscenas('Arquitectura')">Arquitectura</label>
+                  <input id="radio2" value="Indumentaria" name="escena_sel" type="radio"><label for="radio2" onclick="getEscenas('Indumentaria')">Indumentaria</label>
+               </div>
+               <div class="tipo-espacio-container">
+                  <hr>
+                  <h5>1. Seleccione el tipo de espacio:</h5>
+                  <select name="subescena1" id="sel_tipo_esp" onchange="getSubEscena(this.value)">
+                     <option value="" selected disabled hidden required>Elija el tipo de espacio</option>
+                  </select>
+                  <h5 class="label-hidden"><hr>2. Seleccione el tipo de parametro:</h5>
+                  <div class="text-left" id="subescenas-container" style="display: none;"></div>
                </div>
             </div>
             <br><hr>
@@ -142,12 +118,6 @@ $(document).ready(function(){
          //dibujo los selects
          getSubEditarPublic(subescena_name,tipo_espacio,subescena_json)
 
-         //leo los parametros
-         /*subescena_json.forEach(el => {
-            let value_id = el.value.split("-")[0];
-            getParamTipoEspacio(value_id,"esc_"+value_id);
-         });*/
-
          //vals de inputs
          document.querySelector("#titulo-publicacion").value = nombre_public;
          document.querySelector("#descr-publicacion").value = descr_public;
@@ -166,24 +136,13 @@ $(document).ready(function(){
       alert("ERROR: no se ha encontrado la publicacion")
    }
 
-
-   //recorro los parametros seleccionados
-   /*for(var i=0; i<subescena_json.length; i++) {
-      let value_id = subescena_json[i].value.split("-")[0];
-      console.log(value_id)
-      getParamTipoEspacio(value_id,"esc_"+value_id);
-   }*/
-
 });
 
 function getSubEditarPublic(esc_main,tipo_espacio,subescena_json){
 
    if(esc_main=="Arquitectura"){
       getEscenas("Arquitectura")
-      //hacer una funcion que vaya a buscar la lista de options de ese select y que seleccione el especifico
-      //y que por parametro le pase a que select tiene que dispararle y cual seleccionar despues
       getSubEscena(tipo_espacio,subescena_json)
-      //$("#subescenas-container").find("[name='ESTILO']")
    }else{
       getEscenas('Indumentaria')
    }
