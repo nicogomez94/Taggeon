@@ -479,10 +479,8 @@ $('#editar-publicacion-form').submit(function (e) {
     var formData = new FormData($(this)[0]);
     
     //appendeo la imagen sacada del map. ya la inicio el onchange
-    var url_imagen_64 = $("#map").css("background-image").split("url(")[1];
-    var sc_url_imagen_64 = url_imagen_64.replace(/['"]+/g, '');
-    var sc_url_imagen_642 = sc_url_imagen_64.split(")")[0];//villa mal
-    formData.append("foto_base64",sc_url_imagen_642);
+    var url_imagen_64 = $("#img-pines-amapear").attr("src")
+    formData.append("foto_base64",url_imagen_64);
     formData.delete("publicacion_foto");//villa tambien
 
     $.ajax({
@@ -498,20 +496,16 @@ $('#editar-publicacion-form').submit(function (e) {
                 alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 $("body").addClass("loading"); 
-                window.location.replace("/mis-publicaciones.html");
+                //window.location.replace("/mis-publicaciones.html");
             }else if(data.status == 'REDIRECT'){
-                window.location.replace(data.mensaje);
+                //window.location.replace(data.mensaje);
             }else{
-                $("#mensaje-sin-login").css("display","block");
-                $("#mensaje-sin-login").html(data.mensaje);
-                //alertify.error(data.mensaje);
+                alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
-                    var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                    $("#mensaje-sin-login").css("display","block");
-                    $("#mensaje-sin-login").html(msj);
-                //    alertify.error(msj);
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alertify.error(msj);
         }
    });
    return false;
@@ -1788,7 +1782,7 @@ function getEscenas(valueParam){
     const label_hidden = document.querySelector(".label-hidden")
     const subescenas_container = document.querySelector("#subescenas-container")
     
-    if(valueParam=="ind"){
+    if(valueParam=="Indumentaria"){
         label_hidden.style.display = "none";
         subescenas_container.style.display = "none";
         sel_tipo_esp.removeAttribute("onchange")
@@ -1907,6 +1901,7 @@ function getParamTipoEspacio(valueParam,target){
                     cat_select_html += '<option value="'+cat_id+'-'+cat_nombre+'">'+cat_nombre+'</option>';
                 }
                 targetHtml.html(cat_select_html)
+                targetHtml.prepend('<option selected disabled hidden required value="">-</option>')
             }else{
                 console.log("else")
                 console.log(response)
