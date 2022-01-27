@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
     //si la img viene con error
-    $("img").on("error", function(){
+    /*$("img").on("error", function(){
         $(this).attr('src', '../../imagen_perfil/generica.png');
-    });
+    });*/
 
     /**/
     //elegir foto editar perfil}
@@ -436,7 +436,6 @@ $('#subir-publicacion-form').submit(function (e) {
     var pin_object = $(".pin").serializeArray();
     var pin_object_str = JSON.stringify(pin_object)
     var subescenas_obj = JSON.stringify($(".tipo_esp").serializeArray());
-    console.log(pin_object)
 
     formData.append("foto_base64",url_imagen_64);
     formData.append("data_pines",pin_object_str);
@@ -460,7 +459,7 @@ $('#subir-publicacion-form').submit(function (e) {
             }else if(data.status == 'OK' || data.status == 'ok'){
                 //$("body").addClass("loading");
                 alertify.success(data.mensaje);	
-                window.location.replace("/mis-publicaciones.html");
+                //window.location.replace("/mis-publicaciones.html");
             }else{
                 alertify.error(data.mensaje);
             }
@@ -481,12 +480,16 @@ $('#editar-publicacion-form').submit(function (e) {
     e.preventDefault();
     e.stopPropagation();
     var formData = new FormData($(this)[0]);
-    
-    //appendeo la imagen sacada del map. ya la inicio el onchange
-    var url_imagen_64 = $("#img-pines-amapear").attr("src")
-    formData.append("foto_base64",url_imagen_64);
-    formData.delete("publicacion_foto");//villa tambien
+    let imgbase64;
 
+    var url_imagen_64 = $("#img-pines-amapear").attr("src")
+    formData.delete("publicacion_foto");
+    var pin_object = $(".pin").serializeArray();
+    var pin_object_str = JSON.stringify(pin_object)
+    var subescenas_obj = JSON.stringify($(".tipo_esp").serializeArray());
+
+    formData.append("subescena_json",subescenas_obj);
+    
     $.ajax({
         url: '/app/publicacion.php',
         data: formData,
@@ -2645,6 +2648,7 @@ function openTag(index){
         }, 800)
     }
 }
+
 
 function getPublicsHome(data){
     var sizePublic = data.length;

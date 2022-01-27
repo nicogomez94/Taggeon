@@ -290,6 +290,9 @@
 
 
 function enlazarTag(yval,xval,id_prod){
+	this.event.preventDefault();
+	this.event.stopPropagation();
+
     $(".popup-prod-overlay").hide();
 
     var pin_a_namear = $("#map").find("."+yval+"-"+xval);
