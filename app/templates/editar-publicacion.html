@@ -7,8 +7,10 @@
       <hr>
       <form id="editar-publicacion-form">
          <input type="hidden" name="accion" value="editar">
+         <input id="id-public" type="hidden" name="id">
+         <input id="foto_base64" type="hidden" name="foto_base64">
          
-         <div id="output-container" style="/*width: max-content;*/">
+         <div id="output-container" style="width: max-content;">
             <div class="popup-prod-overlay">
                <div id="popup-prod-cont">
                   <div class="filtros">
@@ -103,7 +105,9 @@ $(document).ready(function(){
    var descr_public = jsonData.publicaciones[0].publicacion_descripcion || "";
    var tipo_espacio = jsonData.publicaciones[0].subescena1 || "";
    var subescena_name = jsonData.publicaciones[0].escena_sel || "";
-   var subescena_json = JSON.parse(jsonData.publicaciones[0].subescena_json) || "";
+   var tipo_escena_sel = (subescena_name=="Arquitectura") ? $("#radio1").prop("checked", true) : $("#radio2").prop("checked", true);
+   var sj = jsonData.publicaciones[0].subescena_json || "";
+   var subescena_json = JSON.parse(sj) || "";
    var descr_public = jsonData.publicaciones[0].publicacion_descripcion || "";
    var imagen_id = jsonData.publicaciones[0].foto || "";
    var foto_src = '/publicaciones_img/'+imagen_id+'.png' || "";
@@ -111,10 +115,21 @@ $(document).ready(function(){
    var producto_parse = JSON.parse(tags);
    var map = $("#map");
    var img_mapear = $("#img-pines-amapear");
+
+   //apendeo el input hidden del id
+   $("#id-public").val(id_public)
    
    $("#buscador-titulo-input").keyup(function(){
-        activarBuscador($(this));
-     });
+      activarBuscador($(this));
+   });
+
+   //la main cat que fue seleccionada
+   subescena_name
+
+   //paso la imagen a base64
+   toDataURLEditar(foto_src, function(dataUrl) {
+      $("#foto_base64").val(dataUrl)
+   })
 
    if(sizePublic>0){
 
@@ -139,6 +154,7 @@ $(document).ready(function(){
       alert("ERROR: no se ha encontrado la publicacion")
    }
 
+
 });
 
 function getSubEditarPublic(esc_main,tipo_espacio,subescena_json){
@@ -150,5 +166,20 @@ function getSubEditarPublic(esc_main,tipo_espacio,subescena_json){
       getEscenas('Indumentaria')
    }
 
+}
+
+
+function toDataURLEditar(url, callback) {
+   var xhr = new XMLHttpRequest();
+   xhr.onload = function() {
+   var reader = new FileReader();
+   reader.onloadend = function() {
+      callback(reader.result);
+   }
+   reader.readAsDataURL(xhr.response);
+   };
+   xhr.open('GET', url);
+   xhr.responseType = 'blob';
+   xhr.send();
 }
 </script>
