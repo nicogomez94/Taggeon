@@ -23,7 +23,13 @@
       $(document).ready(function(){
 
          if(window.location.pathname=="/editar-publicacion.html"){//hard todo
+            //borro para que no me pise con el editar
+            console.log($("#modal-upload-public"))
+            console.log($("#subir-publicacion-form"))
             document.querySelector("#subir-publicacion-form").remove();
+            document.querySelector("#modal-upload-public").remove();
+            console.log($("#modal-upload-public"))
+            console.log($("#subir-publicacion-form"))
          }
 
          const url_mp = "{url-mp}";
@@ -294,7 +300,7 @@
                            <div class="anadir-productos">
                               <hr>
                               <a href="javascript:void(0)" id="anadir-productos-btn" class="btn btn-warning" onclick="btnAnadirTag()">Añadir productos</a>
-                              <a href="javascript:void(0)" id="cropear-btn" class="btn btn-warning disabled">Terminar Ajuste</a>
+                              <a href="javascript:void(0)" id="cropear-btn" class="btn btn-warning">Terminar Ajuste</a>
                               <a href="javascript:void(0)" id="terminar-productos-btn" class="btn btn-warning">Terminar Edicion</a>
                               <!-- <a href="javascript:void(0)" id="limpiar-productos-btn" class="btn btn-warning">Limpiar Pines</a> -->
                            </div>
@@ -386,6 +392,7 @@
                                        <br>
                                        <input id="aspect-ratio-input" name="aspect_ratio" type="hidden">
                                        <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+                                       <span id="loading-gif"><img src="../assets/loading.gif" alt=""></span>
                                     </div>
                                  </div>
                               </div>

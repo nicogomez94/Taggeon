@@ -443,6 +443,8 @@ $('#subir-publicacion-form').submit(function (e) {
     formData.append("subescena_json",subescenas_obj);
     formData.delete("publicacion_foto");
 
+    $("#loading-gif").show();
+
     $.ajax({
         url: '/app/publicacion.php',
         data: formData,
@@ -452,6 +454,7 @@ $('#subir-publicacion-form').submit(function (e) {
         dataType: "json",
         async: false,
         success: function( data, textStatus, jQxhr ){
+            $("#loading-gif").hide();
             if (data.status == 'ERROR'){
                 alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
@@ -463,6 +466,7 @@ $('#subir-publicacion-form').submit(function (e) {
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
+            $("#loading-gif").hide();
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
             $("#mensaje-sin-login").css("display","block");
             $("#mensaje-sin-login").html(msj);
@@ -575,7 +579,7 @@ $("#finalizar-orden").submit(function(){
 $("#cropear-btn").click(function(){
     $(this).hide();
     $(".toggle-aspect-ratio").hide();
-
+    $("#anadir-productos-btn").show();
 });
 $("#terminar-productos-btn").click(function(){
     var cant_pines = $(".click-protector-cont").children().length;
@@ -808,8 +812,9 @@ function cargarImgPines(event){
             $("#img-pines-amapear").show();
             $("#img-pines-amapear").attr("src",reader.result);
             $("#map").css("width","fit-content");
-            $("#anadir-productos-btn").show();
-            $("#anadir-productos-btn").addClass("disabled");
+            // $("#anadir-productos-btn").show();
+            // $("#anadir-productos-btn").addClass("disabled");
+            // $("#terminar-productos-btn").addClass("disabled");
             $("#cropear-btn").show();
             //mostrar modal
             $("#modal-cropper").modal('show');
@@ -861,6 +866,8 @@ function cargarImgPines(event){
                     $("#img-pines-amapear").attr("src","");
                     $(".click-protector-cont").html("");
                     $("#terminar-productos-btn").hide();
+                    $("#anadir-productos-btn").hide();
+                    $("#popup-prod-cont").hide();
 
                     if(image.className == 'cropper-hidden'){
                         image.cropper.destroy();
@@ -901,9 +908,6 @@ function cargarImgPines(event){
                     var toImg = canvas.toDataURL();
                     image.src = toImg;
                     canvas.style.display = "none";
-
-                    //activo botones para taguear
-                    anadir.classList.remove("disabled");
                     
                 };
             });
@@ -2347,7 +2351,7 @@ function getComentarios(comentarios_obj,desde){
             }
         }
     }else{
-        //alertify.error("No hay comentarios")
+        alertify.error("No hay comentarios")
     }
 
 }
@@ -2622,27 +2626,23 @@ function getPublicTags(id_public,tags,index,publicador,id_publicador){
         let ycoord = coords.split("-")[0];
         let xcoord = coords.split("-")[1];
         console.log("en getpublictags",id_public)
-        let tag_html = `<div onclick="getSplideProdPublic(${id_public},'${publicador}',${id_publicador});this.removeAttribute('onclick')" class="tagg tagg-${id_public}" style="top:${ycoord}%; left: ${xcoord}%">
+        let tag_html = `<div onclick="getSplideProdPublic(${id_public},'${publicador}',${id_publicador},${index},this)" class="tagg tagg-${id_public}" style="top:${ycoord}%; left: ${xcoord}%">
         <span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>`;
         document.querySelector(".tag-container-"+index).insertAdjacentHTML("beforeend",tag_html);
-        
+            
+    }
+}
 
-        //click en tag ANIMACION
-        $(".bodyimg-public-container-"+index).on("click", ".tagg", function(e){
-            e.stopPropagation();
-            e.preventDefault();
-            
-            let prod_public = $(this).parent().parent().parent().find(".productos-public");
-            prod_public.toggle(100);
-            prod_public.toggleClass("prods-abierto");
-            
-            if(prod_public.hasClass("prods-abierto")){
-                $('html,body').animate({
-                    scrollTop: prod_public.offset().top - 130
-                }, 800)
-            }
-        });
-            
+function openTag(index){
+    //click en tag ANIMACION
+    let prod_public = $(".productos-public-"+index);
+    prod_public.toggle(100);
+    prod_public.toggleClass("prods-abierto");
+    
+    if(prod_public.hasClass("prods-abierto")){
+        $('html,body').animate({
+            scrollTop: prod_public.offset().top - 130
+        }, 800)
     }
 }
 
@@ -2943,7 +2943,7 @@ function getDataPaging(dataPaging) {
     fetch(URL)
     .then(response => response.json())
     .then(data => {
-            //console.log(data)
+            console.log(data)
             var cant = parseInt(data.length);
             dataPaging.cantidad = dataPaging.cantidad+cant;
 

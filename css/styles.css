@@ -2263,9 +2263,10 @@ button:disabled{
     z-index: 0;
 }
 #output-container{
-    z-index: 998;
+    z-index: 997;/*para que no cheoque con el header- antes 998*/
     position: relative;
-    width: max-content;
+    /* width: max-content; */
+    width: 100%;
     margin: 0 auto;
 }
 #output-imgpins{
@@ -2305,6 +2306,11 @@ button:disabled{
     box-shadow: var(--soft-shadow);
     cursor: pointer;
 }
+#loading-gif img{
+    display: none;
+    width: 50px;
+    height: 50px;
+}
 .tipo-escena-container div:hover{
     box-shadow: none;
 }
@@ -2330,7 +2336,7 @@ button:disabled{
     color: #848484;
 }
 #anadir-productos-btn, #limpiar-productos-btn, #terminar-productos-btn, #cropear-btn{
-    /* display: none; */
+    display: none;
 }
 .anadir-prod-img-container{
     width: 90vw;

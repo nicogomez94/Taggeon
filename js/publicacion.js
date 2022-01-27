@@ -315,8 +315,12 @@ function createModalRelAjax(idParam){
 */
 
 
-function getSplideProdPublic(param,name_publicador,id_publicador_param){
+function getSplideProdPublic(param,name_publicador,id_publicador_param,index,thisObj){
       
+   openTag(index);
+   //thisObj.setAttribute('onclick','openTag('+index+')');
+   $("#ancla-desde-home-"+param).find(".tagg").attr('onclick','openTag('+index+')');
+
    const URL = `/app/producto.php?accion=getproductos&id=${param}`
 
    fetch(URL).then(res => res.json())
@@ -343,7 +347,7 @@ function getSplideProdPublic(param,name_publicador,id_publicador_param){
                let id_publicador = id_publicador_param;
                let foto_src_prod = `/productos_img/${foto_prod}.png` || "";
                let splide_list = document.querySelector('.splide__list__'+param) || ""
-               console.log("en getsplideprodpublic",param)
+               //console.log("en getsplideprodpublic",param)
                var objParamModal = 
                      {
                         id_prod_p : id_prod_json,
