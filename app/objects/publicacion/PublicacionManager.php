@@ -125,7 +125,7 @@ class  PublicacionManager
                             "publicacion_foto"        => $valor
                         );
     
-                        if ($this->publicacionDao->altaPublicacion_foto($dataPublicacion_foto) === false) {
+                        if ($this->publicacionDao->editarPublicacion_foto($dataPublicacion_foto) === false) {
                             $this->setStatus("ERROR");
                             $this->setMsj($this->publicacionDao->getMsj());
                             return false;

@@ -267,6 +267,45 @@ SQL;
                 }
 
 
+                public function editarPublicacion_foto(array $data)
+                {
+                    $id_publicacion = isset($data["id_publicacion"]) ?   $data["id_publicacion"] : '';
+                    $id_publicacionDB = Database::escape($id_publicacion);      
+            
+                    $publicacion_foto = isset($data["publicacion_foto"]) ?  $data["publicacion_foto"] : '';
+                    $publicacion_fotoDB = Database::escape("/publicaciones_img/");      
+
+                    $sql = <<<SQL
+                        UPDATE publicacion_publicacion_foto SET publicacion_foto=$publicacion_fotoDB
+                        WHERE id_publicacion=$id_publicacionDB
+SQL;
+            
+                    if (!mysqli_query(Database::Connect(), $sql)) {
+                        $this->setStatus("ERROR");
+                        $this->setMsj("$sql");
+                    } else {
+                        $id = mysqli_insert_id(Database::Connect());
+                        //$fp = fopen("/var/www/html/publicaciones_img/$id", 'w');
+                        //fwrite($fp, $publicacion_foto);
+                        //fclose($fp);
+                        
+                        $base_to_php = explode(',', $publicacion_foto);
+                        if (count($base_to_php) == 2){
+                            $data = base64_decode($base_to_php[1]);
+                            $filepath = "/var/www/html/publicaciones_img/$id.png";
+                            file_put_contents($filepath,$data);
+                        }
+
+
+                        $this->setMsj($id);
+                        $this->setStatus("OK");
+                        return true;
+                    }
+            
+                    return false;
+                }
+
+
 
                 public function getPublicacion($id)
                 {
