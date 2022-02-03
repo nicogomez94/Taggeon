@@ -10,7 +10,7 @@
          <input id="id-public" type="hidden" name="id">
          <input id="foto_base64" type="hidden" name="foto_base64">
          
-         <div id="output-container" style="width: max-content;">
+         <div id="output-container">
             <div class="popup-prod-overlay">
                <div id="popup-prod-cont">
                   <div class="filtros">
@@ -70,7 +70,7 @@
                <div class="tipo-espacio-container">
                   <hr>
                   <h5>1. Seleccione el tipo de espacio:</h5>
-                  <select name="subescena1" id="sel_tipo_esp" onchange="getSubEscena(this.value)">
+                  <select name="subescena1" id="sel_tipo_esp">
                      <option value="" selected disabled hidden required>Elija el tipo de espacio</option>
                   </select>
                   <h5 class="label-hidden"><hr>2. Seleccione el tipo de parametro:</h5>
@@ -84,6 +84,7 @@
                   <div class="col-lg-4">
                      <br>
                      <input type="submit" class="btn btn-warning" value="Guardar publicacion">
+                     <span id="loading-gif"><img src="../assets/loading.gif" alt=""></span>
                   </div>
                </div>
             </div>
@@ -112,19 +113,26 @@ $(document).ready(function(){
    var imagen_id = jsonData.publicaciones[0].foto || "";
    var foto_src = '/publicaciones_img/'+imagen_id+'.png' || "";
    var tags = jsonData.publicaciones[0].pid || "";
-   var producto_parse = JSON.parse(tags);
+   var producto_parse = (tags !== "") ? JSON.parse(tags) : "";
    var map = $("#map");
    var img_mapear = $("#img-pines-amapear");
+   //borro para que no me pise con el editar--TODO hard
+   document.querySelector("#subir-publicacion-form").remove();
+   document.querySelector("#modal-upload-public").remove();
 
-   //apendeo el input hidden del id
+   //input hiddens
    $("#id-public").val(id_public)
+
+   //selecciono el primer select de las dos escenas
+   if(subescena_name=="Arquitectura") {
+      $("#radio1").attr("checked", "checked");
+   }else{
+      $("#radio2").attr("checked", "checked");
+   } 
    
    $("#buscador-titulo-input").keyup(function(){
       activarBuscador($(this));
    });
-
-   //la main cat que fue seleccionada
-   subescena_name
 
    //paso la imagen a base64
    toDataURLEditar(foto_src, function(dataUrl) {
@@ -132,8 +140,8 @@ $(document).ready(function(){
    })
 
    if(sizePublic>0){
-
          //dibujo los selects
+
          getSubEditarPublic(subescena_name,tipo_espacio,subescena_json)
 
          //vals de inputs
@@ -151,19 +159,18 @@ $(document).ready(function(){
          img_mapear.attr("src",foto_src);
 
    }else{
-      alert("ERROR: no se ha encontrado la publicacion")
+      alertify.error("ERROR: no se ha encontrado la publicacion")
    }
-
 
 });
 
 function getSubEditarPublic(esc_main,tipo_espacio,subescena_json){
 
    if(esc_main=="Arquitectura"){
-      getEscenas("Arquitectura")
+      getEscenas("Arquitectura",tipo_espacio)
       getSubEscena(tipo_espacio,subescena_json)
    }else{
-      getEscenas('Indumentaria')
+      getEscenas('Indumentaria',tipo_espacio)
    }
 
 }

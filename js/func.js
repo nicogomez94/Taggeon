@@ -1,3 +1,5 @@
+var loading = $("#loading-gif img");
+
 document.addEventListener("DOMContentLoaded", function() {
     
     if(typeof jsonData !== 'undefined'){
@@ -436,14 +438,13 @@ $('#subir-publicacion-form').submit(function (e) {
     var pin_object = $(".pin").serializeArray();
     var pin_object_str = JSON.stringify(pin_object)
     var subescenas_obj = JSON.stringify($(".tipo_esp").serializeArray());
-
+    
     formData.append("foto_base64",url_imagen_64);
     formData.append("data_pines",pin_object_str);
     formData.append("subescena_json",subescenas_obj);
     formData.delete("publicacion_foto");
-
-    $("#loading-gif").show();
-
+    
+    loading.show();
     $.ajax({
         url: '/app/publicacion.php',
         data: formData,
@@ -453,19 +454,18 @@ $('#subir-publicacion-form').submit(function (e) {
         dataType: "json",
         async: false,
         success: function( data, textStatus, jQxhr ){
-            $("#loading-gif").hide();
+            loading.hide();
             if (data.status == 'ERROR'){
                 alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
-                //$("body").addClass("loading");
                 alertify.success(data.mensaje);	
-                //window.location.replace("/mis-publicaciones.html");
+                window.location.replace("/mis-publicaciones.html");
             }else{
                 alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
-            $("#loading-gif").hide();
+            loading.hide();
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
             $("#mensaje-sin-login").css("display","block");
             $("#mensaje-sin-login").html(msj);
@@ -489,6 +489,8 @@ $('#editar-publicacion-form').submit(function (e) {
     var subescenas_obj = JSON.stringify($(".tipo_esp").serializeArray());
 
     formData.append("subescena_json",subescenas_obj);
+    formData.append("data_pines",pin_object_str);
+    loading.show();
     
     $.ajax({
         url: '/app/publicacion.php',
@@ -499,6 +501,7 @@ $('#editar-publicacion-form').submit(function (e) {
         dataType: "json",
         async: false,
         success: function( data, textStatus, jQxhr ){
+            loading.hide();
             if (data.status == 'ERROR'){
                 alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
@@ -511,6 +514,7 @@ $('#editar-publicacion-form').submit(function (e) {
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
+            loading.hide();
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
             alertify.error(msj);
         }
@@ -1779,11 +1783,12 @@ function hideLoadingSvg(thisParam){
     loading.remove();
 }
 
-function getEscenas(valueParam){
+function getEscenas(valueParam,idSub){
     
     let escena_parse = (valueParam=="Arquitectura") ? JSON.parse(escena) : JSON.parse(escena2);
     let escena_length = escena_parse.length || 0;
     let cat_select_html = '';
+    //let sub_esc = (subescena_json==null) ? "this.value" : "this.value,"+subescena_json;
     const espacio_container = document.querySelector(".tipo-espacio-container");
     const sel_tipo_esp = document.querySelector("#sel_tipo_esp");
     const label_hidden = document.querySelector(".label-hidden")
@@ -1801,9 +1806,12 @@ function getEscenas(valueParam){
         let id_padre = escena_parse[i].id_padre;
         let cat_id = escena_parse[i].id;
         let cat_nombre = escena_parse[i].nombre;
+        let op_selected = '<option value="'+cat_id+'" selected>'+cat_nombre+'</option>';
+        let op = '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+        let option_html = (idSub==cat_id) ? op_selected : op;
         
         if(id_padre == null){
-            cat_select_html += '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+            cat_select_html += option_html;
         }
     }
     sel_tipo_esp.innerHTML = cat_select_html;
@@ -1852,7 +1860,7 @@ function getSubEscena(valueParam,subescena_json){
             }
         },
         complete: function(data){//para el editar
-            if(window.location.pathname=="/editar-publicacion.html"){
+            if(window.location.pathname=="/editar-publicacion.html" && subescena_json !== undefined){
                 subescena_json.forEach(el => {
                     let value_id = el.value.split("-")[0];
                     let value_name = el.value.split("-")[1];
@@ -1907,8 +1915,8 @@ function getParamTipoEspacio(valueParam,target){
                     var cat_nombre = subEscena[i].nombre;
                     cat_select_html += '<option value="'+cat_id+'-'+cat_nombre+'">'+cat_nombre+'</option>';
                 }
+                //targetHtml.prepend('<option selected disabled hidden required value="">-</option>')
                 targetHtml.html(cat_select_html)
-                targetHtml.prepend('<option selected disabled hidden required value="">-</option>')
             }else{
                 console.log("else")
                 console.log(response)

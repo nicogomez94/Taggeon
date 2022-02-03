@@ -121,7 +121,8 @@
 			thisObj.css({'cursor' : options.cursor, 'background-color' : options.backgroundColor , 'background-image' : options.backgroundImage,'height' : options.fixedHeight , 'width' : options.fixedWidth});
 			var i = 10;
 			thisObj.on(options.userevent, function (ev) {
-
+				ev.stopImmediatePropagation();
+    			ev.preventDefault();
 				i = i + 10;
 				var $img = $(thisObj);
 				var offset = $img.offset();
@@ -214,7 +215,9 @@
 			});
 
 			//genera tag con producto y futuro click protector
-			popup_cont.on("click", ".splide__slide", function(){
+			popup_cont.on("click", ".splide__slide", function generarTagProd(e){
+				e.stopImmediatePropagation();
+    			e.preventDefault();
 				//le paso el id prod ahora porque sino despues no puede hacer this
 				let id_prod_data = $(this).data("id-prod");
 				enlazarTag(yval,xval,id_prod_data);
@@ -290,8 +293,6 @@
 
 
 function enlazarTag(yval,xval,id_prod){
-	this.event.preventDefault();
-	this.event.stopPropagation();
 
     $(".popup-prod-overlay").hide();
 
