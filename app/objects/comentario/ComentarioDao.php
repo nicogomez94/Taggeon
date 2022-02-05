@@ -166,7 +166,7 @@ SQL;
 		$offset = 0;
 	}
 	$limit = 5;
-        $paginador = " LIMIT $offset,$limit";
+        $paginador = " LIMIT 0,$limit";
         $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
 	$id = isset($_GET["id_publicacion"]) ? $_GET["id_publicacion"] : '';

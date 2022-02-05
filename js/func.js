@@ -467,9 +467,7 @@ $('#subir-publicacion-form').submit(function (e) {
         error: function( jqXhr, textStatus, errorThrown ){
             loading.hide();
             var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-            $("#mensaje-sin-login").css("display","block");
-            $("#mensaje-sin-login").html(msj);
-            //    alertify.error(msj);
+            alertify.error(msj);
         }
     });
     return false;

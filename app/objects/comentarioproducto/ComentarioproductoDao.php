@@ -159,7 +159,7 @@ SQL;
 		$offset = 0;
 	}
 	$limit = 5;
-        $paginador = " LIMIT $offset,$limit";
+        $paginador = " LIMIT 0,$limit";
 	$id = isset($_GET["id_producto"]) ? $_GET["id_producto"] : '';
         $sql = <<<sql
 SELECT * FROM (

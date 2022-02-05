@@ -465,6 +465,9 @@ body{
     max-width: 12%;
     border-radius: 50%;
 }
+.img-modal-prod{
+    
+}
 .cerrar-galeria-banner {
     position: absolute;
     color: rgba(255,255,255,0.8);
@@ -3406,8 +3409,8 @@ input {
 /*************/
 
 .custCarousel .carousel-indicators {
-    position: static;
-    margin-top: 20px
+    position: relative;
+    margin-top: 20px;
 }
 
 .custCarousel .carousel-indicators>li {
