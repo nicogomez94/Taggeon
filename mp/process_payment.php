@@ -14,28 +14,28 @@ $sesionManager = new SesionManagerImpl();
 if ($sesionManager->validar(array('seller','picker'))){
 
 
-    $usuarioManager = new UsuarioManagerImpl();
-    $tokenMP = $usuarioManager->getTokenMP();
-
-    if (!isset($tokenMP) || $tokenMP == ''){
-        $objRet = array(
-            "status"  => "ERROR",
-            "mensaje" => "token incorrecto $tokenMP"
-        );
-        $ret = json_encode($objRet);
-        $fp = fopen("/var/www/html/log.txt", 'a');
-        fwrite($fp, $ret);
-        fclose($fp);
-        Database::Connect()->close();
-        echo $ret;
-        exit;
-    }else{
-
-        $fp = fopen("/var/www/html/log.txt", 'a');
-        fwrite($fp, "\n######################################################\njson $tokenMP\n######################################################\n");
-        fclose($fp);
-    }
     if (sizeof($_POST) > 0) {
+	    $usuarioManager = new UsuarioManagerImpl();
+	    $tokenMP = $usuarioManager->getTokenMP();
+
+	    if (!isset($tokenMP) || $tokenMP == ''){
+		$objRet = array(
+		    "status"  => "ERROR",
+		    "mensaje" => "token incorrecto $tokenMP"
+		);
+		$ret = json_encode($objRet);
+		$fp = fopen("/var/www/html/log.txt", 'a');
+		fwrite($fp, $ret);
+		fclose($fp);
+		Database::Connect()->close();
+		echo $ret;
+		exit;
+	    }else{
+
+		$fp = fopen("/var/www/html/log.txt", 'a');
+		fwrite($fp, "\n######################################################\njson $tokenMP\n######################################################\n");
+		fclose($fp);
+	    }
         $objPrincipalManager = new CarritoManager();
 $validarStock = $objPrincipalManager->validarStock($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario']);
 if ($objPrincipalManager->getStatus() != 'ok'){
@@ -96,7 +96,9 @@ function pagar ($token){
     #MercadoPago\SDK::setAccessToken("TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066");
         
     $payment = new MercadoPago\Payment();
+    $payment->application_fee    = (float)1;
     $payment->transaction_amount = (float)$_POST['transactionAmount'];
+    $payment->transaction_amount = $payment->transaction_amount - $payment->application_fee;
     $payment->token = isset($_POST["token"]) ? $_POST["token"] : '';
     $payment->description = "TAGGEON ".$_POST['id_carrito'];
     $payment->installments = isset($_POST["installments"]) ? (int)$_POST['installments'] : 0;
