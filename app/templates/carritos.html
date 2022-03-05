@@ -19,18 +19,18 @@
 <script>
 $(document).ready(function(){
 
-   var carrito = jsonData.carrito || [];
    //
-   let carritos_agrupados = carrito.reduce((r, a) => {
+   /*let carritos_agrupados = carrito.reduce((r, a) => {
       r[a.id_carrito] = [...r[a.id_carrito] || [], a];
       return r;
    }, {});
-   var sizeCarrito = carrito.length;
+   let test = Object.values(carritos_agrupados)*/
    
-   let test = Object.values(carritos_agrupados)
-   console.log(carrito)
+   var carrito = jsonData.carrito || [];
+   var sizeCarrito = carrito.length;
    let test_param = 0;
 
+   if(sizeCarrito>0){
       for(let i=0; i<sizeCarrito; i++){
          let id_carrito = carrito[i].id_carrito;
          let nombre_prod_carrito = carrito[i].nombre_producto;
@@ -96,6 +96,11 @@ $(document).ready(function(){
                }
 
       }
+      
+   }else{
+      var html_nada = '<div class="html-nada">No hay carritos activos.</div>';
+      $("#listado-mis-productos").html(html_nada);
+   }
 
       
 });

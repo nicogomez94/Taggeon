@@ -96,9 +96,11 @@ function pagar ($token){
     #MercadoPago\SDK::setAccessToken("TEST-3352741419059189-050614-b7e70c4e7455bf1a8ffb36f765ba3da9-754982066");
         
     $payment = new MercadoPago\Payment();
-    $payment->application_fee    = (float)1;
+    #$payment->marketplace_fee  = 1.00;
+   
     $payment->transaction_amount = (float)$_POST['transactionAmount'];
-    $payment->transaction_amount = $payment->transaction_amount - $payment->application_fee;
+    $payment->application_fee  = ($payment->transaction_amount * 20)/100;
+    #$payment->transaction_amount = $payment->transaction_amount - 1;
     $payment->token = isset($_POST["token"]) ? $_POST["token"] : '';
     $payment->description = "TAGGEON ".$_POST['id_carrito'];
     $payment->installments = isset($_POST["installments"]) ? (int)$_POST['installments'] : 0;
@@ -119,7 +121,8 @@ function pagar ($token){
 
             #debug post y response mp
             $str = "Fecha " . date('d/m/Y  H:i:s', time())."\n";
-            $str .= "post transactionAmount: ".$_POST['transactionAmount']."\n";
+            $str .= "post transactionAmount: ".$payment->transaction_amount."\n";
+            $str .= "post application_fee: ".$payment->application_fee."\n";
             $str .= "post token: ".$_POST['token']."\n";
             $str .= "post installments: ".$_POST['installments']."\n";
             $str .= "post paymentMethodId: ".$_POST['paymentMethodId']."\n";

@@ -108,8 +108,8 @@
             </div>
             <hr>
             <!-- <div id="paymentForm"></div> -->
-        <form id="testrr" action="/mp/process_payment.php" method="post">
-            <!-- <form id="paymentForm"> -->
+        <!-- <form id="testrr" action="/mp/process_payment.php" method="post"> -->
+        <!-- <form id="paymentForm">
                 <h3>Detalles de pago</h3>
                     <div class="mp__detalles_comprador">
                     <div class="group group-form-checkout">
@@ -263,7 +263,7 @@
                     <br>
                     <input id="testcarr" type="hidden" name="id_carrito" value="">
                 </div>
-            </form> 
+            </form> -->
 
             <!--  -->
             <!--  -->
@@ -272,7 +272,7 @@
             <!--  -->
             <!--  -->
 
-             <!-- <form id="paymentForm">
+              <!-- <form id="paymentForm">
                 <h3>Detalles del comprador</h3>
                   <div>
                     <div>
@@ -333,7 +333,36 @@
                       <br>
                     </div>
                 </div>
-              </form>   -->
+              </form>    -->
+
+
+              <!--  -->
+              <!--  -->
+              <!--  -->
+              <!--  -->
+
+              <form id="form-checkout" >
+                <input type="text" name="cardNumber" id="form-checkout__cardNumber" />
+                <input type="text" name="cardExpirationDate" id="form-checkout__cardExpirationDate" />
+                <input type="text" name="cardholderName" id="form-checkout__cardholderName"/>
+                <input type="email" name="cardholderEmail" id="form-checkout__cardholderEmail"/>
+                <input type="text" name="securityCode" id="form-checkout__securityCode" />
+                <select name="issuer" id="form-checkout__issuer"></select>
+                <select name="identificationType" id="form-checkout__identificationType"></select>
+                <input type="text" name="identificationNumber" id="form-checkout__identificationNumber"/>
+                <select name="installments" id="form-checkout__installments"></select>
+                <button type="submit" id="form-checkout__submit">Pagar</button>
+                <progress value="0" class="progress-bar">Cargando...</progress>
+             </form>
+
+
+
+
+
+
+
+
+
         </div>
     </div>
 
@@ -375,7 +404,7 @@ $(document).ready(function(){
             $(".totales-num").html('$. '+total);
             $('.lista-productos').append(compras_html);
             $("#transactionAmount").val(precio_producto)
-            $("#email").val("agulleiroliliana@hotmail.com")
+            //$("#email").val("agulleiroliliana@hotmail.com")
         }
     }
 
@@ -383,208 +412,129 @@ $(document).ready(function(){
 </script>
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 <script>
-    // Agrega credenciales de SDK 
-     const mp = new MercadoPago('APP_USR-31427082-1223-4141-9ae8-c30f8404c448', {locale: 'es-AR'});
-    //const mp = new MercadoPago('TEST-08ad9476-bc16-419d-a880-d959f6f4ad7c', {locale: 'es-AR'});
-    
-    // Inicializa el Web Tokenize Checkout
-    mp.checkout({
-        tokenizer: {
-            totalAmount: 0,
-            backUrl: 'https://taggeon.com/cobrar-compra.html'
-        },
-      /*render: {
-            container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
-            label: 'Pagar', // Cambia el texto del botón de pago (opcional)
-      } /*NICO si deja de andar fijarse aca*/
-    });
-    /*mp.checkout({
-      tokenizer: {
-        totalAmount: 4000,
-        backUrl: 'http://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/cobrar-compra.html'
-      },
-     render: {
-        container: '.tokenizer-container', // Indica dónde se mostrará el botón
-        label: 'Pagar' // Cambia el texto del botón de pago (opcional)
-     }
-    });*/
+    const mp = new MercadoPago('APP_USR-31427082-1223-4141-9ae8-c30f8404c448');
+    const cardForm = mp.cardForm({
+  amount: "10",
+  autoMount: true,
+  form: {
+    id: "form-checkout",
+    cardholderName: {
+      id: "form-checkout__cardholderName",
+      placeholder: "Titular de la tarjeta",
+    },
+    cardholderEmail: {
+      id: "form-checkout__cardholderEmail",
+      placeholder: "E-mail",
+    },
+    cardNumber: {
+      id: "form-checkout__cardNumber",
+      placeholder: "Número de la tarjeta",
+    },
+    cardExpirationDate: {
+      id: "form-checkout__cardExpirationDate",
+      placeholder: "Data de vencimiento (MM/YYYY)",
+    },
+    securityCode: {
+      id: "form-checkout__securityCode",
+      placeholder: "Código de seguridad",
+    },
+    installments: {
+      id: "form-checkout__installments",
+      placeholder: "Cuotas",
+    },
+    identificationType: {
+      id: "form-checkout__identificationType",
+      placeholder: "Tipo de documento",
+    },
+    identificationNumber: {
+      id: "form-checkout__identificationNumber",
+      placeholder: "Número de documento",
+    },
+    issuer: {
+      id: "form-checkout__issuer",
+      placeholder: "Banco emisor",
+    },
+  },
+  callbacks: {
+    onFormMounted: error => {
+      if (error) return console.warn("Form Mounted handling error: ", error);
+      console.log("Form mounted");
+    },
+    onSubmit: event => {
+      event.preventDefault();
 
-		window.Mercadopago.setPublishableKey("APP_USR-31427082-1223-4141-9ae8-c30f8404c448");
-		//window.Mercadopago.setPublishableKey("TEST-08ad9476-bc16-419d-a880-d959f6f4ad7c");
-		window.Mercadopago.getIdentificationTypes();
-document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
+      const {
+        paymentMethodId: payment_method_id,
+        issuerId: issuer_id,
+        cardholderEmail: email,
+        amount,
+        token,
+        installments,
+        identificationNumber,
+        identificationType,
+      } = cardForm.getCardFormData();
 
-function guessPaymentMethod(event) {
-    
-    /*saco los espacios*/
-   let cardnumber = document.getElementById("cardNumber").value.split(" ").join("");
-
-   if (cardnumber.length >= 6) {
-       let bin = cardnumber.substring(0,6);
-       window.Mercadopago.getPaymentMethod({
-           "bin": bin
-       }, setPaymentMethod);
-   }
-};
-
-function setPaymentMethod(status, response) {
-   if (status == 200) {
-       let paymentMethod = response[0];
-       document.getElementById('paymentMethodId').value = paymentMethod.id;
-
-       getIssuers(paymentMethod.id);
-   } else {
-       alert(`payment method info error: ${response}`);
-   }
-}
-function getIssuers(paymentMethodId) {
-    $(".afterCard").show();
-
-    window.Mercadopago.getIssuers(
-        paymentMethodId,
-        setIssuers
-    );
-}
-
-function setIssuers(status, response) {
-   if (status == 200) {
-       let issuerSelect = document.getElementById('issuer');
-       response.forEach( issuer => {
-           let opt = document.createElement('option');
-           opt.text = issuer.name;
-           opt.value = issuer.id;
-           issuerSelect.appendChild(opt);
-       });
-
-       getInstallments(
-           document.getElementById('paymentMethodId').value,
-           document.getElementById('transactionAmount').value,
-           issuerSelect.value
-       );
-   } else {
-       alert(`issuers method info error: ${response}`);
-   }
-}
-function getInstallments(paymentMethodId, transactionAmount, issuerId){
-   window.Mercadopago.getInstallments({
-       "payment_method_id": paymentMethodId,
-       "amount": parseFloat(transactionAmount),
-       "issuer_id": parseInt(issuerId)
-   }, setInstallments);
-}
-
-function setInstallments(status, response){
-   if (status == 200) {
-       document.getElementById('installments').options.length = 0;
-       response[0].payer_costs.forEach( payerCost => {
-           let opt = document.createElement('option');
-           opt.text = payerCost.recommended_message;
-           opt.value = payerCost.installments;
-           document.getElementById('installments').appendChild(opt);
-       });
-   } else {
-       alert(`installments method info error: ${response}`);
-   }
-}
-
-doSubmit = false;
-document.getElementById('paymentForm').addEventListener('submit', getCardToken);
-function getCardToken(){
-   event.preventDefault();
-    //nico
-    //para que interactue el nuevo form con el de mp (hidden)
-    const test = document.getElementById("expirationdate");
-
-    if(test !== null) {
-
-        let form2 = document.querySelector('.cho-container');
-        let expDateFacha = document.getElementById("expirationdate").value;
-        let expYearFacha = expDateFacha.split("/")[1];
-        let expMonFacha = expDateFacha.split("/")[0];
-        
-        let cardExpirationYear = document.createElement('input');
-        cardExpirationYear.setAttribute('value', expYearFacha);
-        cardExpirationYear.setAttribute('name', 'cardExpirationYear');
-        cardExpirationYear.setAttribute('type', 'hidden');
-        form2.appendChild(cardExpirationYear);
-        
-        let cardExpirationMonth = document.createElement('input');
-        cardExpirationMonth.setAttribute('value', expMonFacha);
-        cardExpirationMonth.setAttribute('name', 'cardExpirationMonth');
-        cardExpirationMonth.setAttribute('type', 'hidden');
-        form2.appendChild(cardExpirationMonth);
-    }
-        
-   if(!doSubmit){
-       let $form = document.getElementById('paymentForm');
-       window.Mercadopago.createToken($form, setCardTokenAndPay);
-       return false;
-   }
-};
- 
-function setCardTokenAndPay(status, response) {
-    
-    
-
-   if (status == 200 || status == 201) {   
-
-        let form = document.getElementById('paymentForm');
-        let card = document.createElement('input');
-        card.setAttribute('name', 'token');
-        card.setAttribute('id', 'token-mp');
-        card.setAttribute('type', 'hidden');
-        card.setAttribute('value', response.id);
-        form.appendChild(card);
-
-        doSubmit=true;
-
-        var dataForden = new FormData(form);
-        var id_carrito = jsonData.compras[0].id_carrito;
-        dataForden.append("id_carrito",id_carrito);
-
-
-        $.ajax({
-            url: '/mp/process_payment.php',
-            data: dataForden,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            //dataType: "json",
-            //async: false,
-            success: function(data){
-                var dataParse = JSON.parse(data)
-                var dataJ = dataParse.status;
-                //var dataM = JSON.parse(data).mensaje;
-                if(dataJ == 'OK'){
-                    console.log(dataParse)
-                    console.log("OK")
-                    alert("OK-->"+dataParse);
-                    window.location.replace("/pago-success.html");
-                }else if(dataJ == 'ERROR'){
-                    console.log(dataParse)
-                    console.log('else if ERROR')
-                    alert("ELSE IF-->"+dataParse);
-                    window.location.replace("/pago-failure.html");
-                }else{
-                    console.log(dataParse)
-                    console.log('else')
-                     alert("ELSE-->"+dataParse);
-                    window.location.replace("/pago-pending.html");
-                }
-            },
-            error: function( data, jqXhr, textStatus, errorThrown ){
-                console.log(data)
-                alert(data);
+        const payerData = {
+            email,
+            identification: {
+              type: identificationType,
+              number: identificationNumber,
             }
-        });
+        }
+
+        //var dataForden = new FormData(form);
+        const id_carrito_data = jsonData.compras[0].id_carrito;
         
-    } else {
-        alert("Verify filled data!\n"+JSON.stringify(response, null, 4));
-        console.log(response)
+        const dataForden = new FormData()
+        dataForden.append("id_carrito",id_carrito_data)
+        dataForden.append("token",token)
+        dataForden.append("issuer",issuer_id)
+        dataForden.append("paymentMethodId",payment_method_id)
+        dataForden.append("transactionAmount",Number(amount))
+        dataForden.append("installments",Number(installments))
+        dataForden.append("description","Descripción del producto")
+        dataForden.append("email",email)
+        dataForden.append("docType",identificationType)
+        dataForden.append("docNumber",identificationNumber)
+        //dataForden.append("id_carrito",id_carrito);
+
+      fetch("/mp/process_payment.php", {
+        method: "POST",
+        /*headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },*/
+        body: dataForden
+      }).then(response => response.json())
+      .then(data => {
+        var dataParse = JSON.parse(data)
+        var dataJ = dataParse.status;
         
+        if(dataJ == 'OK'){
+            alert("success ajax-->"+dataParse);
+            window.location.replace("/pago-success.html");
+        }else if(dataJ == 'ERROR'){
+            alert("success ajax-->"+dataParse);
+            window.location.replace("/pago-failure.html");
+        }else{
+            alert("success ajax-->"+dataParse);
+            window.location.replace("/pago-pending.html");
+        }
+      })
+      .catch(function(error){
+            alertify.error("Ha ocurrido un error con el servidor. Intente de nuevamente mas tarde")
+      })
+    },
+    onFetching: (resource) => {
+      console.log("Fetching resource: ", resource);
+
+      // Animate progress bar
+      const progressBar = document.querySelector(".progress-bar");
+      progressBar.removeAttribute("value");
+
+      return () => {
+        progressBar.setAttribute("value", "0");
+      };
     }
-
-    
-
-};
-	</script>
+  },
+});
+</script>

@@ -2984,7 +2984,6 @@ function getDataPaging(dataPaging) {
                     break;
                 case "paginador_notificaciones.php":
                     ampliarNotif(data);
-                    console.log(data)
                     break;
                 case "paginador_comentarios.php":
                     getComentarios(data,url_temp);
@@ -2995,13 +2994,15 @@ function getDataPaging(dataPaging) {
                 case "paginador_favorito.php":
                     getMisFavoritos(data);
                     break;
-                default: alertify.error("error")
+                default: alertify.error("Ha ocurrido un error con el servidor. Intente de nuevamente mas tarde")
             }
 
             showCantResult(data.length)
             document.body.classList.remove("loading"); 
         })
-        //.catch(error => console.error("error en fetch"))
+        .catch(function(error){
+            alertify.error("Ha ocurrido un error con el servidor. Intente de nuevamente mas tarde")
+        })
         
 }
 
@@ -3022,8 +3023,7 @@ function eliminarProdAmpliarCarrito(id_carrito,id_publicacion,id_prod){
         body: dataEliminar,
     }).then(res => res.json())
     .then(response => {
-        console.log(response)
-        //window.location.replace(tipo_carrito)
+        window.location.replace("/carritos.html")
     })
     .catch(error => console.error('Error:', error))
 
@@ -3042,8 +3042,7 @@ function eliminarCarrito(id_carrito,id_publicacion,id_prod){
         body: dataEliminar,
     }).then(res => res.json())
     .then(response => {
-        console.log(response)
-        //window.location.replace(tipo_carrito)
+        window.location.replace("/carritos.html")
     })
     .catch(error => console.error('Error:', error))
 

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
     }else{
         var html_nada = '<div class="html-nada">No se han encontrado resultados.</div>';
-        $("#listado-mis-productos").html(html_nada);
+        //$("#listado-mis-productos").html(html_nada);
     }
 
 

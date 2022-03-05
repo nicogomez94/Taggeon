@@ -139,7 +139,6 @@ function traerModalProducto({id_prod_p,id_public_p,id_publicador_p,foto_src_prod
             <span class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></span>
          </div>
          <div class="commentbox-list-container commentbox-list-container-${id_prod_p} commentbox-list-container-prod"></div>
-         <div class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this)"><a href="javascript:void(0)">Ver Mas</a></div><hr>
       </div>
       </div></div></div></div></div>`;
 
