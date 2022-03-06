@@ -36,8 +36,8 @@
             if(jsonData.tokenMercadoPago == 0 && jsonData.perfil == "seller"){
                var html_test = 
                '<div class="msj_sync_mp"><i class="fas fa-exclamation-circle"></i>&nbsp;Esta cuenta no esta sincronizada para recibir pagos. '+
-                  '<a href="'+url_mp+'">Edítalo aqu&iacute;&middot;</a>'+
-                  '<a href="javascript:void(0)" onclick="cerrarOverlay(\'overlayImportar\')">Cerrar</a>'+
+                  '<a href="'+url_mp+'">Edítalo aqu&iacute;</a> &middot; '+
+                  '<a href="javascript:void(0)" onclick="cerrarOverlay(this.parentNode)">Cerrar</a>'+
                '</div>';
                   
                   $(".close-mp").bind('click',function(e){

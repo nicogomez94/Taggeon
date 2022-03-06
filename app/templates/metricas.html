@@ -2,7 +2,7 @@
 
 <div class="container container-compras">
    <div class="inner-compras">
-      <h2>Metricas</h2>
+      <h1>Metricas</h1>
       <hr>
       <div class="row">
          <div class="col-lg-6">
@@ -33,18 +33,20 @@
             <div class="totales-cont">
                <div class="row">
                   <div class="col-12 col-lg-12 totales-compra">
-                     <h4>A liquidar</h4>
+                     <h4>A liquidar &nbsp;<a class ="btn btn-warning disabled" href="#">Retirar dinero</a></h4>
                      <hr>
-                     <div class="num-big">
-                     
-                     </div>
+                     <div class="num-big"></div>
                   </div>
                </div>
+            </div>
+            <br>
+            <div class="alert alert-warning" role="alert">
+               Te restan $1500 mas para poder retirar!
             </div>
          </div>
          <!--  -->
          <div class="col-lg-6">
-            <h4>Resumen Transacciones por Tags</h4>
+            <h4>Ultimas Transacciones por Tags</h4>
             <span class="gris-label">Conoc&eacute; el detalle de las operaciones que impactan por los productos que tagueaste en tus publicaciones.</span>
             <div class="totales-cont" id="detalle_compras_metricas">
                <!-- <div class="row">
@@ -60,6 +62,116 @@
                </div> -->
             </div> 
          </div>
+      </div>
+      <br><hr><br>
+      <div id="comisiones-producto">
+         <h2>Comisiones por Producto</h1>
+            <br>
+         <div class="flex-container" style="margin-bottom: 0 !important;">
+               <div class="flex-listado">
+                  <div class="overlay-public">
+                     <div class="text-overlay-prod">
+                        <span onclick="eliminarProd('${id_prod}')" class="eliminar-producto text-overlay-link share-sm">
+                              <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
+                        </span>
+                        <span class="text-overlay-link text-overlay-link-id_prod">
+                              <a href="/editar-producto.html?id=${id_prod}&accion=editar"><i class="fas fa-edit"></i></a>
+                        </span>
+                     </div>
+                  </div>
+                  <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/295.png" alt="${foto_src}">
+                  <div class="prod-datos">
+                     <div class="nombre-prod">Producto de prueba</div>
+                     <div class="precio-prod">$456</div>
+                  </div>
+            </div>
+               <div class="flex-listado">
+                  <div class="overlay-public">
+                     <div class="text-overlay-prod">
+                        <span onclick="eliminarProd('${id_prod}')" class="eliminar-producto text-overlay-link share-sm">
+                              <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
+                        </span>
+                        <span class="text-overlay-link text-overlay-link-id_prod">
+                              <a href="/editar-producto.html?id=${id_prod}&accion=editar"><i class="fas fa-edit"></i></a>
+                        </span>
+                     </div>
+                  </div>
+                  <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/289.png" alt="${foto_src}">
+                  <div class="prod-datos">
+                     <div class="nombre-prod">Producto de prueba</div>
+                     <div class="precio-prod">$456</div>
+                  </div>
+            </div>
+               <div class="flex-listado">
+                  <div class="overlay-public">
+                     <div class="text-overlay-prod">
+                        <span onclick="eliminarProd('${id_prod}')" class="eliminar-producto text-overlay-link share-sm">
+                              <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
+                        </span>
+                        <span class="text-overlay-link text-overlay-link-id_prod">
+                              <a href="/editar-producto.html?id=${id_prod}&accion=editar"><i class="fas fa-edit"></i></a>
+                        </span>
+                     </div>
+                  </div>
+                  <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/292.png" alt="${foto_src}">
+                  <div class="prod-datos">
+                     <div class="nombre-prod">Producto de prueba</div>
+                     <div class="precio-prod">$456</div>
+                  </div>
+            </div>
+         </div>
+      </div>
+      <br><hr><br>
+      <div id="comisiones-tagger">
+         <h2>Detalle de recompensas hasta la fecha</h1>
+            <br>
+            <div class="row producto">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                  Nro de Operacion
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">Monto cobrado</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="precio-producto">Comprobante</span>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+               </div>
+            </div>
+            <div class="row producto">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                  <div class="img-producto-container-0" data-title="223">
+                     21238421354
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">$6500</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="precio-producto"><a href="#">Comprobante_123512</a></span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+               </div>
+            </div>
+            <div class="row producto">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+                  <div class="img-producto-container-0" data-title="223">
+                     21238421354
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3 text-left">
+                  <span class="titulo-producto">$6500</span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+                  <span class="precio-producto"><a href="#">Comprobante_123512</a></span>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-2 ">
+               </div>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-3">   
+               </div>
+            </div>
       </div>
    </div>
 </div>
@@ -107,11 +219,11 @@ $(document).ready(function(){
          var usuario_alta = jsonData.metricas[i].usuario_alta || 0;
          
          //por ahora esta como la suma de todo TODO
-         //var a_liquidar = precio++;
+         var a_liquidar = jsonData.totalliquidar;
 
          var el = document.querySelector("#detalle_compras_metricas");
          var a_liquidar_html = document.querySelector(".num-big");
-         //a_liquidar_html.innerHTML = a_liquidar+" AR$";
+         a_liquidar_html.innerHTML = a_liquidar+" AR$";
 
          var child = document.createElement("DIV");
          child.classList.add('row');

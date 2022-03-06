@@ -1989,9 +1989,8 @@ function ampliarOverlay(clase){
     //cierro si hay otro overlay abierto
 }
 
-function cerrarOverlay(clase){
-    var el = document.querySelector("."+clase);
-    el.style.display = "none"
+function cerrarOverlay(obj){
+    obj.style.display = "none"
 }
 
 function posicionarPublic(){
