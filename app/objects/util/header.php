@@ -58,7 +58,7 @@ STR;
     }
 
     $idUserMP        = $GLOBALS['sesionG']['idUsuario'];
-    $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=8374534224864099&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=https://taggeon.com/"; //PRODUCCION
+    $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=1018087855526059&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=https://taggeon.com/"; //PRODUCCION
 //    $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=3352741419059189&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/"; //TEST
 	
     $objIntereses = new InteresesManager();
