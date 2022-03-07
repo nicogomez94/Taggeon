@@ -699,11 +699,12 @@ function loadingScreen(){
 
 function cambiarCant(val,precio,target,target2,target3){
     let precio_multiplicado = val*precio;
+
+    
+
     let target_html = document.querySelector(target)
     let target_html2 = document.querySelector(target2)
-    let selected_value2 = this.value;
     let target_html3 = document.querySelector(target3)
-    let selected_value3 = this.value;
 
     target_html.innerHTML = precio_multiplicado;
     target_html2.innerHTML = precio_multiplicado;
