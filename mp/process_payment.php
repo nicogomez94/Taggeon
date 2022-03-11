@@ -100,7 +100,10 @@ function pagar ($token){
     #$payment->marketplace_fee  = 1.00;
    
     $payment->transaction_amount = (float)$_POST['transactionAmount'];
-    $payment->application_fee  = ($payment->transaction_amount * 20)/100;
+	$comisionTaggeador = $GLOBALS['configuration']['comision_taggeador'];
+	$comisionMarket    = $GLOBALS['configuration']['comision_market'];
+        $comisionTotal     =  $comisionTaggeador + $comisionMarket;
+    $payment->application_fee  = ($payment->transaction_amount * $comisionTotal)/100;
     #$payment->transaction_amount = $payment->transaction_amount - 1;
     $payment->token = isset($_POST["token"]) ? $_POST["token"] : '';
     $payment->description = "TAGGEON ".$_POST['id_carrito'];
