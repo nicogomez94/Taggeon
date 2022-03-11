@@ -146,7 +146,7 @@ function pagar ($token){
                 $fp = fopen("/var/www/html/log.txt", 'a');
                 $str = "################################## METRICA\n";
                 fwrite($fp, $str);
-        	$metricalManager = new MetricaManager();
+        	$metricaManager = new MetricaManager();
 		$metrica = $metricaManager->procesarMetrica($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario']);
                 $str = "FIN METRICA\n";
                 fwrite($fp, $str);

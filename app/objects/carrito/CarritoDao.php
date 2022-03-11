@@ -849,26 +849,21 @@ sql;
         $usuarioAltaDB = Database::escape($usuarioAlta);
         $idDB = Database::escape($id);
         $sql = <<<sql
-SELECT
-               carrito_detalle.id_publicacion, carrito.id as id_carrito, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total,  min(producto_foto.id) as foto,sum(carrito_detalle.total) as carrito_total,sum(carrito_detalle.total) as carrito_subtotal
-        FROM
-        `carrito`
-        LEFT JOIN
-        carrito_detalle ON carrito.id = carrito_detalle.id_carrito AND
-        (carrito_detalle.eliminar = 0 OR carrito_detalle.eliminar IS NULL)
-            LEFT JOIN
-        producto_foto
-    ON
-        `carrito_detalle`.id_producto = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
-        
-        
-                WHERE
-        (`carrito`.eliminar = 0 OR `carrito`.eliminar IS NULL) AND
-        `carrito`.usuario_alta = $usuarioAltaDB                AND
-        (estado is null OR estado !=4  )
-         AND carrito.id = $idDB
-        GROUP BY
-        carrito_detalle.id_publicacion, carrito.id, carrito_detalle.cantidad, carrito_detalle.precio, carrito_detalle.nombre_producto, carrito_detalle.id_producto, carrito_detalle.total
+SELECT cd.id as id_detalle, c.estado,cd.id_carrito as operacion,u.id as id_usuario_comprador, u.usuario as usuario_comprador,
+u2.id as id_usuario_vendedor,u2.usuario as usuario_vendedor,
+u3.id as id_usuario_taggeador,u3.usuario as usuario_taggeador,
+cd.id_producto, cd.nombre_producto, cd.cantidad, cd.precio,cd.total as costo_venta
+FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito
+     inner join usuario as u ON cd.`usuario_alta` = u.id
+     INNER JOIN usuario as u2 ON cd.id_vendedor = u2.id
+     INNER JOIN usuario as u3 ON cd.id_usuario_publicador = u3.id
+WHERE
+        c.eliminar is null
+    AND cd.eliminar is  null
+    AND c.estado is null
+    AND c.usuario_alta = $usuarioAltaDB
+
+ORDER BY cd.fecha_alta DESC
 sql;
 	//echo $sql;
 
@@ -1015,7 +1010,7 @@ SQL;
 
 
                     $sql = <<<SQL
-                        INSERT INTO carrito_detalle (id_carrito,id_producto,usuario_alta,cantidad,precio,total,nombre_producto,id_publicacion,id_usuario_publicador,id_vendedor, comision_porcentaje_tienda, comision_porcentaje_taggeador, total_tienda, total_vendedor, total_taggeador) 
+                        INSERT INTO carrito_detalle (id_carrito,id_producto,usuario_alta,cantidad,precio,total,nombre_producto,id_publicacion,id_usuario_publicador,id_vendedor) 
                         VALUES ($id_carritoDB,$idProductoDB,$usuarioDB,$cantidadDB,$precioDB,$totalDB,$nombreProductoDB,$idPublicacionDB,$id_usuario_publicadorDB,$id_vendedorDB)
 SQL;
             

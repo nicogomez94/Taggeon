@@ -2009,11 +2009,6 @@ function fetchIdCarrito(id_public,id_prod,value_cant){
     dataCarr.append("id",id_prod);
     dataCarr.append("id_publicacion",id_public);
     dataCarr.append("cantidad",value_cant);//hard
-
-    for (var value of dataCarr.values()) {
-        console.log(value);
-    }
-
     
     fetch(URL, {
         method: 'POST',
@@ -2023,7 +2018,7 @@ function fetchIdCarrito(id_public,id_prod,value_cant){
         let id_carrito = response.mensaje;
         window.location.replace("/carritos.html?id_carrito="+id_carrito)
     })
-    .catch(error => console.error('Error:', error))
+    .catch(error => alertify.error("No se pudo agregar el producto. Intente mas tarde"))
 
 }
 
