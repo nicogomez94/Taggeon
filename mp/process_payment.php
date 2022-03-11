@@ -3,6 +3,7 @@ include '../app/objects/util/configuration.php';
 include_once("../app/objects/sesion/sesionManagerImpl.php");
 include_once("../app/objects/util/database.php");
 include_once("../app/objects/carrito/CarritoManager.php");
+include_once("../app/objects/metrica/MetricaManager.php");
 require_once 'vendor/autoload.php';
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
@@ -142,6 +143,15 @@ function pagar ($token){
             #fin debug post y response mp
         
             if (isset($payment) && isset($payment->status) && $payment->status == 'approved'){
+                $fp = fopen("/var/www/html/log.txt", 'a');
+                $str = "################################## METRICA\n";
+                fwrite($fp, $str);
+        	$metricalManager = new MetricaManager();
+		$metrica = $metricaManager->procesarMetrica($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario']);
+                $str = "FIN METRICA\n";
+                fwrite($fp, $str);
+                fclose($fp);
+
                 $str = "Paso 1\n";
                 $fp = fopen("/var/www/html/log.txt", 'a');
                 fwrite($fp, $str);

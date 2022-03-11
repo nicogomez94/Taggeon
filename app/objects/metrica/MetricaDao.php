@@ -43,7 +43,7 @@ class  MetricaDao
 		$comisionDB = Database::escape($comision);
 		$pago_id = isset($data["pago_id"]) ? $data["pago_id"] : '';
 		$pago_idDB = Database::escape($pago_id);
-			$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
 		$usuarioAltaDB = Database::escape($usuarioAlta);
 		
 			$sql = <<<SQL

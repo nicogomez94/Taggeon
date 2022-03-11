@@ -1,5 +1,9 @@
 <?php
 include_once("MetricaDao.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoDao.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+
 class  MetricaManager
 {
 	private $metricaDao;
@@ -9,6 +13,9 @@ class  MetricaManager
 	public function __construct()
 	{
 		$this->metricaDao = new MetricaDao();
+		$this->carritoDao = new CarritoDao();
+		$this->productoManager = new ProductoManager();
+		$this->publicacionManager = new PublicacionManager();
 	}
 
 	public function getStatus()
@@ -248,4 +255,88 @@ private function validarPago_id($pago_id)
     $this->setMsj("");
     return true;
 }
+
+	public function actualizarMetrica($id,$usuarioAlta)
+	{
+		if (!isset($id)){
+			$id = isset($usuarioAlta) ? $usuarioAlta : '';
+		}
+		if ($this->validarId($id) === false){
+			return false;
+		}
+		$carrito =  $this->carritoDao->getCarritoMP($id,$usuarioAlta);
+		$str = '';
+		foreach ($carrito as $hashAux){
+			$cantidad = $hashAux['cantidad'];
+			$nombreProducto =  $hashAux['nombre_producto'];
+			$idProd   = $hashAux['id_producto'];
+			$data["id_producto"] = isset($idProd) ? $idProd : '';
+			$dataProducto = $this->productoManager->getProductoCarrito($data);
+			if ($this->productoManager->getStatus() != 'ok'){
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoManager->getMsj());
+				return false;
+			}else{
+				$patron = '/^[1-9][0-9]*$/';
+				if (!preg_match($patron, $cantidad)){
+					$this->setStatus("ERROR");
+					$this->setMsj("El campo cantidad del producto $nombre_producto es incorrecto.");
+					return false;
+				}
+				$carrito =  $this->carritoDao->actualizarStock($idProd,$cantidad);
+				if ($this->carritoDao->getStatus() != 'OK'){
+					$this->setStatus("ERROR");
+					$this->setMsj($this->carritoDao->getMsj());
+					return false;
+				}
+			}
+
+		}
+		$this->setStatus("ok");
+		$this->setMsj("");
+		return true;
+
+	}
+
+	public function procesarMetrica($id,$usuarioAlta)
+	{
+		if (!isset($id)){
+			$id = isset($usuarioAlta) ? $usuarioAlta : '';
+		}
+		if ($this->validarId($id) === false){
+			return false;
+		}
+		$carrito =  $this->carritoDao->getCarritoMP($id,$usuarioAlta);
+		$str = '';
+		foreach ($carrito as $hashAux){
+			$cantidad = $hashAux['cantidad'];
+			$nombreProducto =  $hashAux['nombre_producto'];
+			$idProd   = $hashAux['id_producto'];
+			$data["id_producto"] = isset($idProd) ? $idProd : '';
+			$dataProducto = $this->productoManager->getProductoCarrito($data);
+			if ($this->productoManager->getStatus() != 'ok'){
+				$this->setStatus("ERROR");
+				$this->setMsj($this->productoManager->getMsj());
+				return false;
+			}else{
+				$patron = '/^[1-9][0-9]*$/';
+				if (!preg_match($patron, $cantidad)){
+					$this->setStatus("ERROR");
+					$this->setMsj("El campo cantidad del producto $nombre_producto es incorrecto.");
+					return false;
+				}
+				$carrito =  $this->carritoDao->actualizarStock($idProd,$cantidad);
+				if ($this->carritoDao->getStatus() != 'OK'){
+					$this->setStatus("ERROR");
+					$this->setMsj($this->carritoDao->getMsj());
+					return false;
+				}
+			}
+
+		}
+		$this->setStatus("ok");
+		$this->setMsj("");
+		return true;
+
+	}
 }

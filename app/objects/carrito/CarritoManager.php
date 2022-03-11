@@ -186,7 +186,7 @@ class  CarritoManager
 	public function actualizarStock($id,$usuarioAlta)
 	{
 		if (!isset($id)){
-			$id = isset($data["id_carrito"]) ? $data["id_carrito"] : '';
+			$id = isset($usuarioAlta) ? $usuarioAlta : '';
 		}
 		if ($this->validarId($id) === false){
 			return false;
