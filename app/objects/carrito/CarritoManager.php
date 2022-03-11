@@ -150,23 +150,6 @@ class  CarritoManager
 		}
 
 
-
-		$data["comision_porcentaje_taggeador"] = 0;
-                $data["total_taggeador"] =  0;
-                $data["comision_porcentaje_tienda"] = 2;
-
-		if ( $data["id_usuario_publicador"] !=  $data["id_vendedor"] ){
-                	$data["comision_porcentaje_tienda"] = 1;
-			        $data["comision_porcentaje_taggeador"] = 1;
-                	$data["total_taggeador"] =  ($data["total"] * $data["comision_porcentaje_taggeador"])/100;
-		}
-
-
-                $data["total_tienda"]     = ($data["total"] * $data["comision_porcentaje_tienda"])/100;
-
-                $data["total_vendedor"] = $data["total"] - $data["total_tienda"] - $data["total_taggeador"];
-
-
 		if ($this->carritoDao->eliminarDetalle($data) === false) {
 			$this->setStatus("ERROR");
 			$this->setMsj("No se pudo actualizar el carrito. Comuniquese con el administrador");

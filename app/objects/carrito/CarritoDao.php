@@ -1013,24 +1013,10 @@ SQL;
                     $id_vendedor = isset($data["id_vendedor"]) ?  $data["id_vendedor"] : '';
                     $id_vendedorDB = Database::escape($id_vendedor);      
 
-                    $comision_porcentaje_tienda = isset($data["comision_porcentaje_tienda"]) ?  $data["comision_porcentaje_tienda"] : '';
-                    $comision_porcentaje_tiendaBD = Database::escape($comision_porcentaje_tienda);      
-
-                    $comision_porcentaje_taggeador = isset($data["comision_porcentaje_taggeador"]) ?  $data["comision_porcentaje_taggeador"] : '';
-                    $comision_porcentaje_taggeadorBD = Database::escape($comision_porcentaje_taggeador);      
-
-                    $total_tienda = isset($data["total_tienda"]) ?  $data["total_tienda"] : '';
-                    $total_tiendaBD = Database::escape($total_tienda);      
-
-                    $total_vendedor = isset($data["total_vendedor"]) ?  $data["total_vendedor"] : '';
-                    $total_vendedorBD = Database::escape($total_vendedor);      
-
-                    $total_taggeador = isset($data["total_taggeador"]) ?  $data["total_taggeador"] : '';
-                    $total_taggeadorBD = Database::escape($total_taggeador);      
 
                     $sql = <<<SQL
                         INSERT INTO carrito_detalle (id_carrito,id_producto,usuario_alta,cantidad,precio,total,nombre_producto,id_publicacion,id_usuario_publicador,id_vendedor, comision_porcentaje_tienda, comision_porcentaje_taggeador, total_tienda, total_vendedor, total_taggeador) 
-                        VALUES ($id_carritoDB,$idProductoDB,$usuarioDB,$cantidadDB,$precioDB,$totalDB,$nombreProductoDB,$idPublicacionDB,$id_usuario_publicadorDB,$id_vendedorDB,$comision_porcentaje_tiendaBD,$comision_porcentaje_taggeadorBD,$total_tiendaBD,$total_vendedorBD,$total_taggeadorBD)
+                        VALUES ($id_carritoDB,$idProductoDB,$usuarioDB,$cantidadDB,$precioDB,$totalDB,$nombreProductoDB,$idPublicacionDB,$id_usuario_publicadorDB,$id_vendedorDB)
 SQL;
             
                     if (!mysqli_query(Database::Connect(), $sql)) {

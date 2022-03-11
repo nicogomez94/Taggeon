@@ -695,7 +695,7 @@ sql;
     ON
         `producto`.id = producto_foto.id_producto AND (producto_foto.eliminar = 0 OR producto_foto.eliminar IS NULL)
     WHERE
-        (`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) AND `producto`.usuario_alta = $usuarioAltaDB
+	(`producto`.eliminar = 0 OR `producto`.eliminar IS NULL) 
         AND titulo LIKE $inputDB
     group by         `producto`.`id`,
     `producto`.`titulo`,
