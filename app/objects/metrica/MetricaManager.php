@@ -185,6 +185,11 @@ class  MetricaManager
 		return $metrica;
 	}
 
+	public function getListMetricaTotalPendiente()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotalPendiente();
+		return $ret;
+	}
 	public function getListMetricaTotal()
 	{
 		$ret =  $this->metricaDao->getListMetricaTotal();
@@ -314,5 +319,50 @@ private function validarPago_id($pago_id)
 		$this->setMsj("");
 		return true;
 
+	}
+	public function getListMetricaTotalPendienteTagger()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotalPendienteTagger();
+		return $ret;
+	}
+	public function getListMetricaTotalTagger()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotalTagger();
+		return $ret;
+	}
+	public function getListMetricaTagger()
+	{
+		$ret =  $this->metricaDao->getListMetricaTagger();
+		return $ret;
+	}
+	public function getListMetricaTotalPendienteSeller()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotalPendienteSeller();
+		return $ret;
+	}
+	public function getListMetricaTotalSeller()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotalSeller();
+		return $ret;
+	}
+	public function getListMetricaSeller()
+	{
+		$ret =  $this->metricaDao->getListMetricaSeller();
+		return $ret;
+	}
+	public function getListMetricaTotalPendienteAdmin()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotalPendienteAdmin();
+		return $ret;
+	}
+	public function getListMetricaTotalAdmin()
+	{
+		$ret =  $this->metricaDao->getListMetricaTotalAdmin();
+		return $ret;
+	}
+	public function getListMetricaAdmin()
+	{
+		$ret =  $this->metricaDao->getListMetricaAdmin();
+		return $ret;
 	}
 }

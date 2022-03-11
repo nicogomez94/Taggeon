@@ -1,0 +1,96 @@
+
+		
+		public function getListMetricaTotalAdmin()
+	    {
+		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+SELECT sum(m.comision) as total
+FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito 
+     inner join usuario as u ON cd.`usuario_alta` = u.id
+     INNER JOIN usuario as u2 ON cd.id_vendedor = u2.id
+     INNER JOIN usuario as u3 ON cd.id_usuario_publicador = u3.id
+     INNER JOIN metrica m ON  m.id_carrito_detalle = cd.id
+WHERE
+    (c.eliminar is null or c.eliminar = 0)
+    AND (cd.eliminar is null or cd.eliminar = 0)
+    AND c.estado is not null 
+    AND c.estado = 4
+    AND m.usuario_alta = $usuarioAltaDB 
+    AND m.rol_usuario = 'market'
+sql;
+//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+	$total = 0;
+	$rowEmp = mysqli_fetch_array($resultado);
+        $total = $rowEmp['total'];
+        return $total;
+}
+
+
+
+		public function getListMetricaTotalPendienteAdmin()
+	    {
+		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+SELECT sum(m.comision) as total
+FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito 
+     inner join usuario as u ON cd.`usuario_alta` = u.id
+     INNER JOIN usuario as u2 ON cd.id_vendedor = u2.id
+     INNER JOIN usuario as u3 ON cd.id_usuario_publicador = u3.id
+     INNER JOIN metrica m ON  m.id_carrito_detalle = cd.id
+WHERE
+    (c.eliminar is null or c.eliminar = 0)
+    AND (cd.eliminar is null or cd.eliminar = 0)
+    AND c.estado is not null 
+    AND c.estado = 4
+    AND m.usuario_alta = $usuarioAltaDB AND m.estado is null 
+    AND m.rol_usuario = 'market'
+sql;
+//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+	$total = 0;
+	$rowEmp = mysqli_fetch_array($resultado);
+        $total = $rowEmp['total'];
+        return $total;
+}
+
+
+		public function getListMetricaAdmin()
+	    {
+		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+SELECT cd.id as id_detalle, c.estado,cd.id_carrito as operacion,u.id as id_usuario_comprador, u.usuario as usuario_comprador,
+u2.id as id_usuario_vendedor,u2.usuario as usuario_vendedor, 
+u3.id as id_usuario_taggeador,u3.usuario as usuario_taggeador,
+cd.id_producto, cd.nombre_producto, cd.cantidad, cd.precio,cd.total as costo_venta
+,m.rol_usuario, m.comision_porc, m.comision, m.pago_id, m.fecha_alta, m.estado,m.motivo
+FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito 
+     inner join usuario as u ON cd.`usuario_alta` = u.id
+     INNER JOIN usuario as u2 ON cd.id_vendedor = u2.id
+     INNER JOIN usuario as u3 ON cd.id_usuario_publicador = u3.id
+     INNER JOIN metrica m ON  m.id_carrito_detalle = cd.id
+WHERE
+    (c.eliminar is null or c.eliminar = 0)
+    AND (cd.eliminar is null or cd.eliminar = 0)
+    AND c.estado is not null 
+    AND c.estado = 4
+    AND m.usuario_alta = $usuarioAltaDB  
+    AND m.rol_usuario = 'market'
+ORDER BY cd.fecha_alta DESC
+
+sql;
+//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}

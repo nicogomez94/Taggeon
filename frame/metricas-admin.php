@@ -23,9 +23,9 @@ if ($perfil=='seller' || $perfil=='picker'){
         "nombre"      => $GLOBALS['sesionG']['nombre'],
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
-        "metricas"     => $metricaManager->getListMetrica(),
-        "total"     => 1525.25,
-	"restan"     => 974.75,
+        "metricas"     => $metricaManager->getListMetricaAdmin(),
+        "total"     => $metricaManager->getListMetricaTotalAdmin(),
+	"restan"     => $GLOBALS['configuration']['total_objetivo'] - $metricaManager->getListMetricaTotalPendienteAdmin(),
 	'total_objetivo' => $GLOBALS['configuration']['total_objetivo'],
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()

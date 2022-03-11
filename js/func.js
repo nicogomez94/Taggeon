@@ -268,16 +268,13 @@ $('#form_registro_cont_pass').submit(function (e) {
                 alertify.success(data.mensaje)
                 window.location.replace("/");
             }else{
-                $("#mensaje-sin-login").css("display","block");
-                $("#mensaje-sin-login").html(data.mensaje);
-                // console.log (data.mensaje);
+                alertify.error(data.mensaje);
             }
         },
         error: function( jqXhr, textStatus, errorThrown ){
-                   var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                   $("#mensaje-sin-login").css("display","block");
-                   $("#mensaje-sin-login").html(msj);
-                   //    console.log(msj);
+            var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+            alertify.error(msj)
+            //    console.log(msj);
         }
    });
    return false;
