@@ -843,7 +843,6 @@ sql;
         }
         return $list;
 	}
-
 	public function getCarritoMP($id,$usuarioAlta)
     {
         $usuarioAltaDB = Database::escape($usuarioAlta);
@@ -865,7 +864,39 @@ WHERE
 
 ORDER BY cd.fecha_alta DESC
 sql;
-	//echo $sql;
+//	echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
+
+	public function getCarritoMPMetrica($id,$usuarioAlta)
+    {
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $idDB = Database::escape($id);
+        $sql = <<<sql
+SELECT cd.id as id_detalle, c.estado,cd.id_carrito as operacion,u.id as id_usuario_comprador, u.usuario as usuario_comprador,
+u2.id as id_usuario_vendedor,u2.usuario as usuario_vendedor,
+u3.id as id_usuario_taggeador,u3.usuario as usuario_taggeador,
+cd.id_producto, cd.nombre_producto, cd.cantidad, cd.precio,cd.total as costo_venta
+FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito
+     inner join usuario as u ON cd.`usuario_alta` = u.id
+     INNER JOIN usuario as u2 ON cd.id_vendedor = u2.id
+     INNER JOIN usuario as u3 ON cd.id_usuario_publicador = u3.id
+WHERE
+    (c.eliminar is null or c.eliminar = 0)
+    AND (cd.eliminar is null or cd.eliminar = 0)
+    AND c.estado is null
+    AND c.usuario_alta = $usuarioAltaDB
+
+ORDER BY cd.fecha_alta DESC
+sql;
+//	echo $sql;
 
         $resultado = Database::Connect()->query($sql);
         $list = array();

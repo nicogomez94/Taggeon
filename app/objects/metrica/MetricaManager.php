@@ -265,7 +265,7 @@ private function validarPago_id($pago_id)
 		if ($this->validarId($id) === false){
 			return false;
 		}
-		$carrito =  $this->carritoDao->getCarritoMP($id,$usuarioAlta);
+		$carrito =  $this->carritoDao->getCarritoMPMetrica($id,$usuarioAlta);
 		$str = '';
 		foreach ($carrito as $hashAux){
 			$idCarritoDetalle = $hashAux['id_carrito_detalle'];
@@ -292,16 +292,19 @@ private function validarPago_id($pago_id)
 			if ($this->metricaDao->altaMetrica($idCarritoDetalle,'vendedor',$comisionVendedor,$totalComisionVendedor,$idMP,$idVendedor) === false) {
 				$this->setStatus("ERROR");
 				$this->setMsj($this->metricaDao->getMsj());
+				return false;
 			}
 			if ($this->metricaDao->altaMetrica($idCarritoDetalle,'market',$comisionMarket,$totalComisionMarket,$idMP,$idMarket) === false) {
 				$this->setStatus("ERROR");
 				$this->setMsj($this->metricaDao->getMsj());
+				return false;
 			}
 
 			if ($idVendedor != $idTaggeador){
 				if ($this->metricaDao->altaMetrica($idCarritoDetalle,'taggeador',$comisionTaggeador,$totalComisionTaggeador,$idMP,$idTaggeador) === false) {
 					$this->setStatus("ERROR");
 					$this->setMsj($this->metricaDao->getMsj());
+					return false;
 				}
 
 			}

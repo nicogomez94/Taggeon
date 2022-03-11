@@ -150,7 +150,26 @@ function pagar ($token){
                 $str = "################################## METRICA\n";
                 fwrite($fp, $str);
         	$metricaManager = new MetricaManager();
-		$metrica = $metricaManager->procesarMetrica($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario'],$payment->id);
+		if ($metricaManager->procesarMetrica($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario'],$payment->id) === false){
+			if ($metricaManager->getStatus() != 'ok'){
+                		fwrite($fp, $str);
+				$objRet = array(
+				    "status"  => "ERROR",
+				    "mensaje" => $metricaManager->getMsj()
+				);
+				$ret = json_encode($objRet);
+				fwrite($fp, $ret);
+
+				$str = "FIN METRICA\n";
+				fwrite($fp, $str);
+				fclose($fp);
+
+				Database::Connect()->close();
+				echo $ret;
+				exit;
+			}
+
+		}
                 $str = "FIN METRICA\n";
                 fwrite($fp, $str);
                 fclose($fp);
