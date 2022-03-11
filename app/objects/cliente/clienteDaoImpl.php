@@ -105,6 +105,7 @@ SQL;
 		$sql =<<<SQL
 			UPDATE `usuario_picker` SET
 					 `eliminar`=1
+                                          ,email = concat('borrar',email)
 			WHERE `id` = $idBase 
 			      AND `eliminar` = 0 
 			      AND `idUsuario` = $idUsuarioBase

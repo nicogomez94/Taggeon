@@ -371,6 +371,7 @@ SQL;
 		$sql =<<<SQL
 			UPDATE `usuario` SET
 					 `eliminar`=1
+                                          ,usuario = concat('borrar',usuario)
 			WHERE `id` = $idBase 
 			      AND `eliminar` = 0 
 SQL;
@@ -538,6 +539,7 @@ SQL;
 			WHERE `usuario` = $usrBase 
 			LIMIT 1
 SQL;
+		//echo $sql;
 		$resultado=Database::Connect()->query($sql);
 	
 		$ret = false;	

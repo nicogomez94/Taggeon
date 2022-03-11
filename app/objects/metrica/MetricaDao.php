@@ -30,21 +30,15 @@ class  MetricaDao
 		}
 
 
-		public function altaMetrica(array $data)
+		public function altaMetrica($carrito_detalle,$rol_usuario,$comision_porc,$comision,$pago_id,$usuario)
 		{
 
-		$carrito_detalle = isset($data["carrito_detalle"]) ? $data["carrito_detalle"] : '';
 		$carrito_detalleDB = Database::escape($carrito_detalle);
-		$rol_usuario = isset($data["rol_usuario"]) ? $data["rol_usuario"] : '';
 		$rol_usuarioDB = Database::escape($rol_usuario);
-		$comision_porc = isset($data["comision_porc"]) ? $data["comision_porc"] : '';
 		$comision_porcDB = Database::escape($comision_porc);
-		$comision = isset($data["comision"]) ? $data["comision"] : '';
 		$comisionDB = Database::escape($comision);
-		$pago_id = isset($data["pago_id"]) ? $data["pago_id"] : '';
 		$pago_idDB = Database::escape($pago_id);
-		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
-		$usuarioAltaDB = Database::escape($usuarioAlta);
+		$usuarioAltaDB = Database::escape($usuario);
 		
 			$sql = <<<SQL
 				INSERT INTO metrica (id_carrito_detalle, rol_usuario, comision_porc, comision, pago_id,usuario_alta)  

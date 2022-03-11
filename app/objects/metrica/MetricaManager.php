@@ -257,7 +257,7 @@ private function validarPago_id($pago_id)
 }
 
 
-	public function procesarMetrica($id,$usuarioAlta)
+	public function procesarMetrica($id,$usuarioAlta,$idMP)
 	{
 		if (!isset($id)){
 			$id = isset($usuarioAlta) ? $usuarioAlta : '';
@@ -269,11 +269,42 @@ private function validarPago_id($pago_id)
 		$str = '';
 		foreach ($carrito as $hashAux){
 			$idCarritoDetalle = $hashAux['id_carrito_detalle'];
-			$cantidad = $hashAux['cantidad'];
 			$costoVenta = $hashAux['costo_venta'];
-			$idVendedor = $hashAux['id_usuario_vendedor,u2.usuario'];
-			$idMarket   = $hashAux[''];
-			$idTagger   = $hashAux['id_usuario_taggeador,u3.usuario'];
+			$idVendedor = $hashAux['id_usuario_vendedor'];
+			$idMarket   = $GLOBALS['configuration']['id_market'];
+			$idTaggeador   = $hashAux['id_usuario_taggeador'];
+			$comisionTaggeador = $GLOBALS['configuration']['comision_taggeador'];
+			$comisionMarket    = $GLOBALS['configuration']['comision_market'];
+			$totalComisionMarket = 0;
+			$totalComisionTaggeador = 0;
+			$totalComisionVendedor = 0;
+
+
+			if ($idVendedor == $idTaggeador){
+				$comisionMarket =  $comisionTaggeador + $comisionMarket;
+				$comisionTaggeador = 0;
+			}
+			$comisionVendedor = 100 - $comisionTaggeador - $totalComisionMarket;
+
+			$totalComisionTaggeador = ($costoVenta * $comisionTaggeador)/100; 
+			$totalComisionMarket = ($costoVenta * $comisionMarket)/100; 
+			$totalComisionVendedor = ($costoVenta * $comisionVendedor)/100; 
+			if ($this->metricaDao->altaMetrica($idCarritoDetalle,'vendedor',$comisionVendedor,$totalComisionVendedor,$idMP,$idVendedor) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->metricaDao->getMsj());
+			}
+			if ($this->metricaDao->altaMetrica($idCarritoDetalle,'market',$comisionMarket,$totalComisionMarket,$idMP,$idMarket) === false) {
+				$this->setStatus("ERROR");
+				$this->setMsj($this->metricaDao->getMsj());
+			}
+
+			if ($idVendedor != $idTaggeador){
+				if ($this->metricaDao->altaMetrica($idCarritoDetalle,'taggeador',$comisionTaggeador,$totalComisionTaggeador,$idMP,$idTaggeador) === false) {
+					$this->setStatus("ERROR");
+					$this->setMsj($this->metricaDao->getMsj());
+				}
+
+			}
 
 		}
 		$this->setStatus("ok");
