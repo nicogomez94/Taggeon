@@ -896,9 +896,8 @@ FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito
 WHERE
     (c.eliminar is null or c.eliminar = 0)
     AND (cd.eliminar is null or cd.eliminar = 0)
-    AND c.estado is null
     AND c.usuario_alta = $usuarioAltaDB
-
+    AND c.id = $idDB
 ORDER BY cd.fecha_alta DESC
 sql;
 //	echo $sql;

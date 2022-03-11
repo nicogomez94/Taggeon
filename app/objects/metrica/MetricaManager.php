@@ -268,27 +268,27 @@ private function validarPago_id($pago_id)
 		$carrito =  $this->carritoDao->getCarritoMPMetrica($id,$usuarioAlta);
 		$str = '';
 		foreach ($carrito as $hashAux){
-			$idCarritoDetalle = $hashAux['id_carrito_detalle'];
+			$idCarritoDetalle = $hashAux['id_detalle'];
 			$costoVenta = $hashAux['costo_venta'];
 			$idVendedor = $hashAux['id_usuario_vendedor'];
 			$idMarket   = $GLOBALS['configuration']['id_market'];
 			$idTaggeador   = $hashAux['id_usuario_taggeador'];
-			$comisionTaggeador = $GLOBALS['configuration']['comision_taggeador'];
-			$comisionMarket    = $GLOBALS['configuration']['comision_market'];
+			$comisionTaggeador =  (float)$GLOBALS['configuration']['comision_taggeador'];
+			$comisionMarket    =  (float)$GLOBALS['configuration']['comision_market'];
 			$totalComisionMarket = 0;
 			$totalComisionTaggeador = 0;
 			$totalComisionVendedor = 0;
 
 
 			if ($idVendedor == $idTaggeador){
-				$comisionMarket =  $comisionTaggeador + $comisionMarket;
+				$comisionMarket =  (float)($comisionTaggeador + $comisionMarket);
 				$comisionTaggeador = 0;
 			}
-			$comisionVendedor = 100 - $comisionTaggeador - $totalComisionMarket;
+			$comisionVendedor = (float) (100 - $comisionTaggeador - $comisionMarket);
 
-			$totalComisionTaggeador = ($costoVenta * $comisionTaggeador)/100; 
-			$totalComisionMarket = ($costoVenta * $comisionMarket)/100; 
-			$totalComisionVendedor = ($costoVenta * $comisionVendedor)/100; 
+			$totalComisionTaggeador = (float)(($costoVenta * $comisionTaggeador)/100); 
+			$totalComisionMarket = (float)(($costoVenta * $comisionMarket)/100); 
+			$totalComisionVendedor = (float)(($costoVenta * $comisionVendedor)/100); 
 			if ($this->metricaDao->altaMetrica($idCarritoDetalle,'vendedor',$comisionVendedor,$totalComisionVendedor,$idMP,$idVendedor) === false) {
 				$this->setStatus("ERROR");
 				$this->setMsj($this->metricaDao->getMsj());
