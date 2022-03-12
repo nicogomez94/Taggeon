@@ -37,7 +37,8 @@ if ($perfil == 'seller' || $perfil == 'picker'){
         <div><a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a></div>
         <div><a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a></div>
         <div><a href="/mis-ventas.html"><i class="icon-header fas fa-store"></i>Mis Ventas</a></div>
-        <div><a href="/metricas.html"><i class="icon-header fas fa-chart-pie"></i>Métricas</a></div>
+        <div><a href="/metricas-tagger.html"><i class="icon-header fas fa-chart-pie"></i>Métricas - Tagger</a></div>
+        <div><a href="/metricas-seller.html"><i class="icon-header fas fa-chart-pie"></i>Métricas - Seller</a></div>
 STR;
     }
     if ($perfil == 'picker'){

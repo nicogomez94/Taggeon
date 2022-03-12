@@ -177,7 +177,7 @@ class  FavoritoManager
                 }                
                 public function getListFavorito()
                 {
-                    return $this->claseDao->getListFavorito();
+                    return $this->favoritoDao->getListFavorito();
                 }                
 
         
