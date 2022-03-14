@@ -20,16 +20,22 @@
       <h1>Lista de operaciones</h1>
       <hr>
       <br>
-      <div class="Rtable Rtable--6cols">
-         <div class="Rtable-cell Rtable-header"><h4>Operaci&oacute;n</h4></div>
-         <div class="Rtable-cell Rtable-header"><h4>Fecha</h4></div>
-         <div class="Rtable-cell Rtable-header"><h4>Producto</h4></div>
-         <div class="Rtable-cell Rtable-header"><h4>Tienda</h4></div>
-         <div class="Rtable-cell Rtable-header"><h4>Costo de Venta</h4></div>
-         <div class="Rtable-cell Rtable-header"><h4>Comisi&oacute;n Tagger</h4></div>
-         <br>
-         <!-- rows a partir de aca -->
-       </div>
+
+       <table class="data-metricas">
+         <thead>
+           <tr>
+             <th>Operaci&oacute;n</th>
+             <th>Fecha</th>
+             <th>Producto</th>
+             <th>Tienda</th>
+             <th>Costo de Venta</th>
+             <th>Comisi&oacute;n Tagger</th>
+             <th>Estado</th>
+             <th>Motivo</th>
+           </tr>
+         </thead>
+         <tbody></tbody>
+       </table>
       
    </div>
 </div>
@@ -45,62 +51,12 @@
    <script src="js/jquery-3.5.1.js"></script>
    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
    <script src="js/func.js?time=271220-2243"></script>
-<script>
-$(document).ready(function(){
+   <script>
+   $(document).ready(function(){
 
-   var metricas_json = jsonData.metricas.length;
-
-   if(metricas_json>0){
-      for(var i=0; i<metricas_json; i++){
-
-         var cantidad = jsonData.metricas[i].cantidad || 0;
-         var carrito_subtotal = jsonData.metricas[i].carrito_subtotal || 0;
-         var carrito_total = jsonData.metricas[i].carrito_total || 0;
-         var operacion = jsonData.metricas[i].operacion || "";
-         var comision = jsonData.metricas[i].comision || "";
-         var fecha_alta = jsonData.metricas[i].fecha_alta || 0;
-         var foto = jsonData.metricas[i].foto || "";
-         var pago_id = jsonData.metricas[i].pago_id || 0;
-         var id_producto = jsonData.metricas[i].id_producto || 0;
-         var id_publicacion = jsonData.metricas[i].id_publicacion || "";
-         var id_usuario_publicador = jsonData.metricas[i].id_usuario_publicador || 0;
-         var id_vendedor = jsonData.metricas[i].id_vendedor || 0;
-         var nombre_producto = jsonData.metricas[i].nombre_producto || "";
-         var costo_venta = jsonData.metricas[i].costo_venta || "";
-         var publicacion_nombre = jsonData.metricas[i].publicacion_nombre || "";
-         var total = jsonData.total || 0;
-         var restan = jsonData.restan || 0;
-         var usuario_vendedor = jsonData.metricas[i].usuario_vendedor || "";
-         var total_taggeador = jsonData.metricas[i].total_taggeador || 0;
-         var total_tienda = jsonData.metricas[i].total_tienda || 0;
-         var total_vendedor = jsonData.metricas[i].total_vendedor || 0;
-         var usuario_alta = jsonData.metricas[i].usuario_alta || 0;
-         var restan_html = document.querySelector(".num-restan");
-         var el = document.querySelector(".Rtable--6cols");
-         var a_liquidar_html = document.querySelector(".num-big");
-
-         //Operaci,Fecha,Producto,Tienda,Costo,Comision
-         a_liquidar_html.innerHTML = "$"+total+".00";
-         restan_html.innerHTML = "$"+restan+".00";;
-
-         var child = `
-            <div class="Rtable-cell Rtable-rows"><h4>${pago_id}</h4></div>
-            <div class="Rtable-cell Rtable-rows"><h4>${fecha_alta}</h4></div>
-            <div class="Rtable-cell Rtable-rows"><h4>${nombre_producto}</h4></div>
-            <div class="Rtable-cell Rtable-rows"><h4>${usuario_vendedor}</h4></div>
-            <div class="Rtable-cell Rtable-rows"><h4>${costo_venta}</h4></div>
-            <div class="Rtable-cell Rtable-rows"><h4>${comision}</h4></div>
-            <br>
-         `
-
-         el.insertAdjacentHTML("beforeend",child);
-      }
-   }else{
-      var no_metricas = '<h2>Metricas</h2><hr><h1 class="text-center">Todavía no hay datos para mostrar</h1>'
-      $(".inner-compras").html(no_metricas)
-   }
-      
-});
-</script>
+      dibujarMetricas(jsonData.metricas)
+         
+   });
+   </script>
 
 </body></html>

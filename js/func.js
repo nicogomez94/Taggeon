@@ -2192,6 +2192,63 @@ function getMisFavoritos(data){
     }
 }
 
+function dibujarMetricas(data){
+    var data_l = data.length;
+
+    if(data_l>0){
+        for(var i=0; i<data_l; i++){
+
+            var cantidad = data[i].cantidad || 0;
+            var carrito_subtotal = data[i].carrito_subtotal || 0;
+            var carrito_total = data[i].carrito_total || 0;
+            var operacion = data[i].operacion || "";
+            var comision = data[i].comision || "";
+            var fecha_alta = data[i].fecha_alta || 0;
+            var foto = data[i].foto || "";
+            var pago_id = data[i].pago_id || 0;
+            var id_producto = data[i].id_producto || 0;
+            var id_publicacion = data[i].id_publicacion || "";
+            var id_usuario_publicador = data[i].id_usuario_publicador || 0;
+            var id_vendedor = data[i].id_vendedor || 0;
+            var nombre_producto = data[i].nombre_producto || "";
+            var costo_venta = data[i].costo_venta || "";
+            var publicacion_nombre = data[i].publicacion_nombre || "";
+            var total = jsonData.total || 0;
+            var restan = jsonData.restan || 0;
+            var usuario_vendedor = data[i].usuario_vendedor || "";
+            var total_taggeador = data[i].total_taggeador || 0;
+            var total_tienda = data[i].total_tienda || 0;
+            var total_vendedor = data[i].total_vendedor || 0;
+            var usuario_alta = data[i].usuario_alta || 0;
+            var restan_html = document.querySelector(".num-restan");
+            var el = document.querySelector(".data-metricas");
+            var a_liquidar_html = document.querySelector(".num-big");
+
+            //Operaci,Fecha,Producto,Tienda,Costo,Comision
+            a_liquidar_html.innerHTML = "$"+total+".00";
+            restan_html.innerHTML = "$"+restan+".00";;
+
+            var child = `
+            <tr>
+                <td>${pago_id}</td>
+                <td>${fecha_alta}</td>
+                <td>${nombre_producto}</td>
+                <td>${usuario_vendedor}</td>
+                <td>${costo_venta}</td>
+                <td>${comision}</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            `
+
+            el.insertAdjacentHTML("beforeend",child);
+        }
+    }else{
+        var no_metricas = '<h2>Metricas</h2><hr><h1 class="text-center">Todavía no hay datos para mostrar</h1>'
+        $(".inner-compras").html(no_metricas)
+    }
+}
+
 function getMisCompras(data){
     const sizeCompras = data.length;
     const flex_container = document.querySelector(".flex-container")
