@@ -46,15 +46,14 @@ STR;
         <div><a href="/mis-publicaciones.html"><i class="icon-header fas fa-th-list"></i>Mis Publicaciones</a></div>
         <div><a href="/mis-compras.html"><i class="icon-header fas fa-shopping-basket"></i>Mis Compras</a></div>
         <div><a href="/metricas.html"><i class="icon-header fas fa-chart-pie"></i>Métricas</a></div>
-
 STR;
     }
 
-    if ($GLOBALS['sesionG']['usuario'] == 'poepe@gmail.com' || $GLOBALS['sesionG']['usuario'] ==  'nico15@gmail.com'){
+    if ($GLOBALS['sesionG']['usuario'] == 'nicolasgomez94@gmail.com' || $GLOBALS['sesionG']['usuario'] ==  'nico15@gmail.com'){
 
       $menu .= <<<STR
-        <a href="/producto-importar-categorias.html"><i class="icon-header fas fa-th-list"></i>Importar categorías</a><br>
-
+        <div><a href="/metricas-admin.html"><i class="icon-header fas fa-chart-pie"></i>Métricas ADMIN</a></div>
+        <div><a href="/producto-importar-categorias.html"><i class="icon-header fas fa-chart-pie"></i>Importar categorías</a></div>
 STR;
     }
 

@@ -2156,7 +2156,8 @@ function getMisPublic(data){
 
 function getMisFavoritos(data){
     var sizePublic = data.length;
-    let grid = document.querySelector(".grid");      
+    let grid = document.querySelector(".grid");     
+    console.log(data) 
 
     if(sizePublic>0){
         for(var i=0; i<sizePublic; i++){
@@ -2943,7 +2944,7 @@ function getDataPaging(dataPaging) {
     fetch(URL)
     .then(response => response.json())
     .then(data => {
-            console.log(data)
+            //console.log(data)
             var cant = parseInt(data.length);
             dataPaging.cantidad = dataPaging.cantidad+cant;
 

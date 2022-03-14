@@ -192,6 +192,7 @@ sql;
         (`favorito`.eliminar = 0 OR `favorito`.eliminar IS NULL) AND `favorito`.usuario_alta = $usuarioAltaDB
 $paginador
 sql;
+
         $resultado = Database::Connect()->query($sql);
         $row_cnt = mysqli_num_rows($resultado);
         $list = array();
