@@ -1363,7 +1363,7 @@ function eliminarNotif(id_notif){
         //async: false,
             var dataJ = JSON.parse(data).status;
             var dataM = JSON.parse(data).mensaje;
- 
+            console.log(data)
             if(dataJ == 'OK'){
                 //console.log("OK-->"+dataJ+"/"+dataM);
                 var siHayNotifs =  $(".notifs-button-ampliar").find(".media").length;
@@ -2221,7 +2221,7 @@ function dibujarMetricas(data){
             var total_vendedor = data[i].total_vendedor || 0;
             var usuario_alta = data[i].usuario_alta || 0;
             var restan_html = document.querySelector(".num-restan");
-            var el = document.querySelector(".data-metricas");
+            var el = document.querySelector(".data-metricas>tbody");
             var a_liquidar_html = document.querySelector(".num-big");
 
             //Operaci,Fecha,Producto,Tienda,Costo,Comision

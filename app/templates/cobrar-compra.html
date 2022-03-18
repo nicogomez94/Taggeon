@@ -18,6 +18,7 @@
             text-align: center;
         }
         .mail-body{
+          text-align: left;
         }
         .mail-footer{
             background-color: transparent;
@@ -342,14 +343,14 @@
               <!--  -->
 
               <form id="form-checkout" >
-                <input type="text" name="cardNumber" id="form-checkout__cardNumber" />
-                <input type="text" name="cardExpirationDate" id="form-checkout__cardExpirationDate" />
-                <input type="text" name="cardholderName" id="form-checkout__cardholderName"/>
-                <input type="email" name="cardholderEmail" id="form-checkout__cardholderEmail"/>
-                <input type="text" name="securityCode" id="form-checkout__securityCode" />
+                <input type="text" name="cardNumber" id="form-checkout__cardNumber"/>
+                <input type="text" name="cardExpirationDate" id="form-checkout__cardExpirationDate" value="06/27"/>
+                <input type="text" name="cardholderName" id="form-checkout__cardholderName" value="AGULLEIRO LILIANA">
+                <input type="email" name="cardholderEmail" id="form-checkout__cardholderEmail" value="agulleiroliliana@hotmail.com">
+                <input type="text" name="securityCode" id="form-checkout__securityCode" value="333">
                 <select name="issuer" id="form-checkout__issuer"></select>
                 <select name="identificationType" id="form-checkout__identificationType"></select>
-                <input type="text" name="identificationNumber" id="form-checkout__identificationNumber"/>
+                <input type="text" name="identificationNumber" id="form-checkout__identificationNumber" value="14884590">
                 <select name="installments" id="form-checkout__installments"></select>
                 <button type="submit" id="form-checkout__submit">Pagar</button>
                 <progress value="0" class="progress-bar">Cargando...</progress>
@@ -499,43 +500,50 @@ $(document).ready(function(){
         dataForden.append("docNumber",identificationNumber)
         //dataForden.append("id_carrito",id_carrito);
 
-      fetch("/mp/process_payment.php", {
-        method: "POST",
-        /*headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },*/
-        body: dataForden
-      }).then(response => response.json())
-      .then(data => {
-        var dataParse = JSON.parse(data)
-        var dataJ = dataParse.status;
-        
-        if(dataJ == 'OK'){
-            alert("success ajax-->"+dataParse);
-            window.location.replace("/pago-success.html");
-        }else if(dataJ == 'ERROR'){
-            alert("success ajax-->"+dataParse);
-            window.location.replace("/pago-failure.html");
-        }else{
-            alert("success ajax-->"+dataParse);
-            window.location.replace("/pago-pending.html");
-        }
-      })
-      .catch(function(error){
-            alertify.error("Ha ocurrido un error con el servidor. Intente de nuevamente mas tarde")
-      })
-    },
-    onFetching: (resource) => {
-      console.log("Fetching resource: ", resource);
+        fetch("/mp/process_payment.php", {
+            method: "POST",
+            /*headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },*/
+            body: dataForden
+        }).then(response => response.json())
+        .then(data => {
+            let status = data.status;
+            let mensaje = data.mensaje;
 
-      // Animate progress bar
-      const progressBar = document.querySelector(".progress-bar");
-      progressBar.removeAttribute("value");
-
-      return () => {
-        progressBar.setAttribute("value", "0");
-      };
+            if(status == 'OK'){
+              alert("success ajax- ");
+              console.log(mensaje)
+              //window.location.replace("/pago-success.html");
+            }else if(status == 'ERROR'){
+              alert("Ha ocurrido un error con el pago");
+              console.log(mensaje)
+              //window.location.replace("/pago-failure.html");
+            }else{
+              alert("Ha ocurrido un error con el pago");
+              console.log(mensaje)
+              //window.location.replace("/pago-pending.html");
+            }
+        })
+        .catch(function(error){
+              alertify.error("Ha ocurrido un error con el servidor. Intente de nuevamente mas tarde")
+        });
+    
     }
-  },
+  }
 });
+
+/*onFetching: (resource) => {
+  console.log("Fetching resource: ", resource);
+
+  // Animate progress bar
+  const progressBar = document.querySelector(".progress-bar");
+  progressBar.removeAttribute("value");
+
+  return () => {
+    progressBar.setAttribute("value", "0");
+  };
+}*/
+
 </script>
+  
