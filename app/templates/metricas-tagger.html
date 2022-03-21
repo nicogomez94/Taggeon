@@ -60,7 +60,7 @@
                <td>test@gmail.com</td>
                <td>Pasaron los 30 dias</td>
                <td>-</td>
-               <td><a class ="btn btn-warning" href="#">Retirar dinero</a></td>
+               <td><a onclick="retirarDinero()" class ="btn btn-warning" href="#">Retirar dinero</a></td>
             </tr>
             <tr>
                <td>20778081070</td>
@@ -90,8 +90,25 @@
    $(document).ready(function(){
 
       dibujarMetricas(jsonData.metricas)
-         
+      
    });
+   function retirarDinero(){
+      const URL = "/app/metrica.php";
+
+      let dataCarr = new FormData();
+      dataCarr.append("accion","alta");
+      dataCarr.append("id",id_prod);
+
+      fetch(URL, {
+         method: 'POST',
+         body: dataCarr,
+      }).then(res => res.json())
+      .then(response => {
+         let id_carrito = response.mensaje;
+         window.location.replace("/carritos.html?id_carrito="+id_carrito)
+      })
+      .catch(error => alertify.error("No se pudo agregar el producto. Intente mas tarde"))
+   }
    </script>
 
 </body></html>

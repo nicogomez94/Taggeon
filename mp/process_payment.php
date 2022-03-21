@@ -7,7 +7,6 @@ include_once("../app/objects/metrica/MetricaManager.php");
 require_once 'vendor/autoload.php';
 include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
-
 $statusRet  = 'ERROR';
 $mensajeRet = 'ERROR'; 
 

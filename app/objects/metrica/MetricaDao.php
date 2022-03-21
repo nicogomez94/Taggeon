@@ -349,7 +349,7 @@ WHERE
     AND c.estado is not null 
     AND c.estado = 4
     AND m.usuario_alta = $usuarioAltaDB 
-    AND m.rol_usuario = 'tagger'
+    AND m.rol_usuario = 'taggeador'
 sql;
 //echo $sql;
 
@@ -379,7 +379,7 @@ WHERE
     AND c.estado is not null 
     AND c.estado = 4
     AND m.usuario_alta = $usuarioAltaDB AND m.estado is null 
-    AND m.rol_usuario = 'tagger'
+    AND m.rol_usuario = 'taggeador'
 sql;
 //echo $sql;
 
@@ -412,7 +412,7 @@ WHERE
     AND c.estado is not null 
     AND c.estado = 4
     AND m.usuario_alta = $usuarioAltaDB  
-    AND m.rol_usuario = 'tagger'
+    AND m.rol_usuario = 'taggeador'
 ORDER BY cd.fecha_alta DESC
 
 sql;

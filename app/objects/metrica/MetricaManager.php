@@ -294,6 +294,12 @@ private function validarPago_id($pago_id)
 			$totalComisionTaggeador = (float)(($costoVenta * $comisionTaggeador)/100); 
 			$totalComisionMarket = (float)(($costoVenta * $comisionMarket)/100); 
 			$totalComisionVendedor = (float)(($costoVenta * $comisionVendedor)/100); 
+
+			logError("costoventa $costoVenta");
+			logError("totalComisionTaggeador: $totalComisionTaggeador");
+			logError("totalComisionVendedor $totalComisionVendedor");
+			logError("totalComisionMarket $totalComisionMarket");
+
 			if ($this->metricaDao->altaMetrica($idCarritoDetalle,'vendedor',$comisionVendedor,$totalComisionVendedor,$idMP,$idVendedor) === false) {
 				$this->setStatus("ERROR");
 				$this->setMsj($this->metricaDao->getMsj());
