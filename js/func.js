@@ -2220,9 +2220,9 @@ function dibujarMetricas(data){
             var total_tienda = data[i].total_tienda || 0;
             var total_vendedor = data[i].total_vendedor || 0;
             var usuario_alta = data[i].usuario_alta || 0;
-            var restan_html = document.querySelector(".num-restan");
+            var restan_html = document.querySelector(".num-restan") ;
             var el = document.querySelector(".data-metricas>tbody");
-            var a_liquidar_html = document.querySelector(".num-big");
+            var a_liquidar_html = document.querySelector(".num-big") || [];
 
             //Operaci,Fecha,Producto,Tienda,Costo,Comision
             a_liquidar_html.innerHTML = "$"+total+".00";

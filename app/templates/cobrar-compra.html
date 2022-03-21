@@ -512,16 +512,16 @@ $(document).ready(function(){
             let mensaje = data.mensaje;
 
             if(status == 'OK'){
-              alert("success ajax- ");
+              alertify.success("El pago "+mensaje+" se realizo con exito");
               console.log(mensaje)
               //window.location.replace("/pago-success.html");
             }else if(status == 'ERROR'){
-              alert("Ha ocurrido un error con el pago");
-              console.log(mensaje)
+              alertify.error("Ha ocurrido un error con el pago");
+              console.error("elsif",data)
               //window.location.replace("/pago-failure.html");
             }else{
-              alert("Ha ocurrido un error con el pago");
-              console.log(mensaje)
+              alertify.error("Ha ocurrido un error con el pago");
+              console.error(data)
               //window.location.replace("/pago-pending.html");
             }
         })

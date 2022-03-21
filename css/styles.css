@@ -260,7 +260,7 @@ body{
 }
 .btn-warning {
     color: #000 !important;
-    background-color: transparent !important;
+    background-color: #fff !important;
     border-color: #dedede !important;
     /* font-weight: 500 !important; */
     padding: 2px 15px 2px 15px;
@@ -592,6 +592,7 @@ body{
     border-style: solid;
     padding: 3px;
 }
+.data-metricas tr:nth-child(even){background-color: rgb(245, 245, 245)}
 .data-metricas thead {
     background-color: #ffffff;
     border-bottom: 3px solid var(--golden-taggeon);

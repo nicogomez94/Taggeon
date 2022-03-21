@@ -1,20 +1,43 @@
-<div class="overlay-loading"></div>
+<!-- subir comprobante -->
+<div class="modal fade" id="modal-subir-comprob">
+   <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+         <div class="modal-header modal-header-public">
+            <div></div>
+            <div class="text-center"><h3>Subir Comprobante</h3></div>
+            <div class="cerrarModal text-right" data-dismiss="modal" class="text-right"><i id="cerrar-desde-cropper" class="fas fa-times"></i></div>
+         </div>
+         <div class="modal-body">
+            <form id="subir-foto-perfil">
+                 <label for="file-upload" class="custom-file-upload">
+                    <i class="fa fa-cloud-upload"></i> Haga Click para subir el archivo
+                 </label>
+                 <input id="file-upload" type="file"/>
+                 <div id="result-file-upload"></div>
+               <div>
+                  <button type="submit" class="btn btn-warning btn-cambiar-foto-perfil">Enviar Comprobante</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
 
 <div class="container container-compras">
    <div class="inner-compras">
-      <h1>M&eacute;tricas</h1>
+      <h1>M&eacute;tricas ADMIN</h1>
       <hr>
       
       <div class="metricas-header">
          <div class="mh-perfil">
             <img src="/imagen_perfil/generica.png" alt="foto perfil">
-            <div class="mh-perfil-nombre">Pedro Alvarez</div>
+            <div class="mh-perfil-nombre">nicolasgomez94@gmail.com<br>ADMINISTRADOR</div>
          </div>
-         <div class="mh-data">
+         <!-- <div class="mh-data">
             <div class="acumulado"><span class="num-big"></span><br><span class="acumulado-label">Acumulado hasta el momento</span></div>
             <div class="alert alert-warning" role="alert">¡Vamos! estás cerca! te restán <span class="num-restan"></span> para llegar al objetivo de $2500!</div>
             <div><a class ="btn btn-warning disabled" href="#">Retirar dinero</a></div>
-         </div>
+         </div> -->
       </div>
       
       <h1>Listado de operaciones</h1>
@@ -57,14 +80,14 @@
                <td>test@gmail.com</td>
                <td>Pasaron los 30 dias</td>
                <td>-</td>
-               <td><a class ="btn btn-warning" href="#">Retirar dinero</a></td>
+               <td><a class ="btn btn-warning" data-toggle="modal" data-target="#modal-subir-comprob" href="#">Enviar Comprobante</a></td>
             </tr>
             <tr>
                <td>20778081070</td>
                <td>nico99@gmail.com</td>
                <td>Pidió retiro</td>
                <td>-</td>
-               <td><a class ="btn btn-warning" href="#">Retirar dinero</a></td>
+               <td><a class ="btn btn-warning" data-toggle="modal" data-target="#modal-subir-comprob" href="#">Enviar Comprobante</a></td>
             </tr>
          </tbody>
        </table>
@@ -82,9 +105,6 @@
                <th>Producto</th>
                <th>Tienda</th>
                <th>Costo de Venta</th>
-               <th>Comisi&oacute;n Tagger</th>
-               <th>Estado</th>
-               <th>Motivo</th>
             </tr>
          </thead>
          <tbody>
