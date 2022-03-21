@@ -2019,6 +2019,41 @@ function fetchIdCarrito(id_public,id_prod,value_cant){
 
 }
 
+function retirarDinero(){
+    console.log("fes")
+    const URL = "/app/metrica.php";
+
+    let data_d = new FormData();
+    data_d.append("accion","solicitud");
+
+    fetch(URL, {
+       method: 'POST',
+       body: data_d,
+    }).then(res => res.json())
+    .then(response => {
+       console.log(response)
+    })
+    .catch(error => alertify.error("Intente mas tarde"))
+}
+
+function confirmarEnvioDinero(){
+    const URL = "/app/metrica.php";
+    let totalJson = jsonData.total;
+
+    let data_d = new FormData();
+    data_d.append("accion","confirmar");
+    data_d.append("total",totalJson);
+
+    fetch(URL, {
+       method: 'POST',
+       body: data_d,
+    }).then(res => res.json())
+    .then(response => {
+       console.log(response)
+    })
+    .catch(error => alertify.error("Intente mas tarde"))
+}
+
 function desvincularMp(urlParam,accionParam){
 
     let data = new FormData();

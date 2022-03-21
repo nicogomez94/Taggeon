@@ -12,19 +12,21 @@ $objPrincipalManager = new MetricaManager();
 if ($sesionManager->validar(array('seller'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(solicitud)$/i', $var_accion)) {
+    if (preg_match('/^(solicitud|confirmar)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarMetrica($_POST);
         } else if ($var_accion == 'editar') {
             $objPrincipalManager->modificarMetrica($_POST);
         } else if ($var_accion == 'solicitud') {
             $objPrincipalManager->solicitudRetiro($_POST);
+        } else if ($var_accion == 'confirmar') {
+            $objPrincipalManager->confirmarSolicitudRetiro($_POST);
         } else if ($var_accion == 'eliminar') {
             $objPrincipalManager->eliminarMetrica($_POST);
         }
         if ($objPrincipalManager->getStatus() == 'OK') {
             $statusRet  = 'OK';
-            $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+            $mensajeRet = $objPrincipalManager->getMsj();
         } else {
             $statusRet  = 'ERROR';
             $mensajeRet = $objPrincipalManager->getMsj();

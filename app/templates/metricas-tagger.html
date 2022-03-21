@@ -1,5 +1,20 @@
 <div class="overlay-loading"></div>
 
+
+<!-- CONFIRMAR -->
+<div class="modal fade" id="modal-subir-comprob">
+   <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+         <div class="modal-header modal-header-public">
+            <h1>Confirmas el pedido de dinero?</h1>
+         </div>
+         <div class="modal-body">
+            <a onclick="confirmarEnvioDinero()" class="btn btn-warning" href="#">SI CONFIRMO</a>
+         </div>
+      </div>
+   </div>
+</div>
+
 <div class="container container-compras">
    <div class="inner-compras">
       <h1>M&eacute;tricas</h1>
@@ -67,7 +82,7 @@
                <td>nico99@gmail.com</td>
                <td>Pidió retiro</td>
                <td>-</td>
-               <td><a class ="btn btn-warning" href="#">Retirar dinero</a></td>
+               <td><a onclick="retirarDinero()" class ="btn btn-warning" href="#">Retirar dinero</a></td>
             </tr>
          </tbody>
        </table>
@@ -92,23 +107,7 @@
       dibujarMetricas(jsonData.metricas)
       
    });
-   function retirarDinero(){
-      const URL = "/app/metrica.php";
-
-      let dataCarr = new FormData();
-      dataCarr.append("accion","alta");
-      dataCarr.append("id",id_prod);
-
-      fetch(URL, {
-         method: 'POST',
-         body: dataCarr,
-      }).then(res => res.json())
-      .then(response => {
-         let id_carrito = response.mensaje;
-         window.location.replace("/carritos.html?id_carrito="+id_carrito)
-      })
-      .catch(error => alertify.error("No se pudo agregar el producto. Intente mas tarde"))
-   }
+   
    </script>
 
 </body></html>
