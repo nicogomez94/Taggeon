@@ -105,18 +105,12 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		if (!is_numeric($data["id_carrito"])){
 			$this->setStatus("ERROR");
 			$this->setMsj("El id de carrito es incorrecto.");
-			$fp = fopen("/var/www/html/log.txt", 'a');
-			fwrite($fp, $this->getMsj());
-			fclose($fp);
 			return 0;
 		}
 
 		if ($data["id_carrito"] <= 0){
 			$this->setStatus("ERROR");
 			$this->setMsj("No se encontro el carrito.");
-			$fp = fopen("/var/www/html/log.txt", 'a');
-			fwrite($fp, $this->getMsj());
-			fclose($fp);
 			return 0;
  		}
 
@@ -125,9 +119,6 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 		if ($data["id_carrito"] != $idCarrito){
 			$this->setStatus("ERROR");
 			$this->setMsj("El id ". $idCarrito ." de carrito  es incorrecto.");
-			$fp = fopen("/var/www/html/log.txt", 'a');
-			fwrite($fp, $this->getMsj());
-			fclose($fp);
 			return 0;
 		}
 		
@@ -179,9 +170,6 @@ curl_close($ch);
 $obj = json_decode($result, false);
 $token = $obj->access_token;
 $ret = json_encode($result);
-$fp = fopen("/var/www/html/log.txt", 'a');
-fwrite($fp, $ret);
-fclose($fp);
 //Database::Connect()->close();
 //echo $ret;
 //exit;

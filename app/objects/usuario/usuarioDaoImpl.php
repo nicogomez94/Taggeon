@@ -190,9 +190,6 @@ public function getTokenMP ($idCarrito){
 			  AND `eliminar` = 0 AND acces_token is not null
 SQL;
 //echo $sql;
-$fp = fopen("/var/www/html/log.txt", 'a');
-fwrite($fp, $sql);
-fclose($fp);
 
 $resultado=Database::Connect()->query($sql);
 $tokenMP = '';
@@ -216,9 +213,6 @@ public function desvincularTokenMP ($idUsuario){
 		WHERE `idUsuario` = $idUsuarioBD 
 SQL;
 
-$fp = fopen("/var/www/html/log.txt", 'a');
-fwrite($fp, "\n$sql\n");
-fclose($fp);
 
     if (!mysqli_query(Database::Connect(), $sql)) {
 		$this->setStatus("error");
@@ -233,9 +227,6 @@ fclose($fp);
 			  AND `eliminar` = 0 
 SQL;
 
-$fp = fopen("/var/www/html/log.txt", 'a');
-fwrite($fp, "\n$sql\n");
-fclose($fp);
     	if (!mysqli_query(Database::Connect(), $sql)) {
 
 
@@ -263,9 +254,6 @@ public function actualizarTokenMP ($json,$token){
 			  AND `eliminar` = 0 
 SQL;
 
-$fp = fopen("/var/www/html/log.txt", 'a');
-fwrite($fp, "\n$sql\n");
-fclose($fp);
 
     if (!mysqli_query(Database::Connect(), $sql)) {
 		$this->setStatus("error");
@@ -280,9 +268,6 @@ fclose($fp);
 			  AND `eliminar` = 0 
 SQL;
 
-$fp = fopen("/var/www/html/log.txt", 'a');
-fwrite($fp, "\n$sql\n");
-fclose($fp);
     	if (!mysqli_query(Database::Connect(), $sql)) {
 
 

@@ -365,4 +365,10 @@ private function validarPago_id($pago_id)
 		$ret =  $this->metricaDao->getListMetricaAdmin();
 		return $ret;
 	}
+	public function solicitudRetiro(array $data)
+	{
+
+		$this->setStatus("ERROR");
+		$this->setMsj("programando");
+	}
 }

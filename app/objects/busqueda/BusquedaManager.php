@@ -80,29 +80,15 @@ class  BusquedaManager
 	public function agregarBusqueda(array $data)
 	{
 
-		$fp = fopen("/var/www/html/log.txt", 'a');
-		fwrite($fp, "Paso agregar busqueda");
-		fclose($fp);
 
 		if ($this->validarBusqueda($data) === false) {
 			return false;
 		}
-		$fp = fopen("/var/www/html/log.txt", 'a');
-		fwrite($fp, "Paso agregar busqueda");
-		fclose($fp);
-
 		if ($this->busquedaDao->altaBusqueda($data) === false) {
-			
-		$fp = fopen("/var/www/html/log.txt", 'a');
-		fwrite($fp, "Paso agregar busqueda error".$this->busquedaDao->getMsj());
-		fclose($fp);
 			$this->setStatus("ERROR");
 			$this->setMsj($this->busquedaDao->getMsj());
 		} else {
 			
-		$fp = fopen("/var/www/html/log.txt", 'a');
-		fwrite($fp, "ok");
-		fclose($fp);
 			$idBusqueda = $this->busquedaDao->getMsj();
 			$this->setStatus("OK");
 			$this->setMsj($idBusqueda);

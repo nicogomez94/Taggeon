@@ -25,17 +25,12 @@ if ($sesionManager->validar(array('seller','picker'))){
 		    "mensaje" => "token incorrecto $tokenMP"
 		);
 		$ret = json_encode($objRet);
-		$fp = fopen("/var/www/html/log.txt", 'a');
-		fwrite($fp, $ret);
-		fclose($fp);
+        	logError($ret);
 		Database::Connect()->close();
 		echo $ret;
 		exit;
 	    }else{
-
-		$fp = fopen("/var/www/html/log.txt", 'a');
-		fwrite($fp, "\n######################################################\njson $tokenMP\n######################################################\n");
-		fclose($fp);
+		logError("\n######################################################\njson $tokenMP\n######################################################\n");
 	    }
         $objPrincipalManager = new CarritoManager();
 $validarStock = $objPrincipalManager->validarStock($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario']);
@@ -45,9 +40,7 @@ if ($objPrincipalManager->getStatus() != 'ok'){
 	    "mensaje" => $objPrincipalManager->getMsj()
 	);
 	$ret = json_encode($objRet);
-	$fp = fopen("/var/www/html/log.txt", 'a');
-	fwrite($fp, $ret);
-	fclose($fp);
+	logError($ret);
 	Database::Connect()->close();
 	echo $ret;
 	exit;
@@ -57,9 +50,7 @@ if ($objPrincipalManager->getStatus() != 'ok'){
         $mensajeRet = $objResponse['mensaje'];
         $str = "token $tokenMP\n";
         $str .= " status: ".$statusRet." mensaje: ".$mensajeRet."\n";
-        $fp = fopen("/var/www/html/log.txt", 'a');
-        fwrite($fp, $str);
-        fclose($fp);
+	logError($str);
         
 
         #$objResponse = pagar('TEST-3352741419059189-050618-af87bf11b26552b6b21a12aebad985b6-755113315');
@@ -140,29 +131,24 @@ function pagar ($token){
             $str .= "response mp status_detail: ".$payment->status_detail."\n";
             $str .= "response mp id: ".$payment->id."\n";
             $str .= "#---------------------------------------------\n";
-            $fp = fopen("/var/www/html/log.txt", 'a');
-            fwrite($fp, $str);
-            fclose($fp);
+	    logError($str);
             #fin debug post y response mp
         
             if (isset($payment) && isset($payment->status) && $payment->status == 'approved'){
-                $fp = fopen("/var/www/html/log.txt", 'a');
                 $str = "################################## METRICA\n";
-                fwrite($fp, $str);
+		logError($str);
         	$metricaManager = new MetricaManager();
 		if ($metricaManager->procesarMetrica($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario'],$payment->id) === false){
 			if ($metricaManager->getStatus() != 'ok'){
-                		fwrite($fp, $str);
 				$objRet = array(
 				    "status"  => "ERROR",
 				    "mensaje" => $metricaManager->getMsj()
 				);
 				$ret = json_encode($objRet);
-				fwrite($fp, $ret);
+				logError($ret);
 
 				$str = "FIN METRICA\n";
-				fwrite($fp, $str);
-				fclose($fp);
+				logError($str);
 
 				Database::Connect()->close();
 				echo $ret;
@@ -171,21 +157,15 @@ function pagar ($token){
 
 		}
                 $str = "FIN METRICA\n";
-                fwrite($fp, $str);
-                fclose($fp);
+	        logError($str);
 
                 $str = "Paso 1\n";
-                $fp = fopen("/var/www/html/log.txt", 'a');
-                fwrite($fp, $str);
-                fclose($fp);
+	        logError($str);
         	$objPrincipalManager = new CarritoManager();
                 $objPrincipalManager->cambiarEstadoMayor3($_POST,4);
                 if ($objPrincipalManager->getStatus() == 'OK') {
                     $str = "OK\n";
-                    $fp = fopen("/var/www/html/log.txt", 'a');
-
-                    fwrite($fp, $str);
-                    fclose($fp);
+	            logError($str);
                     $statusRet  = 'OK';
                     $mensajeRet = $payment->id;
 
@@ -198,9 +178,7 @@ function pagar ($token){
 				    "mensaje" => "Error al descontar el stock:".$objPrincipalManager->getMsj()
 				);
 				$ret = json_encode($objRet);
-				$fp = fopen("/var/www/html/log.txt", 'a');
-				fwrite($fp, $ret);
-				fclose($fp);
+	        		logError($ret);
 				Database::Connect()->close();
 				echo $ret;
 				exit;
@@ -209,33 +187,22 @@ function pagar ($token){
 		    
                 } else {
                     $str = "ERROR\n";
-                    $fp = fopen("/var/www/html/log.txt", 'a');
-                    fwrite($fp, $str);
-                    fclose($fp);
+	            logError($str);
                     $statusRet  = 'ERROR';
                     $mensajeRet = $objPrincipalManager->getMsj();
                 }
             }else{
-                
                 $str = "Paso else\n";
-                $fp = fopen("/var/www/html/log.txt", 'a');
-                fwrite($fp, $str);
-                fclose($fp);
+	        logError($str);
                 if (isset($payment)){
                     $str = "Paso else 1\n";
-                    $fp = fopen("/var/www/html/log.txt", 'a');
-                    fwrite($fp, $str);
-                    fclose($fp);
+	            logError($str);
                     if (isset($payment->status)){
-                        $str .= "Paso else 2\n";
-                        $fp = fopen("/var/www/html/log.txt", 'a');
-                        fwrite($fp, $str);
-                        fclose($fp);
+                        $str = "Paso else 2\n";
+	                logError($str);
                         if ($payment->status == 'approved'){
-                            $str .= "Paso else 3\n";
-                            $fp = fopen("/var/www/html/log.txt", 'a');
-                            fwrite($fp, $str);
-                            fclose($fp);
+                            $str = "Paso else 3\n";
+	                    logError($str);
                         }
                     } 
                 } 

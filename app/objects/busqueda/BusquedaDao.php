@@ -52,9 +52,6 @@ $mysqli = Database::Connect();
 $mysqli->query($sql);
     $row_cnt =  $mysqli->affected_rows;
 
-    $fp = fopen("/var/www/html/log.txt", 'a');
-    fwrite($fp, "\nrow_cnt $row_cnt\n");
-    fclose($fp);
     
     if ($row_cnt <= 0) {
         $sql = <<<SQL

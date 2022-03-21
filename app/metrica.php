@@ -12,11 +12,13 @@ $objPrincipalManager = new MetricaManager();
 if ($sesionManager->validar(array('seller'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
-    if (preg_match('/^(alta|editar|listar|get|eliminar)$/i', $var_accion)) {
+    if (preg_match('/^(solicitud)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarMetrica($_POST);
         } else if ($var_accion == 'editar') {
             $objPrincipalManager->modificarMetrica($_POST);
+        } else if ($var_accion == 'solicitud') {
+            $objPrincipalManager->solicitudRetiro($_POST);
         } else if ($var_accion == 'eliminar') {
             $objPrincipalManager->eliminarMetrica($_POST);
         }
