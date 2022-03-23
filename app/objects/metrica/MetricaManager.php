@@ -383,7 +383,7 @@ private function validarPago_id($pago_id)
 		$totalParam = isset($data["total"]) ? $data["total"] : '';
 		if ($total == $totalParam){
 			$this->setStatus("OK");
-			$this->setMsj($total);
+			$this->setMsj('ok');
 		}else{
 		    $this->setStatus("ERROR");
 		    $this->setMsj("El monto a retirar es incorrecto");

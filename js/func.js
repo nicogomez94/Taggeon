@@ -2031,7 +2031,9 @@ function retirarDinero(){
        body: data_d,
     }).then(res => res.json())
     .then(response => {
-       console.log(response)
+       console.log("ok"+response)
+       $("#modal-confirmar").modal('show');
+       console.log("activo popup")
     })
     .catch(error => alertify.error("Intente mas tarde"))
 }
@@ -2040,16 +2042,16 @@ function confirmarEnvioDinero(){
     const URL = "/app/metrica.php";
     let totalJson = jsonData.total;
 
-    let data_d = new FormData();
-    data_d.append("accion","confirmar");
-    data_d.append("total",totalJson);
+    let data_c = new FormData();
+    data_c.append("accion","confirmar");
+    data_c.append("total",totalJson);
 
     fetch(URL, {
        method: 'POST',
-       body: data_d,
+       body: data_c,
     }).then(res => res.json())
     .then(response => {
-       console.log(response)
+        console.log(response)
     })
     .catch(error => alertify.error("Intente mas tarde"))
 }
@@ -2271,7 +2273,7 @@ function dibujarMetricas(data){
                 <td>${usuario_vendedor}</td>
                 <td>${costo_venta}</td>
                 <td>${comision}</td>
-                <td>-</td>
+                <td>Solicitud</td>
                 <td>-</td>
             </tr>
             `
