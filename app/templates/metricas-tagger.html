@@ -9,7 +9,7 @@
             <h1>Confirmas el pedido de dinero?</h1>
          </div>
          <div class="modal-body">
-            <a onclick="confirmarEnvioDinero()" class="btn btn-warning" href="#">SI CONFIRMO</a>
+            <a onclick="retirarDinero()" class="btn btn-warning" href="#">SI CONFIRMO</a>
          </div>
       </div>
    </div>
@@ -28,7 +28,7 @@
          <div class="mh-data">
             <div class="acumulado"><span class="num-big"></span><br><span class="acumulado-label">Acumulado hasta el momento</span></div>
             <div class="alert alert-warning" role="alert">¡Vamos! estás cerca! te restán <span class="num-restan"></span> para llegar al objetivo de $2500!</div>
-            <div><a class ="btn btn-warning disabled" href="#">Retirar dinero</a></div>
+            <div><a class ="btn btn-warning" data-toggle="modal" data-target="#modal-confirmar" href="#">Retirar dinero</a></div>
          </div>
       </div>
       

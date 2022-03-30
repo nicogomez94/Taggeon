@@ -2020,11 +2020,13 @@ function fetchIdCarrito(id_public,id_prod,value_cant){
 }
 
 function retirarDinero(){
-    console.log("fes")
+    //tiene que tenr si o si un cancelar
     const URL = "/app/metrica.php";
+    let monto = jsonData.total;
 
     let data_d = new FormData();
     data_d.append("accion","solicitud");
+    data_d.append("monto",monto);
 
     fetch(URL, {
        method: 'POST',
@@ -2032,26 +2034,6 @@ function retirarDinero(){
     }).then(res => res.json())
     .then(response => {
        console.log("ok"+response)
-       $("#modal-confirmar").modal('show');
-       console.log("activo popup")
-    })
-    .catch(error => alertify.error("Intente mas tarde"))
-}
-
-function confirmarEnvioDinero(){
-    const URL = "/app/metrica.php";
-    let totalJson = jsonData.total;
-
-    let data_c = new FormData();
-    data_c.append("accion","confirmar");
-    data_c.append("total",totalJson);
-
-    fetch(URL, {
-       method: 'POST',
-       body: data_c,
-    }).then(res => res.json())
-    .then(response => {
-        console.log(response)
     })
     .catch(error => alertify.error("Intente mas tarde"))
 }

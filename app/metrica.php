@@ -19,8 +19,6 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->modificarMetrica($_POST);
         } else if ($var_accion == 'solicitud') {
             $objPrincipalManager->solicitudRetiro($_POST);
-        } else if ($var_accion == 'confirmar') {
-            $objPrincipalManager->confirmarSolicitudRetiro($_POST);
         } else if ($var_accion == 'eliminar') {
             $objPrincipalManager->eliminarMetrica($_POST);
         }

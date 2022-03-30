@@ -24,6 +24,7 @@ if ($perfil=='seller' || $perfil=='picker'){
         "apellido"    => $GLOBALS['sesionG']['apellido'],
         "contacto" => $GLOBALS['sesionG']['email'],
         "metricas"     => $metricaManager->getListMetricaTagger(),
+        "pedidos"     => $metricaManager->getListPedidosTagger(),
         "total"     => $metricaManager->getListMetricaTotalTagger(),
 	"restan"     => $GLOBALS['configuration']['total_objetivo'] - $metricaManager->getListMetricaTotalPendienteTagger(),
 	'total_objetivo' => $GLOBALS['configuration']['total_objetivo'],

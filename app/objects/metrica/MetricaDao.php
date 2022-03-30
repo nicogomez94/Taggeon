@@ -618,4 +618,29 @@ sql;
         }
         return $list;
 	}
+
+	public function getListPedidosTagger()
+	    {
+		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+        $usuarioAltaDB = Database::escape($usuarioAlta);
+        $sql = <<<sql
+SELECT
+*
+FROM 
+solicitudRetiroDinero s
+WHERE
+    (s.eliminar is null or s.eliminar = 0)
+ORDER BY s.fecha_alta DESC
+
+sql;
+//echo $sql;
+
+        $resultado = Database::Connect()->query($sql);
+        $list = array();
+
+        while ($rowEmp = mysqli_fetch_array($resultado)) {
+            $list[] = $rowEmp;
+        }
+        return $list;
+	}
 }

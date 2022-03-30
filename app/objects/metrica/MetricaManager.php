@@ -374,12 +374,6 @@ private function validarPago_id($pago_id)
 	public function solicitudRetiro(array $data)
 	{
 		$total = $this->getListMetricaTotalTagger();
-		$this->setStatus("OK");
-		$this->setMsj($total);
-	}
-	public function confirmarSolicitudRetiro(array $data)
-	{
-		$total = $this->getListMetricaTotalTagger();
 		$totalParam = isset($data["total"]) ? $data["total"] : '';
 		if ($total == $totalParam){
 			$this->setStatus("OK");
@@ -388,5 +382,10 @@ private function validarPago_id($pago_id)
 		    $this->setStatus("ERROR");
 		    $this->setMsj("El monto a retirar es incorrecto");
 		}
+	}
+	public function getListPedidosTagger()
+	{
+		$ret =  $this->metricaDao->getListPedidosTagger();
+		return $ret;
 	}
 }
