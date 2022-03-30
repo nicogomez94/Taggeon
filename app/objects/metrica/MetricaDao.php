@@ -643,4 +643,64 @@ sql;
         }
         return $list;
 	}
+
+
+    
+ 
+
+public function altaSolicitudRetiroDinero($monto)
+{
+
+$usuario = $GLOBALS['sesionG']['idUsuario'];
+$usuarioAltaDB = Database::escape($usuario);
+$montoDB = Database::escape($monto);
+
+    $sql = <<<SQL
+        INSERT INTO solicitudRetiroDinero (monto, usuario_alta)  
+        VALUES ($montoDB,$usuarioAltaDB)
+SQL;
+
+    if (!mysqli_query(Database::Connect(), $sql)) {
+        $this->setStatus("ERROR");
+        $this->setMsj("$sql" . Database::Connect()->error);
+    } else {
+        $id = mysqli_insert_id(Database::Connect());
+        $this->setMsj($id);
+        $this->setStatus("OK");
+        return true;
+    }
+
+    return false;
+}
+
+
+
+
+
+    public function actualizarMetricaIdRetiro($idSolicitudRetiroDinero)
+    {
+    $idSolicitudRetiroDineroDB = Database::escape($idSolicitudRetiroDinero);
+
+    $usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
+    $usuarioAltaDB = Database::escape($usuarioAlta);
+    $sql = <<<sql
+    update metrica set estado="PENDIENTE",idSolicitudRetiroDinero=$idSolicitudRetiroDineroDB
+where (eliminar is null or eliminar = 0)
+AND estado is  null 
+AND usuario_alta = $usuarioAltaDB 
+AND rol_usuario = 'taggeador'
+sql;
+//echo $sql;
+if (!mysqli_query(Database::Connect(), $sql)) {
+    $this->setStatus("ERROR");
+    $this->setMsj("$sql" . Database::Connect()->error);
+} else {
+    $this->setStatus("OK");
+    return true;
+}
+return false;
+}
+
+
+
 }

@@ -376,8 +376,18 @@ private function validarPago_id($pago_id)
 		$total = $this->getListMetricaTotalTagger();
 		$totalParam = isset($data["monto"]) ? $data["monto"] : '';
 		if ($total == $totalParam){
-			$this->setStatus("OK");
-			$this->setMsj('ok');
+			if ($this->metricaDao->altaSolicitudRetiroDinero($total)){
+				if ($this->metricaDao->actualizarMetricaIdRetiro($this->metricaDao->getMsj())){
+					$this->setStatus("OK");
+					$this->setMsj('ok');
+				}else{
+					$this->setStatus("ERROR");
+					$this->setMsj("no se pudo actualizar el id de solicitud de retiro en metrica.");	
+				}
+			}else{
+				$this->setStatus("ERROR");
+				$this->setMsj("no se pudo crear la solicitud de retiro dinero.");	
+			}
 		}else{
 		    $this->setStatus("ERROR");
 		    $this->setMsj("El monto a retirar es incorrecto");
