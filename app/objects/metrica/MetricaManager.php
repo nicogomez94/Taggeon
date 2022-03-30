@@ -374,7 +374,7 @@ private function validarPago_id($pago_id)
 	public function solicitudRetiro(array $data)
 	{
 		$total = $this->getListMetricaTotalTagger();
-		$totalParam = isset($data["total"]) ? $data["total"] : '';
+		$totalParam = isset($data["monto"]) ? $data["monto"] : '';
 		if ($total == $totalParam){
 			$this->setStatus("OK");
 			$this->setMsj('ok');
