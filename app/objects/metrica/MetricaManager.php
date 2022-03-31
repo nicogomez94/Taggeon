@@ -398,4 +398,10 @@ private function validarPago_id($pago_id)
 		$ret =  $this->metricaDao->getListPedidosTagger();
 		return $ret;
 	}
+
+	public function getListPedidosTaggerAdmin()
+	{
+		$ret =  $this->metricaDao->getListPedidosTaggerAdmin();
+		return $ret;
+	}
 }
