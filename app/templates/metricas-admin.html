@@ -97,32 +97,17 @@
       <hr>
       <br>
 
-      <table class="data-metricas">
+      <table class="data-metricas data-pedidos">
          <thead>
             <tr>
-               <th>Operaci&oacute;n</th>
+               <th>Numero de Solicitud</th>
                <th>Fecha</th>
-               <th>Producto</th>
-               <th>Tienda</th>
-               <th>Costo de Venta</th>
+               <th>Monto</th>
+               <th>Estado</th>
+               <th>Comprobante</th>
             </tr>
          </thead>
-         <tbody>
-            <tr>
-               <td>20778024040</td>
-               <td>test@gmail.com</td>
-               <td>Pasaron los 30 dias</td>
-               <td>-</td>
-               <td><a class ="btn btn-warning" href="#">Retirar dinero</a></td>
-            </tr>
-            <tr>
-               <td>20778081070</td>
-               <td>nico99@gmail.com</td>
-               <td>Pidió retiro</td>
-               <td>-</td>
-               <td><a class ="btn btn-warning" href="#">Retirar dinero</a></td>
-            </tr>
-         </tbody>
+         <tbody></tbody>
       </table>
       
       <br>
@@ -136,11 +121,11 @@
    var jsonData = {json};
 </script>
 
-   <script>
-      $(document).ready(function(){
-      
-         dibujarMetricas(jsonData.metricas)
-            
-      });
-   </script>
+<script>
+   $(document).ready(function(){
+
+      dibujarMetricas(jsonData.metricas,jsonData.pedidos)
+
+   });
+</script>
       

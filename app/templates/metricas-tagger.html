@@ -36,7 +36,7 @@
       <hr>
       <br>
 
-       <table class="data-metricas">
+      <table class="data-metricas">
          <thead>
            <tr>
              <th>Operaci&oacute;n</th>
@@ -50,48 +50,25 @@
            </tr>
          </thead>
          <tbody></tbody>
-       </table>
+      </table>
       <br>
       <br>
        <h1>Historial de pedidos</h1>
       <hr>
       <br>
 
-       <table class="data-metricas">
+      <table class="data-metricas data-pedidos">
          <thead>
-           <tr>
-             <th>Numero de Solicitud</th>
-             <th>Fecha</th>
-             <th>Monto</th>
-             <th>Estado</th>
-             <th>Comprobante</th>
-           </tr>
+            <tr>
+               <th>Numero de Solicitud</th>
+               <th>Fecha</th>
+               <th>Monto</th>
+               <th>Estado</th>
+               <th>Comprobante</th>
+            </tr>
          </thead>
-         <tbody>
-            <tr>
-               <td>20778024040</td>
-               <td>24/24/24</td>
-               <td>$41994</td>
-               <td>Enviado</td>
-               <td><a href="#">20778024040.pdf</a></td>
-            </tr>
-            <tr>
-               <td>20778024040</td>
-               <td>24/24/24</td>
-               <td>$41994</td>
-               <td>Enviado</td>
-               <td><a href="#">20778024040.pdf</a></td>
-            </tr>
-            <tr>
-               <td>20778024040</td>
-               <td>24/24/24</td>
-               <td>$41994</td>
-               <td>Enviado</td>
-               <td><a href="#">20778024040.pdf</a></td>
-            </tr>
-            
-         </tbody>
-       </table>
+         <tbody></tbody>
+      </table>
 
        <br>
        <br>
@@ -114,7 +91,7 @@
    <script>
    $(document).ready(function(){
 
-      dibujarMetricas(jsonData.metricas)
+      dibujarMetricas(jsonData.metricas,jsonData.pedidos)
       
    });
    

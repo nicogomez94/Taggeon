@@ -2211,12 +2211,48 @@ function getMisFavoritos(data){
     }
 }
 
-function dibujarMetricas(data){
-    var data_l = data.length;
+function dibujarListadoPedidos(data){
+    if(data.length>0){
 
-    if(data_l>0){
-        for(var i=0; i<data_l; i++){
+        for(var i=0; i<data.length; i++){
+    
+            var fecha_alta = data[i].fecha_alta || 0;
+            var pago_id = data[i].pago_id || 0;
+            var pago_fecha = data[i].pago_fecha || 0;
+            var pago_observaciones = data[i].pago_observaciones || 0;
+            var id = data[i].id || 0;
+            var monto = data[i].monto || 0;
+            var nombre_producto = data[i].nombre_producto || "";
+            var costo_venta = data[i].costo_venta || "";
+            var publicacion_nombre = data[i].publicacion_nombre || "";
+            var estado = (data[i].estado==null) ? "Solicitado" : "En Proceso"
+            var usuario_alta = data[i].usuario_alta || 0;
+            var usuario_editar = data[i].usuario_editar || 0;
+            var el = document.querySelector(".data-pedidos>tbody");
+    
+            var child = `
+            <tr>
+                <td>${id}</td>
+                <td>${fecha_alta}</td>
+                <td>${monto}</td>
+                <td>${estado}</td>
+                <td><a href="#">321321321.pdf</a></td>
+            </tr>
+            `
+    
+            el.insertAdjacentHTML("beforeend",child);
+        }
 
+    }else{
+        alertify.error("ha ocurrido un error")
+    }
+}
+
+function dibujarListadoOperaciones(data){
+    if(data.length>0){
+
+        for(var i=0; i<data.length; i++){
+    
             var cantidad = data[i].cantidad || 0;
             var carrito_subtotal = data[i].carrito_subtotal || 0;
             var carrito_total = data[i].carrito_total || 0;
@@ -2242,11 +2278,11 @@ function dibujarMetricas(data){
             var restan_html = document.querySelector(".num-restan")  || [];
             var el = document.querySelector(".data-metricas>tbody");
             var a_liquidar_html = document.querySelector(".num-big") || [];
-
+    
             //Operaci,Fecha,Producto,Tienda,Costo,Comision
             a_liquidar_html.innerHTML = "$"+total;
             restan_html.innerHTML = "$"+restan+".00";;
-
+    
             var child = `
             <tr>
                 <td>${pago_id}</td>
@@ -2259,8 +2295,23 @@ function dibujarMetricas(data){
                 <td>-</td>
             </tr>
             `
-
+    
             el.insertAdjacentHTML("beforeend",child);
+        }
+
+    }else{
+        alertify.error("ha ocurrido un error")
+    }
+}
+
+function dibujarMetricas(operacionesParam,pedidosParam){
+    var operacionesParam_l = operacionesParam.length;
+    var pedidosParam_l = pedidosParam.length;
+
+    if(operacionesParam_l>0){
+        dibujarListadoOperaciones(operacionesParam);
+        if(pedidosParam_l>0){
+            dibujarListadoPedidos(pedidosParam);
         }
     }else{
         var no_metricas = '<h2>Metricas</h2><hr><h1 class="text-center">Todavía no hay datos para mostrar</h1>'
