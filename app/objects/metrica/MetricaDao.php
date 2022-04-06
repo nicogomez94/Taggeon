@@ -605,9 +605,9 @@ WHERE
     AND c.estado = 4
 
 ORDER BY cd.fecha_alta DESC
+sql;
 //    AND m.usuario_alta = $usuarioAltaDB  
 //     AND m.rol_usuario = 'market'
-sql;
 //echo $sql;
 
         $resultado = Database::Connect()->query($sql);
