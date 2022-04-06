@@ -745,7 +745,7 @@ where
 AND idSolicitudRetiroDinero=$idSolicitudRetiroDineroDB
 sql;
 
-echo $sql;
+//echo $sql;
 if (!mysqli_query(Database::Connect(), $sql)) {
 $this->setStatus("ERROR");
 $this->setMsj("$sql" . Database::Connect()->error);
