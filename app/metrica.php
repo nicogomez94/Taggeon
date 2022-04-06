@@ -9,7 +9,7 @@ $sesionManager = new SesionManagerImpl();
 $objPrincipalManager = new MetricaManager();
 //se definio superadminadmin para que no pueda entrar nadie. El dia de manana se ve si se habilita o no esta pantalla
 #if ($sesionManager->validarPublic(array('anonymous'))){
-if ($sesionManager->validar(array('seller'))){
+if ($sesionManager->validar(array('seller','picker'))){
 if (sizeof($_POST) > 0) {
     $var_accion = (isset($_POST['accion']))  ? $_POST['accion'] : "ninguna";
     if (preg_match('/^(solicitud|guardar)$/i', $var_accion)) {
@@ -19,7 +19,7 @@ if (sizeof($_POST) > 0) {
             $objPrincipalManager->modificarMetrica($_POST);
             
         } else if ($var_accion == 'guardar') {
-            $objPrincipalManager->subirComprobante($_POST);
+            $objPrincipalManager->subirComprobante();
         } else if ($var_accion == 'solicitud') {
             $objPrincipalManager->solicitudRetiro($_POST);
         } else if ($var_accion == 'eliminar') {

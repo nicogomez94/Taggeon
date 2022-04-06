@@ -3194,15 +3194,14 @@ function enviarComprobante(id,monto){
 
     var reader = new FileReader();
     reader.onload = function(){
-        
-        var data_pdf = { 
-            'file': reader.result,
-            'accion':'guardar',
-            'id':id,
-            'monto':monto
-        };
 
-        fetch("/app/metricas.php", {
+        let data_pdf = new FormData();
+        data_pdf.append("file",reader.result);
+        data_pdf.append("accion",'guardar');
+        data_pdf.append("id",id);
+        data_pdf.append("monto",monto);
+
+        fetch("/app/metrica.php", {
             method: 'POST',
             body: data_pdf,
         }).then(res => res.json())

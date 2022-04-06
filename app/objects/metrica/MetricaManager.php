@@ -3,6 +3,7 @@ include_once("MetricaDao.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."carrito/CarritoDao.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."producto/ProductoManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."publicacion/PublicacionManager.php");
+include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioDaoImpl.php");
 
 class  MetricaManager
 {
@@ -16,6 +17,7 @@ class  MetricaManager
 		$this->carritoDao = new CarritoDao();
 		$this->productoManager = new ProductoManager();
 		$this->publicacionManager = new PublicacionManager();
+		$this->usuarioDao = new UsuarioDaoImpl();
 	}
 
 	public function getStatus()
@@ -406,13 +408,11 @@ private function validarPago_id($pago_id)
 	}
 
 	public function subirComprobante(){
-		$perfil    = $GLOBALS['sesionG']['perfil'];
-		if ($perfil != "admin"){
+		if (!$this->usuarioDao->isAdmin()){
 			$this->setStatus("error");
 			$this->setMsj("No tiene permisos para esta accion.");
 			return false;
-		}
-
+		}	
 		
 		$id    = isset($_POST["id"]) ? $_POST["id"] : '';
 		
@@ -427,7 +427,6 @@ private function validarPago_id($pago_id)
 		if ($this->getStatus() != 'ok'){
 			return false;
 		}
-
 		$comprobante         = isset($_POST["file"]) ? $_POST["file"] : '';
 		if ($comprobante == ''){
 			$this->setStatus("error");
@@ -440,7 +439,7 @@ private function validarPago_id($pago_id)
 			$data = base64_decode($base_to_php[1]);
 			$filepath = "/var/www/html/comprobantes/$id";
 			file_put_contents($filepath,$data);
-			$this->setStatus("ok");
+			$this->setStatus("OK");
 			$this->setMsj("/comprobantes/$id");
 			return true;
 		}
@@ -458,11 +457,11 @@ private function validarPago_id($pago_id)
 	private function validarMonto($validarMonto)
 	{
 		if (!preg_match('/^\d+(\.\d{1,2})?$/', $validarMonto)){
-			$this->setStatus("ERROR");
+			$this->setStatus("error");
 			$this->setMsj("El campo validarMonto es incorrecto.");
 			return false;
 		}
-		$this->setStatus("OK");
+		$this->setStatus("ok");
 		$this->setMsj("");
 		return true;
 	}  
