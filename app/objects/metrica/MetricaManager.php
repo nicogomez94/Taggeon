@@ -444,13 +444,17 @@ private function validarPago_id($pago_id)
 				if ($this->metricaDao->actualizarEnviarDineroIdFinalizado($id)){
 					$this->setStatus("OK");
 					$this->setMsj('ok');
+					return true;
 				}else{
 					$this->setStatus("ERROR");
 					$this->setMsj("no se pudo actualizar el estado del comprobante.");	
+					return false;
+
 				}
 			}else{
 				$this->setStatus("ERROR");
 				$this->setMsj("no se pudo actualizar el estado de solicitud de dinero.");	
+				return false;
 			}
 
 
@@ -459,7 +463,7 @@ private function validarPago_id($pago_id)
 		}
 		$this->setStatus("error");
 		$this->setMsj("No se pudo subir el comprobante.");
-		return true;
+		return false;
 	}
 
 
