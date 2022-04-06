@@ -404,4 +404,66 @@ private function validarPago_id($pago_id)
 		$ret =  $this->metricaDao->getListPedidosTaggerAdmin();
 		return $ret;
 	}
+
+	public function subirComprobante(){
+		$perfil    = $GLOBALS['sesionG']['perfil'];
+		if ($perfil != "admin"){
+			$this->setStatus("error");
+			$this->setMsj("No tiene permisos para esta accion.");
+			return false;
+		}
+
+		
+		$id    = isset($_POST["id"]) ? $_POST["id"] : '';
+		
+		$this->validarId($id);
+		if ($this->getStatus() != 'ok'){
+			return false;
+		}
+		
+		
+		$monto = isset($_POST["monto"]) ? $_POST["monto"] : 0;
+		$this->validarMonto($monto);
+		if ($this->getStatus() != 'ok'){
+			return false;
+		}
+
+		$comprobante         = isset($_POST["file"]) ? $_POST["file"] : '';
+		if ($comprobante == ''){
+			$this->setStatus("error");
+			$this->setMsj("No se pudo subir el comprobante.");
+			return false;
+		}
+
+		$base_to_php = explode(',', $comprobante);
+		if (count($base_to_php) == 2){
+			$data = base64_decode($base_to_php[1]);
+			$filepath = "/var/www/html/comprobantes/$id";
+			file_put_contents($filepath,$data);
+			$this->setStatus("ok");
+			$this->setMsj("/comprobantes/$id");
+			return true;
+		}
+
+		$this->setStatus("error");
+		$this->setMsj("programando");
+		return false;
+
+
+
+	}
+
+
+
+	private function validarMonto($validarMonto)
+	{
+		if (!preg_match('/^\d+(\.\d{1,2})?$/', $validarMonto)){
+			$this->setStatus("ERROR");
+			$this->setMsj("El campo validarMonto es incorrecto.");
+			return false;
+		}
+		$this->setStatus("OK");
+		$this->setMsj("");
+		return true;
+	}  
 }
