@@ -1,5 +1,5 @@
 <!-- subir comprobante -->
-<div class="modal fade" id="modal-subir-comprobante">
+<div class="modal fade" id="modal-subir-comprob">
    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
          <div class="modal-header modal-header-public">
@@ -8,14 +8,14 @@
             <div class="cerrarModal text-right" data-dismiss="modal" class="text-right"><i id="cerrar-desde-cropper" class="fas fa-times"></i></div>
          </div>
          <div class="modal-body">
-            <form id="subir-foto-perfil">
+            <form>
                  <label for="file-upload" class="custom-file-upload">
                     <i class="fa fa-cloud-upload"></i> Haga Click para subir el archivo
                  </label>
-                 <input id="file-upload" type="file"/>
+                 <input id="file-upload" type="file" accept="application/pdf">
                  <div id="result-file-upload"></div>
                <div>
-                  <button type="submit" class="btn btn-warning btn-cambiar-foto-perfil">Enviar Comprobante</button>
+                  <button id="enviar-comprobante" onclick="enviarComprobante()" class="btn btn-warning btn-cambiar-foto-perfil">Enviar Comprobante</button>
                </div>
             </form>
          </div>
@@ -64,7 +64,7 @@
       <h1>Pedidos de retiro</h1>
       <hr>
       <br>
-      <table class="data-metricas">
+      <table id="data-retiros" class="data-metricas data-retiros">
          <thead>
            <tr>
              <th>Operacion</th>
@@ -75,20 +75,6 @@
            </tr>
          </thead>
          <tbody>
-            <tr>
-               <td>20778024040</td>
-               <td>test@gmail.com</td>
-               <td>Pasaron los 30 dias</td>
-               <td>-</td>
-               <td><a class ="btn btn-warning" data-toggle="modal" data-target="#modal-subir-comprob" href="#">Enviar Comprobante</a></td>
-            </tr>
-            <tr>
-               <td>20778081070</td>
-               <td>nico99@gmail.com</td>
-               <td>Pidió retiro</td>
-               <td>-</td>
-               <td><a class ="btn btn-warning" data-toggle="modal" data-target="#modal-subir-comprob" href="#">Enviar Comprobante</a></td>
-            </tr>
          </tbody>
        </table>
       <br>

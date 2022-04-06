@@ -2226,26 +2226,45 @@ function dibujarListadoPedidos(data){
             var costo_venta = data[i].costo_venta || "";
             var publicacion_nombre = data[i].publicacion_nombre || "";
             var estado = (data[i].estado==null) ? "Solicitado" : "En Proceso"
-            var usuario_alta = data[i].usuario_alta || 0;
-            var usuario_editar = data[i].usuario_editar || 0;
-            var el = document.querySelector(".data-pedidos>tbody");
-    
-            var child = `
+            var el_retiro =  document.getElementById('data-retiros');
+            var el_retiro_tbody = document.querySelector("#data-retiros>tbody");
+            var el_historial = document.querySelector(".data-pedidos>tbody");
+            var insertHistorial = `
             <tr>
                 <td>${id}</td>
                 <td>${fecha_alta}</td>
                 <td>${monto}</td>
                 <td>${estado}</td>
                 <td><a href="#">321321321.pdf</a></td>
-            </tr>
-            `
+            </tr>`
+            var insertRetiro = `
+            <tr>
+                <td>${id}</td>
+                <td>${nombre_producto}</td>
+                <td>${monto}</td>
+                <td>${estado}</td>
+                <td><a class ="btn btn-warning" onclick="activarEnviarComprobante(${id},${monto})" data-toggle="modal" data-target="#modal-subir-comprob" href="#">Enviar Comprobante</a></td>
+            </tr>`
+
+
+            if(typeof(el_retiro) != 'undefined' && el_retiro != null){
+                //si existe el data-retiros, es que estamos en metricas-admin, sino metricas tagger
+                el_retiro_tbody.insertAdjacentHTML("beforeend",insertRetiro);
+                el_historial.insertAdjacentHTML("beforeend",insertHistorial);
+            }else{
+                el_historial.insertAdjacentHTML("beforeend",insertHistorial);
+            }
     
-            el.insertAdjacentHTML("beforeend",child);
         }
 
     }else{
         alertify.error("ha ocurrido un error")
     }
+}
+
+function activarEnviarComprobante(id,monto){
+    let el = document.querySelector("#enviar-comprobante")
+    el.setAttribute("onclick",`enviarComprobante(${id},${monto})`)
 }
 
 function dibujarListadoOperaciones(data){
@@ -3164,6 +3183,52 @@ function eliminarCarrito(id_carrito,id_publicacion,id_prod){
     })
     .catch(error => console.error('Error:', error))
 
+}
+
+function enviarComprobante(id,monto){
+
+    if(['application/pdf'].indexOf($("#file-upload").get(0).files[0].type) == -1) {
+        alertify.error('Error : Solo PDF Permitidos');
+        return false;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function(){
+        
+        var data_pdf = { 
+            'file': reader.result,
+            'accion':'guardar',
+            'id':id,
+            'monto':monto
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/app/metrica.php',
+            data: data_pdf,
+            dataType: "json",
+            success: function(data, textStatus, jQxhr ) {
+                if (data.status == 'REDIRECT'){
+                    //window.location.replace(data.mensaje);
+                    console.log("1")														
+                }else if(data.status == 'OK'){
+                    alertify.success(data.mensaje);
+                    //window.location.replace("/editar-usuario.html");
+                    console.log("2")
+                }else{
+                    alertify.error(data.mensaje);
+                    console.log("3")
+                }
+
+            },
+            error: function(jqXhr, textStatus, errorThrown) {
+                var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
+                alertify.error(msj);         
+            }
+        });
+    };
+    reader.readAsDataURL($("#file-upload").get(0).files[0]);    
+    return false;
 }
 
 function sendComentario(idParam,indexParam,desde){
