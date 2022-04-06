@@ -439,24 +439,27 @@ private function validarPago_id($pago_id)
 			$data = base64_decode($base_to_php[1]);
 			$filepath = "/var/www/html/comprobantes/$id";
 			file_put_contents($filepath,$data);
-			$this->setStatus("OK");
-			$this->setMsj("/comprobantes/$id");
-			return true;
-		}
-
-
-		if ($this->metricaDao->actualizarMetricaIdRetiroEnviado($id)){
-			if ($this->metricaDao->actualizarEnviarDineroIdFinalizado($id)){
-				$this->setStatus("OK");
-				$this->setMsj('ok');
+			
+			if ($this->metricaDao->actualizarMetricaIdRetiroEnviado($id)){
+				if ($this->metricaDao->actualizarEnviarDineroIdFinalizado($id)){
+					$this->setStatus("OK");
+					$this->setMsj('ok');
+				}else{
+					$this->setStatus("ERROR");
+					$this->setMsj("no se pudo actualizar el estado del comprobante.");	
+				}
 			}else{
 				$this->setStatus("ERROR");
-				$this->setMsj("no se pudo actualizar el estado del comprobante.");	
+				$this->setMsj("no se pudo actualizar el estado de solicitud de dinero.");	
 			}
-		}else{
-			$this->setStatus("ERROR");
-			$this->setMsj("no se pudo actualizar el estado de solicitud de dinero.");	
+
+
+
+
 		}
+		$this->setStatus("error");
+		$this->setMsj("No se pudo subir el comprobante.");
+		return true;
 	}
 
 
