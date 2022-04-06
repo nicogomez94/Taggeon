@@ -738,14 +738,14 @@ $usuarioDB = Database::escape($usuario);
 
 
 $sql = <<<sql
-update metrica set estado="ENVIADO"
+update metrica set estado="Finalizado"
 ,usuario_editar=$usuarioDB
 where 
 (eliminar is null or eliminar = 0)
 AND idSolicitudRetiroDinero=$idSolicitudRetiroDineroDB
 sql;
 
-//echo $sql;
+echo $sql;
 if (!mysqli_query(Database::Connect(), $sql)) {
 $this->setStatus("ERROR");
 $this->setMsj("$sql" . Database::Connect()->error);
@@ -765,7 +765,7 @@ $usuarioDB = Database::escape($usuario);
 
 
 $sql = <<<sql
-update solicitudRetiroDinero set estado="FINALIZADO"
+update solicitudRetiroDinero set estado="Finalizado"
 ,usuario_editar=$usuarioDB
 where 
 (eliminar is null or eliminar = 0)
