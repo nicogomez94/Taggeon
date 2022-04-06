@@ -445,7 +445,7 @@ private function validarPago_id($pago_id)
 		}
 
 
-		if ($this->metricaDao->actualizarMetricaIdRetiroEnviado($id){
+		if ($this->metricaDao->actualizarMetricaIdRetiroEnviado($id)){
 			if ($this->metricaDao->actualizarEnviarDineroIdFinalizado($id)){
 				$this->setStatus("OK");
 				$this->setMsj('ok');
