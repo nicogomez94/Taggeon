@@ -603,10 +603,10 @@ WHERE
     AND (cd.eliminar is null or cd.eliminar = 0)
     AND c.estado is not null 
     AND c.estado = 4
-    AND m.usuario_alta = $usuarioAltaDB  
-    AND m.rol_usuario = 'market'
-ORDER BY cd.fecha_alta DESC
 
+ORDER BY cd.fecha_alta DESC
+//    AND m.usuario_alta = $usuarioAltaDB  
+//     AND m.rol_usuario = 'market'
 sql;
 //echo $sql;
 
