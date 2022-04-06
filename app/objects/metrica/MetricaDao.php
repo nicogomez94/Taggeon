@@ -729,5 +729,60 @@ return false;
 }
 
 
+public function actualizarMetricaIdRetiroEnviado($idSolicitudRetiroDinero)
+{
+$idSolicitudRetiroDineroDB = Database::escape($idSolicitudRetiroDinero);
+
+$usuario = $GLOBALS['sesionG']['idUsuario'];
+$usuarioDB = Database::escape($usuario);
+
+
+$sql = <<<sql
+update metrica set estado="ENVIADO"
+,usuario_editar=$usuarioDB
+where 
+(eliminar is null or eliminar = 0)
+AND idSolicitudRetiroDinero=$idSolicitudRetiroDineroDB
+sql;
+
+//echo $sql;
+if (!mysqli_query(Database::Connect(), $sql)) {
+$this->setStatus("ERROR");
+$this->setMsj("$sql" . Database::Connect()->error);
+} else {
+$this->setStatus("OK");
+return true;
+}
+return false;
+}
+
+public function actualizarEnviarDineroIdFinalizado($idSolicitudRetiroDinero)
+{
+$idSolicitudRetiroDineroDB = Database::escape($idSolicitudRetiroDinero);
+
+$usuario = $GLOBALS['sesionG']['idUsuario'];
+$usuarioDB = Database::escape($usuario);
+
+
+$sql = <<<sql
+update solicitudRetiroDinero set estado="FINALIZADO"
+,usuario_editar=$usuarioDB
+where 
+(eliminar is null or eliminar = 0)
+AND id=$idSolicitudRetiroDineroDB
+sql;
+
+//echo $sql;
+if (!mysqli_query(Database::Connect(), $sql)) {
+$this->setStatus("ERROR");
+$this->setMsj("$sql" . Database::Connect()->error);
+} else {
+$this->setStatus("OK");
+return true;
+}
+return false;
+}
+
+
 
 }
