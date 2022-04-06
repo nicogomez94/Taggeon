@@ -3202,33 +3202,16 @@ function enviarComprobante(id,monto){
             'monto':monto
         };
 
-        $.ajax({
-            type: 'POST',
-            url: '/app/metrica.php',
-            data: data_pdf,
-            dataType: "json",
-            success: function(data, textStatus, jQxhr ) {
-                if (data.status == 'REDIRECT'){
-                    //window.location.replace(data.mensaje);
-                    console.log("1")														
-                }else if(data.status == 'OK'){
-                    alertify.success(data.mensaje);
-                    //window.location.replace("/editar-usuario.html");
-                    console.log("2")
-                }else{
-                    alertify.error(data.mensaje);
-                    console.log("3")
-                }
-
-            },
-            error: function(jqXhr, textStatus, errorThrown) {
-                var msj = "En este momento no podemos atender su petici\u00f3n, por favor espere unos minutos y vuelva a intentarlo.";
-                alertify.error(msj);         
-            }
-        });
+        fetch("/app/metricas.php", {
+            method: 'POST',
+            body: data_pdf,
+        }).then(res => res.json())
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => alertify.error("No se pudo agregar el producto. Intente mas tarde"))
     };
     reader.readAsDataURL($("#file-upload").get(0).files[0]);    
-    return false;
 }
 
 function sendComentario(idParam,indexParam,desde){
