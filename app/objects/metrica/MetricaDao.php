@@ -799,6 +799,7 @@ public function existePedidoByIdAndMonto($id,$monto)
                 (s.eliminar is null or s.eliminar = 0)
                 AND s.id = $idDB 
                 AND s.monto=$montoDB
+                AND s.estado is null
 
 SQL;
 
@@ -811,7 +812,7 @@ SQL;
 
         if ($row_cnt == 0) {
 		    $this->setStatus("ERROR");
-    		$this->setMsj("No se encontro la solicitud.");
+    		$this->setMsj("No se encontro la solicitud o ya se encuentra finalizada.");
 		    return false;
 		}
 
