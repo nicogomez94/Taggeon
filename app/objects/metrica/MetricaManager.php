@@ -375,7 +375,16 @@ private function validarPago_id($pago_id)
 	}
 	public function solicitudRetiro(array $data)
 	{
-		$total = $this->getListMetricaTotalTagger();
+
+		if (!$this->metricaDao->existePedidoSolicitado()){
+			$this->setStatus("ERROR");
+			$this->setMsj($this->metricaDao->getMsj());	
+			return false;
+		}
+
+
+
+		$total = $this->getListMetricaTotalPendienteTagger();
 		$totalParam = isset($data["monto"]) ? $data["monto"] : '';
 		if ($total == $totalParam){
 			if ($this->metricaDao->altaSolicitudRetiroDinero($total)){

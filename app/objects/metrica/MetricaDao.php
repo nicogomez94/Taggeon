@@ -387,6 +387,8 @@ sql;
 	$total = 0;
 	$rowEmp = mysqli_fetch_array($resultado);
         $total = $rowEmp['total'];
+		$total = isset($total) ?   $total : 0;
+
         return $total;
 }
 
@@ -825,6 +827,34 @@ SQL;
 }
 
 
+public function existePedidoSolicitado()
+	    {
+        $usuario = $GLOBALS['sesionG']['idUsuario'];
+		$usuarioDB = Database::escape($usuario);
+		$sql = <<<SQL
+            SELECT *
+            FROM solicitudRetiroDinero s
+            WHERE
+                (s.eliminar is null or s.eliminar = 0)
+                AND s.usuario_alta=$usuarioDB
+                AND s.estado is null
+SQL;
+//echo $sql;
+		$resultado = mysqli_query(Database::Connect(), $sql);
+		$row_cnt = mysqli_num_rows($resultado);
+
+        if ($row_cnt == 0) {
+		    $this->setStatus("OK");
+		    return true;
+		}
+
+        
+        if ($row_cnt > 0) {
+		    $this->setStatus("ERROR");
+    		$this->setMsj("Existe una solicitud de retiro. No se puede generar otra solicitud cuando existe una pendiente.");
+		    return false;
+		}
+}
 
 
 }

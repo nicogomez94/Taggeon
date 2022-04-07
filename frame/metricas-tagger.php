@@ -16,6 +16,8 @@ if ($perfil=='seller' || $perfil=='picker'){
         $tokenMercadoPago = 1;
     }
 
+    $totalRetiro = $metricaManager->getListMetricaTotalPendienteTagger();
+
     $jsonData = array(
         "tokenMercadoPago" => $tokenMercadoPago,
 	    "perfil"        => $perfil,
@@ -26,8 +28,9 @@ if ($perfil=='seller' || $perfil=='picker'){
         "metricas"     => $metricaManager->getListMetricaTagger(),
         "pedidos"     => $metricaManager->getListPedidosTagger(),
         "total"     => $metricaManager->getListMetricaTotalTagger(),
-	"restan"     => $GLOBALS['configuration']['total_objetivo'] - $metricaManager->getListMetricaTotalPendienteTagger(),
+	"restan"     => $GLOBALS['configuration']['total_objetivo'] - $totalRetiro,
 	'total_objetivo' => $GLOBALS['configuration']['total_objetivo'],
+    "total-retirar" => $totalRetiro,
         "seguidores"     => $seguidoresManager->getListSeguidores(),
         "seguidos"     => $seguidoresManager->getListSeguidos()
         
