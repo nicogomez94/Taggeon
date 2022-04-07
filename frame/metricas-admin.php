@@ -4,9 +4,10 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."util/header.ph
 include_once($GLOBALS['configuration']['path_app_admin_objects']."metrica/MetricaManager.php");
 include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/SeguidoresManager.php");
 
-            
+include_once($GLOBALS['configuration']['path_app_admin_objects']."usuario/usuarioManagerImpl.php");
 
-if ($perfil=='seller' || $perfil=='picker'){
+$usuarioManager = new UsuarioManagerImpl();
+if ($usuarioManager->isAdmin()){
 
     $metricaManager = new MetricaManager();
     $seguidoresManager = new SeguidoresManager();

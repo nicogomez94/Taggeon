@@ -2225,17 +2225,18 @@ function dibujarListadoPedidos(data){
             var nombre_producto = data[i].nombre_producto || "";
             var costo_venta = data[i].costo_venta || "";
             var publicacion_nombre = data[i].publicacion_nombre || "";
-            var estado = (data[i].estado==null) ? "Solicitado" : "En Proceso"
+            var estado = (data[i].estado==null) ? "Solicitado" : data[i].estado;
             var el_retiro =  document.getElementById('data-retiros');
             var el_retiro_tbody = document.querySelector("#data-retiros>tbody");
             var el_historial = document.querySelector(".data-pedidos>tbody");
+            var img_path = `/comprobantes/${id}`
             var insertHistorial = `
             <tr>
                 <td>${id}</td>
                 <td>${fecha_alta}</td>
                 <td>${monto}</td>
                 <td>${estado}</td>
-                <td><a href="#">321321321.pdf</a></td>
+                <td><a href="${img_path}" download>comprobante_${id}.pdf</a></td>
             </tr>`
             var insertRetiro = `
             <tr>
@@ -2245,7 +2246,7 @@ function dibujarListadoPedidos(data){
                 <td>${estado}</td>
                 <td><a class ="btn btn-warning" onclick="activarEnviarComprobante(${id},${monto})" data-toggle="modal" data-target="#modal-subir-comprob" href="#">Enviar Comprobante</a></td>
             </tr>`
-
+            console.log(data[i].estado)
 
             if(typeof(el_retiro) != 'undefined' && el_retiro != null){
                 //si existe el data-retiros, es que estamos en metricas-admin, sino metricas tagger
