@@ -427,6 +427,16 @@ private function validarPago_id($pago_id)
 		if ($this->getStatus() != 'ok'){
 			return false;
 		}
+
+
+		if (!$this->metricaDao->existePedidoByIdAndMonto($id,$monto)){
+			$this->setStatus("ERROR");
+			$this->setMsj($this->metricaDao->getMsj());	
+			return false;
+
+		}
+
+
 		$comprobante         = isset($_POST["file"]) ? $_POST["file"] : '';
 		if ($comprobante == ''){
 			$this->setStatus("error");

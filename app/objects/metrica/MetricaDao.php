@@ -784,5 +784,46 @@ return false;
 }
 
 
+public function existePedidoByIdAndMonto($id,$monto)
+	    {
+		$id = isset($id) ?   $id : '';
+		$idDB = Database::escape($id);
+		$monto = isset($monto) ?   $monto : 0;
+
+		$montoDB = Database::escape($monto);
+
+		$sql = <<<SQL
+            SELECT *
+            FROM solicitudRetiroDinero s
+            WHERE
+                (s.eliminar is null or s.eliminar = 0)
+                AND s.id = $idDB 
+                AND s.monto=$montoDB
+
+SQL;
+
+		$resultado = mysqli_query(Database::Connect(), $sql);
+		$row_cnt = mysqli_num_rows($resultado);
+		if ($row_cnt == 1) {
+		    $this->setStatus("OK");
+		    return true;
+		}
+
+        if ($row_cnt == 0) {
+		    $this->setStatus("ERROR");
+    		$this->setMsj("No se encontro la solicitud.");
+		    return false;
+		}
+
+        
+        if ($row_cnt > 1) {
+		    $this->setStatus("ERROR");
+    		$this->setMsj("Existe varias solicitudes con el mismo id y monto.");
+		    return false;
+		}
+}
+
+
+
 
 }
