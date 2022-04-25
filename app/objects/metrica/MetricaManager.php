@@ -385,6 +385,11 @@ private function validarPago_id($pago_id)
 
 
 		$total = $this->getListMetricaTotalPendienteTagger();
+		if ($total < $GLOBALS['configuration']['total_objetivo']){
+			$this->setStatus("ERROR");
+			$this->setMsj("El monto a retirar es menor al del objetivo.");	
+	
+		}
 		$totalParam = isset($data["monto"]) ? $data["monto"] : '';
 		if ($total == $totalParam){
 			if ($this->metricaDao->altaSolicitudRetiroDinero($total)){
