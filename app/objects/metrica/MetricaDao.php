@@ -366,6 +366,7 @@ sql;
 	    {
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
+        $day = $GLOBALS['configuration']['day'];
         $sql = <<<sql
 SELECT sum(m.comision) as total
 FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito 
@@ -380,6 +381,7 @@ WHERE
     AND c.estado = 4
     AND m.usuario_alta = $usuarioAltaDB AND m.estado is null 
     AND m.rol_usuario = 'taggeador'
+    AND TIMESTAMPDIFF(DAY, m.fecha_alta, CURRENT_TIMESTAMP) >= $day
 sql;
 //echo $sql;
 
