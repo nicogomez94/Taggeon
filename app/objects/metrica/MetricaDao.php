@@ -366,7 +366,7 @@ sql;
 	    {
 		$usuarioAlta = $GLOBALS['sesionG']['idUsuario'];
         $usuarioAltaDB = Database::escape($usuarioAlta);
-        $day = $GLOBALS['configuration']['day'];
+        $day = $GLOBALS['configuration']['dias_retiro_dinero'];
         $sql = <<<sql
 SELECT sum(m.comision) as total
 FROM `carrito` as c INNER JOIN  `carrito_detalle` as cd ON c.id = cd.id_carrito 
