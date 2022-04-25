@@ -149,7 +149,8 @@ curl_setopt($ch, CURLOPT_POST, 1);
 $post = array(
 //    'client_secret' => "TEST-3352741419059189-050614-755049662bda9663d0cfd003654542a6-754221997",
     // 'client_secret' => "APP_USR-8374534224864099-031110-4f6f85c7c881ec465effc93b0c547035-22602582",
-    'client_secret' => "APP_USR-1018087855526059-030418-6314ed4cc8b2526fa1f721c48767b94c-141510028",
+    // 'client_secret' => "APP_USR-1018087855526059-030418-6314ed4cc8b2526fa1f721c48767b94c-141510028",
+    'client_secret' => "APP_USR-2441546909423796-030416-9284785b207ac9869d26cc48939b108c__LC_LB__-299598887",
     'grant_type' => "authorization_code",
     'code' => "$codeMP",
     'redirect_uri' => "https://taggeon.com/"

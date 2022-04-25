@@ -2246,7 +2246,6 @@ function dibujarListadoPedidos(data){
                 <td>${estado}</td>
                 <td><a class ="btn btn-warning" onclick="activarEnviarComprobante(${id},${monto})" data-toggle="modal" data-target="#modal-subir-comprob" href="#">Enviar Comprobante</a></td>
             </tr>`
-            console.log(data[i].estado)
 
             if(typeof(el_retiro) != 'undefined' && el_retiro != null){
                 //si existe el data-retiros, es que estamos en metricas-admin, sino metricas tagger
