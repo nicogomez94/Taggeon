@@ -2745,7 +2745,6 @@ function getPublicsAmpliarHome(data){
                             
                 document.querySelector(".insert-public").insertAdjacentHTML("beforeend",html_public);
                 document.querySelector(".title-public-"+i).innerHTML = publicador;
-                console.log(id_public)
                 getPublicTags(id_public,producto,i,publicador,id_publicador);
             
                 
@@ -2783,7 +2782,6 @@ function getPublicTags(id_public,tags,index,publicador,id_publicador){
         let coords = producto_parse[x].value;
         let ycoord = coords.split("-")[0];
         let xcoord = coords.split("-")[1];
-        console.log("en getpublictags",id_public)
         let tag_html = `<div onclick="getSplideProdPublic(${id_public},'${publicador}',${id_publicador},${index},this)" class="tagg tagg-${id_public}" style="top:${ycoord}%; left: ${xcoord}%">
         <span><img src="../../plugins/dropPin-master/dropPin/dot-circle-solid.svg"></span></div>`;
         document.querySelector(".tag-container-"+index).insertAdjacentHTML("beforeend",tag_html);
@@ -3307,21 +3305,21 @@ function sendComentario(idParam,indexParam,desde){
 function dibujarCarousel(id_prod,foto_obj){
 
     let split = foto_obj.split(',');
-    let carousel_inner = document.querySelector(".carousel-inner-"+id_prod)
-    let carousel_indicators = document.querySelector(".carousel-indicators-"+id_prod)
+    let carousel_inner = document.querySelector(".carousel-inner")
+    let carousel_indicators = document.querySelector(".carousel-indicators")
 
     for(let i = 0; i <split.length; i++){     
         
         let foto = split[i]; 
         
         let carousel_item_html = 
-        `<div class="carousel-item carousel-item-${id_prod}"> 
+        `<div class="carousel-item"> 
             <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/${foto}.png" alt="carousel-item"> 
         </div>`;
 
         let carousel_thumb_html =
-        `<li class="list-inline-item list-inline-item-${id_prod}"> 
-            <a id="carousel-selector-${i}" data-slide-to="${i}" data-target="#custCarousel-${id_prod}">
+        `<li class="list-inline-item"> 
+            <a id="carousel-selector-${i}" data-slide-to="${i}" data-target="#custCarousel">
                 <img onerror="this.src='/imagen_perfil/generica_prod.jpg'" src="/productos_img/${foto}.png" class="list-inline-item">
             </a> 
         </li>`;
@@ -3332,8 +3330,8 @@ function dibujarCarousel(id_prod,foto_obj){
 
         //a la primera imagen solamente le agrego "active"
         if(i==0){
-            document.querySelector(".carousel-item-"+id_prod).classList.add("active")
-            document.querySelector(".list-inline-item-"+id_prod).classList.add("active")
+            /*document.querySelector(".carousel-item-"+id_prod).classList.add("active")
+            document.querySelector(".list-inline-item-"+id_prod).classList.add("active")*/
         }
     }
     
