@@ -136,7 +136,7 @@ body{
     margin-bottom: unset;
 }
 .vm-comentarios{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 #flotante-subir{
     position: fixed;
@@ -328,6 +328,10 @@ body{
 }
 .splide__list{
     height: unset !important; /*height: 100%*/
+    /* margin: 0 35px !important; */
+}
+.splide__arrow:disabled{
+    opacity: 0 !important;
 }
 .fa-search-header{
     position: absolute;
@@ -2831,6 +2835,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     display: flex;
     width: 100%;
     padding: 10px 0px;
+    font-size: 14px;
 }
 .col-home-centro::-webkit-scrollbar {
     display: none;
@@ -3540,7 +3545,9 @@ select{
 }
 
 
-
+.test_img img{
+    max-width: 100%;
+}
 
 
 

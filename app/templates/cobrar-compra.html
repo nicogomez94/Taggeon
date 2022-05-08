@@ -429,7 +429,7 @@ $(document).ready(function(){
 <script>
     // const mp = new MercadoPago('APP_USR-31427082-1223-4141-9ae8-c30f8404c448'); app vieja riki
     // const mp = new MercadoPago('APP_USR-901f5438-7501-4dcd-b64b-1be719edc524'); //app nueva nico
-    const mp = new MercadoPago('APP_USR-901f5438-7501-4dcd-b64b-1be719edc524'); //app rodrigo gonelake
+    const mp = new MercadoPago('APP_USR-d850b333-1650-4501-bc27-eeda3b2afe93'); //app rodrigo gonelake
     const cardForm = mp.cardForm({
   amount: "10",
   autoMount: true,
@@ -529,15 +529,15 @@ $(document).ready(function(){
             if(status == 'OK'){
               alertify.success("El pago "+mensaje+" se realizo con exito");
               console.log(mensaje)
-              //window.location.replace("/pago-success.html");
+              window.location.replace("/mis-compras.html");
             }else if(status == 'ERROR'){
               alertify.error("Ha ocurrido un error con el pago");
               console.error("elsif",data)
-              //window.location.replace("/pago-failure.html");
+              window.location.replace("/mis-compras.html");
             }else{
               alertify.error("Ha ocurrido un error con el pago");
               console.error(data)
-              //window.location.replace("/pago-pending.html");
+              window.location.replace("/mis-compras.html");
             }
         })
         .catch(function(error){

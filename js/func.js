@@ -612,12 +612,22 @@ $(".cantidad_value").change(function(){
 });
 
 //activo buscador
-$("#buscador-index-input").keyup(function(e){
+$("#buscador-index-input").keydown(function(e){
 
-    activarBuscadorRelated($(this));
+    //activarBuscadorRelated($(this));
+    let len = $(this).val().length;
+    if(len>2){
+        setTimeout(function(){
+            $("#test-pinterest2").css("display","block")
+        },1000)
+    }else{
+        $("#test-pinterest2").css("display","none")
+    }
+    
     
     if(e.key === "Enter"){
         //console.log("enter")
+        $("#test-pinterest2").css("display","none")
         buscadorIndex($(this));
     }
 });
@@ -1576,6 +1586,8 @@ function autocomplete(inp, arr) {
             a.appendChild(b);
           }
         }
+        let imgtest = '<div class="pinterest-test"><img src="../../imagen_perfil/pinter.png"></div>'
+        document.querySelector(".autocomplete-list").insertAdjacentHTML("beforeend",imgtest)
     });
     /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function(e) {

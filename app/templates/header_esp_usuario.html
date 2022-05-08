@@ -2,10 +2,10 @@
     <title>Taggeon</title>
 
       <link rel="stylesheet" href="bootstrap-4.5.2-dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
       <link rel="stylesheet" href="css/styles.css?random={randomtime}">
       <link rel="stylesheet" href="css/media.css?random={randomtime}">
       <link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
       <link rel="stylesheet" href="../../plugins/cropperjs-master/dist/cropper.css" type="text/css" />
       <link rel="stylesheet" href="../../plugins/dropPin-master/dropPin/dropPin.css" type="text/css" />
       <link rel="stylesheet" href="../../plugins/alertify/css/alertify.css" type="text/css" />
@@ -46,7 +46,7 @@
                      $(".token_mp").hide(300);
                   });
                   
-               $(".token_mp").html(html_test);
+               //$(".token_mp").html(html_test);
 
             }else{
                $(".token_mp").hide();
@@ -137,7 +137,6 @@
 
 <!-- /OVERLAYS -->
 
-          
 
     <nav id="navbar-principal" class="navbar navbar-expand-md fixed-top">
       <div id="brand-container" class="navbar-brand-container">
@@ -150,6 +149,12 @@
       <!--BUSCADOR-->
       <div id="search-container" class="search-container autocomplete">
          <input id="buscador-index-input" autocomplete="off"  class="search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar">
+         <div id="test-pinterest2" style="position: absolute;top: 58px;display: none;"><img src="../../imagen_perfil/test3.png" style="max-width: 100%;box-shadow: 0px 3px 1px 1px #afafaf; -webkit-border-bottom-right-radius: 20px;
+            -webkit-border-bottom-left-radius: 20px;
+            -moz-border-radius-bottomright: 20px;
+            -moz-border-radius-bottomleft: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;"></div>
          <!-- <input id="myInput" id="buscador-index-input" autocomplete="off"  class="form-control search" type="text" placeholder="Busca lo que se te ocurra" aria-label="Buscar"> -->
          <i class="fas fa-search fa-search-header"></i>
       </div>

@@ -1,3 +1,99 @@
+<div class="modal fade" id="modal-producto" tabindex="-1" role="dialog" aria-labelledby="modal-producto-title" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+         <div class="modal-body">
+            <div id="container-modal-prod">
+               <div class="img-modal-prod">
+                  <div id="custCarousel" class="carousel slide custCarousel" data-ride="carousel" align="center">
+                     <div class="carousel-inner"></div>
+                     <!-- Controles --> 
+                     <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> 
+                        <span class="carousel-control-prev-icon"></span> 
+                     </a> 
+                     <a class="carousel-control-next" href="#custCarousel" data-slide="next"> 
+                        <span class="carousel-control-next-icon"></span>
+                     </a> 
+                     <!-- Thumbnails -->
+                     <ol class="carousel-indicators list-inline"></ol>
+                  </div>
+               </div>
+            <hr>
+               <div>
+                  <h5 style="text-align:left">Ficha T&eacute;cnica</h5>
+                  <table class="tg" style="table-layout: fixed; width: 282px">
+                  <colgroup>
+                  <col style="width: 153px">
+                  <col style="width: 129px">
+                  </colgroup>
+                  <tbody>
+                  <tr>
+                     <td class="tg-9f3l">ID Producto</td>
+                     <td class="tg-wo29"></td>
+                     </tr>
+                     <tr>
+                     <td class="tg-9f3l">Marca</td>
+                     <td class="tg-wo29"></td>
+                     </tr>
+                     <tr>
+                     <td class="tg-9f3l">Color</td>
+                     <td class="tg-wo29"></td>
+                     </tr>
+                     <tr>
+                  </tr>
+                  </tbody>
+                  </table>
+               </div>
+               <div class="col-datos-producto">
+                  <div>
+                     <h2></h2>
+                     <a href="/ampliar-usuario-redirect.html?id_usuario=${id_publicador_p}" class="nombre_modal_producto">Por:</a>
+                  </div>
+                  <hr>
+                  <div>
+                     <div class="precio-producto-modal"><span></span></div>
+                     <div class="shipment-modal-producto">
+                        <i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles
+                     </div>
+                  <hr>
+                     <div class="stock-boton-modal">
+                        <span>
+                              Cantidad&nbsp;
+                              <select class="cantidad_value" name="cantidad">
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                              </select>
+                              <input type="hidden" class="id_prod_carrito" name="id" value="${id_prod_json_p}">
+                        </span>&nbsp;
+                        <span><button class="btn btn-warning btn-carrito" onclick="fetchIdCarrito('','','1')" data-idpublic="${id_public_p}" data-idprod="${id_prod_json_p}">Añadir a Carrito</button></span>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="descripcion-modal-producto">
+                  <strong>Descripcion:</strong>
+                  <div></div>
+                  </div>
+                  <hr>
+               </div>
+               <hr>
+               <div class="commentbox-container">
+                  <div class="commentbox commentbox-id-2">
+                     <div><img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
+                     <div style="flex-grow: 1;"><input type="text" id="comentario-${i_p}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario"></div>
+                     <div class="ml-1"><button onclick="sendComentario('${id_prod_p}','${i_p}','prod')" value="enviar" class="btn">Enviar</button></div>
+                  </div>
+                  <div class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></div>
+               </div>
+               <div class="commentbox-list-container commentbox-list-container-${id_prod_p} commentbox-list-container-prod"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
 <div class="overlay-loading"></div>
 
 <div class="contenedor-ampliar-public">
@@ -9,26 +105,29 @@
                <div class="up_relleno up_relleno_1_izq"></div>
                <div class="up_relleno up_relleno_2_izq"></div>
             </div>
-            <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+            <div class="test_img">
+               <img src="../../imagen_perfil/test1.png" alt="">
+            </div>
+            <!-- <div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
-            </div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
+            </div> -->
          </div>
          <div class="col-home-centro">
             <div class="globo-cat">
@@ -43,26 +142,30 @@
                <div class="up_relleno up_relleno_1_der"></div>
                <div class="up_relleno up_relleno_2_der"></div>
             </div>
-            <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+            <div class="test_img">
+               <img src="../../imagen_perfil/test2.png" alt="">
+            </div>
+
+            <!-- <div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
             </div>
             <div>
-               <div class="test-col"><div class="relleno relleno-izq"></div></div>
-               <div class="test-col"><div class="relleno relleno-der"></div></div>
-            </div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-izq"></div></div>
+               <div class="test-col" style="height:150px;"><div class="relleno relleno-der"></div></div>
+            </div> -->
          </div>
          <!-- probar sacandoles los amrigns a los rows -->
       </div>
@@ -77,6 +180,9 @@
 
    <script>
       
+      //TEST
+      $("body").css("overflow","hidden")
+
       document.addEventListener("DOMContentLoaded", function(){
 
          /////////paginador/////////////

@@ -38,7 +38,7 @@ class  PublicacionDao
         $escena_sel = isset($data["escena_sel"]) ? $data["escena_sel"] : '';
         $escena_selDB = Database::escape($escena_sel);
 
-        $subescena1 = isset($data["subescena1"]) ? $data["subescena1"] : '';
+        $subescena1 = isset($data["subescena1"]) ? $data["subescena1"] : '0';
         $subescena1DB = Database::escape($subescena1);
 
         $subescena_json = isset($data["subescena_json"]) ? $data["subescena_json"] : '';
@@ -60,7 +60,8 @@ SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
 			$this->setStatus("ERROR");
-			$this->setMsj("$sql" . Database::Connect()->error);
+			$this->setMsj(Database::Connect()->error);
+			return false;
 		} else {
 			$id = mysqli_insert_id(Database::Connect());
 			$this->setMsj($id);

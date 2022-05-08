@@ -16,8 +16,14 @@ if (sizeof($_POST) > 0) {
     if (preg_match('/^(alta|editar|listar|get|eliminar|subescena|subescena2)$/i', $var_accion)) {
         if ($var_accion == 'alta') {
             $objPrincipalManager->agregarPublicacion($_POST);
-            $statusRet  = 'OK';
-            $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+            if ($objPrincipalManager->getStatus() == 'OK') {
+		    $statusRet  = 'OK';
+		    $mensajeRet = "La solicitud se proceso con éxito. Id: ".$objPrincipalManager->getMsj();
+            } else {
+                $statusRet  = 'ERROR';
+                $mensajeRet = "no se pudo dar de alta la publicacion ".$objPrincipalManager->getMsj();
+            }
+
 	    }else if($var_accion == 'subescena') {
             $objPrincipalManager->searchSubEscena($_POST);
             $statusRet  = 'OK';
