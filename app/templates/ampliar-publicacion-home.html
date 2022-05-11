@@ -2,7 +2,7 @@
    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
          <div class="modal-body">
-            <div id="container-modal-prod">
+            <div id="container-flex-modal-prod">
                <div class="img-modal-prod">
                   <div id="custCarousel" class="carousel slide custCarousel" data-ride="carousel" align="center">
                      <div class="carousel-inner"></div>
@@ -17,87 +17,83 @@
                      <ol class="carousel-indicators list-inline"></ol>
                   </div>
                </div>
-            <hr>
-               <div>
-                  <h5 style="text-align:left">Ficha T&eacute;cnica</h5>
-                  <table class="tg" style="table-layout: fixed; width: 282px">
-                  <colgroup>
-                  <col style="width: 153px">
-                  <col style="width: 129px">
-                  </colgroup>
-                  <tbody>
-                  <tr>
-                     <td class="tg-9f3l">ID Producto</td>
-                     <td class="tg-wo29"></td>
-                     </tr>
-                     <tr>
-                     <td class="tg-9f3l">Marca</td>
-                     <td class="tg-wo29"></td>
-                     </tr>
-                     <tr>
-                     <td class="tg-9f3l">Color</td>
-                     <td class="tg-wo29"></td>
-                     </tr>
-                     <tr>
-                  </tr>
-                  </tbody>
-                  </table>
-               </div>
                <div class="col-datos-producto">
                   <div>
-                     <h2></h2>
-                     <a href="/ampliar-usuario-redirect.html?id_usuario=${id_publicador_p}" class="nombre_modal_producto">Por:</a>
+                     <h2 id="titulo-prod"></h2>
+                     <a href="" class="by-prod"></a>
                   </div>
-                  <hr>
                   <div>
-                     <div class="precio-producto-modal"><span></span></div>
+                     <div class="precio-producto-modal"></div>
                      <div class="shipment-modal-producto">
                         <i class="fas fa-truck-loading"></i> Shipment dentro de las 5 d&iacute;as h&aacute;biles
                      </div>
-                  <hr>
                      <div class="stock-boton-modal">
                         <span>
-                              Cantidad&nbsp;
-                              <select class="cantidad_value" name="cantidad">
-                                 <option value="1">1</option>
-                                 <option value="2">2</option>
-                                 <option value="3">3</option>
-                                 <option value="4">4</option>
-                                 <option value="5">5</option>
-                              </select>
-                              <input type="hidden" class="id_prod_carrito" name="id" value="${id_prod_json_p}">
+                           Cantidad&nbsp;
+                           <select class="cantidad_value" name="cantidad">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                           </select>
+                           <input type="hidden" class="id_prod_carrito" name="id" value="${id_prod_json_p}">
                         </span>&nbsp;
                         <span><button class="btn btn-warning btn-carrito" onclick="fetchIdCarrito('','','1')" data-idpublic="${id_public_p}" data-idprod="${id_prod_json_p}">Añadir a Carrito</button></span>
                      </div>
                   </div>
                   <hr>
                   <div class="descripcion-modal-producto">
-                  <strong>Descripcion:</strong>
-                  <div></div>
+                     <strong>Descripcion:</strong>
+                     <div id="descr-data"></div>
                   </div>
-                  <hr>
                </div>
-               <hr>
-               <div class="commentbox-container">
-                  <div class="commentbox commentbox-id-2">
-                     <div><img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
-                     <div style="flex-grow: 1;"><input type="text" id="comentario-${i_p}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario"></div>
-                     <div class="ml-1"><button onclick="sendComentario('${id_prod_p}','${i_p}','prod')" value="enviar" class="btn">Enviar</button></div>
-                  </div>
-                  <div class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></div>
-               </div>
-               <div class="commentbox-list-container commentbox-list-container-${id_prod_p} commentbox-list-container-prod"></div>
             </div>
+            <hr>
+            <div class="commentbox-container">
+               <div class="commentbox commentbox-id-2">
+                  <div><img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
+                  <div style="flex-grow: 1;"><input type="text" id="comentario-${i_p}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario"></div>
+                  <div class="ml-1"><button onclick="sendComentario('${id_prod_p}','${i_p}','prod')" value="enviar" class="btn">Enviar</button></div>
+               </div>
+               <div class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></div>
+            </div>
+            <div class="commentbox-list-container commentbox-list-container-${id_prod_p} commentbox-list-container-prod"></div>
          </div>
       </div>
    </div>
 </div>
+<!-- <div>
+   <h5 style="text-align:left">Ficha T&eacute;cnica</h5>
+   <table class="tg" style="table-layout: fixed; width: 282px">
+   <colgroup>
+   <col style="width: 153px">
+   <col style="width: 129px">
+   </colgroup>
+   <tbody>
+   <tr>
+      <td class="tg-9f3l">ID Producto</td>
+      <td class="tg-wo29"></td>
+      </tr>
+      <tr>
+      <td class="tg-9f3l">Marca</td>
+      <td class="tg-wo29"></td>
+      </tr>
+      <tr>
+      <td class="tg-9f3l">Color</td>
+      <td class="tg-wo29"></td>
+      </tr>
+      <tr>
+   </tr>
+   </tbody>
+   </table>
+</div> -->
 
 
 <div class="overlay-loading"></div>
 
 <div class="contenedor-ampliar-public">
-      
+   
       <!--  -->
       <div class="container-rows-home" style="margin-top: 20px; ">
          <div class="col-extremos">
@@ -181,7 +177,7 @@
    <script>
       
       //TEST
-      $("body").css("overflow","hidden")
+      //$("body").css("overflow","hidden")
 
       document.addEventListener("DOMContentLoaded", function(){
 

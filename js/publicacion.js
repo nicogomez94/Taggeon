@@ -64,7 +64,7 @@ function getSplideProdPublic(param,name_publicador,id_publicador_param,index,thi
    .then((response) => {
       
       let resp_len = response.mensaje.length
-      
+      console.log(response.mensaje)
          if(resp_len > 0){
             for(let i = 0; i < resp_len; i++){
                let nombre_prod = response.mensaje[i].titulo || 0;
@@ -82,18 +82,30 @@ function getSplideProdPublic(param,name_publicador,id_publicador_param,index,thi
                let id_publicador = id_publicador_param;
                let foto_src_prod = `/productos_img/${foto_prod}.png` || "";
                let splide_list = document.querySelector('.splide__list__'+param) || ""
-   
-               //dibujo modal
-               dibujarCarousel(id_prod_json,foto_prod)
-         
+               let attrFetchCarrito = "fetchIdCarrito('"+param+"','"+id_prod_json+"','1')";
+               //
                let cant = document.querySelector(".cantidad_value");
                let value_cant = document.querySelector(".cantidad_value").value;
                let btn_carr = document.querySelector(".btn-carrito")
+   
+               
+               //dibujo modal
+               dibujarCarousel(id_prod_json,foto_prod)
+               
+               //DIBUJO DATOS
+               $("#descr-data").html(descr_prod)
+               $("#titulo-prod").html(nombre_prod)
+               $(".by-prod").html("Por: "+marca_prod)
+               $(".precio-producto-modal").html("$. "+precio_prod)
+               
+
+               $(".by-prod").attr("href",`/ampliar-usuario-redirect.html?id_usuario=${id_publicador}`)
+               btn_carr.setAttribute("onclick", attrFetchCarrito);
+         
          
                //si cambia la cantidad
                cant.addEventListener("change",function(){
-                  let attr = "fetchIdCarrito('"+param+"','"+id_prod_json+"','"+this.value+"')";
-                  btn_carr.setAttribute("onclick", attr)
+                  btn_carr.setAttribute("onclick", "fetchIdCarrito('"+param+"','"+id_prod_json+"','"+this.value+"')")
                })
 
                //si no tiene stock

@@ -3264,42 +3264,6 @@ function sendComentario(idParam,indexParam,desde){
     })
     .catch(error => console.error('Error:', error))
     
-    /*$.ajax({
-        url: '/app/comentario.php',
-        data: dataComentario,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        //dataType: "json",
-        async: false,
-        success: function( data, textStatus, jQxhr ){
-            var dataJ = JSON.parse(data).status;
-            var dataM = JSON.parse(data).mensaje;
-            if (dataJ == "REDIRECT"){
-                console.log("REDIRECT-->"+dataM);
-                window.location.replace(dataM);														
-            }else if(dataJ == 'OK'){
-                //window.location.replace("/test-cobrar-compra.html?id="+id_carrito);
-                console.log(dataJ+"--"+dataM);
-                var content_html =
-                `<div class="commentbox-list media commentbox-id">
-                   <span class="comment-name">${nombre_usuario}</span>
-                   <span class="comment-text">${val}</span>
-                </div>`;
-            
-                appendeo.insertAdjacentHTML("beforeend",content_html);
-            }else{
-                //window.location.replace("/ampliar-carrito.html");
-                //alertify.error(dataJ+"--"+dataM);
-                console.log(dataJ+"--"+dataM);
-            }
-        },
-        error: function( data ){
-            console.log(data)
-            alertify.error("error->"+data.status);
-        }
-    });
-    return false;*/
 }
 
 function dibujarCarousel(id_prod,foto_obj){
@@ -3330,8 +3294,8 @@ function dibujarCarousel(id_prod,foto_obj){
 
         //a la primera imagen solamente le agrego "active"
         if(i==0){
-            /*document.querySelector(".carousel-item-"+id_prod).classList.add("active")
-            document.querySelector(".list-inline-item-"+id_prod).classList.add("active")*/
+            document.querySelector(".carousel-item").classList.add("active")
+            document.querySelector(".list-inline-item").classList.add("active")
         }
     }
     
