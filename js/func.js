@@ -617,9 +617,7 @@ $("#buscador-index-input").keydown(function(e){
     //activarBuscadorRelated($(this));
     let len = $(this).val().length;
     if(len>2){
-        setTimeout(function(){
-            $("#test-pinterest2").css("display","block")
-        },1000)
+        $("#test-pinterest2").css("display","block")
     }else{
         $("#test-pinterest2").css("display","none")
     }
@@ -2598,7 +2596,7 @@ function getPublicsAmpliar(data){
                                   </div>
                                   <div class="datos-public">
                                   <div class="info-titulo-public">${nombre_public}</div>
-                                  <div class="info-descr-public">${descr_public}</div><hr>
+                                  <div class="info-descr-public">${descr_public}<div id="info-descr-shadow">Ver Descripcion</div></div><hr>
                                </div>
                                <div id="ancla-test-${i}"></div>
                                <div class="commentbox-container">
@@ -2723,7 +2721,7 @@ function getPublicsAmpliarHome(data){
                                   </div>
                                   <div class="datos-public">
                                   <div class="info-titulo-public">${nombre_public}</div>
-                                  <div class="info-descr-public">${descr_public}</div><hr>
+                                  <div class="info-descr-public">${descr_public}<div class="info-descr-shadow">Ver Descripcion</div></div><hr>
                                </div>
                                <div id="ancla-test-${i}"></div>
                                <div class="commentbox-container">
@@ -2858,41 +2856,47 @@ function getPublicsHome(data){
                     id : full_id,
                     subesc : full_name
                 }
-
                 objSubescena.push(newObj)
-
+                // debugger;
                 //antes de pushear al array principal, checkeo si ya existe esa combinacion
                 let find_array = arrayAll.find(o => o.id === full_id)
                 if(find_array == undefined){
                     arrayAll.push(newObj)
+                    // debugger;
                 }
-                
             }
-
+            // console.log(objSubescena,arrayAll)
             let se_length = objSubescena.length;
-
+            
             //leo el array generado arriba y le apendeo la publicacion
             if(se_length>0){
                 for(var x=0; x<se_length; x++){
                     let nombre_sub = objSubescena[x].subesc || "";
                     let id_sub = objSubescena[x].id || 0;
-
+                    let test = document.querySelector(`.item-cat-${id_sub}`);
                     const globos_html = `<li class="splide__slide item item-cat-${id_sub}">
                     <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${id_sub}')">
                     <div class="titulo-col random-p-${x}"><span class="span-titulo">${nombre_sub}</span></div>
                     </div>
                     </li>`
                     
-                    $(".splide__list__home").append(globos_html)
-                    $(".item-cat-"+id_sub).append(public_html)
+                    
+                    if(test == null){
+                        $(".splide__list__home").append(globos_html)
+                        $(".item-cat-"+id_sub).append(public_html)
+                    }else{
+                        
+                        $(".item-cat-"+id_sub).append(public_html)
+                    }
+                    
                 }
             }else{
                 alertify.error("error con publics")
             }
             
-
             
-
+            
+            
         }    
         //hardcodeado (cada vez que se llame va a volver a crearse)
         let splide_test = new Splide( '.splide__home', {
