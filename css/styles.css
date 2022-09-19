@@ -10,7 +10,7 @@
 /*VARS*/
 :root{
     --golden-taggeon: #cebd8b;
-    --redondeado: 40px;
+    --redondeado: 10px;
     --random-test-col: 215px; 
     --soft-shadow: 0px 0px 5px rgb(187 187 187);
     --soft-redondeado: 10px;
@@ -84,7 +84,6 @@ body.loading .overlay-loading{
 
 html {
     box-sizing: border-box;
-    margin-top: 70px;
     /* scroll-behavior: smooth; */
   }
   footer{
@@ -200,6 +199,7 @@ body{
     cursor: pointer;
     display: table-cell;
     padding-right: 10px;
+    font-size: 22px;
 }
 .count-notif{
     /* transition: .1s all ease-in; */
@@ -212,7 +212,7 @@ body{
 }
 .btn-header i{
     padding: 12px;
-    color: var(--golden-taggeon);
+    color: #000;
     /* background: #f1f1f1; */
     /* background: #cebd8b; */
     border-radius: 50%;
@@ -241,8 +241,8 @@ body{
 }
 .navbar-brand img{
     width: 58px;
-    height: 76px;
-    margin-bottom: 25px;
+    height: 77px;
+    margin-bottom: -10px;
     transition: .6s all ease-in-out;
 }
 .navbar-brand img:hover{
@@ -258,6 +258,7 @@ body{
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
+    height: 55px !important;
 }
 #navbar-principal .form-control{
     background-color: rgb(241, 241, 241);
@@ -343,8 +344,12 @@ body{
 .fa-search-header{
     position: absolute;
     top: 35%;
-    right: 20px;
-    color: #b3b3b3;
+    left: 15px;
+    color: #8b8b8b;
+}
+#buscador-index-input{
+    background: rgb(227,225,225);
+background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 33%);
 }
 #cancelar-search{
     width: 10%;
