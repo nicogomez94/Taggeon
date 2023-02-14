@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
-    $(".board")
+   /* $(".board")
         .mouseenter(function() {
         $(".splide__arrow").css("display","inline");
       })
       .mouseleave(function() {
         $(".splide__arrow").css("display","none");
-      });
+      });*/
 
     //si la img viene con error
     /*$("img").on("error", function(){

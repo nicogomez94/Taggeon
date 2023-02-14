@@ -110,6 +110,17 @@
 }
 
 @media screen and (max-width: 576px) {
+    .maybe_follow_container{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .tarjeta_mf_container{
+        margin-top: 20px;
+    }
+    .mf_h2,.splide_mf_container{
+        width: 100%;
+    }
     #sin-log-cont{
         width: unset !important;
     }
