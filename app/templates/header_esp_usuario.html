@@ -3,6 +3,7 @@
 
       <link rel="stylesheet" href="bootstrap-4.5.2-dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+      <link href='https://fonts.googleapis.com/css?family=Prompt' rel='stylesheet'>
       <link rel="stylesheet" href="css/styles.css?random={randomtime}">
       <link rel="stylesheet" href="css/media.css?random={randomtime}">
       <link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
@@ -240,7 +241,75 @@
       </div>
    </div>
       
-
+   <!-- MODAL SUBIR PUBLIC AMAL -->
+   <div class="modal fade" id="modal-upload-amal">
+      <div class="modal-dialog modal-lg" style="max-width: 1000px;" role="document">
+         <div class="modal-content">
+            <div class="container-subir-public">
+               <div class="izq-subir-public">
+                  <div>Nueva Publicacion</div>
+                  <div>Nombre de la publicacion</div>
+                  <hr>
+                  <div>
+                     <h4>Tamaño de la publicacion</h4>
+                     <div class="toggle-aspect-ratio">
+                        <div class="text-center">Elija un Tama&ntilde;o:</div>
+                        <div>
+                           <label for="f-option" class="l-radio" data-aspect="1.77777">
+                              <input type="radio" id="f-option" name="aspect-ratio" tabindex="1" >
+                              <span>Horizontal (16:9)<!--<i class="fas fa-mobile-alt"></i>--></span>
+                           </label>
+                           <label for="s-option" class="l-radio" data-aspect="1.33333">
+                              <input type="radio" id="s-option" name="aspect-ratio" tabindex="2">
+                              <span>Vertical (4:3)<!--<i class="fas fa-mobile-alt" style="transform: rotate(90deg);"></i>--></span>
+                           </label>
+                           <label for="t-option" class="l-radio" data-aspect="1">
+                              <input type="radio" id="t-option" name="aspect-ratio" tabindex="3">
+                              <span>Cuadrado (1:1)<!--<i class="far fa-square"></i>--></span>
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+                  <hr>
+                  <div>
+                     <p>Descripci&oacute;n de la publicaci&oacute;n</p>
+                     <textarea type="text" name="publicacion_descripcion" id="descr-publicacion" required></textarea>
+                  </div>
+                  <hr>
+                  <div>
+                     <h4>Selecciona categoria</h4>
+                     <div class="inputs-subir-public">
+                        <input type="text">
+                        <span>Indumentaria</span>
+                        <span>Accesorios</span>   
+                     </div>
+                     <div class="inputs-subir-public">
+                        <input type="text">
+                     </div>
+                     <div class="inputs-subir-public">
+                        <input type="text">
+                     </div>
+                     <div class="inputs-subir-public">
+                        <input type="text">
+                     </div>
+                  </div>
+               </div>
+               <div class="der-subir-public" style="width: 300px;">
+                  <div class="dragndrop">
+                     <div id="img-subir-pins" class="img-subir">
+                        <div id="mensaje-flotante-imgsp">
+                           <div><i style="font-size: 2em" class="fas fa-file-upload"></i></div>
+                           <div><span class="hide-mobile">Arrastra una imagen, o </span>Haz click para subir</div>
+                        </div>
+                        <input type="file" name="publicacion_foto" id="imagen-pins" accept="image/x-png, image/jpeg" onchange="cargarImgPines(event)" data-target="#modal-cropper" data-toggle="modal-cropper">
+                     </div>
+                  </div>
+                  <div class="prod-taggeados"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
       <!-- subir publicacion -->
          <form id="subir-publicacion-form">

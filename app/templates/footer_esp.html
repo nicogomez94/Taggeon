@@ -25,14 +25,27 @@
     new Splide( '.splide_tarjeta', {
        perPage: 3,
        rewind : true,
-       pagination: false
+       pagination: false,
+       breakpoints: {
+            640: {
+               perPage: 1,
+            },
+      }
     } ).mount();
 
     new Splide( '.splide_maybe_follow', {
        perPage: 3,
        rewind : true,
-       pagination: false
+       pagination: false,
+       breakpoints: {
+            640: {
+               perPage: 1,
+            },
+      }
     } ).mount();
+    $(document).ready(function(){
+        $("#modal-upload-amal").modal('show');
+    });
  </script>
 
 <!--  -->
