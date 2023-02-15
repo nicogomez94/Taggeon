@@ -2001,8 +2001,8 @@ input:focus-visible, .input:focus-within{
     padding-left: 0 !important;
 }
 .splide__home>.splide__arrows>.splide__arrow{
-    position: fixed !important;
-    top: 60% !important;
+    position: absolute !important;
+    top: 24px !important;
     margin-right: 15px;
     margin-left: 15px;
     width: 2em !important;
