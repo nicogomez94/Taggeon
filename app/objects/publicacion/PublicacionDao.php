@@ -56,7 +56,7 @@ class  PublicacionDao
         $estiloDB = Database::escape($estilo);
         
 		$sql = <<<SQL
-INSERT INTO publicacion (publicacion_nombre, publicacion_descripcion,usuario_alta,pid,aspect_ratio,subescena1,subescena_json,escena_sel,estilo)  
+INSERT INTO publicacion (publicacion_nombre, publicacion_descripcion,usuario_alta,pid,aspect_ratio,subescena1,subescena_json,escena_sel,estilo_id)  
 VALUES ($publicacion_nombreDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB,$subescena1DB,$subescena_jsonDB,$escena_selDB,$estiloDB)
 SQL;
 
@@ -105,7 +105,7 @@ SQL;
 			SET
 			    `usuario_editar` = $usuarioDB, pid=$publicacion_pidDB,
 `publicacion_nombre` = $publicacion_nombreDB, subescena1=$subescena1DB,subescena_json=$subescena_jsonDB,escena_sel=$escena_selDB, `publicacion_descripcion` = $publicacion_descripcionDB,
-estilo=$estiloDB
+estilo_id=$estiloDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB
