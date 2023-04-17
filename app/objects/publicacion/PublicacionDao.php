@@ -52,10 +52,12 @@ class  PublicacionDao
         $publicacion_pidDB = Database::escape($publicacion_pid);
         $aspect_ratio = isset($data["aspect_ratio"]) ? $data["aspect_ratio"] : '';
         $aspect_ratioDB = Database::escape($aspect_ratio);
+        $estilo = isset($data["estilo"]) ? $data["estilo"] : 0;
+        $estiloDB = Database::escape($estilo);
         
 		$sql = <<<SQL
-INSERT INTO publicacion (publicacion_nombre, publicacion_descripcion,usuario_alta,pid,aspect_ratio,subescena1,subescena_json,escena_sel)  
-VALUES ($publicacion_nombreDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB,$subescena1DB,$subescena_jsonDB,$escena_selDB)
+INSERT INTO publicacion (publicacion_nombre, publicacion_descripcion,usuario_alta,pid,aspect_ratio,subescena1,subescena_json,escena_sel,estilo)  
+VALUES ($publicacion_nombreDB, $publicacion_descripcionDB,$usuarioAltaDB,$publicacion_pidDB,$aspect_ratioDB,$subescena1DB,$subescena_jsonDB,$escena_selDB,$estiloDB)
 SQL;
 
 		if (!mysqli_query(Database::Connect(), $sql)) {
@@ -94,13 +96,16 @@ SQL;
 
         $subescena_json = isset($data["subescena_json"]) ? $data["subescena_json"] : '';
         $subescena_jsonDB = Database::escape($subescena_json);
+        $estilo = isset($data["estilo"]) ? $data["estilo"] : 0;
+        $estiloDB = Database::escape($estilo);
 
         $sql = <<<SQL
 			UPDATE
 			    `publicacion`
 			SET
 			    `usuario_editar` = $usuarioDB, pid=$publicacion_pidDB,
-`publicacion_nombre` = $publicacion_nombreDB, subescena1=$subescena1DB,subescena_json=$subescena_jsonDB,escena_sel=$escena_selDB, `publicacion_descripcion` = $publicacion_descripcionDB
+`publicacion_nombre` = $publicacion_nombreDB, subescena1=$subescena1DB,subescena_json=$subescena_jsonDB,escena_sel=$escena_selDB, `publicacion_descripcion` = $publicacion_descripcionDB,
+estilo=$estiloDB
 			    WHERE
 					`id` = $idDB AND
 					`usuario_alta` = $usuarioDB
@@ -880,7 +885,7 @@ as s
 INNER JOIN (select id, id_padre, nombre as nombre_subescena1 from publicacion_categoria UNION select id,id_padre, nombre as nombre_subescena1  from publicacion_categoria2) as pc3 ON pc3.id_padre is null  AND s.subescena1 = pc3.id
     LIMIT $offset,$limit
 sql;
-//	echo $sql;exit;
+	//echo $sql;exit;
         $resultado = Database::Connect()->query($sql);
         $list = array();
 

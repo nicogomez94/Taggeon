@@ -64,6 +64,10 @@ class  PublicacionManager
 	    if ($this->validarPublicacion_foto($publicacion_foto) === false){
 	      return false;
 	    }
+	    $estilo = isset($data["ESTILO"]) ? $data["ESTILO"] : '';
+	    if ($this->validarEstilo($estilo) === false){
+	     return false;
+	    }
 
 	}
 
@@ -157,6 +161,23 @@ class  PublicacionManager
 			$this->setStatus("OK");
 			$this->setMsj($this->publicacionDao->getMsj());
 		}
+	}
+	private function validarEstilo ($param){
+		$this->setStatus("error");
+		$this->setMsj("");
+		$validSql = validSqlInjection($param);
+		if ($validSql != ''){
+			$this->setMsj("Error validación: $validSql.");
+		}else{
+			$patron = '/^[1-9][0-9]*$/';
+			if (preg_match($patron, $param)){
+				$this->setStatus("ok");
+				return true;
+			}else{
+				$this->setMsj("El campo estilo es incorrecto.");
+			}
+		}
+		return false;
 	}
 
 	private function validarId ($param){
