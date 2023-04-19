@@ -4,29 +4,85 @@
    <div class="inner-carrito">
       <h1>Carrito<span class="carrito-cant-items">1 Item añadido</span></h1>
       <hr>
-      <div id="listado-mis-productos" class="carrito-listado" style="margin-top: 50px">
+      <div id="listado-mis-productos" class="carrito-listado">
 
          <input type="hidden" id="id_carrito" name="id_carrito" value="">
+
+         <!-- hardcodeo -->
+
+         <div class="row_item_prod">
+            <div class="columna-izquierda">
+               <img src="https://static.dafiti.com.ar/p/wintertex-3790-231259-1-catalog-new.jpg" alt="">
+            </div>
+            <div class="columna-derecha">
+               <div class="fila-superior">
+                  <div class="col-superior">
+                     <div class="nombre_prod">Pantalones fit negro hombre</div>
+                     <div class="marca_prod">Adidas</div>
+                     <div class="envio_prod"><i class="fas fa-shopping-cart"></i>&nbsp;Envio dentro de las 24hs</div>
+                  </div>
+                  <div class="col-superior">CANTIDAD: <span>1</span></div>
+                  <div class="col-superior">TOTAL<br><span class="precio_prod">$3500</span></div>
+               </div>
+               <div class="fila-inferior">
+                  <div class="col-inferior col-inferior-upper">Subido por:&nbsp;<span>&nbsp;nicogomez94</span></div>
+                  <div class="col-inferior">
+                     <button class="btn btn-warning">Editar Carrito</button>&nbsp;&nbsp;
+                     <button class="btn btn-warning">Continuar Compra</button>
+                  </div>
+               </div>
+            </div>
+          </div>
+         <div class="row_item_prod">
+            <div class="columna-izquierda">
+               <img src="https://static.dafiti.com.ar/p/wintertex-3790-231259-1-catalog-new.jpg" alt="">
+            </div>
+            <div class="columna-derecha">
+               <div class="fila-superior">
+                  <div class="col-superior">
+                     <div class="nombre_prod">Pantalones fit negro hombre</div>
+                     <div class="marca_prod">Adidas</div>
+                     <div class="envio_prod"><i class="fas fa-shopping-cart"></i>&nbsp;Envio dentro de las 24hs</div>
+                  </div>
+                  <div class="col-superior">CANTIDAD: <span>1</span></div>
+                  <div class="col-superior">TOTAL<br><span class="precio_prod">$3500</span></div>
+               </div>
+               <div class="fila-inferior">
+                  <div class="col-inferior col-inferior-upper">Subido por:&nbsp;<span>&nbsp;nicogomez94</span></div>
+                  <div class="col-inferior">
+                     <button class="btn btn-warning">Editar Carrito</button>&nbsp;&nbsp;
+                     <button class="btn btn-warning">Continuar Compra</button>
+                  </div>
+               </div>
+            </div>
+          </div>
+         <!-- hardcodeo -->
 
       </div>
    </div>
 </div>
 <div class="container totales-cont">
    <div class="row">
-      <div class="col-6 col-lg-6"></div>
+      <div class="col-6 col-lg-6 banner_comprando">
+         <img src="../../assets_amal/baner-seguircomprando.png" alt="">
+      </div>
       <div class="col-6 col-lg-6 totales-carrito">
          <h4>Totales</h4>
          <hr>
          <div class="row datos-num-checkout">
             <div class="col-lg-6"><span class="subtotal-titulo">Subtotal</span></div>
-            <div class="col-lg-6 text-right"><span class="subtotal-cant"></span></div>
+            <div class="col-lg-6 text-right"><span class="subtotal-cant num-amal-plata"></span></div>
+         </div>
+         <div class="row datos-num-checkout">
+            <div class="col-lg-6"><span class="subtotal-titulo">Cargo por envio</span></div>
+            <div class="col-lg-6 text-right"><span class="num-amal-plata">AR$ 0.00</span></div>
          </div>
          <div class="row datos-num-checkout">
             <div class="col-lg-6"><span class="total-titulo">Total</span></div>
-            <div class="col-lg-6 text-right"><span class="total-cant"></span></div>
+            <div class="col-lg-6 text-right"><span class="total-cant num-amal-plata"></span></div>
          </div>
          <br>
-         <div id="test">
+         <div id="test" style="text-align: right;">
             <!-- <button class="boton-checkout-carrito btn btn-warning">Continuar Compra</button> -->
          </div>
       </div>
@@ -46,6 +102,8 @@
 
 <script>
 $(document).ready(function(){
+
+   $("body").css("background-image","url('../../assets_amal/background-tags.png')")
 
    var carrito = jsonData.carrito || [];
    var sizeCarrito = jsonData.carrito.length;
@@ -92,8 +150,8 @@ $(document).ready(function(){
                               </div>`;
 
                   $("#listado-mis-productos").append(prods_carrito_html);
-                  $(".subtotal-cant").html("AR$"+total);
-                  $(".total-cant").html("AR$"+total);
+                  $(".subtotal-cant").html("AR$ "+total);
+                  $(".total-cant").html("AR$ "+total);
                   $("#id_carrito").val(id_carrito);
 
                   if(cantidad == null || id_carrito == null){
