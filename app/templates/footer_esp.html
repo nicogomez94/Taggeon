@@ -22,31 +22,45 @@
 
 <!-- HOME -->
 <script>
-    new Splide( '.splide_tarjeta', {
-       perPage: 3,
-       rewind : true,
-       pagination: false,
-       breakpoints: {
-            640: {
-               perPage: 1,
-            },
-      }
-    } ).mount();
+     new Splide( '.splide_tarjeta', {
+        perPage: 3,
+        perMove: 1,
+        rewind : true,
+        type   : 'loop',
+        //padding: '20rem',
+        focus  : 'center',
+        width: '90%',
+        gap: '2em',
+        pagination: true,
+        breakpoints: {
+              1400: {
+                perPage: 2,
+                gap: '1em'
+              },
+              920: {
+                perPage: 1,
+                gap: '0',
+                padding: '10em'
+              },
+       }
+     } ).mount();
 
-    new Splide( '.splide_maybe_follow', {
-       perPage: 3,
-       rewind : true,
-       pagination: false,
-       width: '100%',
-       breakpoints: {
-            640: {
-               perPage: 1,
-            },
-      }
-    } ).mount();
-    $(document).ready(function(){
-        $("#modal-upload-amal").modal('show');
-    });
+     new Splide( '.splide_maybe_follow', {
+        perPage: 3,
+        perMove: 1,
+        rewind : true,
+        pagination: false,
+        padding: '3em',
+        width: '100%',
+        breakpoints: {
+             1270: {
+                perPage: 1,
+             },
+       }
+     } ).mount();
+    /* $(document).ready(function(){
+         $("#modal-upload-amal").modal('show');
+     });*/
  </script>
 
 <!--  -->
