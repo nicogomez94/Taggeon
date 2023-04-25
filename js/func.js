@@ -456,7 +456,7 @@ $('#subir-publicacion-form').submit(function (e) {
                 alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 alertify.success(data.mensaje);	
-                window.location.replace("/mis-publicaciones.html");
+                //window.location.replace("/mis-publicaciones.html");
             }else{
                 alertify.error(data.mensaje);
             }
@@ -1844,6 +1844,7 @@ function getSubEscena(valueParam,subescena_json){
                 var label_hidden = $(".label-hidden")
                 var targetHtml = $("#subescenas-container");
                 var cat_select_html = '';
+                console.log(subEscena)
 
                 for(var i=0; i<subEscena_length; i++) {
                     var cat_id = subEscena[i].id;
@@ -1870,7 +1871,7 @@ function getSubEscena(valueParam,subescena_json){
                     let value_name = el.value.split("-")[1];
                     let name = el.name;
                     let name_sel = $("#subescenas-container").find("[data-name-sel='"+name+"']");
-                    let option = '<option value="'+value_id+'-'+value_name+'" selected>'+value_name+'</option>'
+                    let option = '<option value="'+value_id+'" selected>'+value_name+'</option>'
                     
                     //le apendeo el option que fue antes seleccionado. si quiere cambiarlo se refresca el select
                     name_sel.html(option);
@@ -1917,7 +1918,7 @@ function getParamTipoEspacio(valueParam,target){
                 for(var i=0; i<subEscena_length; i++) {
                     var cat_id = subEscena[i].id;
                     var cat_nombre = subEscena[i].nombre;
-                    cat_select_html += '<option value="'+cat_id+'-'+cat_nombre+'">'+cat_nombre+'</option>';
+                    cat_select_html += '<option value="'+cat_id+'">'+cat_nombre+'</option>';
                 }
                 //targetHtml.prepend('<option selected disabled hidden required value="">-</option>')
                 targetHtml.html(cat_select_html)
@@ -2194,7 +2195,7 @@ function getMisFavoritos(data){
             var id_public_cat = data[i].id_publicacion_categoria;
             var nombre_public = data[i].publicacion_nombre;
             var descr_public = data[i].publicacion_descripcion;
-            var imagen_id = data[i].foto;
+            var imagen_id = data[i].id_publicacion;
             var full_url = '/ampliar-publicacion.html?id='+id_public+'&accion=ampliar';
             var foto_src = '/publicaciones_img/'+imagen_id+'.png' || 0;  
 
@@ -2643,7 +2644,7 @@ function getPublicsAmpliarHome(data){
     const escena_json = JSON.parse(escena);
     const escena_json_length = escena_json.length;
 
-    //console.log("publics",data)
+    console.log("publics",data)
     for(var i=0; i<sizePublic; i++){
        
         if(sizePublic>0){

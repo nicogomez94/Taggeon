@@ -52,7 +52,7 @@ class  PublicacionDao
         $publicacion_pidDB = Database::escape($publicacion_pid);
         $aspect_ratio = isset($data["aspect_ratio"]) ? $data["aspect_ratio"] : '';
         $aspect_ratioDB = Database::escape($aspect_ratio);
-        $estilo = isset($data["estilo"]) ? $data["estilo"] : 0;
+        $estilo = isset($data["ESTILO"]) ? $data["ESTILO"] : 0;
         $estiloDB = Database::escape($estilo);
         
 		$sql = <<<SQL
@@ -96,7 +96,7 @@ SQL;
 
         $subescena_json = isset($data["subescena_json"]) ? $data["subescena_json"] : '';
         $subescena_jsonDB = Database::escape($subescena_json);
-        $estilo = isset($data["estilo"]) ? $data["estilo"] : 0;
+        $estilo = isset($data["ESTILO"]) ? $data["ESTILO"] : 0;
         $estiloDB = Database::escape($estilo);
 
         $sql = <<<SQL
