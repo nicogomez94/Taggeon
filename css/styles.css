@@ -15,6 +15,7 @@
     --redondeado-amal: 20px;
     --random-test-col: 215px; 
     --soft-shadow: 0px 0px 5px rgb(187 187 187);
+    --amal-shadow: 0px 0px 10px rgb(112, 112, 112);
     --soft-redondeado: 10px;
     --backdrop-color:rgba(0, 0, 0, 0.178);
     --gradiente-dorada-horiz: linear-gradient(90deg, rgba(220,187,93,1) 0%, rgba(180,136,50,1) 100%);
@@ -345,6 +346,7 @@ body{
 }
 .show-result{
     color: rgb(208 208 208);
+    margin-top: 20px;
 }
 .search {
     padding: .75rem 1rem;
@@ -1026,9 +1028,17 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
  
 
  /*PERFIL/AMPLIAR USUARIO*/
-#info-user{
-    margin-top: 30px;
-    margin-bottom: 30px;
+ #info-user {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    background-image: url('../assets_amal/background-tags.png');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    height: 300px;
 }
 #icons-upper-perfil{
     font-size: 1.5em;
@@ -1041,30 +1051,30 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
 #icons-upper-perfil span{
     padding: 10px;
 }
-#titulo-perfil{
-    text-align: center;
+#titulo-perfil {
     font-size: 1.5em;
-    margin-bottom: 20px;
+    padding: 30px;
     font-weight: 500;
     display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    box-shadow: 0 0 1px rgb(236, 236, 236);
-    border-radius: var(--soft-redondeado);
+    position: absolute;
+    width: auto;
+    background-color: #fff;
+    border-radius: var(--redondeado-amal);
+    box-shadow: var(--amal-shadow);
+    position: absolute;
+    top: 180px;
+}
+#titulo-perfil-datos>div{
+    margin-top: 10px;
 }
 #titulo-perfil-img{
     margin-right: 10px;
     flex-grow: 1;
     text-align: right;
 }
-#titulo-perfil-datos{
+#titulo-perfil-datos {
     padding-left: 10px;
     text-align: left;
-    flex-grow: 2;
-    border-left: 3px solid #E8E8E8;
-    background: #fbfbfb;
 }
 #titulo-perfil img{
     width: 150px;
@@ -1124,6 +1134,13 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     align-items: center;
     padding: 10px;
     background: #fbfbfb;
+}
+.foto-perfil-paginas {
+    position: absolute;
+    left: 50%;
+    top: -110px;
+    z-index: 999;
+    margin-left: -75px;
 }
 #menu-perfil a{
     margin-left: 5px;
@@ -2334,7 +2351,7 @@ button:disabled{
     border-radius: 50%;
     box-shadow: 0px 0px 5px grey;
 }
-.tarjeta_amal_perfil img, .mf_img_perfil img{
+.tarjeta_amal_perfil img, .mf_img_perfil img, .foto-perfil-paginas img{
     background-image: linear-gradient(90deg, white, white), linear-gradient(90deg, var(--golden-amal-oscuro), #fff);
     background-clip: padding-box, border-box;
     background-origin: border-box;
