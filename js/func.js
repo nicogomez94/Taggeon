@@ -2368,12 +2368,31 @@ function getMisCompras(data){
             var sizeVendedor = jsonData.vendedor.length || 0;
             var foto_src = `/productos_img/${imagen_id}.png` || 0;
             var compras_html = 
-            `<div class="flex-listado">
+            `<div class="row_item_prod">
+                <div class="columna-izquierda">
+                    <img src="${foto_src}" alt="${foto_src}">
+                </div>
+                <div class="columna-derecha">
+                    <div class="fila-superior">
+                        <div class="col-superior">
+                            <div class="nombre_prod">${nombre_producto}</div>
+                            <div class="marca_prod">Adidas</div>
+                            <div class="envio_prod"><i class="fas fa-shopping-cart"></i>&nbsp;Envio dentro de las 24hs</div>
+                        </div>
+                        <div class="col-superior">CANTIDAD: <span>1</span></div>
+                        <div class="col-superior">TOTAL<br><span class="precio_prod">${precio_producto}</span></div>
+                    </div>
+                    <div class="fila-inferior">
+                        <div class="col-inferior col-inferior-upper">Subido por:&nbsp;<span>&nbsp;nicogomez94</span></div>
+                        <div class="col-inferior text-overlay-link-${id}" data-title="${id}">
+                            <a class="btn btn-warning" href="/ampliar-compras.html?id=${id_carrito}">Ampliar Compra</a>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+           /* `<div class="flex-listado">
                 <div class="overlay-public">
                     <div class="text-overlay-prod">
-                        <!--<span data-title="${id}" class="text-overlay-link">
-                            <a href="javascript:void(0)"><i class="fas fa-trash-alt"></i></a>
-                        </span>-->
                         <span data-title="${id}" class="text-overlay-link text-overlay-link-${id}">
                             <a href="/ampliar-compras.html?id=${id_carrito}"><i class="fas fa-eye"></i></a>
                         </span>
@@ -2384,7 +2403,8 @@ function getMisCompras(data){
                     <div class="nombre-prod">${nombre_producto}</div>
                     <div class="precio-prod">$ ${precio_producto}</div>
                 </div>
-            </div>`;
+            </div>`;*/
+
                 
             flex_container.insertAdjacentHTML('beforeend', compras_html) 
                 
