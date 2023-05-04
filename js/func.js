@@ -501,9 +501,9 @@ $('#editar-publicacion-form').submit(function (e) {
                 alertify.error(data.mensaje);														
             }else if(data.status == 'OK' || data.status == 'ok'){
                 $("body").addClass("loading"); 
-                //window.location.replace("/mis-publicaciones.html");
+                window.location.replace("/mis-publicaciones.html");
             }else if(data.status == 'REDIRECT'){
-                //window.location.replace(data.mensaje);
+                window.location.replace(data.mensaje);
             }else{
                 alertify.error(data.mensaje);
             }
@@ -1900,7 +1900,7 @@ function getParamTipoEspacio(valueParam,target){
     var catData = new FormData();
     catData.append("accion","subescena");
     catData.append("id",valueParam);
-
+console.log("ree")
     $.ajax({
         url: '/app/publicacion.php',
         data: catData,
@@ -1914,11 +1914,12 @@ function getParamTipoEspacio(valueParam,target){
                 var subEscena_length = data.mensaje.length || 0;
                 var targetHtml = $("#"+target);
                 var cat_select_html = '';
+                console.log("getParamTipoEspacio",subEscena)
                 
                 for(var i=0; i<subEscena_length; i++) {
                     var cat_id = subEscena[i].id;
                     var cat_nombre = subEscena[i].nombre;
-                    cat_select_html += '<option value="'+cat_id+'">'+cat_nombre+'</option>';
+                    cat_select_html += '<option value="'+cat_id+'-'+cat_nombre+'">'+cat_nombre+'</option>';
                 }
                 //targetHtml.prepend('<option selected disabled hidden required value="">-</option>')
                 targetHtml.html(cat_select_html)

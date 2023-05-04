@@ -172,7 +172,7 @@
 							</div>
 						</div>
 						<div class="text-right">
-							<button class="btn btn-pagar-mp">Pagar</button>
+							<button class="btn btn-pagar-mp" onclick="gotopay()">Pagar</button>
 						</div>
 					</div>
 				</div>
@@ -245,11 +245,20 @@
     </script>
 
 <script>
+
+function gotopay(){
+	
+	let total = 0;
+	jsonData?.compras?.map(c=>total+=parseFloat(c[11]));
+
+	window.location.href = "http://168.181.186.206/mp/geturl.php?title=Compra en Taggeon&price="+total+"&id="+jsonData.compras[0].id_carrito;
+}
+
 $(document).ready(function(){
-
 	$("body").css("background-image","url('../../assets_amal/background-tags.png')")
-
+	
     $("#testcarr").attr("value",jsonData.compras[0].id_carrito)
+  
     var sizeCompras = jsonData.compras.length;
 
     if(sizeCompras>0){

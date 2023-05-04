@@ -75,6 +75,10 @@ class  PublicacionManager
 
 	public function agregarPublicacion(array $data)
 	{
+	    	$estilo = isset($data["ESTILO"]) ? $data["ESTILO"] : '';
+		$estiloArray = explode("-",$estilo);
+		$estilo = $estiloArray[0];
+		$data["ESTILO"] = isset($estilo) ? $estilo : '';
 
 		if ($this->validarPublicacion($data) === false) {
 			return false;
@@ -107,6 +111,12 @@ class  PublicacionManager
 
 	public function modificarPublicacion(array $data)
 	{
+
+	    	$estilo = isset($data["ESTILO"]) ? $data["ESTILO"] : '';
+		$estiloArray = explode("-",$estilo);
+		$estilo = $estiloArray[0];
+		$data["ESTILO"] = isset($estilo) ? $estilo : '';
+
 		if ($this->validarPublicacion($data) === false) {
 			return false;
 		}
