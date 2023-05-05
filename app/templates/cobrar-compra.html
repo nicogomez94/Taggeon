@@ -268,7 +268,8 @@ function gotopay(){
     }).then(res => res.json())
     .then(response => {
       let msj = response.mensaje;
-      if(msj == 'OK' || msj == 'ok'){
+      let status = response.status;
+      if(status == 'OK' || status == 'ok'){
           alertify.success(msj);
           window.location.replace(msj);
       }else{

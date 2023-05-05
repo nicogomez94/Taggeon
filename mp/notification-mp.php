@@ -10,11 +10,21 @@
 
 	/*daniel*/
     ob_start();
-    MercadoPago\SDK::setAccessToken("APP_USR-3405785545373923-050417-b173efb7d95e42e94d962850e36ae301-443471850");
+    MercadoPago\SDK::setAccessToken($GLOBALS['configuration_mp']['client_secret']);
     $payment = MercadoPago\Payment::find_by_id($_GET["data_id"]);
 	/*daniel*/
 
     if($payment->status == "approved"){
+         $id_carrito = $payment->metadata->id_carrito;
+         $id_comprador = $payment->metadata->id_comprador;
+         $hashmp = $payment->metadata->hashmp;
+	 $hashmpBackend = md5($id_carrito.$GLOBALS['configuration_mp']['clave_hash'].$id_comprador);
+          logError($id_carrito);
+          logError($id_comprador);
+          logError($hashmp);
+	 #if ($hashmpBackend === $hashmp){
+
+	 #}
         
         /***actualizo metrica */
         $str = "################################## METRICA\n";
