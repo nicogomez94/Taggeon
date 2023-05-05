@@ -79,18 +79,26 @@ if ($sesionManager->validar(array('seller','picker'))){
         $preference->payments = array($payment);
     
         $preference->back_urls = array(
-            'failure' => "",
-            'pending' => "",
-            'success' => "http://168.181.186.206/mis-compras.html" // con colocar este es mas que suficiente
+            'failure' =>  $GLOBALS['configuration_mp']['url_failure'],
+            'pending' => $GLOBALS['configuration_mp']['url_pending'],
+            'success' => $GLOBALS['configuration_mp']['url_success'] // con colocar este es mas que suficiente
         );
     
         $preference->binary_mode = true;
-        $preference->notification_url = "http://168.181.186.206/mp/notification-mp.php&id_carrito=".$_GET["id"]; //para escuchar el evento de pago y validarlo
+        $preference->notification_url = $GLOBALS['configuration_mp']['url_notificacion']; //para escuchar el evento de pago y validarlo
     
         //Datos que puedes enviar para guardar en el pago y usarlo en el webhook
         //para comprobar lo que quieras id usuario id etc etc
+	//
+	//
+	//
+	
+	$hashmp = md5($_GET["id"].$GLOBALS['configuration_mp']['clave_hash'].$GLOBALS['sesionG']['idUsuario']);
+
         $metadata = array(
-            "id_carrito" => $_GET["id"]
+            "id_carrito"   => $_GET["id"],
+            "id_comprador" => $GLOBALS['sesionG']['idUsuario'],
+	     "hashmp"        => $hashmp
         );
         $preference->metadata = $metadata;
         $preference->save();

@@ -74,7 +74,7 @@
             $statusRet  = 'ERROR';
             $mensajeRet = $objPrincipalManager->getMsj();
         }
-        //DANIELDANIELDANIELDANIEL
+        /*DANIELDANIELDANIELDANIEL
     
                 $id_carrito = $payment->metadata->id_carrito;
                     $estado = 4;
@@ -89,7 +89,7 @@
             `estado` >=  2
             SQL;
 
-                mysqli_query(Database::Connect(), $sql);
+                mysqli_query(Database::Connect(), $sql);*/
 
     }
 
