@@ -143,22 +143,19 @@ class  UsuarioManagerImpl implements  UsuarioManager{
 			$codeMP      = $_GET['code'];
 			$ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, 'https://api.mercadopago.com/oauth/token');
+curl_setopt($ch, CURLOPT_URL,  $GLOBALS['configuration_mp']['url_token']);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
 $post = array(
-//    'client_secret' => "TEST-3352741419059189-050614-755049662bda9663d0cfd003654542a6-754221997",
-    // 'client_secret' => "APP_USR-8374534224864099-031110-4f6f85c7c881ec465effc93b0c547035-22602582",
-    // 'client_secret' => "APP_USR-1018087855526059-030418-6314ed4cc8b2526fa1f721c48767b94c-141510028",
-    'client_secret' => "APP_USR-3405785545373923-050417-b173efb7d95e42e94d962850e36ae301-443471850",
+	'client_secret' => $GLOBALS['configuration_mp']['client_secret'],
     'grant_type' => "authorization_code",
     'code' => "$codeMP",
-    'redirect_uri' => "https://168.181.186.206/"
+    'redirect_uri' => $GLOBALS['configuration_mp']['redirect_uri']
 );
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 
 $headers = array();
-$headers[] = 'Cookie: _d2id=11ad01cf-b28f-4c4d-8fcd-8dda7df01919-n';
+$headers[] =  $GLOBALS['configuration_mp']['cookie'];
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 $result = curl_exec($ch);

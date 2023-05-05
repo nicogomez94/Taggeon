@@ -48,7 +48,8 @@ if ($perfil=='seller' || $perfil=='picker'){
             "url_editar" => "/editar-usuario.html",
 	        "id"          => $idEditar,
             "menu-perfil" => _menuPerfil($fotoPerfil,$menuperfil),
-            "foto-perfil" => $fotoPerfil //fotoPerfil definida en header.php
+            "foto-perfil" => $fotoPerfil, //fotoPerfil definida en header.php
+	    "get_url"     => $GLOBALS['configuration_mp']['get_url'], 
 			));
     $contenidoString = $contenido->muestra();
     //HEADER

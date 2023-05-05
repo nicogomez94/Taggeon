@@ -253,7 +253,7 @@ function gotopay(){
   let total = 0;
 	jsonData?.compras?.map(c=>total+=parseFloat(c[11]));
 
-    const URL = "http://168.181.186.206/mp/geturl.php?title=Compra en Taggeon&price="+total+"&id="+jsonData.compras[0].id_carrito;
+    const URL =  "{get_url}?title=Compra en Taggeon&price="+total+"&id="+jsonData.compras[0].id_carrito;
 
     let data = new FormData();
     data.append("price",total);
@@ -267,7 +267,13 @@ function gotopay(){
         body: data,
     }).then(res => res.json())
     .then(response => {
-      window.location.href = response.mensaje
+      let msj = response.mensaje;
+      if(msj == 'OK' || msj == 'ok'){
+          alertify.success(msj);
+          window.location.replace(msj);
+      }else{
+        alertify.error(msj)
+      }
     })
     .catch(error => console.error('Error:', error))
 
