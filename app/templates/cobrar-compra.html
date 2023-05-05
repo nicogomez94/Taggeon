@@ -259,6 +259,7 @@ function gotopay(){
     data.append("price",total);
     data.append("id_carrito",jsonData.compras[0].id_carrito);
     data.append("id",jsonData.compras[0].id_carrito);
+    // data.append("id_usuario","test");
     data.append("title","Compra en Taggeon");
     
     fetch(URL, {
