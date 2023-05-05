@@ -58,9 +58,7 @@ STR;
     }
 
     $idUserMP        = $GLOBALS['sesionG']['idUsuario'];
-    $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=3405785545373923&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=https://168.181.186.206/"; ////app rodrigo gonelake
-    // $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=1018087855526059&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=https://taggeon.com/"; //PRODUCCION
-//    $urlMP = "https://auth.mercadopago.com.ar/authorization?client_id=3352741419059189&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=https://ec2-3-135-36-159.us-east-2.compute.amazonaws.com/"; //TEST
+    $urlMP = $GLOBALS['configuration_mp']['url_authorization']."?client_id=".$GLOBALS['configuration_mp']['client_id']."&response_type=code&platform_id=mp&state=$idUserMP&redirect_uri=".$GLOBALS['configuration_mp']['redirect_uri']; 
 	
     $objIntereses = new InteresesManager();
     $intereses = $objIntereses->getListIntereses();
