@@ -2937,6 +2937,39 @@ function getPublicsHome(data){
     }
 }
 
+function getPublicsHome2(columnas){
+    var columnas = data.length;
+    if(columnas>0){
+        console.log(columnas)
+        for(var x=0; x<se_length; x++){
+
+            let categoria_estilo = columnas[x].categoria_estilo || "";
+            let id_categoria = columnas[x].id_categoria || "";
+            let nombre_cat = columnas[x].nombre_cat || "";
+            let estilo_id = columnas[x].estilo_id || "";
+            let nombre_estilo = columnas[x].nombre_estilo || "";
+            let nombre_full = nombre_cat + "" + nombre_estilo;
+
+            const globos_html = `<li class="splide__slide item item-cat-${id_categoria}">
+            <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=1')">
+            <div class="titulo-col random-p-${x}"><span class="span-titulo">${nombre_full}</span></div>
+            </div>
+            </li>`
+            
+            $(".splide__list__home").append(globos_html)
+        }
+
+        let splide_test = new Splide( '.splide__home', {
+            type     : 'slide',
+            perPage: 2,
+            autoWidth: true,
+            pagination: false,
+            autoHeight: true
+        } ).mount();
+
+    }
+}
+
 function showCantResult(length){
     var showResultados = document.querySelector(".show-result-num") || 0;
     showResultados.innerHTML = length; 
@@ -3138,7 +3171,7 @@ function getDataPaging(dataPaging) {
             //dibujo listados
             switch (url_temp){
                 case "paginador_home.php":
-                    getPublicsHome(data);
+                    getPublicsHome2(data);
                     break;
                 case "paginador_ampliar-publicacion.php":
                     getPublicsAmpliar(data);

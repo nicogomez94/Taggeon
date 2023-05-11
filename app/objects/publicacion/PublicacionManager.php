@@ -172,6 +172,23 @@ class  PublicacionManager
 			$this->setMsj($this->publicacionDao->getMsj());
 		}
 	}
+	private function validarEscena ($param){
+		$this->setStatus("error");
+		$this->setMsj("");
+		$validSql = validSqlInjection($param);
+		if ($validSql != ''){
+			$this->setMsj("Error validación: $validSql.");
+		}else{
+			$patron = '/^ARQUITECTURA$/';
+			if (preg_match($patron, $param)){
+				$this->setStatus("ok");
+				return true;
+			}else{
+				$this->setMsj("El campo escena es incorrecto.");
+			}
+		}
+		return false;
+	}
 	private function validarEstilo ($param){
 		$this->setStatus("error");
 		$this->setMsj("");
@@ -468,6 +485,14 @@ class  PublicacionManager
 				$this->setStatus("OK");
 				$this->setMsj("");
 				return true;
+			}
+			public function getColumnasCategoria($escena)
+			{
+			    if ($this->validarEscena($escena) === false){
+					return [];
+			    }
+
+				return $this->publicacionDao->getColumnasCategoria($escena);
 			}
 		
 		

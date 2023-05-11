@@ -288,15 +288,29 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
-   
-         /////////paginador/////////////
-         const dataPaging = {
-            cantidad : 10,
-            url: "paginador_home.php"
-         }
-         getDataPaging(dataPaging);
-         intObserver(dataPaging);
-         ///////////////////////////////
+   console.log(columnas);
+   return 0;
+   var columnas = columnas.length;
+   for(var x=0; x<columnas; x++){
+
+      let categoria_estilo = columnas[x].categoria_estilo || "";
+      let id_categoria = columnas[x].id_categoria || "";
+      let nombre_cat = columnas[x].nombre_cat || "";
+      let estilo_id = columnas[x].estilo_id || "";
+      let nombre_estilo = columnas[x].nombre_estilo || "";
+      let nombre_full = nombre_cat + "" + nombre_estilo;
+      
+      const dataPaging = {
+         cantidad : 10,
+         url: "paginador_home.php",
+         estilo_id: estilo_id,
+         length_public: columnas.length
+      }
+      getDataPaging(dataPaging);
+
+   }
+
+   intObserver(dataPaging);
 
 });
 </script>

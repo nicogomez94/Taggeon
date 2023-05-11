@@ -14,7 +14,8 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/Seg
     if (isset($GLOBALS['sesionG']['tokenMercadoPago']) && $GLOBALS['sesionG']['tokenMercadoPago'] != ''){
         $tokenMercadoPago = 1;
     }
-    
+
+
     $jsonData = array(
         "tokenMercadoPago" => $tokenMercadoPago,
     	"perfil"        => $perfil,
@@ -22,9 +23,9 @@ include_once($GLOBALS['configuration']['path_app_admin_objects']."seguidores/Seg
         "nombre"        => $GLOBALS['sesionG']['nombre'],
         "apellido"      => $GLOBALS['sesionG']['apellido'],
         "contacto"      => $GLOBALS['sesionG']['email'],
-        "publicaciones"     => $publicacionManager->getListPublicacionIndexDinamico(),
+        "publicaciones" => $publicacionManager->getListPublicacionIndexDinamico(),
         "seguidores"     => $seguidoresManager->getListSeguidores(),
-        "seguidos"     => $seguidoresManager->getListSeguidos()
+	"seguidos"       => $seguidoresManager->getListSeguidos()
     );
 
     $jsonData = json_encode($jsonData,JSON_INVALID_UTF8_IGNORE);

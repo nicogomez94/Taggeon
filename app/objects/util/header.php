@@ -15,6 +15,12 @@ $perfil   = isset($perfil) ? $perfil : '';
     $escena2 = $publicacionManager->getListEscena2(); 
     $escena2 = json_encode($escena2);
     $randomtime=time();
+
+
+    $escena  = isset($_GET["escena"]) ? $_GET["escena"] : 'ARQUITECTURA';
+    $columnas = $publicacionManager->getColumnasCategoria($escena); 
+    $columnas = json_encode($columnas);
+
 if ($perfil == 'seller' || $perfil == 'picker'){
 	$contenidoHeader = new Template('header_esp_usuario');
 	$reemplazoPerfil = ($perfil == 'seller') ? ' Seller' : '';
@@ -73,6 +79,7 @@ STR;
 
 	$contenidoHeader->asigna_variables(array(
         //"test"           => $test
+	"categoriaEstilo"   => $columnas,
         "randomtime" => $randomtime,
         "notificaciones" => $notificaciones,
         "url-mp"     => $urlMP,
@@ -87,6 +94,7 @@ STR;
 }else{
 	$contenidoHeader = new Template('header_esp');
 	$contenidoHeader->asigna_variables(array(
+	"categoriaEstilo"   => $columnas,
         "randomtime" => $randomtime,
 		"escena"         => $escena,
 		"escena2"         => $escena2

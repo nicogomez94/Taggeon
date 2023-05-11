@@ -19,18 +19,20 @@
          $id_comprador = $payment->metadata->id_comprador;
          $hashmp = $payment->metadata->hashmp;
 	 $hashmpBackend = md5($id_carrito.$GLOBALS['configuration_mp']['clave_hash'].$id_comprador);
-          logError($id_carrito);
-          logError($id_comprador);
-          logError($hashmp);
-	 #if ($hashmpBackend === $hashmp){
+          //logError($id_carrito);
+          //logError($id_comprador);
+          //logError($hashmp);
+	 if ($hashmpBackend === $hashmp){
 
-	 #}
+	}else{
+
+        }
         
         /***actualizo metrica */
         $str = "################################## METRICA\n";
         logError($str);
         $metricaManager = new MetricaManager();
-        if ($metricaManager->procesarMetrica($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario'],$payment->id) === false){
+        if ($metricaManager->procesarMetrica($id_carrito,$id_comprador,$payment->id) === false){
             if ($metricaManager->getStatus() != 'ok'){
                 $objRet = array(
                     "status"  => "ERROR",
@@ -65,7 +67,7 @@
 
 
             /********actualizo stock********/ 
-            $actualizarStock = $objPrincipalManager->actualizarStock($_POST['id_carrito'],$GLOBALS['sesionG']['idUsuario']);
+            $actualizarStock = $objPrincipalManager->actualizarStock($id_carrito,$id_comprador);
             if ($objPrincipalManager->getStatus() != 'ok'){
                 $objRet = array(
                     "status"  => "ERROR",

@@ -453,6 +453,30 @@ sql;
                 }
 
 
+                public function getColumnasCategoria($param)
+                {
+			
+			$escenaDB = Database::escape($param);
+                    $sql = <<<sql
+	SELECT distinct CONCAT(CAST(p.subescena1 AS CHAR), "_" ,CAST(p.estilo_id AS CHAR)) as categoria_estilo,p.subescena1 as id_categoria, pc.nombre as nombre_cat, p.estilo_id,pc2.nombre as nombre_estilo
+	FROM  publicacion p INNER JOIN publicacion_categoria pc ON p.subescena1 = pc.id AND (pc.eliminar is null or pc.eliminar=0)
+			    INNER JOIN publicacion_categoria pc2 on p.estilo_id = pc2.id AND (pc2.eliminar is null or pc2.eliminar=0)
+	where
+	p.escena_sel like $escenaDB AND
+	(p.eliminar is null or p.eliminar=0)
+	and p.estilo_id is not null
+	and p.estilo_id != 0
+	ORDER BY p.fecha_alta DESC
+sql;
+            
+                    $resultado = Database::Connect()->query($sql);
+                    $list = array();
+            
+                    while ($rowEmp = mysqli_fetch_array($resultado)) {
+                        $list[] = $rowEmp;
+                    }
+                    return $list;
+                }
 
                 public function getListEscena()
                 {
