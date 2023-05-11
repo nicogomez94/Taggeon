@@ -423,6 +423,11 @@ class  PublicacionManager
 				$ret =  $this->publicacionDao->getListAmpliarPublicacionIndexPaginador();
 				return $ret;
 			}
+			public function getListPublicacionEscenaCategoriaEstilo()
+			{
+				$ret =  $this->publicacionDao->getListPublicacionEscenaCategoriaEstilo();
+				return $ret;
+			}
 			public function getListPublicacionIndexPaginador()
 			{
 				$ret =  $this->publicacionDao->getListPublicacionIndexPaginador();
