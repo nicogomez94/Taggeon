@@ -23,6 +23,13 @@
     }
 }
 @media screen and (max-width: 768px) {
+    .totales-cont>div:nth-child(2) {
+        order: -1;
+        margin-bottom: 30px;
+      }
+    .totales-cont{
+        flex-direction: column;
+    }
     #form-mp-container{
         flex-direction: column;
     }
@@ -158,6 +165,13 @@
     }
 }
 @media screen and (max-width: 576px) {
+    .data-collapse{
+        display: flex;
+        margin-top: 10px;
+    }
+    .row_item_prod>.columna-derecha,.marca_prod,.nombre_prod{
+        display: none;
+    }
     .maybe_follow_container{
         display: flex;
         flex-wrap: wrap;
