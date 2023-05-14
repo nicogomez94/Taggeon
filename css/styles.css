@@ -2088,21 +2088,22 @@ textarea{
     font-size: 20px;
     position: absolute;
     text-align: center;
-    background: #00000099;
+    background: rgba(0,0,0,.5);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.25253851540616246) 100%);
     padding: 20px;
     border-radius: var(--redondeado-amal);
     z-index: 999;
     height: 100%;
     width: 100%;
-    display: block;
+    display: none;
 }
 .text-overlay-link i{
     cursor: pointer;
     margin-right: 10px;
-    color: rgba(190, 190, 190, 0.527);
+    color: rgba(255, 255, 255, .9);
 }
 .text-overlay-link i:hover{
-    color: rgb(226, 226, 226);
+    color: rgba(255, 255, 255, .5);
 }
 
 .link-ampliar-home{
