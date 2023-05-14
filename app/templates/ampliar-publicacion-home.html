@@ -47,14 +47,23 @@
                      <strong>Descripcion:</strong>
                      <div id="descr-data"></div>
                   </div>
+                  <div class="colores-producto">
+                     <div class="cuadro-colores"></div>
+                     <div class="cuadro-colores"></div>
+                     <div class="cuadro-colores"></div>
+                  </div>
+                  <div class="cat-prod-cont">
+                     <div class="cat-prod">Arquitectura</div>
+                     <div class="cat-prod">Indumentaria</div>
+                  </div>
                </div>
             </div>
             <hr>
             <div class="commentbox-container">
                <div class="commentbox commentbox-id-2">
                   <div><img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
-                  <div style="flex-grow: 1;"><input type="text" id="comentario-${i_p}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario"></div>
-                  <div class="ml-1"><button onclick="sendComentario('${id_prod_p}','${i_p}','prod')" value="enviar" class="btn">Enviar</button></div>
+                  <div style="flex-grow: 1;"><input type="text" id="comentario-${i_p}" class="input-text-comentario" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario"></div>
+                  <div class="ml-1"><button onclick="sendComentario('${id_prod_p}','${i_p}','prod')" value="enviar" class="btn btn-comentario">Enviar</button></div>
                </div>
                <div class="vm-comentarios" onclick="activarComentarios('5','producto','${id_prod_p}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></div>
             </div>

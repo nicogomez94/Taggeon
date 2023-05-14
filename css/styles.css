@@ -105,9 +105,10 @@ footer{
     background-image: url('../assets_amal/fondo-nuevasideasparataggear.png');
     height: 159px;
     width: 100%;
-    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     box-shadow: 0px 0px 7px grey inset;
+    background-size: cover;
 }
 *,
 *:before,
@@ -669,6 +670,9 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
 .forms input{
     width: 70%;
     margin-top: 10px;
+    border: none;
+    border-bottom: 1px solid gray;
+    color: gray;
 }
 /*form div{cochinada
     margin-bottom: 10px;
@@ -695,8 +699,28 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     width: 100%;
     color: #666;
     position: relative;
-    /* padding: 5px; */
+    cursor: pointer;
     margin-bottom: 15px;
+}
+.cat-prod{
+    display: inline-block;
+    background-color: #000;
+    color: white;
+    font-weight: bold;
+    padding: 5px 25px 5px 25px;
+    border-radius: 10px;
+}
+.colores-producto, .cat-prod-cont{
+    margin-top: 20px;
+}
+.cuadro-colores{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border: 1px solid black;
+    background-color: #0288D1;
+    border-radius: 5px;
+    margin-right: 5px;
 }
 .gris-label{
     font-size: 0.8em;
@@ -736,6 +760,17 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     font-style: italic;
     /* font-size: 2.5em;
     font-weight: bold; */
+}
+.input-text-comentario{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #e6e6e6;
+    border-radius: 10px;
+}
+.btn-comentario{
+    background-color: #000 !important;
+    color: white;
 }
 .data-metricas {
     width: 90%;
@@ -881,14 +916,14 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     cursor: pointer;
     border-width: 2px;
     border-image-slice: 1;
-    border-radius: 20px;
     border-style: solid;
-    border-image-source: linear-gradient(90deg, rgba(255,205,110,1) 0%, rgba(199,48,66,1) 89%);
-    transition: .2s all ease-in;
+    /*border-image-source: linear-gradient(90deg, rgba(255,205,110,1) 0%, rgba(199,48,66,1) 89%);*/
+    transition: .5s all ease;
 }
 .titulo-col:hover{
-    border-image-source: linear-gradient(90deg, rgba(199,48,66,1) 0%, rgba(255,205,110,1) 89%);
+    /*border-image-source: linear-gradient(90deg, rgba(199,48,66,1) 0%, rgba(255,205,110,1) 89%);*/
     font-weight: bold;
+    border-width: 3px;
 }
 .span-titulo {
     position: absolute;

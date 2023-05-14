@@ -2855,7 +2855,7 @@ function getPublicsHome(data){
             // <a class="link-ampliar-home" href="${full_url}"></a>
             const public_html = 
             `<div>
-                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onclick="window.location.replace('${full_url}')">
                     <div class="overlay-public">
                         <div class="text-overlay text-overlay-${id_public}">
                             <div class="acciones-btn">
@@ -2910,7 +2910,7 @@ function getPublicsHome(data){
                     // debugger;
                 }
             }
-            // console.log(objSubescena,arrayAll)
+
             let se_length = objSubescena.length;
             
             //leo el array generado arriba y le apendeo la publicacion
@@ -2953,6 +2953,24 @@ function getPublicsHome(data){
         } ).mount();
     
     }
+       // obtén todos los elementos con el tag deseado
+       const tags = document.querySelectorAll('.titulo-col');
+
+       // genera un color aleatorio
+       function getRandomColor() {
+          const letters = '0123456789ABCDEF';
+          let color = '#';
+          for (let i = 0; i < 6; i++) {
+             color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+       }
+
+       // asigna un color aleatorio a cada tag
+       tags.forEach(tag => {
+          console.log("fgdsfs")
+          tag.style.borderColor = getRandomColor();
+       });
 }
 
 function showCantResult(length){
