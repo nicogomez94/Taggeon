@@ -34,7 +34,7 @@
          </div>
          <br>
          <div>
-            <button onclick="window.location.replace('/ampliar-checkout.html?id_carrito=${id_carrito}&cant=3')" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
+            <button onclick="" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>
          </div>
       </div>
    </div>
@@ -77,60 +77,59 @@ $(document).ready(function(){
             var foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
             var changeObj = '[".precio-producto",".subtotal-cant",".total-cant"]';
             var prods_carrito_html = `<div class="row_item_prod row_item_prod_${prod_id}">
-            <div class="columna-izquierda">
-               <img src="${foto_src}" alt="">
-            </div>
-            <div class="data-collapse">
-               <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_prod_carrito}</span><br><span class="marca_prod_collapse">Adidas</span></div>
-               <div class="data-collapse-btn data-collapse-btn-${prod_id} ml-10"><i class="fas fa-sort-down"></i></div>
-            </div>
-            <div class="columna-derecha columna-derecha-${prod_id}">
-               <div class="fila-superior">
-                  <div class="col-superior">
-                     <div class="nombre_prod">${nombre_prod_carrito}</div>
-                     <div class="marca_prod">Adidas</div>
-                     <div class="envio_prod"><i class="fas fa-shopping-cart"></i>&nbsp;Envio dentro de las 24hs</div>
+               <div class="columna-izquierda">
+                  <img src="${foto_src}" alt="">
+               </div>
+               <div class="data-collapse">
+                  <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_prod_carrito}</span><br><span class="marca_prod_collapse">Adidas</span></div>
+                  <div class="data-collapse-btn data-collapse-btn-${prod_id} ml-10"><i class="fas fa-sort-down"></i></div>
+               </div>
+               <div class="columna-derecha columna-derecha-${prod_id}">
+                  <div class="fila-superior">
+                     <div class="col-superior">
+                        <div class="nombre_prod">${nombre_prod_carrito}</div>
+                        <div class="marca_prod">Adidas</div>
+                        <div class="envio_prod"><i class="fas fa-shopping-cart"></i>&nbsp;Envio dentro de las 24hs</div>
+                     </div>
+                     <div class="col-superior">CANTIDAD: <input class="input_num_cantidad" type="number" value="${cantidad}" name="cantidad"></div>
+                     <div class="col-superior">TOTAL<br><span class="precio_prod">${total}</span></div>
                   </div>
-                  <div class="col-superior">CANTIDAD: <span>1</span></div>
-                  <div class="col-superior">TOTAL<br><span class="precio_prod">${total}</span></div>
-               </div>
-               <div class="fila-inferior">
-                  <div class="col-inferior col-inferior-upper">Subido por:&nbsp;<span>&nbsp;nicogomez94</span></div>
-                  <div class="col-inferior">
-                     <button onclick="eliminarProdAmpliarCarrito(${id_carrito},${id_publicacion},'${prod_id}')" class="btn btn-warning">Borrar Producto</button>
+                  <div class="fila-inferior">
+                     <div class="col-inferior col-inferior-upper">Subido por:&nbsp;<span>&nbsp;nicogomez94</span></div>
+                     <div class="col-inferior">
+                        <button onclick="eliminarProdAmpliarCarrito(${id_carrito},${id_publicacion},'${prod_id}')" class="btn btn-warning">Borrar Producto</button>
+                     </div>
                   </div>
                </div>
-            </div>
-               </div>
-            <input type="hidden" class="prod-id" name="id_producto" value="${prod_id}">
-            <input type="hidden" class="carrito-id" name="id_carrito" value="${id_carrito}">
-            <input type="hidden" class="id-publicacion" name="id_publicacion" value="${id_publicacion}">
-            <div class="eliminar-carrito-cont eliminar-carrito-cont-${prod_id}"><i onclick="eliminarProdAmpliarCarrito(${id_carrito},${id_publicacion},'${prod_id}')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i></div>
-         </div>`;
+                  </div>
+               <input type="hidden" class="prod-id" name="id_producto" value="${prod_id}">
+               <input type="hidden" class="carrito-id" name="id_carrito" value="${id_carrito}">
+               <input type="hidden" class="id-publicacion" name="id_publicacion" value="${id_publicacion}">
+               <div class="eliminar-carrito-cont eliminar-carrito-cont-${prod_id}"><i onclick="eliminarProdAmpliarCarrito(${id_carrito},${id_publicacion},'${prod_id}')" class="eliminar-carrito fas fa-times-circle ellip ml-5"></i></div>
+            </div>`;
 
 
 
-            $("#listado-mis-productos").append(prods_carrito_html);
-            $(".subtotal-cant").html("AR$ "+total);
-            $(".total-cant").html("AR$ "+total);
-            $("#id_carrito").val(id_carrito);
+               $("#listado-mis-productos").append(prods_carrito_html);
+               $(".subtotal-cant").html("AR$ "+total);
+               $(".total-cant").html("AR$ "+total);
+               $("#id_carrito").val(id_carrito);
 
-            if(cantidad == null || id_carrito == null){
-               $(".header-productos").hide();
-               $(".totales-cont").hide();
-               $(".producto:not(.header-productos)").hide();
-               $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
-            }
-                  
-            //boton para abrir/cerrar data
-            $(".data-collapse-btn-"+prod_id).click(function(){
-               $(".columna-derecha-"+prod_id).toggle(0,function(){
-                  $(".data-collapse-btn-"+prod_id+" i").toggleClass('fa-sort-up');
-               });
-            })
+               if(cantidad == null || id_carrito == null){
+                  $(".header-productos").hide();
+                  $(".totales-cont").hide();
+                  $(".producto:not(.header-productos)").hide();
+                  $("#listado-mis-productos").append('<h3 class="text-center"><i> El carrito est&aacute; vac&iacute;o.<i></h3>')
+               }
+                     
+               //boton para abrir/cerrar data
+               $(".data-collapse-btn-"+prod_id).click(function(){
+                  $(".columna-derecha-"+prod_id).toggle(0,function(){
+                     $(".data-collapse-btn-"+prod_id+" i").toggleClass('fa-sort-up');
+                  });
+               })
 
-                  //boton checkout
-                  //$("#test").html(`<button onclick="window.location.replace('/ampliar-checkout.html?id_carrito=${id_carrito}&cant=3')" class="boton-checkout-carrito btn btn-warning">Continuar Compra</button>`)
+               $(".boton-checkout-carrito").attr('onclick',`window.location.replace('/ampliar-checkout.html?id_carrito=${id_carrito}&cant=${cantidad}')`)
 
 
             }

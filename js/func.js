@@ -2852,23 +2852,37 @@ function getPublicsHome(data){
             let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
             let subescena_json = JSON.parse(data[i].subescena_json);
             let nombre_subes1 = data[i].nombre_subescena1;
+            // <a class="link-ampliar-home" href="${full_url}"></a>
             const public_html = 
             `<div>
                 <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
                     <div class="overlay-public">
-                    <a class="link-ampliar-home" href="${full_url}"></a>
-                    <div class="public-title-home">${nombre_public}</div>
-                        <div class="text-overlay">
-                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                <i class="fas fa-share-alt"></i>
-                            </span>
+                        <div class="text-overlay text-overlay-${id_public}">
+                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
                             <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
                         </div>
+                        <img src="${foto_src}" alt="img-${imagen_id}">
                     </div>
-                    <img src="${foto_src}" alt="img-${imagen_id}">
+                    <div class="public-title-home">${nombre_public}</div>
                 </div>
             </div>`;
+
+            $(`.content-col-div-${id_public}`).hover(function(){
+                $(`.text-overlay-${id_public}`).toggle();
+            })
             
+           /* <div>
+                <div class="content-col-div content-col-div-325 cat-104">
+                    <div class="overlay-public">
+                        <div class="text-overlay">
+                            <span class="text-overlay-link share-sm" onclick="pathShareHome('/ampliar-publicacion-home.html?id=325&amp;accion=ampliar&amp;cat=104')"><i class="fas fa-share-alt"></i></span>
+                            <span class="text-overlay-link"><i class="fas fa-star fav-alta" onclick="toggleFav(325,'alta',this)"></i></span>
+                        </div>
+                        <img src="/publicaciones_img/296.png" alt="img-296">
+                    </div>
+                    <div class="public-title-home">BaÃ±o moderno - by Max Vakhtbovych</div>
+                </div>
+            </div>*/
             
             //1. primero lleno un array con los subesc que vengan con esta public
             for(var y=0; y<subescena_json.length; y++){

@@ -97,13 +97,18 @@ body.loading .overlay-loading{
     display: block;
 }
 
-html {
+html{
     box-sizing: border-box;
     /* scroll-behavior: smooth; */
-  }
-  footer{
-      visibility: hidden; 
-  }
+}
+footer{   
+    background-image: url('../assets_amal/fondo-nuevasideasparataggear.png');
+    height: 159px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 7px grey inset;
+}
 *,
 *:before,
 *:after {
@@ -1776,7 +1781,14 @@ textarea{
     padding: 15px;
     box-shadow: var(--soft-shadow);
     border-radius: var(--redondeado-amal);
+    background-color: white;
 }
+.input_num_cantidad {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 20%;
+}
+
 .h_mp{
     margin-left: 20px;
 }
@@ -2051,7 +2063,7 @@ textarea{
 .publicacion:hover .overlay-public {
      opacity: 1;
 }
-.overlay-public {
+/* .overlay-public {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -2060,24 +2072,29 @@ textarea{
     height: 100%;
     width: 100%;
     opacity: 0;
-    background-color: rgb(0 0 0 / 45%);
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.25253851540616246) 100%);
     border-radius: 5px;
+} */
+.overlay-public {
+    position: relative;
 }
 .content-col-div:hover .overlay-public, 
 .flex-listado:hover .overlay-public{
     opacity: 1;
 }
-.text-overlay{
+.text-overlay {
     color: white;
     font-size: 20px;
     position: absolute;
-    bottom: 3%;
-    left: 4%;
     text-align: center;
-    /* background: #00000099; */
+    background: #00000099;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: var(--redondeado-amal);
     z-index: 999;
+    height: 100%;
+    width: 100%;
+    display: block;
 }
 .text-overlay-link i{
     cursor: pointer;
@@ -2087,6 +2104,7 @@ textarea{
 .text-overlay-link i:hover{
     color: rgb(226, 226, 226);
 }
+
 .link-ampliar-home{
     height: 100%; 
     width: 100%; 
@@ -2095,14 +2113,13 @@ textarea{
     position: absolute;
 }
 .public-title-home{
-    margin: 15px;
-    color: #ffffff;
-    padding: 5px;
-    background: #8080806b;
+    margin: 10px;
+    color: #000;
     text-overflow: ellipsis;
-    display: inline-block;
+    display: block;
     white-space: nowrap;
     overflow: hidden;
+    font-size: 1em;
     max-width: 90%;
     text-transform: uppercase;
 }
@@ -2378,6 +2395,22 @@ background: linear-gradient(90deg, rgba(255,205,110,1) 0%, rgba(199,147,48,1) 49
 .tarjeta_amal_der_h{
     font-size: 1.1em;
     font-weight: bold;
+}
+.perfil_publics {
+    position: absolute;
+    width: 40px;
+    left: 10px;
+    top: 10px;
+    z-index: 999;
+}
+.perfil_publics img{
+    border: none;
+    box-shadow: none;
+}
+.acciones-btn{
+	position: absolute;
+	bottom: 10px;
+	left: 20px;
 }
 .fixed-col-der{
     position: fixed !Important;
