@@ -2921,7 +2921,7 @@ function getPublicsHome(data){
                     let test = document.querySelector(`.item-cat-${id_sub}`);
                     const globos_html = `<li class="splide__slide item item-cat-${id_sub}">
                     <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${id_sub}')">
-                    <div class="titulo-col random-p-${x}"><span class="span-titulo">${nombre_sub}</span></div>
+                    <div class="titulo-col"><span class="span-titulo">${nombre_sub}</span></div>
                     </div>
                     </li>`
                     
@@ -2953,24 +2953,34 @@ function getPublicsHome(data){
         } ).mount();
     
     }
-       // obtén todos los elementos con el tag deseado
-       const tags = document.querySelectorAll('.titulo-col');
 
-       // genera un color aleatorio
-       function getRandomColor() {
-          const letters = '0123456789ABCDEF';
-          let color = '#';
-          for (let i = 0; i < 6; i++) {
-             color += letters[Math.floor(Math.random() * 16)];
-          }
-          return color;
-       }
-
-       // asigna un color aleatorio a cada tag
-       tags.forEach(tag => {
-          console.log("fgdsfs")
-          tag.style.borderColor = getRandomColor();
-       });
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    // obtén todos los elementos con el tag deseado
+    const tags = document.querySelectorAll('.titulo-col');
+    
+    // genera un color aleatorio
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    
+    // asigna un color aleatorio a cada tag
+    tags.forEach(tag => {
+        console.log("fgdsfs")
+        tag.style.borderColor = getRandomColor();
+    });
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    /**random colors */
 }
 
 function showCantResult(length){

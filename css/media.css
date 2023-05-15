@@ -23,6 +23,9 @@
     }
 }
 @media screen and (max-width: 768px) {
+    .container-subir-public{
+        flex-direction: column-reverse;
+    }
     .totales-cont>div:nth-child(2) {
         order: -1;
         margin-bottom: 30px;
@@ -275,6 +278,18 @@
     }
     .nombre-brand{
         display: none;
+    }
+    .tarjeta_amal{
+        width: 290px;
+        font-size: 0.9em;
+    }
+    .splide__arrow--prev{
+        margin-left: -8px;
+        opacity: .2;
+    }
+    .splide__arrow--next{
+        margin-right: -8px;
+        opacity: .2;
     }
 }
 
