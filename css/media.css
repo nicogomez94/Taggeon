@@ -21,8 +21,14 @@
     .maybe_follow_container {
         width: 95%;
     }
+    .nombre_prod{
+        font-size: 1.2em;
+    }
 }
 @media screen and (max-width: 768px) {
+    .nombre_prod{
+        font-size: 1.5em;
+    }
     .container-subir-public{
         flex-direction: column-reverse;
     }

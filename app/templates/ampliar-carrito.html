@@ -76,13 +76,14 @@ $(document).ready(function(){
             var foto_id = jsonData.carrito[i].foto;
             var foto_src = `/productos_img/${foto_id}.png` || 0;//viene siempre png?
             var changeObj = '[".precio-producto",".subtotal-cant",".total-cant"]';
-            var prods_carrito_html = `<div class="row_item_prod row_item_prod_${prod_id}">
+            var prods_carrito_html = 
+            `<div class="row_item_prod">
                <div class="columna-izquierda">
                   <img src="${foto_src}" alt="">
                </div>
                <div class="data-collapse">
                   <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_prod_carrito}</span><br><span class="marca_prod_collapse">Adidas</span></div>
-                  <div class="data-collapse-btn data-collapse-btn-${prod_id} ml-10"><i class="fas fa-sort-down"></i></div>
+                  <div class="data-collapse-btn ml-10"><i class="fas fa-sort-down"></i></div>
                </div>
                <div class="columna-derecha columna-derecha-${prod_id}">
                   <div class="fila-superior">

@@ -11,7 +11,18 @@ document.addEventListener("DOMContentLoaded", function() {
         $("#seguidos_count").html(sizeSeguidos);
     }/*TODO pasar bien a pedido*/
 
+    var images = document.querySelectorAll('img');
+    for (var i = 0; i < images.length; i++) {
+      images[i].addEventListener('error', function() {
+        setDefaultImage(this);
+      });
+    }
 
+    function setDefaultImage(img) {
+        img.removeEventListener('error', setDefaultImage);
+        img.src = 'https://psicoterapeutas.eu/imagenes-psicoterapeutas-eu/tests-objetivos.png';
+        img.classList.add('default-image');
+      }
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
    /* $(".board")
@@ -23,9 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
       });*/
 
     //si la img viene con error
-    /*$("img").on("error", function(){
+    $("img").on("error", function(){
         $(this).attr('src', '../../imagen_perfil/generica.png');
-    });*/
+    });
 
     /**/
     //elegir foto editar perfil}
@@ -2146,35 +2157,36 @@ function getMisPublic(data){
     if(sizePublic>0){
         for(let i=0; i<sizePublic; i++){
 
-
             let id_public = data[i].id;
             let id_public_cat = data[i].id_publicacion_categoria;
             let nombre_public = data[i].publicacion_nombre;
             let descr_public = data[i].publicacion_descripcion;
             let imagen_id = data[i].foto;
-            // let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
             let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar`
-            //let imagen_public_html = document.querySelector(".imagen-public-"+imagen_id);
-            ///app/publicacion.php?id=${id_public}&accion=eliminar"
-
             var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;        
 
             var public_html2 =
                 `<div class="grid-item">
-                    <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                    <div class="content-col-div content-col-div-${id_public}" style="width:unset !important">
                         <div class="overlay-public">
-                            <a class="link-ampliar-home" href="${full_url}"></a>
-                            <div class="public-title-home">${nombre_public}</div>
-                            <div class="text-overlay">
-                                <span class="text-overlay-link"><a href="/editar-publicacion.html?id=${id_public}&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>&nbsp;
-                                <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a onclick="llamadaSimple('${id_public}','eliminar','/app/publicacion.php')" href="javascript:void(0)"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
+                            <div class="text-overlay text-overlay-${id_public}">
+                                <div class="acciones-btn">
+                                    <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
+                                </div>
+                                <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                                <div class="plus-ribbon"></div>
                             </div>
+                            <img src="${foto_src}" alt="img-${imagen_id}">
                         </div>
-                        <img src="${foto_src}" alt="img-${imagen_id}">
+                        <div class="public-title-home">${nombre_public}</div>
                     </div>
                 </div>`;
 
             grid.insertAdjacentHTML("beforeend",public_html2)
+
+            $(`.content-col-div-${id_public}`).hover(function(){
+                $(`.text-overlay-${id_public}`).toggle();
+            })
             //imagen_public_html.attr("src", foto_src);
 
         }
@@ -2353,6 +2365,7 @@ function dibujarMetricas(operacionesParam,pedidosParam){
 function getMisCompras(data){
     const sizeCompras = data.length;
     const flex_container = document.querySelector(".flex-container")
+    console.log(data)
 
     if(sizeCompras>0){
         for(var i=0; i<sizeCompras; i++){
@@ -2360,6 +2373,7 @@ function getMisCompras(data){
             var nombre_producto = data[i].nombre_producto || "";
             var precio_producto = data[i].precio || 0;
             var id = data[i].id || 0;
+            var id_producto = data[i].id_producto || 0;
             var direccion = data[i].envio_nombre_apellido || "";
             var localidad = data[i].envio_ciudad_localidad || "";
             var id_carrito = data[i].id_carrito || 0;
@@ -2372,6 +2386,10 @@ function getMisCompras(data){
             `<div class="row_item_prod">
                 <div class="columna-izquierda">
                     <img src="${foto_src}" alt="${foto_src}">
+                </div>
+                <div class="data-collapse">
+                    <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_producto}</span><br><span class="marca_prod_collapse">Adidas</span></div>
+                    <div class="data-collapse-btn ml-10"><i class="fas fa-sort-down"></i></div>
                 </div>
                 <div class="columna-derecha">
                     <div class="fila-superior">
@@ -2415,9 +2433,38 @@ function getMisCompras(data){
                     var idUsuario = jsonData.vendedor[x].idUsuario;
                     var obj = arr.find(o => o.idUsuario === idUsuario);
                     if(obj.idUsuario == vendedor){
-                        $(".label-compra-vendedor").html(obj.nombre/*" "+obj.apellido*/)
+                        $(".label-compra-vendedor").html(obj.nombre)
                     }
                 }
+
+            // Get all elements with class "data-collapse-btn"
+            var collapseBtns = document.getElementsByClassName('data-collapse-btn');
+                console.log(collapseBtns)
+            // Iterate over each button and add an event listener
+            for (var i = 0; i < collapseBtns.length; i++) {
+                collapseBtns[i].addEventListener('click', function() {
+                    // Get the parent container of the clicked button
+                    var container = this.closest('.row_item_prod');
+                    console.log("fsdfsdfsd")
+                    // Toggle the visibility of "columna-derecha"
+                    var columnaDerecha = container.querySelector('.columna-derecha');
+                    var isCollapsed = columnaDerecha.style.display === 'none' || columnaDerecha.style.display === '';
+
+                    if (isCollapsed) {
+                        columnaDerecha.style.display = 'block';
+                        this.querySelector('i').classList.remove('fa-sort-down');
+                        this.querySelector('i').classList.add('fa-sort-up');
+                    } else {
+                        columnaDerecha.style.display = 'none';
+                        this.querySelector('i').classList.remove('fa-sort-up');
+                        this.querySelector('i').classList.add('fa-sort-down');
+                    }
+                });
+            }
+
+
+
+                
 
         }
     }else{
@@ -2447,6 +2494,10 @@ function getMisVentas(data){
                 <div class="columna-izquierda">
                     <img src="${foto_src}" alt="${foto_src}">
                 </div>
+                <div class="data-collapse">
+                <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_producto}</span><br><span class="marca_prod_collapse">Adidas</span></div>
+                <div class="data-collapse-btn ml-10"><i class="fas fa-sort-down"></i></div>
+                </div>
                 <div class="columna-derecha">
                     <div class="fila-superior">
                         <div class="col-superior">
@@ -2467,6 +2518,31 @@ function getMisVentas(data){
             </div>`
                
             flex_container.insertAdjacentHTML('beforeend', ventas_html) 
+
+            // Get all elements with class "data-collapse-btn"
+            var collapseBtns = document.getElementsByClassName('data-collapse-btn');
+                console.log(collapseBtns)
+            // Iterate over each button and add an event listener
+            for (var i = 0; i < collapseBtns.length; i++) {
+                collapseBtns[i].addEventListener('click', function() {
+                    // Get the parent container of the clicked button
+                    var container = this.closest('.row_item_prod');
+                    console.log("fsdfsdfsd")
+                    // Toggle the visibility of "columna-derecha"
+                    var columnaDerecha = container.querySelector('.columna-derecha');
+                    var isCollapsed = columnaDerecha.style.display === 'none' || columnaDerecha.style.display === '';
+
+                    if (isCollapsed) {
+                        columnaDerecha.style.display = 'block';
+                        this.querySelector('i').classList.remove('fa-sort-down');
+                        this.querySelector('i').classList.add('fa-sort-up');
+                    } else {
+                        columnaDerecha.style.display = 'none';
+                        this.querySelector('i').classList.remove('fa-sort-up');
+                        this.querySelector('i').classList.add('fa-sort-down');
+                    }
+                });
+            }
         }
     }else{
         document.querySelector(".inner-ventas").innerHTML = `<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>`

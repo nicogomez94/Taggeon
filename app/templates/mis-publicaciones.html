@@ -1,8 +1,8 @@
 {menu-perfil}
 
 <!--  -->
-<div class="grid">
-   <div class="grid-sizer"></div>
+<div class="grid-container-nico">
+   <div class="grid"></div>
 </div>
 <!--  -->
 
@@ -21,17 +21,6 @@
       getDataPaging(dataPaging);
       intObserver(dataPaging);
       ///////////////////////////////
-
-      var $grid = $('.grid').imagesLoaded( function() {
-         $grid.masonry({
-               itemSelector: '.grid-item',
-               columnWidth: '.grid-sizer',
-               // percentPosition: true,
-               // columnWidth: 220,
-               // gutter: 10,
-               // horizontalOrder: true
-         });
-      });
 
    });
 </script>
