@@ -2,6 +2,19 @@ var loading = $("#loading-gif img");
 
 document.addEventListener("DOMContentLoaded", function() {
     
+    //que page esta activa
+    var currentUrl = window.location.href;
+    var menuItems = document.querySelectorAll("#menu-perfil a");
+
+    for (var i = 0; i < menuItems.length; i++) {
+        var menuItem = menuItems[i];
+        var menuItemUrl = menuItem.getAttribute("href");
+
+        if (currentUrl.indexOf(menuItemUrl) > -1) {
+            menuItem.classList.add("active-menu-perfil");
+        }
+    }
+
     if(typeof jsonData !== 'undefined'){
         let sizeSeguidores = jsonData.seguidores.length || 0;
         let sizeSeguidos = jsonData.seguidos.length || 0;
@@ -2218,17 +2231,20 @@ function getMisFavoritos(data){
 
             var html_public =
             `<div class="grid-item">
-                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
-                    <div class="overlay-public">
-                        <a class="link-ampliar-home" href="${full_url}"></a>
-                        <div class="public-title-home">${nombre_public}</div>
-                        <div class="text-overlay">
-                            <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a href="/app/publicacion.php?id=${id_public}&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
+                    <div class="content-col-div content-col-div-${id_public}" style="width:unset !important">
+                        <div class="overlay-public">
+                            <div class="text-overlay text-overlay-${id_public}">
+                                <div class="acciones-btn">
+                                    <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
+                                </div>
+                                <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                                <div class="plus-ribbon"></div>
+                            </div>
+                            <img src="${foto_src}" alt="img-${imagen_id}">
                         </div>
+                        <div class="public-title-home">${nombre_public}</div>
                     </div>
-                    <img src="${foto_src}" alt="img-${imagen_id}">
-                </div>
-            </div>`;
+                </div>`;
                                 
             grid.insertAdjacentHTML("beforeend",html_public)
 
@@ -2393,7 +2409,7 @@ function getMisCompras(data){
                 </div>
                 <div class="data-collapse">
                     <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_producto}</span><br><span class="marca_prod_collapse">Adidas</span></div>
-                    <div class="data-collapse-btn ml-10"><i class="fas fa-sort-down"></i></div>
+                    <div class="data-collapse-btn ml-10" onclick="abrirData($(this))"><i class="fas fa-sort-down"></i></div>
                 </div>
                 <div class="columna-derecha">
                     <div class="fila-superior">
@@ -2441,35 +2457,6 @@ function getMisCompras(data){
                     }
                 }
 
-            // Get all elements with class "data-collapse-btn"
-            var collapseBtns = document.getElementsByClassName('data-collapse-btn');
-                console.log(collapseBtns)
-            // Iterate over each button and add an event listener
-            for (var i = 0; i < collapseBtns.length; i++) {
-                collapseBtns[i].addEventListener('click', function() {
-                    // Get the parent container of the clicked button
-                    var container = this.closest('.row_item_prod');
-                    console.log("fsdfsdfsd")
-                    // Toggle the visibility of "columna-derecha"
-                    var columnaDerecha = container.querySelector('.columna-derecha');
-                    var isCollapsed = columnaDerecha.style.display === 'none' || columnaDerecha.style.display === '';
-
-                    if (isCollapsed) {
-                        columnaDerecha.style.display = 'block';
-                        this.querySelector('i').classList.remove('fa-sort-down');
-                        this.querySelector('i').classList.add('fa-sort-up');
-                    } else {
-                        columnaDerecha.style.display = 'none';
-                        this.querySelector('i').classList.remove('fa-sort-up');
-                        this.querySelector('i').classList.add('fa-sort-down');
-                    }
-                });
-            }
-
-
-
-                
-
         }
     }else{
         document.querySelector(".inner-compras").innerHTML = `<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna compra realizada<i></h3>`
@@ -2500,7 +2487,7 @@ function getMisVentas(data){
                 </div>
                 <div class="data-collapse">
                 <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_producto}</span><br><span class="marca_prod_collapse">Adidas</span></div>
-                <div class="data-collapse-btn ml-10"><i class="fas fa-sort-down"></i></div>
+                <div class="data-collapse-btn ml-10" onclick="abrirData($(this))"><i class="fas fa-sort-down"></i></div>
                 </div>
                 <div class="columna-derecha">
                     <div class="fila-superior">
@@ -2523,30 +2510,6 @@ function getMisVentas(data){
                
             flex_container.insertAdjacentHTML('beforeend', ventas_html) 
 
-            // Get all elements with class "data-collapse-btn"
-            var collapseBtns = document.getElementsByClassName('data-collapse-btn');
-                console.log(collapseBtns)
-            // Iterate over each button and add an event listener
-            for (var i = 0; i < collapseBtns.length; i++) {
-                collapseBtns[i].addEventListener('click', function() {
-                    // Get the parent container of the clicked button
-                    var container = this.closest('.row_item_prod');
-                    console.log("fsdfsdfsd")
-                    // Toggle the visibility of "columna-derecha"
-                    var columnaDerecha = container.querySelector('.columna-derecha');
-                    var isCollapsed = columnaDerecha.style.display === 'none' || columnaDerecha.style.display === '';
-
-                    if (isCollapsed) {
-                        columnaDerecha.style.display = 'block';
-                        this.querySelector('i').classList.remove('fa-sort-down');
-                        this.querySelector('i').classList.add('fa-sort-up');
-                    } else {
-                        columnaDerecha.style.display = 'none';
-                        this.querySelector('i').classList.remove('fa-sort-up');
-                        this.querySelector('i').classList.add('fa-sort-down');
-                    }
-                });
-            }
         }
     }else{
         document.querySelector(".inner-ventas").innerHTML = `<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>`
@@ -3108,7 +3071,7 @@ function getMisProductos(data){
             </div>
             <div class="data-collapse">
                 <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_prod}</span><br><span class="marca_prod_collapse">Adidas</span></div>
-                <div class="data-collapse-btn ml-10"><i class="fas fa-sort-down"></i></div>
+                <div class="data-collapse-btn ml-10" onclick="abrirData($(this))"><i class="fas fa-sort-down"></i></div>
             </div>
             <div class="columna-derecha">
                 <div class="fila-superior">
@@ -3484,4 +3447,9 @@ function dibujarCarousel(id_prod,foto_obj){
         }
     }
     
+}
+
+function abrirData(el){
+    el.parent().parent().find(".columna-derecha").toggle()
+    el.find("i").toggleClass("fa-sort-up")
 }
