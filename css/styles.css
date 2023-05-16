@@ -454,7 +454,8 @@ body{
 }
 #buscador-index-input{
     background: rgb(227,225,225);
-background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 33%);
+    background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 33%);
+    padding-left: 50px;
 }
 #cancelar-search{
     width: 10%;

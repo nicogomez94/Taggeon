@@ -639,12 +639,12 @@ $(".cantidad_value").change(function(){
 $("#buscador-index-input").keydown(function(e){
 
     //activarBuscadorRelated($(this));
-    let len = $(this).val().length;
+    /*let len = $(this).val().length;
     if(len>2){
         $("#test-pinterest2").css("display","block")
     }else{
         $("#test-pinterest2").css("display","none")
-    }
+    }*/
     
     
     if(e.key === "Enter"){
@@ -1249,22 +1249,38 @@ function buscadorIndex(paramIndex){
                             var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${subescena1}`
 
                             var public_html2 =
-                                `<div class="grid-item">
-                                    <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
-                                        <div class="overlay-public">
-                                            <a class="link-ampliar-home" href="${full_url}"></a>
-                                            <div class="public-title-home">${nombre_public}</div>
-                                            <div class="text-overlay">
-                                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                                    <a href="javascript:void(0)"><i class="fas fa-share-alt" ></i></a>
-                                                </span>
-                                                <span class="text-overlay-link text-overlay-link-${id_public}"></span>
+                            
+                            `<div class="grid-item">
+                                <div class="content-col-div content-col-div-${id_public}" style="width:unset !important">
+                                    <div class="overlay-public">
+                                        <div class="text-overlay text-overlay-${id_public}">
+                                            <div class="acciones-btn">
+                                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
                                             </div>
+                                            <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                                            <div class="plus-ribbon"></div>
                                         </div>
                                         <img src="${foto_src}" alt="img-${imagen_id}">
                                     </div>
-                                </div>`;
-
+                                    <div class="public-title-home">${nombre_public}</div>
+                                </div>
+                            </div>`
+                            /*`<div class="grid-item">
+                                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                                    <div class="overlay-public">
+                                        <a class="link-ampliar-home" href="${full_url}"></a>
+                                        <div class="public-title-home">${nombre_public}</div>
+                                        <div class="text-overlay">
+                                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
+                                                <a href="javascript:void(0)"><i class="fas fa-share-alt" ></i></a>
+                                            </span>
+                                            <span class="text-overlay-link text-overlay-link-${id_public}"></span>
+                                        </div>
+                                    </div>
+                                    <img src="${foto_src}" alt="img-${imagen_id}">
+                                </div>
+                            </div>`;*/
+                            
                             $(".grid").append(public_html2)
             
                             
