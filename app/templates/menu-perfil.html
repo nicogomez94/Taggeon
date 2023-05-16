@@ -26,6 +26,12 @@
 </div>
 
 <div id="menu-perfil">
-	{menuperfil}
+   <div class="menu-desktop">{menuperfil}</div>
+   <div class="custom-dropdown">
+      <div class="custom-dropdown-btn" onclick="toggleDropdown()">Mis Publicaciones* &nbsp;&nbsp;<i class="fas fa-sort-down"></i></div>
+      <div id="customDropdown" class="custom-dropdown-content">
+         {menuperfil}
+      </div>
+    </div>
 </div>
 <div class="container show-result">Mostrando <span class="show-result-num"></span> resultados.</div>

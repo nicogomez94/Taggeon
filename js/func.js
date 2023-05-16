@@ -687,6 +687,10 @@ $("#buscador-index-input").keydown(function(e){
 
 });
 
+function toggleDropdown() {
+  var dropdown = document.getElementById("customDropdown");
+  dropdown.classList.toggle("active");
+}
 function btnAnadirTag(){
 
     $("#terminar-productos-btn").show();

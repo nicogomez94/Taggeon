@@ -103,11 +103,12 @@ html{
 }
 footer{   
     background-image: url('../assets_amal/fondo-nuevasideasparataggear.png');
-    height: 159px;
+    height: 160px;
     width: 100%;
+    margin-top: 70px;
     background-repeat: no-repeat;
     background-position: center;
-    box-shadow: 0px 0px 7px grey inset;
+    box-shadow: 0px 4px 7px #dfdfdfe6 inset;
     background-size: cover;
 }
 *,
@@ -1237,7 +1238,9 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: #fbfbfb;
+}
+.menu-desktop{
+    border-bottom: 1px solid black;
 }
 .foto-perfil-paginas {
     position: absolute;
@@ -3077,6 +3080,46 @@ background: linear-gradient(90deg, rgba(255,205,110,1) 0%, rgba(199,147,48,1) 49
     width: 90% !important;/*para que no se salga la cruz*/
     margin-top: 0 !important;
 }
+.custom-dropdown {
+    position: relative;
+    display: none;
+  }
+  
+  /* Estilo para el botón del menú */
+  .custom-dropdown-btn {
+    color: #333;
+    padding: 10px 25px;
+    border-bottom: 3px solid black;
+    cursor: pointer;
+  }
+  
+  /* Estilo para el contenido desplegable */
+  .custom-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Estilo para los enlaces del menú */
+  .custom-dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Estilo cuando el enlace se coloca encima */
+  .custom-dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Mostrar el contenido desplegable al hacer clic en el botón */
+ .active {
+    display: block;
+  }
 /*******************/
 .pattern1{
     /* background-color: #eaeaea; */
