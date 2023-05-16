@@ -2515,7 +2515,7 @@ function getMisVentas(data){
                     <div class="fila-inferior">
                         <div class="col-inferior col-inferior-upper">Subido por:&nbsp;<span>&nbsp;nicogomez94</span></div>
                         <div class="col-inferior text-overlay-link-${id}" data-title="${id}">
-                            <a class="btn btn-warning" href="/ampliar-compras.html?id=${id_carrito}">Ampliar Compra</a>
+                            <a class="btn btn-warning" href="/ampliar-mis-ventas.html?id=${id_carrito}">Ampliar Venta</a>
                         </div>
                     </div>
                 </div>
@@ -3102,7 +3102,34 @@ function getMisProductos(data){
         const flex_listado = document.querySelector(".flex-container")
         
         let listadoProducto = 
-        `<div class="flex-listado">
+        `<div class="row_item_prod">
+            <div class="columna-izquierda">
+                <img src="${foto_src}" alt="${foto_src}">
+            </div>
+            <div class="data-collapse">
+                <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_prod}</span><br><span class="marca_prod_collapse">Adidas</span></div>
+                <div class="data-collapse-btn ml-10"><i class="fas fa-sort-down"></i></div>
+            </div>
+            <div class="columna-derecha">
+                <div class="fila-superior">
+                    <div class="col-superior">
+                        <div class="nombre_prod">${nombre_prod}</div>
+                        <div class="marca_prod">Adidas</div>
+                        <div class="envio_prod"><i class="fas fa-shopping-cart"></i>&nbsp;Con Envío</div>
+                    </div>
+                    <div class="col-superior">STOCK: <span>100</span></div>
+                    <div class="col-superior">TOTAL<br><span class="precio_prod">${precio_prod}</span></div>
+                </div>
+                <div class="fila-inferior">
+                    <div class="col-inferior col-inferior-upper"></div>
+                    <div class="col-inferior text-overlay-link-${id_prod}" data-title="${id_prod}">
+                        <a class="btn btn-warning mt-5" href="/editar-producto.html?id=${id_prod}&accion=editar">Editar Producto</a>
+                    </div>
+                </div>
+            </div>
+        </div>`
+
+       /* `<div class="flex-listado">
             <div class="overlay-public">
                 <div class="text-overlay-prod">
                     <span onclick="eliminarProd('${id_prod}')" class="eliminar-producto text-overlay-link share-sm">
@@ -3118,8 +3145,9 @@ function getMisProductos(data){
                 <div class="nombre-prod">${nombre_prod}</div>
                 <div class="precio-prod">$ ${precio_prod}</div>
             </div>
-        </div>`;
+        </div>`;*/
 
+ 
         flex_listado.insertAdjacentHTML('beforeend', listadoProducto) 
     }
 }

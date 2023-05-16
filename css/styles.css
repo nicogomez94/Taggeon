@@ -41,6 +41,7 @@ h1,h2,h3,h4,h5,h5{
 #main-super-container{
     /* margin-top: 110px; */
     margin-top: 55px;
+    overflow: hidden;
 }
 .bouncing-loader {
   display: flex;
@@ -151,6 +152,23 @@ body{
     font-size: 2em;
     cursor: pointer;
 }
+.big-gold-btn{
+    background: var(--gradiente-dorada-horiz);
+    border-radius: var(--redondeado-amal);
+    padding: 10px 30px;
+    font-weight: bold;
+}
+.big-gold-btn a:link,.big-gold-btn a:visited{
+    color: white !important;
+}
+.btn-gb{
+    background-color: #757575;
+    color: black;
+}
+.btn-bw{
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
 .label-welcome-nologin{
     color: white;
     font-size: 4.5em;
@@ -243,7 +261,7 @@ body{
 }
 .prod-taggeados{
     display: flex;
-    height: 50%;
+    height: 200px;
     justify-content: center;
     align-items: center;
 }
@@ -571,7 +589,7 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     word-break: break-word;
     width: 400px;
     overflow-y: auto;
-    max-height: 160px;
+    max-height: 300px;
 }
 .notifs-header{
     font-weight: 500;
@@ -679,13 +697,14 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     font-weight: 500;
     color: #000;
 }
-.forms input{
+.forms input,.group-form-checkout input{
     width: 70%;
     margin-top: 10px;
     border: none;
     border-bottom: 1px solid gray;
     color: gray;
 }
+
 /*form div{cochinada
     margin-bottom: 10px;
 }*//*
@@ -1136,7 +1155,7 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
  #info-user {
     position: relative;
     width: 100%;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 150px;
     background-image: url('../assets_amal/background-tags.png');
     background-position: center;
@@ -1144,6 +1163,7 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     display: flex;
     justify-content: center;
     height: 300px;
+    box-shadow: 0 0 13px 3px #d2d2d2 inset;
 }
 #icons-upper-perfil{
     font-size: 1.5em;
@@ -1165,17 +1185,18 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     width: auto;
     background-color: #fff;
     border-radius: var(--redondeado-amal);
-    box-shadow: var(--amal-shadow);
     position: absolute;
     top: 180px;
 }
 #titulo-perfil-datos>div{
     margin-top: 10px;
 }
-#titulo-perfil-img{
-    margin-right: 10px;
-    flex-grow: 1;
-    text-align: right;
+#titulo-perfil img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: var(--soft-shadow);
 }
 #titulo-perfil-datos {
     padding-left: 10px;
@@ -1229,6 +1250,13 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     object-fit: cover;
     cursor: pointer;
 }
+.active-menu-perfil{
+    border-bottom: 3px solid black;
+    font-weight: bold;
+}
+#menu-desktop a:hover{
+    text-decoration: none !important;
+}
 #menu-perfil{
     font-weight: 500;
     display: flex;
@@ -1240,7 +1268,7 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
     padding: 10px;
 }
 .menu-desktop{
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 .foto-perfil-paginas {
     position: absolute;
@@ -1606,7 +1634,7 @@ background: linear-gradient(90deg, rgba(227,225,225,1) 0%, rgba(255,255,255,1) 3
 }
 .msj-chico-gris{
     font-size: small;
-    color: #dadada;
+    color: #c6c6c6;;
     font-style: italic;
 }
 .navbar-bottom-col{
