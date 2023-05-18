@@ -26,6 +26,12 @@
     }
 }
 @media screen and (max-width: 768px) {
+    .chart-container{
+        width: unset;
+    }
+    .metricas-container{
+        flex-direction: column;
+    }
     .nombre_prod{
         font-size: 1.5em;
     }
@@ -55,11 +61,7 @@
         width: 100%;
     }
     
-    .fila-superior {
-        height: auto;
-    }
-    
-    .fila-inferior {
+    .fila-superior, .fila-inferior {
         height: auto;
     }
     
@@ -174,6 +176,12 @@
     }
 }
 @media screen and (max-width: 576px) {
+    .chart-container{
+        height: 300px;
+    }
+    .fila-superior,.fila-inferior{
+        justify-content: space-around;
+    }
     #titulo-perfil{
         width: 90%;
     }
@@ -288,6 +296,9 @@
 
 /**/
 @media screen and (max-width: 400px) {
+    .btn-titulo-col{
+        width: 90%;
+    }
     .titulo-col{
         padding: 5px 7vw 5px 7vw !important;
     }

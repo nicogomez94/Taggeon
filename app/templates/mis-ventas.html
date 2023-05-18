@@ -12,7 +12,79 @@
 
 <hr>
 <div class="container show-result">Mostrando <span class="show-result-num"></span> resultados.</div>
+<div class="container container-btn-ventas">
+   <div id="btn-ver-stats" class="btn-titulo-col">Ver Estadísticas</div>
+   <div id="btn-ver-ventas" class="btn-titulo-col">Ver Listado de Ventas</div>
+</div>
 <div class="flex-container container"></div>
+<div class="metricas-container container">
+
+   <div class="chart-container" id="chart-mensual">
+      <table class="charts-css column show-heading show-labels data-spacing-15 hide-data show-4-secondary-axes">
+         <caption>Ventas Por Mes</caption>
+         <thead>
+            <tr>
+               <th scope="col"> Year </th>
+               <th scope="col"> Value </th>
+            </tr>
+         </thead>
+         <tbody>
+         <tr>
+            <th> 2016 </th>
+            <td style="--size:0.2;"></td>
+         </tr>
+         <tr>
+            <th> 2017 </th>
+            <td style="--size:0.4;"></td>
+         </tr>
+         <tr>
+            <th> 2018 </th>
+            <td style="--size:0.6;"></td>
+         </tr>
+         <tr>
+            <th> 2019 </th>
+            <td style="--size:0.8;"></td>
+         </tr>
+         <tr>
+            <th> 2020 </th>
+            <td style="--size:1.0;"></td>
+         </tr>
+         </tbody>
+      </table>
+   </div>
+   <div class="chart-container" id="chart-anual">
+      <table class="charts-css area multiple show-heading show-labels show-4-secondary-axes">
+         <div>Ventas Por Año</div>
+         <div class="num-caption">
+            <div class="num-amal-plata text-left">$42000.00<span class="num-amal-percentage">+4,5%</span></div>
+         </div>
+         <tbody>
+           <tr>
+            <th> 2019 </th>
+             <td style="--start: 0.2; --size: 0.4"> <span class="data"> $ 40K </span> </td>
+           </tr>
+           <tr>
+            <th> 2019 </th>
+             <td style="--start: 0.4; --size: 0.8"> <span class="data"> $ 80K </span> </td>
+           </tr>
+           <tr>
+            <th> 2019 </th>
+             <td style="--start: 0.8; --size: 0.6"> <span class="data"> $ 60K </span> </td>
+           </tr>
+           <tr>
+            <th> 2019 </th>
+             <td style="--start: 0.6; --size: 1.0"> <span class="data"> $ 100K </span> </td>
+           </tr>
+           <tr>
+               <th> 2019 </th>
+             <td style="--start: 1.0; --size: 0.3"> <span class="data"> $ 30K </span> </td>
+           </tr>
+         </tbody>
+       
+       </table>
+   </div>
+
+</div>
 
 
 <script>
@@ -27,6 +99,32 @@
 
 <script>
 $(document).ready(function(){
+
+ // Obtener referencias a los elementos HTML
+ var btnVerStats = document.getElementById("btn-ver-stats");
+  var btnVerVentas = document.getElementById("btn-ver-ventas");
+  var flexContainer = document.querySelector(".flex-container");
+  var metricasContainer = document.querySelector(".metricas-container");
+
+  // Asignar eventos de clic a los botones
+  btnVerStats.addEventListener("click", function() {
+    // Mostrar metricasContainer
+    metricasContainer.style.display = "flex";
+    // Ocultar flexContainer
+    flexContainer.style.display = "none";
+
+    this.style.display = "none";
+    btnVerVentas.style.display = "block";
+   });
+   
+   btnVerVentas.addEventListener("click", function() {
+      // Mostrar flexContainer
+      flexContainer.style.display = "block";
+      // Ocultar metricasContainer
+      metricasContainer.style.display = "none";
+      this.style.display = "none";
+      btnVerStats.style.display = "block";
+  });
 
    /////////paginador/////////////
    const dataPaging = {
