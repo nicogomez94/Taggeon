@@ -547,8 +547,8 @@ body{
 .fila-superior, .fila-inferior{
     /* height: 50%; */
     display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
+    justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 10px;
 }
@@ -993,6 +993,7 @@ body{
     font-weight: normal;
     border-radius: var(--soft-redondeado);
     /* box-shadow: 3px 3px 0px 0px #d0d0d0; */
+    font-weight: bold;
     cursor: pointer;
     border-width: 2px;
     border-image-slice: 1;

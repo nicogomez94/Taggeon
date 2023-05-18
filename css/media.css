@@ -106,7 +106,7 @@
     }
     /*para que siempre queden 2 cols*/
     .item{
-        width: 45vw !important;
+        width: 42vw !important;
     }
     .titulo-col{
         padding: 5px 10vw 5px 10vw !important;
