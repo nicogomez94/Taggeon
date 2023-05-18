@@ -121,6 +121,9 @@ footer{
 .inner-pages{
     margin-top: 100px;
 }
+.inner-carrito{
+    margin-top: 40px;
+}
 a:link, a:visited{
     color: #000 !important;
 }
@@ -2017,6 +2020,45 @@ textarea{
     align-items: center;
     align-content: center;
     justify-content: flex-end;
+}
+.progress-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.progress-step{
+    margin: 5px;
+    background-color: #c7c7c7;
+    /* border-bottom: 3px solid #c7c7c7; */
+    color: #000000;
+    padding: 10px;
+    flex-basis: 25%;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+}
+.progress-step-active{
+    background-color: white;
+    border-bottom: 4px solid var(--golden-taggeon);
+
+}
+.icon-progress-step{
+    font-size: 2em;
+    margin: 10px;
+}
+.progress-step-done{
+    color: #8d8d8d;
+}
+.progress-step-done-icon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #2ac503;
+    font-size: 2em;
+    opacity: .6;
 }
 .carrito_{
     /*display: flex;*/
@@ -4245,6 +4287,22 @@ select{
 }
 
 
-
+@keyframes bounce {
+    0% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .bouncing-piola {
+    animation: bounce .5s ease-in-out;
+    animation-delay: .3s;
+    animation-fill-mode: forwards;
+  }
 
 /****MAIL****/

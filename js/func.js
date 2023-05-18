@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function() {
         $("#seguidos_count").html(sizeSeguidos);
     }/*TODO pasar bien a pedido*/
 
+    $(".progress-step-active").addClass("bouncing-piola")
+
     var images = document.querySelectorAll('img');
     for (var i = 0; i < images.length; i++) {
       images[i].addEventListener('error', function() {

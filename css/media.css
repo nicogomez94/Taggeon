@@ -176,6 +176,9 @@
     }
 }
 @media screen and (max-width: 576px) {
+    .text-progress-step{
+        display: none;
+    }
     .chart-container{
         height: 300px;
     }
