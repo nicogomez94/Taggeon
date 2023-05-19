@@ -179,7 +179,7 @@ class  PublicacionManager
 		if ($validSql != ''){
 			$this->setMsj("Error validación: $validSql.");
 		}else{
-			$patron = '/^ARQUITECTURA$/';
+			$patron = '/^ARQUITECTURA$/i';
 			if (preg_match($patron, $param)){
 				$this->setStatus("ok");
 				return true;
@@ -207,6 +207,59 @@ class  PublicacionManager
 		return false;
 	}
 
+	private function validarIdEstilo ($param){
+		$this->setStatus("error");
+		$this->setMsj("");
+		$validSql = validSqlInjection($param);
+		if ($validSql != ''){
+			$this->setMsj("Error validación: $validSql.");
+		}else{
+			$patron = '/^[1-9][0-9]*$/';
+			if (preg_match($patron, $param)){
+				$this->setStatus("ok");
+				return true;
+			}else{
+				$this->setMsj("El campo estilo es incorrecto.");
+			}
+		}
+		return false;
+	}
+
+	private function validarIdCat ($param){
+		$this->setStatus("error");
+		$this->setMsj("");
+		$validSql = validSqlInjection($param);
+		if ($validSql != ''){
+			$this->setMsj("Error validación: $validSql.");
+		}else{
+			$patron = '/^[1-9][0-9]*$/';
+			if (preg_match($patron, $param)){
+				$this->setStatus("ok");
+				return true;
+			}else{
+				$this->setMsj("El campo categoria es incorrecto.");
+			}
+		}
+		return false;
+	}
+
+	private function validarCantidad ($param){
+		$this->setStatus("error");
+		$this->setMsj("");
+		$validSql = validSqlInjection($param);
+		if ($validSql != ''){
+			$this->setMsj("Error validación: $validSql.");
+		}else{
+			$patron = '/^[0-9]+$/';
+			if (preg_match($patron, $param)){
+				$this->setStatus("ok");
+				return true;
+			}else{
+				$this->setMsj("El campo cantidad es incorrecto.");
+			}
+		}
+		return false;
+	}
 	private function validarId ($param){
 		$this->setStatus("error");
 		$this->setMsj("");
@@ -425,6 +478,24 @@ class  PublicacionManager
 			}
 			public function getListPublicacionEscenaCategoriaEstilo()
 			{
+				$id_categoria = isset($_GET["cat"]) ? $_GET["cat"] : '';
+				if ($this->validarIdCat($id_categoria) === false) {
+					return array();
+				}
+				$id_estilo = isset($_GET["estilo"]) ? $_GET["estilo"] : '';
+				if ($this->validarIdEstilo($id_estilo) === false) {
+					return array();
+				}
+				$escena = isset($_GET["escena"]) ? $_GET["escena"] : '';
+			        if ($this->validarEscena($escena) === false){
+					return array();
+			        }
+
+				$cantidad = isset($_GET["cant"]) ? $_GET["cant"] : 0;
+				if ($this->validarCantidad($cantidad) === false) {
+					return array();
+				}
+
 				$ret =  $this->publicacionDao->getListPublicacionEscenaCategoriaEstilo();
 				return $ret;
 			}
@@ -494,7 +565,7 @@ class  PublicacionManager
 			public function getColumnasCategoria($escena)
 			{
 			    if ($this->validarEscena($escena) === false){
-					return [];
+					return array();
 			    }
 
 				return $this->publicacionDao->getColumnasCategoria($escena);
