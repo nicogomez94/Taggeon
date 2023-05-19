@@ -1688,129 +1688,58 @@ sql;
         $usuarioAltaDB = Database::escape($usuarioAlta);
 
 	$offset = isset($_GET["cant"]) ? $_GET["cant"] : 0;
-	if (!preg_match('/^[0-9]+$/i', $offset)) {
-		$offset = 0;
-	}
         $limit = 50;
 
 
+	$id_categoria = isset($_GET["cat"]) ? $_GET["cat"] : '';
+	$categoriaDB = Database::escape($id_categoria);
+
+	$id_estilo = isset($_GET["estilo"]) ? $_GET["estilo"] : '';
+	$estiloDB = Database::escape($id_estilo);
+
+	$escena = isset($_GET["escena"]) ? $_GET["escena"] : '';
+	$escenaDB = Database::escape($escena);
+
+
         $sql = <<<sql
-SELECT distinct s.*,pc3.nombre_subescena1  from 
-(
-        SELECT
-        1 as orden,
+SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena_json,escena_sel,
+
         `publicacion_descripcion`,
-        pid,
-        aspect_ratio,
+         usuarios.idUsuario AS foto_perfil,
+        usuarios.nombre AS nombre_publicador,
         MIN(
             publicacion_publicacion_foto.id
-        ) AS foto,
-        f.id_publicacion AS favorito,
-        mg.id_publicacion AS megusta,
-               usuarios.nombre AS nombre_publicador,
-            usuarios.idUsuario AS id_publicador
+        ) AS foto
     FROM
         `publicacion`
-    LEFT JOIN
+        LEFT JOIN
+            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
+        ON
+            `publicacion`.usuario_alta = usuarios.idUsuario
+            LEFT JOIN
         publicacion_publicacion_foto
     ON
         `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
             publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
         )
-    LEFT JOIN
-        favorito f
-    ON
-        `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
-    LEFT JOIN
-        megusta mg
-    ON
-        `publicacion`.id = mg.id_publicacion AND mg.id_usuario =  $usuarioAltaDB
-        LEFT JOIN
-            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
-        ON
-            `publicacion`.usuario_alta = usuarios.idUsuario    
-    WHERE
-        (
-            `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
-        ) AND
-    `publicacion`.`id` in (
-SELECT distinct c.id_publicacion FROM click c where c.usuario_alta = $usuarioAltaDB
-)
+ WHERE `publicacion`.subescena1 = $categoriaDB AND
+        `publicacion`.estilo_id = $estiloDB AND
+        upper(`publicacion`.escena_sel) like upper($escenaDB) AND
+        (`publicacion`.eliminar is null or `publicacion`.eliminar=0)
+        and `publicacion`.estilo_id is not null
+        and `publicacion`.estilo_id != 0
 
     GROUP BY
-	orden,
-        `publicacion`.`id`,
+         `publicacion`.`id`,
         `publicacion_nombre`,
-        subescena1,subescena_json,escena_sel,
         `publicacion_descripcion`,
-        pid,
-        aspect_ratio,
-        favorito,
-        megusta,
-            usuarios.nombre,
-            usuarios.idUsuario
-UNION
-        SELECT
-        2 as orden,
-        `publicacion`.`id`,
-        `publicacion_nombre`,
-        subescena1,subescena_json,escena_sel,
-        `publicacion_descripcion`,
-        pid,
-        aspect_ratio,
-        MIN(
-            publicacion_publicacion_foto.id
-        ) AS foto,
-        f.id_publicacion AS favorito,
-        mg.id_publicacion AS megusta,
-               usuarios.nombre AS nombre_publicador,
-            usuarios.idUsuario AS id_publicador
-    FROM
-        `publicacion`
-    LEFT JOIN
-        publicacion_publicacion_foto
-    ON
-        `publicacion`.id = publicacion_publicacion_foto.id_publicacion AND(
-            publicacion_publicacion_foto.eliminar = 0 OR publicacion_publicacion_foto.eliminar IS NULL
-        )
-    LEFT JOIN
-        favorito f
-    ON
-        `publicacion`.id = f.id_publicacion AND f.id_usuario =  $usuarioAltaDB
-    LEFT JOIN
-        megusta mg
-    ON
-        `publicacion`.id = mg.id_publicacion AND mg.id_usuario =  $usuarioAltaDB
-        LEFT JOIN
-            (SELECT nombre,idUsuario FROM usuario_seller us UNION SELECT nombre,idUsuario FROM usuario_picker) as usuarios
-        ON
-            `publicacion`.usuario_alta = usuarios.idUsuario    
-    WHERE
-        (
-            `publicacion`.eliminar = 0 OR `publicacion`.eliminar IS NULL
-        ) AND
-    `publicacion`.`id` not in (
-SELECT distinct c.id_publicacion FROM click c where c.usuario_alta = $usuarioAltaDB
-)
+        usuarios.nombre,
+        usuarios.idUsuario
 
-    GROUP BY
-	orden,
-        `publicacion`.`id`,
-        `publicacion_nombre`,
-        subescena1,subescena_json,escena_sel,
-        `publicacion_descripcion`,
-        pid,
-        aspect_ratio,
-        favorito,
-        megusta,
-            usuarios.nombre,
-            usuarios.idUsuario
- ) 
-as s 
-INNER JOIN (select id, id_padre, nombre as nombre_subescena1 from publicacion_categoria UNION select id,id_padre, nombre as nombre_subescena1  from publicacion_categoria2) as pc3 ON pc3.id_padre is null  AND s.subescena1 = pc3.id
+	 ORDER BY `publicacion`.fecha_alta DESC
+
     LIMIT $offset,$limit
 sql;
 	//echo $sql;exit;
@@ -1818,47 +1747,6 @@ sql;
         $list = array();
 
         while ($rowEmp = mysqli_fetch_array($resultado)) {
-            $id_publicador = isset($rowEmp["id_publicador"]) ? $rowEmp["id_publicador"] : '';
-            $rowEmp['foto_perfil'] = $id_publicador;
-
-            #INICIO COMENTARIOS
-            $idPublicacion = isset($rowEmp["id"]) ? $rowEmp["id"] : '';
-            $idPublicacionBD = Database::escape($idPublicacion);
-            $sql2 = <<<sql
-                SELECT 
-		`comentario`.*,
-    u.*
-                FROM comentario
-INNER JOIN
-    (
-    SELECT
-        idUsuario AS idUsuarioComentario,
-        nombre AS nombre_usuario,
-        apellido AS apellido_usuario
-    FROM
-        usuario_picker
-    UNION
-SELECT
-    idUsuario AS idUsuarioComentario,
-    nombre AS nombre_usuario,
-    apellido AS apellido_usuario
-FROM
-    usuario_seller
-) AS u
-ON
-    u.idUsuarioComentario = `comentario`.`usuario_alta`
-                WHERE id_publicacion=$idPublicacionBD
-order by fecha_alta desc
-sql;
-   //         echo $sql2;
-    
-            $resultado2 = Database::Connect()->query($sql2);
-            $list2 = array();
-            while ($rowEmp2 = mysqli_fetch_array($resultado2)) {
-                $list2[] = $rowEmp2;
-            }
-            #FIN COMENTARIOS
-            $rowEmp['comentarios'] = $list2;
             $list[] = $rowEmp;
         }
         return $list;
