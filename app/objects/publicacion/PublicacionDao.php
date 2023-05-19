@@ -488,7 +488,7 @@ sql;
                                 `publicacion_categoria`
                             WHERE
                                 eliminar=0 OR eliminar is null
-            sql;
+sql;
             
                     $resultado = Database::Connect()->query($sql);
                     $list = array();
@@ -509,7 +509,7 @@ sql;
                                 `publicacion_categoria2`
                             WHERE
                                 eliminar=0 OR eliminar is null
-            sql;
+sql;
 
             
                     $resultado = Database::Connect()->query($sql);
