@@ -1705,7 +1705,7 @@ sql;
 SELECT
         `publicacion`.`id`,
         `publicacion_nombre`,
-
+        `subescena1`,
         `publicacion_descripcion`,
          usuarios.idUsuario AS foto_perfil,
         usuarios.nombre AS nombre_publicador,

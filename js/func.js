@@ -2937,35 +2937,42 @@ function getPublicsHome(data){
     }
 }
 
-function getPublicsHome2(columnas){
-    var columnas = data.length;
-    if(columnas>0){
-        console.log(columnas)
-        for(var x=0; x<se_length; x++){
+function getPublicsHome2(data){
+    console.log(data)
+    var listado_length = data.length;
 
-            let categoria_estilo = columnas[x].categoria_estilo || "";
-            let id_categoria = columnas[x].id_categoria || "";
-            let nombre_cat = columnas[x].nombre_cat || "";
-            let estilo_id = columnas[x].estilo_id || "";
-            let nombre_estilo = columnas[x].nombre_estilo || "";
-            let nombre_full = nombre_cat + "" + nombre_estilo;
+    if(listado_length>0){
+        let id_public = data[0].id || '';
+        let id_public_cat = data[0].subescena1 || 0;
+        let nombre_public = data[0].publicacion_nombre || '';
+        let descr_public = data[0].publicacion_descripcion || '';
+        let imagen_id = data[0].foto || '';
+        let producto = data[0].pid || 0;
+        let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
+        let favorito = data[0].favorito;
+        let fav_accion = "";
+        let columna_append = data[0].subescena1 || '';
+        let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;//tipo de escena,json
+        let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
 
-            const globos_html = `<li class="splide__slide item item-cat-${id_categoria}">
-            <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=1')">
-            <div class="titulo-col random-p-${x}"><span class="span-titulo">${nombre_full}</span></div>
+        const public_html = 
+        `<div>
+            <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                <div class="overlay-public">
+                <a class="link-ampliar-home" href="${full_url}"></a>
+                <div class="public-title-home">${nombre_public}</div>
+                    <div class="text-overlay">
+                        <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
+                            <i class="fas fa-share-alt"></i>
+                        </span>
+                        <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                    </div>
+                </div>
+                <img src="${foto_src}" alt="img-${imagen_id}">
             </div>
-            </li>`
-            
-            $(".splide__list__home").append(globos_html)
-        }
+        </div>`;
 
-        let splide_test = new Splide( '.splide__home', {
-            type     : 'slide',
-            perPage: 2,
-            autoWidth: true,
-            pagination: false,
-            autoHeight: true
-        } ).mount();
+        $(".item-cat-"+columna_append).append(public_html)
 
     }
 }
@@ -3170,9 +3177,9 @@ function getDataPaging(dataPaging) {
 
             //dibujo listados
             switch (url_temp){
-                case "paginador_home.php":
-                    getPublicsHome2(data);
-                    break;
+                /*case "paginador_home.php":
+                    getPublicsHome(data);
+                    break;*/
                 case "paginador_ampliar-publicacion.php":
                     getPublicsAmpliar(data);
                     break;
@@ -3217,6 +3224,24 @@ function getDataPaging(dataPaging) {
         
 }
 
+function getDataIndex(data){
+
+    var cant = data.cantidad;
+    var estilo_id = data.estilo_id;
+    var escena = data.escena;
+    var cat = data.cat;
+
+    const URL = `/app/paginador_escena_cat_estilo.php?cant=${cant}&cat=${cat}&estilo=${estilo_id}&escena=${escena}`
+
+    fetch(URL)
+    .then(response => response.json())
+    .then(data => {
+        getPublicsHome2(data);
+    })
+    .catch(function(error){
+        alertify.error("Ha ocurrido un error con el servidor. Intente de nuevamente mas tarde")
+    })
+}
 
 function eliminarProdAmpliarCarrito(id_carrito,id_publicacion,id_prod){
 
