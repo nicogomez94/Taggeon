@@ -3064,20 +3064,25 @@ function getPublicsHome2(data){
 
         const public_html = 
         `<div>
-            <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+            <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onclick="window.location.replace('${full_url}')">
                 <div class="overlay-public">
-                <a class="link-ampliar-home" href="${full_url}"></a>
-                <div class="public-title-home">${nombre_public}</div>
-                    <div class="text-overlay">
-                        <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                            <i class="fas fa-share-alt"></i>
-                        </span>
-                        <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                    <div class="text-overlay text-overlay-${id_public}">
+                        <div class="acciones-btn">
+                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
+                            <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                        </div>
+                        <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                        <div class="plus-ribbon"></div>
                     </div>
+                    <img src="${foto_src}" alt="img-${imagen_id}">
                 </div>
-                <img src="${foto_src}" alt="img-${imagen_id}">
+                <div class="public-title-home">${nombre_public}</div>
             </div>
         </div>`;
+
+        $(`.content-col-div-${id_public}`).hover(function(){
+            $(`.text-overlay-${id_public}`).toggle();
+        })
 
         $(".item-cat-"+columna_append).append(public_html)
 
