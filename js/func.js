@@ -2,6 +2,19 @@ var loading = $("#loading-gif img");
 
 document.addEventListener("DOMContentLoaded", function() {
     
+    //que page esta activa
+    var currentUrl = window.location.href;
+    var menuItems = document.querySelectorAll("#menu-perfil a");
+
+    for (var i = 0; i < menuItems.length; i++) {
+        var menuItem = menuItems[i];
+        var menuItemUrl = menuItem.getAttribute("href");
+
+        if (currentUrl.indexOf(menuItemUrl) > -1) {
+            menuItem.classList.add("active-menu-perfil");
+        }
+    }
+
     if(typeof jsonData !== 'undefined'){
         let sizeSeguidores = jsonData.seguidores.length || 0;
         let sizeSeguidos = jsonData.seguidos.length || 0;
@@ -11,7 +24,20 @@ document.addEventListener("DOMContentLoaded", function() {
         $("#seguidos_count").html(sizeSeguidos);
     }/*TODO pasar bien a pedido*/
 
+    $(".progress-step-active").addClass("bouncing-piola")
 
+    var images = document.querySelectorAll('img');
+    for (var i = 0; i < images.length; i++) {
+      images[i].addEventListener('error', function() {
+        setDefaultImage(this);
+      });
+    }
+
+    function setDefaultImage(img) {
+        img.removeEventListener('error', setDefaultImage);
+        img.src = 'https://psicoterapeutas.eu/imagenes-psicoterapeutas-eu/tests-objetivos.png';
+        img.classList.add('default-image');
+      }
     //on/off de arrows
     $(".board.splide__arrow").hide(500);
    /* $(".board")
@@ -23,9 +49,9 @@ document.addEventListener("DOMContentLoaded", function() {
       });*/
 
     //si la img viene con error
-    /*$("img").on("error", function(){
+    $("img").on("error", function(){
         $(this).attr('src', '../../imagen_perfil/generica.png');
-    });*/
+    });
 
     /**/
     //elegir foto editar perfil}
@@ -615,12 +641,12 @@ $(".cantidad_value").change(function(){
 $("#buscador-index-input").keydown(function(e){
 
     //activarBuscadorRelated($(this));
-    let len = $(this).val().length;
+    /*let len = $(this).val().length;
     if(len>2){
         $("#test-pinterest2").css("display","block")
     }else{
         $("#test-pinterest2").css("display","none")
-    }
+    }*/
     
     
     if(e.key === "Enter"){
@@ -676,6 +702,10 @@ $("#buscador-index-input").keydown(function(e){
 
 });
 
+function toggleDropdown() {
+  var dropdown = document.getElementById("customDropdown");
+  dropdown.classList.toggle("active");
+}
 function btnAnadirTag(){
 
     $("#terminar-productos-btn").show();
@@ -1221,22 +1251,38 @@ function buscadorIndex(paramIndex){
                             var full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${subescena1}`
 
                             var public_html2 =
-                                `<div class="grid-item">
-                                    <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
-                                        <div class="overlay-public">
-                                            <a class="link-ampliar-home" href="${full_url}"></a>
-                                            <div class="public-title-home">${nombre_public}</div>
-                                            <div class="text-overlay">
-                                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                                    <a href="javascript:void(0)"><i class="fas fa-share-alt" ></i></a>
-                                                </span>
-                                                <span class="text-overlay-link text-overlay-link-${id_public}"></span>
+                            
+                            `<div class="grid-item">
+                                <div class="content-col-div content-col-div-${id_public}" style="width:unset !important">
+                                    <div class="overlay-public">
+                                        <div class="text-overlay text-overlay-${id_public}">
+                                            <div class="acciones-btn">
+                                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
                                             </div>
+                                            <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                                            <div class="plus-ribbon"></div>
                                         </div>
                                         <img src="${foto_src}" alt="img-${imagen_id}">
                                     </div>
-                                </div>`;
-
+                                    <div class="public-title-home">${nombre_public}</div>
+                                </div>
+                            </div>`
+                            /*`<div class="grid-item">
+                                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                                    <div class="overlay-public">
+                                        <a class="link-ampliar-home" href="${full_url}"></a>
+                                        <div class="public-title-home">${nombre_public}</div>
+                                        <div class="text-overlay">
+                                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
+                                                <a href="javascript:void(0)"><i class="fas fa-share-alt" ></i></a>
+                                            </span>
+                                            <span class="text-overlay-link text-overlay-link-${id_public}"></span>
+                                        </div>
+                                    </div>
+                                    <img src="${foto_src}" alt="img-${imagen_id}">
+                                </div>
+                            </div>`;*/
+                            
                             $(".grid").append(public_html2)
             
                             
@@ -2146,35 +2192,36 @@ function getMisPublic(data){
     if(sizePublic>0){
         for(let i=0; i<sizePublic; i++){
 
-
             let id_public = data[i].id;
             let id_public_cat = data[i].id_publicacion_categoria;
             let nombre_public = data[i].publicacion_nombre;
             let descr_public = data[i].publicacion_descripcion;
             let imagen_id = data[i].foto;
-            // let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`
             let full_url = `/ampliar-publicacion.html?id=${id_public}&accion=ampliar`
-            //let imagen_public_html = document.querySelector(".imagen-public-"+imagen_id);
-            ///app/publicacion.php?id=${id_public}&accion=eliminar"
-
             var foto_src = `/publicaciones_img/${imagen_id}.png` || 0;        
 
             var public_html2 =
                 `<div class="grid-item">
-                    <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                    <div class="content-col-div content-col-div-${id_public}" style="width:unset !important">
                         <div class="overlay-public">
-                            <a class="link-ampliar-home" href="${full_url}"></a>
-                            <div class="public-title-home">${nombre_public}</div>
-                            <div class="text-overlay">
-                                <span class="text-overlay-link"><a href="/editar-publicacion.html?id=${id_public}&accion=editar"><i title="Editar Publicaci&oacute;n" class="fas fa-edit"></i></a></span>&nbsp;
-                                <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a onclick="llamadaSimple('${id_public}','eliminar','/app/publicacion.php')" href="javascript:void(0)"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
+                            <div class="text-overlay text-overlay-${id_public}">
+                                <div class="acciones-btn">
+                                    <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
+                                </div>
+                                <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                                <div class="plus-ribbon"></div>
                             </div>
+                            <img src="${foto_src}" alt="img-${imagen_id}">
                         </div>
-                        <img src="${foto_src}" alt="img-${imagen_id}">
+                        <div class="public-title-home">${nombre_public}</div>
                     </div>
                 </div>`;
 
             grid.insertAdjacentHTML("beforeend",public_html2)
+
+            $(`.content-col-div-${id_public}`).hover(function(){
+                $(`.text-overlay-${id_public}`).toggle();
+            })
             //imagen_public_html.attr("src", foto_src);
 
         }
@@ -2202,17 +2249,20 @@ function getMisFavoritos(data){
 
             var html_public =
             `<div class="grid-item">
-                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
-                    <div class="overlay-public">
-                        <a class="link-ampliar-home" href="${full_url}"></a>
-                        <div class="public-title-home">${nombre_public}</div>
-                        <div class="text-overlay">
-                            <span class="text-overlay-link eliminar-public" data-title="${id_public}"><a href="/app/publicacion.php?id=${id_public}&accion=eliminar"><i title="Eliminar Publicaci&oacute;n" class="fas fa-trash-alt"></i></a></span>
+                    <div class="content-col-div content-col-div-${id_public}" style="width:unset !important">
+                        <div class="overlay-public">
+                            <div class="text-overlay text-overlay-${id_public}">
+                                <div class="acciones-btn">
+                                    <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
+                                </div>
+                                <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                                <div class="plus-ribbon"></div>
+                            </div>
+                            <img src="${foto_src}" alt="img-${imagen_id}">
                         </div>
+                        <div class="public-title-home">${nombre_public}</div>
                     </div>
-                    <img src="${foto_src}" alt="img-${imagen_id}">
-                </div>
-            </div>`;
+                </div>`;
                                 
             grid.insertAdjacentHTML("beforeend",html_public)
 
@@ -2353,6 +2403,7 @@ function dibujarMetricas(operacionesParam,pedidosParam){
 function getMisCompras(data){
     const sizeCompras = data.length;
     const flex_container = document.querySelector(".flex-container")
+    console.log(data)
 
     if(sizeCompras>0){
         for(var i=0; i<sizeCompras; i++){
@@ -2360,6 +2411,7 @@ function getMisCompras(data){
             var nombre_producto = data[i].nombre_producto || "";
             var precio_producto = data[i].precio || 0;
             var id = data[i].id || 0;
+            var id_producto = data[i].id_producto || 0;
             var direccion = data[i].envio_nombre_apellido || "";
             var localidad = data[i].envio_ciudad_localidad || "";
             var id_carrito = data[i].id_carrito || 0;
@@ -2372,6 +2424,10 @@ function getMisCompras(data){
             `<div class="row_item_prod">
                 <div class="columna-izquierda">
                     <img src="${foto_src}" alt="${foto_src}">
+                </div>
+                <div class="data-collapse">
+                    <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_producto}</span><br><span class="marca_prod_collapse">Adidas</span></div>
+                    <div class="data-collapse-btn ml-10" onclick="abrirData($(this))"><i class="fas fa-sort-down"></i></div>
                 </div>
                 <div class="columna-derecha">
                     <div class="fila-superior">
@@ -2415,7 +2471,7 @@ function getMisCompras(data){
                     var idUsuario = jsonData.vendedor[x].idUsuario;
                     var obj = arr.find(o => o.idUsuario === idUsuario);
                     if(obj.idUsuario == vendedor){
-                        $(".label-compra-vendedor").html(obj.nombre/*" "+obj.apellido*/)
+                        $(".label-compra-vendedor").html(obj.nombre)
                     }
                 }
 
@@ -2447,6 +2503,10 @@ function getMisVentas(data){
                 <div class="columna-izquierda">
                     <img src="${foto_src}" alt="${foto_src}">
                 </div>
+                <div class="data-collapse">
+                <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_producto}</span><br><span class="marca_prod_collapse">Adidas</span></div>
+                <div class="data-collapse-btn ml-10" onclick="abrirData($(this))"><i class="fas fa-sort-down"></i></div>
+                </div>
                 <div class="columna-derecha">
                     <div class="fila-superior">
                         <div class="col-superior">
@@ -2460,13 +2520,14 @@ function getMisVentas(data){
                     <div class="fila-inferior">
                         <div class="col-inferior col-inferior-upper">Subido por:&nbsp;<span>&nbsp;nicogomez94</span></div>
                         <div class="col-inferior text-overlay-link-${id}" data-title="${id}">
-                            <a class="btn btn-warning" href="/ampliar-compras.html?id=${id_carrito}">Ampliar Compra</a>
+                            <a class="btn btn-warning" href="/ampliar-mis-ventas.html?id=${id_carrito}">Ampliar Venta</a>
                         </div>
                     </div>
                 </div>
             </div>`
                
             flex_container.insertAdjacentHTML('beforeend', ventas_html) 
+
         }
     }else{
         document.querySelector(".inner-ventas").innerHTML = `<hr class="mt-5"><h3 class="text-center"><i> No tienes ninguna venta realizada<i></h3>`
@@ -2852,23 +2913,41 @@ function getPublicsHome(data){
             let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
             let subescena_json = JSON.parse(data[i].subescena_json);
             let nombre_subes1 = data[i].nombre_subescena1;
+            // <a class="link-ampliar-home" href="${full_url}"></a>
             const public_html = 
             `<div>
-                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}">
+                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onclick="window.location.replace('${full_url}')">
                     <div class="overlay-public">
-                    <a class="link-ampliar-home" href="${full_url}"></a>
-                    <div class="public-title-home">${nombre_public}</div>
-                        <div class="text-overlay">
-                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')">
-                                <i class="fas fa-share-alt"></i>
-                            </span>
-                            <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                        <div class="text-overlay text-overlay-${id_public}">
+                            <div class="acciones-btn">
+                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
+                                <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                            </div>
+                            <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                            <div class="plus-ribbon"></div>
                         </div>
+                        <img src="${foto_src}" alt="img-${imagen_id}">
                     </div>
-                    <img src="${foto_src}" alt="img-${imagen_id}">
+                    <div class="public-title-home">${nombre_public}</div>
                 </div>
             </div>`;
+
+            $(`.content-col-div-${id_public}`).hover(function(){
+                $(`.text-overlay-${id_public}`).toggle();
+            })
             
+           /* <div>
+                <div class="content-col-div content-col-div-325 cat-104">
+                    <div class="overlay-public">
+                        <div class="text-overlay">
+                            <span class="text-overlay-link share-sm" onclick="pathShareHome('/ampliar-publicacion-home.html?id=325&amp;accion=ampliar&amp;cat=104')"><i class="fas fa-share-alt"></i></span>
+                            <span class="text-overlay-link"><i class="fas fa-star fav-alta" onclick="toggleFav(325,'alta',this)"></i></span>
+                        </div>
+                        <img src="/publicaciones_img/296.png" alt="img-296">
+                    </div>
+                    <div class="public-title-home">BaÃ±o moderno - by Max Vakhtbovych</div>
+                </div>
+            </div>*/
             
             //1. primero lleno un array con los subesc que vengan con esta public
             for(var y=0; y<subescena_json.length; y++){
@@ -2892,7 +2971,7 @@ function getPublicsHome(data){
                     // debugger;
                 }
             }
-            // console.log(objSubescena,arrayAll)
+
             let se_length = objSubescena.length;
             
             //leo el array generado arriba y le apendeo la publicacion
@@ -2903,7 +2982,7 @@ function getPublicsHome(data){
                     let test = document.querySelector(`.item-cat-${id_sub}`);
                     const globos_html = `<li class="splide__slide item item-cat-${id_sub}">
                     <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=${id_sub}')">
-                    <div class="titulo-col random-p-${x}"><span class="span-titulo">${nombre_sub}</span></div>
+                    <div class="titulo-col"><span class="span-titulo">${nombre_sub}</span></div>
                     </div>
                     </li>`
                     
@@ -2935,6 +3014,34 @@ function getPublicsHome(data){
         } ).mount();
     
     }
+
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    // obtén todos los elementos con el tag deseado
+    const tags = document.querySelectorAll('.titulo-col');
+    
+    // genera un color aleatorio
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    
+    // asigna un color aleatorio a cada tag
+    tags.forEach(tag => {
+        console.log("fgdsfs")
+        tag.style.borderColor = getRandomColor();
+    });
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    /**random colors */
+    /**random colors */
 }
 
 function getPublicsHome2(data){
@@ -3016,7 +3123,34 @@ function getMisProductos(data){
         const flex_listado = document.querySelector(".flex-container")
         
         let listadoProducto = 
-        `<div class="flex-listado">
+        `<div class="row_item_prod">
+            <div class="columna-izquierda">
+                <img src="${foto_src}" alt="${foto_src}">
+            </div>
+            <div class="data-collapse">
+                <div class="data-collapse-name"><span class="nombre_prod_collapse">${nombre_prod}</span><br><span class="marca_prod_collapse">Adidas</span></div>
+                <div class="data-collapse-btn ml-10" onclick="abrirData($(this))"><i class="fas fa-sort-down"></i></div>
+            </div>
+            <div class="columna-derecha">
+                <div class="fila-superior">
+                    <div class="col-superior">
+                        <div class="nombre_prod">${nombre_prod}</div>
+                        <div class="marca_prod">Adidas</div>
+                        <div class="envio_prod"><i class="fas fa-shopping-cart"></i>&nbsp;Con Envío</div>
+                    </div>
+                    <div class="col-superior">STOCK: <span>100</span></div>
+                    <div class="col-superior">TOTAL<br><span class="precio_prod">${precio_prod}</span></div>
+                </div>
+                <div class="fila-inferior">
+                    <div class="col-inferior col-inferior-upper"></div>
+                    <div class="col-inferior text-overlay-link-${id_prod}" data-title="${id_prod}">
+                        <a class="btn btn-warning mt-5" href="/editar-producto.html?id=${id_prod}&accion=editar">Editar Producto</a>
+                    </div>
+                </div>
+            </div>
+        </div>`
+
+       /* `<div class="flex-listado">
             <div class="overlay-public">
                 <div class="text-overlay-prod">
                     <span onclick="eliminarProd('${id_prod}')" class="eliminar-producto text-overlay-link share-sm">
@@ -3032,8 +3166,9 @@ function getMisProductos(data){
                 <div class="nombre-prod">${nombre_prod}</div>
                 <div class="precio-prod">$ ${precio_prod}</div>
             </div>
-        </div>`;
+        </div>`;*/
 
+ 
         flex_listado.insertAdjacentHTML('beforeend', listadoProducto) 
     }
 }
@@ -3388,4 +3523,9 @@ function dibujarCarousel(id_prod,foto_obj){
         }
     }
     
+}
+
+function abrirData(el){
+    el.parent().parent().find(".columna-derecha").toggle()
+    el.find("i").toggleClass("fa-sort-up")
 }

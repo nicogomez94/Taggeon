@@ -21,8 +21,30 @@
     .maybe_follow_container {
         width: 95%;
     }
+    .nombre_prod{
+        font-size: 1.2em;
+    }
 }
 @media screen and (max-width: 768px) {
+    .chart-container{
+        width: unset;
+    }
+    .metricas-container{
+        flex-direction: column;
+    }
+    .nombre_prod{
+        font-size: 1.5em;
+    }
+    .container-subir-public{
+        flex-direction: column-reverse;
+    }
+    .totales-cont>div:nth-child(2) {
+        order: -1;
+        margin-bottom: 30px;
+      }
+    .totales-cont{
+        flex-direction: column;
+    }
     #form-mp-container{
         flex-direction: column;
     }
@@ -39,11 +61,7 @@
         width: 100%;
     }
     
-    .fila-superior {
-        height: auto;
-    }
-    
-    .fila-inferior {
+    .fila-superior, .fila-inferior {
         height: auto;
     }
     
@@ -90,7 +108,7 @@
     }
     /*para que siempre queden 2 cols*/
     .item{
-        width: 45vw !important;
+        width: 42vw !important;
     }
     .titulo-col{
         padding: 5px 10vw 5px 10vw !important;
@@ -158,6 +176,31 @@
     }
 }
 @media screen and (max-width: 576px) {
+    .text-progress-step{
+        display: none;
+    }
+    .chart-container{
+        height: 300px;
+    }
+    .fila-superior,.fila-inferior{
+        justify-content: space-around;
+    }
+    #titulo-perfil{
+        width: 90%;
+    }
+    .custom-dropdown{
+        display: inline-block;
+    }
+    .menu-desktop{
+        display: none;
+    }
+    .data-collapse{
+        display: flex;
+        margin-top: 10px;
+    }
+    .row_item_prod>.columna-derecha,.marca_prod,.nombre_prod{
+        display: none;
+    }
     .maybe_follow_container{
         display: flex;
         flex-wrap: wrap;
@@ -256,11 +299,26 @@
 
 /**/
 @media screen and (max-width: 400px) {
+    .btn-titulo-col{
+        width: 90%;
+    }
     .titulo-col{
         padding: 5px 7vw 5px 7vw !important;
     }
     .nombre-brand{
         display: none;
+    }
+    .tarjeta_amal{
+        width: 290px;
+        font-size: 0.9em;
+    }
+    .splide__arrow--prev{
+        margin-left: -8px;
+        opacity: .2;
+    }
+    .splide__arrow--next{
+        margin-right: -8px;
+        opacity: .2;
     }
 }
 
