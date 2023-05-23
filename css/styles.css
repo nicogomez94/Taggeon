@@ -1002,7 +1002,7 @@ body{
     z-index: 999;
 }
 .content-col-div img{
-    max-width: 100%;
+    width: 100%;
     /* box-shadow: 3px 3px 0px 0px #d0d0d0; */
     border-radius: var(--redondeado-amal);
 }

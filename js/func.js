@@ -3080,11 +3080,11 @@ function getPublicsHome2(data){
             </div>
         </div>`;
 
+        $(".item-cat-"+columna_append).append(public_html)
+        
         $(`.content-col-div-${id_public}`).hover(function(){
             $(`.text-overlay-${id_public}`).toggle();
-        })
-
-        $(".item-cat-"+columna_append).append(public_html)
+        });
 
     }
 }
