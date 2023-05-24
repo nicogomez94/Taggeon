@@ -289,6 +289,9 @@
 <script>
 document.addEventListener("DOMContentLoaded", function(){
 
+   // Event listener for the scroll event
+window.addEventListener("scroll", handleScroll);
+
    let splide_test = new Splide( '.splide__home', {
             type     : 'slide',
             perPage: 2,
@@ -302,9 +305,9 @@ document.addEventListener("DOMContentLoaded", function(){
    for(var x=0; x<columnas_length; x++){
 
       let categoria_estilo = columnas[x].categoria_estilo || "";
-      let id_categoria = columnas[x].id_categoria || "";
+      let id_categoria = columnas[x].id_categoria || 0;
       let nombre_cat = columnas[x].nombre_cat || "";
-      let estilo_id = columnas[x].estilo_id || "";
+      let estilo_id = columnas[x].estilo_id || 0;
       let nombre_estilo = columnas[x].nombre_estilo || "";
       let nombre_full = nombre_cat + " " + nombre_estilo;
 
@@ -319,7 +322,6 @@ document.addEventListener("DOMContentLoaded", function(){
       const dataPaging = {
          cantidad : 0,
          estilo_id: estilo_id,
-         length_public: columnas.length,
          escena: "arquitectura",
          cat: id_categoria
       }
@@ -330,6 +332,38 @@ document.addEventListener("DOMContentLoaded", function(){
    //intObserver(dataPaging);
 
 });
+
+// Function to check if the user has reached the bottom of the page
+function isBottomReached() {
+  // Calculate the scroll position and viewport height
+  var scrollPosition = window.pageYOffset;
+  var windowHeight = window.innerHeight;
+  // Calculate the total height of the page
+  var documentHeight = document.documentElement.scrollHeight;
+  
+  // Check if the user has reached the bottom of the page
+  return (scrollPosition + windowHeight) >= documentHeight;
+}
+
+// Function to perform an action when the user reaches the bottom
+function handleScroll() {
+  if (isBottomReached()) {
+   var columnas_length = columnas.length;
+
+   for(var x=0; x<columnas_length; x++){
+      let id_categoria = columnas[x].id_categoria || 0;
+      let estilo_id = columnas[x].estilo_id || 0;
+      
+      const dataPaging = {
+         cantidad : 1,
+         estilo_id: estilo_id,
+         escena: "arquitectura",
+         cat: id_categoria
+      }
+      getDataIndex(dataPaging);
+   }
+  }
+}
 </script>
 
 

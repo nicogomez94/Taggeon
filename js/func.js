@@ -3044,48 +3044,49 @@ function getPublicsHome(data){
     /**random colors */
 }
 
-function getPublicsHome2(data){
+function getPublicsHome2(data,catParam){
     console.log(data)
     var listado_length = data.length;
 
     if(listado_length>0){
-        let id_public = data[0].id || '';
-        let id_public_cat = data[0].subescena1 || 0;
-        let nombre_public = data[0].publicacion_nombre || '';
-        let descr_public = data[0].publicacion_descripcion || '';
-        let imagen_id = data[0].foto || '';
-        let producto = data[0].pid || 0;
-        let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
-        let favorito = data[0].favorito;
-        let fav_accion = "";
-        let columna_append = data[0].subescena1 || '';
-        let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;//tipo de escena,json
-        let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
+        for(var i=0; i<listado_length; i++){
+            let id_public = data[i].id || '';
+            let id_public_cat = data[i].subescena1 || 0;
+            let nombre_public = data[i].publicacion_nombre || '';
+            let descr_public = data[i].publicacion_descripcion || '';
+            let imagen_id = data[i].foto || '';
+            let producto = data[i].pid || 0;
+            let foto_src = `/publicaciones_img/331.png` || 0;//viene siempre png?
+            let favorito = data[i].favorito;
+            let fav_accion = "";
+            let columna_append = data[i].subescena1 || '';
+            let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;//tipo de escena,json
+            let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
 
-        const public_html = 
-        `<div>
-            <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onclick="window.location.replace('${full_url}')">
-                <div class="overlay-public">
-                    <div class="text-overlay text-overlay-${id_public}">
-                        <div class="acciones-btn">
-                            <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
-                            <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+            const public_html = 
+            `<div>
+                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onclick="window.location.replace('${full_url}')">
+                    <div class="overlay-public">
+                        <div class="text-overlay text-overlay-${id_public}">
+                            <div class="acciones-btn">
+                                <span class="text-overlay-link share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-share-alt"></i></span>
+                                <span class="text-overlay-link"><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                            </div>
+                            <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
+                            <div class="plus-ribbon"></div>
                         </div>
-                        <div class="tarjeta_amal_perfil perfil_publics"><img src="../../imagen_perfil/455.png" alt="perfil"></div>
-                        <div class="plus-ribbon"></div>
+                        <img src="${foto_src}" alt="img-${imagen_id}">
                     </div>
-                    <img src="${foto_src}" alt="img-${imagen_id}">
+                    <div class="public-title-home">${nombre_public}</div>
                 </div>
-                <div class="public-title-home">${nombre_public}</div>
-            </div>
-        </div>`;
+            </div>`;
 
-        $(".item-cat-"+columna_append).append(public_html)
-        
-        $(`.content-col-div-${id_public}`).hover(function(){
-            $(`.text-overlay-${id_public}`).toggle();
-        });
-
+            $(".item-cat-"+catParam).append(public_html)
+            
+            $(`.content-col-div-${id_public}`).hover(function(){
+                $(`.text-overlay-${id_public}`).toggle();
+            });
+        }
     }
 }
 
@@ -3376,10 +3377,10 @@ function getDataIndex(data){
     fetch(URL)
     .then(response => response.json())
     .then(data => {
-        getPublicsHome2(data);
+        getPublicsHome2(data,cat);
     })
     .catch(function(error){
-        alertify.error("Ha ocurrido un error con el servidor. Intente de nuevamente mas tarde")
+        alertify.error("Error en listado FETCH")
     })
 }
 
