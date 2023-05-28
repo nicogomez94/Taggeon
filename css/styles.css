@@ -788,7 +788,7 @@ body{
     color: #666;
     position: relative;
     cursor: pointer;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
 .cat-prod{
     display: inline-block;

@@ -693,8 +693,6 @@ $("#buscador-index-input").keydown(function(e){
 
 });*/
 
-
-
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
 /***fin document.ready***//***fin document.ready***/
@@ -1835,7 +1833,7 @@ function hideLoadingSvg(thisParam){
 
 function getEscenas(valueParam,idSub){
     
-    let escena_parse = (valueParam=="Arquitectura") ? JSON.parse(escena) : JSON.parse(escena2);
+    let escena_parse = (valueParam=="Arquitectura") ? JSON.parse(escenaArrayViejo) : JSON.parse(escena2);
     let escena_length = escena_parse.length || 0;
     let cat_select_html = '';
     //let sub_esc = (subescena_json==null) ? "this.value" : "this.value,"+subescena_json;
@@ -2737,7 +2735,7 @@ function getPublicsAmpliarHome(data){
         if(sizePublic>0){
  
             let id_public = data[i].id || 0;
-            let id_public_cat = data[i].subescena1 || "";//que onda esto cuando son mas de una??
+            let id_public_cat = data[i].subescena1 || "";
             let nombre_public = data[i].publicacion_nombre || "";
             let descr_public = data[i].publicacion_descripcion || "";
             let publicador = data[i].nombre_publicador || "";
@@ -3015,37 +3013,10 @@ function getPublicsHome(data){
     
     }
 
-    /**random colors */
-    /**random colors */
-    /**random colors */
-    /**random colors */
-    // obtén todos los elementos con el tag deseado
-    const tags = document.querySelectorAll('.titulo-col');
-    
-    // genera un color aleatorio
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-    
-    // asigna un color aleatorio a cada tag
-    tags.forEach(tag => {
-        console.log("fgdsfs")
-        tag.style.borderColor = getRandomColor();
-    });
-    /**random colors */
-    /**random colors */
-    /**random colors */
-    /**random colors */
-    /**random colors */
 }
 
 function getPublicsHome2(data,catParam){
-    console.log(data)
+    // console.log(data)
     var listado_length = data.length;
 
     if(listado_length>0){
@@ -3056,7 +3027,7 @@ function getPublicsHome2(data,catParam){
             let descr_public = data[i].publicacion_descripcion || '';
             let imagen_id = data[i].foto || '';
             let producto = data[i].pid || 0;
-            let foto_src = `/publicaciones_img/331.png` || 0;//viene siempre png?
+            let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
             let favorito = data[i].favorito;
             let fav_accion = "";
             let columna_append = data[i].subescena1 || '';
@@ -3065,7 +3036,7 @@ function getPublicsHome2(data,catParam){
 
             const public_html = 
             `<div>
-                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onclick="window.location.replace('${full_url}')">
+                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onmouseenter="$(this).find('.text-overlay').toggle();" onmouseleave="$(this).find('.text-overlay').toggle();" onclick="window.location.replace('${full_url}')">
                     <div class="overlay-public">
                         <div class="text-overlay text-overlay-${id_public}">
                             <div class="acciones-btn">
@@ -3082,10 +3053,6 @@ function getPublicsHome2(data,catParam){
             </div>`;
 
             $(".item-cat-"+catParam).append(public_html)
-            
-            $(`.content-col-div-${id_public}`).hover(function(){
-                $(`.text-overlay-${id_public}`).toggle();
-            });
         }
     }
 }
@@ -3534,4 +3501,10 @@ function dibujarCarousel(id_prod,foto_obj){
 function abrirData(el){
     el.parent().parent().find(".columna-derecha").toggle()
     el.find("i").toggleClass("fa-sort-up")
+}
+
+function ampliarPublicacionHome(thisParam,dataPublic){
+    //filter blur
+    //$()not.(this) y ponter event snonne
+    //width 25em;
 }
