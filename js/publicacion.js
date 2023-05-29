@@ -64,7 +64,7 @@ function getSplideProdPublic(param,name_publicador,id_publicador_param,index,thi
    .then((response) => {
       
       let resp_len = response.mensaje.length
-      console.log(response.mensaje)
+      //console.log(response.mensaje)
          if(resp_len > 0){
             for(let i = 0; i < resp_len; i++){
                let nombre_prod = response.mensaje[i].titulo || 0;
@@ -85,7 +85,7 @@ function getSplideProdPublic(param,name_publicador,id_publicador_param,index,thi
                let attrFetchCarrito = "fetchIdCarrito('"+param+"','"+id_prod_json+"','1')";
                //
                let cant = document.querySelector(".cantidad_value");
-               let value_cant = document.querySelector(".cantidad_value").value;
+               //let value_cant = document.querySelector(".cantidad_value").value;
                let btn_carr = document.querySelector(".btn-carrito")
    
                

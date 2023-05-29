@@ -279,7 +279,7 @@
                <i class="fas fa-chevron-right"></i>
             </button>
          </div>
-         <div class="splide__track">
+         <div class="splide__track" style="padding-top: 20px;">
             <ul class="splide__list splide__list__home"></ul>
          </div>
       </div>
@@ -301,6 +301,7 @@ window.addEventListener("scroll", handleScroll);
         } ).mount();
 
    var columnas_length = columnas.length;
+   console.log(columnas)
 
    for(var x=0; x<columnas_length; x++){
 
@@ -311,10 +312,12 @@ window.addEventListener("scroll", handleScroll);
       let nombre_estilo = columnas[x].nombre_estilo || "";
       let nombre_full = nombre_cat + " " + nombre_estilo;
 
-      const globos_html = `<li class="splide__slide item item-cat-${id_categoria}">
+      const globos_html = 
+      `<li class="splide__slide item item-cat-${id_categoria}">
          <div class="titulo-col-cont" onclick="window.location.replace('${window.location.href}ampliar-publicacion-home.html?accion=ampliar&cat=1')">
          <div class="titulo-col random-p-${x}"><span class="span-titulo">${nombre_full}</span></div>
          </div>
+         <div class="insert-public"></div>
       </li>`
 
       $(".splide__list__home").append(globos_html)

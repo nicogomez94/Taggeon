@@ -2598,7 +2598,7 @@ function getComentarios(comentarios_obj,desde){
 
 }
 
-
+/*
 function getPublicsAmpliar(data){
 
     const sizePublic = data.length;
@@ -2721,8 +2721,8 @@ function getPublicsAmpliar(data){
     observer()
     posicionarPublic();
 
-}
-
+}*/
+/*
 function getPublicsAmpliarHome(data){
 
     const sizePublic = data.length;
@@ -2846,6 +2846,108 @@ function getPublicsAmpliarHome(data){
 
     observer()
     posicionarPublic();
+
+}*/
+
+function getPublicsAmpliarIndex(data,el){
+
+    const sizePublic = data.length;
+    //console.log(data)
+
+    for(var i=0; i<sizePublic; i++){
+ 
+        let id_public = data[i].id || 0;
+        let id_public_cat = data[i].subescena1 || "";
+        let nombre_public = data[i].publicacion_nombre || "";
+        let descr_public = data[i].publicacion_descripcion || "";
+        let publicador = data[i].nombre_publicador || "";
+        let id_publicador = data[i].id_publicador || 0;
+        let foto_perfil = data[i].foto_perfil || "";
+        let like = data[i].megusta || "";
+        let imagen_id = data[i].foto || 0;
+        let producto = data[i].pid || 0;
+        let favorito = data[i].favorito || 0;
+        let foto_src = `/publicaciones_img/${imagen_id}.png` || 0;//viene siempre png?
+        let img_publicador = `/imagen_perfil/${foto_perfil}.png` || 0;//viene siempre png?
+        let id_usuario = "1";//hard
+        let seguidor = "";
+        let seguidos = data.seguidos || [];
+        let idPublicadorSearch = seguidos.find(o => o.idUsuario === id_publicador) || "";
+        let idPublicadorSeguido = idPublicadorSearch.idUsuario;
+        let comentarios_obj = data[i].comentarios || [];
+        let full_url = window.location.href;      
+        let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
+        let like_sw = (like == null || like == 0) ? 'alta' : 'eliminar';
+        let seg_sw = (idPublicadorSeguido==id_publicador) ? 'eliminar' : 'alta';
+        let thisInsertPublic = el.find(".insert-public");
+
+        let html_public = 
+            `<div id="ancla-desde-home-${id_public}" class="public-ampliar public-actual test2">
+                <div class="header-public header-public-${id_public}" onmouseover="showFollow(this)" onmouseout="hideFollow(this)">
+                    <div class="img-perfil-public"><img onerror="this.src=\'/imagen_perfil/generica.png\'" src="${img_publicador}" alt="img-perfil"></div>
+                    <div class="title-public">${publicador}</div>
+                    <div class="follow_public"><i class="fas fa-user-plus seg-${seg_sw}" onclick="toggleFollow(${id_public},'${id_publicador}','${seg_sw}','${publicador}',this);"></i></div>
+                </div>
+                <div class="bodyimg-public-container bodyimg-public-container-${i}">
+                    <img class="imagen-public-${imagen_id}" src="${foto_src}" alt="">
+                    <div class="tag-container tag-container-${i}"></div>
+                </div>
+
+
+                <div id="ancla-${i}" class="productos-public productos-public-${i}">
+                <div class="productos-titulo-public">Productos Relacionados:</div><br>
+                    <div class="productos-titulo-public-gallery productos-titulo-public-gallery-${i}">
+                        <div class="splide splide-prod-tag-${id_public}">
+                            <div class="splide__track">
+                            <ul class="splide__list splide__list__${id_public}"></ul>
+                            </div>
+                        </div>
+                        <div class="splide splide-related splide-prod-${id_public}">
+                            <div class="splide__track">
+                                <ul class="splide__list__${id_public} splide_list_related"></ul>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                <div class="info-public">
+                    <div class="social-public social-public-${id_public}">
+                        <span><i class="fas fa-heart like-${like_sw}" onclick="toggleLikes(${id_public},'${like_sw}',this)"></i></span>
+                        <span><i class="fas fa-star fav-${fav_sw}" onclick="toggleFav(${id_public},'${fav_sw}',this)"></i></span>
+                        <span class="share-sm" onclick="pathShareHome('${full_url}')"><i class="fas fa-paper-plane"></i></span>
+                    </div>
+                    <div class="datos-public">
+                    <div class="info-titulo-public">${nombre_public}</div>
+                    <div class="info-descr-public">${descr_public}<div class="info-descr-shadow">Ver Descripcion</div></div><hr>
+                </div>
+                <div id="ancla-test-${i}"></div>
+                <div class="commentbox-container">
+                    <div class="commentbox commentbox-id-2">
+                        <div>
+                            <img class="mr-1 commentbox-user-img" src="/imagen_perfil/generica.png" alt="perfil"></div>
+                            <div style="flex-grow: 1;">
+                                <input type="text" id="comentario-${i}" name="comentario" style="width: 100%;" placeholder="Ingrese un comentario">
+                            </div>
+                            <div class="ml-1">
+                                <button onclick="sendComentario('${id_public}','${i}')" value="enviar" class="btn">Enviar</button>
+                            </div>
+                        </div>
+                        <div class="vm-comentarios" onclick="activarComentarios('5','publicacion','${id_public}',this);this.removeAttribute('onclick')"><a href="javascript:void(0)">Ver Comentarios</a></div>
+                    <div class="commentbox-list-container commentbox-list-container-${id_public}">
+                    </div>
+                </div>
+            </div>`;
+                        
+            thisInsertPublic.append(html_public)
+            thisInsertPublic.show();
+            getPublicTags(id_public,producto,i,publicador,id_publicador);
+            //document.querySelector(".title-public-"+i).innerHTML = publicador;
+        
+
+        //imgperfil comentarios
+        var img_perfil = $(".img-perfil-usuario-drop").attr("src");
+        $(".commentbox-user-img").attr("src", img_perfil);
+
+    }
 
 }
 
@@ -3015,8 +3117,9 @@ function getPublicsHome(data){
 
 }
 
-function getPublicsHome2(data,catParam){
-    // console.log(data)
+function getPublicsHome2(data,dataIndex){
+    // console.log(dataIndex)
+    console.log(data)
     var listado_length = data.length;
 
     if(listado_length>0){
@@ -3033,10 +3136,15 @@ function getPublicsHome2(data,catParam){
             let columna_append = data[i].subescena1 || '';
             let full_url = `/ampliar-publicacion-home.html?id=${id_public}&accion=ampliar&cat=${id_public_cat}`;//tipo de escena,json
             let fav_sw = (favorito == null || favorito == 0) ? 'alta' : 'eliminar';
+            //
+            let cant = dataIndex.cantidad || 0;
+            let estilo_id = dataIndex.estilo_id || 0;
+            let escena = dataIndex.escena || '';
+            let cat = dataIndex.cat || 0;
 
             const public_html = 
             `<div>
-                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onmouseenter="$(this).find('.text-overlay').toggle();" onmouseleave="$(this).find('.text-overlay').toggle();" onclick="window.location.replace('${full_url}')">
+                <div class="content-col-div content-col-div-${id_public} cat-${id_public_cat}" onmouseenter="$(this).find('.text-overlay').toggle();" onmouseleave="$(this).find('.text-overlay').toggle();" onclick="getCategoria($(this),'${cant}','${estilo_id}','${escena}','${cat}')">
                     <div class="overlay-public">
                         <div class="text-overlay text-overlay-${id_public}">
                             <div class="acciones-btn">
@@ -3052,7 +3160,7 @@ function getPublicsHome2(data,catParam){
                 </div>
             </div>`;
 
-            $(".item-cat-"+catParam).append(public_html)
+            $(".item-cat-"+id_public_cat).append(public_html)
         }
     }
 }
@@ -3332,25 +3440,6 @@ function getDataPaging(dataPaging) {
         
 }
 
-function getDataIndex(data){
-
-    var cant = data.cantidad;
-    var estilo_id = data.estilo_id;
-    var escena = data.escena;
-    var cat = data.cat;
-
-    const URL = `/app/paginador_escena_cat_estilo.php?cant=${cant}&cat=${cat}&estilo=${estilo_id}&escena=${escena}`
-
-    fetch(URL)
-    .then(response => response.json())
-    .then(data => {
-        getPublicsHome2(data,cat);
-    })
-    .catch(function(error){
-        alertify.error("Error en listado FETCH")
-    })
-}
-
 function eliminarProdAmpliarCarrito(id_carrito,id_publicacion,id_prod){
 
     const URL = "/app/carrito.php"
@@ -3503,8 +3592,45 @@ function abrirData(el){
     el.find("i").toggleClass("fa-sort-up")
 }
 
-function ampliarPublicacionHome(thisParam,dataPublic){
-    //filter blur
-    //$()not.(this) y ponter event snonne
-    //width 25em;
+function getDataIndex(dataParam){
+
+    var cant = dataParam.cantidad;
+    var estilo_id = dataParam.estilo_id;
+    var escena = dataParam.escena;
+    var cat = dataParam.cat;
+
+    const URL = `/app/paginador_escena_cat_estilo.php?cant=${cant}&cat=${cat}&estilo=${estilo_id}&escena=${escena}`
+
+    fetch(URL)
+    .then(response => response.json())
+    .then(data => {
+        getPublicsHome2(data,dataParam);
+    })
+    .catch(function(error){
+        alertify.error("Error en listado FETCH getDataIndex()")
+    })
+}
+
+function getCategoria(el,cantParam,estilo_idParam,escenaParam,catParam){
+
+    var thisCol = el.parent().parent();
+    var borrarCont = thisCol.children(":not(.titulo-col-cont)");
+    
+    //borro contenido de la col y la hago activa
+    borrarCont.addClass("delete");
+    $(".item").not(thisCol).addClass("col-inactiva")
+    $(el).parent().parent().addClass("col-activa bouncing-piola");
+
+    const URL = `/app/paginador_escena_cat_estilo.php?cant=${cantParam}&cat=${catParam}&estilo=${estilo_idParam}&escena=${escenaParam}`
+
+    fetch(URL)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+
+        getPublicsAmpliarIndex(data,thisCol);
+    })
+    .catch(function(error){
+        alertify.error("Error FETCH getCategoria() -->"+error)
+    })
 }
